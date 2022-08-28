@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import "./style.scss";
 
-export default function Card({ children, hideHeader = false, title, headerAction, customFooter = null, footer }) {
+function Card({ children, hideHeader = false, title, headerAction, customFooter = null, footer }) {
   return (
     <div className="rnd-card">
       {/* Card Header */}
@@ -21,3 +22,15 @@ export default function Card({ children, hideHeader = false, title, headerAction
     </div>
   )
 }
+
+Card.propTypes={
+  title:PropTypes.string,
+  hideHeader:PropTypes.bool,
+  customFooter:PropTypes.node,
+  footer:PropTypes.node,
+  headerAction:PropTypes.node,
+  children:PropTypes.node,
+}
+
+
+export default Card;
