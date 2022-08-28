@@ -29,7 +29,7 @@ Card.propTypes={
   customFooter:PropTypes.node,
   footer:PropTypes.node,
   headerAction:PropTypes.node,
-  children:PropTypes.node,
+  children:PropTypes.node.isRequired,
 }
 
 
