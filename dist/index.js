@@ -10,8 +10,8 @@ Object.defineProperty(exports, "Card", {
   }
 });
 
-require("./index.scss");
-
 var _Card = _interopRequireDefault(require("./Card"));
+
+require("./index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
