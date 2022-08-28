@@ -1,0 +1,28 @@
+*{
+  outline: none;
+  user-select: none;
+  a{
+    text-decoration: none;
+    color:#276ff2;
+  }
+}
+
+.rnd-d-flex{
+  display: flex;
+}
+
+.rnd-justify-between{
+  justify-content: space-between;
+}
+
+.rnd-justify-end{
+  justify-content:end;
+}
+
+.float-right{
+  float: right;
+}
+
+.rnd-w-100{
+  width: 100%;
+}
