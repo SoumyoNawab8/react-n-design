@@ -1,0 +1,29 @@
+@import "../config/variables";
+
+
+.rnd-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 0.5px solid;
+    cursor: pointer;
+    &:hover{
+        box-shadow: 1px 2px 6px 0px #808080c2;
+        transition: all 0.25ms ease-in-out;
+    }
+}
+
+.rnd-btn-primary{
+    background-color: $primary;
+    color: #fff;
+}
+
+.rnd-btn-danger{
+    background-color: $danger;
+    color: #fff;
+}
+
+.rnd-btn-rounded{
+border-radius: 20px;
+}
