@@ -2,3 +2,6 @@
 
 ### `npm install react-n-design`
 
+## Card component
+
+### `import { Card } from 'react-n-design'; <Card title="Example Card">...</Card>`

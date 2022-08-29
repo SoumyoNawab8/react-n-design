@@ -1,10 +1,18 @@
 *{
   outline: none;
   user-select: none;
+  transition: 0.5ms ease-in-out;
   a{
     text-decoration: none;
     color:#276ff2;
+
+    &:hover{
+      color:#1c4faf;
+    }
   }
+}
+body{
+  margin: 0px;
 }
 
 .rnd-d-flex{
@@ -25,4 +33,14 @@
 
 .rnd-w-100{
   width: 100%;
+}
+.rnd-bordered{
+  border:1px solid grey;
+}
+
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
 }
