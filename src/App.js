@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import { Card } from './components';
+import { Card,Button } from './components';
 import "./App.scss";
 
 function App() {
@@ -29,7 +29,9 @@ function App() {
           className="test-product"
           disableBorder
           loading={loading}
-          customFooter={<div className='rnd-d-flex rnd-justify-end'><a href="#" onClick={(e) =>{e.preventDefault();setLoading(true)}}>Add To Cart</a></div>}>
+          customFooter={<div className='rnd-d-flex rnd-justify-end'>
+            <Button onClick={()=>{setLoading(true)}}>Add To Cart</Button>
+            </div>}>
           <div style={{ height: '250px', width: '100%', backgroundImage: `url(https://images.unsplash.com/photo-1659887347330-5bd7d335edaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
           <div style={{ marginTop: '10px', padding: '5px 15px' }}>
             <div className='rnd-d-flex rnd-justify-between rnd-w-100'>
@@ -38,6 +40,11 @@ function App() {
           </div>
 
         </Card>
+      </div>
+      <div style={{ width: '400px',padding:'1rem' }}>
+      <Button onClick={()=>{}}>Primary</Button>
+      <Button onClick={()=>{}} type="danger">Danger</Button>
+      <Button onClick={()=>{}} type="primary" rounded>Primary Rounded</Button>
       </div>
     </div>
   );
