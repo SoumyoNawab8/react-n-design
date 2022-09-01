@@ -1,0 +1,19 @@
+@import "../config/variables";
+.rnd-tabs{
+    .rnd-tab-options{
+        display: flex;
+        align-items: center;
+        border-bottom: 0.8px solid grey;
+        .rnd-tab-name{
+            padding: 10px;
+            color:grey;
+            cursor: pointer;
+        }
+        .rnd-tab-name-active{
+            color:$primary;
+        }
+    }
+    .rnd-tab-body{
+        padding: 10px;
+    }
+}
