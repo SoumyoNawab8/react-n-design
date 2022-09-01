@@ -1,9 +1,13 @@
 {
   "name": "react-n-design",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoumyoNawab8/react-n-design.git"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.16.5",
