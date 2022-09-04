@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 *{
   outline: none;
   user-select: none;
-  transition: 0.5ms ease-in-out;
+  transition: all 0.5s ease-in-out;
+  font-family: 'Lato', sans-serif;
   a{
     text-decoration: none;
     color:#276ff2;
@@ -37,7 +39,22 @@ body{
 .rnd-bordered{
   border:1px solid grey;
 }
-
+.rnd-fade-enter{
+  opacity: 0;
+}
+.rnd-fade-exit{
+  opacity: 1;
+}
+.rnd-fade-enter-active{
+  opacity: 1;
+}
+.rnd-fade-exit-active{
+  opacity: 0;
+}
+.rnd-fade-enter-active,
+.rnd-fade-exit-active{
+  transition: opacity 500ms;
+}
 
 @keyframes shine {
   to {
