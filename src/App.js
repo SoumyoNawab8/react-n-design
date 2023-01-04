@@ -5,7 +5,7 @@ import "./App.scss";
 function App() {
 
   const [loading, setLoading] = useState(false);
-  const [activeTab,setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     if (loading) {
@@ -15,45 +15,47 @@ function App() {
     }
   }, [loading])
 
-  const tabOptions=[
+  const tabOptions = [
     { tabName: 'primary', content: 'Culpa cillum sint amet occaecat veniam laborum elit eiusmod. Enim pariatur non quis sit duis veniam deserunt consequat minim. Deserunt dolore velit elit fugiat eu aute culpa sunt. In deserunt culpa cillum irure cupidatat occaecat elit aute dolore.' },
     { tabName: 'secondary', content: 'Secondary Rounded' },
   ]
 
   return (
-    <div style={{ backgroundColor: '#e4e4e4', height: '100vh', width: '100%', margin: '1px' }} className="rnd-d-flex">
-      <div style={{ width: '400px' }}>
-        <Card
-          title="Example Card"
-          footer={<div className='rnd-d-flex rnd-justify-end'><a href="#">Learn More...</a></div>}>
-          Minim sunt laborum adipisicing adipisicing proident Lorem ex irure id Lorem in. Nisi amet mollit nisi et id quis anim reprehenderit et quis. Ut dolor sit laboris aliquip officia id ullamco. Labore deserunt irure sint eiusmod dolor fugiat laboris ex et id pariatur veniam do. Reprehenderit adipisicing fugiat adipisicing duis ex commodo magna duis eu. Aute do consectetur consequat ut quis eiusmod veniam laborum in in. Qui nostrud ad culpa commodo aliquip mollit.
-        </Card>
-      </div>
-      <div style={{ width: '320px' }}>
-        <Card
-          hideHeader
-          className="test-product"
-          disableBorder
-          loading={loading}
-          customFooter={<div className='rnd-d-flex rnd-justify-end'>
-            <Button onClick={() => { setLoading(true) }}>Add To Cart</Button>
-          </div>}>
-          <div style={{ height: '250px', width: '100%', backgroundImage: `url(https://images.unsplash.com/photo-1659887347330-5bd7d335edaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
-          <div style={{ marginTop: '10px', padding: '5px 15px' }}>
-            <div className='rnd-d-flex rnd-justify-between rnd-w-100'>
-              <span><b>Product Bag</b></span><span>$50</span>
+    <div  style={{ backgroundColor: '#e4e4e4', height: '100vh', width: '100%' }} className="rnd-container">
+      <div className="rnd-row">
+        <div className='rnd-col3'>
+          <Card
+            title="Example Card"
+            footer={<div className='rnd-d-flex rnd-justify-end'><a href="#">Learn More...</a></div>}>
+            Minim sunt laborum adipisicing adipisicing proident Lorem ex irure id Lorem in. Nisi amet mollit nisi et id quis anim reprehenderit et quis. Ut dolor sit laboris aliquip officia id ullamco. Labore deserunt irure sint eiusmod dolor fugiat laboris ex et id pariatur veniam do. Reprehenderit adipisicing fugiat adipisicing duis ex commodo magna duis eu. Aute do consectetur consequat ut quis eiusmod veniam laborum in in. Qui nostrud ad culpa commodo aliquip mollit.
+          </Card>
+        </div>
+        <div className='rnd-col3'>
+          <Card
+            hideHeader
+            className="test-product"
+            disableBorder
+            loading={loading}
+            customFooter={<div className='rnd-d-flex rnd-justify-end'>
+              <Button onClick={() => { setLoading(true) }}>Add To Cart</Button>
+            </div>}>
+            <div style={{ height: '250px', width: '100%', backgroundImage: `url(https://images.unsplash.com/photo-1659887347330-5bd7d335edaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+            <div style={{ marginTop: '10px', padding: '5px 15px' }}>
+              <div className='rnd-d-flex rnd-justify-between rnd-w-100'>
+                <span><b>Product Bag</b></span><span>$50</span>
+              </div>
             </div>
-          </div>
 
-        </Card>
-      </div>
-      <div style={{ width: '400px', padding: '1rem' }}>
-        <Button onClick={() => { }}>Primary</Button>
-        <Button onClick={() => { }} type="danger">Danger</Button>
-        <Button onClick={() => { }} type="primary" rounded>Primary Rounded</Button>
-      </div>
-      <div style={{ width: '600px', padding: '1rem' }}>
-        <Tabs options={tabOptions} active={activeTab} handleTabChange={(indx)=>setActiveTab(indx)} />
+          </Card>
+        </div>
+        <div className='rnd-col3'>
+          <Button onClick={() => { }}>Primary</Button>
+          <Button onClick={() => { }} type="danger">Danger</Button>
+          <Button onClick={() => { }} type="primary" rounded>Primary Rounded</Button>
+        </div>
+        <div className='rnd-col3'>
+          <Tabs options={tabOptions} active={activeTab} handleTabChange={(indx) => setActiveTab(indx)} />
+        </div>
       </div>
     </div>
   );
