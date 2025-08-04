@@ -95,7 +95,17 @@ export default App;
 ```
 
 ---
+### ## 🌳 Tree Shaking & Performance
 
+`react-n-design` is optimized for performance and supports tree shaking out of the box. For the best possible bundle size, you can import components directly.
+
+**Standard Import (Good):**
+Your bundler will do its best to remove unused components.
+```jsx
+import { Button, Card, Input } from 'react-n-design';
+```
+
+---
 ### ## 🎨 Interactive Docs with Storybook
 
 The best way to explore the entire component library is with our interactive Storybook documentation. It allows you to view every component, see all its variations, and play with its props in a live environment.
