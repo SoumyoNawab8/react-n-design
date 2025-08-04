@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { SwitchWrapper, SwitchKnob, SwitchContainer, LabelText, KnobSpinner, KnobIcon } from './Switch.styles';
 
 export interface SwitchProps {

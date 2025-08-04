@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { ProgressBarWrapper, ProgressBarFill, ProgressLabel } from './ProgressBar.styles';
 
 export interface ProgressBarProps {
