@@ -1,6 +1,7 @@
 {
   "name": "react-n-design",
   "version": "0.1.15",
+  "license": "MIT", 
   "private": false,
   "description": "react-n-design: A modern, lightweight, and animated mordern React component library.",
    "repository": {
