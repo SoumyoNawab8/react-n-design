@@ -1,45 +1,42 @@
-// vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import path from 'path';
-import { glob } from 'glob';
 
 export default defineConfig({
   plugins: [
-    react(),
-    dts({ insertTypesEntry: true }),
+    react({
+      jsxRuntime: 'automatic' // Ensure modern JSX transform
+    }),
+    dts({ 
+      insertTypesEntry: true,
+      rollupTypes: true // Bundle all types into a single file
+    }),
   ],
   build: {
     lib: {
-      entry: {
-        index: path.resolve(__dirname, 'src/index.ts'),
-        context: path.resolve(__dirname, 'src/context/index.ts'),
-
-        // Automatically create an entry for each component
-        ...Object.fromEntries(
-          glob.sync('src/components/**/*.{ts,tsx}').map(file => [
-            // This will create a file path like 'components/Button/index'
-            path.relative(
-              'src',
-              file.slice(0, file.length - path.extname(file).length)
-            ),
-            // The value is the absolute path to the file
-            path.resolve(__dirname, file)
-          ])
-        )
-      },
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'ReactNDesign',
-      formats: ['es'], // ES modules are best for tree shaking
+      formats: ['es', 'cjs'],
+      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'styled-components', 'framer-motion'],
+      // Ensure peer dependencies are not bundled
+      external: (id) => {
+        return id === 'react' || 
+               id === 'react-dom' || 
+               id === 'react/jsx-runtime' ||
+               id === 'styled-components' ||
+               id === 'framer-motion' ||
+               id.startsWith('react-icons/');
+      },
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'ReactJSXRuntime',
           'styled-components': 'styled',
-          'framer-motion': 'motion',
+          'framer-motion': 'FramerMotion',
         },
       },
     },

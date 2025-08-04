@@ -1,6 +1,6 @@
 {
   "name": "react-n-design",
-  "version": "0.1.21.2",
+  "version": "0.1.21.3",
   "license": "MIT",
   "private": false,
   "description": "react-n-design: A modern, lightweight, and animated modern React component library.",
@@ -14,21 +14,11 @@
   "files": [
     "dist"
   ],
-   "exports": {
+  "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    },
-    "./context": {
-      "import": "./dist/context.mjs",
-      "require": "./dist/context.js",
-      "types": "./dist/context.d.ts"
-    },
-    "./components/*": {
-      "import": "./dist/components/*/index.mjs",
-      "require": "./dist/components/*/index.js",
-      "types": "./dist/components/*/index.d.ts"
     }
   },
   "scripts": {
@@ -37,13 +27,7 @@
     "build-storybook": "storybook build",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "framer-motion": "^11.2.10",
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0",
-    "react-icons": "^5.5.0",
-    "styled-components": "^6.1.11"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@storybook/addon-essentials": "^8.1.10",
     "@storybook/addon-interactions": "^8.1.10",
@@ -62,7 +46,10 @@
   },
   "peerDependencies": {
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "react-dom": ">=18.0.0",
+    "styled-components": ">=5.0.0",
+    "framer-motion": ">=6.0.0",
+    "react-icons": ">=4.0.0"
   },
   "keywords": [
     "react",

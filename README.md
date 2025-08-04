@@ -1,53 +1,200 @@
-<div align="center">
-  <br />
-  <h1>🎨 react-n-design</h1>
-  <br />
-</div>
+# 🎨 react-n-design
 
-<p align="center">
-  A stunning, lightweight, and modern React component library built with TypeScript and styled-components, based on <strong>Neomorphic</strong> design principles.
-</p>
+A stunning, lightweight, and modern React component library built with TypeScript and styled-components, based on **Neomorphic** design principles.
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/react-n-design">
-    <img src="https://img.shields.io/badge/NPM-View%20Package-cb3837?style=for-the-badge&cacheBuster=dsadad" alt="View on NPM" />
-  </a>
-  <a href="https://SoumyoNawab8.github.io/react-n-design/">
-    <img src="https://img.shields.io/badge/Storybook-Live%20Demo-ff4785?style=for-the-badge&cacheBuster=dsadad" alt="Storybook Live Demo" />
-  </a>
-</p>
+[![NPM Version](https://img.shields.io/npm/v/react-n-design.svg?style=flat-square)](https://www.npmjs.com/package/react-n-design)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/react-n-design?style=flat-square)](https://bundlephobia.com/package/react-n-design)
+[![License](https://img.shields.io/npm/l/react-n-design.svg?style=flat-square)](https://github.com/SoumyoNawab8/react-n-design/blob/master/LICENSE)
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/react-n-design">
-    <img src="https://img.shields.io/npm/v/react-n-design.svg?style=flat-square" alt="NPM Version" />
-  </a>
-  <a href="https://github.com/SoumyoNawab8/react-n-design/actions/workflows/main.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?style=flat-square&cacheBuster=dsadad" alt="Build Status" />
-  </a>
-  <a href="https://bundlephobia.com/package/react-n-design">
-    <img src="https://img.shields.io/bundlephobia/minzip/react-n-design?style=flat-square&cacheBuster=dsadad" alt="Bundle Size" />
-  </a>
-  <a href="https://github.com/SoumyoNawab8/react-n-design/blob/master/LICENSE">
-    <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&cacheBuster=1234" alt="License" />
-  </a>
-</p>
+## 🚀 Installation
 
+```bash
+npm install react-n-design styled-components react-icons
+```
 
+**Note:** This package requires `styled-components` and `react-icons` as peer dependencies.
+
+## 📖 Usage
+
+### Basic Setup
+
+Wrap your app with the ThemeProvider to enable theming:
+
+```tsx
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, Button } from 'react-n-design';
+
+function App() {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <div>
+        <Button variant="primary">Click me</Button>
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+### With Custom Theme Context
+
+For better theme management with dark/light mode support:
+
+```tsx
+import React from 'react';
+import { 
+  ThemeContextProvider, 
+  useThemeContext, 
+  Button, 
+  Switch 
+} from 'react-n-design';
+
+function ThemeToggle() {
+  const { isDark, toggleTheme } = useThemeContext();
+  
+  return (
+    <Switch 
+      checked={isDark} 
+      onChange={toggleTheme}
+      label={isDark ? 'Dark Mode' : 'Light Mode'}
+    />
+  );
+}
+
+function App() {
+  return (
+    <ThemeContextProvider>
+      <div>
+        <ThemeToggle />
+        <Button variant="primary">Hello World</Button>
+      </div>
+    </ThemeContextProvider>
+  );
+}
+
+export default App;
+```
+
+## 🧩 Components
+
+### Button
+```tsx
+import { Button } from 'react-n-design';
+
+<Button variant="primary" size="medium">
+  Primary Button
+</Button>
+```
+
+### Input
+```tsx
+import { Input } from 'react-n-design';
+
+<Input 
+  label="Email"
+  placeholder="Enter your email"
+  inputSize="medium"
+  allowClear
+/>
+```
+
+### Card
+```tsx
+import { Card } from 'react-n-design';
+
+<Card variant="default" padding="20px">
+  <h3>Card Title</h3>
+  <p>Card content goes here...</p>
+</Card>
+```
+
+### Alert
+```tsx
+import { Alert } from 'react-n-design';
+
+<Alert 
+  type="success" 
+  message="Success!" 
+  description="Your action was completed successfully."
+  showIcon
+  closable
+/>
+```
+
+## 🎨 Theming
+
+The library comes with light and dark themes out of the box:
+
+```tsx
+import { lightTheme, darkTheme, Theme } from 'react-n-design';
+
+// You can also create custom themes
+const customTheme: Theme = {
+  name: 'custom',
+  colors: {
+    primary: '#your-color',
+    background: '#your-bg',
+    // ... other color properties
+  },
+  shadows: {
+    soft: 'your-shadow',
+    softInset: 'your-inset-shadow',
+  },
+  borderRadius: '8px',
+};
+```
+
+## 📦 Tree Shaking
+
+The library supports tree shaking. Import only what you need:
+
+```tsx
+// Import individual components
+import { Button } from 'react-n-design';
+
+// Or import multiple components
+import { Button, Input, Card } from 'react-n-design';
+```
+
+## 🛠️ Development
+
+```bash
+# Clone the repository
+git clone https://github.com/SoumyoNawab8/react-n-design.git
+
+# Install dependencies
+npm install
+
+# Start Storybook for development
+npm run dev
+
+# Build the library
+npm run build
+```
+
+## 📋 Requirements
+
+- React >= 18.0.0
+- styled-components >= 5.0.0
+- react-icons >= 4.0.0
+
+## 🐛 Issues & Feature Requests
+
+Found a bug or have a feature request? Please open an issue on our [GitHub repository](https://github.com/SoumyoNawab8/react-n-design/issues).
+
+## 📄 License
+
+MIT © [SoumyoNawab8](https://github.com/SoumyoNawab8)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our contributing guidelines before submitting a PR.
 
 ---
 
-### ## 🤔 Why `react-n-design`?
-
-Tired of the same flat UI components? `react-n-design` offers a fresh, tactile, and visually appealing alternative. Based on the principles of **Neomorphism**, our components use soft shadows and highlights to create an illusion of depth, making your UI feel like it's extruding from the background. It's modern, clean, and a joy to interact with.
-
----
-
-### ## ✨ Features
-
-* **Beautiful Design:** Soft, modern UI based on Neomorphism.
-* **Highly Customizable:** Components come with a rich set of props for easy customization.
-* **Fully Typed:** Written entirely in **TypeScript** for a superb developer experience.
-* **Lightweight & Performant:** Optimized for a small bundle size with tree-shaking support.
+**Made with ❤️ by [SoumyoNawab8](https://github.com/SoumyoNawab8)**
 * **Animated & Accessible:** Fluid animations powered by `framer-motion` and a focus on accessibility.
 * **Well Documented:** Explore every component interactively with Storybook.
 
