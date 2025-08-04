@@ -4,7 +4,7 @@ on:
   # Run automatically when you push to the main branch
   push:
     branches:
-      - main
+      - master
 
 # Allow the job to create a page deployment
 permissions:
