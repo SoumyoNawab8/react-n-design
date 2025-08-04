@@ -14,6 +14,8 @@ export default defineConfig({
     lib: {
       entry: {
         index: path.resolve(__dirname, 'src/index.ts'),
+        context: path.resolve(__dirname, 'src/context/index.ts'),
+
         // Automatically create an entry for each component
         ...Object.fromEntries(
           glob.sync('src/components/**/*.{ts,tsx}').map(file => [
