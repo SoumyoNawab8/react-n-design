@@ -1,0 +1,56 @@
+##### `stories/Usage.mdx`
+```mdx
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Getting Started/Usage" />
+
+# Usage Guide
+
+This guide covers how to install and efficiently use the `react-n-design` component library in your project.
+
+## Installation
+
+`react-n-design` has peer dependencies on `react` and `styled-components`.
+
+```bash
+npm install react-n-design styled-components
+```
+
+## Basic Setup
+
+To start using the components, wrap your application's root with our `AppThemeProvider` to enable theming.
+
+```jsx
+import React from 'react';
+import { AppThemeProvider } from 'react-n-design/context';
+import { MainApp } from './MainApp'; // Your application's main component
+
+const App = () => (
+  <AppThemeProvider>
+    <MainApp />
+  </AppThemeProvider>
+);
+
+export default App;
+```
+
+## Tree Shaking & Performance
+
+`react-n-design` is optimized for performance and supports tree shaking out of the box. For the best possible bundle size, you can import components directly.
+
+### Standard Import (Good)
+Your bundler will do its best to remove unused components.
+
+```jsx
+import { Button, Card, Input } from 'react-n-design';
+```
+
+### Direct Import (Best Performance)
+This method guarantees that only the specific component's code is included in your final bundle.
+
+```jsx
+import { Button } from 'react-n-design/components/Button';
+import { Card } from 'react-n-design/components/Card';
+import { Input } from 'react-n-design/components/Input';
+```
+```
