@@ -9,8 +9,11 @@
 </p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/react-n-design">
+    <img src="https://img.shields.io/badge/NPM-View%20Package-cb3837?style=for-the-badge&cacheBuster=dsadad" alt="View on NPM" />
+  </a>
   <a href="https://SoumyoNawab8.github.io/react-n-design/">
-    <img src="https://img.shields.io/badge/Storybook-Live%20Demo-ff4785?style=flat-square&cacheBuster=dsadad" alt="Storybook Live Demo" />
+    <img src="https://img.shields.io/badge/Storybook-Live%20Demo-ff4785?style=for-the-badge&cacheBuster=dsadad" alt="Storybook Live Demo" />
   </a>
 </p>
 
