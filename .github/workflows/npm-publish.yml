@@ -1,0 +1,63 @@
+name: Publish to NPM on merge to main
+
+on:
+  push:
+    branches:
+      - main # Trigger the workflow on push to the main branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: |
+          if [ ! -f package.json ]; then
+            echo "Error: package.json not found. Cannot install dependencies."
+            exit 1
+          fi
+          npm ci
+
+      - name: Build the project (if build script exists)
+        run: |
+          if [ ! -f package.json ]; then
+            echo "No package.json found, skipping build step."
+            exit 0
+          fi
+          if ! jq -e '.scripts.build' package.json > /dev/null; then
+            echo "No build script found in package.json, skipping build step."
+            exit 0
+          fi
+          npm run build
+        shell: bash
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Increment version and publish to NPM
+        run: |
+          # Increment the patch version (e.g., 1.0.0 -> 1.0.1)
+          # Use "npm version minor" or "npm version major" for different increments
+          npm version patch -m "chore: bump version to %s [skip ci]"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push changes and tags to repository
+        run: git push --follow-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
