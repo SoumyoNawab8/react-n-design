@@ -1,10 +1,10 @@
 {
   "name": "react-n-design",
-  "version": "0.1.15",
+  "version": "0.1.18",
   "license": "MIT",
   "private": false,
   "description": "react-n-design: A modern, lightweight, and animated modern React component library.",
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/SoumyoNawab8/react-n-design.git"
   },
