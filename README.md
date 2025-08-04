@@ -13,12 +13,12 @@
     <img src="https://img.shields.io/npm/v/react-n-design.svg?style=flat-square" alt="NPM Version" />
   </a>
   <a href="https://github.com/SoumyoNawab8/react-n-design/actions/workflows/main.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?branch=main&style=flat-square" alt="Build Status" />
+    <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?branch=master&style=flat-square" alt="Build Status" />
   </a>
   <a href="https://bundlephobia.com/package/react-n-design">
     <img src="https://img.shields.io/bundlephobia/minzip/react-n-design?style=flat-square" alt="Bundle Size" />
   </a>
-  <a href="https://github.com/SoumyoNawab8/react-n-design/blob/main/LICENSE">
+  <a href="https://github.com/SoumyoNawab8/react-n-design/blob/master/LICENSE">
     <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square" alt="License" />
   </a>
 </p>
