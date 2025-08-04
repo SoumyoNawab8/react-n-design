@@ -10,10 +10,10 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/react-n-design">
-    <img src="https://img.shields.io/npm/v/react-n-design.svg?style=flat-square&cacheBuster=dsadad" alt="NPM Version" />
+    <img src="https://img.shields.io/npm/v/react-n-design.svg?style=flat-square" alt="NPM Version" />
   </a>
   <a href="https://github.com/SoumyoNawab8/react-n-design/actions/workflows/main.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?branch=master&style=flat-square&cacheBuster=dsadad" alt="Build Status" />
+    <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?style=flat-square&cacheBuster=dsadad" alt="Build Status" />
   </a>
   <a href="https://bundlephobia.com/package/react-n-design">
     <img src="https://img.shields.io/bundlephobia/minzip/react-n-design?style=flat-square&cacheBuster=dsadad" alt="Bundle Size" />
