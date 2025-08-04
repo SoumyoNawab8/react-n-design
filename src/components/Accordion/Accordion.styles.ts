@@ -1,4 +1,4 @@
-import styled, { css, DefaultTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
 // Extend DefaultTheme to include 'colors', 'borderRadius', and 'shadows' if not already defined

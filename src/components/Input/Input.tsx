@@ -5,9 +5,9 @@ import {
 } from './Input.styles';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Example icons
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   label?: string;
-  size?: 'small' | 'medium' | 'large';
+  inputSize?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
   error?: string;
   addonBefore?: React.ReactNode;
@@ -24,7 +24,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 export const Input = ({
   label,
   id,
-  size = 'medium',
+  inputSize = 'medium',
   fullWidth = false,
   error = '',
   disabled = false,
@@ -66,7 +66,7 @@ export const Input = ({
   };
 
   const inputElement = (
-    <InputInnerWrapper size={size} hasError={!!error} disabled={disabled}>
+    <InputInnerWrapper size={inputSize} hasError={!!error} disabled={disabled}>
       {prefix && <InputPrefix>{prefix}</InputPrefix>}
       <StyledInput
         id={inputId}
