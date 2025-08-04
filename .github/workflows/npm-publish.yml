@@ -19,10 +19,25 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ ! -f package.json ]; then
+            echo "Error: package.json not found. Cannot install dependencies."
+            exit 1
+          fi
+          npm ci
 
-      - name: Build the project
-        run: npm run build
+      - name: Build the project (if build script exists)
+        run: |
+          if [ ! -f package.json ]; then
+            echo "No package.json found, skipping build step."
+            exit 0
+          fi
+          if ! jq -e '.scripts.build' package.json > /dev/null; then
+            echo "No build script found in package.json, skipping build step."
+            exit 0
+          fi
+          npm run build
+        shell: bash
 
       - name: Configure Git
         run: |
