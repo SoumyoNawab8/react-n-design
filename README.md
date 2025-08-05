@@ -1,10 +1,36 @@
-# 🎨 react-n-design
+<div align="center">
+  <br />
+  <h1>🎨 react-n-design</h1>
+  <br />
+</div>
 
-A stunning, lightweight, and modern React component library built with TypeScript and styled-components, based on **Neomorphic** design principles.
+<p align="center">
+  A stunning, lightweight, and modern React component library built with TypeScript and styled-components, based on <strong>Neomorphic</strong> design principles.
+</p>
 
-[![NPM Version](https://img.shields.io/npm/v/react-n-design.svg?style=flat-square)](https://www.npmjs.com/package/react-n-design)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/react-n-design?style=flat-square)](https://bundlephobia.com/package/react-n-design)
-[![License](https://img.shields.io/npm/l/react-n-design.svg?style=flat-square)](https://github.com/SoumyoNawab8/react-n-design/blob/master/LICENSE)
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-n-design">
+    <img src="https://img.shields.io/badge/NPM-View%20Package-cb3837?style=for-the-badge&cacheBuster=dsadad" alt="View on NPM" />
+  </a>
+  <a href="https://SoumyoNawab8.github.io/react-n-design/">
+    <img src="https://img.shields.io/badge/Storybook-Live%20Demo-ff4785?style=for-the-badge&cacheBuster=dsadad" alt="Storybook Live Demo" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-n-design">
+    <img src="https://img.shields.io/npm/v/react-n-design.svg?style=flat-square" alt="NPM Version" />
+  </a>
+  <a href="https://github.com/SoumyoNawab8/react-n-design/actions/workflows/main.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?style=flat-square&cacheBuster=dsadad" alt="Build Status" />
+  </a>
+  <a href="https://bundlephobia.com/package/react-n-design">
+    <img src="https://img.shields.io/bundlephobia/minzip/react-n-design?style=flat-square&cacheBuster=dsadad" alt="Bundle Size" />
+  </a>
+  <a href="https://github.com/SoumyoNawab8/react-n-design/blob/master/LICENSE">
+    <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&cacheBuster=1234" alt="License" />
+  </a>
+</p>
 
 ## 🚀 Installation
 

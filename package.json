@@ -1,6 +1,6 @@
 {
   "name": "react-n-design",
-  "version": "0.1.21.3",
+  "version": "0.1.21.5",
   "license": "MIT",
   "private": false,
   "description": "react-n-design: A modern, lightweight, and animated modern React component library.",
@@ -50,6 +50,14 @@
     "styled-components": ">=5.0.0",
     "framer-motion": ">=6.0.0",
     "react-icons": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "framer-motion": {
+      "optional": true
+    },
+    "react-icons": {
+      "optional": true
+    }
   },
   "keywords": [
     "react",
