@@ -34,7 +34,9 @@ const getAlertColors = (theme: Theme, alertType: 'success' | 'info' | 'warning' 
   }
 };
 
-export const AlertWrapper = styled(motion.div)<{ alertType: 'success' | 'info' | 'warning' | 'error' }>`
+export const AlertWrapper = styled(motion.div).withConfig({
+  shouldForwardProp: (prop) => !['alertType'].includes(prop),
+})<{ alertType: 'success' | 'info' | 'warning' | 'error' }>`
   display: flex;
   align-items: flex-start;
   width: 100%;

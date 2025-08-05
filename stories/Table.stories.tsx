@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Table } from '../src/components/Table';
 import { Tag } from '../src/components/Tag';
