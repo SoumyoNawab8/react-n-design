@@ -10,7 +10,9 @@ export default defineConfig({
     }),
     dts({ 
       insertTypesEntry: true,
-      rollupTypes: true
+      rollupTypes: true,
+      exclude: ['**/*.stories.tsx', '**/*.test.tsx', 'stories/**/*'],
+      outDir: 'dist'
     }),
   ],
   build: {
