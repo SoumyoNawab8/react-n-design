@@ -6,11 +6,11 @@ import path from 'path';
 export default defineConfig({
   plugins: [
     react({
-      jsxRuntime: 'automatic' // Ensure modern JSX transform
+      jsxRuntime: 'classic' // Use classic to avoid jsx-runtime dependency
     }),
     dts({ 
       insertTypesEntry: true,
-      rollupTypes: true // Bundle all types into a single file
+      rollupTypes: true
     }),
   ],
   build: {
@@ -21,23 +21,31 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
     rollupOptions: {
-      // Ensure peer dependencies are not bundled
       external: (id) => {
-        return id === 'react' || 
-               id === 'react-dom' || 
-               id === 'react/jsx-runtime' ||
-               id === 'styled-components' ||
-               id === 'framer-motion' ||
-               id.startsWith('react-icons/');
+        // More comprehensive external check
+        const externals = [
+          'react',
+          'react-dom',
+          'react/jsx-runtime',
+          'react/jsx-dev-runtime',
+          'styled-components',
+          'framer-motion'
+        ];
+        
+        return externals.includes(id) || 
+               id.startsWith('react-icons/') ||
+               id.startsWith('react/') ||
+               id.startsWith('react-dom/');
       },
       output: {
         globals: {
-          react: 'React',
+          'react': 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'ReactJSXRuntime',
           'styled-components': 'styled',
           'framer-motion': 'FramerMotion',
         },
+        interop: 'auto', // Handle default exports properly
       },
     },
   },
