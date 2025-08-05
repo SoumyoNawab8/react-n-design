@@ -43,7 +43,9 @@ export const ButtonContent = styled.span`
   gap: 8px; /* Space between icon and text */
 `;
 
-export const StyledButton = styled.button<{
+export const StyledButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => !['size', 'variant', 'shape', 'fullWidth', 'hasChildren'].includes(prop),
+})<{
   size: 'small' | 'medium' | 'large';
   variant: 'primary' | 'secondary' | 'text';
   shape: 'default' | 'circle';

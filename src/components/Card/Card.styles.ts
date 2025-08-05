@@ -49,7 +49,9 @@ export const CardHeader = styled.div`
   font-weight: 600;
 `;
 
-export const CardBody = styled.div<{ padding: 'none' | 'small' | 'medium' | 'large' }>`
+export const CardBody = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['padding'].includes(prop),
+})<{ padding: 'none' | 'small' | 'medium' | 'large' }>`
   padding: ${({ padding }) => paddings[padding]};
 `;
 
@@ -60,7 +62,9 @@ export const CardFooter = styled.div`
   padding-top: 16px;
 `;
 
-export const StyledCard = styled.div<{
+export const StyledCard = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['variant', 'bordered', 'hoverable', 'isLoading'].includes(prop),
+})<{
   variant: 'outset' | 'inset';
   bordered: boolean;
   hoverable: boolean;
