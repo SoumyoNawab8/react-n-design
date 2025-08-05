@@ -1,6 +1,6 @@
 {
   "name": "react-n-design",
-  "version": "0.1.21.5",
+  "version": "0.1.22",
   "license": "MIT",
   "private": false,
   "description": "react-n-design: A modern, lightweight, and animated modern React component library.",
@@ -16,9 +16,9 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     }
   },
   "scripts": {

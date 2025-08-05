@@ -14,10 +14,13 @@ const ThemeContext = createContext<ThemeContextType>({
 });
 
 // Create a custom hook for using the context
-export const useTheme = () => useContext(ThemeContext);
+export const useThemeContext = () => useContext(ThemeContext);
+
+// Also export with shorter name
+export const useTheme = useThemeContext;
 
 // Create the provider component
-export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   const toggleTheme = () => {
@@ -38,3 +41,6 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     </ThemeContext.Provider>
   );
 };
+
+// Also export with the old name for backwards compatibility
+export const AppThemeProvider = ThemeContextProvider;
