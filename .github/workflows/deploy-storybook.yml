@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - master
+      - v_121  # Also trigger on current development branch
+  # Allow manual trigger
+  workflow_dispatch:
 
 # Allow the job to create a page deployment
 permissions:
@@ -27,6 +30,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build library
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          echo "Checking dist directory:"
+          ls -la dist/
+          echo "Checking for index.d.ts:"
+          test -f dist/index.d.ts && echo "✅ index.d.ts found" || echo "❌ index.d.ts missing"
 
       - name: Build Storybook
         run: npm run build-storybook
