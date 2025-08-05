@@ -6,11 +6,27 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-links',
-    '@storybook/addon-styling', // <-- ADD THIS LINE
+    '@storybook/addon-styling',
   ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
+  },
+  viteFinal: async (config) => {
+    // Ensure React is properly configured for Storybook
+    config.define = {
+      ...config.define,
+      global: 'globalThis',
+    };
+    
+    // Fix React import issues
+    config.esbuild = {
+      ...config.esbuild,
+      jsxFactory: 'React.createElement',
+      jsxFragment: 'React.Fragment',
+    };
+
+    return config;
   },
   docs: {
     autodocs: 'tag',

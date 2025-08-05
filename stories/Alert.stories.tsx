@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Alert } from '../src/components/Alert';
 import { FaBell } from 'react-icons/fa';
