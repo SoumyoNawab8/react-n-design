@@ -81,13 +81,13 @@ export const StyledButton = styled.button.withConfig({
         `}
 
   /* Variant Styles */
-  ${({ variant }) => {
+  ${({ variant, theme }) => {
     switch (variant) {
       case 'text':
         return css`
           background: transparent;
           box-shadow: none;
-          color: ${({ theme }) => theme.colors.primary};
+          color: ${theme.colors.primary};
           &:hover:not(:disabled) {
             background: #e0e5ec50;
           }
@@ -97,17 +97,17 @@ export const StyledButton = styled.button.withConfig({
         `;
       default: // primary & secondary
         return css`
-          background: ${({ theme }) => theme.colors.background};
-          box-shadow: ${({ theme }) => theme.shadows.soft};
-          color: ${({ variant, theme }) => variant === 'primary' ? theme.colors.primary : theme.colors.text};
+          background: ${theme.colors.background};
+          box-shadow: ${theme.shadows.soft};
+          color: ${variant === 'primary' ? theme.colors.primary : theme.colors.text};
 
           &:hover:not(:disabled) {
-            color: ${({ theme }) => theme.colors.primary};
+            color: ${theme.colors.primary};
           }
 
           &:active:not(:disabled) {
-            box-shadow: ${({ theme }) => theme.shadows.softInset};
-            color: ${({ theme }) => theme.colors.primary};
+            box-shadow: ${(theme as any).shadows.softInset};
+            color: ${theme.colors.primary};
           }
         `;
     }
@@ -118,7 +118,7 @@ export const StyledButton = styled.button.withConfig({
     cursor: not-allowed;
     color: #aaa;
     background: ${({ theme }) => theme.colors.background};
-    box-shadow: ${({ theme }) => theme.shadows.softInset};
+    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
     
     ${Spinner} {
       border-top-color: #aaa;

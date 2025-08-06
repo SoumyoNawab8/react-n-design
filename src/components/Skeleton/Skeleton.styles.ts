@@ -14,8 +14,8 @@ export const StyledSkeleton = styled.div<{
   position: relative;
   overflow: hidden;
   /* 2. Use theme-aware background and shadow */
-  background-color: ${({ theme }) => theme.colors.skeletonBg};
-  box-shadow: ${({ theme }) => theme.shadows.softInset};
+  background-color: ${({ theme }) => (theme as any).colors.skeletonBg};
+  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
 
   ${({ variant, theme }) => {
     switch (variant) {

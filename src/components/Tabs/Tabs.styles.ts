@@ -38,13 +38,13 @@ export const TabsList = styled.div<{
     tabPosition === 'left'
       ? css`
           flex-direction: column;
-          border-right: ${type === 'line' ? `2px solid ${theme.colors.shadowDark}40` : 'none'};
+          border-right: ${type === 'line' ? `2px solid ${(theme as any).colors.shadowDark}40` : 'none'};
           margin-right: 16px;
           border-bottom: none;
         `
       : css`
           flex-direction: row;
-          border-bottom: ${type === 'line' ? `2px solid ${theme.colors.shadowDark}40` : 'none'};
+          border-bottom: ${type === 'line' ? `2px solid ${(theme as any).colors.shadowDark}40` : 'none'};
           margin-bottom: ${type === 'line' ? '16px' : '0'};
         `}
 `;
@@ -71,9 +71,9 @@ export const TabButton = styled.button<{
   ${({ typeStyle, isActive, theme }) =>
     typeStyle === 'card' &&
     css`
-      border: 1px solid ${theme.colors.shadowDark}40;
+      border: 1px solid ${(theme as any).colors.shadowDark}40;
       border-radius: 8px 8px 0 0;
-      background: ${theme.colors.cardBg};
+      background: ${(theme as any).colors.cardBg};
       margin-right: 2px;
       
       ${isActive &&

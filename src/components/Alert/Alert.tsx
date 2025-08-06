@@ -76,7 +76,7 @@ export const Alert = ({
           exit={{ opacity: 0, x: -300, transition: { duration: 0.3 } }}
           role="alert"
         >
-          {showIcon && <AlertIcon>{alertIcon}</AlertIcon>}
+          {showIcon && <AlertIcon alertType={type}>{alertIcon}</AlertIcon>}
           <AlertContent>
             <AlertMessage>{message}</AlertMessage>
             {description && <AlertDescription>{description}</AlertDescription>}
