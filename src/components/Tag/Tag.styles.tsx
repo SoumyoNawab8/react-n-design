@@ -35,7 +35,7 @@ export const CloseIcon = styled.span`
 
   &:hover {
     /* 2. Use a theme-aware hover color */
-    background-color: ${({ theme }) => theme.colors.hoverBg};
+    background-color: ${({ theme }) => (theme as any).colors.hoverBg};
   }
 `;
 
@@ -61,7 +61,7 @@ export const StyledTag = styled.span<{
       return css`
         background: transparent;
         color: ${color};
-        box-shadow: ${theme.shadows.softInset};
+        box-shadow: ${(theme as any).shadows.softInset};
         border: 1px solid ${color};
       `;
     }

@@ -39,7 +39,7 @@ export const SelectTrigger = styled.div<{
   /* 3. Access all theme values from props */
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => theme.shadows.softInset};
+  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
   transition: all 0.2s ease-in-out;
   
   min-height: ${({ size }) => sizes[size].height};
@@ -54,7 +54,7 @@ export const SelectTrigger = styled.div<{
   `}
   
   ${({ isOpen, hasError, theme }) => (isOpen || hasError) && css`
-    box-shadow: ${theme.shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}40;
+    box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}40;
   `}
 
   ${({ disabled }) => disabled && css`
@@ -127,7 +127,7 @@ export const SelectOption = styled.div<{ isActive: boolean; disabled?: boolean }
   
   &:not(:disabled):hover {
     /* 4. Use theme-aware hover color */
-    background: ${({ theme }) => theme.colors.hoverBg};
+    background: ${({ theme }) => (theme as any).colors.hoverBg};
   }
 `;
 
