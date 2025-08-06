@@ -29,7 +29,7 @@ export const SwitchWrapper = styled.div<{ size: 'small' | 'medium' | 'large'; di
   display: flex;
   align-items: center;
   padding: 4px;
-  box-shadow: ${({ theme }) => theme.shadows.softInset};
+  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
   transition: background-color 0.2s ease-in-out;
   transform: translateZ(0); /* Promotes to new layer for better rendering */
 
@@ -66,9 +66,9 @@ export const SwitchKnob = styled(motion.div)<{ size: 'small' | 'medium' | 'large
   width: ${({ size }) => sizes[size].knobSize};
   height: ${({ size }) => sizes[size].knobSize};
   /* 3. Make knob theme-aware */
-  background-color: ${({ theme }) => theme.colors.knobBg};
+  background-color: ${({ theme }) => (theme as any).colors.knobBg};
   border-radius: 50%;
-  box-shadow: 3px 3px 6px ${({ theme }) => theme.colors.shadowDark}, -3px -3px 6px ${({ theme }) => theme.colors.shadowLight};
+  box-shadow: 3px 3px 6px ${({ theme }) => (theme as any).colors.shadowDark}, -3px -3px 6px ${({ theme }) => (theme as any).colors.shadowLight};
   display: flex;
   align-items: center;
   justify-content: center;

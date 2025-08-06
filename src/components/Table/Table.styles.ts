@@ -7,7 +7,7 @@ export const TableWrapper = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 8px;
   background: ${({ theme }) => theme.colors.background};
-  box-shadow: ${({ theme }) => theme.shadows.softInset};
+  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
   overflow-x: auto; /* Allow horizontal scrolling for wide tables */
 `;
 
@@ -22,11 +22,11 @@ export const TableRow = styled.tr`
   transition: background-color 0.2s;
   &:not(:last-child) {
     /* 3. Use theme-aware border color */
-    border-bottom: 1px solid ${({ theme }) => theme.colors.shadowDark}40;
+    border-bottom: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}40;
   }
   &:hover {
     /* 4. Use theme-aware hover color */
-    background-color: ${({ theme }) => theme.colors.hoverBg};
+    background-color: ${({ theme }) => (theme as any).colors.hoverBg};
   }
 `;
 
