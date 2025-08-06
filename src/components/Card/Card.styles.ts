@@ -58,7 +58,7 @@ export const CardBody = styled.div.withConfig({
 export const CardFooter = styled.div`
   margin-top: 16px;
   /* 4. Use a theme color for borders */
-  border-top: 1px solid ${({ theme }) => theme.colors.shadowDark}40; /* 40 is ~25% opacity */
+  border-top: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}40; /* 40 is ~25% opacity */
   padding-top: 16px;
 `;
 
@@ -76,14 +76,14 @@ export const StyledCard = styled.div.withConfig({
   border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.text};
   box-shadow: ${({ variant, theme }) =>
-    variant === 'inset' ? theme.shadows.softInset : theme.shadows.soft};
+    variant === 'inset' ? (theme as any).shadows.softInset : theme.shadows.soft};
   overflow: hidden;
   transition: all 0.2s ease-in-out;
 
   ${({ bordered, theme }) =>
     bordered &&
     css`
-      border: 1px solid ${theme.colors.shadowDark}40;
+      border: 1px solid ${(theme as any).colors.shadowDark}40;
     `}
 
   ${({ hoverable }) =>
@@ -93,7 +93,7 @@ export const StyledCard = styled.div.withConfig({
       &:hover {
         transform: translateY(-4px);
         /* 6. Make hover shadow theme-aware */
-        box-shadow: 10px 10px 20px ${({ theme }) => theme.colors.shadowDark}, -10px -10px 20px ${({ theme }) => theme.colors.shadowLight};
+        box-shadow: 10px 10px 20px ${({ theme }) => (theme as any).colors.shadowDark}, -10px -10px 20px ${({ theme }) => (theme as any).colors.shadowLight};
       }
     `}
   

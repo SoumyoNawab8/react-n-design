@@ -82,19 +82,19 @@ export const InputInnerWrapper = styled.div<{
   /* 3. Access all theme values from props */
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => theme.shadows.softInset};
+  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
   transition: box-shadow 0.2s ease-in-out;
   height: ${({ size }) => sizes[size].height};
   padding: ${({ size }) => sizes[size].padding};
   gap: 8px;
 
   ${({ hasError, theme }) => hasError && css`
-    box-shadow: ${theme.shadows.softInset}, 0 0 0 2px #e53e3e90 !important;
+    box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px #e53e3e90 !important;
   `}
   
   &:focus-within {
     z-index: 2; // Bring input to the front on focus
-    box-shadow: ${({ theme }) => theme.shadows.softInset}, 0 0 0 2px ${({ hasError, theme }) => (hasError ? '#e53e3e' : theme.colors.primary)}40;
+    box-shadow: ${({ theme }) => (theme as any).shadows.softInset}, 0 0 0 2px ${({ hasError, theme }) => (hasError ? '#e53e3e' : theme.colors.primary)}40;
   }
 `;
 

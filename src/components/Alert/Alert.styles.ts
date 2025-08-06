@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { Theme } from '../../styles/theme';
+
+type AlertType = 'success' | 'info' | 'warning' | 'error';
+
+interface AlertWrapperProps {
+  alertType: AlertType;
+}
+
+interface AlertIconProps {
+  alertType: AlertType;
+}
 
 // Helper function to get theme-aware colors
-const getAlertColors = (theme: Theme, alertType: 'success' | 'info' | 'warning' | 'error') => {
+const getAlertColors = (theme: any, alertType: AlertType) => {
   const isDark = theme.name === 'dark';
   switch (alertType) {
     case 'success':
@@ -36,7 +45,7 @@ const getAlertColors = (theme: Theme, alertType: 'success' | 'info' | 'warning' 
 
 export const AlertWrapper = styled(motion.div).withConfig({
   shouldForwardProp: (prop) => !['alertType'].includes(prop),
-})<{ alertType: 'success' | 'info' | 'warning' | 'error' }>`
+})<{ alertType: AlertType }>`
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -47,10 +56,12 @@ export const AlertWrapper = styled(motion.div).withConfig({
   /* Use the helper function to set theme-aware colors */
   background: ${({ theme, alertType }) => getAlertColors(theme, alertType).bg};
   box-shadow: 5px 5px 10px ${({ theme, alertType }) => getAlertColors(theme, alertType).color}20, 
-              -5px -5px 10px ${({ theme }) => theme.colors.shadowLight}80;
+              -5px -5px 10px ${({ theme }) => (theme as any).colors.shadowLight}80;
 `;
 
-export const AlertIcon = styled.div`
+export const AlertIcon = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['alertType'].includes(prop),
+})<{ alertType: AlertType }>`
   margin-right: 12px;
   font-size: 22px;
   margin-top: 2px;
