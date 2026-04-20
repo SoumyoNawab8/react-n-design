@@ -28,8 +28,10 @@ jobs:
           echo "✅ All required dist files present"
       - name: Pack and smoke-test install
         run: |
+          set -euo pipefail
           npm pack --dry-run
-          PACK_FILE=$(npm pack 2>/dev/null | tail -1)
+          PACK_FILE=$(npm pack | tail -1)
+          test -n "$PACK_FILE" || (echo "❌ npm pack did not produce a package file name" && exit 1)
           mkdir -p /tmp/smoke-test
           cd /tmp/smoke-test
           npm init -y

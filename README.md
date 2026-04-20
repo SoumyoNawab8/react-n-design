@@ -73,7 +73,7 @@ function ThemeToggle() {
   return (
     <Switch
       checked={theme === 'dark'}
-      onChange={toggleTheme}
+      onChange={() => toggleTheme()}
       label={theme === 'dark' ? 'Dark Mode' : 'Light Mode'}
     />
   );
