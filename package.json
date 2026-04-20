@@ -33,7 +33,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-commonjs": "^29.0.2",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@storybook/addon-essentials": "^8.1.10",
@@ -49,7 +49,7 @@
     "rimraf": "^5.0.5",
     "rollup": "^4.12.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "storybook": "^8.1.10",
+    "storybook": "^10.3.5",
     "typescript": "^6.0.3"
   },
   "sideEffects": false,
