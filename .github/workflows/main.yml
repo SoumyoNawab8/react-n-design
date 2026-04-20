@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - name: Typecheck build config
+        run: npx tsc --project tsconfig.build.json --noEmit
       - name: Build library
         run: npm run build
       - name: Verify dist output
