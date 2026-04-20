@@ -34,17 +34,66 @@
 
 ## 🚀 Installation
 
+Install the package along with its required peer dependencies:
+
 ```bash
-npm install react-n-design styled-components react-icons
+npm install react react-dom react-n-design styled-components framer-motion react-icons
+# or
+yarn add react react-dom react-n-design styled-components framer-motion react-icons
 ```
 
-**Note:** This package requires `styled-components` and `react-icons` as peer dependencies.
+**Peer dependencies required:**
 
-## 📖 Usage
+| Package | Version |
+| --- | --- |
+| `react` | >=18.0.0 |
+| `react-dom` | >=18.0.0 |
+| `styled-components` | >=5.0.0 |
+| `framer-motion` | >=6.0.0 |
+| `react-icons` | >=4.0.0 |
 
-### Basic Setup
+## 💻 Quick Start
 
-Wrap your app with the ThemeProvider to enable theming:
+### Option A — Built-in theme context (recommended)
+
+The `ThemeContextProvider` handles theme state and injects the theme into styled-components automatically. Use `useThemeContext` to read or toggle the active theme.
+
+```tsx
+import React from 'react';
+import {
+  ThemeContextProvider,
+  useThemeContext,
+  Button,
+  Switch,
+} from 'react-n-design';
+
+function ThemeToggle() {
+  const { theme, toggleTheme } = useThemeContext();
+
+  return (
+    <Switch
+      checked={theme === 'dark'}
+      onChange={() => toggleTheme()}
+      label={theme === 'dark' ? 'Dark Mode' : 'Light Mode'}
+    />
+  );
+}
+
+function App() {
+  return (
+    <ThemeContextProvider>
+      <ThemeToggle />
+      <Button variant="primary">Hello World</Button>
+    </ThemeContextProvider>
+  );
+}
+
+export default App;
+```
+
+### Option B — Manual styled-components ThemeProvider
+
+If you already have a `ThemeProvider` in your app, pass one of the built-in themes directly:
 
 ```tsx
 import React from 'react';
@@ -54,9 +103,7 @@ import { lightTheme, Button } from 'react-n-design';
 function App() {
   return (
     <ThemeProvider theme={lightTheme}>
-      <div>
-        <Button variant="primary">Click me</Button>
-      </div>
+      <Button variant="primary">Click me</Button>
     </ThemeProvider>
   );
 }
@@ -64,124 +111,89 @@ function App() {
 export default App;
 ```
 
-### With Custom Theme Context
+## 🎨 Theming
 
-For better theme management with dark/light mode support:
+The library ships with `lightTheme` and `darkTheme` out of the box. Both are typed against the `Theme` type so your editor will autocomplete all tokens.
 
 ```tsx
-import React from 'react';
-import { 
-  ThemeContextProvider, 
-  useThemeContext, 
-  Button, 
-  Switch 
-} from 'react-n-design';
+import { lightTheme, darkTheme, Theme } from 'react-n-design';
 
-function ThemeToggle() {
-  const { isDark, toggleTheme } = useThemeContext();
-  
-  return (
-    <Switch 
-      checked={isDark} 
-      onChange={toggleTheme}
-      label={isDark ? 'Dark Mode' : 'Light Mode'}
-    />
-  );
-}
-
-function App() {
-  return (
-    <ThemeContextProvider>
-      <div>
-        <ThemeToggle />
-        <Button variant="primary">Hello World</Button>
-      </div>
-    </ThemeContextProvider>
-  );
-}
-
-export default App;
+// Create a custom theme
+const customTheme: Theme = {
+  name: 'custom',
+  borderRadius: '8px',
+  colors: {
+    primary: '#0070f3',
+    background: '#fafafa',
+    white: '#ffffff',
+    text: '#333333',
+    shadowDark: '#d0d0d0',
+    shadowLight: '#ffffff',
+    hoverBg: '#e8e8e8',
+    skeletonBg: '#e0e0e0',
+    knobBg: '#f5f5f5',
+    cardBg: '#f0f0f0',
+  },
+  shadows: {
+    soft: '7px 7px 14px #d0d0d0, -7px -7px 14px #ffffff',
+    softInset: 'inset 7px 7px 14px #d0d0d0, inset -7px -7px 14px #ffffff',
+  },
+};
 ```
 
 ## 🧩 Components
 
-### Button
+| Component | Description |
+| --- | --- |
+| **Button** | Customizable button with multiple variants and states |
+| **Card** | Neomorphic container for grouping content |
+| **Input** | Advanced input with icons, addons, and validation states |
+| **Select** | Feature-rich dropdown for single and multiple selections |
+| **Switch** | Animated toggle for boolean states |
+| **Table** | Data table with sorting and pagination |
+| **Modal** | Dialog window that appears over the main content |
+| **Tooltip** | Small pop-up label with multiple triggers and positions |
+| **Tabs** | Organizes content into switchable views |
+| **Accordion** | Vertically stacked, collapsible panels |
+| **Alert** | Contextual feedback messages |
+| **ProgressBar** | Visual indicator for task completion |
+| **Tag** | Small label for keywords or categories |
+| **Skeleton** | Placeholder preview while content loads |
+
+### Examples
+
 ```tsx
-import { Button } from 'react-n-design';
+import { Button, Input, Card, Alert } from 'react-n-design';
 
-<Button variant="primary" size="medium">
-  Primary Button
-</Button>
-```
+// Button
+<Button variant="primary" size="medium">Primary Button</Button>
 
-### Input
-```tsx
-import { Input } from 'react-n-design';
+// Input
+<Input label="Email" placeholder="Enter your email" inputSize="medium" allowClear />
 
-<Input 
-  label="Email"
-  placeholder="Enter your email"
-  inputSize="medium"
-  allowClear
-/>
-```
-
-### Card
-```tsx
-import { Card } from 'react-n-design';
-
+// Card
 <Card variant="default" padding="20px">
   <h3>Card Title</h3>
   <p>Card content goes here...</p>
 </Card>
-```
 
-### Alert
-```tsx
-import { Alert } from 'react-n-design';
-
-<Alert 
-  type="success" 
-  message="Success!" 
+// Alert
+<Alert
+  type="success"
+  message="Success!"
   description="Your action was completed successfully."
   showIcon
   closable
 />
 ```
 
-## 🎨 Theming
-
-The library comes with light and dark themes out of the box:
-
-```tsx
-import { lightTheme, darkTheme, Theme } from 'react-n-design';
-
-// You can also create custom themes
-const customTheme: Theme = {
-  name: 'custom',
-  colors: {
-    primary: '#your-color',
-    background: '#your-bg',
-    // ... other color properties
-  },
-  shadows: {
-    soft: 'your-shadow',
-    softInset: 'your-inset-shadow',
-  },
-  borderRadius: '8px',
-};
-```
-
 ## 📦 Tree Shaking
 
-The library supports tree shaking. Import only what you need:
+`sideEffects: false` is set in `package.json`, so modern bundlers (webpack, Vite, Rollup) will automatically remove any components you do not import.
 
 ```tsx
-// Import individual components
-import { Button } from 'react-n-design';
-
-// Or import multiple components
-import { Button, Input, Card } from 'react-n-design';
+// Only Button and Input end up in your bundle
+import { Button, Input } from 'react-n-design';
 ```
 
 ## 🛠️ Development
@@ -200,133 +212,20 @@ npm run dev
 npm run build
 ```
 
-## 📋 Requirements
-
-- React >= 18.0.0
-- styled-components >= 5.0.0
-- react-icons >= 4.0.0
-
 ## 🐛 Issues & Feature Requests
 
 Found a bug or have a feature request? Please open an issue on our [GitHub repository](https://github.com/SoumyoNawab8/react-n-design/issues).
 
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
 ## 📄 License
 
 MIT © [SoumyoNawab8](https://github.com/SoumyoNawab8)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read our contributing guidelines before submitting a PR.
-
----
-
-**Made with ❤️ by [SoumyoNawab8](https://github.com/SoumyoNawab8)**
-* **Animated & Accessible:** Fluid animations powered by `framer-motion` and a focus on accessibility.
-* **Well Documented:** Explore every component interactively with Storybook.
-
----
-
-### ## 🚀 Installation
-
-`react-n-design` has peer dependencies on `react` and `styled-components`.
-
-```bash
-npm install react-n-design styled-components
-# or
-yarn add react-n-design styled-components
-```
-
----
-
-### ## 💻 Quick Start
-
-To start using the components, wrap your application's root with the `ThemeProvider`.
-
-```jsx
-import React from 'react';
-import { Button, Card, theme } from 'react-n-design';
-import { ThemeProvider } from 'styled-components';
-
-const App = () => (
-  <ThemeProvider theme={theme}>
-    <div style={{ background: theme.colors.background, padding: '2rem' }}>
-      <Card>
-        <h3>Welcome to react-n-design!</h3>
-        <p>This is a card component containing a button.</p>
-        <Button 
-          leftIcon="🎉" 
-          onClick={() => alert('Welcome!')}
-        >
-          Get Started
-        </Button>
-      </Card>
-    </div>
-  </ThemeProvider>
-);
-
-export default App;
-```
-
----
-### ## 🌳 Tree Shaking & Performance
-
-`react-n-design` is optimized for performance and supports tree shaking out of the box. For the best possible bundle size, you can import components directly.
-
-**Standard Import (Good):**
-Your bundler will do its best to remove unused components.
-```jsx
-import { Button, Card, Input } from 'react-n-design';
-```
-
----
-### ## 🎨 Interactive Docs with Storybook
-
-The best way to explore the entire component library is with our interactive Storybook documentation. It allows you to view every component, see all its variations, and play with its props in a live environment.
-
-To run Storybook locally, clone the repository and run:
-
-```bash
-npm run dev
-```
-
----
-
-### ## 📦 Component Overview
-
-`react-n-design` comes packed with a wide range of components to build a complete application.
-
-| Component      | Description                                                 |
-| -------------- | ----------------------------------------------------------- |
-| **Button** | A highly customizable button with multiple variants and states.  |
-| **Card** | A neomorphic container for grouping content.                |
-| **Input** | An advanced input with icons, addons, and validation states. |
-| **Select** | A feature-rich dropdown for single and multiple selections. |
-| **Switch** | An animated toggle for boolean states, with icons and sizes. |
-| **Table** | A data table with sorting and pagination.                   |
-| **Modal** | A dialog window that appears over the main content.         |
-| **Tooltip** | A small pop-up label with multiple triggers and positions.  |
-| **Tabs** | A component for organizing content into switchable views.   |
-| **Accordion** | A set of vertically stacked, collapsible panels.            |
-| **Alert** | A component for displaying contextual feedback messages.    |
-| **ProgressBar**| A visual indicator for task completion.                     |
-| **Tag** | A small component for keywords, categories, or labels.      |
-| **Skeleton** | A placeholder preview for content while it's loading.       |
-
-
----
-
-### ## 🤝 Contributing
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
-
----
-
-### ## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.

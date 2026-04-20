@@ -1,4 +1,4 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# This workflow builds and publishes the package to npm when a release is created.
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
 name: react-n-design
@@ -8,7 +8,7 @@ on:
     types: [created]
 
 jobs:
-  build:
+  build-and-verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,10 +16,36 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - name: Typecheck build config
+        run: npx tsc --project tsconfig.build.json --noEmit
+      - name: Build library
+        run: npm run build
+      - name: Verify dist output
+        run: |
+          test -f dist/cjs/index.js  || (echo "❌ dist/cjs/index.js missing"  && exit 1)
+          test -f dist/esm/index.js  || (echo "❌ dist/esm/index.js missing"  && exit 1)
+          test -f dist/index.d.ts    || (echo "❌ dist/index.d.ts missing"    && exit 1)
+          echo "✅ All required dist files present"
+      - name: Pack and smoke-test install
+        run: |
+          set -euo pipefail
+          npm pack --dry-run
+          PACK_FILE=$(npm pack | tail -1)
+          test -n "$PACK_FILE" || (echo "❌ npm pack did not produce a package file name" && exit 1)
+          mkdir -p /tmp/smoke-test
+          cd /tmp/smoke-test
+          npm init -y
+          npm install react react-dom styled-components framer-motion react-icons
+          npm install "$GITHUB_WORKSPACE/$PACK_FILE"
+          node -e "const lib = require('react-n-design'); if (!lib.Button) { console.error('Button not exported'); process.exit(1); } console.log('✅ Smoke test passed – exports:', Object.keys(lib).length, 'items');"
+        env:
+          GITHUB_WORKSPACE: ${{ github.workspace }}
 
   publish-npm:
-    needs: build
+    needs: build-and-verify
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
