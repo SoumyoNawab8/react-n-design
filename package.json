@@ -52,20 +52,13 @@
     "storybook": "^8.1.10",
     "typescript": "^5.4.5"
   },
+  "sideEffects": false,
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
     "styled-components": ">=5.0.0",
     "framer-motion": ">=6.0.0",
     "react-icons": ">=4.0.0"
-  },
-  "peerDependenciesMeta": {
-    "framer-motion": {
-      "optional": true
-    },
-    "react-icons": {
-      "optional": true
-    }
   },
   "keywords": [
     "react",

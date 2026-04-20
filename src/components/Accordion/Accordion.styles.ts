@@ -1,21 +1,6 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
-// Extend DefaultTheme to include 'colors', 'borderRadius', and 'shadows' if not already defined
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    colors: {
-      primary: string;
-      text: string;
-      background: string;
-    };
-    borderRadius: string;
-    shadows: {
-      soft: string;
-    };
-  }
-}
-
 export const AccordionWrapper = styled.div<{ bordered: boolean }>`
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: ${({ theme }) => theme.shadows.soft};

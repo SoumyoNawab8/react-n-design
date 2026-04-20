@@ -3,3 +3,8 @@
 export * from './components';
 export * from './styles/theme';
 export * from './context';
+
+import type { Theme } from './styles/theme';
+declare module 'styled-components' {
+  export interface DefaultTheme extends Theme {}
+}
