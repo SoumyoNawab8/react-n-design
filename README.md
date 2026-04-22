@@ -37,9 +37,9 @@
 Install the package along with its required peer dependencies:
 
 ```bash
-npm install react react-dom react-n-design styled-components framer-motion react-icons
+npm install react-n-design styled-components framer-motion react-icons
 # or
-yarn add react react-dom react-n-design styled-components framer-motion react-icons
+yarn add react-n-design styled-components framer-motion react-icons
 ```
 
 **Peer dependencies required:**
