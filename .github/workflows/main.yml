@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
         with:
           node-version: 20
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high
       - name: Audit full dependency tree
@@ -67,7 +67,7 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
