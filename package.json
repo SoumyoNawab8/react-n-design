@@ -89,14 +89,16 @@
     "typescript": "^6.0.3",
     "vite": "^8.0.11"
   },
-  "sideEffects": false,
-  "peerDependencies": {
+  "dependencies": {
     "framer-motion": "^12.38.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "react-icons": "^5.6.0",
     "react-window": "^1.8.10",
     "styled-components": "^6.4.1"
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "keywords": [
     "react",
