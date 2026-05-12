@@ -188,6 +188,10 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
             );
           }
 
+          const cellContent = col.render
+            ? col.render((record as any)[col.key], record)
+            : String((record as any)[col.key] ?? '');
+
           return (
             <GridCell
               key={col.key}
@@ -200,9 +204,13 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
               onClick={() => onCellClick(index, colIndex)}
               onFocus={() => onCellClick(index, colIndex)}
             >
-              {col.render
-                ? col.render((record as any)[col.key], record)
-                : String((record as any)[col.key] ?? '')}
+              {col.render ? (
+                cellContent
+              ) : (
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>
+                  {cellContent}
+                </span>
+              )}
             </GridCell>
           );
         })}

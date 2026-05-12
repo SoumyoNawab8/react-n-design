@@ -101,7 +101,7 @@ export const Input = ({
   };
 
   const inputElement = (
-    <InputInnerWrapper size={inputSize} hasError={!!error} disabled={disabled}>
+    <InputInnerWrapper className="input-inner" size={inputSize} hasError={!!error} disabled={disabled}>
       {prefix && <InputPrefix>{prefix}</InputPrefix>}
       <StyledInput
         id={inputId}

@@ -171,6 +171,7 @@ export const GridCell = styled.div.withConfig({
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
   ${({ isActive, theme }) =>
     isActive &&
     css`

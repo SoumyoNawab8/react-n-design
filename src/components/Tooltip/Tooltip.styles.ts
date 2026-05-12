@@ -63,7 +63,7 @@ export const TooltipContent = styled(motion.div).withConfig({
 }>`
   position: absolute;
   background-color: ${({ theme }) => (theme as any).colors.shadowDark};
-  color: ${({ theme }) => theme.colors.textInverse};
+  color: ${({ theme }) => theme.colors.white};
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 14px;

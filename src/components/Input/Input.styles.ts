@@ -32,23 +32,27 @@ export const ErrorText = styled.p`
 // This container is only used when addons are present
 export const InputGroupWrapper = styled.div`
   display: flex;
-  align-items: stretch; // Ensures children have same height
+  align-items: stretch;
   width: 100%;
 
-  /* --- STYLING FIX FOR SEAMLESS ADDONS --- */
-
   /* Flatten the right side of the input when it's not the last element */
-  & > div:first-child:not(:last-child) {
+  & > .input-inner:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  
+
+  /* Flatten the left side of the input when it's not the first element */
+  & > .input-inner:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
   /* Flatten the left side of the addon when it comes after the input */
   & > .input-addon:last-child:not(:first-child) {
-    margin-left: -2px; /* Overlap to hide seams */
+    margin-left: -2px;
     z-index: 1;
 
-    & > div, & > div > button { // Target the Button's motion.div and the button itself
+    & > div, & > div > button {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
@@ -68,7 +72,15 @@ export const InputGroupWrapper = styled.div`
 
 export const InputAddon = styled.div`
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.background};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  padding: 0 12px;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: inherit;
+  white-space: nowrap;
 `;
 
 // This is the main neomorphic element
