@@ -29,6 +29,7 @@ export const MultiSelectInputGroup = styled.div.withConfig({
   box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
   transition: box-shadow 0.2s ease-in-out;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'text')};
+  box-sizing: border-box;
 
   &:focus-within {
     z-index: 2;

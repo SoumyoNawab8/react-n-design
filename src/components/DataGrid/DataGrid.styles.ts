@@ -53,6 +53,7 @@ export const GridHeaderCell = styled.div.withConfig({
   min-width: ${({ width }) => (width ? `${width}px` : '150px')};
   cursor: ${({ isSortable }) => (isSortable ? 'pointer' : 'default')};
   user-select: none;
+  box-sizing: border-box;
   ${({ isSortable, theme }) =>
     isSortable &&
     css`
@@ -120,6 +121,7 @@ export const FilterInput = styled.input`
   color: ${({ theme }) => theme.colors.text};
   box-shadow: ${({ theme }) => theme.shadows.softInset};
   outline: none;
+  box-sizing: border-box;
   &:focus {
     box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary}40;
   }
@@ -171,6 +173,7 @@ export const GridCell = styled.div.withConfig({
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
+  box-sizing: border-box;
   ${({ isActive, theme }) =>
     isActive &&
     css`
@@ -198,6 +201,7 @@ export const ExpandableContent = styled.div`
   background: ${({ theme }) => theme.colors.cardBg};
   color: ${({ theme }) => theme.colors.text};
   width: 100%;
+  box-sizing: border-box;
   box-shadow: ${({ theme }) => theme.shadows.softInset};
 `;
 

@@ -49,6 +49,8 @@ export const SelectTrigger = styled.div.withConfig({
   padding: ${({ size }) => sizes[size].padding};
   font-size: ${({ size }) => sizes[size].fontSize};
 
+  box-sizing: border-box;
+
   ${({ isMulti }) => isMulti && css`
     align-items: flex-start;
     padding-top: 8px;

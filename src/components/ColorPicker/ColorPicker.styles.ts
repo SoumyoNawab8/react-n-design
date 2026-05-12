@@ -54,6 +54,7 @@ export const ColorHexInput = styled.input`
   font-family: monospace;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  box-sizing: border-box;
 
   &:focus {
     box-shadow: ${({ theme }) =>

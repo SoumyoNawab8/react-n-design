@@ -37,6 +37,7 @@ export const DatePickerInputGroup = styled.div.withConfig({
   padding: 0 16px;
   gap: 12px;
   cursor: pointer;
+  box-sizing: border-box;
 
   ${({ hasError, theme }) =>
     hasError &&
@@ -76,6 +77,7 @@ export const DatePickerInput = styled.input`
   cursor: inherit;
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
 
   &::placeholder {
     color: ${({ theme }) => (theme as any).colors.shadowDark};
@@ -129,6 +131,7 @@ export const DatePickerPanel = styled(motion.div)`
   box-shadow: ${({ theme }) => theme.shadows.soft};
   padding: 16px;
   overflow: hidden;
+  box-sizing: border-box;
 `;
 
 export const DatePickerHeader = styled.div`

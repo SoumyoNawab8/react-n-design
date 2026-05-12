@@ -102,6 +102,7 @@ export const ComboBoxInputGroup = styled.div.withConfig({
   padding: ${({ size }) => sizes[size].padding};
   font-size: ${({ size }) => sizes[size].fontSize};
   gap: 8px;
+  box-sizing: border-box;
 
   ${({ isMulti }) =>
     isMulti &&

@@ -10,6 +10,7 @@ export const StyledForm = styled.form`
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ theme }) => theme.colors.background};
   box-shadow: ${({ theme }) => (theme as any).shadows.soft};
+  box-sizing: border-box;
 `;
 
 export const FormFieldWrapper = styled.div`
