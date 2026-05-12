@@ -1,9 +1,17 @@
-# This workflow builds and publishes the package to npm when a release is created.
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+# This workflow builds, verifies, and publishes the package to npm.
+# It triggers on:
+#   1. Every push to master (build + verify only, no publish)
+#   2. Pushing a version tag like v0.3.0 (build + verify + publish)
+#   3. Creating a GitHub Release (build + verify + publish)
+#
+# Publishing requires an npm access token stored as the repository secret: npm_token
 
 name: react-n-design
 
 on:
+  push:
+    branches: [master, main]
+    tags: ['v*']
   release:
     types: [created]
 
@@ -50,6 +58,7 @@ jobs:
   publish-npm:
     needs: build-and-verify
     runs-on: ubuntu-latest
+    if: github.event_name == 'release' || startsWith(github.ref, 'refs/tags/v')
     permissions:
       contents: read
     steps:
