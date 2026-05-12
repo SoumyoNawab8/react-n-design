@@ -10,7 +10,8 @@ const config = (input, outputCjs, outputEsm, esmBanner) => ({
       file: outputCjs,
       format: 'cjs',
       sourcemap: true,
-      exports: 'named'
+      exports: 'named',
+      interop: 'auto'
     },
     {
       file: outputEsm,
