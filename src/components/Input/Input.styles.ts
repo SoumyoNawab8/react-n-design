@@ -74,7 +74,7 @@ export const InputAddon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.cardBg};
   box-shadow: ${({ theme }) => theme.shadows.softInset};
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 0 12px;

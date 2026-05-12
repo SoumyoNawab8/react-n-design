@@ -127,7 +127,6 @@ export const FilterInput = styled.input`
 
 export const GridBodyWrapper = styled.div`
   flex: 1;
-  overflow: hidden;
   position: relative;
   min-height: 200px;
 `;

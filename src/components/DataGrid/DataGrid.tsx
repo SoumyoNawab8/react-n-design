@@ -207,7 +207,7 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
               {col.render ? (
                 cellContent
               ) : (
-                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>
+                <span style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' }}>
                   {cellContent}
                 </span>
               )}
