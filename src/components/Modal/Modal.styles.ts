@@ -7,7 +7,9 @@ const sizes = {
   large: '800px',
 };
 
-export const ModalWrapper = styled.div<{ position: 'center' | 'top' }>`
+export const ModalWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['position'].includes(prop),
+})<{ position: 'center' | 'top' }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +19,7 @@ export const ModalWrapper = styled.div<{ position: 'center' | 'top' }>`
   justify-content: center;
   align-items: ${({ position }) => (position === 'center' ? 'center' : 'flex-start')};
   padding-top: ${({ position }) => (position === 'top' ? '5vh' : '0')};
-  z-index: 1000;
+  z-index: 1100;
 `;
 
 export const ModalBackdrop = styled(motion.div)`
@@ -33,12 +35,14 @@ export const ModalBody = styled.div`
   /* Add any specific body styling here */
 `;
 
-export const ModalContent = styled(motion.div)<{
+export const ModalContent = styled(motion.div).withConfig({
+  shouldForwardProp: (prop) => !['size', 'fullScreen'].includes(prop),
+})<{
   size: 'small' | 'medium' | 'large';
   fullScreen: boolean;
 }>`
   position: relative;
-  z-index: 1001;
+  z-index: 1101;
   width: 90vw;
   max-width: ${({ size }) => sizes[size]};
 

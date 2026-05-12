@@ -1,10 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ES5",
-    "lib": ["ES6", "DOM", "DOM.Iterable"],
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "declaration": true,
     "declarationMap": false,
     "emitDeclarationOnly": false,
@@ -18,7 +18,9 @@
     "noImplicitReturns": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noEmitOnError": false
+    "noEmitOnError": false,
+    "noEmit": false,
+    "rootDir": "src"
   },
   "include": [
     "src/**/*"
@@ -26,6 +28,8 @@
   "exclude": [
     "src/**/*.stories.tsx",
     "src/**/*.test.tsx",
+    "src/setupTests.ts",
+    "src/types/jest-dom.d.ts",
     "stories/**/*",
     "dist",
     "node_modules"

@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 import { TooltipProps } from './Tooltip';
 
-const getPositionStyles = (position: TooltipProps['position']) => {
+const getPositionStyles = (position: TooltipProps['position'], theme: any) => {
+  const bg = theme.colors.shadowDark;
   switch (position) {
     case 'bottom':
       return css`
@@ -11,7 +12,7 @@ const getPositionStyles = (position: TooltipProps['position']) => {
         transform: translateX(-50%);
         &::after {
           bottom: 100%; left: 50%; margin-left: -5px;
-          border-color: transparent transparent #333 transparent;
+          border-color: transparent transparent ${bg} transparent;
         }
       `;
     case 'left':
@@ -21,7 +22,7 @@ const getPositionStyles = (position: TooltipProps['position']) => {
         transform: translateY(-50%);
         &::after {
           top: 50%; left: 100%; margin-top: -5px;
-          border-color: transparent transparent transparent #333;
+          border-color: transparent transparent transparent ${bg};
         }
       `;
     case 'right':
@@ -31,7 +32,7 @@ const getPositionStyles = (position: TooltipProps['position']) => {
         transform: translateY(-50%);
         &::after {
           top: 50%; right: 100%; margin-top: -5px;
-          border-color: transparent #333 transparent transparent;
+          border-color: transparent ${bg} transparent transparent;
         }
       `;
     case 'top':
@@ -42,7 +43,7 @@ const getPositionStyles = (position: TooltipProps['position']) => {
         transform: translateX(-50%);
         &::after {
           top: 100%; left: 50%; margin-left: -5px;
-          border-color: #333 transparent transparent transparent;
+          border-color: ${bg} transparent transparent transparent;
         }
       `;
   }
@@ -54,19 +55,22 @@ export const TooltipWrapper = styled.div`
   display: inline-flex;
 `;
 
-export const TooltipContent = styled(motion.div)<{
+export const TooltipContent = styled(motion.div).withConfig({
+  shouldForwardProp: (prop) => !['position', 'withArrow'].includes(prop),
+})<{
   position: 'top' | 'bottom' | 'left' | 'right';
   withArrow: boolean;
 }>`
   position: absolute;
-  background-color: #333;
-  color: #fff;
+  background-color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textInverse};
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 14px;
-  white-space: nowrap;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 10;
+  max-width: 250px;
+  white-space: normal;
+  box-shadow: 0 4px 8px ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  z-index: 900;
   
   &::after {
     content: '';
@@ -76,5 +80,5 @@ export const TooltipContent = styled(motion.div)<{
     display: ${({ withArrow }) => (withArrow ? 'block' : 'none')};
   }
 
-  ${({ position }) => getPositionStyles(position)};
+  ${({ position, theme }) => getPositionStyles(position, theme)};
 `;

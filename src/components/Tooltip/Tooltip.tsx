@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+'use client';
+import React, { useState, useRef, useEffect, useId } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { TooltipWrapper, TooltipContent } from './Tooltip.styles';
 
@@ -45,24 +46,29 @@ export const Tooltip = ({
   withArrow = true,
 }: TooltipProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const enterTimer = useRef<NodeJS.Timeout>();
-  const leaveTimer = useRef<NodeJS.Timeout>();
+  const enterTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipId = useId();
 
   const isControlled = isOpen !== undefined;
   const visible = isControlled ? isOpen : isVisible;
 
   const showTooltip = () => {
-    clearTimeout(leaveTimer.current);
+    if (leaveTimer.current) clearTimeout(leaveTimer.current);
     enterTimer.current = setTimeout(() => setIsVisible(true), mouseEnterDelay);
   };
 
   const hideTooltip = () => {
-    clearTimeout(enterTimer.current);
+    if (enterTimer.current) clearTimeout(enterTimer.current);
     leaveTimer.current = setTimeout(() => setIsVisible(false), mouseLeaveDelay);
   };
 
   const toggleTooltip = () => {
     setIsVisible(!isVisible);
+  };
+
+  const dismissTooltip = () => {
+    setIsVisible(false);
   };
 
   useEffect(() => {
@@ -71,8 +77,10 @@ export const Tooltip = ({
       clearTimeout(leaveTimer.current);
     };
   }, []);
-  
-  const triggerProps: React.HTMLAttributes<HTMLElement> = {};
+
+  const triggerProps: React.HTMLAttributes<HTMLElement> & { 'aria-describedby'?: string } = {
+    'aria-describedby': tooltipId,
+  };
 
   if (trigger === 'hover') {
     triggerProps.onMouseEnter = showTooltip;
@@ -84,12 +92,24 @@ export const Tooltip = ({
     triggerProps.onBlur = hideTooltip;
   }
 
+  // Allow Escape to dismiss the tooltip from the trigger element
+  const existingOnKeyDown = children.props.onKeyDown;
+  triggerProps.onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    existingOnKeyDown?.(e);
+    if (e.key === 'Escape') {
+      e.stopPropagation();
+      dismissTooltip();
+    }
+  };
+
   return (
     <TooltipWrapper>
       {React.cloneElement(children, triggerProps)}
       <AnimatePresence>
         {visible && (
           <TooltipContent
+            id={tooltipId}
+            role="tooltip"
             position={position}
             withArrow={withArrow}
             initial={{ opacity: 0, y: -10 }}

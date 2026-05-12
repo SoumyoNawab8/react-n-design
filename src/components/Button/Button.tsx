@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { StyledButton, ButtonContent, ButtonIcon, Spinner } from './Button.styles';
@@ -61,6 +62,8 @@ export const Button = ({
         fullWidth={fullWidth}
         disabled={isDisabled}
         hasChildren={!!children}
+        aria-busy={loading}
+        aria-disabled={isDisabled || undefined}
         {...props}
       >
         <ButtonContent>{content}</ButtonContent>

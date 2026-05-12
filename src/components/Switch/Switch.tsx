@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useId } from 'react';
 import { SwitchWrapper, SwitchKnob, SwitchContainer, LabelText, KnobSpinner, KnobIcon } from './Switch.styles';
 
 export interface SwitchProps {
@@ -55,10 +56,19 @@ export const Switch = ({
   offIcon,
 }: SwitchProps) => {
   const isDisabled = disabled || loading;
+  const switchId = useId();
+  const labelId = `${switchId}-label`;
 
   const toggleSwitch = () => {
     if (!isDisabled) {
       onChange(!checked);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === ' ') {
+      e.preventDefault();
+      toggleSwitch();
     }
   };
 
@@ -70,7 +80,19 @@ export const Switch = ({
   };
 
   const SwitchControl = (
-    <SwitchWrapper size={size} data-checked={checked} onClick={toggleSwitch} disabled={isDisabled}>
+    <SwitchWrapper
+      id={switchId}
+      size={size}
+      data-checked={checked}
+      onClick={toggleSwitch}
+      onKeyDown={handleKeyDown}
+      disabled={isDisabled}
+      role="switch"
+      aria-checked={checked}
+      aria-disabled={isDisabled}
+      aria-labelledby={label ? labelId : undefined}
+      tabIndex={isDisabled ? -1 : 0}
+    >
       <SwitchKnob size={size} layout transition={{ type: 'spring', stiffness: 700, damping: 30 }}>
         <KnobContent />
       </SwitchKnob>
@@ -79,9 +101,9 @@ export const Switch = ({
 
   return (
     <SwitchContainer onClick={toggleSwitch} disabled={isDisabled}>
-      {label && labelPosition === 'left' && <LabelText>{label}</LabelText>}
+      {label && labelPosition === 'left' && <LabelText id={labelId}>{label}</LabelText>}
       {SwitchControl}
-      {label && labelPosition === 'right' && <LabelText>{label}</LabelText>}
+      {label && labelPosition === 'right' && <LabelText id={labelId}>{label}</LabelText>}
     </SwitchContainer>
   );
 };

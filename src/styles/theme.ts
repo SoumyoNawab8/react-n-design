@@ -6,7 +6,7 @@ export const baseTheme = {
 // Light Theme
 export const lightTheme = {
   ...baseTheme,
-   name: 'light', 
+  name: 'light',
   colors: {
     primary: '#6d5dfc',
     background: '#e0e5ec',
@@ -30,7 +30,7 @@ export const lightTheme = {
 // Dark Theme
 export const darkTheme = {
   ...baseTheme,
-   name: 'dark',
+  name: 'dark',
   colors: {
     primary: '#7b6efc',
     background: '#2c2f34',
@@ -53,3 +53,37 @@ export const darkTheme = {
 
 // Export a TypeScript type for our theme objects
 export type Theme = typeof lightTheme;
+
+/**
+ * Maps theme object keys to CSS custom property names.
+ * Useful for generating CSS variables from a theme object at runtime or build time.
+ */
+export const cssVariableMap: Record<string, string> = {
+  'colors.primary': '--n-color-primary',
+  'colors.background': '--n-color-background',
+  'colors.white': '--n-color-surface',
+  'colors.text': '--n-color-text',
+  'colors.shadowDark': '--n-color-shadow-dark',
+  'colors.shadowLight': '--n-color-shadow-light',
+  'colors.hoverBg': '--n-color-hover-bg',
+  'colors.skeletonBg': '--n-color-skeleton-bg',
+  'colors.knobBg': '--n-color-knob-bg',
+  'colors.cardBg': '--n-color-card-bg',
+  'shadows.soft': '--n-shadow-soft',
+  'shadows.softInset': '--n-shadow-soft-inset',
+  'borderRadius': '--n-border-radius',
+};
+
+/**
+ * Generates a CSS string that maps a theme object to CSS custom properties.
+ * Useful for SSR or dynamic style injection.
+ */
+export function getThemeCSS(theme: Theme): string {
+  const entries = Object.entries(cssVariableMap).map(([path, varName]) => {
+    const value = path.split('.').reduce((obj: any, key) => obj?.[key], theme as any);
+    if (value === undefined) return null;
+    return `  ${varName}: ${value};`;
+  }).filter(Boolean);
+
+  return `:root {\n${entries.join('\n')}\n}`;
+}

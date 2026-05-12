@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+'use client';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { FaChevronDown, FaTimes } from 'react-icons/fa';
 import {
@@ -57,16 +58,29 @@ export const Select = ({
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState(defaultValue);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  
+  const triggerRef = useRef<HTMLDivElement>(null);
+
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
 
+  const listboxId = `select-listbox-${wrapperRef.current ? wrapperRef.current.id || 'select' : 'select'}`;
+  const triggerId = `${listboxId}-trigger`;
+
   useClickOutside(wrapperRef, () => setIsOpen(false));
+
+  const isSelected = useCallback((option: SelectOptionProps) => {
+    if (mode === 'multiple') {
+      const currentArray = Array.isArray(currentValue) ? currentValue : [];
+      return currentArray.includes(option.value);
+    }
+    return currentValue === option.value;
+  }, [currentValue, mode]);
 
   const handleSelect = (option: SelectOptionProps) => {
     if (option.disabled) return;
-    
+
     let newValue: any;
     if (mode === 'multiple') {
       const currentArray = Array.isArray(currentValue) ? currentValue : [];
@@ -93,6 +107,57 @@ export const Select = ({
 
   const getLabelForValue = (val: string | number) => options.find(o => o.value === val)?.label;
 
+  const enabledOptions = options.filter(o => !o.disabled);
+  const enabledIndexOf = (option: SelectOptionProps) => enabledOptions.findIndex(o => o.value === option.value);
+
+  const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (disabled || loading) return;
+
+    switch (e.key) {
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+        } else if (enabledOptions[highlightedIndex]) {
+          handleSelect(enabledOptions[highlightedIndex]);
+        }
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+        }
+        setHighlightedIndex(prev => (prev + 1) % enabledOptions.length);
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+        }
+        setHighlightedIndex(prev => (prev - 1 + enabledOptions.length) % enabledOptions.length);
+        break;
+      case 'Escape':
+        e.preventDefault();
+        setIsOpen(false);
+        triggerRef.current?.focus();
+        break;
+      case 'Tab':
+        if (isOpen) {
+          setIsOpen(false);
+        }
+        break;
+      case 'Home':
+        e.preventDefault();
+        setHighlightedIndex(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        setHighlightedIndex(enabledOptions.length - 1);
+        break;
+    }
+  };
+
   const renderValue = () => {
     if (mode === 'multiple') {
       const currentArray = Array.isArray(currentValue) ? currentValue : [];
@@ -101,8 +166,8 @@ export const Select = ({
         <MultiSelectValueWrapper>
           {currentArray.map(v => (
             <Tag key={v} size="small" variant="primary" onClose={(e) => {
-              e.stopPropagation(); // Prevent dropdown from opening on tag close
-              handleSelect({ value: v, label: ''});
+              e.stopPropagation();
+              handleSelect({ value: v, label: '' });
             }}>
               {getLabelForValue(v)}
             </Tag>
@@ -110,29 +175,54 @@ export const Select = ({
         </MultiSelectValueWrapper>
       );
     }
-    
+
     const selectedOption = options.find(o => o.value === currentValue);
     if (!selectedOption) return <SelectPlaceholder>{placeholder}</SelectPlaceholder>;
     return <SelectValue>{selectedOption.label}</SelectValue>;
   };
-  
+
   const isClearable = allowClear && currentValue && (Array.isArray(currentValue) ? currentValue.length > 0 : true);
 
   return (
     <SelectWrapper ref={wrapperRef}>
       <SelectTrigger
+        ref={triggerRef}
+        id={triggerId}
         size={size}
         isOpen={isOpen}
         hasError={error}
         disabled={disabled || loading}
         isMulti={mode === 'multiple'}
         onClick={() => !disabled && !loading && setIsOpen(!isOpen)}
+        onKeyDown={handleTriggerKeyDown}
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-controls={isOpen ? listboxId : undefined}
+        aria-activedescendant={isOpen ? `${listboxId}-option-${enabledOptions[highlightedIndex]?.value}` : undefined}
+        aria-disabled={disabled || loading}
+        aria-invalid={error}
+        tabIndex={disabled ? -1 : 0}
       >
         {renderValue()}
         <SelectIcons>
           {loading && <Spinner />}
           {isClearable && !loading && !disabled && (
-            <ClearButton onClick={handleClear}><FaTimes /></ClearButton>
+            <ClearButton
+              role="button"
+              tabIndex={0}
+              aria-label="Clear selection"
+              onClick={handleClear}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleClear(e as unknown as React.MouseEvent);
+                }
+              }}
+            >
+              <FaTimes />
+            </ClearButton>
           )}
           <SelectChevron isOpen={isOpen}><FaChevronDown /></SelectChevron>
         </SelectIcons>
@@ -140,23 +230,39 @@ export const Select = ({
       <AnimatePresence>
         {isOpen && (
           <SelectDropdown
+            id={listboxId}
+            role="listbox"
+            aria-multiselectable={mode === 'multiple'}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
           >
-            {options.map(option => (
-              <SelectOption
-                key={option.value}
-                isActive={mode === 'multiple'
-                  ? (currentValue as any[])?.includes(option.value)
-                  : currentValue === option.value
-                }
-                disabled={option.disabled}
-                onClick={() => handleSelect(option)}
-              >
-                {option.label}
-              </SelectOption>
-            ))}
+            {options.map(option => {
+              const optionId = `${listboxId}-option-${option.value}`;
+              const active = isSelected(option);
+              const highlighted = enabledOptions[highlightedIndex]?.value === option.value;
+              return (
+                <SelectOption
+                  key={option.value}
+                  id={optionId}
+                  role="option"
+                  aria-selected={active}
+                  aria-disabled={option.disabled}
+                  isActive={active}
+                  disabled={option.disabled}
+                  onClick={() => handleSelect(option)}
+                  onMouseEnter={() => {
+                    if (!option.disabled) {
+                      const idx = enabledIndexOf(option);
+                      if (idx >= 0) setHighlightedIndex(idx);
+                    }
+                  }}
+                  style={highlighted && !option.disabled ? { outline: '2px solid currentColor', outlineOffset: '-2px' } : undefined}
+                >
+                  {option.label}
+                </SelectOption>
+              );
+            })}
           </SelectDropdown>
         )}
       </AnimatePresence>

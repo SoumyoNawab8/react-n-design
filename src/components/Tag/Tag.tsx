@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { StyledTag, TagIcon, CloseIcon } from './Tag.styles';
 
@@ -39,11 +40,29 @@ export const Tag = ({
     onClose?.(e);
   };
 
+  const handleCloseKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      onClose?.(e as unknown as React.MouseEvent<HTMLSpanElement>);
+    }
+  };
+
   return (
     <StyledTag size={size} variant={variant} customColor={color} {...props}>
       {leftIcon && <TagIcon>{leftIcon}</TagIcon>}
       {children}
-      {onClose && <CloseIcon onClick={handleClose}>&times;</CloseIcon>}
+      {onClose && (
+        <CloseIcon
+          role="button"
+          tabIndex={0}
+          aria-label="Remove tag"
+          onClick={handleClose}
+          onKeyDown={handleCloseKeyDown}
+        >
+          &times;
+        </CloseIcon>
+      )}
     </StyledTag>
   );
 };

@@ -23,7 +23,9 @@ export const MultiSelectValueWrapper = styled.div`
   flex-grow: 1;
 `;
 
-export const SelectTrigger = styled.div<{
+export const SelectTrigger = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['size', 'isOpen', 'hasError', 'disabled', 'isMulti'].includes(prop),
+})<{
   size: 'small' | 'medium' | 'large';
   isOpen: boolean;
   hasError: boolean;
@@ -57,9 +59,9 @@ export const SelectTrigger = styled.div<{
     box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}40;
   `}
 
-  ${({ disabled }) => disabled && css`
+  ${({ disabled, theme }) => disabled && css`
     cursor: not-allowed;
-    background-color: #f8f9fa; /* Keeping a neutral disabled color */
+    background-color: ${(theme as any).colors.hoverBg};
   `}
 `;
 
@@ -71,7 +73,7 @@ export const SelectValue = styled.span`
 `;
 
 export const SelectPlaceholder = styled(SelectValue)`
-  color: #a0a5b0; /* Neutral placeholder color */
+  color: ${({ theme }) => (theme as any).colors.shadowDark};
 `;
 
 export const SelectIcons = styled.div`
@@ -81,7 +83,9 @@ export const SelectIcons = styled.div`
   flex-shrink: 0;
 `;
 
-export const SelectChevron = styled.div<{ isOpen: boolean }>`
+export const SelectChevron = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['isOpen'].includes(prop),
+})<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
   transition: transform 0.2s;
@@ -91,8 +95,8 @@ export const SelectChevron = styled.div<{ isOpen: boolean }>`
 export const ClearButton = styled.span`
   display: flex;
   align-items: center;
-  color: #aaa;
-  &:hover { color: #555; }
+  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  &:hover { color: ${({ theme }) => theme.colors.text}; }
 `;
 
 export const SelectDropdown = styled(motion.div)`
@@ -102,14 +106,16 @@ export const SelectDropdown = styled(motion.div)`
   width: 100%;
   max-height: 250px;
   overflow-y: auto;
-  z-index: 1000;
+  z-index: 800;
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: ${({ theme }) => theme.shadows.soft};
   padding: 8px;
 `;
 
-export const SelectOption = styled.div<{ isActive: boolean; disabled?: boolean }>`
+export const SelectOption = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['isActive', 'disabled'].includes(prop),
+})<{ isActive: boolean; disabled?: boolean }>`
   padding: 10px 12px;
   border-radius: 8px;
   cursor: pointer;
@@ -125,10 +131,13 @@ export const SelectOption = styled.div<{ isActive: boolean; disabled?: boolean }
     color: ${theme.colors.primary};
   `}
   
-  &:not(:disabled):hover {
-    /* 4. Use theme-aware hover color */
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
-  }
+  ${({ disabled, theme }) =>
+    !disabled &&
+    css`
+      &:hover {
+        background: ${(theme as any).colors.hoverBg};
+      }
+    `}
 `;
 
 const spin = keyframes`to { transform: rotate(360deg); }`;

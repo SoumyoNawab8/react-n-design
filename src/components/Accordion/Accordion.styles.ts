@@ -1,27 +1,33 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
-export const AccordionWrapper = styled.div<{ bordered: boolean }>`
+export const AccordionWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['bordered'].includes(prop),
+})<{ bordered: boolean }>`
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: ${({ theme }) => theme.shadows.soft};
   background: ${({ theme }) => theme.colors.background};
   overflow: hidden;
-  ${({ bordered }) =>
+  ${({ bordered, theme }) =>
     bordered &&
     css`
-      border: 1px solid #d1d9e6;
+      border: 1px solid ${(theme as any).colors.shadowDark}40;
     `}
 `;
 
-export const AccordionItem = styled.div<{ isLast: boolean }>`
-  ${({ isLast }) =>
+export const AccordionItem = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['isLast'].includes(prop),
+})<{ isLast: boolean }>`
+  ${({ isLast, theme }) =>
     !isLast &&
     css`
-      border-bottom: 1px solid #d1d9e6;
+      border-bottom: 1px solid ${(theme as any).colors.shadowDark}40;
     `}
 `;
 
-export const AccordionHeader = styled.button<{ isActive: boolean }>`
+export const AccordionHeader = styled.button.withConfig({
+  shouldForwardProp: (prop) => !['isActive'].includes(prop),
+})<{ isActive: boolean }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -38,7 +44,7 @@ export const AccordionHeader = styled.button<{ isActive: boolean }>`
   color: ${({ isActive, theme }) => (isActive ? theme.colors.primary : theme.colors.text)};
 
   &:disabled {
-    color: #aaa;
+    color: ${({ theme }) => (theme as any).colors.shadowDark};
     cursor: not-allowed;
   }
 `;

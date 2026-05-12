@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <h1>🎨 react-n-design</h1>
+  <h1>react-n-design</h1>
   <br />
 </div>
 
@@ -30,9 +30,12 @@
   <a href="https://github.com/SoumyoNawab8/react-n-design/blob/master/LICENSE">
     <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&cacheBuster=1234" alt="License" />
   </a>
+  <a href="#components">
+    <img src="https://img.shields.io/badge/components-40+-blue.svg?style=flat-square" alt="Components" />
+  </a>
 </p>
 
-## 🚀 Installation
+## Installation
 
 Install the package along with its required peer dependencies:
 
@@ -52,7 +55,7 @@ yarn add react-n-design styled-components framer-motion react-icons
 | `framer-motion` | >=6.0.0 |
 | `react-icons` | >=4.0.0 |
 
-## 💻 Quick Start
+## Quick Start
 
 ### Option A — Built-in theme context (recommended)
 
@@ -111,7 +114,7 @@ function App() {
 export default App;
 ```
 
-## 🎨 Theming
+## Theming
 
 The library ships with `lightTheme` and `darkTheme` out of the box. Both are typed against the `Theme` type so your editor will autocomplete all tokens.
 
@@ -141,24 +144,97 @@ const customTheme: Theme = {
 };
 ```
 
-## 🧩 Components
+## React Server Components
+
+`react-n-design` provides a dual entry point for compatibility with React Server Components (RSC):
+
+- **Client components** (default entry): `import { Button, Modal } from 'react-n-design'`
+  - Includes interactive and animated components that require a client environment.
+- **Server-safe exports** (RSC entry): `import { Button, Card } from 'react-n-design/rsc'`
+  - Includes only components that can safely render in a server context (no `'use client'` directive).
+
+Use the `/rsc` entry when you need to import components inside Server Components without adding a `"use client"` boundary.
+
+```tsx
+// In a Server Component (e.g., Next.js App Router)
+import { Card, Stack, Typography } from 'react-n-design/rsc';
+
+export default function Page() {
+  return (
+    <Card>
+      <Stack direction="column" gap="16px">
+        <Typography.Title level={1}>Server-rendered content</Typography.Title>
+        <Typography.Text>Hello from the server!</Typography.Text>
+      </Stack>
+    </Card>
+  );
+}
+```
+
+## Components
+
+### General
 
 | Component | Description |
 | --- | --- |
 | **Button** | Customizable button with multiple variants and states |
 | **Card** | Neomorphic container for grouping content |
+| **Icon** | Wrapper for react-icons with consistent sizing and color |
+| **Tag** | Small label for keywords or categories |
+| **Badge** | Status indicators and count badges |
+| **Avatar** | User avatar with image fallback and grouping |
+| **Skeleton** | Placeholder preview while content loads |
+| **VisuallyHidden** | Hides content visually but keeps it accessible to screen readers |
+| **SkipToContent** | Accessibility link to skip to main content |
+| **Toast** | Notification system with positions and promise support |
+| **Divider** | Horizontal or vertical separator line |
+
+### Layout
+
+| Component | Description |
+| --- | --- |
+| **Stack** | Flexbox-based vertical/horizontal layout with gap support |
+| **Grid** | CSS Grid layout wrapper with responsive props |
+| **Drawer** | Slide-over panel with focus trap and scroll lock |
+| **Modal** | Dialog window that appears over the main content |
+| **Tooltip** | Small pop-up label with multiple triggers and positions |
+
+### Navigation
+
+| Component | Description |
+| --- | --- |
+| **Tabs** | Organizes content into switchable views |
+| **Accordion** | Vertically stacked, collapsible panels |
+| **Breadcrumbs** | Navigation path with ARIA support |
+| **Menu** | Dropdown menu with keyboard navigation |
+| **Carousel** | Touch-friendly image/content slider |
+| **Stepper** | Multi-step wizard with navigation |
+| **Tree** | Hierarchical tree view with expand/collapse |
+
+### Forms
+
+| Component | Description |
+| --- | --- |
 | **Input** | Advanced input with icons, addons, and validation states |
 | **Select** | Feature-rich dropdown for single and multiple selections |
 | **Switch** | Animated toggle for boolean states |
+| **Slider** | Range input with keyboard and touch support |
+| **ComboBox** | Autocomplete with filtering, multi-select, and async loading |
+| **DatePicker** | Single/range date selection with keyboard navigation |
+| **ColorPicker** | Color selection with preset swatches and custom input |
+| **FileUpload** | Drag-and-drop file upload with progress and validation |
+| **MultiSelect** | Multiple selection dropdown with chips and search |
+| **Form** | Form state management with validation |
+
+### Data Display
+
+| Component | Description |
+| --- | --- |
 | **Table** | Data table with sorting and pagination |
-| **Modal** | Dialog window that appears over the main content |
-| **Tooltip** | Small pop-up label with multiple triggers and positions |
-| **Tabs** | Organizes content into switchable views |
-| **Accordion** | Vertically stacked, collapsible panels |
+| **DataGrid** | Virtualized table with sorting, filtering, and pagination |
 | **Alert** | Contextual feedback messages |
 | **ProgressBar** | Visual indicator for task completion |
-| **Tag** | Small label for keywords or categories |
-| **Skeleton** | Placeholder preview while content loads |
+| **Typography** | Text primitives: **Text**, **Title**, and **Paragraph** |
 
 ### Examples
 
@@ -187,7 +263,7 @@ import { Button, Input, Card, Alert } from 'react-n-design';
 />
 ```
 
-## 📦 Tree Shaking
+## Tree Shaking
 
 `sideEffects: false` is set in `package.json`, so modern bundlers (webpack, Vite, Rollup) will automatically remove any components you do not import.
 
@@ -196,7 +272,31 @@ import { Button, Input, Card, Alert } from 'react-n-design';
 import { Button, Input } from 'react-n-design';
 ```
 
-## 🛠️ Development
+## Testing
+
+The library is tested with **Jest** and **React Testing Library**.
+
+```bash
+# Run the test suite
+npm test
+
+# Run in watch mode
+npm run test:watch
+```
+
+## CLI
+
+A small CLI is included to scaffold new components into your project:
+
+```bash
+# Add a component to your project (copies source to your local codebase)
+npx react-n-design add <ComponentName>
+
+# Example
+npx react-n-design add Button
+```
+
+## Development
 
 ```bash
 # Clone the repository
@@ -210,13 +310,16 @@ npm run dev
 
 # Build the library
 npm run build
+
+# Build Storybook for static deployment
+npm run build-storybook
 ```
 
-## 🐛 Issues & Feature Requests
+## Issues & Feature Requests
 
 Found a bug or have a feature request? Please open an issue on our [GitHub repository](https://github.com/SoumyoNawab8/react-n-design/issues).
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!
 
@@ -226,6 +329,6 @@ Contributions are welcome!
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
-MIT © [SoumyoNawab8](https://github.com/SoumyoNawab8)
+MIT &copy; [SoumyoNawab8](https://github.com/SoumyoNawab8)

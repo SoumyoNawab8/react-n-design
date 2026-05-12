@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useMemo } from 'react';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import {
@@ -77,33 +78,45 @@ export const Table = <T extends object>({
   const totalPages = pagination ? Math.ceil(dataSource.length / pagination.pageSize!) : 1;
 
   return (
-    <TableWrapper>
+    <TableWrapper aria-busy={loading}>
       {loading && (
-        <LoadingOverlay>
+        <LoadingOverlay aria-hidden="true">
           <Spinner />
         </LoadingOverlay>
       )}
       <StyledTable>
         <TableHeader>
           <tr>
-            {columns.map(col => (
-              <TableHeaderCell
-                key={col.key}
-                isSortable={!!col.sorter}
-                onClick={() => handleSort(col.key, col.sorter)}
-              >
-                {col.title}
-                {col.sorter && (
-                  <SortIcon
-                    isActive={sortConfig.key === col.key}
-                    isAscending={sortConfig.order === 'ascend'}
-                  >
-                    <FaArrowUp />
-                    <FaArrowDown />
-                  </SortIcon>
-                )}
-              </TableHeaderCell>
-            ))}
+            {columns.map(col => {
+              const isSorted = sortConfig.key === col.key;
+              const ariaSort = col.sorter
+                ? isSorted
+                  ? sortConfig.order === 'ascend'
+                    ? 'ascending'
+                    : 'descending'
+                  : 'none'
+                : undefined;
+              return (
+                <TableHeaderCell
+                  key={col.key}
+                  scope="col"
+                  aria-sort={ariaSort}
+                  isSortable={!!col.sorter}
+                  onClick={() => handleSort(col.key, col.sorter)}
+                >
+                  {col.title}
+                  {col.sorter && (
+                    <SortIcon
+                      isActive={isSorted}
+                      isAscending={sortConfig.order === 'ascend'}
+                    >
+                      <FaArrowUp />
+                      <FaArrowDown />
+                    </SortIcon>
+                  )}
+                </TableHeaderCell>
+              );
+            })}
           </tr>
         </TableHeader>
         <tbody>
@@ -121,12 +134,22 @@ export const Table = <T extends object>({
         </tbody>
       </StyledTable>
       {pagination && totalPages > 1 && (
-        <PaginationWrapper>
-          <Button size="small" onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1}>
+        <PaginationWrapper role="navigation" aria-label="Table pagination">
+          <Button
+            size="small"
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            aria-label="Previous page"
+          >
             Previous
           </Button>
           <span>Page {currentPage} of {totalPages}</span>
-          <Button size="small" onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages}>
+          <Button
+            size="small"
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            aria-label="Next page"
+          >
             Next
           </Button>
         </PaginationWrapper>
