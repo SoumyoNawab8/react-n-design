@@ -36,11 +36,13 @@ export const TableCell = styled.td`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const SortIcon = styled.span<{ isActive: boolean; isAscending: boolean }>`
+export const SortIcon = styled.span.withConfig({
+  shouldForwardProp: (prop) => !['isActive', 'isAscending'].includes(prop),
+})<{ isActive: boolean; isAscending: boolean }>`
   display: inline-flex;
   flex-direction: column;
   margin-left: 8px;
-  color: #aaa;
+  color: ${({ theme }) => (theme as any).colors.shadowDark};
   font-size: 0.8em;
   
   & svg:first-child { /* Up arrow */
@@ -53,12 +55,15 @@ export const SortIcon = styled.span<{ isActive: boolean; isAscending: boolean }>
   }
 `;
 
-export const TableHeaderCell = styled.th<{ isSortable: boolean }>`
+export const TableHeaderCell = styled.th.withConfig({
+  shouldForwardProp: (prop) => !['isSortable'].includes(prop),
+})<{ isSortable: boolean }>`
   padding: 16px;
   text-align: left;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
   white-space: nowrap;
+  border-bottom: 2px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
 
   ${({ isSortable, theme }) =>
     isSortable &&
@@ -84,7 +89,7 @@ export const PaginationWrapper = styled.div`
 // --- Re-usable Spinner ---
 const spin = keyframes`to { transform: rotate(360deg); }`;
 export const Spinner = styled.div`
-  border: 3px solid rgba(0, 0, 0, 0.2);
+  border: 3px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 2.5em;

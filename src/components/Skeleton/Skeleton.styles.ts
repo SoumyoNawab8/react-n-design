@@ -7,7 +7,9 @@ const shimmer = keyframes`
   }
 `;
 
-export const StyledSkeleton = styled.div<{
+export const StyledSkeleton = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['variant', 'active'].includes(prop),
+})<{
   variant: 'text' | 'rect' | 'circle';
   active: boolean;
 }>`

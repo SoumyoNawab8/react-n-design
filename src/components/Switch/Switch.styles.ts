@@ -7,7 +7,9 @@ const sizes = {
   large: { wrapperWidth: '60px', wrapperHeight: '34px', knobSize: '26px' },
 };
 
-export const SwitchContainer = styled.div<{ disabled: boolean }>`
+export const SwitchContainer = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['disabled'].includes(prop),
+})<{ disabled: boolean }>`
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -22,7 +24,9 @@ export const LabelText = styled.span`
   user-select: none; /* Prevents text selection on click */
 `;
 
-export const SwitchWrapper = styled.div<{ size: 'small' | 'medium' | 'large'; disabled: boolean }>`
+export const SwitchWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['size', 'disabled'].includes(prop),
+})<{ size: 'small' | 'medium' | 'large'; disabled: boolean }>`
   width: ${({ size }) => sizes[size].wrapperWidth};
   height: ${({ size }) => sizes[size].wrapperHeight};
   border-radius: 50px;
@@ -46,7 +50,7 @@ export const SwitchWrapper = styled.div<{ size: 'small' | 'medium' | 'large'; di
 const spin = keyframes`to { transform: rotate(360deg); }`;
 
 export const KnobSpinner = styled.div`
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 60%;
@@ -62,7 +66,9 @@ export const KnobIcon = styled.div`
   font-size: 0.6em; /* Scale icon size relative to knob */
 `;
 
-export const SwitchKnob = styled(motion.div)<{ size: 'small' | 'medium' | 'large' }>`
+export const SwitchKnob = styled(motion.div).withConfig({
+  shouldForwardProp: (prop) => !['size'].includes(prop),
+})<{ size: 'small' | 'medium' | 'large' }>`
   width: ${({ size }) => sizes[size].knobSize};
   height: ${({ size }) => sizes[size].knobSize};
   /* 3. Make knob theme-aware */

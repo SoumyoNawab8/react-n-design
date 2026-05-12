@@ -1,0 +1,31 @@
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { {{name}} } from '../src/components/{{name}}';
+
+const meta: Meta<typeof {{name}}> = {
+  title: 'react-n-design/{{name}}',
+  component: {{name}},
+  tags: ['autodocs'],
+};
+export default meta;
+type Story = StoryObj<typeof {{name}}>;
+
+export const Default: Story = {
+  args: {
+    children: '{{name}} content',
+  },
+};
+
+export const Primary: Story = {
+  args: {
+    children: 'Primary {{name}}',
+    variant: 'primary',
+  },
+};
+
+export const Interactive: Story = {
+  args: {
+    children: 'Interactive {{name}}',
+    onClick: () => alert('{{name}} clicked!'),
+  },
+};

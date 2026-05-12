@@ -3,19 +3,20 @@ const commonjs = require('@rollup/plugin-commonjs');
 const typescript = require('@rollup/plugin-typescript');
 const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 
-module.exports = {
-  input: 'src/index.ts',
+const config = (input, outputCjs, outputEsm, esmBanner) => ({
+  input,
   output: [
     {
-      file: 'dist/cjs/index.js',
+      file: outputCjs,
       format: 'cjs',
       sourcemap: true,
       exports: 'named'
     },
     {
-      file: 'dist/esm/index.js',
+      file: outputEsm,
       format: 'esm',
-      sourcemap: true
+      sourcemap: true,
+      banner: esmBanner
     }
   ],
   plugins: [
@@ -42,6 +43,12 @@ module.exports = {
     'styled-components',
     'framer-motion',
     'react-icons',
-    'react-icons/fa'
+    'react-icons/fa',
+    'react-window'
   ]
-};
+});
+
+module.exports = [
+  config('src/index.ts', 'dist/cjs/index.js', 'dist/esm/index.js', "'use client';"),
+  config('src/rsc.ts', 'dist/cjs/rsc.js', 'dist/esm/rsc.js')
+];

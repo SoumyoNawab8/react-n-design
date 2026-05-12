@@ -1,9 +1,10 @@
+'use client';
 import React, { useState } from 'react';
 import {
   InputGroupWrapper, InputAddon, InputInnerWrapper, InputPrefix, InputSuffix,
   StyledInput, ClearIcon, PasswordToggleIcon, InputContainer, StyledLabel, ErrorText
 } from './Input.styles';
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Example icons
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   label?: string;
@@ -40,6 +41,7 @@ export const Input = ({
 }: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const inputId = id || (label ? label.replace(/\s+/g, '-').toLowerCase() : undefined);
+  const errorId = inputId ? `${inputId}-error` : undefined;
 
   const handleClear = (e: React.MouseEvent<HTMLSpanElement>) => {
     const mockEvent = {
@@ -49,18 +51,51 @@ export const Input = ({
     } as unknown as React.ChangeEvent<HTMLInputElement>;
     onChange?.(mockEvent);
   };
-  
+
+  const handlePasswordToggleKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsPasswordVisible(!isPasswordVisible);
+    }
+  };
+
+  const handleClearKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClear(e as unknown as React.MouseEvent<HTMLSpanElement>);
+    }
+  };
+
   const isPassword = type === 'password';
   const inputType = isPassword ? (isPasswordVisible ? 'text' : 'password') : type;
 
   const renderSuffix = () => {
     if (isPassword) {
-      return <PasswordToggleIcon onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
-        {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
-      </PasswordToggleIcon>;
+      return (
+        <PasswordToggleIcon
+          role="button"
+          tabIndex={0}
+          aria-label={isPasswordVisible ? 'Hide password' : 'Show password'}
+          aria-pressed={isPasswordVisible}
+          onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          onKeyDown={handlePasswordToggleKeyDown}
+        >
+          {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+        </PasswordToggleIcon>
+      );
     }
     if (allowClear && value) {
-      return <ClearIcon onClick={handleClear}>&times;</ClearIcon>;
+      return (
+        <ClearIcon
+          role="button"
+          tabIndex={0}
+          aria-label="Clear input"
+          onClick={handleClear}
+          onKeyDown={handleClearKeyDown}
+        >
+          &times;
+        </ClearIcon>
+      );
     }
     return suffix ? <InputSuffix>{suffix}</InputSuffix> : null;
   };
@@ -74,6 +109,8 @@ export const Input = ({
         disabled={disabled}
         value={value}
         onChange={onChange}
+        aria-invalid={!!error}
+        aria-describedby={error ? errorId : undefined}
         {...props}
       />
       {renderSuffix()}
@@ -92,7 +129,7 @@ export const Input = ({
       ) : (
         inputElement
       )}
-      {error && <ErrorText>{error}</ErrorText>}
+      {error && <ErrorText id={errorId}>{error}</ErrorText>}
     </InputContainer>
   );
 };

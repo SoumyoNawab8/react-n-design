@@ -22,8 +22,8 @@ const spin = keyframes`
 
 // A simple CSS spinner component
 export const Spinner = styled.div`
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
+  border: 2px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 1em;
   height: 1em;
@@ -89,10 +89,10 @@ export const StyledButton = styled.button.withConfig({
           box-shadow: none;
           color: ${theme.colors.primary};
           &:hover:not(:disabled) {
-            background: #e0e5ec50;
+            background: ${(theme as any).colors.hoverBg}50;
           }
           &:active:not(:disabled) {
-            background: #e0e5ec80;
+            background: ${(theme as any).colors.hoverBg}80;
           }
         `;
       default: // primary & secondary
@@ -116,7 +116,7 @@ export const StyledButton = styled.button.withConfig({
   /* Disabled State */
   &:disabled {
     cursor: not-allowed;
-    color: #aaa;
+    color: ${({ theme }) => (theme as any).colors.shadowDark};
     background: ${({ theme }) => theme.colors.background};
     box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
     

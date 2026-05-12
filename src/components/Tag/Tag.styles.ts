@@ -1,3 +1,4 @@
+'use client';
 import styled, { css } from 'styled-components';
 
 const sizes = {
@@ -39,7 +40,9 @@ export const CloseIcon = styled.span`
   }
 `;
 
-export const StyledTag = styled.span<{
+export const StyledTag = styled.span.withConfig({
+  shouldForwardProp: (prop) => !['size', 'variant', 'customColor'].includes(prop),
+})<{
   size: 'small' | 'medium';
   variant: 'primary' | 'default' | 'outline';
   customColor?: string;

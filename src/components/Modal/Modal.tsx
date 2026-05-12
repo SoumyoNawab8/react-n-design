@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+'use client';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import {
   ModalBackdrop, ModalContent, ModalWrapper, ModalHeader, ModalTitle,
   ModalCloseButton, ModalBody, ModalFooter
 } from './Modal.styles';
 import { Card } from '../Card';
+import { trapFocus, saveFocus } from '../../utils/focus';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -43,6 +45,10 @@ export const Modal = ({
   fullScreen = false,
   lockScroll = true,
 }: ModalProps) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const restoreFocusRef = useRef<(() => void) | null>(null);
+  const titleId = title ? `modal-title-${Math.random().toString(36).slice(2, 9)}` : undefined;
+
   useEffect(() => {
     if (isOpen && lockScroll) {
       document.body.style.overflow = 'hidden';
@@ -53,6 +59,31 @@ export const Modal = ({
       }
     };
   }, [isOpen, lockScroll]);
+
+  useEffect(() => {
+    if (isOpen) {
+      restoreFocusRef.current = saveFocus();
+      // Focus the modal content or close button after it mounts
+      const timer = setTimeout(() => {
+        const focusTarget = contentRef.current?.querySelector<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        focusTarget?.focus();
+      }, 50);
+      return () => clearTimeout(timer);
+    } else {
+      restoreFocusRef.current?.();
+    }
+  }, [isOpen]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Escape') {
+      onClose();
+    }
+    if (contentRef.current) {
+      trapFocus(contentRef.current, e as unknown as KeyboardEvent);
+    }
+  }, [onClose]);
 
   const handleBackdropClick = () => {
     if (!preventBackdropClick) {
@@ -69,20 +100,29 @@ export const Modal = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleBackdropClick}
+            aria-hidden="true"
           />
           <ModalContent
+            ref={contentRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
             size={size}
             fullScreen={fullScreen}
             initial={{ y: position === 'top' ? -50 : 0, scale: 0.9, opacity: 0 }}
             animate={{ y: 0, scale: 1, opacity: 1 }}
             exit={{ y: position === 'top' ? -50 : 0, scale: 0.9, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            onKeyDown={handleKeyDown}
+            tabIndex={-1}
           >
             <Card padding="large">
               {title && (
                 <ModalHeader>
-                  <ModalTitle>{title}</ModalTitle>
-                  <ModalCloseButton onClick={onClose}>&times;</ModalCloseButton>
+                  <ModalTitle id={titleId}>{title}</ModalTitle>
+                  <ModalCloseButton onClick={onClose} aria-label="Close modal">
+                    &times;
+                  </ModalCloseButton>
                 </ModalHeader>
               )}
               <ModalBody>{children}</ModalBody>

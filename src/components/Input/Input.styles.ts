@@ -7,7 +7,9 @@ const sizes = {
 };
 
 // This is the outermost container for the label, input group, and error message
-export const InputContainer = styled.div<{ fullWidth: boolean }>`
+export const InputContainer = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['fullWidth'].includes(prop),
+})<{ fullWidth: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -70,7 +72,9 @@ export const InputAddon = styled.div`
 `;
 
 // This is the main neomorphic element
-export const InputInnerWrapper = styled.div<{
+export const InputInnerWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['size', 'hasError', 'disabled'].includes(prop),
+})<{
   size: 'small' | 'medium' | 'large';
   hasError: boolean;
   disabled: boolean;
@@ -101,6 +105,7 @@ export const InputInnerWrapper = styled.div<{
 const IconWrapper = styled.span`
   display: flex;
   align-items: center;
+  justify-content: center;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -110,8 +115,8 @@ export const InputSuffix = styled(IconWrapper)``;
 export const ClearIcon = styled(IconWrapper)`
   cursor: pointer;
   font-size: 1.2em;
-  color: #aaa;
-  &:hover { color: #555; }
+  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  &:hover { color: ${({ theme }) => theme.colors.text}; }
 `;
 export const PasswordToggleIcon = styled(IconWrapper)`
   cursor: pointer;

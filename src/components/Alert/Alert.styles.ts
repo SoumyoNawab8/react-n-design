@@ -64,7 +64,7 @@ export const AlertIcon = styled.div.withConfig({
 })<{ alertType: AlertType }>`
   margin-right: 12px;
   font-size: 22px;
-  margin-top: 2px;
+  margin-top: 3px;
   flex-shrink: 0;
   
   /* The icon's color will be the same as the colored part of the shadow */
@@ -95,11 +95,11 @@ export const CloseIcon = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #aaa;
+  color: ${({ theme }) => (theme as any).colors.shadowDark};
   margin-left: 16px;
   font-size: 16px;
   flex-shrink: 0;
-  
+
   &:hover {
     color: ${({ theme }) => theme.colors.text};
   }

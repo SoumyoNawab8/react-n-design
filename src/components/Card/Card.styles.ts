@@ -37,9 +37,12 @@ const paddings = {
 
 export const CardCover = styled.div`
   width: 100%;
+  overflow: hidden;
+  border-radius: ${({ theme }) => `${theme.borderRadius} ${theme.borderRadius} 0 0`};
   img {
     display: block;
     width: 100%;
+    object-fit: cover;
   }
 `;
 

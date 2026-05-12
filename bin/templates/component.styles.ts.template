@@ -1,0 +1,19 @@
+import styled, { css } from 'styled-components';
+
+export const Styled{{name}} = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['variant'].includes(prop),
+})<{
+  variant: 'default' | 'primary';
+}>`
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  box-shadow: ${({ theme }) => theme.shadows.soft};
+  transition: all 0.2s ease-in-out;
+
+  ${({ variant, theme }) =>
+    variant === 'primary' &&
+    css`
+      color: ${theme.colors.primary};
+    `}
+`;

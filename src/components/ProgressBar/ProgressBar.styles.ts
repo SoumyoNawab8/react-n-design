@@ -33,7 +33,9 @@ const sizes = {
   `,
 };
 
-export const ProgressBarWrapper = styled.div<{ size: 'small' | 'medium' }>`
+export const ProgressBarWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['size'].includes(prop),
+})<{ size: 'small' | 'medium' }>`
   position: relative;
   width: 100%;
   /* 3. Access theme from props */
@@ -45,7 +47,9 @@ export const ProgressBarWrapper = styled.div<{ size: 'small' | 'medium' }>`
   ${({ size }) => sizes[size]};
 `;
 
-export const ProgressBarFill = styled.div<{
+export const ProgressBarFill = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['status', 'variant', 'isIndeterminate'].includes(prop),
+})<{
   status: 'normal' | 'success' | 'error';
   variant: 'default' | 'striped';
   isIndeterminate: boolean;

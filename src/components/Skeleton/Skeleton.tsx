@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { StyledSkeleton } from './Skeleton.styles';
 
@@ -45,6 +46,10 @@ export const Skeleton = ({
 
   return (
     <StyledSkeleton
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+      aria-label="Loading content"
       variant={variant}
       active={active}
       style={{

@@ -1,6 +1,7 @@
+'use client';
 import React from 'react';
-import { 
-  StyledCard, CardCover, CardHeader, CardBody, CardFooter, LoadingOverlay, Spinner 
+import {
+  StyledCard, CardCover, CardHeader, CardBody, CardFooter, LoadingOverlay, Spinner
 } from './Card.styles';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -58,10 +59,11 @@ export const Card = ({
       bordered={bordered}
       hoverable={hoverable}
       isLoading={loading}
+      aria-busy={loading}
       {...props}
     >
       {loading && (
-        <LoadingOverlay>
+        <LoadingOverlay aria-hidden="true">
           <Spinner />
         </LoadingOverlay>
       )}

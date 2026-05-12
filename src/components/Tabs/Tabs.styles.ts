@@ -7,7 +7,9 @@ const sizes = {
   large: { padding: '16px 24px', fontSize: '18px' },
 };
 
-export const TabsWrapper = styled.div<{ tabPosition: 'top' | 'left' }>`
+export const TabsWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['tabPosition'].includes(prop),
+})<{ tabPosition: 'top' | 'left' }>`
   width: 100%;
   display: flex;
   flex-direction: ${({ tabPosition }) => (tabPosition === 'left' ? 'row' : 'column')};
@@ -24,7 +26,9 @@ export const TabBarExtraContent = styled.div`
   margin-left: 16px;
 `;
 
-export const TabsList = styled.div<{
+export const TabsList = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['type', 'tabPosition', 'centered'].includes(prop),
+})<{
   type: 'line' | 'card';
   tabPosition: 'top' | 'left';
   centered: boolean;
@@ -49,7 +53,9 @@ export const TabsList = styled.div<{
         `}
 `;
 
-export const TabButton = styled.button<{
+export const TabButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => !['isActive', 'typeStyle', 'size', 'tabPosition'].includes(prop),
+})<{
   isActive: boolean;
   typeStyle: 'line' | 'card';
   size: 'small' | 'medium' | 'large';
@@ -90,13 +96,15 @@ export const TabButton = styled.button<{
     `}
   
   &:disabled {
-    color: #aaa;
+    color: ${({ theme }) => (theme as any).colors.shadowDark};
     cursor: not-allowed;
-    background: #f8f9fa; /* Neutral disabled color */
+    background: ${({ theme }) => (theme as any).colors.hoverBg};
   }
 `;
 
-export const TabIndicator = styled(motion.div)<{ isVertical: boolean }>`
+export const TabIndicator = styled(motion.div).withConfig({
+  shouldForwardProp: (prop) => !['isVertical'].includes(prop),
+})<{ isVertical: boolean }>`
   position: absolute;
   background: ${({ theme }) => theme.colors.primary};
   border-radius: 2px;

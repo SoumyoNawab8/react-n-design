@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import {
@@ -75,6 +76,8 @@ export const Alert = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, x: -300, transition: { duration: 0.3 } }}
           role="alert"
+          aria-live="polite"
+          aria-atomic="true"
         >
           {showIcon && <AlertIcon alertType={type}>{alertIcon}</AlertIcon>}
           <AlertContent>
