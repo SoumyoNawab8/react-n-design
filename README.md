@@ -40,9 +40,9 @@
 Install the package along with its required peer dependencies:
 
 ```bash
-npm install react-n-design styled-components framer-motion react-icons
+npm install react-n-design styled-components framer-motion react-icons react-window --legacy-peer-deps
 # or
-yarn add react-n-design styled-components framer-motion react-icons
+yarn add react-n-design styled-components framer-motion react-icons react-window
 ```
 
 **Peer dependencies required:**
@@ -51,9 +51,10 @@ yarn add react-n-design styled-components framer-motion react-icons
 | --- | --- |
 | `react` | >=18.0.0 |
 | `react-dom` | >=18.0.0 |
-| `styled-components` | >=5.0.0 |
+| `styled-components` | >=6.0.0 |
 | `framer-motion` | >=6.0.0 |
 | `react-icons` | >=4.0.0 |
+| `react-window` | >=1.8.10 |
 
 ## Quick Start
 
@@ -303,7 +304,7 @@ npx react-n-design add Button
 git clone https://github.com/SoumyoNawab8/react-n-design.git
 
 # Install dependencies
-npm install
+npm install --legacy-peer-deps
 
 # Start Storybook for development
 npm run dev
