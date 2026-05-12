@@ -51,6 +51,8 @@ export const InputGroupWrapper = styled.div`
   & > .input-addon:last-child:not(:first-child) {
     margin-left: -2px;
     z-index: 1;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 
     & > div, & > div > button {
       border-top-left-radius: 0;
@@ -62,6 +64,8 @@ export const InputGroupWrapper = styled.div`
   & > .input-addon:first-child:not(:last-child) {
     margin-right: -2px;
     z-index: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 
     & > div, & > div > button {
       border-top-right-radius: 0;
