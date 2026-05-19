@@ -4,8 +4,35 @@
   <br />
 </div>
 
+<h1 align="center">react-n-design</h1>
+
 <p align="center">
-  A stunning, lightweight, and modern React component library built with TypeScript and styled-components, based on <strong>Neomorphic</strong> design principles.
+  <strong>The AI-native, Neomorphic React component library.</strong><br/>
+  40+ accessible components, zero-config install, RSC-ready, and built for the future of UI.
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-n-design">
+    <img src="https://img.shields.io/npm/v/react-n-design.svg?style=flat-square&color=cb3837" alt="npm version" />
+  </a>
+  <a href="https://bundlephobia.com/package/react-n-design">
+    <img src="https://img.shields.io/bundlephobia/minzip/react-n-design?style=flat-square&color=brightgreen" alt="bundle size" />
+  </a>
+  <a href="https://github.com/SoumyoNawab8/react-n-design/actions/workflows/main.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?style=flat-square&color=blue" alt="build status" />
+  </a>
+  <a href="#testing">
+    <img src="https://img.shields.io/badge/tests-41%20passing-brightgreen.svg?style=flat-square" alt="test coverage" />
+  </a>
+  <a href="#accessibility">
+    <img src="https://img.shields.io/badge/a11y-axe--core-blueviolet.svg?style=flat-square" alt="accessibility" />
+  </a>
+  <a href="https://github.com/SoumyoNawab8/react-n-design/blob/master/LICENSE">
+    <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&color=yellow" alt="license" />
+  </a>
+  <a href="#components">
+    <img src="https://img.shields.io/badge/components-40+-blue.svg?style=flat-square" alt="components" />
+  </a>
 </p>
 
 <p align="center">
@@ -17,33 +44,21 @@
   </a>
 </p>
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/react-n-design">
-    <img src="https://img.shields.io/npm/v/react-n-design.svg?style=flat-square" alt="NPM Version" />
-  </a>
-  <a href="https://github.com/SoumyoNawab8/react-n-design/actions/workflows/main.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?style=flat-square&cacheBuster=dsadad" alt="Build Status" />
-  </a>
-  <a href="https://bundlephobia.com/package/react-n-design">
-    <img src="https://img.shields.io/bundlephobia/minzip/react-n-design?style=flat-square&cacheBuster=dsadad" alt="Bundle Size" />
-  </a>
-  <a href="https://github.com/SoumyoNawab8/react-n-design/blob/master/LICENSE">
-    <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&cacheBuster=1234" alt="License" />
-  </a>
-  <a href="#components">
-    <img src="https://img.shields.io/badge/components-40+-blue.svg?style=flat-square" alt="Components" />
-  </a>
-</p>
+---
 
 ## Installation
 
-Install the package along with its required peer dependencies:
+Zero-config. One command. Works out of the box.
 
 ```bash
 npm install react-n-design
 # or
 yarn add react-n-design
+# or
+pnpm add react-n-design
 ```
+
+No extra setup, no Tailwind config, no CSS imports needed. Just install and import.
 
 **Peer dependencies required:**
 
@@ -51,6 +66,42 @@ yarn add react-n-design
 | --- | --- |
 | `react` | >=18.0.0 |
 | `react-dom` | >=18.0.0 |
+
+---
+
+## Features
+
+| Feature | Description |
+| --- | --- |
+| :art: **Neomorphic Design** | Soft UI with realistic shadows, light diffusion, and tactile depth. No flat boredom. |
+| :robot: **AI-Native Components** | Drop-in `AIChat`, `CommandPalette`, and Markdown renderers for LLM-powered apps. |
+| :zap: **Zero-Config Install** | No build plugins, no CSS resets, no global style leakage. It just works. |
+| :gear: **RSC-Ready** | Dual entry point (`react-n-design` and `react-n-design/rsc`) for Next.js App Router compatibility. |
+| :wheelchair: **Accessibility First** | axe-core validated, ARIA compliant, keyboard navigable, screen-reader friendly. |
+| :fire: **Styled-Components** | No runtime CSS injection conflicts. Zero-runtime CSS variable fallbacks available. |
+| :package: **Tree Shakable** | `sideEffects: false` ensures modern bundlers drop everything you do not use. |
+| :test_tube: **Battle Tested** | 41+ tests across Jest, React Testing Library, and Vitest. |
+| :moon: **Dark Mode Built-In** | `lightTheme` and `darkTheme` tokens with seamless toggle support. |
+| :rocket: **TypeScript** | Fully typed with autocomplete for all props and theme tokens. |
+
+---
+
+## Why react-n-design?
+
+| | react-n-design | shadcn/ui | MUI | Ant Design |
+| --- | :---: | :---: | :---: | :---: |
+| Neomorphic UI | :white_check_mark: | :x: | :x: | :x: |
+| Zero-config install | :white_check_mark: | :x: (copy-paste) | :x: (theme setup) | :x: (CSS import) |
+| AI-native components | :white_check_mark: | :x: | :x: | :x: |
+| RSC / Next.js App Router | :white_check_mark: | :white_check_mark: | :x: | :x: |
+| No Tailwind dependency | :white_check_mark: | :x: | :white_check_mark: | :white_check_mark: |
+| Runtime bundle size | Small | Minimal* | Large | Large |
+| Accessibility (axe-core) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| TypeScript | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+
+*shadcn/ui is a collection of copy-paste components, so it ships no runtime itself. react-n-design ships a polished, maintained runtime with CLI scaffolding and design cohesion out of the box.
+
+---
 
 ## Quick Start
 
@@ -111,6 +162,128 @@ function App() {
 export default App;
 ```
 
+---
+
+## Key Components
+
+### Button
+
+A tactile, Neomorphic button with multiple variants and full keyboard support.
+
+```tsx
+import { Button } from 'react-n-design';
+
+<Button variant="primary" size="medium">
+  Get Started
+</Button>
+
+<Button variant="secondary" size="small" disabled>
+  Loading...
+</Button>
+```
+
+### AIChat
+
+Drop-in chat interface for AI conversations. Supports markdown rendering, typing indicators, auto-scroll, copy-to-clipboard, and ARIA live regions.
+
+```tsx
+import { AIChat } from 'react-n-design';
+
+function ChatPage() {
+  const [messages, setMessages] = useState([
+    { role: 'assistant', content: 'Hello! How can I help you today?' },
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSend = async (text: string) => {
+    setMessages((prev) => [...prev, { role: 'user', content: text }]);
+    setIsLoading(true);
+    const reply = await fetchReply(text);
+    setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
+    setIsLoading(false);
+  };
+
+  return (
+    <AIChat
+      messages={messages}
+      onSend={handleSend}
+      isLoading={isLoading}
+      placeholder="Ask anything..."
+    />
+  );
+}
+```
+
+### CommandPalette
+
+A Cmd+K spotlight-style command palette with fuzzy search, keyboard navigation, and accessible focus management.
+
+```tsx
+import { CommandPalette } from 'react-n-design';
+import { useState, useEffect } from 'react';
+
+function App() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setOpen((prev) => !prev);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const items = [
+    { id: 'home', label: 'Go to Home', shortcut: 'G H', onSelect: () => navigate('/') },
+    { id: 'settings', label: 'Open Settings', shortcut: 'G S', onSelect: () => navigate('/settings') },
+    { id: 'logout', label: 'Log Out', onSelect: () => logout() },
+  ];
+
+  return (
+    <CommandPalette
+      open={open}
+      onClose={() => setOpen(false)}
+      items={items}
+      placeholder="Search commands..."
+    />
+  );
+}
+```
+
+---
+
+## React Server Components
+
+`react-n-design` provides a dual entry point for compatibility with React Server Components (RSC):
+
+- **Client components** (default entry): `import { Button, Modal } from 'react-n-design'`
+  - Includes interactive and animated components that require a client environment.
+- **Server-safe exports** (RSC entry): `import { Button, Card } from 'react-n-design/rsc'`
+  - Includes only components that can safely render in a server context (no `'use client'` directive).
+
+Use the `/rsc` entry when you need to import components inside Server Components without adding a `"use client"` boundary.
+
+```tsx
+// In a Server Component (e.g., Next.js App Router)
+import { Card, Stack, Typography } from 'react-n-design/rsc';
+
+export default function Page() {
+  return (
+    <Card>
+      <Stack direction="column" gap="16px">
+        <Typography.Title level={1}>Server-rendered content</Typography.Title>
+        <Typography.Text>Hello from the server!</Typography.Text>
+      </Stack>
+    </Card>
+  );
+}
+```
+
+---
+
 ## Theming
 
 The library ships with `lightTheme` and `darkTheme` out of the box. Both are typed against the `Theme` type so your editor will autocomplete all tokens.
@@ -141,32 +314,7 @@ const customTheme: Theme = {
 };
 ```
 
-## React Server Components
-
-`react-n-design` provides a dual entry point for compatibility with React Server Components (RSC):
-
-- **Client components** (default entry): `import { Button, Modal } from 'react-n-design'`
-  - Includes interactive and animated components that require a client environment.
-- **Server-safe exports** (RSC entry): `import { Button, Card } from 'react-n-design/rsc'`
-  - Includes only components that can safely render in a server context (no `'use client'` directive).
-
-Use the `/rsc` entry when you need to import components inside Server Components without adding a `"use client"` boundary.
-
-```tsx
-// In a Server Component (e.g., Next.js App Router)
-import { Card, Stack, Typography } from 'react-n-design/rsc';
-
-export default function Page() {
-  return (
-    <Card>
-      <Stack direction="column" gap="16px">
-        <Typography.Title level={1}>Server-rendered content</Typography.Title>
-        <Typography.Text>Hello from the server!</Typography.Text>
-      </Stack>
-    </Card>
-  );
-}
-```
+---
 
 ## Components
 
@@ -233,32 +381,17 @@ export default function Page() {
 | **ProgressBar** | Visual indicator for task completion |
 | **Typography** | Text primitives: **Text**, **Title**, and **Paragraph** |
 
-### Examples
+### AI & Productivity
 
-```tsx
-import { Button, Input, Card, Alert } from 'react-n-design';
+| Component | Description |
+| --- | --- |
+| **AIChat** | Full chat interface with markdown, typing indicators, and copy actions |
+| **CommandPalette** | Spotlight-style Cmd+K search with fuzzy matching and keyboard nav |
+| **Markdown** | Secure markdown renderer for assistant messages and docs |
+| **Calendar** | Interactive date grid with selection modes and keyboard nav |
+| **CodeBlock** | Syntax-highlighted code display with copy button |
 
-// Button
-<Button variant="primary" size="medium">Primary Button</Button>
-
-// Input
-<Input label="Email" placeholder="Enter your email" inputSize="medium" allowClear />
-
-// Card
-<Card variant="default" padding="20px">
-  <h3>Card Title</h3>
-  <p>Card content goes here...</p>
-</Card>
-
-// Alert
-<Alert
-  type="success"
-  message="Success!"
-  description="Your action was completed successfully."
-  showIcon
-  closable
-/>
-```
+---
 
 ## Tree Shaking
 
@@ -269,17 +402,24 @@ import { Button, Input, Card, Alert } from 'react-n-design';
 import { Button, Input } from 'react-n-design';
 ```
 
+---
+
 ## Testing
 
-The library is tested with **Jest** and **React Testing Library**.
+The library is tested with **Jest**, **React Testing Library**, and **Vitest**. Every component is run against **axe-core** for accessibility violations.
 
 ```bash
-# Run the test suite
+# Run the Jest test suite
 npm test
 
 # Run in watch mode
 npm run test:watch
+
+# Run the Vitest suite
+npm run test:vitest
 ```
+
+---
 
 ## CLI
 
@@ -292,6 +432,8 @@ npx react-n-design add <ComponentName>
 # Example
 npx react-n-design add Button
 ```
+
+---
 
 ## Development
 
@@ -312,19 +454,27 @@ npm run build
 npm run build-storybook
 ```
 
+---
+
+## Contributing
+
+We love contributions. Here is how to get started:
+
+1. **Fork** the project
+2. **Create** your feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'feat: add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
+
+Please make sure your code passes the existing test suite and includes axe-core accessibility coverage where applicable.
+
+---
+
 ## Issues & Feature Requests
 
 Found a bug or have a feature request? Please open an issue on our [GitHub repository](https://github.com/SoumyoNawab8/react-n-design/issues).
 
-## Contributing
-
-Contributions are welcome!
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+---
 
 ## License
 

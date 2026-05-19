@@ -110,11 +110,29 @@
   },
   "keywords": [
     "react",
-    "n-design",
     "react-n-design",
     "ui",
     "neomorphism",
+    "neumorphism",
     "components",
-    "design-system"
+    "design-system",
+    "ai-components",
+    "ai-chat",
+    "chatbot-ui",
+    "rsc",
+    "react-server-components",
+    "nextjs",
+    "app-router",
+    "zero-runtime-css",
+    "css-variables",
+    "styled-components",
+    "tailwind-alternative",
+    "accessible",
+    "a11y",
+    "wcag",
+    "typescript",
+    "command-palette",
+    "spotlight",
+    "cmdk"
   ]
 }
