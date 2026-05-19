@@ -1,0 +1,50 @@
+/**
+ * react-n-design print styles
+ * Optimizes neomorphic components for print media.
+ */
+
+@media print {
+  /* Remove shadows and gradients for clean printing */
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    color: #000 !important;
+    border-color: #000 !important;
+  }
+
+  /* Ensure backgrounds print (some browsers hide them by default) */
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide purely decorative / interactive elements */
+  [role="tooltip"],
+  .no-print,
+  button[aria-label="Close alert"] {
+    display: none !important;
+  }
+
+  /* Ensure tables print cleanly */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #000;
+    padding: 4px 8px;
+  }
+
+  /* Page breaks */
+  section, article, .page-break {
+    break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+  }
+}

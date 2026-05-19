@@ -39,3 +39,8 @@ export * from './Typography';
 export * from './Stack';
 export * from './Grid';
 export * from './Icon';
+export * from './AIChat';
+export * from './CommandPalette';
+export * from './CodeBlock';
+export * from './Markdown';
+export * from './Calendar';

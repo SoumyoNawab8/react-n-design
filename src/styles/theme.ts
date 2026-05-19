@@ -7,6 +7,7 @@ export const baseTheme = {
 export const lightTheme = {
   ...baseTheme,
   name: 'light',
+  reducedMotion: false,
   colors: {
     primary: '#6d5dfc',
     background: '#e0e5ec',
@@ -31,6 +32,7 @@ export const lightTheme = {
 export const darkTheme = {
   ...baseTheme,
   name: 'dark',
+  reducedMotion: false,
   colors: {
     primary: '#7b6efc',
     background: '#2c2f34',

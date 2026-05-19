@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
 import { Input } from './Input';
+import axe from 'axe-core';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
@@ -14,9 +15,11 @@ const ControlledInput = (props: any) => {
 };
 
 describe('Input', () => {
-  it('renders an input element', () => {
-    renderWithTheme(<Input />);
+  it('renders an input element and is accessible', async () => {
+    const { container } = renderWithTheme(<Input aria-label="Test input" />);
     expect(screen.getByRole('textbox')).toBeInTheDocument();
+    const results = await axe.run(container);
+    expect(results.violations).toHaveLength(0);
   });
 
   it('associates label with input via htmlFor', () => {

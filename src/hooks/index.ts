@@ -8,3 +8,5 @@ export { useDebounce } from './useDebounce';
 export { useThrottle } from './useThrottle';
 export { usePrevious } from './usePrevious';
 export { useIntersectionObserver } from './useIntersectionObserver';
+export { useCommandPalette } from './useCommandPalette';
+export type { UseCommandPaletteReturn } from './useCommandPalette';

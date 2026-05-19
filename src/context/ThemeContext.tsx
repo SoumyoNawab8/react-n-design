@@ -6,6 +6,7 @@ import { injectCSSVariables } from '../styles/tokens';
 
 export type ThemeName = 'light' | 'dark' | 'system';
 export type ResolvedThemeName = 'light' | 'dark';
+export type TextDirection = 'ltr' | 'rtl';
 
 const STORAGE_KEY = 'react-n-design-theme';
 
@@ -16,6 +17,9 @@ interface ThemeContextType {
   setTheme: (name: ThemeName) => void;
   themes: ThemeName[];
   isSystem: boolean;
+  reducedMotion: boolean;
+  dir: TextDirection;
+  setDir: (dir: TextDirection) => void;
 }
 
 // Create a context with a default value
@@ -26,6 +30,9 @@ const ThemeContext = createContext<ThemeContextType>({
   setTheme: () => {},
   themes: ['light', 'dark', 'system'],
   isSystem: false,
+  reducedMotion: false,
+  dir: 'ltr',
+  setDir: () => {},
 });
 
 /**
@@ -51,6 +58,29 @@ export function useSystemTheme(): ResolvedThemeName {
   return systemTheme;
 }
 
+/**
+ * Hook that listens to the system reduced motion preference.
+ * Returns true if the user prefers reduced motion.
+ */
+export function useReducedMotion(): boolean {
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const listener = (e: MediaQueryListEvent) => {
+      setReducedMotion(e.matches);
+    };
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, []);
+
+  return reducedMotion;
+}
+
 // Create a custom hook for using the context (legacy API)
 export const useThemeContext = () => {
   const ctx = useContext(ThemeContext);
@@ -69,12 +99,15 @@ export const useTheme = () => {
     themes: ctx.themes,
     isSystem: ctx.isSystem,
     resolvedTheme: ctx.resolvedTheme,
+    dir: ctx.dir,
+    setDir: ctx.setDir,
   };
 };
 
 // Create the provider component
-export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ThemeContextProvider: React.FC<{ children: React.ReactNode; defaultDir?: TextDirection }> = ({ children, defaultDir = 'ltr' }) => {
   const systemTheme = useSystemTheme();
+  const reducedMotion = useReducedMotion();
 
   const [theme, setThemeState] = useState<ThemeName>(() => {
     if (typeof window === 'undefined') return 'light';
@@ -89,14 +122,26 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({ 
     return 'light';
   });
 
+  const [dir, setDirState] = useState<TextDirection>(defaultDir);
+
+  const setDir = useCallback((d: TextDirection) => {
+    setDirState(d);
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('dir', d);
+    }
+  }, []);
+
   const resolvedTheme: ResolvedThemeName = useMemo(() => {
     if (theme === 'system') return systemTheme;
     return theme;
   }, [theme, systemTheme]);
 
   const currentTheme = useMemo(
-    () => (resolvedTheme === 'light' ? lightTheme : darkTheme),
-    [resolvedTheme]
+    () => ({
+      ...(resolvedTheme === 'light' ? lightTheme : darkTheme),
+      reducedMotion,
+    }),
+    [resolvedTheme, reducedMotion]
   );
 
   const isSystem = theme === 'system';
@@ -127,12 +172,13 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({ 
     });
   }, [systemTheme]);
 
-  // Inject CSS variables into <html> and set data-theme attribute
+  // Inject CSS variables into <html> and set data-theme / dir attributes
   useEffect(() => {
     if (typeof document === 'undefined') return;
     injectCSSVariables(resolvedTheme);
     document.documentElement.setAttribute('data-theme', resolvedTheme);
-  }, [resolvedTheme]);
+    document.documentElement.setAttribute('dir', dir);
+  }, [resolvedTheme, dir]);
 
   const value = useMemo(
     () => ({
@@ -142,8 +188,11 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({ 
       setTheme,
       themes: ['light', 'dark', 'system'] as ThemeName[],
       isSystem,
+      reducedMotion,
+      dir,
+      setDir,
     }),
-    [theme, resolvedTheme, toggleTheme, setTheme, isSystem]
+    [theme, resolvedTheme, toggleTheme, setTheme, isSystem, reducedMotion, dir, setDir]
   );
 
   return (

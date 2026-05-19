@@ -1,0 +1,30 @@
+/**
+ * react-n-design mobile / touch optimization
+ * Ensures minimum accessible touch targets (44×44px per WCAG 2.5.5).
+ */
+
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  [role="tab"],
+  a,
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Increase tap targets for calendar days */
+  [role="gridcell"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Ensure dropdown options are tappable */
+  [role="option"] {
+    min-height: 44px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}

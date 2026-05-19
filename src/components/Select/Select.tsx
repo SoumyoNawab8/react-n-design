@@ -26,6 +26,7 @@ export interface SelectProps {
   mode?: 'single' | 'multiple';
   size?: 'small' | 'medium' | 'large';
   error?: boolean;
+  'aria-label'?: string;
 }
 
 // Custom hook to detect clicks outside an element
@@ -55,6 +56,7 @@ export const Select = ({
   mode = 'single',
   size = 'medium',
   error = false,
+  'aria-label': ariaLabel,
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [internalValue, setInternalValue] = useState(defaultValue);
@@ -202,6 +204,7 @@ export const Select = ({
         aria-activedescendant={isOpen ? `${listboxId}-option-${enabledOptions[highlightedIndex]?.value}` : undefined}
         aria-disabled={disabled || loading}
         aria-invalid={error}
+        aria-label={ariaLabel}
         tabIndex={disabled ? -1 : 0}
       >
         {renderValue()}

@@ -47,4 +47,201 @@ import { Button } from 'react-n-design/components/Button';
 import { Card } from 'react-n-design/components/Card';
 import { Input } from 'react-n-design/components/Input';
 ```
+
+## Ecosystem
+
+`react-n-design` provides first-class adapters for popular libraries in the React ecosystem.
+
+### TanStack Query
+
+Install `@tanstack/react-query` in your project, then use the built-in data hooks to wire async data directly into `DataGrid` and `ComboBox`.
+
+```bash
+npm install @tanstack/react-query
+```
+
+```jsx
+import { useDataGridQuery } from 'react-n-design';
+
+function UserGrid() {
+  const { dataSource, loading, pagination, setPage } = useDataGridQuery(
+    ['users'],
+    async ({ page, pageSize }) => {
+      const res = await fetch(`/api/users?page=${page}&size=${pageSize}`);
+      return res.json(); // { data: User[], total: number }
+    },
+    { initialPageSize: 25 }
+  );
+
+  return (
+    <DataGrid
+      columns={[{ key: 'name', title: 'Name' }]}
+      dataSource={dataSource}
+      loading={loading}
+      pagination={{ pageSize: pagination.pageSize }}
+    />
+  );
+}
+```
+
+For async ComboBox search:
+
+```jsx
+import { useComboBoxQuery } from 'react-n-design';
+
+function AsyncComboBox() {
+  const { comboBoxOptions, comboBoxLoading, comboBoxOnSearch } = useComboBoxQuery(
+    ['fruits'],
+    async (query) => {
+      const res = await fetch(`/api/fruits?q=${query}`);
+      return res.json();
+    },
+    300 // debounce ms
+  );
+
+  return (
+    <ComboBox
+      options={comboBoxOptions}
+      loading={comboBoxLoading}
+      onSearch={comboBoxOnSearch}
+      allowClear
+    />
+  );
+}
+```
+
+### React Hook Form
+
+Use `FormField` with the `control` prop to connect any `react-n-design` input to `react-hook-form`.
+
+```bash
+npm install react-hook-form
+```
+
+```jsx
+import { useForm } from 'react-hook-form';
+import { Form, FormField, Button } from 'react-n-design';
+
+function LoginForm() {
+  const { control, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormField
+        name="email"
+        control={control}
+        component="Input"
+        label="Email"
+        componentProps={{ type: 'email' }}
+        rules={{ required: 'Email is required' }}
+      />
+      <FormField
+        name="role"
+        control={control}
+        component="Select"
+        label="Role"
+        componentProps={{ options: [{ value: 'admin', label: 'Admin' }] }}
+      />
+      <FormField
+        name="newsletter"
+        control={control}
+        component="Switch"
+        label="Subscribe"
+      />
+      <Button type="submit">Save</Button>
+    </Form>
+  );
+}
+```
+
+### Zod Schema Validation
+
+Combine `react-hook-form` with `zod` for schema-driven validation.
+
+```bash
+npm install zod @hookform/resolvers
+```
+
+```jsx
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Form, FormField, Button } from 'react-n-design';
+
+const schema = z.object({
+  username: z.string().min(3, 'Too short'),
+  email: z.string().email('Invalid email'),
+});
+
+function ValidatedForm() {
+  const { control, handleSubmit } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  return (
+    <Form onSubmit={handleSubmit((data) => console.log(data))}>
+      <FormField name="username" control={control} component="Input" label="Username" />
+      <FormField name="email" control={control} component="Input" label="Email" />
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+}
+```
+
+## RTL Support
+
+`react-n-design` supports right-to-left (RTL) layouts out of the box. Set the direction via the theme provider or dynamically at runtime.
+
+```jsx
+import { useTheme } from 'react-n-design/context';
+
+function App() {
+  const { dir, setDir } = useTheme();
+  return (
+    <button onClick={() => setDir(dir === 'ltr' ? 'rtl' : 'ltr')}>
+      Toggle Direction ({dir})
+    </button>
+  );
+}
+```
+
+You can also set the default direction on the provider:
+
+```jsx
+<AppThemeProvider defaultDir="rtl">
+  <App />
+</AppThemeProvider>
+```
+
+## Print Styles
+
+For clean printing, import the optional print stylesheet:
+
+```jsx
+import 'react-n-design/styles/print.css';
+```
+
+This removes shadows, simplifies colors, and hides decorative elements when printing.
+
+## Mobile / Touch Optimization
+
+To ensure accessible touch targets (44×44px minimum per WCAG 2.5.5), import the touch stylesheet:
+
+```jsx
+import 'react-n-design/styles/touch.css';
+```
+
+This is applied automatically on touch-capable devices via `@media (pointer: coarse)`.
+
+## Accessibility
+
+- All interactive components support keyboard navigation.
+- Animations respect `prefers-reduced-motion` automatically.
+- ARIA attributes are built into every component.
+- Run the included Vitest suite for axe-core compliance checks.
+
+```bash
+npm run test:vitest
+```
 ```

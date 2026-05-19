@@ -4,14 +4,18 @@ import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
 import { Button } from './Button';
+import axe from 'axe-core';
+import { vi } from 'vitest';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
 
 describe('Button', () => {
-  it('renders children correctly', () => {
-    renderWithTheme(<Button>Click me</Button>);
+  it('renders and is accessible', async () => {
+    const { container } = renderWithTheme(<Button>Click me</Button>);
     expect(screen.getByRole('button', { name: /click me/i })).toBeInTheDocument();
+    const results = await axe.run(container);
+    expect(results.violations).toHaveLength(0);
   });
 
   it('is disabled when disabled prop is true', () => {
@@ -20,21 +24,21 @@ describe('Button', () => {
   });
 
   it('shows spinner and disables button when loading', () => {
-    renderWithTheme(<Button loading>Loading</Button>);
+    renderWithTheme(<Button loading loadingText="Loading">Loading</Button>);
     const button = screen.getByRole('button', { name: /loading/i });
     expect(button).toBeDisabled();
     expect(button).toHaveAttribute('aria-busy', 'true');
   });
 
   it('calls onClick when clicked', async () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     renderWithTheme(<Button onClick={handleClick}>Click</Button>);
     await userEvent.click(screen.getByRole('button', { name: /click/i }));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   it('does not call onClick when disabled', async () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     renderWithTheme(<Button onClick={handleClick} disabled>Click</Button>);
     await userEvent.click(screen.getByRole('button', { name: /click/i }));
     expect(handleClick).not.toHaveBeenCalled();
