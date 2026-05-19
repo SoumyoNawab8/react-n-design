@@ -60,7 +60,7 @@ export const Loading: Story = {
 
 export const Interactive: Story = {
   render: () => {
-    const [messages, setMessages] = useState<AIChatMessage>>([
+    const [messages, setMessages] = useState<AIChatMessage[]>([
       { role: 'assistant', content: 'Welcome! I am a demo assistant powered by react-n-design.', id: 'welcome' },
     ]);
     const [isLoading, setIsLoading] = useState(false);
