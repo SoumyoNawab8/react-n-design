@@ -1,5 +1,7 @@
 <div align="center">
   <br />
+  <img src="logo.png" alt="react-n-design logo" width="160" />
+  <br />
   <h1>react-n-design</h1>
   <br />
 </div>
