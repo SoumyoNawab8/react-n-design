@@ -87,7 +87,9 @@ export const PromptInput = ({
   const atLimit = maxLength ? value.length >= maxLength : false;
 
   const filteredSlash = slashCommands.filter((cmd) =>
-    slashQuery ? cmd.command.toLowerCase().startsWith(slashQuery.toLowerCase()) : true
+    slashQuery
+      ? cmd.command.toLowerCase().startsWith('/' + slashQuery.toLowerCase())
+      : true
   );
   const filteredMentions = mentionTargets.filter((m) =>
     mentionQuery ? m.name.toLowerCase().includes(mentionQuery.toLowerCase()) : true

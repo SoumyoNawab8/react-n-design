@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
@@ -60,7 +60,7 @@ describe('PromptInput', () => {
       <ControlledPromptInput onSend={vi.fn()} slashCommands={slashCommands} />
     );
     const textarea = screen.getByRole('textbox');
-    await userEvent.type(textarea, '/co');
+    fireEvent.change(textarea, { target: { value: '/co' } });
     expect(await screen.findByText('/code')).toBeInTheDocument();
   });
 
@@ -69,7 +69,7 @@ describe('PromptInput', () => {
       <ControlledPromptInput onSend={vi.fn()} mentionTargets={mentionTargets} />
     );
     const textarea = screen.getByRole('textbox');
-    await userEvent.type(textarea, '@Al');
+    fireEvent.change(textarea, { target: { value: '@Al' } });
     expect(await screen.findByText('@Alice')).toBeInTheDocument();
   });
 
