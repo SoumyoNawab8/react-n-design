@@ -44,5 +44,8 @@ export * from './CommandPalette';
 export * from './CodeBlock';
 export * from './Markdown';
 export * from './Calendar';
+export * from './VirtualList';
 export * from './PromptInput';
 export * from './AIThinking';
+export * from './SuggestionChips';
+export * from './Charts';
