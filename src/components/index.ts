@@ -44,3 +44,5 @@ export * from './CommandPalette';
 export * from './CodeBlock';
 export * from './Markdown';
 export * from './Calendar';
+export * from './PromptInput';
+export * from './AIThinking';
