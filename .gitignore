@@ -37,4 +37,10 @@ coverage/
 # Temporary files
 .tmp/
 temp/
+
+# Documentation (keep only README.md)
 AGENTS.md
+ROADMAP-v0.7-DEEP-RESEARCH.md
+V070_TASKS.md
+V070_REMAINING.md
+audit-findings.md
