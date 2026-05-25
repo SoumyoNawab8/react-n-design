@@ -2,15 +2,27 @@ import styled, { css, keyframes } from 'styled-components';
 
 // Sizing for default and circle shapes
 const sizes = {
-  small: { height: '36px', padding: '0 16px', fontSize: '14px', radius: '10px', circleSize: '36px' },
-  medium: { 
-    height: '48px', 
-    padding: '0 24px', 
-    fontSize: '16px', 
-    radius: ({ theme }: { theme: any }) => theme.borderRadius, 
-    circleSize: '48px' 
+  small: {
+    height: '36px',
+    padding: '0 16px',
+    fontSize: '14px',
+    radius: '10px',
+    circleSize: '36px',
   },
-  large: { height: '56px', padding: '0 32px', fontSize: '18px', radius: '16px', circleSize: '56px' },
+  medium: {
+    height: '48px',
+    padding: '0 24px',
+    fontSize: '16px',
+    radius: ({ theme }: { theme: any }) => theme.borderRadius,
+    circleSize: '48px',
+  },
+  large: {
+    height: '56px',
+    padding: '0 32px',
+    fontSize: '18px',
+    radius: '16px',
+    circleSize: '56px',
+  },
 };
 
 // Keyframes for the spinner animation
@@ -44,7 +56,8 @@ export const ButtonContent = styled.span`
 `;
 
 export const StyledButton = styled.button.withConfig({
-  shouldForwardProp: (prop) => !['size', 'variant', 'shape', 'fullWidth', 'hasChildren'].includes(prop),
+  shouldForwardProp: (prop) =>
+    !['size', 'variant', 'shape', 'fullWidth', 'hasChildren'].includes(prop),
 })<{
   size: 'small' | 'medium' | 'large';
   variant: 'primary' | 'secondary' | 'text';

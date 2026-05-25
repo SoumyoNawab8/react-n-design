@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useCallback, useState } from 'react';
 import { useDebounce } from './useDebounce';
 
 export interface ComboBoxQueryOptionType {
@@ -8,7 +8,7 @@ export interface ComboBoxQueryOptionType {
   disabled?: boolean;
 }
 
-export interface UseComboBoxQueryReturn<T> {
+export interface UseComboBoxQueryReturn<_T> {
   options: ComboBoxQueryOptionType[];
   isLoading: boolean;
   isFetching: boolean;
@@ -30,7 +30,9 @@ function defaultToOptions<T>(items: T[]): ComboBoxQueryOptionType[] {
       const obj = item as any;
       return {
         value: String(obj.value ?? obj.id ?? obj.key ?? index),
-        label: String(obj.label ?? obj.name ?? obj.title ?? obj.value ?? obj.id ?? obj.key ?? index),
+        label: String(
+          obj.label ?? obj.name ?? obj.title ?? obj.value ?? obj.id ?? obj.key ?? index
+        ),
         disabled: obj.disabled,
       };
     }

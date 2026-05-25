@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { DataGrid } from '../src/components/DataGrid';
-import { Button } from '../src/components/Button';
 
 const meta: Meta<typeof DataGrid> = {
   title: 'react-n-design/DataGrid',
@@ -80,10 +79,7 @@ export const Selectable: Story = {
     return (
       <div>
         <p>Selected: {selected.length} rows</p>
-        <DataGrid
-          {...args}
-          rowSelection={{ selectedRowKeys: selected, onChange: setSelected }}
-        />
+        <DataGrid {...args} rowSelection={{ selectedRowKeys: selected, onChange: setSelected }} />
       </div>
     );
   },
@@ -106,9 +102,15 @@ export const Expandable: Story = {
     expandable: {
       expandedRowRender: (record: User) => (
         <div style={{ padding: '16px' }}>
-          <p><strong>ID:</strong> {record.id}</p>
-          <p><strong>Email:</strong> {record.email}</p>
-          <p><strong>Role:</strong> {record.role}</p>
+          <p>
+            <strong>ID:</strong> {record.id}
+          </p>
+          <p>
+            <strong>Email:</strong> {record.email}
+          </p>
+          <p>
+            <strong>Role:</strong> {record.role}
+          </p>
         </div>
       ),
     },

@@ -1,12 +1,11 @@
 'use client';
-import React, { useState, useMemo } from 'react';
-import { ChartContainer, ChartTitle, ChartSvg, Tooltip } from './Charts.styles';
-import {
-  ChartProps,
-  PADDING,
-  useChartScales,
-  buildAriaLabel,
-} from './types';
+import { useMemo, useState } from 'react';
+import { ChartContainer, ChartSvg, ChartTitle, Tooltip } from './Charts.styles';
+import { buildAriaLabel, type ChartProps, PADDING, useChartScales } from './types';
+
+function escapeSvgText(text: string): string {
+  return text.replace(/</g, '&lt;');
+}
 
 export function ChartLine({
   data,
@@ -58,7 +57,7 @@ export function ChartLine({
         />
       );
     });
-  }, [showGrid, chartHeight]);
+  }, [showGrid, chartHeight, chartWidth]);
 
   const yAxisLabels = useMemo(() => {
     if (!showGrid) return [];
@@ -88,11 +87,7 @@ export function ChartLine({
     <ChartContainer width={width}>
       {title && <ChartTitle>{title}</ChartTitle>}
       <div style={{ position: 'relative' }}>
-        <ChartSvg
-          viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-          role="img"
-          aria-label={ariaLabel}
-        >
+        <ChartSvg viewBox={`0 0 ${svgWidth} ${svgHeight}`} role="img" aria-label={ariaLabel}>
           <g color={color}>
             {gridLines}
             {yAxisLabels}
@@ -168,7 +163,7 @@ export function ChartLine({
                       fillOpacity={0.6}
                       pointerEvents="none"
                     >
-                      {d.label}
+                      {escapeSvgText(d.label)}
                     </text>
                   )}
                 </g>
@@ -184,7 +179,7 @@ export function ChartLine({
               top: `${(tooltip.y / svgHeight) * 100}%`,
             }}
           >
-            {tooltip.label}: {tooltip.value}
+            {escapeSvgText(tooltip.label)}: {tooltip.value}
           </Tooltip>
         )}
       </div>

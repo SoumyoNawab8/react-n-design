@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 
 const sizes = {
   small: { padding: '8px 12px', fontSize: '14px' },
@@ -82,11 +82,13 @@ export const TabButton = styled.button.withConfig({
       background: ${(theme as any).colors.cardBg};
       margin-right: 2px;
       
-      ${isActive &&
-      css`
+      ${
+        isActive &&
+        css`
         background: ${theme.colors.background};
         border-bottom-color: transparent;
-      `}
+      `
+      }
     `}
 
   ${({ isActive, theme }) =>

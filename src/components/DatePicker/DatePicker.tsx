@@ -1,26 +1,27 @@
 'use client';
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FaCalendarAlt, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {
-  DatePickerWrapper,
-  DatePickerInputGroup,
-  DatePickerInput,
   DatePickerCalendarIcon,
   DatePickerClearButton,
-  DatePickerPanel,
-  DatePickerHeader,
-  DatePickerHeaderButton,
-  DatePickerMonthYear,
-  DatePickerSelect,
-  DatePickerWeekdays,
-  DatePickerWeekday,
-  DatePickerGrid,
   DatePickerDay,
   DatePickerFooter,
-  DatePickerTodayButton,
+  DatePickerGrid,
+  DatePickerHeader,
+  DatePickerHeaderButton,
+  DatePickerInput,
+  DatePickerInputGroup,
+  DatePickerMonthYear,
+  DatePickerPanel,
   DatePickerRangeText,
+  DatePickerSelect,
+  DatePickerTodayButton,
+  DatePickerWeekday,
+  DatePickerWeekdays,
+  DatePickerWrapper,
 } from './DatePicker.styles';
 
 // ─── Date Utilities ───────────────────────────────────────────────────────────
@@ -42,10 +43,7 @@ function formatDate(date: Date | null, fmt: string): string {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
-  return fmt
-    .replace('yyyy', String(year))
-    .replace('MM', month)
-    .replace('dd', day);
+  return fmt.replace('yyyy', String(year)).replace('MM', month).replace('dd', day);
 }
 
 function startOfMonth(date: Date): Date {
@@ -122,8 +120,18 @@ function clampDate(date: Date, min?: Date, max?: Date): Date {
 }
 
 const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 const WEEKDAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -196,7 +204,9 @@ export const DatePicker = ({
     return null;
   };
 
-  const [internalValue, setInternalValue] = useState<Date | [Date, Date] | null>(defaultValue ?? null);
+  const [internalValue, setInternalValue] = useState<Date | [Date, Date] | null>(
+    defaultValue ?? null
+  );
   const currentValue = isControlled ? value : internalValue;
 
   const selectedDate = mode === 'single' ? normalizeSingle(currentValue) : null;
@@ -242,7 +252,7 @@ export const DatePicker = ({
   // Announce month changes
   useEffect(() => {
     setLiveText(`${MONTHS[viewDate.getMonth()]} ${viewDate.getFullYear()}`);
-  }, [viewDate.getMonth(), viewDate.getFullYear()]);
+  }, [viewDate.getFullYear, viewDate.getMonth]);
 
   // Focus the focusedDate button when it changes programmatically
   useEffect(() => {
@@ -253,7 +263,7 @@ export const DatePicker = ({
     if (btn && document.activeElement !== btn) {
       btn.focus();
     }
-  }, [focusedDate, viewDate]);
+  }, [focusedDate]);
 
   // Focus management when panel opens
   useEffect(() => {
@@ -269,7 +279,7 @@ export const DatePicker = ({
       }
     }, 50);
     return () => clearTimeout(timer);
-  }, [isOpen]);
+  }, [isOpen, selectedRange?.[0], selectedDate, minDate, maxDate]);
 
   // Click outside to close
   useClickOutside(wrapperRef, () => {
@@ -332,7 +342,10 @@ export const DatePicker = ({
       }
 
       // Range mode
-      if (!rangeDraft || (rangeDraft[0] && rangeDraft[1] && !isSameDay(rangeDraft[0], rangeDraft[1]))) {
+      if (
+        !rangeDraft ||
+        (rangeDraft[0] && rangeDraft[1] && !isSameDay(rangeDraft[0], rangeDraft[1]))
+      ) {
         const newDraft: [Date, Date] = [date, date];
         setRangeDraft(newDraft);
         if (!isControlled) setInternalValue(newDraft);
@@ -557,11 +570,7 @@ export const DatePicker = ({
 
   return (
     <DatePickerWrapper ref={wrapperRef} fullWidth={fullWidth}>
-      {label && (
-        <label htmlFor={inputId}>
-          {label}
-        </label>
-      )}
+      {label && <label htmlFor={inputId}>{label}</label>}
       <DatePickerInputGroup
         open={isOpen}
         disabled={disabled}
@@ -714,7 +723,9 @@ export const DatePicker = ({
                       <DatePickerDay
                         key={dayStr}
                         data-day={dayStr}
-                        aria-selected={isSelected || rangeState.isRangeStart || rangeState.isRangeEnd}
+                        aria-selected={
+                          isSelected || rangeState.isRangeStart || rangeState.isRangeEnd
+                        }
                         aria-disabled={isDisabled}
                         aria-label={day.toDateString()}
                         tabIndex={isFocused ? 0 : -1}

@@ -1,13 +1,14 @@
 'use client';
-import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import {
-  TreeWrapper,
-  TreeNodeItem,
-  TreeNodeContent,
-  TreeNodeToggle,
   TreeNodeChildren,
+  TreeNodeContent,
+  TreeNodeItem,
+  TreeNodeToggle,
+  TreeWrapper,
 } from './Tree.styles';
 
 export interface TreeNode {
@@ -90,7 +91,7 @@ const TreeNodeComponent = ({
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
-            {node.children!.map((child) => (
+            {node.children?.map((child) => (
               <TreeNodeComponent
                 key={child.key}
                 node={child}
@@ -163,7 +164,9 @@ export const Tree = ({
     (e: React.KeyboardEvent<HTMLUListElement>) => {
       const active = document.activeElement as HTMLElement | null;
       if (!active) return;
-      const currentKey = Array.from(focusMap.current.entries()).find(([, el]) => el === active)?.[0];
+      const currentKey = Array.from(focusMap.current.entries()).find(
+        ([, el]) => el === active
+      )?.[0];
       if (!currentKey) return;
 
       const idx = flatKeys.indexOf(currentKey);

@@ -8,7 +8,8 @@ const meta: Meta<typeof Markdown> = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'A safe markdown renderer supporting headings, paragraphs, lists, code blocks, tables, links, emphasis, and inline code.',
+        component:
+          'A safe markdown renderer supporting headings, paragraphs, lists, code blocks, tables, links, emphasis, and inline code.',
       },
     },
   },
@@ -73,13 +74,14 @@ export const FullDocument: Story = {
 
 export const Headings: Story = {
   args: {
-    children: '# Heading 1\n## Heading 2\n### Heading 3\n#### Heading 4\n##### Heading 5\n###### Heading 6',
+    children:
+      '# Heading 1\n## Heading 2\n### Heading 3\n#### Heading 4\n##### Heading 5\n###### Heading 6',
   },
 };
 
 export const InlineFormatting: Story = {
   args: {
-    children: 'This is **bold**, *italic*, \`code\`, and ~~strikethrough~~.',
+    children: 'This is **bold**, *italic*, `code`, and ~~strikethrough~~.',
   },
 };
 

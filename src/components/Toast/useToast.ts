@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { useToastContext, ToastOptions } from './ToastProvider';
-import { ToastVariant } from './Toast.styles';
+import type { ToastVariant } from './Toast.styles';
+import { type ToastOptions, useToastContext } from './ToastProvider';
 
 export type PromiseMessage = React.ReactNode | Omit<ToastOptions, 'variant'>;
 
@@ -71,7 +71,7 @@ export const useToast = () => {
   );
 
   const promise = useCallback(
-    async <T,>(promise: Promise<T>, messages: PromiseMessages): Promise<T> => {
+    async <T>(promise: Promise<T>, messages: PromiseMessages): Promise<T> => {
       const loadingOpt = normalizeMessage(messages.loading, 'loading', 0);
       const id = addToast(loadingOpt);
 

@@ -1,24 +1,25 @@
 'use client';
-import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FaCloudUploadAlt, FaFile, FaTimes } from 'react-icons/fa';
 import {
-  FileUploadRegion,
-  FileUploadInput,
-  FileUploadIcon,
-  FileUploadText,
-  FileUploadHint,
-  FileList,
   FileItem,
   FileItemIcon,
   FileItemInfo,
   FileItemName,
-  FileItemSize,
   FileItemProgress,
   FileItemProgressBar,
   FileItemRemove,
+  FileItemSize,
+  FileList,
   FileUploadError,
+  FileUploadHint,
+  FileUploadIcon,
+  FileUploadInput,
+  FileUploadRegion,
   FileUploadStatus,
+  FileUploadText,
 } from './FileUpload.styles';
 
 export interface FileUploadProps {
@@ -34,7 +35,7 @@ function formatBytes(bytes: number): string {
   const k = 1024;
   const sizes = ['B', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  return `${parseFloat((bytes / k ** i).toFixed(2))} ${sizes[i]}`;
 }
 
 export const FileUpload = ({
@@ -111,7 +112,7 @@ export const FileUpload = ({
         );
       }
     },
-    [files, multiple, maxSize, accept, onFilesChange, announce]
+    [files, multiple, onFilesChange, announce, validateFile]
   );
 
   const removeFile = useCallback(
@@ -164,7 +165,7 @@ export const FileUpload = ({
       setFiles(first);
       onFilesChange?.(first);
     }
-  }, [multiple]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [multiple, files[0], onFilesChange]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>

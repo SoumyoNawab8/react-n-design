@@ -8,7 +8,8 @@ const meta: Meta<typeof CodeBlock> = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'A syntax-highlighted code block with language detection, optional line numbers, and a copy-to-clipboard button.',
+        component:
+          'A syntax-highlighted code block with language detection, optional line numbers, and a copy-to-clipboard button.',
       },
     },
   },

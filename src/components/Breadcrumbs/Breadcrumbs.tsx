@@ -1,12 +1,12 @@
 'use client';
-import React from 'react';
+import type React from 'react';
 import { FaChevronRight, FaHome } from 'react-icons/fa';
 import {
-  BreadcrumbsNav,
-  BreadcrumbsList,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbSeparator,
+  BreadcrumbsList,
+  BreadcrumbsNav,
 } from './Breadcrumbs.styles';
 
 export interface BreadcrumbItemProps {
@@ -45,12 +45,7 @@ export const Breadcrumbs = ({
                 </span>
               )}
               {isLast ? (
-                <BreadcrumbLink
-                  as="span"
-                  isCurrent={true}
-                  aria-current="page"
-                  tabIndex={0}
-                >
+                <BreadcrumbLink as="span" isCurrent={true} aria-current="page" tabIndex={0}>
                   {item.icon && (
                     <span style={{ display: 'inline-flex', marginRight: 6 }} aria-hidden="true">
                       {item.icon}
@@ -76,11 +71,7 @@ export const Breadcrumbs = ({
                   {item.label}
                 </BreadcrumbLink>
               )}
-              {!isLast && (
-                <BreadcrumbSeparator aria-hidden="true">
-                  {separator}
-                </BreadcrumbSeparator>
-              )}
+              {!isLast && <BreadcrumbSeparator aria-hidden="true">{separator}</BreadcrumbSeparator>}
             </BreadcrumbItem>
           );
         })}

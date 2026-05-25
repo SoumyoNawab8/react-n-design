@@ -1,14 +1,15 @@
 'use client';
-import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import {
-  MenuWrapper,
-  MenuTrigger,
+  MenuDivider,
   MenuDropdown,
   MenuItem,
-  MenuDivider,
   MenuLabel,
+  MenuTrigger,
+  MenuWrapper,
 } from './Menu.styles';
 
 export interface MenuItemDef {
@@ -28,9 +29,7 @@ export interface MenuProps {
   placement?: 'bottom-left' | 'bottom-right';
 }
 
-const isItem = (
-  item: any
-): item is MenuItemDef => item && typeof item.key === 'string';
+const isItem = (item: any): item is MenuItemDef => item && typeof item.key === 'string';
 const isDivider = (item: any): item is { type: 'divider' } => item?.type === 'divider';
 const isLabel = (item: any): item is { type: 'label'; label: string } => item?.type === 'label';
 
@@ -46,7 +45,7 @@ export const Menu = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
-  const enabledItems = items.filter((item) => isItem(item) && !item.disabled);
+  const _enabledItems = items.filter((item) => isItem(item) && !item.disabled);
   const enabledIndices = items
     .map((item, i) => (isItem(item) && !item.disabled ? i : -1))
     .filter((i) => i >= 0);
@@ -162,11 +161,7 @@ export const Menu = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}
             transition={{ duration: 0.15 }}
-            style={
-              placement === 'bottom-right'
-                ? { left: 'auto', right: 0 }
-                : undefined
-            }
+            style={placement === 'bottom-right' ? { left: 'auto', right: 0 } : undefined}
           >
             {items.map((item, index) => {
               if (isDivider(item)) {

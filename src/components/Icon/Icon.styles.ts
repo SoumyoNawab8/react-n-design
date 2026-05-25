@@ -11,7 +11,8 @@ export const IconContainer = styled.div.withConfig({
   justify-content: center;
 
   ${({ variant, size, theme }) =>
-    variant !== 'default' && css`
+    variant !== 'default' &&
+    css`
       width: ${size * 1.8}px;
       height: ${size * 1.8}px;
       background: ${theme.colors.background};

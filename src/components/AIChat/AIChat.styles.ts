@@ -1,5 +1,5 @@
 'use client';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const typingBounce = keyframes`
   0%, 80%, 100% { transform: translateY(0); }
@@ -32,8 +32,7 @@ export const AIChatMessages = styled.div`
 
 export const AIChatMessageRow = styled.div.withConfig({
   shouldForwardProp: (prop) => !['isAssistant'].includes(prop),
-})
-<{ isAssistant: boolean }>`
+})<{ isAssistant: boolean }>`
   display: flex;
   flex-direction: ${({ isAssistant }) => (isAssistant ? 'row' : 'row-reverse')};
   align-items: flex-start;
@@ -42,12 +41,10 @@ export const AIChatMessageRow = styled.div.withConfig({
 
 export const AIChatMessageBubble = styled.div.withConfig({
   shouldForwardProp: (prop) => !['isAssistant'].includes(prop),
-})
-<{ isAssistant: boolean }>`
+})<{ isAssistant: boolean }>`
   max-width: 80%;
   padding: 14px 18px;
-  border-radius: ${({ isAssistant }) =>
-    isAssistant ? '0 16px 16px 16px' : '16px 0 16px 16px'};
+  border-radius: ${({ isAssistant }) => (isAssistant ? '0 16px 16px 16px' : '16px 0 16px 16px')};
   background: ${({ isAssistant, theme }) =>
     isAssistant ? (theme as any).colors.cardBg : theme.colors.primary};
   color: ${({ isAssistant, theme }) => (isAssistant ? theme.colors.text : '#ffffff')};
@@ -55,28 +52,24 @@ export const AIChatMessageBubble = styled.div.withConfig({
   box-sizing: border-box;
 
   a {
-    color: ${({ isAssistant, theme }) =>
-      isAssistant ? theme.colors.primary : '#ffffff'};
+    color: ${({ isAssistant, theme }) => (isAssistant ? theme.colors.primary : '#ffffff')};
     text-decoration: underline;
   }
 
   code {
     background: ${({ isAssistant, theme }) =>
       isAssistant ? (theme as any).colors.hoverBg : '#ffffff30'};
-    color: ${({ isAssistant, theme }) =>
-      isAssistant ? theme.colors.primary : '#ffffff'};
+    color: ${({ isAssistant, theme }) => (isAssistant ? theme.colors.primary : '#ffffff')};
   }
 
   pre {
-    background: ${({ isAssistant, theme }) =>
-      isAssistant ? theme.colors.cardBg : '#ffffff15'};
+    background: ${({ isAssistant, theme }) => (isAssistant ? theme.colors.cardBg : '#ffffff15')};
   }
 `;
 
 export const AIChatMessageMeta = styled.div.withConfig({
   shouldForwardProp: (prop) => !['isAssistant'].includes(prop),
-})
-<{ isAssistant: boolean }>`
+})<{ isAssistant: boolean }>`
   display: flex;
   align-items: center;
   gap: 6px;
@@ -224,8 +217,7 @@ export const AIChatTypingIndicator = styled.div`
 
 export const AIChatTypingDot = styled.span.withConfig({
   shouldForwardProp: (prop) => !['delay'].includes(prop),
-})
-<{ delay: number }>`
+})<{ delay: number }>`
   width: 6px;
   height: 6px;
   border-radius: 50%;

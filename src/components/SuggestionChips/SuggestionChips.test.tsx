@@ -1,10 +1,10 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import type React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
 import { SuggestionChips } from './SuggestionChips';
-import { vi } from 'vitest';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
@@ -18,11 +18,7 @@ describe('SuggestionChips', () => {
 
   it('renders suggestions and list roles', () => {
     renderWithTheme(
-      <SuggestionChips
-        suggestions={suggestions}
-        onAccept={() => {}}
-        onReject={() => {}}
-      />
+      <SuggestionChips suggestions={suggestions} onAccept={() => {}} onReject={() => {}} />
     );
     expect(screen.getByText('Add import for React')).toBeInTheDocument();
     expect(screen.getByText('Replace var with const')).toBeInTheDocument();
@@ -34,11 +30,7 @@ describe('SuggestionChips', () => {
   it('calls onAccept when accept button is clicked', async () => {
     const onAccept = vi.fn();
     renderWithTheme(
-      <SuggestionChips
-        suggestions={suggestions}
-        onAccept={onAccept}
-        onReject={() => {}}
-      />
+      <SuggestionChips suggestions={suggestions} onAccept={onAccept} onReject={() => {}} />
     );
     const buttons = screen.getAllByRole('button', { name: /accept suggestion/i });
     await userEvent.click(buttons[0]);
@@ -49,11 +41,7 @@ describe('SuggestionChips', () => {
   it('calls onReject when reject button is clicked', async () => {
     const onReject = vi.fn();
     renderWithTheme(
-      <SuggestionChips
-        suggestions={suggestions}
-        onAccept={() => {}}
-        onReject={onReject}
-      />
+      <SuggestionChips suggestions={suggestions} onAccept={() => {}} onReject={onReject} />
     );
     const buttons = screen.getAllByRole('button', { name: /reject suggestion/i });
     await userEvent.click(buttons[1]);
@@ -65,11 +53,7 @@ describe('SuggestionChips', () => {
     const onAccept = vi.fn();
     const onReject = vi.fn();
     renderWithTheme(
-      <SuggestionChips
-        suggestions={suggestions}
-        onAccept={onAccept}
-        onReject={onReject}
-      />
+      <SuggestionChips suggestions={suggestions} onAccept={onAccept} onReject={onReject} />
     );
     const items = screen.getAllByRole('listitem');
     items[0].focus();
@@ -90,12 +74,8 @@ describe('SuggestionChips', () => {
         onRejectAll={() => {}}
       />
     );
-    expect(
-      screen.getByRole('button', { name: /accept all suggestions/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /reject all suggestions/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /accept all suggestions/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /reject all suggestions/i })).toBeInTheDocument();
   });
 
   it('calls onAcceptAll and onRejectAll when clicked', async () => {
@@ -110,29 +90,17 @@ describe('SuggestionChips', () => {
         onRejectAll={onRejectAll}
       />
     );
-    await userEvent.click(
-      screen.getByRole('button', { name: /accept all suggestions/i })
-    );
+    await userEvent.click(screen.getByRole('button', { name: /accept all suggestions/i }));
     expect(onAcceptAll).toHaveBeenCalledTimes(1);
-    await userEvent.click(
-      screen.getByRole('button', { name: /reject all suggestions/i })
-    );
+    await userEvent.click(screen.getByRole('button', { name: /reject all suggestions/i }));
     expect(onRejectAll).toHaveBeenCalledTimes(1);
   });
 
   it('does not render footer when no bulk callbacks are provided', () => {
     renderWithTheme(
-      <SuggestionChips
-        suggestions={suggestions}
-        onAccept={() => {}}
-        onReject={() => {}}
-      />
+      <SuggestionChips suggestions={suggestions} onAccept={() => {}} onReject={() => {}} />
     );
-    expect(
-      screen.queryByRole('button', { name: /accept all/i })
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole('button', { name: /reject all/i })
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /accept all/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /reject all/i })).not.toBeInTheDocument();
   });
 });

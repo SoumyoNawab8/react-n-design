@@ -1,6 +1,6 @@
 'use client';
-import React from 'react';
-import { StyledDivider, DividerWithText, DividerText } from './Divider.styles';
+import type React from 'react';
+import { DividerText, DividerWithText, StyledDivider } from './Divider.styles';
 
 export interface DividerProps {
   orientation?: 'horizontal' | 'vertical';

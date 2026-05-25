@@ -1,11 +1,11 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axe from 'axe-core';
+import type React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
 import { Button } from './Button';
-import axe from 'axe-core';
-import { vi } from 'vitest';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
@@ -24,7 +24,11 @@ describe('Button', () => {
   });
 
   it('shows spinner and disables button when loading', () => {
-    renderWithTheme(<Button loading loadingText="Loading">Loading</Button>);
+    renderWithTheme(
+      <Button loading loadingText="Loading">
+        Loading
+      </Button>
+    );
     const button = screen.getByRole('button', { name: /loading/i });
     expect(button).toBeDisabled();
     expect(button).toHaveAttribute('aria-busy', 'true');
@@ -39,14 +43,21 @@ describe('Button', () => {
 
   it('does not call onClick when disabled', async () => {
     const handleClick = vi.fn();
-    renderWithTheme(<Button onClick={handleClick} disabled>Click</Button>);
+    renderWithTheme(
+      <Button onClick={handleClick} disabled>
+        Click
+      </Button>
+    );
     await userEvent.click(screen.getByRole('button', { name: /click/i }));
     expect(handleClick).not.toHaveBeenCalled();
   });
 
   it('renders left and right icons', () => {
     renderWithTheme(
-      <Button leftIcon={<span data-testid="left-icon" />} rightIcon={<span data-testid="right-icon" />}>
+      <Button
+        leftIcon={<span data-testid="left-icon" />}
+        rightIcon={<span data-testid="right-icon" />}
+      >
         Icons
       </Button>
     );

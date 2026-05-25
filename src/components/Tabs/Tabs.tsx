@@ -1,14 +1,15 @@
 'use client';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  TabsWrapper,
-  TabsList,
+  TabBarExtraContent,
+  TabBarHeader,
   TabButton,
   TabIndicator,
   TabPanel,
-  TabBarHeader,
-  TabBarExtraContent,
+  TabsList,
+  TabsWrapper,
 } from './Tabs.styles';
 
 export interface TabItem {
@@ -66,9 +67,7 @@ export const Tabs = ({
   centered = false,
   tabBarExtraContent,
 }: TabsProps) => {
-  const [internalActiveKey, setInternalActiveKey] = useState(
-    defaultActiveKey || items[0]?.key
-  );
+  const [internalActiveKey, setInternalActiveKey] = useState(defaultActiveKey || items[0]?.key);
 
   const isControlled = controlledActiveKey !== undefined;
   const activeKey = isControlled ? controlledActiveKey : internalActiveKey;
@@ -90,73 +89,70 @@ export const Tabs = ({
     }
   };
 
-  const handleKeyDown = useCallback((
-    e: React.KeyboardEvent<HTMLButtonElement>,
-    index: number
-  ) => {
-    const tabs = tabRefs.current.filter(Boolean) as HTMLButtonElement[];
-    let nextIndex = index;
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+      const tabs = tabRefs.current.filter(Boolean) as HTMLButtonElement[];
+      let nextIndex = index;
 
-    switch (e.key) {
-      case 'ArrowRight':
-      case 'ArrowDown':
-        e.preventDefault();
-        nextIndex = (index + 1) % tabs.length;
-        while (items[nextIndex]?.disabled && nextIndex !== index) {
-          nextIndex = (nextIndex + 1) % tabs.length;
-        }
-        handleTabClick(items[nextIndex].key);
-        tabs[nextIndex]?.focus();
-        break;
-      case 'ArrowLeft':
-      case 'ArrowUp':
-        e.preventDefault();
-        nextIndex = (index - 1 + tabs.length) % tabs.length;
-        while (items[nextIndex]?.disabled && nextIndex !== index) {
-          nextIndex = (nextIndex - 1 + tabs.length) % tabs.length;
-        }
-        handleTabClick(items[nextIndex].key);
-        tabs[nextIndex]?.focus();
-        break;
-      case 'Home':
-        e.preventDefault();
-        nextIndex = 0;
-        while (items[nextIndex]?.disabled && nextIndex < tabs.length - 1) {
-          nextIndex++;
-        }
-        handleTabClick(items[nextIndex].key);
-        tabs[nextIndex]?.focus();
-        break;
-      case 'End':
-        e.preventDefault();
-        nextIndex = tabs.length - 1;
-        while (items[nextIndex]?.disabled && nextIndex > 0) {
-          nextIndex--;
-        }
-        handleTabClick(items[nextIndex].key);
-        tabs[nextIndex]?.focus();
-        break;
-    }
-  }, [items, handleTabClick]);
+      switch (e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+          e.preventDefault();
+          nextIndex = (index + 1) % tabs.length;
+          while (items[nextIndex]?.disabled && nextIndex !== index) {
+            nextIndex = (nextIndex + 1) % tabs.length;
+          }
+          handleTabClick(items[nextIndex].key);
+          tabs[nextIndex]?.focus();
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          e.preventDefault();
+          nextIndex = (index - 1 + tabs.length) % tabs.length;
+          while (items[nextIndex]?.disabled && nextIndex !== index) {
+            nextIndex = (nextIndex - 1 + tabs.length) % tabs.length;
+          }
+          handleTabClick(items[nextIndex].key);
+          tabs[nextIndex]?.focus();
+          break;
+        case 'Home':
+          e.preventDefault();
+          nextIndex = 0;
+          while (items[nextIndex]?.disabled && nextIndex < tabs.length - 1) {
+            nextIndex++;
+          }
+          handleTabClick(items[nextIndex].key);
+          tabs[nextIndex]?.focus();
+          break;
+        case 'End':
+          e.preventDefault();
+          nextIndex = tabs.length - 1;
+          while (items[nextIndex]?.disabled && nextIndex > 0) {
+            nextIndex--;
+          }
+          handleTabClick(items[nextIndex].key);
+          tabs[nextIndex]?.focus();
+          break;
+      }
+    },
+    [items, handleTabClick]
+  );
 
   const activeTab = items.find((item) => item.key === activeKey);
 
   return (
     <TabsWrapper tabPosition={tabPosition}>
       <TabBarHeader>
-        <TabsList
-          role="tablist"
-          type={type}
-          tabPosition={tabPosition}
-          centered={centered}
-        >
+        <TabsList role="tablist" type={type} tabPosition={tabPosition} centered={centered}>
           {items.map((item, index) => {
             const tabId = `tab-${item.key}`;
             const panelId = `tabpanel-${item.key}`;
             const isActive = item.key === activeKey;
             return (
               <TabButton
-                ref={(el) => { tabRefs.current[index] = el; }}
+                ref={(el) => {
+                  tabRefs.current[index] = el;
+                }}
                 key={item.key}
                 id={tabId}
                 typeStyle={type}
@@ -183,9 +179,7 @@ export const Tabs = ({
             );
           })}
         </TabsList>
-        {tabBarExtraContent && (
-          <TabBarExtraContent>{tabBarExtraContent}</TabBarExtraContent>
-        )}
+        {tabBarExtraContent && <TabBarExtraContent>{tabBarExtraContent}</TabBarExtraContent>}
       </TabBarHeader>
       <AnimatePresence mode="wait">
         <TabPanel

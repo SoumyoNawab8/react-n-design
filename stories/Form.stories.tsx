@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import { Button } from '../src/components/Button';
+import { ErrorMessage } from '../src/components/Form/ErrorMessage';
 import { Form } from '../src/components/Form/Form';
 import { FormField } from '../src/components/Form/FormField';
-import { ErrorMessage } from '../src/components/Form/ErrorMessage';
-import { useForm } from '../src/hooks/useForm';
-import { useOptimisticForm } from '../src/hooks/useOptimisticForm';
-import { Button } from '../src/components/Button';
 import { Input } from '../src/components/Input';
 import { Switch } from '../src/components/Switch';
+import { useForm } from '../src/hooks/useForm';
+import { useOptimisticForm } from '../src/hooks/useOptimisticForm';
 
 const meta: Meta<typeof Form> = {
   title: 'react-n-design/Form',
@@ -36,7 +36,9 @@ export const Default: Story = {
         <FormField name="name" label="Full Name" />
         <FormField name="email" label="Email Address" />
         <ErrorMessage name="email" />
-        <Button type="submit" loading={form.isSubmitting}>Submit</Button>
+        <Button type="submit" loading={form.isSubmitting}>
+          Submit
+        </Button>
       </Form>
     );
   },
@@ -61,7 +63,9 @@ export const WithCustomInput: Story = {
         <FormField name="bio" label="Bio">
           <Input placeholder="Tell us about yourself" />
         </FormField>
-        <Button type="submit" loading={form.isSubmitting}>Save</Button>
+        <Button type="submit" loading={form.isSubmitting}>
+          Save
+        </Button>
       </Form>
     );
   },
@@ -117,7 +121,9 @@ export const OptimisticFormDemo: Story = {
         <FormField name="newsletter" label="Subscribe to newsletter">
           <Switch label="Subscribe" />
         </FormField>
-        <Button type="submit" loading={form.isSubmitting}>Save</Button>
+        <Button type="submit" loading={form.isSubmitting}>
+          Save
+        </Button>
       </Form>
     );
   },

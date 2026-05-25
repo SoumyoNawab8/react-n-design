@@ -1,23 +1,24 @@
 'use client';
-import React, { useEffect, useRef, useCallback } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import {
   FaCheckCircle,
-  FaTimesCircle,
   FaExclamationTriangle,
   FaInfoCircle,
   FaTimes,
+  FaTimesCircle,
 } from 'react-icons/fa';
 import {
-  ToastWrapper,
-  ToastIcon,
-  ToastContent,
-  ToastTitle,
-  ToastDescription,
+  ToastAction,
   ToastCloseButton,
+  ToastContent,
+  ToastDescription,
+  ToastIcon,
   ToastProgress,
   ToastSpinner,
-  ToastAction,
-  ToastVariant,
+  ToastTitle,
+  type ToastVariant,
+  ToastWrapper,
 } from './Toast.styles';
 
 export interface ToastProps {

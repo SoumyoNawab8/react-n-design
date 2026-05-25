@@ -1,12 +1,22 @@
 'use client';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FaChevronDown, FaTimes } from 'react-icons/fa';
-import {
-  SelectWrapper, SelectTrigger, SelectValue, SelectPlaceholder, SelectIcons,
-  SelectChevron, SelectDropdown, SelectOption, Spinner, ClearButton, MultiSelectValueWrapper
-} from './Select.styles';
 import { Tag } from '../Tag';
+import {
+  ClearButton,
+  MultiSelectValueWrapper,
+  SelectChevron,
+  SelectDropdown,
+  SelectIcons,
+  SelectOption,
+  SelectPlaceholder,
+  SelectTrigger,
+  SelectValue,
+  SelectWrapper,
+  Spinner,
+} from './Select.styles';
 
 export interface SelectOptionProps {
   value: string | number;
@@ -72,13 +82,16 @@ export const Select = ({
 
   useClickOutside(wrapperRef, () => setIsOpen(false));
 
-  const isSelected = useCallback((option: SelectOptionProps) => {
-    if (mode === 'multiple') {
-      const currentArray = Array.isArray(currentValue) ? currentValue : [];
-      return currentArray.includes(option.value);
-    }
-    return currentValue === option.value;
-  }, [currentValue, mode]);
+  const isSelected = useCallback(
+    (option: SelectOptionProps) => {
+      if (mode === 'multiple') {
+        const currentArray = Array.isArray(currentValue) ? currentValue : [];
+        return currentArray.includes(option.value);
+      }
+      return currentValue === option.value;
+    },
+    [currentValue, mode]
+  );
 
   const handleSelect = (option: SelectOptionProps) => {
     if (option.disabled) return;
@@ -87,7 +100,7 @@ export const Select = ({
     if (mode === 'multiple') {
       const currentArray = Array.isArray(currentValue) ? currentValue : [];
       if (currentArray.includes(option.value)) {
-        newValue = currentArray.filter(v => v !== option.value);
+        newValue = currentArray.filter((v) => v !== option.value);
       } else {
         newValue = [...currentArray, option.value];
       }
@@ -107,10 +120,11 @@ export const Select = ({
     onChange?.(newValue);
   };
 
-  const getLabelForValue = (val: string | number) => options.find(o => o.value === val)?.label;
+  const getLabelForValue = (val: string | number) => options.find((o) => o.value === val)?.label;
 
-  const enabledOptions = options.filter(o => !o.disabled);
-  const enabledIndexOf = (option: SelectOptionProps) => enabledOptions.findIndex(o => o.value === option.value);
+  const enabledOptions = options.filter((o) => !o.disabled);
+  const enabledIndexOf = (option: SelectOptionProps) =>
+    enabledOptions.findIndex((o) => o.value === option.value);
 
   const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (disabled || loading) return;
@@ -130,14 +144,14 @@ export const Select = ({
         if (!isOpen) {
           setIsOpen(true);
         }
-        setHighlightedIndex(prev => (prev + 1) % enabledOptions.length);
+        setHighlightedIndex((prev) => (prev + 1) % enabledOptions.length);
         break;
       case 'ArrowUp':
         e.preventDefault();
         if (!isOpen) {
           setIsOpen(true);
         }
-        setHighlightedIndex(prev => (prev - 1 + enabledOptions.length) % enabledOptions.length);
+        setHighlightedIndex((prev) => (prev - 1 + enabledOptions.length) % enabledOptions.length);
         break;
       case 'Escape':
         e.preventDefault();
@@ -166,11 +180,16 @@ export const Select = ({
       if (currentArray.length === 0) return <SelectPlaceholder>{placeholder}</SelectPlaceholder>;
       return (
         <MultiSelectValueWrapper>
-          {currentArray.map(v => (
-            <Tag key={v} size="small" variant="primary" onClose={(e) => {
-              e.stopPropagation();
-              handleSelect({ value: v, label: '' });
-            }}>
+          {currentArray.map((v) => (
+            <Tag
+              key={v}
+              size="small"
+              variant="primary"
+              onClose={(e) => {
+                e.stopPropagation();
+                handleSelect({ value: v, label: '' });
+              }}
+            >
               {getLabelForValue(v)}
             </Tag>
           ))}
@@ -178,12 +197,13 @@ export const Select = ({
       );
     }
 
-    const selectedOption = options.find(o => o.value === currentValue);
+    const selectedOption = options.find((o) => o.value === currentValue);
     if (!selectedOption) return <SelectPlaceholder>{placeholder}</SelectPlaceholder>;
     return <SelectValue>{selectedOption.label}</SelectValue>;
   };
 
-  const isClearable = allowClear && currentValue && (Array.isArray(currentValue) ? currentValue.length > 0 : true);
+  const isClearable =
+    allowClear && currentValue && (Array.isArray(currentValue) ? currentValue.length > 0 : true);
 
   return (
     <SelectWrapper ref={wrapperRef}>
@@ -201,7 +221,9 @@ export const Select = ({
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-controls={isOpen ? listboxId : undefined}
-        aria-activedescendant={isOpen ? `${listboxId}-option-${enabledOptions[highlightedIndex]?.value}` : undefined}
+        aria-activedescendant={
+          isOpen ? `${listboxId}-option-${enabledOptions[highlightedIndex]?.value}` : undefined
+        }
         aria-disabled={disabled || loading}
         aria-invalid={error}
         aria-label={ariaLabel}
@@ -227,7 +249,9 @@ export const Select = ({
               <FaTimes />
             </ClearButton>
           )}
-          <SelectChevron isOpen={isOpen}><FaChevronDown /></SelectChevron>
+          <SelectChevron isOpen={isOpen}>
+            <FaChevronDown />
+          </SelectChevron>
         </SelectIcons>
       </SelectTrigger>
       <AnimatePresence>
@@ -240,7 +264,7 @@ export const Select = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
           >
-            {options.map(option => {
+            {options.map((option) => {
               const optionId = `${listboxId}-option-${option.value}`;
               const active = isSelected(option);
               const highlighted = enabledOptions[highlightedIndex]?.value === option.value;
@@ -260,7 +284,11 @@ export const Select = ({
                       if (idx >= 0) setHighlightedIndex(idx);
                     }
                   }}
-                  style={highlighted && !option.disabled ? { outline: '2px solid currentColor', outlineOffset: '-2px' } : undefined}
+                  style={
+                    highlighted && !option.disabled
+                      ? { outline: '2px solid currentColor', outlineOffset: '-2px' }
+                      : undefined
+                  }
                 >
                   {option.label}
                 </SelectOption>

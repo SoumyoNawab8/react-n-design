@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css, keyframes } from 'styled-components';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '6px 12px' },
@@ -24,7 +24,8 @@ export const MultiSelectValueWrapper = styled.div`
 `;
 
 export const SelectTrigger = styled.div.withConfig({
-  shouldForwardProp: (prop) => !['size', 'isOpen', 'hasError', 'disabled', 'isMulti'].includes(prop),
+  shouldForwardProp: (prop) =>
+    !['size', 'isOpen', 'hasError', 'disabled', 'isMulti'].includes(prop),
 })<{
   size: 'small' | 'medium' | 'large';
   isOpen: boolean;
@@ -51,17 +52,23 @@ export const SelectTrigger = styled.div.withConfig({
 
   box-sizing: border-box;
 
-  ${({ isMulti }) => isMulti && css`
+  ${({ isMulti }) =>
+    isMulti &&
+    css`
     align-items: flex-start;
     padding-top: 8px;
     padding-bottom: 8px;
   `}
   
-  ${({ isOpen, hasError, theme }) => (isOpen || hasError) && css`
+  ${({ isOpen, hasError, theme }) =>
+    (isOpen || hasError) &&
+    css`
     box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}40;
   `}
 
-  ${({ disabled, theme }) => disabled && css`
+  ${({ disabled, theme }) =>
+    disabled &&
+    css`
     cursor: not-allowed;
     background-color: ${(theme as any).colors.hoverBg};
   `}
@@ -122,13 +129,17 @@ export const SelectOption = styled.div.withConfig({
   border-radius: 8px;
   cursor: pointer;
   
-  ${({ disabled }) => disabled && css`
+  ${({ disabled }) =>
+    disabled &&
+    css`
     color: #aaa;
     cursor: not-allowed;
     background: #f8f9fa;
   `}
   
-  ${({ isActive, theme }) => isActive && css`
+  ${({ isActive, theme }) =>
+    isActive &&
+    css`
     font-weight: 600;
     color: ${theme.colors.primary};
   `}

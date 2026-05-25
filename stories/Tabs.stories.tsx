@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tabs, TabItem } from '../src/components/Tabs';
+import { useState } from 'react';
 import { Button } from '../src/components/Button';
+import { type TabItem, Tabs } from '../src/components/Tabs';
 
 const meta: Meta<typeof Tabs> = {
   title: 'react-n-design/Tabs',

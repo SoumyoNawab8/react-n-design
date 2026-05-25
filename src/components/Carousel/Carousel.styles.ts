@@ -1,6 +1,6 @@
 'use client';
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 export const CarouselWrapper = styled.div`
   position: relative;
@@ -28,11 +28,9 @@ export const CarouselSlide = styled.div`
 
 export const CarouselNavButton = styled.button.withConfig({
   shouldForwardProp: (prop) => !['position'].includes(prop),
-})
-<{
+})<{
   position: 'left' | 'right';
-}
->`
+}>`
   position: absolute;
   top: 50%;
   ${({ position }) => position}: 12px;
@@ -76,11 +74,9 @@ export const CarouselDots = styled.div`
 
 export const CarouselDot = styled.button.withConfig({
   shouldForwardProp: (prop) => !['isActive'].includes(prop),
-})
-<{
+})<{
   isActive?: boolean;
-}
->`
+}>`
   width: ${({ isActive }) => (isActive ? '24px' : '8px')};
   height: 8px;
   border-radius: 4px;

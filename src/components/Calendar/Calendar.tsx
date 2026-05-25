@@ -1,16 +1,17 @@
 'use client';
-import React, { useState, useCallback, useMemo } from 'react';
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import {
-  CalendarWrapper,
+  CalendarDay,
+  CalendarEventDot,
+  CalendarGrid,
   CalendarHeader,
   CalendarHeaderButton,
   CalendarMonthYear,
-  CalendarWeekdays,
   CalendarWeekday,
-  CalendarGrid,
-  CalendarDay,
-  CalendarEventDot,
+  CalendarWeekdays,
+  CalendarWrapper,
 } from './Calendar.styles';
 
 export interface CalendarEvent {
@@ -26,8 +27,18 @@ export interface CalendarProps {
 }
 
 const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 const WEEKDAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -85,14 +96,9 @@ function getCalendarDays(viewDate: Date): Date[] {
  * A month-view calendar with event dots, disabled-date support,
  * and accessible keyboard navigation.
  */
-export const Calendar = ({
-  value,
-  onChange,
-  events = [],
-  disabledDate,
-}: CalendarProps) => {
+export const Calendar = ({ value, onChange, events = [], disabledDate }: CalendarProps) => {
   const today = useMemo(() => new Date(), []);
-  const [viewDate, setViewDate] = useState<Date>(() => value ? new Date(value) : new Date());
+  const [viewDate, setViewDate] = useState<Date>(() => (value ? new Date(value) : new Date()));
 
   const selectedDate = value ? new Date(value) : undefined;
 
@@ -175,26 +181,18 @@ export const Calendar = ({
   return (
     <CalendarWrapper role="application" aria-label="Calendar">
       <CalendarHeader>
-        <CalendarHeaderButton
-          type="button"
-          aria-label="Previous month"
-          onClick={goToPrevMonth}
-        >
+        <CalendarHeaderButton type="button" aria-label="Previous month" onClick={goToPrevMonth}>
           <FaChevronLeft />
         </CalendarHeaderButton>
         <CalendarMonthYear aria-live="polite">
           {MONTHS[viewDate.getMonth()]} {viewDate.getFullYear()}
         </CalendarMonthYear>
-        <CalendarHeaderButton
-          type="button"
-          aria-label="Next month"
-          onClick={goToNextMonth}
-        >
+        <CalendarHeaderButton type="button" aria-label="Next month" onClick={goToNextMonth}>
           <FaChevronRight />
         </CalendarHeaderButton>
       </CalendarHeader>
 
-      <CalendarWeekdays role="row">
+      <CalendarWeekdays>
         {WEEKDAYS.map((wd) => (
           <CalendarWeekday key={wd} aria-label={wd}>
             {wd}
@@ -202,7 +200,7 @@ export const Calendar = ({
         ))}
       </CalendarWeekdays>
 
-      <CalendarGrid role="grid">
+      <CalendarGrid>
         {calendarDays.map((day) => {
           const isSelected = selectedDate ? isSameDay(day, selectedDate) : false;
           const isToday = isSameDay(day, today);
@@ -214,8 +212,7 @@ export const Calendar = ({
           return (
             <CalendarDay
               key={dayStr}
-              role="gridcell"
-              aria-selected={isSelected}
+              aria-pressed={isSelected}
               aria-disabled={isDisabled}
               aria-label={day.toDateString()}
               isSelected={isSelected}

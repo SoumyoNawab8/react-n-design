@@ -3,12 +3,10 @@ import styled, { css } from 'styled-components';
 
 export const StyledDivider = styled.div.withConfig({
   shouldForwardProp: (prop) => !['orientation', 'type'].includes(prop),
-})
-<{
+})<{
   orientation?: 'horizontal' | 'vertical';
   type?: 'solid' | 'dashed' | 'dotted';
-}
->`
+}>`
   background: ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
   transition: background 0.2s ease;
 
@@ -35,12 +33,12 @@ export const StyledDivider = styled.div.withConfig({
           height: 0;
         `
       : type === 'dotted'
-      ? css`
+        ? css`
           background: none;
           border-top: 1px dotted ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
           height: 0;
         `
-      : css``}
+        : css``}
 `;
 
 export const DividerText = styled.span`

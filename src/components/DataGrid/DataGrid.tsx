@@ -1,31 +1,38 @@
 'use client';
-import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { VariableSizeList as List, ListChildComponentProps } from 'react-window';
-import { FaSort, FaSortUp, FaSortDown, FaFilter, FaChevronDown, FaChevronRight } from 'react-icons/fa';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  GridWrapper,
+  FaChevronDown,
+  FaChevronRight,
+  FaFilter,
+  FaSort,
+  FaSortDown,
+  FaSortUp,
+} from 'react-icons/fa';
+import { VariableSizeList as List, type ListChildComponentProps } from 'react-window';
+import { Button } from '../Button';
+import {
+  CheckboxWrapper,
+  EmptyState,
+  ExpandableContent,
+  ExpandIconWrapper,
+  FilterButton,
+  FilterInput,
+  FilterPopover,
+  GridBodyWrapper,
+  GridCell,
+  GridCellsRow,
+  GridHeaderCell,
   GridHeaderContainer,
   GridHeaderRow,
-  GridHeaderCell,
-  ResizeHandle,
-  SortIconWrapper,
-  FilterButton,
-  FilterPopover,
-  FilterInput,
-  GridBodyWrapper,
   GridRow,
-  GridCellsRow,
-  GridCell,
-  ExpandIconWrapper,
-  ExpandableContent,
-  EmptyState,
-  SkeletonRow,
-  SkeletonCell,
-  PaginationWrapper,
+  GridWrapper,
   PageSizeSelect,
-  CheckboxWrapper,
+  PaginationWrapper,
+  ResizeHandle,
+  SkeletonCell,
+  SkeletonRow,
+  SortIconWrapper,
 } from './DataGrid.styles';
-import { Button } from '../Button';
 
 export interface DataGridColumn<T = any> {
   key: string;
@@ -71,7 +78,11 @@ export interface DataGridProps<T = any> {
   style?: React.CSSProperties;
 }
 
-const getRowKey = <T,>(record: T, index: number, rowKeyProp?: string | ((record: T) => string)): string => {
+const getRowKey = <T,>(
+  record: T,
+  index: number,
+  rowKeyProp?: string | ((record: T) => string)
+): string => {
   if (typeof rowKeyProp === 'function') return rowKeyProp(record);
   if (typeof rowKeyProp === 'string') return String((record as any)[rowKeyProp]);
   return String(index);
@@ -207,7 +218,15 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
               {col.render ? (
                 cellContent
               ) : (
-                <span style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' }}>
+                <span
+                  style={{
+                    display: 'block',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    width: '100%',
+                  }}
+                >
                   {cellContent}
                 </span>
               )}
@@ -249,8 +268,8 @@ export const DataGrid = <T extends object>({
     columns.forEach((c) => {
       map[c.key] = c.width || 150;
     });
-    if (rowSelection) map['__selection__'] = 48;
-    if (expandable) map['__expand__'] = 48;
+    if (rowSelection) map.__selection__ = 48;
+    if (expandable) map.__expand__ = 48;
     return map;
   });
   const [currentPage, setCurrentPage] = useState(pagination ? pagination.defaultCurrent || 1 : 1);
@@ -317,7 +336,9 @@ export const DataGrid = <T extends object>({
         });
       } else if (col?.sortable) {
         data.sort((a, b) => {
-          const av = String((a as any)[sortConfig.key]).localeCompare(String((b as any)[sortConfig.key]));
+          const av = String((a as any)[sortConfig.key]).localeCompare(
+            String((b as any)[sortConfig.key])
+          );
           return sortConfig.order === 'asc' ? av : -av;
         });
       }
@@ -352,8 +373,8 @@ export const DataGrid = <T extends object>({
       if (next.has(key)) next.delete(key);
       else next.add(key);
       const arr = Array.from(next);
-      if (rowSelection?.onChange) rowSelection.onChange(arr);
-      else setInternalSelectedKeys(arr);
+      setInternalSelectedKeys(arr);
+      rowSelection?.onChange?.(arr);
     },
     [selectedRowKeysSet, rowSelection]
   );
@@ -362,8 +383,8 @@ export const DataGrid = <T extends object>({
     const allKeys = paginatedData.map((r, i) => getRowKey(r, i, rowKey));
     const allSelectedNow = allKeys.every((k) => selectedRowKeysSet.has(k));
     const next = allSelectedNow ? [] : allKeys;
-    if (rowSelection?.onChange) rowSelection.onChange(next);
-    else setInternalSelectedKeys(next);
+    setInternalSelectedKeys(next);
+    rowSelection?.onChange?.(next);
   }, [paginatedData, rowKey, selectedRowKeysSet, rowSelection]);
 
   const expandedRowKeysSet = useMemo(() => {
@@ -396,7 +417,10 @@ export const DataGrid = <T extends object>({
   }, [columns, expandable, rowSelection]);
 
   const totalWidth = useMemo(() => {
-    return displayColumns.reduce((sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150), 0);
+    return displayColumns.reduce(
+      (sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150),
+      0
+    );
   }, [displayColumns, columnWidths]);
 
   const handleSort = useCallback((col: DataGridColumn<T>) => {
@@ -448,7 +472,11 @@ export const DataGrid = <T extends object>({
   const handleGridKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (!activeCell) {
-        if (['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft', 'Home', 'End', 'Enter'].includes(e.key)) {
+        if (
+          ['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft', 'Home', 'End', 'Enter'].includes(
+            e.key
+          )
+        ) {
           e.preventDefault();
           setActiveCell({ row: 0, col: 0 });
           listRef.current?.scrollToItem(0, 'start');
@@ -508,7 +536,9 @@ export const DataGrid = <T extends object>({
     const list = listRef.current;
     if (list) list.scrollToItem(activeCell.row, 'auto');
     rafId = requestAnimationFrame(() => {
-      const el = document.querySelector(`[data-grid-cell="${activeCell.row}-${activeCell.col}"]`) as HTMLElement | null;
+      const el = document.querySelector(
+        `[data-grid-cell="${activeCell.row}-${activeCell.col}"]`
+      ) as HTMLElement | null;
       el?.focus();
     });
     return () => cancelAnimationFrame(rafId);
@@ -555,144 +585,149 @@ export const DataGrid = <T extends object>({
   ]);
 
   return (
-    <GridWrapper
-      className={className}
-      style={{ height, ...propStyle }}
-      role="grid"
-      aria-rowcount={paginatedData.length + 1}
-      aria-colcount={displayColumns.length}
-      tabIndex={0}
-      onKeyDown={handleGridKeyDown}
-    >
-      <GridHeaderContainer ref={headerRef} onScroll={handleHeaderScroll}>
-        <GridHeaderRow role="row" aria-rowindex={1} style={{ width: totalWidth, minWidth: totalWidth }}>
-          {displayColumns.map((col, colIndex) => {
-            const cellWidth = columnWidths[col.key] ?? col.width ?? 150;
+    <GridWrapper className={className} style={{ height, ...propStyle }}>
+      <div
+        role="grid"
+        aria-rowcount={paginatedData.length + 1}
+        aria-colcount={displayColumns.length}
+        tabIndex={0}
+        onKeyDown={handleGridKeyDown}
+        style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}
+      >
+        <GridHeaderContainer ref={headerRef} onScroll={handleHeaderScroll}>
+          <GridHeaderRow
+            role="row"
+            aria-rowindex={1}
+            style={{ width: totalWidth, minWidth: totalWidth }}
+          >
+            {displayColumns.map((col, colIndex) => {
+              const cellWidth = columnWidths[col.key] ?? col.width ?? 150;
 
-            if (col.key === '__selection__') {
+              if (col.key === '__selection__') {
+                return (
+                  <GridHeaderCell
+                    key={col.key}
+                    role="columnheader"
+                    aria-colindex={colIndex + 1}
+                    width={cellWidth}
+                  >
+                    <CheckboxWrapper>
+                      <input
+                        type="checkbox"
+                        checked={allSelected}
+                        onChange={toggleAllSelection}
+                        aria-label="Select all rows"
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    </CheckboxWrapper>
+                    <ResizeHandle onMouseDown={(e) => handleResizeStart(col.key, e)} />
+                  </GridHeaderCell>
+                );
+              }
+
+              if (col.key === '__expand__') {
+                return (
+                  <GridHeaderCell
+                    key={col.key}
+                    role="columnheader"
+                    aria-colindex={colIndex + 1}
+                    width={cellWidth}
+                  >
+                    <ResizeHandle onMouseDown={(e) => handleResizeStart(col.key, e)} />
+                  </GridHeaderCell>
+                );
+              }
+
+              const ariaSort = getAriaSort(col.key);
               return (
                 <GridHeaderCell
                   key={col.key}
                   role="columnheader"
                   aria-colindex={colIndex + 1}
+                  aria-sort={ariaSort}
+                  isSortable={!!(col.sortable || col.sorter)}
+                  isSorted={sortConfig.key === col.key}
                   width={cellWidth}
+                  onClick={() => handleSort(col)}
                 >
-                  <CheckboxWrapper>
-                    <input
-                      type="checkbox"
-                      checked={allSelected}
-                      onChange={toggleAllSelection}
-                      aria-label="Select all rows"
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </CheckboxWrapper>
+                  <span style={{ display: 'flex', alignItems: 'center' }}>
+                    {col.title}
+                    {(col.sortable || col.sorter) && (
+                      <SortIconWrapper>
+                        {sortConfig.key === col.key && sortConfig.order === 'asc' ? (
+                          <FaSortUp size={14} />
+                        ) : sortConfig.key === col.key && sortConfig.order === 'desc' ? (
+                          <FaSortDown size={14} />
+                        ) : (
+                          <FaSort size={14} />
+                        )}
+                      </SortIconWrapper>
+                    )}
+                    {col.filterable && (
+                      <FilterButton
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFilter(col.key);
+                        }}
+                        aria-label={`Filter ${col.title}`}
+                        aria-pressed={activeFilterCol === col.key}
+                      >
+                        <FaFilter size={12} />
+                      </FilterButton>
+                    )}
+                  </span>
+                  {activeFilterCol === col.key && (
+                    <FilterPopover>
+                      <FilterInput
+                        autoFocus
+                        value={filters[col.key] || ''}
+                        onChange={(e) =>
+                          setFilters((prev) => ({ ...prev, [col.key]: e.target.value }))
+                        }
+                        placeholder={`Filter ${col.title}`}
+                        onKeyDown={(e) => e.stopPropagation()}
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    </FilterPopover>
+                  )}
                   <ResizeHandle onMouseDown={(e) => handleResizeStart(col.key, e)} />
                 </GridHeaderCell>
               );
-            }
+            })}
+          </GridHeaderRow>
+        </GridHeaderContainer>
 
-            if (col.key === '__expand__') {
-              return (
-                <GridHeaderCell
-                  key={col.key}
-                  role="columnheader"
-                  aria-colindex={colIndex + 1}
-                  width={cellWidth}
-                >
-                  <ResizeHandle onMouseDown={(e) => handleResizeStart(col.key, e)} />
-                </GridHeaderCell>
-              );
-            }
-
-            const ariaSort = getAriaSort(col.key);
-            return (
-              <GridHeaderCell
-                key={col.key}
-                role="columnheader"
-                aria-colindex={colIndex + 1}
-                aria-sort={ariaSort}
-                isSortable={!!(col.sortable || col.sorter)}
-                isSorted={sortConfig.key === col.key}
-                width={cellWidth}
-                onClick={() => handleSort(col)}
-              >
-                <span style={{ display: 'flex', alignItems: 'center' }}>
-                  {col.title}
-                  {(col.sortable || col.sorter) && (
-                    <SortIconWrapper>
-                      {sortConfig.key === col.key && sortConfig.order === 'asc' ? (
-                        <FaSortUp size={14} />
-                      ) : sortConfig.key === col.key && sortConfig.order === 'desc' ? (
-                        <FaSortDown size={14} />
-                      ) : (
-                        <FaSort size={14} />
-                      )}
-                    </SortIconWrapper>
-                  )}
-                  {col.filterable && (
-                    <FilterButton
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleFilter(col.key);
-                      }}
-                      aria-label={`Filter ${col.title}`}
-                      aria-pressed={activeFilterCol === col.key}
-                    >
-                      <FaFilter size={12} />
-                    </FilterButton>
-                  )}
-                </span>
-                {activeFilterCol === col.key && (
-                  <FilterPopover>
-                    <FilterInput
-                      autoFocus
-                      value={filters[col.key] || ''}
-                      onChange={(e) => setFilters((prev) => ({ ...prev, [col.key]: e.target.value }))}
-                      placeholder={`Filter ${col.title}`}
-                      onKeyDown={(e) => e.stopPropagation()}
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </FilterPopover>
-                )}
-                <ResizeHandle onMouseDown={(e) => handleResizeStart(col.key, e)} />
-              </GridHeaderCell>
-            );
-          })}
-        </GridHeaderRow>
-      </GridHeaderContainer>
-
-      <GridBodyWrapper ref={bodyRef}>
-        {loading ? (
-          <>
-            {Array.from({ length: 5 }).map((_, i) => (
+        <GridBodyWrapper ref={bodyRef}>
+          {loading ? (
+            Array.from({ length: 5 }).map((_, i) => (
               <SkeletonRow key={i} role="row">
                 {displayColumns.map((_, j) => (
                   <SkeletonCell key={j} role="gridcell" />
                 ))}
               </SkeletonRow>
-            ))}
-          </>
-        ) : paginatedData.length === 0 ? (
-          <EmptyState role="status" aria-live="polite">
-            No data
-          </EmptyState>
-        ) : (
-          bodyHeight > 0 && (
-            <List
-              height={bodyHeight}
-              width={totalWidth}
-              itemCount={paginatedData.length}
-              itemSize={getItemSize}
-              itemData={itemData}
-              outerRef={listOuterRef}
-              innerElementType={InnerElementType}
-              ref={listRef}
-            >
-              {Row}
-            </List>
-          )
-        )}
-      </GridBodyWrapper>
+            ))
+          ) : paginatedData.length === 0 ? (
+            <EmptyState role="status" aria-live="polite">
+              No data
+            </EmptyState>
+          ) : (
+            bodyHeight > 0 && (
+              <List
+                height={bodyHeight}
+                width={totalWidth}
+                itemCount={paginatedData.length}
+                itemSize={getItemSize}
+                itemData={itemData}
+                outerRef={listOuterRef}
+                innerElementType={InnerElementType}
+                ref={listRef}
+              >
+                {Row}
+              </List>
+            )
+          )}
+        </GridBodyWrapper>
+      </div>
 
       {pagination && (
         <PaginationWrapper role="navigation" aria-label="DataGrid pagination">

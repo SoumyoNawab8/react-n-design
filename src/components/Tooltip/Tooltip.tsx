@@ -1,7 +1,7 @@
 'use client';
-import React, { useState, useRef, useEffect, useId } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { TooltipWrapper, TooltipContent } from './Tooltip.styles';
+import React, { useEffect, useId, useRef, useState } from 'react';
+import { TooltipContent, TooltipWrapper } from './Tooltip.styles';
 
 export interface TooltipProps {
   children: React.ReactElement;

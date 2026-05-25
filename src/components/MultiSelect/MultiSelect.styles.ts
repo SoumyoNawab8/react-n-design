@@ -1,6 +1,6 @@
 'use client';
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 
 export const MultiSelectWrapper = styled.div`
   position: relative;

@@ -1,7 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Alert } from '../src/components/Alert';
 import { FaBell } from 'react-icons/fa';
+import { Alert } from '../src/components/Alert';
 
 const meta: Meta<typeof Alert> = {
   title: 'react-n-design/Alert',
@@ -58,7 +57,8 @@ export const Error: Story = {
 export const WithDescription: Story = {
   args: {
     message: 'A Message with a Detailed Description',
-    description: 'This is the longer description text that provides more context and information to the user. It can span multiple lines if necessary.',
+    description:
+      'This is the longer description text that provides more context and information to the user. It can span multiple lines if necessary.',
     type: 'info',
   },
 };
@@ -72,10 +72,10 @@ export const Closable: Story = {
 };
 
 export const CustomIcon: Story = {
-    args: {
-      message: 'A Custom Notification',
-      type: 'info',
-      showIcon: true,
-      icon: <FaBell />,
-    },
-  };
+  args: {
+    message: 'A Custom Notification',
+    type: 'info',
+    showIcon: true,
+    icon: <FaBell />,
+  },
+};

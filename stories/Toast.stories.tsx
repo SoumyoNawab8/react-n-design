@@ -1,8 +1,7 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from '../src/components/Button';
 import { ToastProvider } from '../src/components/Toast/ToastProvider';
 import { useToast } from '../src/components/Toast/useToast';
-import { Button } from '../src/components/Button';
 
 const meta: Meta<typeof ToastProvider> = {
   title: 'react-n-design/Toast',
@@ -42,7 +41,9 @@ const ToastDemo = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
+    <div
+      style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}
+    >
       <Button onClick={() => success('Changes saved successfully')}>Success Toast</Button>
       <Button onClick={() => error('Something went wrong')}>Error Toast</Button>
       <Button onClick={() => warning('Please review your input')}>Warning Toast</Button>

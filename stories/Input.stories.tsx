@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input as InputCompo } from '../src/components/Input';
-import { FaUser, FaAt, FaSearch } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaAt, FaSearch, FaUser } from 'react-icons/fa';
 import { Button } from '../src/components/Button';
+import { Input as InputCompo } from '../src/components/Input';
 
 const meta: Meta<typeof Input> = {
   title: 'react-n-design/Input',

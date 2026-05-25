@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Table } from '../src/components/Table';
 import { Tag } from '../src/components/Tag';
@@ -34,16 +33,35 @@ const dataSource: UserData[] = [
 ];
 
 const columns = [
-  { key: 'name', title: 'Name', dataIndex: 'name', sorter: (a: UserData, b: UserData) => a.name.localeCompare(b.name) },
-  { key: 'age', title: 'Age', dataIndex: 'age', sorter: (a: UserData, b: UserData) => a.age - b.age },
-  { key: 'city', title: 'City', dataIndex: 'city', sorter: (a: UserData, b: UserData) => a.city.localeCompare(b.city) },
+  {
+    key: 'name',
+    title: 'Name',
+    dataIndex: 'name',
+    sorter: (a: UserData, b: UserData) => a.name.localeCompare(b.name),
+  },
+  {
+    key: 'age',
+    title: 'Age',
+    dataIndex: 'age',
+    sorter: (a: UserData, b: UserData) => a.age - b.age,
+  },
+  {
+    key: 'city',
+    title: 'City',
+    dataIndex: 'city',
+    sorter: (a: UserData, b: UserData) => a.city.localeCompare(b.city),
+  },
   {
     key: 'status',
     title: 'Status',
     dataIndex: 'status',
     render: (status: UserData['status']) => {
       const color = { active: '#28a745', inactive: '#aaa', pending: '#faad14' }[status];
-      return <Tag color={color} size="small">{status.toUpperCase()}</Tag>;
+      return (
+        <Tag color={color} size="small">
+          {status.toUpperCase()}
+        </Tag>
+      );
     },
   },
 ];

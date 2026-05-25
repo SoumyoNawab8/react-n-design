@@ -1,10 +1,9 @@
 'use client';
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 
 export const FileUploadRegion = styled.div.withConfig({
-  shouldForwardProp: (prop) =>
-    !['isDragOver', 'disabled', 'hasError'].includes(prop),
+  shouldForwardProp: (prop) => !['isDragOver', 'disabled', 'hasError'].includes(prop),
 })<{
   isDragOver: boolean;
   disabled: boolean;

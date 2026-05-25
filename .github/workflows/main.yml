@@ -40,6 +40,8 @@ jobs:
           test -f dist/esm/index.js  || (echo "❌ dist/esm/index.js missing"  && exit 1)
           test -f dist/index.d.ts    || (echo "❌ dist/index.d.ts missing"    && exit 1)
           echo "✅ All required dist files present"
+      - name: Check bundle size
+        run: npm run size-limit
       - name: Pack and smoke-test install
         run: |
           set -euo pipefail

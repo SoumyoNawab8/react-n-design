@@ -1,7 +1,6 @@
 const resolve = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const typescript = require('@rollup/plugin-typescript');
-const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 
 const config = (input, outputCjs, outputEsm, esmBanner) => ({
   input,
@@ -21,7 +20,6 @@ const config = (input, outputCjs, outputEsm, esmBanner) => ({
     }
   ],
   plugins: [
-    peerDepsExternal(),
     resolve({
       browser: true,
       preferBuiltins: false
@@ -40,12 +38,15 @@ const config = (input, outputCjs, outputEsm, esmBanner) => ({
   ],
   external: [
     'react',
+    'react/jsx-runtime',
     'react-dom',
+    'react-dom/client',
     'styled-components',
     'framer-motion',
     'react-icons',
     'react-icons/fa',
-    'react-window'
+    'react-window',
+    'dompurify'
   ]
 });
 

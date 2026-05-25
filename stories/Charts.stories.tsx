@@ -1,6 +1,5 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChartBar, ChartLine, ChartArea } from '../src/components/Charts';
+import { ChartArea, ChartBar, ChartLine } from '../src/components/Charts';
 
 const sampleData = [
   { label: 'Jan', value: 30 },

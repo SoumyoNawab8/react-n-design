@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tooltip } from '../src/components/Tooltip';
+import { useState } from 'react';
 import { Button } from '../src/components/Button';
 import { Input } from '../src/components/Input';
+import { Tooltip } from '../src/components/Tooltip';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'react-n-design/Tooltip',

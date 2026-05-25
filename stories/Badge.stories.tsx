@@ -1,8 +1,7 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { Avatar } from '../src/components/Avatar';
 import { Badge } from '../src/components/Badge';
 import { Button } from '../src/components/Button';
-import { Avatar } from '../src/components/Avatar';
 
 const meta: Meta<typeof Badge> = {
   title: 'react-n-design/Badge',

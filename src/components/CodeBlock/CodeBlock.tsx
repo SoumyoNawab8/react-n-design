@@ -1,16 +1,17 @@
 'use client';
-import React, { useState, useCallback } from 'react';
-import { FaCopy, FaCheck } from 'react-icons/fa';
+import type React from 'react';
+import { useCallback, useState } from 'react';
+import { FaCheck, FaCopy } from 'react-icons/fa';
 import {
-  CodeBlockWrapper,
+  CodeBlockContent,
+  CodeBlockCopyButton,
   CodeBlockHeader,
   CodeBlockLanguage,
-  CodeBlockCopyButton,
-  CodeBlockContent,
-  CodeBlockPre,
   CodeBlockLine,
-  CodeBlockLineNumber,
   CodeBlockLineContent,
+  CodeBlockLineNumber,
+  CodeBlockPre,
+  CodeBlockWrapper,
 } from './CodeBlock.styles';
 
 export interface CodeBlockProps {
@@ -60,43 +61,62 @@ function highlightCode(code: string, language?: string): React.ReactNode[] {
 
   if (['javascript', 'typescript', 'js', 'ts', 'jsx', 'tsx'].includes(lang)) {
     rules.push(
-      { regex: /\b(const|let|var|function|class|interface|type|return|if|else|for|while|switch|case|break|continue|new|this|import|export|from|async|await|try|catch|throw|typeof|instanceof|in|of|yield|default|extends|implements|static|public|private|protected|readonly|abstract|enum|namespace|module|declare|as|satisfies|asserts|infer|is|keyof|unique|using|await)\b/g, color: '#c678dd' },
+      {
+        regex:
+          /\b(const|let|var|function|class|interface|type|return|if|else|for|while|switch|case|break|continue|new|this|import|export|from|async|await|try|catch|throw|typeof|instanceof|in|of|yield|default|extends|implements|static|public|private|protected|readonly|abstract|enum|namespace|module|declare|as|satisfies|asserts|infer|is|keyof|unique|using|await)\b/g,
+        color: '#c678dd',
+      },
       { regex: /\b(true|false|null|undefined|NaN|Infinity)\b/g, color: '#d19a66' },
-      { regex: /\b(console|window|document|Math|Date|Array|Object|String|Number|Boolean|Promise|Set|Map|JSON|RegExp|Error|Intl|fetch|setTimeout|setInterval|requestAnimationFrame)\b/g, color: '#e5c07b' },
+      {
+        regex:
+          /\b(console|window|document|Math|Date|Array|Object|String|Number|Boolean|Promise|Set|Map|JSON|RegExp|Error|Intl|fetch|setTimeout|setInterval|requestAnimationFrame)\b/g,
+        color: '#e5c07b',
+      },
       { regex: /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)/g, color: '#98c379' },
       { regex: /\/\/.*$/gm, color: '#7f848e' },
       { regex: /\/\*[\s\S]*?\*\//g, color: '#7f848e' },
-      { regex: /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b/g, color: '#d19a66' },
+      { regex: /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b/g, color: '#d19a66' }
     );
   } else if (['python', 'py'].includes(lang)) {
     rules.push(
-      { regex: /\b(def|class|if|else|elif|for|while|return|import|from|as|try|except|finally|with|pass|break|continue|lambda|yield|assert|del|global|nonlocal|raise|in|is|not|and|or|None|True|False|async|await)\b/g, color: '#c678dd' },
+      {
+        regex:
+          /\b(def|class|if|else|elif|for|while|return|import|from|as|try|except|finally|with|pass|break|continue|lambda|yield|assert|del|global|nonlocal|raise|in|is|not|and|or|None|True|False|async|await)\b/g,
+        color: '#c678dd',
+      },
       { regex: /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, color: '#98c379' },
       { regex: /#.*/g, color: '#7f848e' },
-      { regex: /\b\d+(?:\.\d+)?\b/g, color: '#d19a66' },
+      { regex: /\b\d+(?:\.\d+)?\b/g, color: '#d19a66' }
     );
   } else if (['html', 'xml'].includes(lang)) {
     rules.push(
       { regex: /&lt;\/?[\w-]+/g, color: '#e06c75' },
       { regex: /[\w-]+=/g, color: '#d19a66' },
       { regex: /"(?:[^"\\]|\\.)*"/g, color: '#98c379' },
-      { regex: /&lt;!--[\s\S]*?--&gt;/g, color: '#7f848e' },
+      { regex: /&lt;!--[\s\S]*?--&gt;/g, color: '#7f848e' }
     );
   } else if (['css', 'scss'].includes(lang)) {
     rules.push(
       { regex: /([\w-]+)\s*:/g, color: '#d19a66' },
       { regex: /\.[\w-]+/g, color: '#e5c07b' },
       { regex: /#[\w-]+/g, color: '#e06c75' },
-      { regex: /\b(px|rem|em|%|vh|vw|s|ms|deg|rad|turn|rgb|rgba|hsl|hsla|var|calc|url)\b/g, color: '#c678dd' },
+      {
+        regex: /\b(px|rem|em|%|vh|vw|s|ms|deg|rad|turn|rgb|rgba|hsl|hsla|var|calc|url)\b/g,
+        color: '#c678dd',
+      },
       { regex: /\/\*[\s\S]*?\*\//g, color: '#7f848e' },
-      { regex: /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, color: '#98c379' },
+      { regex: /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, color: '#98c379' }
     );
   } else {
     rules.push(
-      { regex: /\b(true|false|null|undefined|if|else|for|while|return|function|class|import|export|const|let|var|try|catch)\b/g, color: '#c678dd' },
+      {
+        regex:
+          /\b(true|false|null|undefined|if|else|for|while|return|function|class|import|export|const|let|var|try|catch)\b/g,
+        color: '#c678dd',
+      },
       { regex: /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)/g, color: '#98c379' },
       { regex: /\/\/.*$/gm, color: '#7f848e' },
-      { regex: /\b\d+(?:\.\d+)?\b/g, color: '#d19a66' },
+      { regex: /\b\d+(?:\.\d+)?\b/g, color: '#d19a66' }
     );
   }
 
@@ -115,7 +135,10 @@ function highlightCode(code: string, language?: string): React.ReactNode[] {
           return;
         }
         let match;
-        const localRegex = new RegExp(regex.source, regex.flags.includes('g') ? regex.flags : regex.flags + 'g');
+        const localRegex = new RegExp(
+          regex.source,
+          regex.flags.includes('g') ? regex.flags : `${regex.flags}g`
+        );
         localRegex.lastIndex = 0;
         let lastIndex = 0;
         while ((match = localRegex.exec(seg.text)) !== null) {
@@ -171,6 +194,16 @@ export const CodeBlock = ({
     });
   }, [code]);
 
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleCopy();
+      }
+    },
+    [handleCopy]
+  );
+
   const highlighted = highlightCode(code, language);
   const lines = code.split('\n');
 
@@ -178,13 +211,16 @@ export const CodeBlock = ({
     <CodeBlockWrapper>
       <CodeBlockHeader>
         {language && (
-          <CodeBlockLanguage color={LANGUAGE_COLORS[language.toLowerCase()] || LANGUAGE_COLORS.default}>
+          <CodeBlockLanguage
+            color={LANGUAGE_COLORS[language.toLowerCase()] || LANGUAGE_COLORS.default}
+          >
             {language}
           </CodeBlockLanguage>
         )}
         {copyable && (
           <CodeBlockCopyButton
             onClick={handleCopy}
+            onKeyDown={handleKeyDown}
             aria-label={copied ? 'Copied to clipboard' : 'Copy code to clipboard'}
             title={copied ? 'Copied!' : 'Copy'}
           >
@@ -198,9 +234,7 @@ export const CodeBlock = ({
           {lines.map((_, i) => (
             <CodeBlockLine key={i}>
               {showLineNumbers && (
-                <CodeBlockLineNumber aria-hidden="true">
-                  {i + 1}
-                </CodeBlockLineNumber>
+                <CodeBlockLineNumber aria-hidden="true">{i + 1}</CodeBlockLineNumber>
               )}
               <CodeBlockLineContent>{highlighted[i]}</CodeBlockLineContent>
             </CodeBlockLine>

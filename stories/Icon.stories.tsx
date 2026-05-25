@@ -1,7 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaRocket } from 'react-icons/fa';
 import { Icon } from '../src/components/Icon';
-import { FaBeer, FaRocket, FaHeart } from 'react-icons/fa';
 
 const meta: Meta<typeof Icon> = {
   title: 'react-n-design/Icon',
@@ -105,8 +104,22 @@ export const WithIconComponent: Story = {
 export const IconGrid: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-      {['home', 'user', 'search', 'check', 'times', 'arrow-right', 'star', 'heart', 'bell', 'cog'].map((name) => (
-        <div key={name} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+      {[
+        'home',
+        'user',
+        'search',
+        'check',
+        'times',
+        'arrow-right',
+        'star',
+        'heart',
+        'bell',
+        'cog',
+      ].map((name) => (
+        <div
+          key={name}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+        >
           <Icon name={name} variant="circle" size={20} />
           <span style={{ fontSize: '12px', color: '#888' }}>{name}</span>
         </div>

@@ -1,10 +1,10 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import axe from 'axe-core';
+import type React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
 import { VirtualList } from './VirtualList';
-import axe from 'axe-core';
-import { vi } from 'vitest';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
@@ -69,18 +69,14 @@ describe('VirtualList', () => {
       { index: 0, height: 40 },
       { index: 5, height: 40 },
     ];
-    renderWithTheme(
-      <VirtualList {...DEFAULT_PROPS} stickyHeaders={stickyHeaders} />
-    );
+    renderWithTheme(<VirtualList {...DEFAULT_PROPS} stickyHeaders={stickyHeaders} />);
     // indices 0..6 rendered; sticky headers at 0 and 5 are both visible
     expect(screen.getByText('Item 0')).toBeInTheDocument();
     expect(screen.getByText('Item 5')).toBeInTheDocument();
   });
 
   it('resets scroll position when items change', () => {
-    const { rerender } = renderWithTheme(
-      <VirtualList {...DEFAULT_PROPS} />
-    );
+    const { rerender } = renderWithTheme(<VirtualList {...DEFAULT_PROPS} />);
     const container = screen.getByRole('list');
 
     fireEvent.scroll(container, { target: { scrollTop: 500 } });

@@ -1,17 +1,18 @@
 'use client';
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import {
-  PromptInputWrapper,
-  TextAreaWrapper,
-  StyledTextArea,
+  MentionMenu,
+  MentionMenuItem,
   PromptInputFooter,
-  TokenCounter,
+  PromptInputWrapper,
   SendButton,
   SlashMenu,
   SlashMenuItem,
-  MentionMenu,
-  MentionMenuItem,
+  StyledTextArea,
+  TextAreaWrapper,
+  TokenCounter,
 } from './PromptInput.styles';
 
 export interface SlashCommand {
@@ -87,9 +88,7 @@ export const PromptInput = ({
   const atLimit = maxLength ? value.length >= maxLength : false;
 
   const filteredSlash = slashCommands.filter((cmd) =>
-    slashQuery
-      ? cmd.command.toLowerCase().startsWith('/' + slashQuery.toLowerCase())
-      : true
+    slashQuery ? cmd.command.toLowerCase().startsWith(`/${slashQuery.toLowerCase()}`) : true
   );
   const filteredMentions = mentionTargets.filter((m) =>
     mentionQuery ? m.name.toLowerCase().includes(mentionQuery.toLowerCase()) : true

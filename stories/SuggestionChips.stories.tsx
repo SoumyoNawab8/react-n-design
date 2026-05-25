@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme } from '../src/styles/theme';
 import { SuggestionChips } from '../src/components/SuggestionChips';
+import { lightTheme } from '../src/styles/theme';
 
 const meta: Meta<typeof SuggestionChips> = {
   title: 'react-n-design/SuggestionChips',

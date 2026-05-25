@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import type React from 'react';
 import { Grid } from '../src/components/Grid';
 
 const meta: Meta<typeof Grid> = {
@@ -37,9 +37,7 @@ export const DefaultThreeColumns: Story = {
   args: {
     columns: 3,
     gap: 16,
-    children: Array.from({ length: 6 }).map((_, i) => (
-      <Box key={i}>{i + 1}</Box>
-    )),
+    children: Array.from({ length: 6 }).map((_, i) => <Box key={i}>{i + 1}</Box>),
   },
 };
 
@@ -47,9 +45,7 @@ export const CustomTemplate: Story = {
   args: {
     columns: '1fr 2fr 1fr',
     gap: 16,
-    children: Array.from({ length: 6 }).map((_, i) => (
-      <Box key={i}>{i + 1}</Box>
-    )),
+    children: Array.from({ length: 6 }).map((_, i) => <Box key={i}>{i + 1}</Box>),
   },
 };
 
@@ -57,9 +53,7 @@ export const ResponsiveAutoFit: Story = {
   args: {
     gap: 16,
     minChildWidth: 120,
-    children: Array.from({ length: 9 }).map((_, i) => (
-      <Box key={i}>{i + 1}</Box>
-    )),
+    children: Array.from({ length: 9 }).map((_, i) => <Box key={i}>{i + 1}</Box>),
   },
 };
 
@@ -67,8 +61,6 @@ export const TwoColumns: Story = {
   args: {
     columns: 2,
     gap: 24,
-    children: Array.from({ length: 4 }).map((_, i) => (
-      <Box key={i}>{i + 1}</Box>
-    )),
+    children: Array.from({ length: 4 }).map((_, i) => <Box key={i}>{i + 1}</Box>),
   },
 };

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Switch } from '../src/components/Switch';
+import { useState } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import { Switch } from '../src/components/Switch';
 
 const meta: Meta<typeof Switch> = {
   title: 'react-n-design/Switch',

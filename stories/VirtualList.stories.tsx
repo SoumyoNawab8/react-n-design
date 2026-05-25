@@ -1,8 +1,7 @@
-import React, { useState, useCallback } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { VirtualList } from '../src/components/VirtualList';
-import { Button } from '../src/components/Button';
+import { useCallback, useState } from 'react';
 import { Card } from '../src/components/Card';
+import { VirtualList } from '../src/components/VirtualList';
 
 const meta: Meta<typeof VirtualList> = {
   title: 'react-n-design/VirtualList',
@@ -70,11 +69,14 @@ const STICKY_ITEMS = SECTIONS.flatMap((section) =>
   }))
 );
 
-const STICKY_HEADERS = SECTIONS.reduce((acc, section, idx) => {
-  const index = SECTIONS.slice(0, idx).reduce((sum, s) => sum + s.count, 0);
-  acc.push({ index, height: 44 });
-  return acc;
-}, [] as { index: number; height: number }[]);
+const STICKY_HEADERS = SECTIONS.reduce(
+  (acc, _section, idx) => {
+    const index = SECTIONS.slice(0, idx).reduce((sum, s) => sum + s.count, 0);
+    acc.push({ index, height: 44 });
+    return acc;
+  },
+  [] as { index: number; height: number }[]
+);
 
 export const WithStickyHeaders: StoryObj<typeof VirtualList> = {
   args: {
@@ -125,9 +127,7 @@ export const WithStickyHeaders: StoryObj<typeof VirtualList> = {
 
 export const InfiniteScrollPattern: StoryObj<typeof VirtualList> = {
   render: () => {
-    const [items, setItems] = useState(() =>
-      Array.from({ length: 50 }, (_, i) => `Item ${i + 1}`)
-    );
+    const [items, setItems] = useState(() => Array.from({ length: 50 }, (_, i) => `Item ${i + 1}`));
     const [loading, setLoading] = useState(false);
 
     const handleScroll = useCallback(
@@ -139,9 +139,7 @@ export const InfiniteScrollPattern: StoryObj<typeof VirtualList> = {
           setTimeout(() => {
             setItems((prev) => [
               ...prev,
-              ...Array.from({ length: 30 }, (_, i) =>
-                `Item ${prev.length + i + 1}`
-              ),
+              ...Array.from({ length: 30 }, (_, i) => `Item ${prev.length + i + 1}`),
             ]);
             setLoading(false);
           }, 800);

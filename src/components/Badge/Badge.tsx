@@ -1,6 +1,6 @@
 'use client';
-import React from 'react';
-import { BadgeWrapper, BadgeContainer, BadgePositioned } from './Badge.styles';
+import type React from 'react';
+import { BadgeContainer, BadgePositioned, BadgeWrapper } from './Badge.styles';
 
 export interface BadgeProps {
   children?: React.ReactNode;

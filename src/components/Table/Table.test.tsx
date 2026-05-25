@@ -1,10 +1,10 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axe from 'axe-core';
+import type React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
 import { Table } from './Table';
-import axe from 'axe-core';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);

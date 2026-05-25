@@ -1,15 +1,16 @@
 'use client';
-import React, { useState, useCallback, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import {
-  AccordionWrapper,
-  AccordionItem,
-  AccordionHeader,
-  AccordionPanel,
-  AccordionChevron,
-  AccordionLabel,
-} from './Accordion.styles';
+import type React from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import {
+  AccordionChevron,
+  AccordionHeader,
+  AccordionItem,
+  AccordionLabel,
+  AccordionPanel,
+  AccordionWrapper,
+} from './Accordion.styles';
 
 export interface AccordionItemProps {
   key: string;
@@ -57,14 +58,14 @@ export const Accordion = ({
   bordered = true,
 }: AccordionProps) => {
   const [internalActiveKeys, setInternalActiveKeys] = useState<string[]>(
-    Array.isArray(defaultActiveKey)
-      ? defaultActiveKey
-      : defaultActiveKey ? [defaultActiveKey] : []
+    Array.isArray(defaultActiveKey) ? defaultActiveKey : defaultActiveKey ? [defaultActiveKey] : []
   );
 
   const isControlled = controlledActiveKey !== undefined;
   const activeKeys = isControlled
-    ? Array.isArray(controlledActiveKey) ? controlledActiveKey : [controlledActiveKey]
+    ? Array.isArray(controlledActiveKey)
+      ? controlledActiveKey
+      : [controlledActiveKey]
     : internalActiveKeys;
 
   const headerRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -85,39 +86,39 @@ export const Accordion = ({
     onChange?.(allowMultiple ? newActiveKeys : newActiveKeys[0] || '');
   };
 
-  const handleKeyDown = useCallback((
-    e: React.KeyboardEvent<HTMLButtonElement>,
-    index: number
-  ) => {
-    const headers = headerRefs.current.filter(Boolean) as HTMLButtonElement[];
-    let nextIndex = index;
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+      const headers = headerRefs.current.filter(Boolean) as HTMLButtonElement[];
+      let nextIndex = index;
 
-    switch (e.key) {
-      case 'ArrowDown':
-        e.preventDefault();
-        nextIndex = (index + 1) % headers.length;
-        headers[nextIndex]?.focus();
-        break;
-      case 'ArrowUp':
-        e.preventDefault();
-        nextIndex = (index - 1 + headers.length) % headers.length;
-        headers[nextIndex]?.focus();
-        break;
-      case 'Home':
-        e.preventDefault();
-        headers[0]?.focus();
-        break;
-      case 'End':
-        e.preventDefault();
-        headers[headers.length - 1]?.focus();
-        break;
-      case 'Enter':
-      case ' ':
-        e.preventDefault();
-        handleHeaderClick(items[index].key);
-        break;
-    }
-  }, [items]);
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          nextIndex = (index + 1) % headers.length;
+          headers[nextIndex]?.focus();
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          nextIndex = (index - 1 + headers.length) % headers.length;
+          headers[nextIndex]?.focus();
+          break;
+        case 'Home':
+          e.preventDefault();
+          headers[0]?.focus();
+          break;
+        case 'End':
+          e.preventDefault();
+          headers[headers.length - 1]?.focus();
+          break;
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          handleHeaderClick(items[index].key);
+          break;
+      }
+    },
+    [items, handleHeaderClick]
+  );
 
   return (
     <AccordionWrapper bordered={bordered}>
@@ -128,7 +129,9 @@ export const Accordion = ({
         return (
           <AccordionItem key={item.key} isLast={index === items.length - 1}>
             <AccordionHeader
-              ref={(el) => { headerRefs.current[index] = el; }}
+              ref={(el) => {
+                headerRefs.current[index] = el;
+              }}
               id={headerId}
               isActive={isActive}
               disabled={item.disabled}

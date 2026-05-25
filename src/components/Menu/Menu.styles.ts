@@ -1,6 +1,6 @@
 'use client';
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 
 export const MenuWrapper = styled.div`
   position: relative;
@@ -54,12 +54,10 @@ export const MenuDropdown = styled(motion.ul)`
 
 export const MenuItem = styled.li.withConfig({
   shouldForwardProp: (prop) => !['disabled', 'active'].includes(prop),
-})
-<{
+})<{
   disabled?: boolean;
   active?: boolean;
-}
->`
+}>`
   display: flex;
   align-items: center;
   gap: 10px;

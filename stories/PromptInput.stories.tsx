@@ -9,7 +9,8 @@ const meta: Meta<typeof PromptInput> = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'An AI-ready textarea with slash commands, @mentions, token counting, and auto-resize.',
+        component:
+          'An AI-ready textarea with slash commands, @mentions, token counting, and auto-resize.',
       },
     },
   },
@@ -48,7 +49,10 @@ export const Default: Story = {
       <PromptInput
         value={value}
         onChange={setValue}
-        onSend={(v) => { alert(`Sent: ${v}`); setValue(''); }}
+        onSend={(v) => {
+          alert(`Sent: ${v}`);
+          setValue('');
+        }}
         placeholder="Type / for commands, @ to mention..."
       />
     );
@@ -62,7 +66,10 @@ export const WithSlashCommands: Story = {
       <PromptInput
         value={value}
         onChange={setValue}
-        onSend={(v) => { alert(`Sent: ${v}`); setValue(''); }}
+        onSend={(v) => {
+          alert(`Sent: ${v}`);
+          setValue('');
+        }}
         placeholder="Try /translate, /summarize, /code, /explain"
         slashCommands={slashCommands}
       />
@@ -77,7 +84,10 @@ export const WithMentions: Story = {
       <PromptInput
         value={value}
         onChange={setValue}
-        onSend={(v) => { alert(`Sent: ${v}`); setValue(''); }}
+        onSend={(v) => {
+          alert(`Sent: ${v}`);
+          setValue('');
+        }}
         placeholder="Type @ to mention someone"
         mentionTargets={mentionTargets}
       />
@@ -92,7 +102,10 @@ export const WithTokenCount: Story = {
       <PromptInput
         value={value}
         onChange={setValue}
-        onSend={(v) => { alert(`Sent: ${v}`); setValue(''); }}
+        onSend={(v) => {
+          alert(`Sent: ${v}`);
+          setValue('');
+        }}
         placeholder="Type to see token count..."
         showTokenCount
         maxTokens={100}
@@ -104,14 +117,7 @@ export const WithTokenCount: Story = {
 export const Loading: Story = {
   render: () => {
     const [value] = useState('Generate a React component');
-    return (
-      <PromptInput
-        value={value}
-        onChange={() => {}}
-        onSend={() => {}}
-        isLoading
-      />
-    );
+    return <PromptInput value={value} onChange={() => {}} onSend={() => {}} isLoading />;
   },
 };
 
@@ -122,7 +128,10 @@ export const MaxLength: Story = {
       <PromptInput
         value={value}
         onChange={setValue}
-        onSend={(v) => { alert(`Sent: ${v}`); setValue(''); }}
+        onSend={(v) => {
+          alert(`Sent: ${v}`);
+          setValue('');
+        }}
         maxLength={100}
         placeholder="Limited to 100 characters"
       />

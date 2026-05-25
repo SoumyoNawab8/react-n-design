@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select, SelectOptionProps } from '../src/components/Select';
+import { useState } from 'react';
+import { Select, type SelectOptionProps } from '../src/components/Select';
 
 const meta: Meta<typeof Select> = {
   title: 'react-n-design/Select',

@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { Theme } from '../../styles/theme'; // We can import the Type for type safety
+import type { Theme } from '../../styles/theme'; // We can import the Type for type safety
 
 // 2. This helper function now receives the theme to get the primary color
 const getStatusColor = (theme: Theme, status: 'normal' | 'success' | 'error') => {
@@ -8,7 +8,6 @@ const getStatusColor = (theme: Theme, status: 'normal' | 'success' | 'error') =>
       return '#28a745';
     case 'error':
       return '#dc3545';
-    case 'normal':
     default:
       return theme.colors.primary;
   }

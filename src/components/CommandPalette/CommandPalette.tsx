@@ -1,19 +1,20 @@
 'use client';
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { saveFocus, trapFocus } from '../../utils/focus';
 import {
-  CommandPaletteOverlay,
-  CommandPaletteWrapper,
-  CommandPaletteInputWrapper,
+  CommandPaletteEmpty,
   CommandPaletteInput,
-  CommandPaletteList,
+  CommandPaletteInputWrapper,
   CommandPaletteItem,
   CommandPaletteItemLabel,
   CommandPaletteItemShortcut,
-  CommandPaletteEmpty,
+  CommandPaletteList,
+  CommandPaletteOverlay,
+  CommandPaletteWrapper,
 } from './CommandPalette.styles';
-import { saveFocus, trapFocus } from '../../utils/focus';
 
 export interface CommandPaletteItemDef {
   id: string;
@@ -69,10 +70,7 @@ export const CommandPalette = ({
       setQuery('');
       setSelectedIndex(0);
       restoreFocusRef.current = saveFocus();
-      const timer = setTimeout(() => {
-        inputRef.current?.focus();
-      }, 50);
-      return () => clearTimeout(timer);
+      inputRef.current?.focus();
     } else {
       restoreFocusRef.current?.();
     }
@@ -89,7 +87,7 @@ export const CommandPalette = ({
   // Scroll selected item into view
   useEffect(() => {
     const item = itemRefs.current[selectedIndex];
-    if (item) {
+    if (item && typeof item.scrollIntoView === 'function') {
       item.scrollIntoView({ block: 'nearest' });
     }
   }, [selectedIndex]);
@@ -180,7 +178,6 @@ export const CommandPalette = ({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
           onClick={handleBackdropClick}
-          aria-hidden="true"
         >
           <CommandPaletteWrapper
             ref={wrapperRef}
@@ -217,11 +214,10 @@ export const CommandPalette = ({
               ref={listRef}
               id="command-palette-list"
               role="listbox"
+              aria-label="Command results"
             >
               {filteredItems.length === 0 ? (
-                <CommandPaletteEmpty role="status">
-                  No results found
-                </CommandPaletteEmpty>
+                <CommandPaletteEmpty role="status">No results found</CommandPaletteEmpty>
               ) : (
                 filteredItems.map((item, index) => (
                   <CommandPaletteItem
@@ -238,9 +234,7 @@ export const CommandPalette = ({
                   >
                     <CommandPaletteItemLabel>{item.label}</CommandPaletteItemLabel>
                     {item.shortcut && (
-                      <CommandPaletteItemShortcut>
-                        {item.shortcut}
-                      </CommandPaletteItemShortcut>
+                      <CommandPaletteItemShortcut>{item.shortcut}</CommandPaletteItemShortcut>
                     )}
                   </CommandPaletteItem>
                 ))

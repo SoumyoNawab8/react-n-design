@@ -1,12 +1,23 @@
 'use client';
-import React, { useState } from 'react';
-import {
-  InputGroupWrapper, InputAddon, InputInnerWrapper, InputPrefix, InputSuffix,
-  StyledInput, ClearIcon, PasswordToggleIcon, InputContainer, StyledLabel, ErrorText
-} from './Input.styles';
+import type React from 'react';
+import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import {
+  ClearIcon,
+  ErrorText,
+  InputAddon,
+  InputContainer,
+  InputGroupWrapper,
+  InputInnerWrapper,
+  InputPrefix,
+  InputSuffix,
+  PasswordToggleIcon,
+  StyledInput,
+  StyledLabel,
+} from './Input.styles';
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   label?: string;
   inputSize?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
@@ -101,7 +112,12 @@ export const Input = ({
   };
 
   const inputElement = (
-    <InputInnerWrapper className="input-inner" size={inputSize} hasError={!!error} disabled={disabled}>
+    <InputInnerWrapper
+      className="input-inner"
+      size={inputSize}
+      hasError={!!error}
+      disabled={disabled}
+    >
       {prefix && <InputPrefix>{prefix}</InputPrefix>}
       <StyledInput
         id={inputId}

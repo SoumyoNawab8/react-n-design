@@ -22,7 +22,7 @@
     <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?style=flat-square&color=blue" alt="build status" />
   </a>
   <a href="#testing">
-    <img src="https://img.shields.io/badge/tests-41%20passing-brightgreen.svg?style=flat-square" alt="test coverage" />
+    <img src="https://img.shields.io/badge/tests-251%20passing-brightgreen.svg?style=flat-square" alt="test coverage" />
   </a>
   <a href="#accessibility">
     <img src="https://img.shields.io/badge/a11y-axe--core-blueviolet.svg?style=flat-square" alt="accessibility" />
@@ -31,7 +31,7 @@
     <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&color=yellow" alt="license" />
   </a>
   <a href="#components">
-    <img src="https://img.shields.io/badge/components-40+-blue.svg?style=flat-square" alt="components" />
+    <img src="https://img.shields.io/badge/components-55+-blue.svg?style=flat-square" alt="components" />
   </a>
 </p>
 

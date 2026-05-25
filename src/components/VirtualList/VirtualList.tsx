@@ -1,5 +1,6 @@
 'use client';
-import React, { useRef, useState, useCallback, useEffect, useMemo } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { VirtualListContainer, VirtualListContent, VirtualListItem } from './VirtualList.styles';
 
 export interface StickyHeader {
@@ -56,7 +57,7 @@ export const VirtualList = <T,>({
         top = Math.max(top, prevTop + prev.height);
       }
 
-      const nextSticky = sortedStickies.find(s => s.index > sticky.index);
+      const nextSticky = sortedStickies.find((s) => s.index > sticky.index);
       if (nextSticky) {
         top = Math.min(top, nextSticky.index * itemHeight - sticky.height);
       }
@@ -82,7 +83,7 @@ export const VirtualList = <T,>({
     }
 
     return Array.from(set).sort((a, b) => a - b);
-  }, [startIndex, endIndex, sortedStickies, stickyTops, scrollTop, containerHeight]);
+  }, [startIndex, endIndex, sortedStickies, stickyTops, scrollTop, containerHeight, itemHeight]);
 
   const handleScroll = useCallback(() => {
     const currentScrollTop = containerRef.current?.scrollTop ?? 0;
@@ -107,8 +108,8 @@ export const VirtualList = <T,>({
       aria-label="Virtual list"
     >
       <VirtualListContent $totalHeight={totalHeight}>
-        {visibleIndices.map(index => {
-          const sticky = sortedStickies.find(s => s.index === index);
+        {visibleIndices.map((index) => {
+          const sticky = sortedStickies.find((s) => s.index === index);
           const top = stickyTops.get(index) ?? index * itemHeight;
           const height = sticky ? sticky.height : itemHeight;
 

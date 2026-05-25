@@ -1,9 +1,9 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import axe from 'axe-core';
+import type React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
 import { Card } from './Card';
-import axe from 'axe-core';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import type React from 'react';
 import { StyledParagraph } from './Typography.styles';
 
 export interface ParagraphProps {

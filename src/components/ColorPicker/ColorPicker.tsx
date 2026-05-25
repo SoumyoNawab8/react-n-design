@@ -1,20 +1,21 @@
 'use client';
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  ColorPickerWrapper,
-  ColorPreview,
+  ColorHexInput,
   ColorInputGroup,
   ColorLabel,
-  ColorHexInput,
-  ColorSliderGroup,
-  ColorSliderRow,
-  ColorSliderLabel,
-  ColorSliderTrack,
+  ColorPickerWrapper,
+  ColorPreview,
   ColorSliderFill,
+  ColorSliderGroup,
   ColorSliderInput,
+  ColorSliderLabel,
+  ColorSliderRow,
+  ColorSliderTrack,
   ColorSliderValue,
-  ColorSwatches,
   ColorSwatch,
+  ColorSwatches,
 } from './ColorPicker.styles';
 
 export interface ColorPickerProps {
@@ -65,7 +66,7 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } {
 function rgbToHex(r: number, g: number, b: number): string {
   const toHex = (n: number) => {
     const hex = Math.max(0, Math.min(255, Math.round(n))).toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
+    return hex.length === 1 ? `0${hex}` : hex;
   };
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
@@ -82,7 +83,7 @@ function normalizeHex(hex: string): string {
       .map((c) => c + c)
       .join('');
   }
-  return '#' + clean.toLowerCase();
+  return `#${clean.toLowerCase()}`;
 }
 
 export const ColorPicker = ({
@@ -148,10 +149,7 @@ export const ColorPicker = ({
     updateColor(hexToRgb(hex));
   };
 
-  const handleSwatchKeyDown = (
-    e: React.KeyboardEvent<HTMLButtonElement>,
-    index: number
-  ) => {
+  const handleSwatchKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
     const cols = 5; // approximate number of columns for arrow navigation
     let nextIndex = index;
 
@@ -231,9 +229,7 @@ export const ColorPicker = ({
                   min={0}
                   max={255}
                   value={val}
-                  onChange={(e) =>
-                    handleSliderChange(channel, Number(e.target.value))
-                  }
+                  onChange={(e) => handleSliderChange(channel, Number(e.target.value))}
                   aria-label={`${label} value`}
                 />
               </ColorSliderTrack>

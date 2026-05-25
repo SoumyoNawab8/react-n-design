@@ -1,7 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaCog, FaFileAlt, FaHome, FaUser } from 'react-icons/fa';
 import { Breadcrumbs } from '../src/components/Breadcrumbs';
-import { FaHome, FaCog, FaUser, FaFileAlt } from 'react-icons/fa';
 
 const meta: Meta<typeof Breadcrumbs> = {
   title: 'react-n-design/Breadcrumbs',

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import type React from 'react';
+import { useState } from 'react';
 import { ComboBox } from '../src/components/ComboBox';
 
 const meta: Meta<typeof ComboBox> = {
@@ -110,11 +111,7 @@ export const AsyncSearch: Story = {
     const handleSearch = (query: string) => {
       setLoading(true);
       setTimeout(() => {
-        setOpts(
-          options.filter((o) =>
-            o.label.toLowerCase().includes(query.toLowerCase())
-          )
-        );
+        setOpts(options.filter((o) => o.label.toLowerCase().includes(query.toLowerCase())));
         setLoading(false);
       }, 500);
     };
