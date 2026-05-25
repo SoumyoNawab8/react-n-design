@@ -13,6 +13,9 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (config) => {
+    // GitHub Pages requires base path for project repos
+    config.base = '/react-n-design/';
+    
     // Ensure React is properly configured for Storybook
     config.define = {
       ...config.define,
