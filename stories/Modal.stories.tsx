@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Modal } from '../src/components/Modal';
+import { useState } from 'react';
 import { Button } from '../src/components/Button';
+import { Modal } from '../src/components/Modal';
 
 const meta: Meta<typeof Modal> = {
   title: 'react-n-design/Modal',
@@ -22,7 +22,10 @@ const InteractiveModal = (args) => {
     <>
       <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
       <Modal {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <p>This is the main content area of the modal. You can place any valid React nodes here to build out the modal's body.</p>
+        <p>
+          This is the main content area of the modal. You can place any valid React nodes here to
+          build out the modal's body.
+        </p>
       </Modal>
     </>
   );
@@ -42,7 +45,9 @@ export const LargeWithFooter: StoryObj<typeof Modal> = {
     size: 'large',
     footer: (
       <>
-        <Button variant="secondary" onClick={() => alert('Declined!')}>Decline</Button>
+        <Button variant="secondary" onClick={() => alert('Declined!')}>
+          Decline
+        </Button>
         <Button onClick={() => alert('Accepted!')}>Accept</Button>
       </>
     ),
@@ -54,9 +59,7 @@ export const NoBackdropClick: StoryObj<typeof Modal> = {
   args: {
     title: 'Important Action',
     preventBackdropClick: true,
-    footer: (
-        <Button onClick={() => alert('Confirmed!')}>You Must Click a Button</Button>
-    ),
+    footer: <Button onClick={() => alert('Confirmed!')}>You Must Click a Button</Button>,
   },
 };
 

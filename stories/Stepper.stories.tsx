@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Stepper } from '../src/components/Stepper';
+import { useState } from 'react';
 import { Input } from '../src/components/Input';
-import { Button } from '../src/components/Button';
+import { Stepper } from '../src/components/Stepper';
 
 const meta: Meta<typeof Stepper> = {
   title: 'react-n-design/Stepper',
@@ -74,8 +73,12 @@ export const WithContent: Story = {
             description: 'Review and submit',
             content: (
               <div>
-                <p><strong>Name:</strong> {name || 'Not provided'}</p>
-                <p><strong>Email:</strong> {email || 'Not provided'}</p>
+                <p>
+                  <strong>Name:</strong> {name || 'Not provided'}
+                </p>
+                <p>
+                  <strong>Email:</strong> {email || 'Not provided'}
+                </p>
               </div>
             ),
           },
@@ -93,11 +96,7 @@ export const NonClickable: Story = {
     const [step, setStep] = useState(0);
     return (
       <Stepper
-        steps={[
-          { title: 'Step 1' },
-          { title: 'Step 2' },
-          { title: 'Step 3' },
-        ]}
+        steps={[{ title: 'Step 1' }, { title: 'Step 2' }, { title: 'Step 3' }]}
         activeStep={step}
         onChange={setStep}
         allowClickBack={false}
@@ -109,12 +108,7 @@ export const NonClickable: Story = {
 export const Completed: Story = {
   render: () => (
     <Stepper
-      steps={[
-        { title: 'Cart' },
-        { title: 'Shipping' },
-        { title: 'Payment' },
-        { title: 'Confirm' },
-      ]}
+      steps={[{ title: 'Cart' }, { title: 'Shipping' }, { title: 'Payment' }, { title: 'Confirm' }]}
       activeStep={3}
     />
   ),

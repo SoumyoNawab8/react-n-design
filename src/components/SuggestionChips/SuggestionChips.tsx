@@ -1,17 +1,18 @@
 'use client';
-import React, { useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import type React from 'react';
+import { useCallback } from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import {
-  SuggestionChipsWrapper,
-  SuggestionChipsList,
-  SuggestionChipItem,
-  SuggestionChipTypeIndicator,
-  SuggestionChipText,
   SuggestionChipActions,
   SuggestionChipButton,
+  SuggestionChipItem,
   SuggestionChipsFooter,
   SuggestionChipsFooterButton,
+  SuggestionChipsList,
+  SuggestionChipsWrapper,
+  SuggestionChipText,
+  SuggestionChipTypeIndicator,
 } from './SuggestionChips.styles';
 
 export interface SuggestionChip {
@@ -49,8 +50,7 @@ export const SuggestionChips = ({
   );
 
   const showFooter =
-    suggestions.length > 0 &&
-    (onAcceptAll !== undefined || onRejectAll !== undefined);
+    suggestions.length > 0 && (onAcceptAll !== undefined || onRejectAll !== undefined);
 
   return (
     <SuggestionChipsWrapper role="region" aria-label="Inline suggestions">
@@ -67,15 +67,10 @@ export const SuggestionChips = ({
               transition={{ duration: 0.2 }}
               role="listitem"
               tabIndex={0}
-              onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
-                handleKeyDown(e, chip.id)
-              }
+              onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => handleKeyDown(e, chip.id)}
               aria-label={`Suggestion: ${chip.text}`}
             >
-              <SuggestionChipTypeIndicator
-                chipType={chip.type}
-                aria-hidden="true"
-              />
+              <SuggestionChipTypeIndicator chipType={chip.type} aria-hidden="true" />
               <SuggestionChipText>{chip.text}</SuggestionChipText>
               <SuggestionChipActions>
                 <SuggestionChipButton

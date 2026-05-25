@@ -1,7 +1,13 @@
 'use client';
-import React from 'react';
+import type React from 'react';
 import {
-  StyledCard, CardCover, CardHeader, CardBody, CardFooter, LoadingOverlay, Spinner
+  CardBody,
+  CardCover,
+  CardFooter,
+  CardHeader,
+  LoadingOverlay,
+  Spinner,
+  StyledCard,
 } from './Card.styles';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -18,8 +24,8 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   hoverable?: boolean;
   /**
-  * If `true`, a loading spinner will be displayed over the card content.
-  */
+   * If `true`, a loading spinner will be displayed over the card content.
+   */
   loading?: boolean;
   /**
    * Content to render at the top of the card, often an image.

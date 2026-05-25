@@ -1,12 +1,19 @@
 'use client';
-import React, { useEffect, useRef, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import {
-  ModalBackdrop, ModalContent, ModalWrapper, ModalHeader, ModalTitle,
-  ModalCloseButton, ModalBody, ModalFooter
-} from './Modal.styles';
+import type React from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+import { saveFocus, trapFocus } from '../../utils/focus';
 import { Card } from '../Card';
-import { trapFocus, saveFocus } from '../../utils/focus';
+import {
+  ModalBackdrop,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+  ModalWrapper,
+} from './Modal.styles';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -76,14 +83,17 @@ export const Modal = ({
     }
   }, [isOpen]);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Escape') {
-      onClose();
-    }
-    if (contentRef.current) {
-      trapFocus(contentRef.current, e as unknown as KeyboardEvent);
-    }
-  }, [onClose]);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+      if (contentRef.current) {
+        trapFocus(contentRef.current, e as unknown as KeyboardEvent);
+      }
+    },
+    [onClose]
+  );
 
   const handleBackdropClick = () => {
     if (!preventBackdropClick) {

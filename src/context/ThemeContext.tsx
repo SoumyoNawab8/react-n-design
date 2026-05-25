@@ -1,7 +1,8 @@
 'use client';
-import React, { createContext, useState, useContext, useMemo, useEffect, useCallback } from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '../styles/theme';
+import type React from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { ThemeProvider as StyledThemeProvider, StyleSheetManager } from 'styled-components';
+import { darkTheme, lightTheme } from '../styles/theme';
 import { injectCSSVariables } from '../styles/tokens';
 
 export type ThemeName = 'light' | 'dark' | 'system';
@@ -105,7 +106,11 @@ export const useTheme = () => {
 };
 
 // Create the provider component
-export const ThemeContextProvider: React.FC<{ children: React.ReactNode; defaultDir?: TextDirection }> = ({ children, defaultDir = 'ltr' }) => {
+export const ThemeContextProvider: React.FC<{
+  children: React.ReactNode;
+  defaultDir?: TextDirection;
+  nonce?: string;
+}> = ({ children, defaultDir = 'ltr', nonce }) => {
   const systemTheme = useSystemTheme();
   const reducedMotion = useReducedMotion();
 
@@ -158,7 +163,7 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode; default
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState(prev => {
+    setThemeState((prev) => {
       const resolved = prev === 'system' ? systemTheme : prev;
       const next = resolved === 'light' ? 'dark' : 'light';
       if (typeof window !== 'undefined') {
@@ -197,9 +202,9 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode; default
 
   return (
     <ThemeContext.Provider value={value}>
-      <StyledThemeProvider theme={currentTheme}>
-        {children}
-      </StyledThemeProvider>
+      <StyleSheetManager nonce={nonce}>
+        <StyledThemeProvider theme={currentTheme}>{children}</StyledThemeProvider>
+      </StyleSheetManager>
     </ThemeContext.Provider>
   );
 };

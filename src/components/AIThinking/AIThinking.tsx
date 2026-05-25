@@ -1,18 +1,18 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaBrain } from 'react-icons/fa';
 import {
-  AIThinkingWrapper,
-  AIThinkingHeader,
-  AIThinkingIcon,
-  AIThinkingTitle,
-  AIThinkingToggle,
-  AIThinkingSteps,
-  AIThinkingStep,
-  AIThinkingStepNumber,
-  AIThinkingStepText,
   AIThinkingActiveDot,
   AIThinkingElapsed,
+  AIThinkingHeader,
+  AIThinkingIcon,
+  AIThinkingStep,
+  AIThinkingStepNumber,
+  AIThinkingSteps,
+  AIThinkingStepText,
+  AIThinkingTitle,
+  AIThinkingToggle,
+  AIThinkingWrapper,
 } from './AIThinking.styles';
 
 export interface AIThinkingStep {

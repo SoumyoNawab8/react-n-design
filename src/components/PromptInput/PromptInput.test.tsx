@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axe from 'axe-core';
+import type React from 'react';
+import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
 import { PromptInput } from './PromptInput';
-import axe from 'axe-core';
-import { vi } from 'vitest';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
@@ -27,9 +28,7 @@ const mentionTargets = [
 
 describe('PromptInput', () => {
   it('renders and is accessible', async () => {
-    const { container } = renderWithTheme(
-      <ControlledPromptInput onSend={vi.fn()} />
-    );
+    const { container } = renderWithTheme(<ControlledPromptInput onSend={vi.fn()} />);
     expect(screen.getByRole('textbox')).toBeInTheDocument();
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
@@ -56,18 +55,14 @@ describe('PromptInput', () => {
   });
 
   it('shows slash command menu when / typed', async () => {
-    renderWithTheme(
-      <ControlledPromptInput onSend={vi.fn()} slashCommands={slashCommands} />
-    );
+    renderWithTheme(<ControlledPromptInput onSend={vi.fn()} slashCommands={slashCommands} />);
     const textarea = screen.getByRole('textbox');
     fireEvent.change(textarea, { target: { value: '/co' } });
     expect(await screen.findByText('/code')).toBeInTheDocument();
   });
 
   it('shows mention menu when @ typed', async () => {
-    renderWithTheme(
-      <ControlledPromptInput onSend={vi.fn()} mentionTargets={mentionTargets} />
-    );
+    renderWithTheme(<ControlledPromptInput onSend={vi.fn()} mentionTargets={mentionTargets} />);
     const textarea = screen.getByRole('textbox');
     fireEvent.change(textarea, { target: { value: '@Al' } });
     expect(await screen.findByText('@Alice')).toBeInTheDocument();

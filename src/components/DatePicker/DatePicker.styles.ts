@@ -1,6 +1,6 @@
 'use client';
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 
 export const DatePickerWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !['fullWidth'].includes(prop),
@@ -223,7 +223,15 @@ export const DatePickerGrid = styled.div`
 
 export const DatePickerDay = styled.button.withConfig({
   shouldForwardProp: (prop) =>
-    !['isSelected', 'isRangeStart', 'isRangeEnd', 'isInRange', 'isToday', 'isOtherMonth', 'isDisabled'].includes(prop),
+    ![
+      'isSelected',
+      'isRangeStart',
+      'isRangeEnd',
+      'isInRange',
+      'isToday',
+      'isOtherMonth',
+      'isDisabled',
+    ].includes(prop),
 })<{
   isSelected?: boolean;
   isRangeStart?: boolean;

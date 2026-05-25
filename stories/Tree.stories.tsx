@@ -1,6 +1,5 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tree, TreeProps } from '../src/components/Tree';
+import { Tree, type TreeProps } from '../src/components/Tree';
 
 const meta: Meta<typeof Tree> = {
   title: 'react-n-design/Tree',

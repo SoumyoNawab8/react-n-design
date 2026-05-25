@@ -1,6 +1,6 @@
 'use client';
-import React from 'react';
-import { StyledTag, TagIcon, CloseIcon } from './Tag.styles';
+import type React from 'react';
+import { CloseIcon, StyledTag, TagIcon } from './Tag.styles';
 
 export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;

@@ -1,19 +1,20 @@
 'use client';
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FaChevronDown, FaTimes } from 'react-icons/fa';
 import {
-  ComboBoxWrapper,
-  ComboBoxInput,
-  ComboBoxDropdown,
-  ComboBoxOption,
-  ComboBoxEmpty,
-  ComboBoxSpinner,
-  ComboBoxClearButton,
   ComboBoxChevron,
+  ComboBoxClearButton,
+  ComboBoxDropdown,
+  ComboBoxEmpty,
+  ComboBoxInput,
   ComboBoxInputGroup,
-  ComboBoxTags,
+  ComboBoxOption,
+  ComboBoxSpinner,
   ComboBoxTag,
+  ComboBoxTags,
+  ComboBoxWrapper,
 } from './ComboBox.styles';
 
 export interface ComboBoxOptionType {
@@ -99,7 +100,11 @@ export const ComboBox = ({
       inputValue.trim() &&
       !options.some((o) => o.value === inputValue.trim() || o.label === inputValue.trim())
     ) {
-      filtered.push({ value: inputValue.trim(), label: createLabel(inputValue.trim()), disabled: false });
+      filtered.push({
+        value: inputValue.trim(),
+        label: createLabel(inputValue.trim()),
+        disabled: false,
+      });
     }
     return filtered;
   }, [options, inputValue, filterOption, allowCreate, createLabel]);
@@ -108,7 +113,7 @@ export const ComboBox = ({
 
   useEffect(() => {
     setHighlightedIndex(0);
-  }, [filteredOptions.length]);
+  }, []);
 
   const isSelected = useCallback(
     (option: ComboBoxOptionType) => {
@@ -186,9 +191,7 @@ export const ComboBox = ({
         if (!isOpen) {
           setIsOpen(true);
         } else {
-          setHighlightedIndex(
-            (prev) => (prev - 1 + enabledOptions.length) % enabledOptions.length
-          );
+          setHighlightedIndex((prev) => (prev - 1 + enabledOptions.length) % enabledOptions.length);
         }
         break;
       case 'Escape':
@@ -213,7 +216,12 @@ export const ComboBox = ({
         }
         break;
       case 'Backspace':
-        if (mode === 'multiple' && !inputValue && Array.isArray(currentValue) && currentValue.length > 0) {
+        if (
+          mode === 'multiple' &&
+          !inputValue &&
+          Array.isArray(currentValue) &&
+          currentValue.length > 0
+        ) {
           const newValue = currentValue.slice(0, -1);
           if (!isControlled) setInternalValue(newValue);
           onChange?.(newValue);
@@ -335,11 +343,10 @@ export const ComboBox = ({
             {filteredOptions.length === 0 ? (
               <ComboBoxEmpty>No results found</ComboBoxEmpty>
             ) : (
-              filteredOptions.map((option, index) => {
+              filteredOptions.map((option, _index) => {
                 const optionId = `${listboxId}-option-${option.value}`;
                 const active = isSelected(option);
-                const highlighted =
-                  enabledOptions[highlightedIndex]?.value === option.value;
+                const highlighted = enabledOptions[highlightedIndex]?.value === option.value;
                 return (
                   <ComboBoxOption
                     key={option.value}
@@ -352,9 +359,7 @@ export const ComboBox = ({
                     onClick={() => handleSelect(option)}
                     onMouseEnter={() => {
                       if (!option.disabled) {
-                        const idx = enabledOptions.findIndex(
-                          (o) => o.value === option.value
-                        );
+                        const idx = enabledOptions.findIndex((o) => o.value === option.value);
                         if (idx >= 0) setHighlightedIndex(idx);
                       }
                     }}
@@ -372,7 +377,11 @@ export const ComboBox = ({
           </ComboBoxDropdown>
         )}
       </AnimatePresence>
-      {error && <span id={errorId} className="combobox-error">{error}</span>}
+      {error && (
+        <span id={errorId} className="combobox-error">
+          {error}
+        </span>
+      )}
     </ComboBoxWrapper>
   );
 };

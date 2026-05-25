@@ -1,15 +1,16 @@
 'use client';
-import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  SliderWrapper,
-  SliderLabel,
-  SliderValue,
-  SliderTrack,
-  SliderFill,
-  SliderThumb,
-  SliderMarks,
-  SliderMark,
   SliderError,
+  SliderFill,
+  SliderLabel,
+  SliderMark,
+  SliderMarks,
+  SliderThumb,
+  SliderTrack,
+  SliderValue,
+  SliderWrapper,
 } from './Slider.styles';
 
 export interface SliderProps {
@@ -58,7 +59,7 @@ export const Slider = ({
   const percent = useMemo(() => {
     const clamped = clamp(currentValue);
     return ((clamped - min) / (max - min)) * 100;
-  }, [currentValue, min, max]);
+  }, [currentValue, min, max, clamp]);
 
   const getValueFromPosition = useCallback(
     (clientX: number, clientY: number) => {
@@ -73,7 +74,7 @@ export const Slider = ({
       const raw = min + ratio * (max - min);
       return clamp(snap(raw));
     },
-    [vertical, min, max, currentValue]
+    [vertical, min, max, currentValue, clamp, snap]
   );
 
   const updateValue = useCallback(
@@ -82,7 +83,7 @@ export const Slider = ({
       if (!isControlled) setInternalValue(clamped);
       onChange?.(clamped);
     },
-    [isControlled, onChange]
+    [isControlled, onChange, clamp]
   );
 
   const handleMouseDown = useCallback(
@@ -131,7 +132,7 @@ export const Slider = ({
       isDragging.current = false;
       onChangeComplete?.(clamp(currentValue));
     }
-  }, [currentValue, onChangeComplete]);
+  }, [currentValue, onChangeComplete, clamp]);
 
   useEffect(() => {
     if (!isDragging.current) return;

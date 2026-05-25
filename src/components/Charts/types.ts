@@ -16,11 +16,7 @@ export interface ChartProps {
 
 export const PADDING = { top: 20, right: 20, bottom: 40, left: 48 };
 
-export function useChartScales(
-  data: ChartDataPoint[],
-  width: number,
-  height: number
-) {
+export function useChartScales(data: ChartDataPoint[], width: number, height: number) {
   const chartWidth = Math.max(0, width - PADDING.left - PADDING.right);
   const chartHeight = Math.max(0, height - PADDING.top - PADDING.bottom);
 
@@ -35,12 +31,10 @@ export function useChartScales(
 
   const range = max - min || 1;
 
-  const yScale = (v: number) =>
-    PADDING.top + chartHeight - ((v - min) / range) * chartHeight;
+  const yScale = (v: number) => PADDING.top + chartHeight - ((v - min) / range) * chartHeight;
 
   const xScale = (i: number) =>
-    PADDING.left +
-    (data.length > 1 ? (i / (data.length - 1)) * chartWidth : chartWidth / 2);
+    PADDING.left + (data.length > 1 ? (i / (data.length - 1)) * chartWidth : chartWidth / 2);
 
   const xScaleBar = (i: number) => {
     const slotWidth = chartWidth / data.length;

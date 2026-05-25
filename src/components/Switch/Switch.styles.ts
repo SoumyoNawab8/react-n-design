@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css, keyframes } from 'styled-components';
 
 const sizes = {
   small: { wrapperWidth: '40px', wrapperHeight: '22px', knobSize: '16px' },
@@ -42,7 +42,9 @@ export const SwitchWrapper = styled.div.withConfig({
     background-color: ${({ theme }) => theme.colors.primary};
   }
   
-  ${({ disabled }) => disabled && css`
+  ${({ disabled }) =>
+    disabled &&
+    css`
     opacity: 0.6;
   `}
 `;

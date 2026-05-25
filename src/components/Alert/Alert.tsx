@@ -1,11 +1,21 @@
 'use client';
-import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useState } from 'react';
 import {
-  FaCheckCircle, FaInfoCircle, FaExclamationTriangle, FaTimesCircle, FaTimes
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaInfoCircle,
+  FaTimes,
+  FaTimesCircle,
 } from 'react-icons/fa';
 import {
-  AlertWrapper, AlertIcon, AlertContent, AlertMessage, AlertDescription, CloseIcon
+  AlertContent,
+  AlertDescription,
+  AlertIcon,
+  AlertMessage,
+  AlertWrapper,
+  CloseIcon,
 } from './Alert.styles';
 
 export interface AlertProps {

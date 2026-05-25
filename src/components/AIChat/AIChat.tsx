@@ -1,26 +1,41 @@
 'use client';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { FaPaperPlane, FaCopy, FaCheck, FaUser, FaRobot } from 'react-icons/fa';
+import DOMPurify from 'dompurify';
 import { AnimatePresence, motion } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { FaCheck, FaCopy, FaPaperPlane, FaRobot, FaUser } from 'react-icons/fa';
+import { Markdown } from '../Markdown';
 import {
-  AIChatWrapper,
-  AIChatMessages,
-  AIChatMessageRow,
-  AIChatMessageBubble,
-  AIChatMessageMeta,
-  AIChatMessageContent,
-  AIChatMessageActions,
-  AIChatMessageActionButton,
+  AIChatEmptyState,
+  AIChatInput,
   AIChatInputArea,
   AIChatInputWrapper,
-  AIChatInput,
-  AIChatSendButton,
-  AIChatTypingIndicator,
-  AIChatTypingDot,
-  AIChatEmptyState,
+  AIChatMessageActionButton,
+  AIChatMessageActions,
+  AIChatMessageBubble,
+  AIChatMessageContent,
+  AIChatMessageMeta,
+  AIChatMessageRow,
+  AIChatMessages,
   AIChatScrollAnchor,
+  AIChatSendButton,
+  AIChatTypingDot,
+  AIChatTypingIndicator,
+  AIChatWrapper,
 } from './AIChat.styles';
-import { Markdown } from '../Markdown';
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function sanitizeUserContent(text: string): string {
+  if (typeof window === 'undefined') return escapeHtml(text);
+  return DOMPurify.sanitize(text);
+}
 
 export interface AIChatMessage {
   role: 'user' | 'assistant';
@@ -32,6 +47,7 @@ export interface AIChatProps {
   messages: AIChatMessage[];
   onSend: (message: string) => void;
   isLoading?: boolean;
+  isStreaming?: boolean;
   placeholder?: string;
 }
 
@@ -43,8 +59,10 @@ export const AIChat = ({
   messages,
   onSend,
   isLoading = false,
+  isStreaming,
   placeholder = 'Type a message...',
 }: AIChatProps) => {
+  const streaming = isStreaming ?? isLoading;
   const [inputValue, setInputValue] = useState('');
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -56,15 +74,15 @@ export const AIChat = ({
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
     }
-  }, [messages, isLoading]);
+  }, [messages]);
 
   // Focus input when messages are added
   useEffect(() => {
-    if (messages.length > lastMessageCount.current && !isLoading) {
+    if (messages.length > lastMessageCount.current && !streaming) {
       inputRef.current?.focus();
     }
     lastMessageCount.current = messages.length;
-  }, [messages.length, isLoading]);
+  }, [messages.length, streaming]);
 
   const handleSend = useCallback(() => {
     const trimmed = inputValue.trim();
@@ -91,14 +109,9 @@ export const AIChat = ({
   }, []);
 
   return (
-    <AIChatWrapper>
-      <AIChatMessages
-        ref={messagesRef}
-        role="log"
-        aria-live="polite"
-        aria-label="Chat messages"
-      >
-        {messages.length === 0 && !isLoading && (
+    <AIChatWrapper role="region" aria-label="AI Chat">
+      <AIChatMessages ref={messagesRef} role="log" aria-live="polite" aria-label="Chat messages">
+        {messages.length === 0 && !streaming && (
           <AIChatEmptyState>
             <FaRobot aria-hidden="true" />
             <p>How can I help you today?</p>
@@ -117,7 +130,6 @@ export const AIChat = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25 }}
-                role="listitem"
                 isAssistant={isAssistant}
               >
                 <AIChatMessageBubble isAssistant={isAssistant}>
@@ -129,7 +141,9 @@ export const AIChat = ({
                     {isAssistant ? (
                       <Markdown>{msg.content}</Markdown>
                     ) : (
-                      msg.content
+                      <span
+                        dangerouslySetInnerHTML={{ __html: sanitizeUserContent(msg.content) }}
+                      />
                     )}
                   </AIChatMessageContent>
                   {isAssistant && (
@@ -150,7 +164,7 @@ export const AIChat = ({
           })}
         </AnimatePresence>
 
-        {isLoading && (
+        {streaming && (
           <AIChatMessageRow isAssistant={true} role="status">
             <AIChatMessageBubble isAssistant={true}>
               <AIChatMessageMeta isAssistant={true}>
@@ -179,11 +193,11 @@ export const AIChat = ({
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
             aria-label="Message input"
-            disabled={isLoading}
+            disabled={streaming}
           />
           <AIChatSendButton
             onClick={handleSend}
-            disabled={!inputValue.trim() || isLoading}
+            disabled={!inputValue.trim() || streaming}
             aria-label="Send message"
           >
             <FaPaperPlane />

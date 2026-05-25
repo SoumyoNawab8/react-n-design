@@ -1,6 +1,6 @@
 'use client';
 
-import { ProgressBarWrapper, ProgressBarFill, ProgressLabel } from './ProgressBar.styles';
+import { ProgressBarFill, ProgressBarWrapper, ProgressLabel } from './ProgressBar.styles';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   value: number;
@@ -51,7 +51,9 @@ export const ProgressBar = ({
         variant={variant}
         isIndeterminate={indeterminate}
       />
-      {showLabel && !indeterminate && <ProgressLabel>{`${Math.round(clampedValue)}%`}</ProgressLabel>}
+      {showLabel && !indeterminate && (
+        <ProgressLabel>{`${Math.round(clampedValue)}%`}</ProgressLabel>
+      )}
     </ProgressBarWrapper>
   );
 };

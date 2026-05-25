@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import type React from 'react';
 import { Stack } from '../src/components/Stack';
 
 const meta: Meta<typeof Stack> = {
@@ -51,11 +51,7 @@ export const Column: Story = {
     gap: 16,
     align: 'start',
     justify: 'start',
-    children: [
-      <Box key="1">1</Box>,
-      <Box key="2">2</Box>,
-      <Box key="3">3</Box>,
-    ],
+    children: [<Box key="1">1</Box>, <Box key="2">2</Box>, <Box key="3">3</Box>],
   },
 };
 
@@ -65,11 +61,7 @@ export const Row: Story = {
     gap: 16,
     align: 'center',
     justify: 'start',
-    children: [
-      <Box key="1">1</Box>,
-      <Box key="2">2</Box>,
-      <Box key="3">3</Box>,
-    ],
+    children: [<Box key="1">1</Box>, <Box key="2">2</Box>, <Box key="3">3</Box>],
   },
 };
 
@@ -79,11 +71,7 @@ export const JustifyBetween: Story = {
     gap: 16,
     align: 'center',
     justify: 'between',
-    children: [
-      <Box key="1">1</Box>,
-      <Box key="2">2</Box>,
-      <Box key="3">3</Box>,
-    ],
+    children: [<Box key="1">1</Box>, <Box key="2">2</Box>, <Box key="3">3</Box>],
   },
 };
 
@@ -94,8 +82,6 @@ export const Wrapped: Story = {
     align: 'center',
     justify: 'start',
     wrap: true,
-    children: Array.from({ length: 12 }).map((_, i) => (
-      <Box key={i}>{i + 1}</Box>
-    )),
+    children: Array.from({ length: 12 }).map((_, i) => <Box key={i}>{i + 1}</Box>),
   },
 };

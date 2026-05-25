@@ -1,11 +1,20 @@
 'use client';
-import React, { useState, useMemo } from 'react';
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
-import {
-  TableWrapper, StyledTable, TableHeader, TableHeaderCell, TableRow, TableCell,
-  SortIcon, PaginationWrapper, LoadingOverlay, Spinner
-} from './Table.styles';
+import type React from 'react';
+import { useMemo, useState } from 'react';
+import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 import { Button } from '../Button';
+import {
+  LoadingOverlay,
+  PaginationWrapper,
+  SortIcon,
+  Spinner,
+  StyledTable,
+  TableCell,
+  TableHeader,
+  TableHeaderCell,
+  TableRow,
+  TableWrapper,
+} from './Table.styles';
 
 interface Column<T> {
   key: string;
@@ -46,7 +55,10 @@ export const Table = <T extends object>({
   loading = false,
   pagination = { pageSize: 10, defaultCurrent: 1 },
 }: TableProps<T>) => {
-  const [sortConfig, setSortConfig] = useState<{ key: string; order: SortOrder }>({ key: '', order: null });
+  const [sortConfig, setSortConfig] = useState<{ key: string; order: SortOrder }>({
+    key: '',
+    order: null,
+  });
   const [currentPage, setCurrentPage] = useState(pagination ? pagination.defaultCurrent || 1 : 1);
 
   const handleSort = (key: string, sorter?: (a: T, b: T) => number) => {
@@ -56,12 +68,12 @@ export const Table = <T extends object>({
   };
 
   const processedData = useMemo(() => {
-    let sortedData = [...dataSource];
-    const sorterColumn = columns.find(c => c.key === sortConfig.key);
+    const sortedData = [...dataSource];
+    const sorterColumn = columns.find((c) => c.key === sortConfig.key);
 
     if (sortConfig.order && sorterColumn?.sorter) {
       sortedData.sort((a, b) => {
-        const result = sorterColumn.sorter!(a, b);
+        const result = sorterColumn.sorter?.(a, b);
         return sortConfig.order === 'ascend' ? result : -result;
       });
     }
@@ -87,7 +99,7 @@ export const Table = <T extends object>({
       <StyledTable>
         <TableHeader>
           <tr>
-            {columns.map(col => {
+            {columns.map((col) => {
               const isSorted = sortConfig.key === col.key;
               const ariaSort = col.sorter
                 ? isSorted
@@ -106,10 +118,7 @@ export const Table = <T extends object>({
                 >
                   {col.title}
                   {col.sorter && (
-                    <SortIcon
-                      isActive={isSorted}
-                      isAscending={sortConfig.order === 'ascend'}
-                    >
+                    <SortIcon isActive={isSorted} isAscending={sortConfig.order === 'ascend'}>
                       <FaArrowUp />
                       <FaArrowDown />
                     </SortIcon>
@@ -122,7 +131,7 @@ export const Table = <T extends object>({
         <tbody>
           {processedData.map((record, index) => (
             <TableRow key={index}>
-              {columns.map(col => (
+              {columns.map((col) => (
                 <TableCell key={col.key}>
                   {col.render
                     ? col.render(record[col.dataIndex], record)
@@ -137,16 +146,18 @@ export const Table = <T extends object>({
         <PaginationWrapper role="navigation" aria-label="Table pagination">
           <Button
             size="small"
-            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
             aria-label="Previous page"
           >
             Previous
           </Button>
-          <span>Page {currentPage} of {totalPages}</span>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
           <Button
             size="small"
-            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
             aria-label="Next page"
           >

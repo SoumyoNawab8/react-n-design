@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
-import { TooltipProps } from './Tooltip';
+import styled, { css } from 'styled-components';
+import type { TooltipProps } from './Tooltip';
 
 const getPositionStyles = (position: TooltipProps['position'], theme: any) => {
   const bg = theme.colors.shadowDark;
@@ -35,7 +35,6 @@ const getPositionStyles = (position: TooltipProps['position'], theme: any) => {
           border-color: transparent ${bg} transparent transparent;
         }
       `;
-    case 'top':
     default:
       return css`
         bottom: calc(100% + 8px);
@@ -48,7 +47,6 @@ const getPositionStyles = (position: TooltipProps['position'], theme: any) => {
       `;
   }
 };
-
 
 export const TooltipWrapper = styled.div`
   position: relative;

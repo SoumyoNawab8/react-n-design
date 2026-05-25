@@ -30,7 +30,6 @@ export const StyledSkeleton = styled.div.withConfig({
           /* 3. Use theme-aware border-radius */
           border-radius: ${theme.borderRadius};
         `;
-      case 'text':
       default:
         return css`
           height: 1em; /* Default height based on font size */

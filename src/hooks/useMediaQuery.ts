@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * A hook that tracks whether a CSS media query currently matches.

@@ -1,25 +1,27 @@
 'use client';
-import React, { useMemo } from 'react';
+import DOMPurify from 'dompurify';
+import type React from 'react';
+import { useMemo } from 'react';
 import {
-  MarkdownRoot,
-  MarkdownHeading,
-  MarkdownParagraph,
-  MarkdownLink,
+  MarkdownBlockquote,
   MarkdownCode,
   MarkdownCodeBlock,
-  MarkdownBlockquote,
-  MarkdownList,
-  MarkdownOrderedList,
-  MarkdownListItem,
-  MarkdownHr,
-  MarkdownStrong,
   MarkdownEm,
+  MarkdownHeading,
+  MarkdownHr,
+  MarkdownLink,
+  MarkdownList,
+  MarkdownListItem,
+  MarkdownOrderedList,
+  MarkdownParagraph,
+  MarkdownRoot,
+  MarkdownStrong,
   MarkdownTable,
-  MarkdownTableHead,
   MarkdownTableBody,
-  MarkdownTableRow,
   MarkdownTableCell,
+  MarkdownTableHead,
   MarkdownTableHeaderCell,
+  MarkdownTableRow,
 } from './Markdown.styles';
 
 export interface MarkdownProps {
@@ -37,6 +39,24 @@ interface ParsedNode {
   items?: string[];
   rows?: string[][];
   header?: string[];
+}
+
+const purify = (() => {
+  if (typeof window === 'undefined') {
+    return { sanitize: (text: string) => text } as unknown as typeof DOMPurify;
+  }
+  const dp = DOMPurify(window);
+  dp.addHook('afterSanitizeAttributes', (node) => {
+    if (node.tagName === 'A') {
+      node.setAttribute('target', '_blank');
+      node.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+  return dp;
+})();
+
+function _sanitizeMarkdown(text: string): string {
+  return purify.sanitize(text, { ALLOW_DATA_ATTR: false });
 }
 
 function escapeHtml(text: string): string {
@@ -134,13 +154,26 @@ function parseMarkdown(md: string): ParsedNode[] {
     }
 
     // Table
-    if (line.includes('|') && i + 1 < lines.length && lines[i + 1].includes('|') && /^\s*\|?\s*:?-+:?\s*\|/.test(lines[i + 1])) {
+    if (
+      line.includes('|') &&
+      i + 1 < lines.length &&
+      lines[i + 1].includes('|') &&
+      /^\s*\|?\s*:?-+:?\s*\|/.test(lines[i + 1])
+    ) {
       flushParagraph(paragraphBuffer);
-      const header = line.split('|').map((c) => c.trim()).filter(Boolean);
+      const header = line
+        .split('|')
+        .map((c) => c.trim())
+        .filter(Boolean);
       i += 2; // skip header and separator
       const rows: string[][] = [];
       while (i < lines.length && lines[i].includes('|')) {
-        rows.push(lines[i].split('|').map((c) => c.trim()).filter(Boolean));
+        rows.push(
+          lines[i]
+            .split('|')
+            .map((c) => c.trim())
+            .filter(Boolean)
+        );
         i++;
       }
       nodes.push({ type: 'table', header, rows });
@@ -207,8 +240,7 @@ function renderInline(text: string): React.ReactNode {
     // Bold
     const bmatch = remaining.match(/^(\*\*|__)(.+?)\1/);
     if (bmatch) {
-      parts.push(
-        <MarkdownStrong key={key++}>{renderInline(bmatch[2])}</MarkdownStrong>);
+      parts.push(<MarkdownStrong key={key++}>{renderInline(bmatch[2])}</MarkdownStrong>);
       remaining = remaining.slice(bmatch[0].length);
       continue;
     }
@@ -224,7 +256,11 @@ function renderInline(text: string): React.ReactNode {
     // Strikethrough
     const smatch = remaining.match(/^~~(.+?)~~/);
     if (smatch) {
-      parts.push(<s key={key++} style={{ textDecoration: 'line-through' }}>{renderInline(smatch[1])}</s>);
+      parts.push(
+        <s key={key++} style={{ textDecoration: 'line-through' }}>
+          {renderInline(smatch[1])}
+        </s>
+      );
       remaining = remaining.slice(smatch[0].length);
       continue;
     }
@@ -251,7 +287,11 @@ export const Markdown = ({ children, components = {} }: MarkdownProps) => {
     switch (node.type) {
       case 'heading': {
         const H = components[`h${node.level}`] || MarkdownHeading;
-        return <H key={key} as={`h${node.level}` as any}>{renderInline(node.content || '')}</H>;
+        return (
+          <H key={key} as={`h${node.level}` as any}>
+            {renderInline(node.content || '')}
+          </H>
+        );
       }
       case 'paragraph': {
         const P = components.p || MarkdownParagraph;

@@ -12,13 +12,13 @@ vi.mock('framer-motion', async () => {
     AnimatePresence: ({ children }: { children: React.ReactNode }) => React.createElement(React.Fragment, null, children),
     motion: new Proxy({}, {
       get: (_, tag: string) => {
-        return (props: any) => {
+        return React.forwardRef((props: any, ref: any) => {
           const { children, ...rest } = props;
           const validProps = Object.fromEntries(
             Object.entries(rest).filter(([key]) => !['initial', 'animate', 'exit', 'transition', 'layoutId', 'whileTap'].includes(key))
           );
-          return React.createElement(tag === 'default' ? 'div' : tag, validProps, children);
-        };
+          return React.createElement(tag === 'default' ? 'div' : tag, { ...validProps, ref }, children);
+        });
       },
     }),
   };

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axe from 'axe-core';
+import type React from 'react';
+import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
 import { Input } from './Input';
-import axe from 'axe-core';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
@@ -46,7 +47,10 @@ describe('Input', () => {
 
   it('renders prefix and suffix', () => {
     renderWithTheme(
-      <Input prefix={<span data-testid="prefix">$</span>} suffix={<span data-testid="suffix">.00</span>} />
+      <Input
+        prefix={<span data-testid="prefix">$</span>}
+        suffix={<span data-testid="suffix">.00</span>}
+      />
     );
     expect(screen.getByTestId('prefix')).toBeInTheDocument();
     expect(screen.getByTestId('suffix')).toBeInTheDocument();

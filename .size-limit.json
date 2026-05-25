@@ -1,0 +1,12 @@
+[
+  {
+    "path": "dist/esm/index.js",
+    "limit": "150 KB",
+    "name": "ESM Bundle"
+  },
+  {
+    "path": "dist/cjs/index.js",
+    "limit": "150 KB",
+    "name": "CJS Bundle"
+  }
+]

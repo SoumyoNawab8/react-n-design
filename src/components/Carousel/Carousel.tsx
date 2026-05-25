@@ -1,15 +1,14 @@
 'use client';
-import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import {
-  CarouselWrapper,
-  CarouselTrack,
-  CarouselSlide,
-  CarouselNavButton,
-  CarouselDots,
-  CarouselDot,
   CarouselCounter,
+  CarouselDot,
+  CarouselDots,
+  CarouselNavButton,
+  CarouselSlide,
+  CarouselWrapper,
 } from './Carousel.styles';
 
 export interface CarouselProps {

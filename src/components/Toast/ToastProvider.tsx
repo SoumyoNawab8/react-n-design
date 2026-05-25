@@ -1,8 +1,9 @@
 'use client';
-import React, { createContext, useContext, useReducer, useCallback, useMemo } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Toast, ToastProps } from './Toast';
-import { ToastContainer, ToastPosition } from './Toast.styles';
+import type React from 'react';
+import { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
+import { Toast, type ToastProps } from './Toast';
+import { ToastContainer, type ToastPosition } from './Toast.styles';
 
 export interface ToastOptions {
   id?: string;
@@ -79,9 +80,7 @@ export const ToastProvider = ({
   }, []);
 
   const visibleToasts = state.toasts.slice(-maxToasts);
-  const orderedToasts = position.startsWith('top')
-    ? [...visibleToasts].reverse()
-    : visibleToasts;
+  const orderedToasts = position.startsWith('top') ? [...visibleToasts].reverse() : visibleToasts;
 
   const value = useMemo(
     () => ({ addToast, removeToast, dismissAll }),

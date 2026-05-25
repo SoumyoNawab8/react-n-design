@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 function fuzzyMatch(text: string, query: string): boolean {
   if (!query) return true;

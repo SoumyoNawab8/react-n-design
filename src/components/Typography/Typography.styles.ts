@@ -14,8 +14,7 @@ const weights = {
 };
 
 export const StyledText = styled.span.withConfig({
-  shouldForwardProp: (prop) =>
-    !['size', 'weight', 'color', 'truncate', 'as'].includes(prop),
+  shouldForwardProp: (prop) => !['size', 'weight', 'color', 'truncate', 'as'].includes(prop),
 })<{
   size: 'small' | 'medium' | 'large';
   weight: 'normal' | 'medium' | 'bold';

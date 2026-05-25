@@ -35,7 +35,6 @@ export const AvatarWrapper = styled.div.withConfig({
         return css`border-radius: ${theme.borderRadius};`;
       case 'rounded':
         return css`border-radius: 20%;`;
-      case 'circle':
       default:
         return css`border-radius: 50%;`;
     }

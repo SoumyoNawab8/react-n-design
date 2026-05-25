@@ -1,5 +1,5 @@
 'use client';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const BreadcrumbsNav = styled.nav`
   display: flex;

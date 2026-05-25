@@ -1,12 +1,12 @@
 'use client';
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import {
-  AvatarWrapper,
-  AvatarImage,
   AvatarFallback,
-  AvatarGroupWrapper,
   AvatarGroupOverflow,
+  AvatarGroupWrapper,
+  AvatarImage,
+  AvatarWrapper,
 } from './Avatar.styles';
 
 export interface AvatarProps {
@@ -38,20 +38,9 @@ export const Avatar = ({
 
   return (
     <AvatarWrapper size={size} shape={shape} role="img" aria-label={alt || initials || 'Avatar'}>
-      {showImage && (
-        <AvatarImage
-          src={src}
-          alt={alt}
-          onError={handleError}
-          loading="lazy"
-        />
-      )}
-      {showInitials && (
-        <AvatarFallback aria-hidden="true">{initials}</AvatarFallback>
-      )}
-      {showIcon && (
-        <AvatarFallback aria-hidden="true">{icon || <FaUser />}</AvatarFallback>
-      )}
+      {showImage && <AvatarImage src={src} alt={alt} onError={handleError} loading="lazy" />}
+      {showInitials && <AvatarFallback aria-hidden="true">{initials}</AvatarFallback>}
+      {showIcon && <AvatarFallback aria-hidden="true">{icon || <FaUser />}</AvatarFallback>}
     </AvatarWrapper>
   );
 };
@@ -62,11 +51,7 @@ export interface AvatarGroupProps {
   size?: 'small' | 'medium' | 'large' | 'xlarge';
 }
 
-export const AvatarGroup = ({
-  children,
-  max,
-  size = 'medium',
-}: AvatarGroupProps) => {
+export const AvatarGroup = ({ children, max, size = 'medium' }: AvatarGroupProps) => {
   const allChildren = React.Children.toArray(children);
   const visibleChildren = max ? allChildren.slice(0, max) : allChildren;
   const overflowCount = max ? allChildren.length - max : 0;

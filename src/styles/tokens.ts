@@ -67,7 +67,10 @@ export function injectCSSVariables(theme: 'light' | 'dark'): void {
     root.style.setProperty('--n-color-knob-bg', '#f0f2f5');
     root.style.setProperty('--n-color-card-bg', '#f0f2f5');
     root.style.setProperty('--n-shadow-soft', '7px 7px 14px #bec3c9, -7px -7px 14px #ffffff');
-    root.style.setProperty('--n-shadow-soft-inset', 'inset 7px 7px 14px #bec3c9, inset -7px -7px 14px #ffffff');
+    root.style.setProperty(
+      '--n-shadow-soft-inset',
+      'inset 7px 7px 14px #bec3c9, inset -7px -7px 14px #ffffff'
+    );
   } else {
     root.style.setProperty('--n-color-primary', '#7b6efc');
     root.style.setProperty('--n-color-background', '#2c2f34');
@@ -81,7 +84,10 @@ export function injectCSSVariables(theme: 'light' | 'dark'): void {
     root.style.setProperty('--n-color-knob-bg', '#3c4047');
     root.style.setProperty('--n-color-card-bg', '#25282c');
     root.style.setProperty('--n-shadow-soft', '7px 7px 14px #25282c, -7px -7px 14px #33363c');
-    root.style.setProperty('--n-shadow-soft-inset', 'inset 7px 7px 14px #25282c, inset -7px -7px 14px #33363c');
+    root.style.setProperty(
+      '--n-shadow-soft-inset',
+      'inset 7px 7px 14px #25282c, inset -7px -7px 14px #33363c'
+    );
   }
 }
 

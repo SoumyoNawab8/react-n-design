@@ -1,7 +1,7 @@
 'use client';
-import React from 'react';
-import { FormContext, FormContextValue } from './FormContext';
+import type React from 'react';
 import { StyledForm } from './Form.styles';
+import { FormContext, type FormContextValue } from './FormContext';
 
 export interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
   children: React.ReactNode;

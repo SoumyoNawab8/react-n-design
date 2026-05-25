@@ -41,7 +41,6 @@ export const BadgeWrapper = styled.span.withConfig({
         return css`background: #DC3545; color: #fff;`;
       case 'secondary':
         return css`background: ${({ theme }) => (theme as any).colors.hoverBg}; color: ${({ theme }) => theme.colors.text};`;
-      case 'primary':
       default:
         return css`background: ${({ theme }) => theme.colors.primary}; color: #fff;`;
     }

@@ -1,8 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Card } from '../src/components/Card';
 import { Button } from '../src/components/Button';
-import { Tag } from '../src/components/Tag';
+import { Card } from '../src/components/Card';
 
 const meta: Meta<typeof Card> = {
   title: 'react-n-design/Card',

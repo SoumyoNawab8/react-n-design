@@ -108,7 +108,9 @@ export const InputInnerWrapper = styled.div.withConfig({
   gap: 8px;
   box-sizing: border-box;
 
-  ${({ hasError, theme }) => hasError && css`
+  ${({ hasError, theme }) =>
+    hasError &&
+    css`
     box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px #e53e3e90 !important;
   `}
   

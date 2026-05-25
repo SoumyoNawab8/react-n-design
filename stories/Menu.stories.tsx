@@ -1,7 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaCopy, FaEdit, FaShare, FaTrash } from 'react-icons/fa';
 import { Menu } from '../src/components/Menu';
-import { FaEdit, FaTrash, FaCopy, FaShare } from 'react-icons/fa';
 
 const meta: Meta<typeof Menu> = {
   title: 'react-n-design/Menu',
@@ -19,8 +18,19 @@ const sampleItems = [
   { key: 'edit', label: 'Edit', icon: <FaEdit size={14} />, onClick: () => console.log('edit') },
   { key: 'copy', label: 'Copy', icon: <FaCopy size={14} />, onClick: () => console.log('copy') },
   { type: 'divider' as const },
-  { key: 'share', label: 'Share', icon: <FaShare size={14} />, onClick: () => console.log('share') },
-  { key: 'delete', label: 'Delete', icon: <FaTrash size={14} />, danger: true, onClick: () => console.log('delete') },
+  {
+    key: 'share',
+    label: 'Share',
+    icon: <FaShare size={14} />,
+    onClick: () => console.log('share'),
+  },
+  {
+    key: 'delete',
+    label: 'Delete',
+    icon: <FaTrash size={14} />,
+    danger: true,
+    onClick: () => console.log('delete'),
+  },
 ];
 
 export const Default: Story = {

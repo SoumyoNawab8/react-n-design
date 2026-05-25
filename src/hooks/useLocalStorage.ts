@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 /**
  * A hook that synchronizes a state value with localStorage.
@@ -7,7 +7,10 @@ import { useState, useEffect, useCallback } from 'react';
  * @example
  * const [theme, setTheme] = useLocalStorage('app-theme', 'light');
  */
-export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T | ((prev: T) => T)) => void] {
+export function useLocalStorage<T>(
+  key: string,
+  initialValue: T
+): [T, (value: T | ((prev: T) => T)) => void] {
   const readValue = useCallback((): T => {
     if (typeof window === 'undefined') return initialValue;
     try {

@@ -22,10 +22,7 @@ export function getFocusableElements(container: HTMLElement): HTMLElement[] {
   ) as HTMLElement[];
 }
 
-export function trapFocus(
-  container: HTMLElement,
-  event: KeyboardEvent
-): void {
+export function trapFocus(container: HTMLElement, event: KeyboardEvent): void {
   if (event.key !== 'Tab') return;
 
   const focusableElements = getFocusableElements(container);

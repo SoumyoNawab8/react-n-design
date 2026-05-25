@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 export interface UseFormOptions<T> {
   initialValues: T;
@@ -33,7 +33,9 @@ function getValueFromEvent(value: any): any {
   return value;
 }
 
-export function useForm<T extends Record<string, any>>(options: UseFormOptions<T>): UseFormReturn<T> {
+export function useForm<T extends Record<string, any>>(
+  options: UseFormOptions<T>
+): UseFormReturn<T> {
   const { initialValues, validate, onSubmit } = options;
 
   const [values, setValues] = useState<T>(initialValues);
@@ -108,14 +110,17 @@ export function useForm<T extends Record<string, any>>(options: UseFormOptions<T
 
   const handleSubmit = useCallback(
     async (e?: React.FormEvent) => {
-      if (e && e.preventDefault) {
+      if (e?.preventDefault) {
         e.preventDefault();
       }
 
-      const allTouched = Object.keys(values).reduce((acc, key) => {
-        acc[key as keyof T] = true;
-        return acc;
-      }, {} as Partial<Record<keyof T, boolean>>);
+      const allTouched = Object.keys(values).reduce(
+        (acc, key) => {
+          acc[key as keyof T] = true;
+          return acc;
+        },
+        {} as Partial<Record<keyof T, boolean>>
+      );
       setTouched(allTouched);
 
       if (validate) {

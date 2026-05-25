@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Skeleton } from '../src/components/Skeleton';
+import { useEffect, useState } from 'react';
 import { Card } from '../src/components/Card';
+import { Skeleton } from '../src/components/Skeleton';
 
 const meta: Meta<typeof Skeleton> = {
   title: 'react-n-design/Skeleton',
@@ -54,11 +54,7 @@ export const ProfileCardPreview: Story = {
       <Card style={{ maxWidth: '300px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <Skeleton loading={loading} variant="circle" width={50} height={50}>
-            <img 
-              src="https://i.pravatar.cc/50" 
-              alt="avatar" 
-              style={{ borderRadius: '50%' }} 
-            />
+            <img src="https://i.pravatar.cc/50" alt="avatar" style={{ borderRadius: '50%' }} />
           </Skeleton>
           <div style={{ width: '100%' }}>
             <Skeleton loading={loading} variant="text" width="70%">
@@ -68,8 +64,8 @@ export const ProfileCardPreview: Story = {
         </div>
         <div style={{ marginTop: '16px' }}>
           <Skeleton loading={loading} variant="text" />
-          <Skeleton loading={loading} variant="text" width="90%" style={{ marginTop: '8px' }}/>
-          <Skeleton loading={loading} variant="text" width="60%" style={{ marginTop: '8px' }}/>
+          <Skeleton loading={loading} variant="text" width="90%" style={{ marginTop: '8px' }} />
+          <Skeleton loading={loading} variant="text" width="60%" style={{ marginTop: '8px' }} />
         </div>
       </Card>
     );

@@ -1,6 +1,6 @@
 'use client';
-import styled, { css, keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css, keyframes } from 'styled-components';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '6px 12px' },
@@ -81,8 +81,7 @@ export const ComboBoxTag = styled.span`
 `;
 
 export const ComboBoxInputGroup = styled.div.withConfig({
-  shouldForwardProp: (prop) =>
-    !['size', 'hasError', 'disabled', 'isMulti'].includes(prop),
+  shouldForwardProp: (prop) => !['size', 'hasError', 'disabled', 'isMulti'].includes(prop),
 })<{
   size: 'small' | 'medium' | 'large';
   hasError: boolean;

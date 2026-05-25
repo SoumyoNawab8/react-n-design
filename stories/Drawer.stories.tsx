@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Drawer } from '../src/components/Drawer';
+import type React from 'react';
+import { useState } from 'react';
 import { Button } from '../src/components/Button';
+import { Drawer } from '../src/components/Drawer';
 
 const meta: Meta<typeof Drawer> = {
   title: 'react-n-design/Drawer',

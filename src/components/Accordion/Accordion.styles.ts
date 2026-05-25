@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 
 export const AccordionWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !['bordered'].includes(prop),

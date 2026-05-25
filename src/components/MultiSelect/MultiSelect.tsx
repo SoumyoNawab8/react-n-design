@@ -1,17 +1,17 @@
 'use client';
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import {
-  MultiSelectWrapper,
-  MultiSelectInputGroup,
-  MultiSelectTags,
-  MultiSelectTag,
-  MultiSelectInput,
   MultiSelectDropdown,
-  MultiSelectOption,
   MultiSelectEmpty,
-  MultiSelectCheck,
+  MultiSelectInput,
+  MultiSelectInputGroup,
+  MultiSelectOption,
+  MultiSelectTag,
+  MultiSelectTags,
+  MultiSelectWrapper,
 } from './MultiSelect.styles';
 
 export interface MultiSelectProps {
@@ -57,14 +57,13 @@ export const MultiSelect = ({
   const filteredOptions = useMemo(() => {
     if (!inputValue.trim()) return options.filter((o) => !currentValue.includes(o));
     return options.filter(
-      (o) =>
-        o.toLowerCase().includes(inputValue.toLowerCase()) && !currentValue.includes(o)
+      (o) => o.toLowerCase().includes(inputValue.toLowerCase()) && !currentValue.includes(o)
     );
   }, [options, inputValue, currentValue]);
 
   useEffect(() => {
     setHighlightedIndex(0);
-  }, [filteredOptions.length]);
+  }, []);
 
   const handleSelect = (option: string) => {
     if (disabled) return;

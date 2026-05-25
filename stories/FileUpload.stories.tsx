@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { FileUpload } from '../src/components/FileUpload';
 
 const meta: Meta<typeof FileUpload> = {
@@ -94,7 +94,7 @@ export const WithMaxSize: Story = {
 
 export const WithProgress: Story = {
   render: () => {
-    const [files, setFiles] = useState<File[]>([]);
+    const [_files, setFiles] = useState<File[]>([]);
     const [progress, setProgress] = useState<Record<string, number>>({});
 
     const handleFilesChange = (newFiles: File[]) => {

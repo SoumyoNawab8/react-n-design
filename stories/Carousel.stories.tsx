@@ -1,7 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Carousel } from '../src/components/Carousel';
 import { Card } from '../src/components/Card';
+import { Carousel } from '../src/components/Carousel';
 
 const meta: Meta<typeof Carousel> = {
   title: 'react-n-design/Carousel',
@@ -20,13 +19,25 @@ export default meta;
 type Story = StoryObj<typeof Carousel>;
 
 const slides = [
-  <Card key={1} header="Slide 1" style={{ minHeight: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <Card
+    key={1}
+    header="Slide 1"
+    style={{ minHeight: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+  >
     First slide content
   </Card>,
-  <Card key={2} header="Slide 2" style={{ minHeight: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <Card
+    key={2}
+    header="Slide 2"
+    style={{ minHeight: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+  >
     Second slide content
   </Card>,
-  <Card key={3} header="Slide 3" style={{ minHeight: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <Card
+    key={3}
+    header="Slide 3"
+    style={{ minHeight: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+  >
     Third slide content
   </Card>,
 ];

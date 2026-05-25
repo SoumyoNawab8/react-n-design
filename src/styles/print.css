@@ -8,11 +8,11 @@
   *,
   *::before,
   *::after {
-    box-shadow: none !important;
-    text-shadow: none !important;
-    background: transparent !important;
-    color: #000 !important;
-    border-color: #000 !important;
+    box-shadow: none;
+    text-shadow: none;
+    background: transparent;
+    color: #000;
+    border-color: #000;
   }
 
   /* Ensure backgrounds print (some browsers hide them by default) */
@@ -25,7 +25,7 @@
   [role="tooltip"],
   .no-print,
   button[aria-label="Close alert"] {
-    display: none !important;
+    display: none;
   }
 
   /* Ensure tables print cleanly */
@@ -34,17 +34,25 @@
     width: 100%;
   }
 
-  th, td {
+  th,
+  td {
     border: 1px solid #000;
     padding: 4px 8px;
   }
 
   /* Page breaks */
-  section, article, .page-break {
+  section,
+  article,
+  .page-break {
     break-inside: avoid;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     break-after: avoid;
   }
 }

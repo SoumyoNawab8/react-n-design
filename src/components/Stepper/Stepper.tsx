@@ -1,16 +1,17 @@
 'use client';
-import React, { useState, useCallback } from 'react';
+import type React from 'react';
+import { useCallback, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
-import {
-  StepperWrapper,
-  StepperItem,
-  StepperCircle,
-  StepperTitle,
-  StepperDescription,
-  StepperContent,
-  StepperActions,
-} from './Stepper.styles';
 import { Button } from '../Button';
+import {
+  StepperActions,
+  StepperCircle,
+  StepperContent,
+  StepperDescription,
+  StepperItem,
+  StepperTitle,
+  StepperWrapper,
+} from './Stepper.styles';
 
 export interface StepItem {
   title: string;
@@ -80,10 +81,7 @@ export const Stepper = ({
 
   return (
     <div role="region" aria-label="Stepper">
-      <StepperWrapper
-        role="tablist"
-        aria-orientation={orientation}
-      >
+      <StepperWrapper role="tablist" aria-orientation={orientation}>
         {steps.map((step, index) => {
           const isActive = index === currentStep;
           const isCompleted = index < currentStep;
@@ -111,9 +109,7 @@ export const Stepper = ({
                 {isCompleted ? <FaCheck size={14} /> : index + 1}
               </StepperCircle>
               <StepperTitle isActive={isActive}>{step.title}</StepperTitle>
-              {step.description && (
-                <StepperDescription>{step.description}</StepperDescription>
-              )}
+              {step.description && <StepperDescription>{step.description}</StepperDescription>}
             </StepperItem>
           );
         })}
@@ -131,9 +127,7 @@ export const Stepper = ({
             Back
           </Button>
         )}
-        <Button onClick={handleNext}>
-          {isLastStep ? 'Finish' : 'Next'}
-        </Button>
+        <Button onClick={handleNext}>{isLastStep ? 'Finish' : 'Next'}</Button>
       </StepperActions>
     </div>
   );

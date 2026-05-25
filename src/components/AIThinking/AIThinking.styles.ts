@@ -1,5 +1,5 @@
 'use client';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const stepReveal = keyframes`
   from { opacity: 0; transform: translateY(-4px); }

@@ -1,8 +1,8 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import type React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
-import { ChartBar, ChartLine, ChartArea } from './index';
+import { ChartArea, ChartBar, ChartLine } from './index';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
@@ -15,19 +15,11 @@ const sampleData = [
 
 describe('ChartBar', () => {
   it('renders with role img and aria-label', () => {
-    const { container } = renderWithTheme(
-      <ChartBar data={sampleData} title="Test Bar" />
-    );
+    const { container } = renderWithTheme(<ChartBar data={sampleData} title="Test Bar" />);
     const svg = container.querySelector('svg[role="img"]');
     expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute(
-      'aria-label',
-      expect.stringContaining('Bar chart')
-    );
-    expect(svg).toHaveAttribute(
-      'aria-label',
-      expect.stringContaining('Test Bar')
-    );
+    expect(svg).toHaveAttribute('aria-label', expect.stringContaining('Bar chart'));
+    expect(svg).toHaveAttribute('aria-label', expect.stringContaining('Test Bar'));
   });
 
   it('renders title when provided', () => {
@@ -36,25 +28,19 @@ describe('ChartBar', () => {
   });
 
   it('renders labels when showLabels is true', () => {
-    const { container } = renderWithTheme(
-      <ChartBar data={sampleData} showLabels />
-    );
+    const { container } = renderWithTheme(<ChartBar data={sampleData} showLabels />);
     expect(container.textContent).toContain('A');
     expect(container.textContent).toContain('B');
     expect(container.textContent).toContain('C');
   });
 
   it('does not render labels when showLabels is false', () => {
-    const { container } = renderWithTheme(
-      <ChartBar data={sampleData} showLabels={false} />
-    );
+    const { container } = renderWithTheme(<ChartBar data={sampleData} showLabels={false} />);
     expect(container.textContent).not.toContain('A');
   });
 
   it('renders values when showValues is true', () => {
-    const { container } = renderWithTheme(
-      <ChartBar data={sampleData} showValues />
-    );
+    const { container } = renderWithTheme(<ChartBar data={sampleData} showValues />);
     expect(container.textContent).toContain('10');
     expect(container.textContent).toContain('20');
     expect(container.textContent).toContain('30');
@@ -69,9 +55,7 @@ describe('ChartBar', () => {
   });
 
   it('renders grid lines when showGrid is true', () => {
-    const { container } = renderWithTheme(
-      <ChartBar data={sampleData} showGrid />
-    );
+    const { container } = renderWithTheme(<ChartBar data={sampleData} showGrid />);
     const lines = container.querySelectorAll('line');
     expect(lines.length).toBeGreaterThan(0);
   });
@@ -79,15 +63,10 @@ describe('ChartBar', () => {
 
 describe('ChartLine', () => {
   it('renders with role img and aria-label', () => {
-    const { container } = renderWithTheme(
-      <ChartLine data={sampleData} title="Test Line" />
-    );
+    const { container } = renderWithTheme(<ChartLine data={sampleData} title="Test Line" />);
     const svg = container.querySelector('svg[role="img"]');
     expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute(
-      'aria-label',
-      expect.stringContaining('Line chart')
-    );
+    expect(svg).toHaveAttribute('aria-label', expect.stringContaining('Line chart'));
   });
 
   it('renders polyline connecting points', () => {
@@ -109,15 +88,10 @@ describe('ChartLine', () => {
 
 describe('ChartArea', () => {
   it('renders with role img and aria-label', () => {
-    const { container } = renderWithTheme(
-      <ChartArea data={sampleData} title="Test Area" />
-    );
+    const { container } = renderWithTheme(<ChartArea data={sampleData} title="Test Area" />);
     const svg = container.querySelector('svg[role="img"]');
     expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute(
-      'aria-label',
-      expect.stringContaining('Area chart')
-    );
+    expect(svg).toHaveAttribute('aria-label', expect.stringContaining('Area chart'));
   });
 
   it('renders filled path and top polyline', () => {

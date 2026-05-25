@@ -1,17 +1,18 @@
 'use client';
-import React, { useEffect, useRef, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+import { saveFocus, trapFocus } from '../../utils/focus';
 import {
-  DrawerWrapper,
   DrawerBackdrop,
-  DrawerPanel,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerCloseButton,
   DrawerBody,
+  DrawerCloseButton,
   DrawerFooter,
+  DrawerHeader,
+  DrawerPanel,
+  DrawerTitle,
+  DrawerWrapper,
 } from './Drawer.styles';
-import { trapFocus, saveFocus } from '../../utils/focus';
 
 export interface DrawerProps {
   isOpen: boolean;
@@ -89,15 +90,18 @@ export const Drawer = ({
     }
   }, [isOpen]);
 
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      onClose();
-      return;
-    }
-    if (e.key === 'Tab' && panelRef.current) {
-      trapFocus(panelRef.current, e);
-    }
-  }, [onClose]);
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key === 'Tab' && panelRef.current) {
+        trapFocus(panelRef.current, e);
+      }
+    },
+    [onClose]
+  );
 
   useEffect(() => {
     if (!isOpen) return;

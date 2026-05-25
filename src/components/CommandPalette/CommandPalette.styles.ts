@@ -1,6 +1,6 @@
 'use client';
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 export const CommandPaletteOverlay = styled(motion.div)`
   position: fixed;

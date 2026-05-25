@@ -1,5 +1,10 @@
-import { useState, useCallback, useMemo } from 'react';
-import { useQuery, useInfiniteQuery, type UseQueryOptions, type UseInfiniteQueryOptions } from '@tanstack/react-query';
+import {
+  type UseInfiniteQueryOptions,
+  type UseQueryOptions,
+  useInfiniteQuery,
+  useQuery,
+} from '@tanstack/react-query';
+import { useCallback, useMemo, useState } from 'react';
 
 export interface PaginationParams {
   page: number;
@@ -47,13 +52,18 @@ export interface UseDataGridQueryOptions {
 export function useDataGridQuery<T>(
   queryKey: string[],
   fetchFn: (params: PaginationParams) => Promise<{ data: T[]; total: number }>,
-  options?: UseDataGridQueryOptions & Omit<UseQueryOptions<{ data: T[]; total: number }, Error>, 'queryKey' | 'queryFn'> & Omit<UseInfiniteQueryOptions<{ data: T[]; total: number }, Error>, 'queryKey' | 'queryFn'>
+  options?: UseDataGridQueryOptions &
+    Omit<UseQueryOptions<{ data: T[]; total: number }, Error>, 'queryKey' | 'queryFn'> &
+    Omit<UseInfiniteQueryOptions<{ data: T[]; total: number }, Error>, 'queryKey' | 'queryFn'>
 ) {
   const { infinite = false, initialPageSize = 10, ...tanstackOptions } = options ?? {};
 
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(initialPageSize);
-  const [sortConfig, setSortConfig] = useState<{ key: string; order: 'asc' | 'desc' | null }>({ key: '', order: null });
+  const [sortConfig, setSortConfig] = useState<{ key: string; order: 'asc' | 'desc' | null }>({
+    key: '',
+    order: null,
+  });
   const [filters, setFilters] = useState<Record<string, string>>({});
 
   const params: PaginationParams = useMemo(
@@ -70,7 +80,10 @@ export function useDataGridQuery<T>(
   const queryResult = useQuery({
     queryKey: [...queryKey, params],
     queryFn: () => fetchFn(params),
-    ...(tanstackOptions as Omit<UseQueryOptions<{ data: T[]; total: number }, Error>, 'queryKey' | 'queryFn'>),
+    ...(tanstackOptions as Omit<
+      UseQueryOptions<{ data: T[]; total: number }, Error>,
+      'queryKey' | 'queryFn'
+    >),
   });
 
   const infiniteQueryResult = useInfiniteQuery({
@@ -82,7 +95,10 @@ export function useDataGridQuery<T>(
       return nextPage <= totalPages ? nextPage : undefined;
     },
     initialPageParam: 1,
-    ...(tanstackOptions as Omit<UseInfiniteQueryOptions<{ data: T[]; total: number }, Error>, 'queryKey' | 'queryFn'>),
+    ...(tanstackOptions as Omit<
+      UseInfiniteQueryOptions<{ data: T[]; total: number }, Error>,
+      'queryKey' | 'queryFn'
+    >),
   });
 
   const result = infinite ? infiniteQueryResult : queryResult;
@@ -155,7 +171,7 @@ export function useDataGridQuery<T>(
     clearFilters,
     dataSource: data,
     loading: isLoading || isFetching,
-    fetchNextPage: infinite ? (infiniteQueryResult.fetchNextPage as () => void) : (() => {}),
+    fetchNextPage: infinite ? (infiniteQueryResult.fetchNextPage as () => void) : () => {},
     hasNextPage: infinite ? (infiniteQueryResult.hasNextPage ?? false) : false,
     isFetchingNextPage: infinite ? (infiniteQueryResult.isFetchingNextPage ?? false) : false,
   } as UseDataGridQueryReturn<T>;

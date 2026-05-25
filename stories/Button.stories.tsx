@@ -1,7 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaArrowRight, FaBeer } from 'react-icons/fa'; // Example icons
 import { Button } from '../src/components/Button';
-import { FaBeer, FaSpinner, FaArrowRight } from 'react-icons/fa'; // Example icons
 
 const meta: Meta<typeof Button> = {
   title: 'react-n-design/Button',

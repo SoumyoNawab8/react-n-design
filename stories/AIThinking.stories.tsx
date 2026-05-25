@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AIThinking } from '../src/components/AIThinking';
 
 const meta: Meta<typeof AIThinking> = {
@@ -9,7 +9,8 @@ const meta: Meta<typeof AIThinking> = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'Animated reasoning step display for LLMs like o1, Gemini Flash Thinking, and Claude. Shows chain-of-thought with elapsed timer.',
+        component:
+          'Animated reasoning step display for LLMs like o1, Gemini Flash Thinking, and Claude. Shows chain-of-thought with elapsed timer.',
       },
     },
   },
@@ -68,17 +69,29 @@ export const Collapsed: Story = {
 
 export const Streaming: Story = {
   render: () => {
-    const [steps, setSteps] = useState([
-      { text: 'Analyzing the query...', id: '1' },
-    ]);
+    const [steps, setSteps] = useState([{ text: 'Analyzing the query...', id: '1' }]);
     const [isThinking, setIsThinking] = useState(true);
     const startTime = useState(Date.now())[0];
 
     useEffect(() => {
       const timers = [
-        setTimeout(() => setSteps((prev) => [...prev, { text: 'Retrieving relevant context from knowledge base.', id: '2' }]), 2000),
-        setTimeout(() => setSteps((prev) => [...prev, { text: 'Evaluating multiple solution paths.', id: '3' }]), 4000),
-        setTimeout(() => setSteps((prev) => [...prev, { text: 'Finalizing the best answer.', id: '4' }]), 6000),
+        setTimeout(
+          () =>
+            setSteps((prev) => [
+              ...prev,
+              { text: 'Retrieving relevant context from knowledge base.', id: '2' },
+            ]),
+          2000
+        ),
+        setTimeout(
+          () =>
+            setSteps((prev) => [...prev, { text: 'Evaluating multiple solution paths.', id: '3' }]),
+          4000
+        ),
+        setTimeout(
+          () => setSteps((prev) => [...prev, { text: 'Finalizing the best answer.', id: '4' }]),
+          6000
+        ),
         setTimeout(() => setIsThinking(false), 7000),
       ];
       return () => timers.forEach(clearTimeout);

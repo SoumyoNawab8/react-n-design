@@ -17,10 +17,10 @@ export const lightTheme = {
     shadowDark: '#bec3c9',
     shadowLight: '#ffffff',
     // Component-specific colors
-    hoverBg: '#d1d9e6',      // For hover states in Select, Table, etc.
-    skeletonBg: '#dde1e7',   // For the Skeleton component
-    knobBg: '#f0f2f5',       // For the Switch component's knob
-    cardBg: '#f0f2f5',       // For card-style Tabs
+    hoverBg: '#d1d9e6', // For hover states in Select, Table, etc.
+    skeletonBg: '#dde1e7', // For the Skeleton component
+    knobBg: '#f0f2f5', // For the Switch component's knob
+    cardBg: '#f0f2f5', // For card-style Tabs
   },
   shadows: {
     soft: '7px 7px 14px #bec3c9, -7px -7px 14px #ffffff',
@@ -42,10 +42,10 @@ export const darkTheme = {
     shadowDark: '#25282c',
     shadowLight: '#33363c',
     // Component-specific colors
-    hoverBg: '#3c4047',      // For hover states in Select, Table, etc.
-    skeletonBg: '#3c4047',   // For the Skeleton component
-    knobBg: '#3c4047',       // For the Switch component's knob
-    cardBg: '#25282c',       // For card-style Tabs
+    hoverBg: '#3c4047', // For hover states in Select, Table, etc.
+    skeletonBg: '#3c4047', // For the Skeleton component
+    knobBg: '#3c4047', // For the Switch component's knob
+    cardBg: '#25282c', // For card-style Tabs
   },
   shadows: {
     soft: '7px 7px 14px #25282c, -7px -7px 14px #33363c',
@@ -73,7 +73,7 @@ export const cssVariableMap: Record<string, string> = {
   'colors.cardBg': '--n-color-card-bg',
   'shadows.soft': '--n-shadow-soft',
   'shadows.softInset': '--n-shadow-soft-inset',
-  'borderRadius': '--n-border-radius',
+  borderRadius: '--n-border-radius',
 };
 
 /**
@@ -81,11 +81,13 @@ export const cssVariableMap: Record<string, string> = {
  * Useful for SSR or dynamic style injection.
  */
 export function getThemeCSS(theme: Theme): string {
-  const entries = Object.entries(cssVariableMap).map(([path, varName]) => {
-    const value = path.split('.').reduce((obj: any, key) => obj?.[key], theme as any);
-    if (value === undefined) return null;
-    return `  ${varName}: ${value};`;
-  }).filter(Boolean);
+  const entries = Object.entries(cssVariableMap)
+    .map(([path, varName]) => {
+      const value = path.split('.').reduce((obj: any, key) => obj?.[key], theme as any);
+      if (value === undefined) return null;
+      return `  ${varName}: ${value};`;
+    })
+    .filter(Boolean);
 
   return `:root {\n${entries.join('\n')}\n}`;
 }

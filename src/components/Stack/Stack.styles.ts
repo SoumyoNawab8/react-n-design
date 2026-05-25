@@ -17,8 +17,7 @@ const alignMap = {
 };
 
 export const StyledStack = styled.div.withConfig({
-  shouldForwardProp: (prop) =>
-    !['direction', 'gap', 'align', 'justify', 'wrap'].includes(prop),
+  shouldForwardProp: (prop) => !['direction', 'gap', 'align', 'justify', 'wrap'].includes(prop),
 })<{
   direction: 'row' | 'column';
   gap: number;
