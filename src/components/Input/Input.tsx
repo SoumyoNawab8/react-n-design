@@ -27,6 +27,7 @@ export interface InputProps
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   allowClear?: boolean;
+  required?: boolean;
 }
 
 /**
@@ -48,6 +49,7 @@ export const Input = ({
   prefix,
   suffix,
   allowClear,
+  required = false,
   ...props
 }: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -127,6 +129,7 @@ export const Input = ({
         onChange={onChange}
         aria-invalid={!!error}
         aria-describedby={error ? errorId : undefined}
+        aria-required={required}
         {...props}
       />
       {renderSuffix()}
@@ -135,7 +138,12 @@ export const Input = ({
 
   return (
     <InputContainer fullWidth={fullWidth}>
-      {label && <StyledLabel htmlFor={inputId}>{label}</StyledLabel>}
+      {label && (
+        <StyledLabel htmlFor={inputId}>
+          {label}
+          {required && <span aria-hidden="true"> *</span>}
+        </StyledLabel>
+      )}
       {addonBefore || addonAfter ? (
         <InputGroupWrapper>
           {addonBefore && <InputAddon className="input-addon">{addonBefore}</InputAddon>}

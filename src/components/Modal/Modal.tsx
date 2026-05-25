@@ -1,7 +1,7 @@
 'use client';
 import type React from 'react';
 import { AnimatePresence } from '../../utils/lazyMotion';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useId } from 'react';
 import { saveFocus, trapFocus } from '../../utils/focus';
 import { Card } from '../Card';
 import {
@@ -20,6 +20,7 @@ export interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   title?: string;
+  'aria-label'?: string;
   size?: 'small' | 'medium' | 'large';
   footer?: React.ReactNode;
   preventBackdropClick?: boolean;
@@ -45,6 +46,7 @@ export const Modal = ({
   onClose,
   children,
   title,
+  'aria-label': ariaLabel,
   size = 'medium',
   footer,
   preventBackdropClick = false,
@@ -54,7 +56,8 @@ export const Modal = ({
 }: ModalProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const restoreFocusRef = useRef<(() => void) | null>(null);
-  const titleId = title ? `modal-title-${Math.random().toString(36).slice(2, 9)}` : undefined;
+  const reactId = useId();
+  const titleId = title ? `modal-title-${reactId.replace(/:/g, '')}` : undefined;
 
   useEffect(() => {
     if (isOpen && lockScroll) {
@@ -116,7 +119,8 @@ export const Modal = ({
             ref={contentRef}
             role="dialog"
             aria-modal="true"
-            aria-labelledby={titleId}
+            aria-labelledby={title ? titleId : undefined}
+            aria-label={ariaLabel}
             size={size}
             fullScreen={fullScreen}
             initial={{ y: position === 'top' ? -50 : 0, scale: 0.9, opacity: 0 }}

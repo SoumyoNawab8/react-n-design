@@ -137,4 +137,10 @@ export const StyledButton = styled.button.withConfig({
       border-top-color: #aaa;
     }
   }
+
+  /* Focus visible styles for accessibility */
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary};
+    outline-offset: 2px;
+  }
 `;
