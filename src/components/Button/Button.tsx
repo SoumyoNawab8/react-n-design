@@ -14,6 +14,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   loadingText?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  'aria-label'?: string;
 }
 
 /**
@@ -38,7 +39,7 @@ export const Button = ({
 
   const content = loading ? (
     <>
-      <Spinner />
+      <Spinner role="img" aria-label="Loading" />
       {loadingText && <span>{loadingText}</span>}
     </>
   ) : (
