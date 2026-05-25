@@ -127,7 +127,7 @@ describe('AIChat', () => {
     expect(results.violations).toHaveLength(0);
   });
 
-  it('sanitizes user content with DOMPurify so scripts do not execute', () => {
+  it('sanitizes user content with escapeHtml so scripts do not execute', () => {
     const malicious = '<script>alert(1)</script><b>safe</b>';
     const { container } = renderWithTheme(
       <AIChat messages={[{ role: 'user', content: malicious, id: 'x' }]} onSend={vi.fn()} />
@@ -135,7 +135,7 @@ describe('AIChat', () => {
 
     const html = container.innerHTML;
     expect(html).not.toContain('<script>');
-    expect(html).not.toContain('alert(1)');
-    expect(screen.getByText('safe')).toBeInTheDocument();
+    expect(html).toContain('alert(1)');
+    expect(screen.getByText(/safe/)).toBeInTheDocument();
   });
 });

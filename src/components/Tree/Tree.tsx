@@ -1,8 +1,8 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
 import type React from 'react';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { useCallback, useRef, useState } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
+import { FaChevronRight } from "../../icons";
 import {
   TreeNodeChildren,
   TreeNodeContent,

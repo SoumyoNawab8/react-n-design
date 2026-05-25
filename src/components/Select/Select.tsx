@@ -1,8 +1,8 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FaChevronDown, FaTimes } from 'react-icons/fa';
+import { FaChevronDown, FaTimes } from "../../icons";
 import { Tag } from '../Tag';
 import {
   ClearButton,

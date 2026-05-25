@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import styled, { css, keyframes } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export type ToastVariant = 'success' | 'error' | 'warning' | 'info' | 'loading';
 export type ToastPosition =

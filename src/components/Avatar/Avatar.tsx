@@ -1,6 +1,6 @@
 'use client';
 import React, { useCallback, useState } from 'react';
-import { FaUser } from 'react-icons/fa';
+import { FaUser } from "../../icons";
 import {
   AvatarFallback,
   AvatarGroupOverflow,

@@ -4,6 +4,21 @@ import React from 'react';
 
 expect.extend(matchers);
 
+// Mock matchMedia for ThemeContext
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});
+
 // Mock framer-motion AnimatePresence to skip exit animations in tests
 vi.mock('framer-motion', async () => {
   const actual = await vi.importActual('framer-motion');
@@ -21,5 +36,16 @@ vi.mock('framer-motion', async () => {
         });
       },
     }),
+  };
+});
+
+// Mock lazyMotion to use synchronous framer-motion during tests
+vi.mock('./src/utils/lazyMotion', async () => {
+  const fm = await vi.importActual('framer-motion');
+  return {
+    motion: fm.motion,
+    AnimatePresence: ({ children }: { children: React.ReactNode }) => React.createElement(React.Fragment, null, children),
+    loadFramerMotion: () => Promise.resolve(fm),
+    useFramerMotion: () => fm,
   };
 });

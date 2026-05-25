@@ -1,8 +1,8 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes } from "../../icons";
 import {
   MultiSelectDropdown,
   MultiSelectEmpty,

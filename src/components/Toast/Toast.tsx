@@ -2,12 +2,12 @@
 import type React from 'react';
 import { useCallback, useEffect, useRef } from 'react';
 import {
-  FaCheckCircle,
+  FaCheck,
   FaExclamationTriangle,
   FaInfoCircle,
   FaTimes,
   FaTimesCircle,
-} from 'react-icons/fa';
+} from "../../icons";
 import {
   ToastAction,
   ToastCloseButton,
@@ -32,7 +32,7 @@ export interface ToastProps {
 }
 
 const variantIcons: Record<ToastVariant, React.ReactNode> = {
-  success: <FaCheckCircle />,
+  success: <FaCheck />,
   error: <FaTimesCircle />,
   warning: <FaExclamationTriangle />,
   info: <FaInfoCircle />,

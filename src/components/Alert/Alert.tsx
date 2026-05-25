@@ -1,14 +1,14 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
 import type React from 'react';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { useState } from 'react';
 import {
-  FaCheckCircle,
+  FaCheck,
+  FaTimesCircle,
   FaExclamationTriangle,
   FaInfoCircle,
   FaTimes,
-  FaTimesCircle,
-} from 'react-icons/fa';
+} from "../../icons";
 import {
   AlertContent,
   AlertDescription,
@@ -50,7 +50,7 @@ export interface AlertProps {
 }
 
 const typeIcons = {
-  success: <FaCheckCircle />,
+  success: <FaCheck />,
   info: <FaInfoCircle />,
   warning: <FaExclamationTriangle />,
   error: <FaTimesCircle />,

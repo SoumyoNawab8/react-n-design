@@ -1,5 +1,5 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { TooltipContent, TooltipWrapper } from './Tooltip.styles';
 

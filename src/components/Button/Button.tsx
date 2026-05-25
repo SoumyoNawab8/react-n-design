@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion } from '../../utils/lazyMotion';
 import type React from 'react';
 import { ButtonContent, ButtonIcon, Spinner, StyledButton } from './Button.styles';
 

@@ -1,6 +1,6 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
 import type React from 'react';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   TabBarExtraContent,

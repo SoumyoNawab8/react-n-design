@@ -1,7 +1,8 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
-import { ErrorText } from './Form.styles';
+import type React from 'react';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { useFormContext } from './FormContext';
+import { ErrorText } from './Form.styles';
 
 export interface ErrorMessageProps {
   name: string;

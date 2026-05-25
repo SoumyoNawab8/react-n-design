@@ -1,6 +1,6 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
 import type React from 'react';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
 import { Toast, type ToastProps } from './Toast';
 import { ToastContainer, type ToastPosition } from './Toast.styles';

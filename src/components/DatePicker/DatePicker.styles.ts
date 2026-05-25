@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
 
 export const DatePickerWrapper = styled.div.withConfig({
