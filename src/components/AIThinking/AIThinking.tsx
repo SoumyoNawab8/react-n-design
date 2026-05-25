@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { FaBrain } from 'react-icons/fa';
+import { FaBrain } from "../../icons";
 import {
   AIThinkingActiveDot,
   AIThinkingElapsed,

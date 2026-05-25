@@ -1,7 +1,7 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import React, { useCallback, useId, useState } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown } from "../../icons";
 import {
   CollapsibleChevron,
   CollapsibleContent,

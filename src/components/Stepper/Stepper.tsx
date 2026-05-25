@@ -1,7 +1,7 @@
 'use client';
 import type React from 'react';
 import { useCallback, useState } from 'react';
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck } from "../../icons";
 import { Button } from '../Button';
 import {
   StepperActions,

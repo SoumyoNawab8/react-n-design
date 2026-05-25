@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
 
 const widthSizes = {

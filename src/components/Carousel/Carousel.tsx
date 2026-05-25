@@ -1,41 +1,96 @@
 'use client';
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import { FaChevronLeft, FaChevronRight } from '../../icons';
 import {
   CarouselCounter,
   CarouselDot,
   CarouselDots,
   CarouselNavButton,
   CarouselSlide,
+  CarouselTrack,
+  CarouselViewport,
   CarouselWrapper,
+  ProgressBar,
+  ProgressFill,
+  SlideContent,
+  SlideDescription,
+  SlideImage,
+  SlidePlaceholder,
+  SlideTitle,
 } from './Carousel.styles';
 
-export interface CarouselProps {
-  children: React.ReactNode[];
-  autoPlay?: boolean;
-  autoPlayInterval?: number;
-  showDots?: boolean;
-  showNav?: boolean;
-  showCounter?: boolean;
-  loop?: boolean;
-  onChange?: (index: number) => void;
+export interface CarouselSlideItem {
+  id: string | number;
+  image?: string;
+  title?: string;
+  description?: string;
+  content?: React.ReactNode;
 }
 
-export const Carousel = ({
+export interface CarouselProps {
+  /** Array of slide items or React nodes */
+  items?: CarouselSlideItem[];
+  /** Legacy: React node children (deprecated, use items instead) */
+  children?: React.ReactNode[];
+  /** Enable autoplay */
+  autoPlay?: boolean;
+  /** Autoplay interval in ms */
+  autoPlayInterval?: number;
+  /** Show dot navigation */
+  showDots?: boolean;
+  /** Show navigation arrows */
+  showNav?: boolean;
+  /** Show slide counter */
+  showCounter?: boolean;
+  /** Enable infinite loop */
+  loop?: boolean;
+  /** Show thumbnail previews */
+  showThumbnails?: boolean;
+  /** Enable swipe gestures */
+  enableSwipe?: boolean;
+  /** Callback when slide changes */
+  onChange?: (index: number) => void;
+  /** Callback when slide is clicked */
+  onSlideClick?: (item: CarouselSlideItem, index: number) => void;
+  /** Custom height */
+  height?: string | number;
+}
+
+export const Carousel: React.FC<CarouselProps> = ({
+  items,
   children,
   autoPlay = false,
-  autoPlayInterval = 3000,
+  autoPlayInterval = 5000,
   showDots = true,
   showNav = true,
   showCounter = false,
+  showThumbnails = false,
   loop = false,
+  enableSwipe = true,
   onChange,
-}: CarouselProps) => {
+  onSlideClick,
+  height,
+}) => {
+  const slides = useMemo(() => {
+    if (items) return items;
+    if (children) {
+      return React.Children.toArray(children).map((child, i) => ({
+        id: i,
+        content: child,
+      }));
+    }
+    return [];
+  }, [items, children]);
+
+  const total = slides.length;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const total = React.Children.count(children);
+
+  const minSwipeDistance = 50;
 
   const goTo = useCallback(
     (index: number) => {
@@ -45,7 +100,6 @@ export const Carousel = ({
       } else {
         next = Math.max(0, Math.min(total - 1, index));
       }
-      setDirection(next > currentIndex ? 1 : -1);
       setCurrentIndex(next);
       onChange?.(next);
     },
@@ -53,13 +107,22 @@ export const Carousel = ({
   );
 
   const goNext = useCallback(() => {
-    goTo(currentIndex + 1);
-  }, [currentIndex, goTo]);
+    if (loop || currentIndex < total - 1) {
+      goTo(currentIndex + 1);
+    } else {
+      goTo(0);
+    }
+  }, [currentIndex, total, loop, goTo]);
 
   const goPrev = useCallback(() => {
-    goTo(currentIndex - 1);
-  }, [currentIndex, goTo]);
+    if (loop || currentIndex > 0) {
+      goTo(currentIndex - 1);
+    } else {
+      goTo(total - 1);
+    }
+  }, [currentIndex, total, loop, goTo]);
 
+  // Keyboard navigation
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       switch (e.key) {
@@ -79,114 +142,173 @@ export const Carousel = ({
           e.preventDefault();
           goTo(total - 1);
           break;
+        case ' ':
+          e.preventDefault();
+          setIsPlaying(prev => !prev);
+          break;
       }
     },
     [goNext, goPrev, goTo, total]
   );
 
+  // Touch handlers for swipe
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  }, []);
+
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  }, []);
+
+  const onTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe && enableSwipe) {
+      goNext();
+    } else if (isRightSwipe && enableSwipe) {
+      goPrev();
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  }, [touchStart, touchEnd, enableSwipe, goNext, goPrev]);
+
+  // Autoplay
   useEffect(() => {
-    if (!autoPlay || total <= 1) return;
+    if (!isPlaying || total <= 1) return;
+    
     timerRef.current = setInterval(goNext, autoPlayInterval);
+    
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [autoPlay, autoPlayInterval, goNext, total]);
-
-  const variants = {
-    enter: (d: number) => ({
-      x: d > 0 ? '100%' : '-100%',
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (d: number) => ({
-      x: d > 0 ? '-100%' : '100%',
-      opacity: 0,
-    }),
-  };
+  }, [isPlaying, autoPlayInterval, goNext, total]);
 
   const canGoPrev = loop || currentIndex > 0;
   const canGoNext = loop || currentIndex < total - 1;
+  const translateX = -currentIndex * 100;
 
-  const slides = React.Children.toArray(children);
+  if (total === 0) {
+    return (
+      <CarouselWrapper>
+        <CarouselViewport>
+          <SlidePlaceholder>No slides to display</SlidePlaceholder>
+        </CarouselViewport>
+      </CarouselWrapper>
+    );
+  }
 
   return (
     <CarouselWrapper
+      ref={containerRef}
       role="region"
-      aria-label="Carousel"
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
-      onMouseEnter={() => {
-        if (timerRef.current) clearInterval(timerRef.current);
-      }}
-      onMouseLeave={() => {
-        if (autoPlay && total > 1) {
-          timerRef.current = setInterval(goNext, autoPlayInterval);
-        }
-      }}
+      aria-label="Image Carousel"
+      style={height ? { height } : undefined}
     >
-      <div style={{ position: 'relative', overflow: 'hidden', minHeight: '120px' }}>
-        <AnimatePresence initial={false} custom={direction} mode="popLayout">
-          <CarouselSlide
-            key={currentIndex}
-            as={motion.div}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`Slide ${currentIndex + 1} of ${total}`}
-          >
-            {slides[currentIndex]}
-          </CarouselSlide>
-        </AnimatePresence>
-      </div>
+      <CarouselViewport
+        onKeyDown={handleKeyDown}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        tabIndex={0}
+        onMouseEnter={() => {
+          if (timerRef.current) clearInterval(timerRef.current);
+        }}
+        onMouseLeave={() => {
+          if (isPlaying && total > 1) {
+            timerRef.current = setInterval(goNext, autoPlayInterval);
+          }
+        }}
+      >
+        {autoPlay && (
+          <ProgressBar>
+            <ProgressFill
+              $duration={autoPlayInterval}
+              $isPlaying={isPlaying}
+              key={currentIndex}
+            />
+          </ProgressBar>
+        )}
 
-      {showNav && total > 1 && (
-        <>
-          <CarouselNavButton
-            position="left"
-            onClick={goPrev}
-            disabled={!canGoPrev}
-            aria-label="Previous slide"
-          >
-            <FaChevronLeft size={16} />
-          </CarouselNavButton>
-          <CarouselNavButton
-            position="right"
-            onClick={goNext}
-            disabled={!canGoNext}
-            aria-label="Next slide"
-          >
-            <FaChevronRight size={16} />
-          </CarouselNavButton>
-        </>
-      )}
+        <CarouselTrack
+          $translateX={translateX}
+          style={{ width: `${total * 100}%` }}
+        >
+          {slides.map((slide, index) => (
+            <CarouselSlide
+              key={slide.id}
+              $isActive={index === currentIndex}
+              onClick={() => onSlideClick?.(slide, index)}
+              style={{ cursor: onSlideClick ? 'pointer' : 'default' }}
+            >
+              {slide.content ? (
+                slide.content
+              ) : (
+                <>
+                  <SlideImage $src={slide.image} />
+                  {(slide.title || slide.description) && (
+                    <SlideContent>
+                      {slide.title && <SlideTitle>{slide.title}</SlideTitle>}
+                      {slide.description && (
+                        <SlideDescription>{slide.description}</SlideDescription>
+                      )}
+                    </SlideContent>
+                  )}
+                </>
+              )}
+            </CarouselSlide>
+          ))}
+        </CarouselTrack>
+
+        {showNav && total > 1 && (
+          <>
+            <CarouselNavButton
+              $position="left"
+              onClick={goPrev}
+              disabled={!canGoPrev && !loop}
+              aria-label="Previous slide"
+            >
+              <FaChevronLeft size={18} />
+            </CarouselNavButton>
+            <CarouselNavButton
+              $position="right"
+              onClick={goNext}
+              disabled={!canGoNext && !loop}
+              aria-label="Next slide"
+            >
+              <FaChevronRight size={18} />
+            </CarouselNavButton>
+          </>
+        )}
+
+        {showCounter && total > 1 && (
+          <CarouselCounter aria-live="polite" aria-atomic="true">
+            <span>{currentIndex + 1}</span> / {total}
+          </CarouselCounter>
+        )}
+      </CarouselViewport>
 
       {showDots && total > 1 && (
         <CarouselDots role="tablist" aria-label="Carousel slides">
-          {slides.map((_, i) => (
+          {slides.map((slide, i) => (
             <CarouselDot
-              key={i}
-              isActive={i === currentIndex}
+              key={slide.id}
+              $isActive={i === currentIndex}
+              $hasImage={showThumbnails && !!slide.image}
               role="tab"
               aria-selected={i === currentIndex}
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => goTo(i)}
-            />
+            >
+              {showThumbnails && slide.image && (
+                <img src={slide.image} alt="" />
+              )}
+            </CarouselDot>
           ))}
         </CarouselDots>
-      )}
-
-      {showCounter && total > 1 && (
-        <CarouselCounter aria-live="polite" aria-atomic="true">
-          {currentIndex + 1} / {total}
-        </CarouselCounter>
       )}
     </CarouselWrapper>
   );

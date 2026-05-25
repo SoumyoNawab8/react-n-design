@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
   small: '400px',

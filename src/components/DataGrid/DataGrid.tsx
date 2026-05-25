@@ -7,7 +7,7 @@ import {
   FaSort,
   FaSortDown,
   FaSortUp,
-} from 'react-icons/fa';
+} from "../../icons";
 import { VariableSizeList as List, type ListChildComponentProps } from 'react-window';
 import { Button } from '../Button';
 import {

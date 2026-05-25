@@ -23,7 +23,8 @@ import {
   FaTrash,
   FaUpload,
   FaUser,
-} from 'react-icons/fa';
+  CalendarIcon,
+} from "../../icons";
 import { IconContainer, StyledIcon } from './Icon.styles';
 
 const iconMap: Record<string, React.ComponentType<any>> = {
@@ -45,7 +46,7 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   download: FaDownload,
   lock: FaLock,
   envelope: FaEnvelope,
-  calendar: FaCalendar,
+  calendar: CalendarIcon,
   info: FaInfoCircle,
   warning: FaExclamationTriangle,
   spinner: FaSpinner,

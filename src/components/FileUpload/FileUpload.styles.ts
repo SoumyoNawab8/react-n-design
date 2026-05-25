@@ -1,6 +1,6 @@
 'use client';
-import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export const FileUploadRegion = styled.div.withConfig({
   shouldForwardProp: (prop) => !['isDragOver', 'disabled', 'hasError'].includes(prop),

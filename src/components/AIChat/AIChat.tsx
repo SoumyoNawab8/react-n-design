@@ -1,9 +1,9 @@
 'use client';
-import DOMPurify from 'dompurify';
-import { AnimatePresence, motion } from 'framer-motion';
+'use client';
+import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FaCheck, FaCopy, FaPaperPlane, FaRobot, FaUser } from 'react-icons/fa';
+import { FaCheck, FaCopy, FaPaperPlane, FaRobot, FaUser } from "../../icons";
 import { Markdown } from '../Markdown';
 import {
   AIChatEmptyState,
@@ -34,7 +34,10 @@ function escapeHtml(text: string): string {
 
 function sanitizeUserContent(text: string): string {
   if (typeof window === 'undefined') return escapeHtml(text);
-  return DOMPurify.sanitize(text);
+  if (typeof (window as any).DOMPurify !== 'undefined') {
+    return (window as any).DOMPurify.sanitize(text);
+  }
+  return escapeHtml(text);
 }
 
 export interface AIChatMessage {

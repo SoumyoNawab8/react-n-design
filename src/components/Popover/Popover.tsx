@@ -1,6 +1,7 @@
 'use client';
-import { AnimatePresence } from 'framer-motion';
-import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
+import React from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { saveFocus, trapFocus } from '../../utils/focus';
 import { PopoverContent, PopoverTrigger, PopoverWrapper } from './Popover.styles';
 
