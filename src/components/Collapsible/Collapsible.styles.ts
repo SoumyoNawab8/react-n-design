@@ -1,5 +1,5 @@
-import { motion } from '../../utils/lazyMotion';
 import styled from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export const CollapsibleWrapper = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};

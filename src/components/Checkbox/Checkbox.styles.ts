@@ -20,7 +20,7 @@ export const CheckboxBox = styled.div.withConfig({
   justify-content: center;
   flex-shrink: 0;
   transition: all 0.2s ease-in-out;
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.primary};
 
@@ -32,7 +32,7 @@ export const CheckboxBox = styled.div.withConfig({
     `}
 
   &[data-checked='true'] {
-    box-shadow: ${({ theme }) => (theme as any).shadows.soft};
+    box-shadow: ${({ theme }) => theme.shadows.soft};
     background: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.white};
   }

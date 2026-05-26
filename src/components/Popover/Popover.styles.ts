@@ -1,5 +1,5 @@
-import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export const PopoverWrapper = styled.div`
   position: relative;

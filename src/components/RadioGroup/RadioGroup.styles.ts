@@ -37,8 +37,7 @@ export const RadioCircle = styled.div.withConfig({
   flex-shrink: 0;
   transition: all 0.2s ease-in-out;
 
-  box-shadow: ${({ selected, theme }) =>
-    selected ? (theme as any).shadows.soft : (theme as any).shadows.softInset};
+  box-shadow: ${({ selected, theme }) => (selected ? theme.shadows.soft : theme.shadows.softInset)};
 
   background: ${({ selected, theme }) => (selected ? theme.colors.primary : theme.colors.background)};
   color: ${({ selected, theme }) => (selected ? theme.colors.white : theme.colors.primary)};
@@ -60,7 +59,7 @@ export const RadioInnerDot = styled.div`
 export const RadioLabel = styled.span.withConfig({
   shouldForwardProp: (prop) => !['disabled'].includes(prop),
 })<{ disabled: boolean }>`
-  color: ${({ disabled, theme }) => (disabled ? (theme as any).colors.shadowDark : theme.colors.text)};
+  color: ${({ disabled, theme }) => (disabled ? theme.colors.shadowDark : theme.colors.text)};
   font-size: 16px;
   font-weight: 500;
   user-select: none;

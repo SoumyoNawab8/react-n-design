@@ -9,9 +9,9 @@ export const ToggleButton = styled.button.withConfig({
   gap: 6px;
   padding: 8px 16px;
   border: none;
-  border-radius: ${({ theme }) => (theme as any).borderRadius || '12px'};
-  background: ${({ theme }) => (theme as any).colors.background};
-  color: ${({ theme }) => (theme as any).colors.text};
+  border-radius: ${({ theme }) => theme.borderRadius || '12px'};
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -21,28 +21,28 @@ export const ToggleButton = styled.button.withConfig({
   ${({ pressed, theme }) =>
     pressed
       ? css`
-          box-shadow: ${(theme as any).shadows.softInset};
-          color: ${(theme as any).colors.primary};
+          box-shadow: ${theme.shadows.softInset};
+          color: ${theme.colors.primary};
         `
       : css`
-          box-shadow: ${(theme as any).shadows.soft};
+          box-shadow: ${theme.shadows.soft};
           &:hover {
-            background: ${(theme as any).colors.hoverBg};
+            background: ${theme.colors.hoverBg};
           }
           &:active {
-            box-shadow: ${(theme as any).shadows.softInset};
+            box-shadow: ${theme.shadows.softInset};
           }
         `}
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    box-shadow: ${({ theme }) => (theme as any).shadows.soft};
-    color: ${({ theme }) => (theme as any).colors.text};
+    box-shadow: ${({ theme }) => theme.shadows.soft};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => (theme as any).colors.primary};
+    outline: 2px solid ${({ theme }) => theme.colors.primary};
     outline-offset: 2px;
   }
 `;

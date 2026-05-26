@@ -24,7 +24,7 @@ export const ScrollAreaViewport = styled.div.withConfig({
     display: none;
   }
 
-  border-radius: ${({ theme }) => (theme as any).borderRadius || '12px'};
+  border-radius: ${({ theme }) => theme.borderRadius || '12px'};
 `;
 
 export const ScrollAreaContent = styled.div`
@@ -36,7 +36,7 @@ export const ScrollbarTrack = styled.div.withConfig({
 })<{ orientation: 'vertical' | 'horizontal'; visible: boolean }>`
   position: absolute;
   border-radius: 9999px;
-  background: ${({ theme }) => `${(theme as any).colors.shadowDark}30`};
+  background: ${({ theme }) => `${theme.colors.shadowDark}30`};
   transition: opacity 0.3s ease;
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   pointer-events: none;
@@ -62,7 +62,7 @@ export const ScrollbarThumb = styled.div.withConfig({
 })<{ orientation: 'vertical' | 'horizontal' }>`
   position: absolute;
   border-radius: 9999px;
-  background: ${({ theme }) => `${(theme as any).colors.primary}80`};
+  background: ${({ theme }) => `${theme.colors.primary}80`};
   cursor: pointer;
   pointer-events: auto;
   transition: background 0.2s ease;
@@ -79,6 +79,6 @@ export const ScrollbarThumb = styled.div.withConfig({
         `}
 
   &:hover {
-    background: ${({ theme }) => (theme as any).colors.primary};
+    background: ${({ theme }) => theme.colors.primary};
   }
 `;
