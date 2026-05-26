@@ -12,7 +12,13 @@ const renderWithTheme = (ui: React.ReactElement) =>
 
 const ControlledInput = (props: Record<string, unknown>) => {
   const [value, setValue] = useState(props.value || '');
-  return <Input {...props} value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />;
+  return (
+    <Input
+      {...props}
+      value={value}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+    />
+  );
 };
 
 describe('Input', () => {

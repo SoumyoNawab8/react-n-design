@@ -167,11 +167,14 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
     () => ({
       getFieldsValue: () => values,
       getFieldValue: (name: string) => values[name],
-      setFieldsValue: (newValues: unknown) => {
+      setFieldsValue: (newValues: Record<string, unknown>) => {
         Object.entries(newValues).forEach(([key, value]) =>
           dispatch({ type: 'SET_FIELD_VALUE', payload: { name: key, value } })
         );
-        onValuesChange?.(newValues, { ...values, ...newValues });
+        onValuesChange?.(
+          newValues as Record<string, unknown>,
+          { ...values, ...newValues } as Record<string, unknown>
+        );
       },
       setFieldValue: (name: string, value: unknown) => {
         dispatch({ type: 'SET_FIELD_VALUE', payload: { name, value } });
@@ -224,7 +227,12 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
       try {
         onFinish?.(await formInstance.validateFields());
       } catch (errorInfo) {
-        onFinishFailed?.(errorInfo as { errorFields: { name: string }[] });
+        onFinishFailed?.(
+          errorInfo as {
+            values: Record<string, unknown>;
+            errorFields: { name: string; errors: string[] }[];
+          }
+        );
         if (scrollToFirstError && formRef.current) {
           const firstErrorName = (errorInfo as { errorFields: { name: string }[] }).errorFields?.[0]
             ?.name;
