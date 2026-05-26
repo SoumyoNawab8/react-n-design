@@ -146,11 +146,11 @@ export interface FormContextValue<T = unknown> {
   /** Optimistic values */
   optimisticValues?: T;
   /** Handle field change */
-  handleChange: (field: keyof T) => (value: unknown) => void;
+  handleChange: (field: string) => (value: unknown) => void;
   /** Handle field blur */
-  handleBlur: (field: keyof T) => () => void;
+  handleBlur: (field: string) => () => void;
   /** Set field error */
-  setFieldError: (field: keyof T, error: string | string[]) => void;
+  setFieldError: (field: string, error: string | string[]) => void;
   /** Handle form submit */
   handleSubmit: (e?: React.FormEvent) => void | Promise<void>;
   /** Current form is submitting */
