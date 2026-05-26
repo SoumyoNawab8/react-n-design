@@ -73,8 +73,8 @@ export const Tooltip = ({
 
   useEffect(() => {
     return () => {
-      clearTimeout(enterTimer.current);
-      clearTimeout(leaveTimer.current);
+      if (enterTimer.current !== null) clearTimeout(enterTimer.current);
+      if (leaveTimer.current !== null) clearTimeout(leaveTimer.current);
     };
   }, []);
 

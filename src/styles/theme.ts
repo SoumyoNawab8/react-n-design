@@ -24,6 +24,9 @@ export const lightTheme = {
     skeletonBg: '#dde1e7',
     knobBg: '#f0f2f5',
     cardBg: '#f0f2f5',
+    // CopyButton states
+    error: '#dc3545',
+    success: '#28a745',
   },
   shadows: {
     soft: '7px 7px 14px #bec3c9, -7px -7px 14px #ffffff',
@@ -51,6 +54,9 @@ export const darkTheme = {
     skeletonBg: '#3c4047',
     knobBg: '#3c4047',
     cardBg: '#25282c',
+    // CopyButton states
+    error: '#dc3545',
+    success: '#28a745',
   },
   shadows: {
     soft: '7px 7px 14px #25282c, -7px -7px 14px #33363c',

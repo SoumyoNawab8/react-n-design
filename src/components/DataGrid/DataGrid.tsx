@@ -478,7 +478,7 @@ export const DataGrid = <T extends object>({
         }
       }
 
-      const { row, col } = activeCell;
+      const { row, col } = activeCell || { row: 0, col: 0 };
       let newRow = row;
       let newCol = col;
 

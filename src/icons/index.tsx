@@ -364,3 +364,10 @@ export const Inbox = FaInbox;
 // Minus icon (for resizable handle)
 export const FaMinus = createIcon(<path d="M19 13H5v-2h14v2z" />, '0 0 24 24');
 export const Minus = FaMinus;
+
+// Clock icon
+export const FaClock = createIcon(
+  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-3.5c-.28 0-.5-.22-.5-.5v-8c0-.28.22-.5.5-.5s.5.22.5.5v7.5H13c.28 0 .5.22.5.5s-.22.5-.5.5z" />,
+  '0 0 24 24'
+);
+export const Clock = FaClock;

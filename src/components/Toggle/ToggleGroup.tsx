@@ -51,7 +51,7 @@ export const ToggleGroup = ({ type, value, onValueChange, children }: ToggleGrou
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       const buttons = getToggleButtons();
-      const focusedIndex = buttons.indexOf(document.activeElement);
+      const focusedIndex = buttons.indexOf(document.activeElement as Element);
       if (focusedIndex === -1) return;
 
       let nextIndex = focusedIndex;

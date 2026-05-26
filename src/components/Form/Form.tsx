@@ -73,7 +73,11 @@ async function validateField(
   for (const rule of rules) {
     let error: string | undefined;
     if (rule.validator) {
-      error = await new Promise((resolve) => rule.validator(rule, value, (err) => resolve(err)));
+      error = await new Promise((resolve) => {
+        if (rule.validator) {
+          rule.validator(rule, value, (err) => resolve(err));
+        }
+      });
     } else {
       error = validateRuleSync(rule, value, allValues);
     }
@@ -133,20 +137,20 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
           setValidating((prev) => ({ ...prev, [action.payload.name]: action.payload.validating }));
           break;
         case 'RESET_FIELDS':
-          if (action.payload?.names) {
+          if (action.payload?.names && Array.isArray(action.payload.names)) {
             setValues((prev) => {
               const next = { ...prev };
-              action.payload.names.forEach((n: string) => delete next[n]);
+              action.payload!.names!.forEach((n: string) => delete next[n]);
               return next;
             });
             setErrors((prev) => {
               const next = { ...prev };
-              action.payload.names.forEach((n: string) => delete next[n]);
+              action.payload!.names!.forEach((n: string) => delete next[n]);
               return next;
             });
             setTouched((prev) => {
               const next = { ...prev };
-              action.payload.names.forEach((n: string) => delete next[n]);
+              action.payload!.names!.forEach((n: string) => delete next[n]);
               return next;
             });
           } else {
@@ -223,8 +227,10 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
   );
 
   const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
+    async (e?: React.FormEvent | React.MouseEvent <unknown>) => {
+      if (e && 'preventDefault' in e) {
+        e.preventDefault();
+      }
       try {
         onFinish?.(await formInstance.validateFields());
       } catch (errorInfo) {
@@ -269,7 +275,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
         fieldEntities.current.delete(name);
         forceUpdate({});
       },
-      getInitialValue: (name: string) => initialValues[name],
+      getInitialValue: (name: string) => initialValues[name as keyof typeof initialValues],
       optimisticValues: values,
       handleChange: (field) => (value) =>
         dispatch({ type: 'SET_FIELD_VALUE', payload: { name: field as string, value } }),
