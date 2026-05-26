@@ -1,8 +1,8 @@
 'use client';
-import { AnimatePresence } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FaChevronDown } from "../../icons";
+import { FaChevronDown } from '../../icons';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   MenuDivider,
   MenuDropdown,

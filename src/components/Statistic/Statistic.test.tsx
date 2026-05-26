@@ -1,15 +1,11 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
-import { Statistic } from './Statistic';
+import type React from 'react';
+import { describe, expect, it } from 'vitest';
 import { ThemeContextProvider } from '../../context/ThemeContext';
+import { Statistic } from './Statistic';
 
 const renderWithTheme = (component: React.ReactElement) => {
-  return render(
-    <ThemeContextProvider defaultTheme="light">
-      {component}
-    </ThemeContextProvider>
-  );
+  return render(<ThemeContextProvider defaultTheme="light">{component}</ThemeContextProvider>);
 };
 
 describe('Statistic', () => {
@@ -47,9 +43,7 @@ describe('Statistic', () => {
   });
 
   it('accepts ReactNode as value', () => {
-    renderWithTheme(
-      <Statistic title="Custom" value={<span data-testid="custom">Custom</span>} />
-    );
+    renderWithTheme(<Statistic title="Custom" value={<span data-testid="custom">Custom</span>} />);
     expect(screen.getByTestId('custom')).toBeInTheDocument();
   });
 });

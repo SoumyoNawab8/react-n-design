@@ -1,15 +1,11 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import { Rating } from './Rating';
+import { fireEvent, render, screen } from '@testing-library/react';
+import type React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 import { ThemeContextProvider } from '../../context/ThemeContext';
+import { Rating } from './Rating';
 
 const renderWithTheme = (component: React.ReactElement) => {
-  return render(
-    <ThemeContextProvider defaultTheme="light">
-      {component}
-    </ThemeContextProvider>
-  );
+  return render(<ThemeContextProvider defaultTheme="light">{component}</ThemeContextProvider>);
 };
 
 describe('Rating', () => {
@@ -26,10 +22,8 @@ describe('Rating', () => {
 
   it('calls onChange when clicked in non-readonly mode', () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <Rating value={0} onChange={onChange} readOnly={false} />
-    );
-    
+    renderWithTheme(<Rating value={0} onChange={onChange} readOnly={false} />);
+
     // Click on the 3rd star
     const stars = screen.getByRole('img').children;
     fireEvent.click(stars[2]);
@@ -38,10 +32,8 @@ describe('Rating', () => {
 
   it('does not call onChange in readOnly mode', () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <Rating value={3} onChange={onChange} readOnly={true} />
-    );
-    
+    renderWithTheme(<Rating value={3} onChange={onChange} readOnly={true} />);
+
     const stars = screen.getByRole('img').children;
     fireEvent.click(stars[2]);
     expect(onChange).not.toHaveBeenCalled();
@@ -49,10 +41,8 @@ describe('Rating', () => {
 
   it('accepts keyboard interaction in non-readonly mode', () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <Rating value={0} onChange={onChange} readOnly={false} />
-    );
-    
+    renderWithTheme(<Rating value={0} onChange={onChange} readOnly={false} />);
+
     const stars = screen.getByRole('img').children;
     fireEvent.keyDown(stars[1], { key: 'Enter' });
     expect(onChange).toHaveBeenCalled();
@@ -80,7 +70,7 @@ describe('Rating', () => {
 
   it('each star has accessible aria-label for rating value', () => {
     renderWithTheme(<Rating value={0} />);
-    
+
     const stars = screen.getByRole('img').children;
     expect(stars[0]).toHaveAttribute('aria-label', 'Rate 1 out of 5');
     expect(stars[4]).toHaveAttribute('aria-label', 'Rate 5 out of 5');
@@ -88,21 +78,21 @@ describe('Rating', () => {
 
   it('stars have button role for interactivity', () => {
     renderWithTheme(<Rating value={0} />);
-    
+
     const stars = screen.getByRole('img').children;
     expect(stars[0]).toHaveAttribute('role', 'button');
   });
 
   it('readOnly stars are not focusable', () => {
     renderWithTheme(<Rating value={3} readOnly />);
-    
+
     const stars = screen.getByRole('img').children;
     expect(stars[0]).toHaveAttribute('tabindex', '-1');
   });
 
   it('interactive stars are focusable', () => {
     renderWithTheme(<Rating value={3} readOnly={false} />);
-    
+
     const stars = screen.getByRole('img').children;
     expect(stars[0]).toHaveAttribute('tabindex', '0');
   });

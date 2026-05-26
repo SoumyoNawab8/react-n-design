@@ -1,13 +1,13 @@
 'use client';
 import type React from 'react';
 import { useState } from 'react';
-import {
-  PaginationContainer,
-  PaginationItem,
-  PaginationEllipsis,
-  PaginationButton,
-} from './Pagination.styles';
 import { FaChevronLeft, FaChevronRight } from '../../icons';
+import {
+  PaginationButton,
+  PaginationContainer,
+  PaginationEllipsis,
+  PaginationItem,
+} from './Pagination.styles';
 
 export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
@@ -66,7 +66,7 @@ export const Pagination = ({
 
   const getPageNumbers = () => {
     const totalNumbers = siblingCount * 2 + 5;
-    
+
     if (totalNumbers >= totalPages) {
       return range(1, totalPages);
     }
@@ -110,10 +110,7 @@ export const Pagination = ({
       {pageNumbers.map((pageNumber, index) => {
         if (pageNumber === -1) {
           return (
-            <PaginationEllipsis
-              key={`ellipsis-${index}`}
-              aria-hidden="true"
-            >
+            <PaginationEllipsis key={`ellipsis-${index}`} aria-hidden="true">
               ⋯
             </PaginationEllipsis>
           );

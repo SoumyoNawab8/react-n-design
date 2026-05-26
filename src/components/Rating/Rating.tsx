@@ -1,12 +1,8 @@
 'use client';
 import type React from 'react';
 import { useState } from 'react';
-import {
-  RatingContainer,
-  RatingItem,
-  RatingStar,
-} from './Rating.styles';
-import { FaStar, FaRegStar, FaStarHalf } from '../../icons';
+import { FaRegStar, FaStar, FaStarHalf } from '../../icons';
+import { RatingContainer, RatingItem, RatingStar } from './Rating.styles';
 
 export interface RatingProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
@@ -66,21 +62,19 @@ export const Rating = ({
 
   const handleStarClick = (starIndex: number, isHalf: boolean) => {
     if (readOnly) return;
-    
-    const newValue = isHalf && precision === 0.5 
-      ? starIndex + 0.5 
-      : starIndex + 1;
-    
+
+    const newValue = isHalf && precision === 0.5 ? starIndex + 0.5 : starIndex + 1;
+
     onChange?.(newValue);
   };
 
   const handleMouseMove = (event: React.MouseEvent, starIndex: number) => {
     if (readOnly) return;
-    
+
     const rect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const isHalf = precision === 0.5 && x < rect.width / 2;
-    
+
     setHoverValue(isHalf ? starIndex + 0.5 : starIndex + 1);
   };
 
@@ -90,7 +84,7 @@ export const Rating = ({
 
   const handleKeyDown = (event: React.KeyboardEvent, starIndex: number) => {
     if (readOnly) return;
-    
+
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       handleStarClick(starIndex, false);
@@ -100,7 +94,7 @@ export const Rating = ({
   const renderStar = (index: number) => {
     const starValue = index + 1;
     const displayStarValue = displayValue;
-    
+
     let starType: 'full' | 'half' | 'empty' = 'empty';
     if (displayStarValue >= starValue) {
       starType = 'full';
@@ -140,11 +134,7 @@ export const Rating = ({
   };
 
   return (
-    <RatingContainer
-      role="img"
-      aria-label={`${label}: ${clampedValue} out of ${max}`}
-      {...props}
-    >
+    <RatingContainer role="img" aria-label={`${label}: ${clampedValue} out of ${max}`} {...props}>
       {Array.from({ length: max }, (_, i) => renderStar(i))}
     </RatingContainer>
   );

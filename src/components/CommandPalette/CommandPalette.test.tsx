@@ -24,7 +24,9 @@ const CommandPaletteWithTrigger = (
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button type="button" onClick={() => setOpen(true)}>Open palette</button>
+      <button type="button" onClick={() => setOpen(true)}>
+        Open palette
+      </button>
       <CommandPalette open={open} onClose={() => setOpen(false)} {...props} />
     </>
   );

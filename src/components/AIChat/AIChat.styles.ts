@@ -46,7 +46,7 @@ export const AIChatMessageBubble = styled.div.withConfig({
   padding: 14px 18px;
   border-radius: ${({ isAssistant }) => (isAssistant ? '0 16px 16px 16px' : '16px 0 16px 16px')};
   background: ${({ isAssistant, theme }) =>
-    isAssistant ? (theme as any).colors.cardBg : theme.colors.primary};
+    isAssistant ? theme.colors.cardBg : theme.colors.primary};
   color: ${({ isAssistant, theme }) => (isAssistant ? theme.colors.text : '#ffffff')};
   box-shadow: ${({ theme }) => theme.shadows.soft};
   box-sizing: border-box;
@@ -57,8 +57,7 @@ export const AIChatMessageBubble = styled.div.withConfig({
   }
 
   code {
-    background: ${({ isAssistant, theme }) =>
-      isAssistant ? (theme as any).colors.hoverBg : '#ffffff30'};
+    background: ${({ isAssistant, theme }) => (isAssistant ? theme.colors.hoverBg : '#ffffff30')};
     color: ${({ isAssistant, theme }) => (isAssistant ? theme.colors.primary : '#ffffff')};
   }
 
@@ -121,7 +120,7 @@ export const AIChatMessageActionButton = styled.button`
 
   &:hover {
     opacity: 1;
-    background: ${({ theme }) => (theme as any).colors.hoverBg}40;
+    background: ${({ theme }) => `${theme.colors.hoverBg}40`};
   }
 
   &:focus-visible {
@@ -145,13 +144,12 @@ export const AIChatInputWrapper = styled.div`
   gap: 8px;
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   padding: 4px 4px 4px 16px;
   transition: box-shadow 0.2s ease-in-out;
 
   &:focus-within {
-    box-shadow: ${({ theme }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 `;
 
@@ -165,7 +163,7 @@ export const AIChatInput = styled.input`
   min-height: 40px;
 
   &::placeholder {
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    color: ${({ theme }) => theme.colors.shadowDark};
   }
 
   &:disabled {
@@ -199,7 +197,7 @@ export const AIChatSendButton = styled.button`
   }
 
   &:active:not(:disabled) {
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
   }
 
   &:focus-visible {
@@ -234,7 +232,7 @@ export const AIChatEmptyState = styled.div`
   justify-content: center;
   gap: 12px;
   padding: 40px 20px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   text-align: center;
 
   svg {

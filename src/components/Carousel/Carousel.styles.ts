@@ -42,7 +42,7 @@ export const CarouselTrack = styled.div<{ $translateX: number }>`
   display: flex;
   height: 100%;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(${props => props.$translateX}%);
+  transform: translateX(${(props) => props.$translateX}%);
 `;
 
 export const CarouselSlide = styled.div<{ $isActive: boolean }>`
@@ -50,15 +50,15 @@ export const CarouselSlide = styled.div<{ $isActive: boolean }>`
   height: 100%;
   position: relative;
   overflow: hidden;
-  opacity: ${props => props.$isActive ? 1 : 0.6};
-  transform: ${props => props.$isActive ? 'scale(1)' : 'scale(0.95)'};
+  opacity: ${(props) => (props.$isActive ? 1 : 0.6)};
+  transform: ${(props) => (props.$isActive ? 'scale(1)' : 'scale(0.95)')};
   transition: opacity 0.4s ease, transform 0.4s ease;
 `;
 
 export const SlideImage = styled.div<{ $src?: string }>`
   width: 100%;
   height: 100%;
-  background-image: ${props => props.$src ? `url(${props.$src})` : 'none'};
+  background-image: ${(props) => (props.$src ? `url(${props.$src})` : 'none')};
   background-size: cover;
   background-position: center;
   background-color: ${({ theme }) => theme.colors?.background || '#e0e5ec'};
@@ -119,7 +119,7 @@ export const CarouselNavButton = styled.button.withConfig({
 }>`
   position: absolute;
   top: 50%;
-  ${props => props.$position}: 20px;
+  ${(props) => props.$position}: 20px;
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
@@ -136,9 +136,8 @@ export const CarouselNavButton = styled.button.withConfig({
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    box-shadow: ${({ theme }) => 
-      `${theme.shadows?.soft || '6px 6px 12px #b8b9be, -6px -6px 12px #ffffff'}, inset 0 0 0 2px ${theme.colors?.primary || '#6d5dfc'}40`
-    };
+    box-shadow: ${({ theme }) =>
+      `${theme.shadows?.soft || '6px 6px 12px #b8b9be, -6px -6px 12px #ffffff'}, inset 0 0 0 2px ${theme.colors?.primary || '#6d5dfc'}40`};
     color: ${({ theme }) => theme.colors?.primary || '#6d5dfc'};
     transform: translateY(-50%) scale(1.05);
   }
@@ -167,7 +166,7 @@ export const CarouselNavButton = styled.button.withConfig({
   @media (max-width: 768px) {
     width: 40px;
     height: 40px;
-    ${props => props.$position}: 12px;
+    ${(props) => props.$position}: 12px;
   }
 `;
 
@@ -187,15 +186,14 @@ export const CarouselDot = styled.button.withConfig({
   $isActive?: boolean;
   $hasImage?: boolean;
 }>`
-  ${props => props.$hasImage ? css`
+  ${(props) =>
+    props.$hasImage
+      ? css`
     width: 48px;
     height: 36px;
     border-radius: 6px;
     overflow: hidden;
-    border: 2px solid ${props.$isActive 
-      ? (props.theme.colors?.primary || '#6d5dfc') 
-      : 'transparent'
-    };
+    border: 2px solid ${props.$isActive ? props.theme.colors?.primary || '#6d5dfc' : 'transparent'};
     opacity: ${props.$isActive ? 1 : 0.6};
     transform: ${props.$isActive ? 'scale(1.1)' : 'scale(1)'};
     transition: all 0.3s ease;
@@ -210,18 +208,19 @@ export const CarouselDot = styled.button.withConfig({
       opacity: 1;
       transform: scale(1.05);
     }
-  ` : css`
+  `
+      : css`
     width: ${props.$isActive ? '32px' : '12px'};
     height: 12px;
     border-radius: 6px;
     border: none;
-    background: ${props.$isActive 
-      ? (props.theme.colors?.primary || '#6d5dfc') 
-      : (props.theme.colors?.shadowDark || '#b8b9be') + '60'
+    background: ${
+      props.$isActive
+        ? props.theme.colors?.primary || '#6d5dfc'
+        : (props.theme.colors?.shadowDark || '#b8b9be') + '60'
     };
-    box-shadow: ${props.$isActive 
-      ? '0 4px 8px rgba(109, 95, 252, 0.4)' 
-      : 'inset 2px 2px 4px rgba(0,0,0,0.1)'
+    box-shadow: ${
+      props.$isActive ? '0 4px 8px rgba(109, 95, 252, 0.4)' : 'inset 2px 2px 4px rgba(0,0,0,0.1)'
     };
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -242,9 +241,12 @@ export const CarouselDot = styled.button.withConfig({
       transform: scale(1.1);
     }
 
-    ${props.$isActive && css`
+    ${
+      props.$isActive &&
+      css`
       animation: ${pulse} 2s ease-in-out infinite;
-    `}
+    `
+    }
   `}
 `;
 
@@ -263,7 +265,9 @@ export const ProgressFill = styled.div<{ $duration: number; $isPlaying: boolean 
   height: 100%;
   background: ${({ theme }) => theme.colors?.primary || '#6d5dfc'};
   width: 0%;
-  ${props => props.$isPlaying && css`
+  ${(props) =>
+    props.$isPlaying &&
+    css`
     animation: ${progress} ${props.$duration}ms linear;
   `}
 `;
@@ -329,5 +333,5 @@ export const SlidePlaceholder = styled.div`
   background: ${({ theme }) => theme.colors?.background || '#e0e5ec'};
   box-shadow: ${({ theme }) => theme.shadows?.softInset || 'inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff'};
   font-size: 18px;
-  color: ${({ theme }) => (theme.colors?.shadowDark || '#b8b9be') + '80'};
+  color: ${({ theme }) => `${theme.colors?.shadowDark || '#b8b9be'}80`};
 `;

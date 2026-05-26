@@ -1,15 +1,11 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import { Resizable } from './Resizable';
+import { fireEvent, render, screen } from '@testing-library/react';
+import type React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 import { ThemeContextProvider } from '../../context/ThemeContext';
+import { Resizable } from './Resizable';
 
 const renderWithTheme = (component: React.ReactElement) => {
-  return render(
-    <ThemeContextProvider defaultTheme="light">
-      {component}
-    </ThemeContextProvider>
-  );
+  return render(<ThemeContextProvider defaultTheme="light">{component}</ThemeContextProvider>);
 };
 
 describe('Resizable', () => {
@@ -31,7 +27,7 @@ describe('Resizable', () => {
         {<div>Panel 2</div>}
       </Resizable>
     );
-    
+
     const handle = screen.getByRole('separator');
     expect(handle).toBeInTheDocument();
     expect(handle).toHaveAttribute('aria-orientation', 'horizontal');
@@ -45,7 +41,7 @@ describe('Resizable', () => {
         {<div>Panel 2</div>}
       </Resizable>
     );
-    
+
     expect(screen.getByRole('separator')).toHaveAttribute('aria-orientation', 'vertical');
   });
 
@@ -57,7 +53,7 @@ describe('Resizable', () => {
         {<div>Panel 2</div>}
       </Resizable>
     );
-    
+
     // Note: Actual drag simulation would require more extensive setup
     // Just verifying the component renders with the callback
     expect(onSizeChange).not.toHaveBeenCalled();

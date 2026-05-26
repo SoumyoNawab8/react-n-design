@@ -1,5 +1,5 @@
-import { motion } from '../../utils/lazyMotion';
 import styled, { css, keyframes } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
   small: { wrapperWidth: '40px', wrapperHeight: '22px', knobSize: '16px' },
@@ -33,7 +33,7 @@ export const SwitchWrapper = styled.div.withConfig({
   display: flex;
   align-items: center;
   padding: 4px;
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   transition: background-color 0.2s ease-in-out;
   transform: translateZ(0); /* Promotes to new layer for better rendering */
 
@@ -52,7 +52,7 @@ export const SwitchWrapper = styled.div.withConfig({
 const spin = keyframes`to { transform: rotate(360deg); }`;
 
 export const KnobSpinner = styled.div`
-  border: 2px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  border: 2px solid ${({ theme }) => `${theme.colors.shadowDark}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 60%;
@@ -74,9 +74,9 @@ export const SwitchKnob = styled(motion.div).withConfig({
   width: ${({ size }) => sizes[size].knobSize};
   height: ${({ size }) => sizes[size].knobSize};
   /* 3. Make knob theme-aware */
-  background-color: ${({ theme }) => (theme as any).colors.knobBg};
+  background-color: ${({ theme }) => theme.colors.knobBg};
   border-radius: 50%;
-  box-shadow: 3px 3px 6px ${({ theme }) => (theme as any).colors.shadowDark}, -3px -3px 6px ${({ theme }) => (theme as any).colors.shadowLight};
+  box-shadow: 3px 3px 6px ${({ theme }) => theme.colors.shadowDark}, -3px -3px 6px ${({ theme }) => theme.colors.shadowLight};
   display: flex;
   align-items: center;
   justify-content: center;

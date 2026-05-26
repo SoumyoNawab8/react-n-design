@@ -7,7 +7,7 @@ export const TableWrapper = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 8px;
   background: ${({ theme }) => theme.colors.background};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   overflow-x: auto; /* Allow horizontal scrolling for wide tables */
 `;
 
@@ -22,11 +22,11 @@ export const TableRow = styled.tr`
   transition: background-color 0.2s;
   &:not(:last-child) {
     /* 3. Use theme-aware border color */
-    border-bottom: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}40;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.shadowDark}40;
   }
   &:hover {
     /* 4. Use theme-aware hover color */
-    background-color: ${({ theme }) => (theme as any).colors.hoverBg};
+    background-color: ${({ theme }) => theme.colors.hoverBg};
   }
 `;
 
@@ -42,7 +42,7 @@ export const SortIcon = styled.span.withConfig({
   display: inline-flex;
   flex-direction: column;
   margin-left: 8px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   font-size: 0.8em;
   
   & svg:first-child { /* Up arrow */
@@ -63,7 +63,7 @@ export const TableHeaderCell = styled.th.withConfig({
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
   white-space: nowrap;
-  border-bottom: 2px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  border-bottom: 2px solid ${({ theme }) => `${theme.colors.shadowDark}40`};
 
   ${({ isSortable, theme }) =>
     isSortable &&
@@ -89,7 +89,7 @@ export const PaginationWrapper = styled.div`
 // --- Re-usable Spinner ---
 const spin = keyframes`to { transform: rotate(360deg); }`;
 export const Spinner = styled.div`
-  border: 3px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  border: 3px solid ${({ theme }) => `${theme.colors.shadowDark}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 2.5em;

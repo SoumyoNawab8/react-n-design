@@ -1,6 +1,6 @@
 'use client';
-import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export const DatePickerWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !['fullWidth'].includes(prop),
@@ -31,7 +31,7 @@ export const DatePickerInputGroup = styled.div.withConfig({
   position: relative;
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   transition: box-shadow 0.2s ease-in-out;
   height: 48px;
   padding: 0 16px;
@@ -42,26 +42,26 @@ export const DatePickerInputGroup = styled.div.withConfig({
   ${({ hasError, theme }) =>
     hasError &&
     css`
-      box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px #e53e3e90 !important;
+      box-shadow: ${theme.shadows.softInset}, 0 0 0 2px #e53e3e90 !important;
     `}
 
   ${({ open, theme }) =>
     open &&
     css`
-      box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40;
+      box-shadow: ${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40;
     `}
 
   &:focus-within {
     z-index: 2;
     box-shadow: ${({ theme, hasError }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${
+      `${theme.shadows.softInset}, 0 0 0 2px ${
         hasError ? '#e53e3e' : theme.colors.primary
       }40`};
   }
 
   &:hover:not(:disabled) {
     box-shadow: ${({ theme, hasError }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${
+      `${theme.shadows.softInset}, 0 0 0 2px ${
         hasError ? '#e53e3e' : theme.colors.primary
       }30`};
   }
@@ -80,7 +80,7 @@ export const DatePickerInput = styled.input`
   box-sizing: border-box;
 
   &::placeholder {
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    color: ${({ theme }) => theme.colors.shadowDark};
   }
 
   &:disabled {
@@ -95,7 +95,7 @@ export const DatePickerCalendarIcon = styled.span.withConfig({
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ disabled, theme }) => (disabled ? (theme as any).colors.shadowDark : theme.colors.text)};
+  color: ${({ disabled, theme }) => (disabled ? theme.colors.shadowDark : theme.colors.text)};
   font-size: 18px;
   flex-shrink: 0;
 `;
@@ -107,7 +107,7 @@ export const DatePickerClearButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   font-size: 14px;
   padding: 0;
   width: 20px;
@@ -157,7 +157,7 @@ export const DatePickerHeaderButton = styled.button`
   transition: all 0.2s ease;
 
   &:hover:not(:disabled) {
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:disabled {
@@ -166,7 +166,7 @@ export const DatePickerHeaderButton = styled.button`
   }
 
   &:active:not(:disabled) {
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
   }
 `;
 
@@ -190,12 +190,12 @@ export const DatePickerSelect = styled.select`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   outline: none;
 
   &:focus {
     box-shadow: ${({ theme }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 `;
 
@@ -253,8 +253,8 @@ export const DatePickerDay = styled.button.withConfig({
   cursor: pointer;
   background: transparent;
   color: ${({ theme, isOtherMonth, isDisabled }) => {
-    if (isDisabled) return (theme as any).colors.shadowDark;
-    if (isOtherMonth) return (theme as any).colors.shadowDark;
+    if (isDisabled) return theme.colors.shadowDark;
+    if (isOtherMonth) return theme.colors.shadowDark;
     return theme.colors.text;
   }};
   position: relative;
@@ -328,7 +328,7 @@ export const DatePickerDay = styled.button.withConfig({
 
   &:hover:not(:disabled) {
     background: ${({ theme, isSelected, isRangeStart, isRangeEnd }) =>
-      isSelected || isRangeStart || isRangeEnd ? undefined : (theme as any).colors.hoverBg};
+      isSelected || isRangeStart || isRangeEnd ? undefined : theme.colors.hoverBg};
   }
 
   &:disabled {
@@ -348,7 +348,7 @@ export const DatePickerFooter = styled.div`
   justify-content: space-between;
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid ${({ theme }) => (theme as any).colors.hoverBg};
+  border-top: 1px solid ${({ theme }) => theme.colors.hoverBg};
 `;
 
 export const DatePickerTodayButton = styled.button`
@@ -362,7 +362,7 @@ export const DatePickerTodayButton = styled.button`
   border-radius: 6px;
 
   &:hover {
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 `;
 

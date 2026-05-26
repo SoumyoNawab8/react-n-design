@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from '../../utils/lazyMotion';
-import { EmptyWrapper, EmptyImage, EmptyDescription } from './Empty.styles';
+import { EmptyDescription, EmptyImage, EmptyWrapper } from './Empty.styles';
 
 export interface EmptyProps {
   description?: React.ReactNode;
@@ -9,11 +9,7 @@ export interface EmptyProps {
   children?: React.ReactNode;
 }
 
-export const Empty = ({
-  description = 'No Data',
-  image,
-  children,
-}: EmptyProps) => {
+export const Empty = ({ description = 'No Data', image, children }: EmptyProps) => {
   return (
     <EmptyWrapper
       as={motion.div}
@@ -40,10 +36,7 @@ export const Empty = ({
                 d="M34.4 14.8c-2.872 0-5.2 2.328-5.2 5.2s2.328 5.2 5.2 5.2 5.2-2.328 5.2-5.2-2.328-5.2-5.2-5.2z"
                 fill="#d9d9d9"
               />
-              <path
-                d="M24.8 28.6l6.4-6.4 4 4 8-8 6.4 6.4v4H24.8v-4z"
-                fill="#d9d9d9"
-              />
+              <path d="M24.8 28.6l6.4-6.4 4 4 8-8 6.4 6.4v4H24.8v-4z" fill="#d9d9d9" />
             </g>
           </svg>
         )}

@@ -1,5 +1,6 @@
 'use client';
 import type React from 'react';
+import { FaBars } from '../../icons';
 import {
   AppBarActions,
   AppBarContainer,
@@ -7,7 +8,6 @@ import {
   MenuButton,
   StyledAppBar,
 } from './AppBar.styles';
-import { FaBars } from '../../icons';
 
 export interface AppBarProps extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
   /**
@@ -48,19 +48,10 @@ export const AppBar = ({
   ...props
 }: AppBarProps) => {
   return (
-    <StyledAppBar
-      elevated={elevated}
-      position={position}
-      role="banner"
-      {...props}
-    >
+    <StyledAppBar elevated={elevated} position={position} role="banner" {...props}>
       <AppBarContainer>
         {onMenuClick && (
-          <MenuButton
-            onClick={onMenuClick}
-            aria-label="Open navigation menu"
-            type="button"
-          >
+          <MenuButton onClick={onMenuClick} aria-label="Open navigation menu" type="button">
             <FaBars />
           </MenuButton>
         )}

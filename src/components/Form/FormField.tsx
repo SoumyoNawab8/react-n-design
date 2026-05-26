@@ -58,7 +58,7 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
       value={value}
       onChange={handleChange}
       onBlur={handleBlur}
-      error={showError ? error : undefined}
+      error={showError ? (Array.isArray(error) ? error[0] : error) : undefined}
       aria-invalid={showError ? true : undefined}
       aria-describedby={errorId}
       fullWidth

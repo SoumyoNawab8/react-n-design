@@ -1,8 +1,8 @@
 'use client';
-import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FaCalendarAlt, FaChevronLeft, FaChevronRight, FaTimes } from "../../icons";
+import { FaCalendarAlt, FaChevronLeft, FaChevronRight, FaTimes } from '../../icons';
+import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {
   DatePickerCalendarIcon,

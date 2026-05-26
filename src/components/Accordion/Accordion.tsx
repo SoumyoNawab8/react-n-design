@@ -1,8 +1,8 @@
 'use client';
 import type React from 'react';
-import { AnimatePresence } from '../../utils/lazyMotion';
 import { useCallback, useRef, useState } from 'react';
-import { FaChevronRight } from "../../icons";
+import { FaChevronRight } from '../../icons';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   AccordionChevron,
   AccordionHeader,

@@ -1,6 +1,7 @@
 // The base theme structure, shared between light and dark modes
 export const baseTheme = {
   borderRadius: '12px',
+  dir: 'ltr' as const,
 };
 
 // Light Theme
@@ -13,14 +14,16 @@ export const lightTheme = {
     background: '#e0e5ec',
     white: '#ffffff',
     text: '#555',
+    textSecondary: '#888',
+    border: '#d9d9d9',
     // Neomorphic shadow colors
     shadowDark: '#bec3c9',
     shadowLight: '#ffffff',
     // Component-specific colors
-    hoverBg: '#d1d9e6', // For hover states in Select, Table, etc.
-    skeletonBg: '#dde1e7', // For the Skeleton component
-    knobBg: '#f0f2f5', // For the Switch component's knob
-    cardBg: '#f0f2f5', // For card-style Tabs
+    hoverBg: '#d1d9e6',
+    skeletonBg: '#dde1e7',
+    knobBg: '#f0f2f5',
+    cardBg: '#f0f2f5',
   },
   shadows: {
     soft: '7px 7px 14px #bec3c9, -7px -7px 14px #ffffff',
@@ -38,14 +41,16 @@ export const darkTheme = {
     background: '#2c2f34',
     white: '#ffffff',
     text: '#d1d9e6',
+    textSecondary: '#9ba3ad',
+    border: '#444851',
     // Neomorphic shadow colors
     shadowDark: '#25282c',
     shadowLight: '#33363c',
     // Component-specific colors
-    hoverBg: '#3c4047', // For hover states in Select, Table, etc.
-    skeletonBg: '#3c4047', // For the Skeleton component
-    knobBg: '#3c4047', // For the Switch component's knob
-    cardBg: '#25282c', // For card-style Tabs
+    hoverBg: '#3c4047',
+    skeletonBg: '#3c4047',
+    knobBg: '#3c4047',
+    cardBg: '#25282c',
   },
   shadows: {
     soft: '7px 7px 14px #25282c, -7px -7px 14px #33363c',
@@ -83,11 +88,19 @@ export const cssVariableMap: Record<string, string> = {
 export function getThemeCSS(theme: Theme): string {
   const entries = Object.entries(cssVariableMap)
     .map(([path, varName]) => {
-      const value = path.split('.').reduce((obj: any, key) => obj?.[key], theme as any);
-      if (value === undefined) return null;
+      const keys = path.split('.');
+      let value: unknown = theme;
+      for (const key of keys) {
+        if (value && typeof value === 'object' && key in value) {
+          value = (value as Record<string, unknown>)[key];
+        } else {
+          return null;
+        }
+      }
+      if (typeof value !== 'string') return null;
       return `  ${varName}: ${value};`;
     })
-    .filter(Boolean);
+    .filter((entry): entry is string => entry !== null);
 
   return `:root {\n${entries.join('\n')}\n}`;
 }

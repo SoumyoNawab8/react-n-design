@@ -1,6 +1,6 @@
 'use client';
-import { motion } from '../../utils/lazyMotion';
 import styled, { css, keyframes } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '6px 12px' },
@@ -94,7 +94,7 @@ export const ComboBoxInputGroup = styled.div.withConfig({
   position: relative;
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   transition: box-shadow 0.2s ease-in-out;
   min-height: ${({ size }) => sizes[size].height};
   height: auto;
@@ -114,13 +114,13 @@ export const ComboBoxInputGroup = styled.div.withConfig({
   ${({ hasError, theme }) =>
     hasError &&
     css`
-      box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px #e53e3e90 !important;
+      box-shadow: ${theme.shadows.softInset}, 0 0 0 2px #e53e3e90 !important;
     `}
 
   &:focus-within {
     z-index: 2;
     box-shadow: ${({ theme, hasError }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${
+      `${theme.shadows.softInset}, 0 0 0 2px ${
         hasError ? '#e53e3e' : theme.colors.primary
       }40`};
   }
@@ -162,7 +162,7 @@ export const ComboBoxClearButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   font-size: 14px;
   padding: 0;
   width: 20px;
@@ -209,9 +209,9 @@ export const ComboBoxOption = styled.div.withConfig({
   ${({ disabled, theme }) =>
     disabled &&
     css`
-      color: ${(theme as any).colors.shadowDark};
+      color: ${theme.colors.shadowDark};
       cursor: not-allowed;
-      background: ${(theme as any).colors.hoverBg};
+      background: ${theme.colors.hoverBg};
     `}
 
   ${({ isActive, theme }) =>
@@ -225,7 +225,7 @@ export const ComboBoxOption = styled.div.withConfig({
     !disabled &&
     css`
       &:hover {
-        background: ${(theme as any).colors.hoverBg};
+        background: ${theme.colors.hoverBg};
       }
     `}
 `;
@@ -233,6 +233,6 @@ export const ComboBoxOption = styled.div.withConfig({
 export const ComboBoxEmpty = styled.div`
   padding: 12px;
   text-align: center;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   font-size: 14px;
 `;

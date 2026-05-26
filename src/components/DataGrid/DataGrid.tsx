@@ -1,14 +1,7 @@
 'use client';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  FaChevronDown,
-  FaChevronRight,
-  FaFilter,
-  FaSort,
-  FaSortDown,
-  FaSortUp,
-} from "../../icons";
 import { VariableSizeList as List, type ListChildComponentProps } from 'react-window';
+import { FaChevronDown, FaChevronRight, FaFilter, FaSort, FaSortDown, FaSortUp } from '../../icons';
 import { Button } from '../Button';
 import {
   CheckboxWrapper,

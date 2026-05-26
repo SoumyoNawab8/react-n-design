@@ -13,7 +13,7 @@ const sizes = {
     height: '48px',
     padding: '0 24px',
     fontSize: '16px',
-    radius: ({ theme }: { theme: any }) => theme.borderRadius,
+    radius: '12px',
     circleSize: '48px',
   },
   large: {
@@ -34,7 +34,7 @@ const spin = keyframes`
 
 // A simple CSS spinner component
 export const Spinner = styled.div`
-  border: 2px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  border: 2px solid ${({ theme }) => `${theme.colors.shadowDark}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 1em;
@@ -102,10 +102,10 @@ export const StyledButton = styled.button.withConfig({
           box-shadow: none;
           color: ${theme.colors.primary};
           &:hover:not(:disabled) {
-            background: ${(theme as any).colors.hoverBg}50;
+            background: ${theme.colors.hoverBg}50;
           }
           &:active:not(:disabled) {
-            background: ${(theme as any).colors.hoverBg}80;
+            background: ${theme.colors.hoverBg}80;
           }
         `;
       default: // primary & secondary
@@ -119,7 +119,7 @@ export const StyledButton = styled.button.withConfig({
           }
 
           &:active:not(:disabled) {
-            box-shadow: ${(theme as any).shadows.softInset};
+            box-shadow: ${theme.shadows.softInset};
             color: ${theme.colors.primary};
           }
         `;
@@ -129,9 +129,9 @@ export const StyledButton = styled.button.withConfig({
   /* Disabled State */
   &:disabled {
     cursor: not-allowed;
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    color: ${({ theme }) => theme.colors.shadowDark};
     background: ${({ theme }) => theme.colors.background};
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
     
     ${Spinner} {
       border-top-color: #aaa;
