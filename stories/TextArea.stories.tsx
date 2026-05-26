@@ -11,13 +11,7 @@ export default meta;
 
 const TextArea = (args: any) => {
   const [value, setValue] = useState(args.defaultValue || '');
-  return (
-    <TextAreaCompo
-      {...args}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
-  );
+  return <TextAreaCompo {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
 };
 
 export const Default: StoryObj<typeof TextArea> = {
@@ -68,7 +62,8 @@ export const NearLimit: StoryObj<typeof TextArea> = {
     placeholder: 'Max 100 characters...',
     maxLength: 100,
     showCount: true,
-    defaultValue: 'This text is approaching the maximum character limit and you can see the counter change color as you type more text here',
+    defaultValue:
+      'This text is approaching the maximum character limit and you can see the counter change color as you type more text here',
     id: 'near-limit',
     rows: 3,
   },

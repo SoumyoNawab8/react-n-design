@@ -4,7 +4,7 @@ import axe from 'axe-core';
 import type React from 'react';
 import { useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
 import { CopyButton } from './CopyButton';
 
@@ -55,20 +55,19 @@ describe('CopyButton', () => {
       expect(onCopySuccess).toHaveBeenCalledWith('Test text to copy');
     });
   }),
+    it('calls onCopySuccess callback with copied text', async () => {
+      const user = userEvent.setup();
+      const onCopySuccess = vi.fn();
+      renderWithTheme(<CopyButton text="Test" onCopySuccess={onCopySuccess} />);
 
-  it('calls onCopySuccess callback with copied text', async () => {
-    const user = userEvent.setup();
-    const onCopySuccess = vi.fn();
-    renderWithTheme(<CopyButton text="Test" onCopySuccess={onCopySuccess} />);
+      const button = screen.getByRole('button', { name: /copy to clipboard/i });
+      await user.click(button);
 
-    const button = screen.getByRole('button', { name: /copy to clipboard/i });
-    await user.click(button);
-
-    await waitFor(() => {
-      expect(onCopySuccess).toHaveBeenCalledTimes(1);
+      await waitFor(() => {
+        expect(onCopySuccess).toHaveBeenCalledTimes(1);
+      });
+      expect(onCopySuccess).toHaveBeenCalledWith('Test');
     });
-    expect(onCopySuccess).toHaveBeenCalledWith('Test');
-  });
 
   it('shows success state after clicking', async () => {
     const user = userEvent.setup();
@@ -113,7 +112,9 @@ describe('CopyButton', () => {
   });
 
   it('renders with custom copy icon', () => {
-    renderWithTheme(<CopyButton text="Test" copyIcon={<span data-testid="custom-copy">Copy</span>} />);
+    renderWithTheme(
+      <CopyButton text="Test" copyIcon={<span data-testid="custom-copy">Copy</span>} />
+    );
     expect(screen.getByTestId('custom-copy')).toBeInTheDocument();
   });
 

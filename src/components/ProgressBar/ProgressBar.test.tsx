@@ -123,9 +123,7 @@ describe('ProgressBar', () => {
   });
 
   it('accepts any valid HTML div attributes', () => {
-    renderWithTheme(
-      <ProgressBar value={50} id="progress-id" className="progress-class" />
-    );
+    renderWithTheme(<ProgressBar value={50} id="progress-id" className="progress-class" />);
     const progressBar = screen.getByRole('progressbar');
     expect(progressBar).toHaveClass('progress-class');
   });

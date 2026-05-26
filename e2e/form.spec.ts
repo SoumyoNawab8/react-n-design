@@ -114,9 +114,11 @@ test.describe('Form Component - Validation', () => {
     await page.waitForTimeout(300);
 
     // Check for email error
-    const hasEmailError = await page.locator('text=valid email').isVisible()
+    const _hasEmailError = await page
+      .locator('text=valid email')
+      .isVisible()
       .catch(() => false);
-    
+
     // Screenshot showing error state
     await expect(page).toHaveScreenshot('form-invalid-email.png', {
       maxDiffPixels: 100,
@@ -134,7 +136,9 @@ test.describe('Form Component - Validation', () => {
     await page.waitForTimeout(300);
 
     // Check for password length error
-    const hasPasswordError = await page.locator('text=8 characters').isVisible()
+    const _hasPasswordError = await page
+      .locator('text=8 characters')
+      .isVisible()
       .catch(() => false);
 
     await expect(page).toHaveScreenshot('form-short-password.png', {
@@ -185,10 +189,10 @@ test.describe('Form Component - Disabled State', () => {
 
     // Try to fill disabled input
     const nameInput = page.locator('input[placeholder="John Doe"]');
-    
+
     // Attempt fill - should not change value
     await nameInput.fill('New Value', { timeout: 1000 }).catch(() => {});
-    
+
     // Check input is still empty or has default
     const value = await nameInput.inputValue();
     expect(value).toBe('');
@@ -201,7 +205,7 @@ test.describe('Form Component - Field Interactions', () => {
     await page.waitForLoadState('networkidle');
 
     const nameInput = page.locator('input[placeholder="Enter your name"]');
-    
+
     // Focus the input
     await nameInput.focus();
     await page.waitForTimeout(100);
@@ -225,7 +229,7 @@ test.describe('Form Component - Field Interactions', () => {
     await page.waitForLoadState('networkidle');
 
     const nameInput = page.locator('input[placeholder="Enter your name"]');
-    
+
     // Type character by character
     await nameInput.pressSequentially('Test User');
 
@@ -247,7 +251,7 @@ test.describe('Form Component - Field Interactions', () => {
     await page.fill('input[type="password"]', 'securepass123');
 
     // Listen for dialog (alert)
-    page.on('dialog', async dialog => {
+    page.on('dialog', async (dialog) => {
       expect(dialog.message()).toContain('Form submitted');
       await dialog.accept();
     });

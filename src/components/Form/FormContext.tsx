@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext } from 'react';
 
-export type FormLayout = 'horizontal' | 'vertical' | 'inline';
+export type FormLayout = 'horizontal' | 'vertical' | 'inline' | 'compact';
 export type LabelAlign = 'left' | 'right';
 
 export interface ColSpan {
@@ -35,6 +35,10 @@ export interface FormContextValue<T = unknown> {
   registerField?: (name: string, entity: unknown) => void;
   unregisterField?: (name: string) => void;
   getInitialValue?: (name: string) => unknown;
+  disabled?: boolean;
+  // v1.2.0 new properties
+  compact?: boolean;
+  responsiveBreakpoint?: number;
 }
 
 export const FormContext = createContext<FormContextValue<unknown> | null>(null);
@@ -145,6 +149,9 @@ export interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement
   preserve?: boolean;
   autoComplete?: string;
   component?: string | React.ComponentType;
+  // v1.2.0 new props
+  compact?: boolean;
+  responsiveBreakpoint?: number;
 }
 
 export interface FormItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -180,4 +187,8 @@ export interface FormItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     onChange: (value: unknown) => void;
     onBlur: () => void;
   }) => React.ReactNode;
+  // v1.2.0 new props
+  showValidationIcon?: boolean;
+  debounceMs?: number;
+  animateErrors?: boolean;
 }

@@ -41,9 +41,7 @@ describe('Tag', () => {
   });
 
   it('renders with left icon', () => {
-    renderWithTheme(
-      <Tag leftIcon={<span data-testid="left-icon">★</span>}>With Icon</Tag>
-    );
+    renderWithTheme(<Tag leftIcon={<span data-testid="left-icon">★</span>}>With Icon</Tag>);
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
     expect(screen.getByText('With Icon')).toBeInTheDocument();
   });
@@ -97,7 +95,11 @@ describe('Tag', () => {
   });
 
   it('forwards additional props', () => {
-    renderWithTheme(<Tag data-testid="my-tag" className="custom-class">Tagged</Tag>);
+    renderWithTheme(
+      <Tag data-testid="my-tag" className="custom-class">
+        Tagged
+      </Tag>
+    );
     const tag = screen.getByTestId('my-tag');
     expect(tag).toHaveClass('custom-class');
   });
@@ -135,9 +137,7 @@ describe('Tag', () => {
   });
 
   it('renders with react icon as left icon', () => {
-    renderWithTheme(
-      <Tag leftIcon={<FaCheck data-testid="check-icon" />}>Checked</Tag>
-    );
+    renderWithTheme(<Tag leftIcon={<FaCheck data-testid="check-icon" />}>Checked</Tag>);
     expect(screen.getByTestId('check-icon')).toBeInTheDocument();
   });
 });

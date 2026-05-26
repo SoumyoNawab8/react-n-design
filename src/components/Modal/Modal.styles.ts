@@ -1,15 +1,20 @@
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
 
-const sizes = {
+export type ModalSize = 'small' | 'medium' | 'large';
+
+const sizes: Record<ModalSize, string> = {
   small: '400px',
   medium: '600px',
   large: '800px',
 };
 
 export const ModalWrapper = styled.div.withConfig({
-  shouldForwardProp: (prop) => !['position'].includes(prop),
-})<{ position: 'center' | 'top' }>`
+  shouldForwardProp: (prop) => !['position', 'isBottomSheet'].includes(prop),
+})<{
+  position: 'center' | 'top';
+  isBottomSheet?: boolean;
+}>`
   position: fixed;
   top: 0;
   left: 0;
@@ -17,18 +22,48 @@ export const ModalWrapper = styled.div.withConfig({
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: ${({ position }) => (position === 'center' ? 'center' : 'flex-start')};
-  padding-top: ${({ position }) => (position === 'top' ? '5vh' : '0')};
+  align-items: ${({ position, isBottomSheet }) =>
+    isBottomSheet ? 'flex-end' : position === 'center' ? 'center' : 'flex-start'};
+  padding-top: ${({ position, isBottomSheet }) =>
+    isBottomSheet ? '0' : position === 'top' ? '5vh' : '0'};
   z-index: 1100;
+  
+  /* For bottom sheet on mobile, push content to bottom */
+  ${({ isBottomSheet }) =>
+    isBottomSheet &&
+    css`
+      padding: 0;
+      align-items: flex-end;
+    `}
 `;
 
-export const ModalBackdrop = styled(motion.div)`
+export const ModalBackdrop = styled(motion.div).withConfig({
+  shouldForwardProp: (prop) => !['variant', 'isBottomSheet'].includes(prop),
+})<{
+  variant?: 'modal' | 'glass';
+  isBottomSheet?: boolean;
+}>`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* This generally works for both themes */
+  
+  ${({ variant }) =>
+    variant === 'glass'
+      ? css`
+          background: rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        `
+      : css`
+          background: rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(0px);
+          -webkit-backdrop-filter: blur(0px);
+        `}
+  
+  /* Smooth transition for blur effect */
+  transition: backdrop-filter 0.3s ease;
 `;
 
 export const ModalBody = styled.div`
@@ -36,16 +71,56 @@ export const ModalBody = styled.div`
 `;
 
 export const ModalContent = styled(motion.div).withConfig({
-  shouldForwardProp: (prop) => !['size', 'fullScreen'].includes(prop),
+  shouldForwardProp: (prop) =>
+    !['size', 'fullScreen', 'variant', 'isBottomSheet'].includes(prop),
 })<{
-  size: 'small' | 'medium' | 'large';
+  size: ModalSize;
   fullScreen: boolean;
+  variant?: 'modal' | 'glass';
+  isBottomSheet?: boolean;
 }>`
   position: relative;
   z-index: 1101;
-  width: 90vw;
-  max-width: ${({ size }) => sizes[size]};
+  width: ${({ isBottomSheet }) => (isBottomSheet ? '100%' : '90vw')};
+  max-width: ${({ size, isBottomSheet }) => (isBottomSheet ? 'none' : sizes[size])};
 
+  /* Glass variant styles */
+  ${({ variant }) =>
+    variant === 'glass' &&
+    css`
+      & > div {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      }
+      
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        & > div {
+          background: rgba(30, 30, 30, 0.95);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      }
+    `}
+
+  /* Bottom-sheet styles for mobile */
+  ${({ isBottomSheet }) =>
+    isBottomSheet &&
+    css`
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      border-radius: 16px 16px 0 0;
+      
+      & > div {
+        border-radius: 16px 16px 0 0;
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+      }
+    `}
+
+  /* Full-screen styles */
   ${({ fullScreen }) =>
     fullScreen &&
     css`
@@ -53,12 +128,15 @@ export const ModalContent = styled(motion.div).withConfig({
       height: 100vh;
       max-width: 100vw;
       border-radius: 0;
-      & > div { /* Target the Card inside */
+      
+      & > div {
+        /* Target the Card inside */
         height: 100%;
         border-radius: 0;
         display: flex;
         flex-direction: column;
       }
+      
       & ${ModalBody} {
         flex-grow: 1;
         overflow-y: auto;
@@ -88,10 +166,18 @@ export const ModalCloseButton = styled.button`
   /* 3. Access theme from props */
   color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 8px;
+  min-width: 36px;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  &:active {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -100,4 +186,13 @@ export const ModalFooter = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 12px;
+`;
+
+export const BottomSheetHandle = styled.div`
+  width: 40px;
+  height: 4px;
+  background: ${({ theme }) => theme.colors.border || '#ccc'};
+  border-radius: 2px;
+  margin: 8px auto 16px;
+  opacity: 0.5;
 `;

@@ -15,14 +15,18 @@ type Story = StoryObj<typeof Resizable>;
 
 const Panel1 = () => (
   <div style={{ padding: '20px', height: '300px', background: '#f0f2f5' }}>
-    <p><strong>Panel 1</strong></p>
+    <p>
+      <strong>Panel 1</strong>
+    </p>
     <p>Drag the handle to resize this panel.</p>
   </div>
 );
 
 const Panel2 = () => (
   <div style={{ padding: '20px', height: '300px', background: '#e8eaf0' }}>
-    <p><strong>Panel 2</strong></p>
+    <p>
+      <strong>Panel 2</strong>
+    </p>
     <p>This panel adjusts automatically.</p>
   </div>
 );
@@ -40,8 +44,12 @@ export const Vertical: Story = {
     direction: 'vertical',
     defaultSize: '40%',
     children: [
-      <div key="1" style={{ padding: '20px', background: '#f0f2f5' }}>Top Panel</div>,
-      <div key="2" style={{ padding: '20px', background: '#e8eaf0' }}>Bottom Panel</div>,
+      <div key="1" style={{ padding: '20px', background: '#f0f2f5' }}>
+        Top Panel
+      </div>,
+      <div key="2" style={{ padding: '20px', background: '#e8eaf0' }}>
+        Bottom Panel
+      </div>,
     ] as [any, any],
   },
 };

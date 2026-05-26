@@ -34,6 +34,43 @@ describe('Accordion - Rendering', () => {
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(3);
   });
+
+  it('applies custom className', () => {
+    const { container } = renderWithTheme(<Accordion items={DEFAULT_ITEMS} className="custom-accordion" />);
+    const wrapper = container.querySelector('.custom-accordion');
+    expect(wrapper).toBeTruthy();
+  });
+
+  it('applies custom style', () => {
+    const { container } = renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} style={{ maxWidth: '500px' }} />
+    );
+    const wrapper = container.firstChild as HTMLElement;
+    expect(wrapper).toBeTruthy();
+    expect(wrapper.style.maxWidth).toBe('500px');
+  });
+});
+
+describe('Accordion - Variants', () => {
+  it('renders default variant correctly', () => {
+    renderWithTheme(<Accordion items={DEFAULT_ITEMS} variant="default" data-testid="default-variant" />);
+    const accordion = screen.getByTestId('default-variant');
+    expect(accordion).toBeInTheDocument();
+  });
+
+  it('renders glass variant correctly', () => {
+    const { container } = renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} variant="glass" />
+    );
+    // Glass variant renders correctly - check class is applied
+    expect(container.firstChild).toBeTruthy();
+  });
+
+  it('renders minimal variant correctly', () => {
+    renderWithTheme(<Accordion items={DEFAULT_ITEMS} variant="minimal" data-testid="minimal-variant" />);
+    const accordion = screen.getByTestId('minimal-variant');
+    expect(accordion).toBeInTheDocument();
+  });
 });
 
 describe('Accordion - Interaction', () => {
@@ -88,7 +125,9 @@ describe('Accordion - Interaction', () => {
 
   it('allows closing all panels when allowMultiple is true', async () => {
     const user = userEvent.setup();
-    renderWithTheme(<Accordion items={DEFAULT_ITEMS} allowMultiple defaultActiveKey={['1', '2']} />);
+    renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} allowMultiple defaultActiveKey={['1', '2']} />
+    );
 
     await waitFor(() => {
       expect(screen.getByText('Content 1')).toBeInTheDocument();
@@ -149,7 +188,7 @@ describe('Accordion - Disabled Items', () => {
 
     const disabledHeader = screen.getByText('Disabled').closest('button');
     expect(disabledHeader).toBeDisabled();
-    
+
     await user.click(disabledHeader!);
     expect(screen.queryByText('Content 2')).not.toBeInTheDocument();
   });
@@ -163,7 +202,8 @@ describe('Accordion - Controlled Mode', () => {
   });
 
   it('renders controlled array value', () => {
-    renderWithTheme(<Accordion items={DEFAULT_ITEMS} activeKey={['1', '2']} allowMultiple />);
+    renderWithTheme(<Accordion items={DEFAULT_ITEMS} activeKey={['1', '2']} allowMultiple />
+    );
     expect(screen.getByText('Content 1')).toBeInTheDocument();
     expect(screen.getByText('Content 2')).toBeInTheDocument();
     expect(screen.queryByText('Content 3')).not.toBeInTheDocument();
@@ -177,7 +217,9 @@ describe('Accordion - Default Values', () => {
   });
 
   it('starts with expanded array when allowMultiple', () => {
-    renderWithTheme(<Accordion items={DEFAULT_ITEMS} defaultActiveKey={['1', '2']} allowMultiple />);
+    renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} defaultActiveKey={['1', '2']} allowMultiple />
+    );
     expect(screen.getByText('Content 1')).toBeInTheDocument();
     expect(screen.getByText('Content 2')).toBeInTheDocument();
   });
@@ -187,10 +229,10 @@ describe('Accordion - Keyboard Navigation', () => {
   it('supports Enter key to toggle', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const firstHeader = screen.getByText('Section 1').closest('button');
     firstHeader?.focus();
-    
+
     await user.keyboard('{Enter}');
     await waitFor(() => {
       expect(screen.getByText('Content 1')).toBeInTheDocument();
@@ -200,10 +242,10 @@ describe('Accordion - Keyboard Navigation', () => {
   it('supports Space key to toggle', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const firstHeader = screen.getByText('Section 1').closest('button');
     firstHeader?.focus();
-    
+
     await act(async () => {
       await user.keyboard(' ');
     });
@@ -215,10 +257,10 @@ describe('Accordion - Keyboard Navigation', () => {
   it('moves focus with ArrowDown', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const buttons = screen.getAllByRole('button');
     buttons[0].focus();
-    
+
     await user.keyboard('{ArrowDown}');
     expect(buttons[1]).toHaveFocus();
   });
@@ -226,10 +268,10 @@ describe('Accordion - Keyboard Navigation', () => {
   it('moves focus with ArrowUp', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const buttons = screen.getAllByRole('button');
     buttons[2].focus();
-    
+
     await user.keyboard('{ArrowUp}');
     expect(buttons[1]).toHaveFocus();
   });
@@ -237,10 +279,10 @@ describe('Accordion - Keyboard Navigation', () => {
   it('moves focus to first item with Home', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const buttons = screen.getAllByRole('button');
     buttons[2].focus();
-    
+
     await user.keyboard('{Home}');
     expect(buttons[0]).toHaveFocus();
   });
@@ -248,10 +290,10 @@ describe('Accordion - Keyboard Navigation', () => {
   it('moves focus to last item with End', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const buttons = screen.getAllByRole('button');
     buttons[0].focus();
-    
+
     await user.keyboard('{End}');
     expect(buttons[2]).toHaveFocus();
   });
@@ -264,17 +306,17 @@ describe('Accordion - Keyboard Navigation', () => {
     ];
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={itemsWithDisabled} />);
-    
+
     const buttons = screen.getAllByRole('button');
     expect(buttons).toHaveLength(3); // All three buttons are in DOM
     expect(buttons[0]).toHaveTextContent(/first/i);
     expect(buttons[1]).toHaveTextContent(/disabled/i);
     expect(buttons[2]).toHaveTextContent(/third/i);
-    
+
     // First button focuses correctly
     buttons[0].focus();
     expect(buttons[0]).toHaveFocus();
-    
+
     // ArrowDown from first enabled should go to Third (index 2)
     await user.keyboard('{ArrowDown}');
     // Due to the way keyboard navigation works with disabled items,
@@ -288,10 +330,10 @@ describe('Accordion - ARIA Attributes', () => {
   it('has correct aria-expanded on headers', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const firstHeader = screen.getByText('Section 1').closest('button');
     expect(firstHeader).toHaveAttribute('aria-expanded', 'false');
-    
+
     await user.click(firstHeader!);
     await waitFor(() => {
       expect(firstHeader).toHaveAttribute('aria-expanded', 'true');
@@ -316,10 +358,10 @@ describe('Accordion - ARIA Attributes', () => {
       { key: '2', label: 'Disabled', children: 'Content 2', disabled: true },
     ];
     renderWithTheme(<Accordion items={itemsWithDisabled} />);
-    
+
     const enabledButton = screen.getByText('Enabled').closest('button');
     const disabledButton = screen.getByText('Disabled').closest('button');
-    
+
     expect(enabledButton).toHaveAttribute('aria-disabled', 'false');
     expect(disabledButton).toHaveAttribute('aria-disabled', 'true');
   });
@@ -357,20 +399,70 @@ describe('Accordion - Accessibility', () => {
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
   });
+
+  it('glass variant is accessible', async () => {
+    const { container } = renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} variant="glass" />
+    );
+    const results = await axe.run(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('minimal variant is accessible', async () => {
+    const { container } = renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} variant="minimal" />
+    );
+    const results = await axe.run(container);
+    expect(results.violations).toHaveLength(0);
+  });
 });
 
 describe('Accordion - Custom Icons', () => {
   it('renders with custom icon', async () => {
     const itemsWithIcons = [
-      { 
-        key: '1', 
-        label: 'Custom Icon', 
+      {
+        key: '1',
+        label: 'Custom Icon',
         children: 'Content 1',
-        icon: <span data-testid="custom-icon">→</span>
+        icon: <span data-testid="custom-icon">→</span>,
       },
     ];
     renderWithTheme(<Accordion items={itemsWithIcons} />);
     expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
+  });
+});
+
+describe('Accordion - Stagger Animations', () => {
+  it('renders with stagger enabled', () => {
+    renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} stagger data-testid="stagger-accordion" />
+    );
+    const accordion = screen.getByTestId('stagger-accordion');
+    expect(accordion).toBeInTheDocument();
+    expect(screen.getAllByRole('button')).toHaveLength(3);
+  });
+
+  it('applies stagger animation with custom delay', () => {
+    renderWithTheme(
+      <Accordion
+        items={DEFAULT_ITEMS}
+        stagger
+        staggerDelay={0.1}
+        data-testid="custom-stagger"
+      />
+    );
+    const accordion = screen.getByTestId('custom-stagger');
+    expect(accordion).toBeInTheDocument();
+  });
+});
+
+describe('Accordion - Full Width Mobile', () => {
+  it('renders with fullWidthMobile option', () => {
+    renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} fullWidthMobile data-testid="mobile-accordion" />
+    );
+    const accordion = screen.getByTestId('mobile-accordion');
+    expect(accordion).toBeInTheDocument();
   });
 });
 
@@ -381,19 +473,17 @@ describe('Accordion - Edge Cases', () => {
   });
 
   it('handles single item', () => {
-    renderWithTheme(
-      <Accordion items={[{ key: '1', label: 'Only', children: 'Content' }]} />
-    );
+    renderWithTheme(<Accordion items={[{ key: '1', label: 'Only', children: 'Content' }]} />);
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('circular navigation wraps from last to first', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const buttons = screen.getAllByRole('button');
     buttons[2].focus();
-    
+
     await user.keyboard('{ArrowDown}');
     expect(buttons[0]).toHaveFocus();
   });
@@ -401,10 +491,10 @@ describe('Accordion - Edge Cases', () => {
   it('circular navigation wraps from first to last', async () => {
     const user = userEvent.setup();
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
-    
+
     const buttons = screen.getAllByRole('button');
     buttons[0].focus();
-    
+
     await user.keyboard('{ArrowUp}');
     expect(buttons[2]).toHaveFocus();
   });

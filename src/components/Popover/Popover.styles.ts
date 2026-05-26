@@ -45,7 +45,7 @@ const getPositionStyles = (
   offset: number
 ) => {
   const offsetPx = `${offset}px`;
-  
+
   // For portal mode, we use fixed positioning relative to viewport
   // For inline, we use absolute positioning
   const positionBase = css`
@@ -111,12 +111,12 @@ const getPositionStyles = (
 
 const getArrowStyles = (
   placement: 'top' | 'bottom' | 'left' | 'right' | 'center',
-  align: 'start' | 'center' | 'end',
-  offset: number
+  _align: 'start' | 'center' | 'end',
+  _offset: number
 ) => {
-  const bg = css`${({ theme }) => theme.colors?.background || '#fff'}`;
-  const shadow = css`${({ theme }) => theme.colors?.shadowLight || 'rgba(0,0,0,0.1)'}`;
-  
+  const _bg = css`${({ theme }) => theme.colors?.background || '#fff'}`;
+  const _shadow = css`${({ theme }) => theme.colors?.shadowLight || 'rgba(0,0,0,0.1)'}`;
+
   switch (placement) {
     case 'top':
       return css`
@@ -161,7 +161,7 @@ const getArrowStyles = (
 };
 
 export const PopoverContent = styled(motion.div).withConfig({
-  shouldForwardProp: (prop) => 
+  shouldForwardProp: (prop) =>
     !['placement', 'align', 'minWidth', 'maxWidth', 'offset'].includes(prop),
 })<{
   placement: 'top' | 'bottom' | 'left' | 'right' | 'center';
@@ -174,12 +174,11 @@ export const PopoverContent = styled(motion.div).withConfig({
   background: ${({ theme }) => theme.colors?.background || '#fff'};
   color: ${({ theme }) => theme.colors?.text || '#262626'};
   border-radius: ${({ theme }) => theme.borderRadius || '6px'};
-  box-shadow: ${({ theme }) => 
-    theme.shadows?.soft || '0 4px 12px rgba(0, 0, 0, 0.15)'};
+  box-shadow: ${({ theme }) => theme.shadows?.soft || '0 4px 12px rgba(0, 0, 0, 0.15)'};
   padding: 12px 16px;
-  min-width: ${({ minWidth }) => 
+  min-width: ${({ minWidth }) =>
     typeof minWidth === 'number' ? `${minWidth}px` : minWidth || '200px'};
-  max-width: ${({ maxWidth }) => 
+  max-width: ${({ maxWidth }) =>
     typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth || '320px'};
   outline: none;
   border: 1px solid ${({ theme }) => theme.colors?.border || '#d9d9d9'};
@@ -198,8 +197,7 @@ export const PopoverContent = styled(motion.div).withConfig({
 `;
 
 export const PopoverArrow = styled.div.withConfig({
-  shouldForwardProp: (prop) => 
-    !['placement', 'align', 'offset'].includes(prop),
+  shouldForwardProp: (prop) => !['placement', 'align', 'offset'].includes(prop),
 })<{
   placement: 'top' | 'bottom' | 'left' | 'right' | 'center';
   align: 'start' | 'center' | 'end';

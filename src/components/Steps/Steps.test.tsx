@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -69,9 +69,7 @@ describe('Steps', () => {
   });
 
   it('renders with custom icons', () => {
-    const itemsWithIcons = [
-      { title: 'Step 1', icon: <span data-testid="icon-1">★</span> },
-    ];
+    const itemsWithIcons = [{ title: 'Step 1', icon: <span data-testid="icon-1">★</span> }];
     renderWithTheme(<Steps items={itemsWithIcons} current={0} />);
     expect(screen.getByTestId('icon-1')).toBeInTheDocument();
   });

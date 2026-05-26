@@ -1,7 +1,7 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  stories: [ "../stories/**/*.mdx",'../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
@@ -15,13 +15,13 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     // GitHub Pages requires base path for project repos
     config.base = '/react-n-design/';
-    
+
     // Ensure React is properly configured for Storybook
     config.define = {
       ...config.define,
       global: 'globalThis',
     };
-    
+
     // Fix React import issues
     config.esbuild = {
       ...config.esbuild,

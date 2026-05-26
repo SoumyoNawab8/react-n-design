@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Input - Default State', () => {
   test('renders default input - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -19,7 +21,9 @@ test.describe('Input - Default State', () => {
   });
 
   test('renders default input - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -31,7 +35,9 @@ test.describe('Input - Default State', () => {
 
 test.describe('Input - Focused State', () => {
   test('shows focused state styling', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.focus('input');
@@ -43,7 +49,9 @@ test.describe('Input - Focused State', () => {
   });
 
   test('shows focused state in dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.focus('input');
@@ -57,7 +65,9 @@ test.describe('Input - Focused State', () => {
 
 test.describe('Input - With Prefix and Suffix', () => {
   test('renders input with icons', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-input--with-prefix-and-suffix&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-input--with-prefix-and-suffix&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('input-prefix-suffix.png', {
@@ -138,7 +148,9 @@ test.describe('Input - Clear Button', () => {
 test.describe('Input - Responsive', () => {
   test('renders on mobile viewport', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/iframe.html?args=&id=react-n-design-input--with-prefix-and-suffix&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-input--with-prefix-and-suffix&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('input-mobile.png', {
@@ -169,7 +181,9 @@ test.describe('Input - Responsive', () => {
 
 test.describe('Input - Theme Variations', () => {
   test('light theme neomorphic shadows', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     // Check the visual styling of the neomorphic shadow
@@ -179,7 +193,9 @@ test.describe('Input - Theme Variations', () => {
   });
 
   test('dark theme neomorphic shadows', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-input--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('input-neo-dark.png', {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Rating } from '../src/components/Rating';
 import { useState } from 'react';
+import { Rating } from '../src/components/Rating';
 
 const meta: Meta<typeof Rating> = {
   title: 'react-n-design/Rating',
@@ -13,13 +13,7 @@ type Story = StoryObj<typeof Rating>;
 
 const RatingDemo = (args: any) => {
   const [value, setValue] = useState(args.value);
-  return (
-    <Rating
-      {...args}
-      value={value}
-      onChange={setValue}
-    />
-  );
+  return <Rating {...args} value={value} onChange={setValue} />;
 };
 
 export const Default: Story = {

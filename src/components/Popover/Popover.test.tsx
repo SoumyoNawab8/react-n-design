@@ -1,4 +1,4 @@
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import type React from 'react';
@@ -21,15 +21,17 @@ describe('Popover', () => {
 
   describe('Basic Rendering', () => {
     it('renders trigger element', () => {
-      renderWithTheme(
-        <Popover trigger="Open popover" content="Popover content" portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open popover" content="Popover content" portal={false} />);
       expect(screen.getByRole('button', { name: /open popover/i })).toBeInTheDocument();
     });
 
     it('renders trigger with custom element', () => {
       renderWithTheme(
-        <Popover trigger={<button type="button">Custom Trigger</button>} content="Content" portal={false} />
+        <Popover
+          trigger={<button type="button">Custom Trigger</button>}
+          content="Content"
+          portal={false}
+        />
       );
       expect(screen.getByRole('button', { name: /custom trigger/i })).toBeInTheDocument();
     });
@@ -46,13 +48,11 @@ describe('Popover', () => {
     });
 
     it('closes on second click', async () => {
-      renderWithTheme(
-        <Popover trigger="Open" content="Content" portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open" content="Content" portal={false} />);
       const trigger = screen.getByRole('button', { name: /open/i });
       await userEvent.click(trigger);
       expect(screen.getByRole('dialog')).toBeInTheDocument();
-      
+
       await userEvent.click(trigger);
       await waitFor(() => {
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -68,7 +68,7 @@ describe('Popover', () => {
       );
       await userEvent.click(screen.getByRole('button', { name: /open/i }));
       expect(screen.getByRole('dialog')).toBeInTheDocument();
-      
+
       await userEvent.click(screen.getByTestId('outside'));
       await waitFor(() => {
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -79,15 +79,21 @@ describe('Popover', () => {
   describe('Trigger Mode: Hover', () => {
     it('opens on hover after delay', async () => {
       renderWithTheme(
-        <Popover trigger="Hover me" content="Content" triggerMode="hover" hoverDelay={100} portal={false} />
+        <Popover
+          trigger="Hover me"
+          content="Content"
+          triggerMode="hover"
+          hoverDelay={100}
+          portal={false}
+        />
       );
       const trigger = screen.getByRole('button', { name: /hover me/i });
-      
+
       await act(async () => {
         await userEvent.hover(trigger);
         vi.advanceTimersByTime(200);
       });
-      
+
       await waitFor(() => {
         expect(screen.getByRole('dialog')).toBeInTheDocument();
       });
@@ -98,19 +104,19 @@ describe('Popover', () => {
         <Popover trigger="Hover me" content="Content" triggerMode="hover" portal={false} />
       );
       const trigger = screen.getByRole('button', { name: /hover me/i });
-      
+
       await act(async () => {
         await userEvent.hover(trigger);
         vi.advanceTimersByTime(150);
       });
-      
+
       expect(screen.getByRole('dialog')).toBeInTheDocument();
-      
+
       await act(async () => {
         await userEvent.unhover(trigger);
         vi.advanceTimersByTime(100);
       });
-      
+
       await waitFor(() => {
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
       });
@@ -120,12 +126,12 @@ describe('Popover', () => {
       renderWithTheme(
         <Popover trigger="Focus me" content="Content" triggerMode="hover" portal={false} />
       );
-      
+
       await act(async () => {
         await userEvent.tab();
         vi.advanceTimersByTime(150);
       });
-      
+
       await waitFor(() => {
         expect(screen.getByRole('dialog')).toBeInTheDocument();
       });
@@ -137,12 +143,12 @@ describe('Popover', () => {
       renderWithTheme(
         <Popover trigger="Focus me" content="Content" triggerMode="focus" portal={false} />
       );
-      
+
       await act(async () => {
         await userEvent.tab();
         vi.advanceTimersByTime(150);
       });
-      
+
       await waitFor(() => {
         expect(screen.getByRole('dialog')).toBeInTheDocument();
       });
@@ -153,20 +159,20 @@ describe('Popover', () => {
         <Popover trigger="Focus me" content="Content" triggerMode="focus" portal={false} />
       );
       const trigger = screen.getByRole('button', { name: /focus me/i });
-      
+
       await act(async () => {
         await userEvent.click(trigger);
         vi.advanceTimersByTime(150);
       });
-      
+
       expect(screen.getByRole('dialog')).toBeInTheDocument();
-      
+
       // Tab away
       await act(async () => {
         await userEvent.tab();
         vi.advanceTimersByTime(100);
       });
-      
+
       await waitFor(() => {
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
       });
@@ -174,37 +180,35 @@ describe('Popover', () => {
   });
 
   describe('Positioning', () => {
-    it.each(['top', 'bottom', 'left', 'right', 'center'] as const)(
-      'renders with placement: %s',
-      async (placement) => {
-        renderWithTheme(
-          <Popover trigger="Open" content="Content" placement={placement} portal={false} />
-        );
-        await userEvent.click(screen.getByRole('button'));
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-      }
-    );
+    it.each([
+      'top',
+      'bottom',
+      'left',
+      'right',
+      'center',
+    ] as const)('renders with placement: %s', async (placement) => {
+      renderWithTheme(
+        <Popover trigger="Open" content="Content" placement={placement} portal={false} />
+      );
+      await userEvent.click(screen.getByRole('button'));
+      expect(screen.getByRole('dialog')).toBeInTheDocument();
+    });
 
-    it.each(['start', 'center', 'end'] as const)(
-      'renders with align: %s',
-      async (align) => {
-        renderWithTheme(
-          <Popover trigger="Open" content="Content" placement="center" align={align} portal={false} />
-        );
-        await userEvent.click(screen.getByRole('button'));
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-      }
-    );
+    it.each(['start', 'center', 'end'] as const)('renders with align: %s', async (align) => {
+      renderWithTheme(
+        <Popover trigger="Open" content="Content" placement="center" align={align} portal={false} />
+      );
+      await userEvent.click(screen.getByRole('button'));
+      expect(screen.getByRole('dialog')).toBeInTheDocument();
+    });
   });
 
   describe('Keyboard Navigation', () => {
     it('closes on Escape key', async () => {
-      renderWithTheme(
-        <Popover trigger="Open" content="Content" portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open" content="Content" portal={false} />);
       await userEvent.click(screen.getByRole('button', { name: /open/i }));
       expect(screen.getByRole('dialog')).toBeInTheDocument();
-      
+
       await userEvent.keyboard('{Escape}');
       await waitFor(() => {
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -212,13 +216,11 @@ describe('Popover', () => {
     });
 
     it('opens on Enter key', async () => {
-      renderWithTheme(
-        <Popover trigger="Open" content="Content" portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open" content="Content" portal={false} />);
       const trigger = screen.getByRole('button', { name: /open/i });
       await userEvent.tab();
       expect(trigger).toHaveFocus();
-      
+
       await userEvent.keyboard('{Enter}');
       await waitFor(() => {
         expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -227,31 +229,33 @@ describe('Popover', () => {
 
     it('traps focus inside popover', async () => {
       renderWithTheme(
-        <Popover trigger="Open" content={
-          <>
-            <button type="button">First</button>
-            <button type="button">Second</button>
-          </>
-        } portal={false} />
+        <Popover
+          trigger="Open"
+          content={
+            <>
+              <button type="button">First</button>
+              <button type="button">Second</button>
+            </>
+          }
+          portal={false}
+        />
       );
       await userEvent.click(screen.getByRole('button', { name: /open/i }));
-      
+
       const dialog = screen.getByRole('dialog');
       const firstButton = screen.getByRole('button', { name: /first/i });
       const secondButton = screen.getByRole('button', { name: /second/i });
-      
+
       expect(dialog).toContainElement(firstButton);
       expect(dialog).toContainElement(secondButton);
     });
 
     it('focus returns to trigger when closed', async () => {
-      renderWithTheme(
-        <Popover trigger="Open" content="Content" portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open" content="Content" portal={false} />);
       const trigger = screen.getByRole('button', { name: /open/i });
       await userEvent.click(trigger);
       expect(screen.getByRole('dialog')).toBeInTheDocument();
-      
+
       await userEvent.keyboard('{Escape}');
       await waitFor(() => {
         expect(document.activeElement).toBe(trigger);
@@ -263,9 +267,9 @@ describe('Popover', () => {
     it('respects controlled open state', () => {
       const onOpenChange = vi.fn();
       renderWithTheme(
-        <Popover 
-          trigger="Open" 
-          content="Content" 
+        <Popover
+          trigger="Open"
+          content="Content"
           open={true}
           onOpenChange={onOpenChange}
           portal={false}
@@ -276,9 +280,9 @@ describe('Popover', () => {
 
     it('respects controlled closed state', () => {
       renderWithTheme(
-        <Popover 
-          trigger="Open" 
-          content="Content" 
+        <Popover
+          trigger="Open"
+          content="Content"
           open={false}
           onOpenChange={() => {}}
           portal={false}
@@ -290,9 +294,9 @@ describe('Popover', () => {
     it('calls onOpenChange when opening', async () => {
       const onOpenChange = vi.fn();
       renderWithTheme(
-        <Popover 
-          trigger="Open" 
-          content="Content" 
+        <Popover
+          trigger="Open"
+          content="Content"
           open={false}
           onOpenChange={onOpenChange}
           portal={false}
@@ -321,25 +325,21 @@ describe('Popover', () => {
     });
 
     it('trigger has aria-haspopup="dialog" and aria-expanded', async () => {
-      renderWithTheme(
-        <Popover trigger="Open" content="Content" portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open" content="Content" portal={false} />);
       const trigger = screen.getByRole('button');
       expect(trigger).toHaveAttribute('aria-haspopup', 'dialog');
       expect(trigger).toHaveAttribute('aria-expanded', 'false');
-      
+
       await userEvent.click(trigger);
       expect(trigger).toHaveAttribute('aria-expanded', 'true');
     });
 
     it('has aria-controls linking to content', async () => {
-      renderWithTheme(
-        <Popover trigger="Open" content="Content" portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open" content="Content" portal={false} />);
       const trigger = screen.getByRole('button');
       const controlsId = trigger.getAttribute('aria-controls');
       expect(controlsId).toBeTruthy();
-      
+
       await userEvent.click(trigger);
       const dialog = screen.getByRole('dialog');
       expect(dialog).toHaveAttribute('id', controlsId);
@@ -357,12 +357,7 @@ describe('Popover', () => {
     it('supports aria-describedby', async () => {
       const { container } = renderWithTheme(
         <>
-          <Popover 
-            trigger="Open" 
-            content="Content" 
-            aria-describedby="description"
-            portal={false}
-          />
+          <Popover trigger="Open" content="Content" aria-describedby="description" portal={false} />
           <div id="description">Popover description</div>
         </>
       );
@@ -394,18 +389,14 @@ describe('Popover', () => {
 
   describe('Sizing', () => {
     it('sets minWidth', async () => {
-      renderWithTheme(
-        <Popover trigger="Open" content="Content" minWidth={300} portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open" content="Content" minWidth={300} portal={false} />);
       await userEvent.click(screen.getByRole('button'));
       const dialog = screen.getByRole('dialog');
       expect(dialog).toBeInTheDocument();
     });
 
     it('sets maxWidth', async () => {
-      renderWithTheme(
-        <Popover trigger="Open" content="Content" maxWidth={400} portal={false} />
-      );
+      renderWithTheme(<Popover trigger="Open" content="Content" maxWidth={400} portal={false} />);
       await userEvent.click(screen.getByRole('button'));
       const dialog = screen.getByRole('dialog');
       expect(dialog).toBeInTheDocument();
@@ -421,16 +412,16 @@ describe('Popover', () => {
         </>
       );
       const trigger = screen.getByRole('button', { name: /hover me/i });
-      
+
       await act(async () => {
         await userEvent.hover(trigger);
         vi.advanceTimersByTime(150);
       });
-      
+
       // Click outside should not affect hover mode
       const outside = screen.getByRole('button', { name: /outside/i });
       await userEvent.click(outside);
-      
+
       // Hover mode should stay open if we don't unhover
       // This test mainly ensures no errors occur
       expect(trigger).toBeInTheDocument();

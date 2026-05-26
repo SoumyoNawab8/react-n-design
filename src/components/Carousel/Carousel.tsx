@@ -232,7 +232,8 @@ export const Carousel: React.FC<CarouselProps> = ({
         <CarouselTrack $translateX={translateX} style={{ width: `${total * 100}%` }}>
           {slides.map((slide, index) => {
             const isContentSlide = 'content' in slide && slide.content !== undefined;
-            const isImageSlide = !isContentSlide && ('image' in slide || 'title' in slide || 'description' in slide);
+            const isImageSlide =
+              !isContentSlide && ('image' in slide || 'title' in slide || 'description' in slide);
             return (
               <CarouselSlide
                 key={slide.id}

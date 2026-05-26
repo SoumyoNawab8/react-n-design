@@ -1,5 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FaUser, FaIdCard, FaCheckCircle, FaCreditCard, FaTruck, FaBox, FaEdit, FaSave, FaUpload, FaCog, FaStar, FaFlag } from 'react-icons/fa';
+import {
+  FaBox,
+  FaCheckCircle,
+  FaCog,
+  FaCreditCard,
+  FaEdit,
+  FaFlag,
+  FaIdCard,
+  FaSave,
+  FaStar,
+  FaTruck,
+  FaUpload,
+  FaUser,
+} from 'react-icons/fa';
 import { Steps } from '../src/components/Steps';
 
 const meta: Meta<typeof Steps> = {

@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Alert - Success Variant', () => {
   test('renders success alert - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--success&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--success&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -19,7 +21,9 @@ test.describe('Alert - Success Variant', () => {
   });
 
   test('renders success alert - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--success&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--success&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -31,7 +35,9 @@ test.describe('Alert - Success Variant', () => {
 
 test.describe('Alert - Info Variant', () => {
   test('renders info alert - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('alert-info-light.png', {
@@ -40,7 +46,9 @@ test.describe('Alert - Info Variant', () => {
   });
 
   test('renders info alert - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('alert-info-dark.png', {
@@ -51,7 +59,9 @@ test.describe('Alert - Info Variant', () => {
 
 test.describe('Alert - Warning Variant', () => {
   test('renders warning alert - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--warning&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--warning&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('alert-warning-light.png', {
@@ -60,7 +70,9 @@ test.describe('Alert - Warning Variant', () => {
   });
 
   test('renders warning alert - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--warning&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--warning&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('alert-warning-dark.png', {
@@ -71,7 +83,9 @@ test.describe('Alert - Warning Variant', () => {
 
 test.describe('Alert - Error Variant', () => {
   test('renders error alert - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--error&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--error&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('alert-error-light.png', {
@@ -80,7 +94,9 @@ test.describe('Alert - Error Variant', () => {
   });
 
   test('renders error alert - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--error&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--error&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('alert-error-dark.png', {

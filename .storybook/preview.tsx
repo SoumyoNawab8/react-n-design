@@ -1,7 +1,6 @@
-import React from 'react';
 import type { Preview } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '../src/styles/theme';
+import { darkTheme, lightTheme } from '../src/styles/theme';
 
 // Theme type for global controls
 export type Theme = 'light' | 'dark';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Segmented } from '../src/components/Segmented';
 
 const meta: Meta<typeof Segmented> = {
@@ -39,7 +39,10 @@ const defaultOptions = [
   { label: 'Yearly', value: 'yearly' },
 ];
 
-const SegmentedWithState = ({ options, ...args }: { options: typeof defaultOptions } & Omit<Parameters<typeof Segmented>[0], 'options'>) => {
+const SegmentedWithState = ({
+  options,
+  ...args
+}: { options: typeof defaultOptions } & Omit<Parameters<typeof Segmented>[0], 'options'>) => {
   const [value, setValue] = useState(options[0].value);
   return <Segmented {...args} options={options} value={value} onChange={setValue} />;
 };
@@ -74,18 +77,18 @@ export const WithDisabledOption: Story = {
 
 export const TwoOptions: Story = {
   render: () => (
-    <SegmentedWithState 
+    <SegmentedWithState
       options={[
         { label: 'List', value: 'list' },
         { label: 'Grid', value: 'grid' },
-      ]} 
+      ]}
     />
   ),
 };
 
 export const ManyOptions: Story = {
   render: () => (
-    <SegmentedWithState 
+    <SegmentedWithState
       options={[
         { label: 'Jan', value: 'jan' },
         { label: 'Feb', value: 'feb' },
@@ -93,19 +96,19 @@ export const ManyOptions: Story = {
         { label: 'Apr', value: 'apr' },
         { label: 'May', value: 'may' },
         { label: 'Jun', value: 'jun' },
-      ]} 
+      ]}
     />
   ),
 };
 
 export const ComplexLabels: Story = {
   render: () => (
-    <SegmentedWithState 
+    <SegmentedWithState
       options={[
         { label: <span style={{ color: '#666' }}>Basic</span>, value: 'basic' },
         { label: <strong>Pro</strong>, value: 'pro' },
         { label: <em>Enterprise</em>, value: 'enterprise' },
-      ]} 
+      ]}
     />
   ),
 };

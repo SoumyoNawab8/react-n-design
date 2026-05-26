@@ -165,6 +165,10 @@ export interface FormContextValue<T = unknown> {
   labelAlign?: 'left' | 'right';
   /** Required mark */
   requiredMark?: boolean | 'optional';
+  /** v1.2.0: Whether form uses compact layout */
+  compact?: boolean;
+  /** v1.2.0: Responsive breakpoint for layout changes */
+  responsiveBreakpoint?: number;
   /** Whether form is disabled */
   disabled?: boolean;
 }
@@ -243,6 +247,12 @@ export interface FormItemProps {
     onChange: (value: unknown) => void;
     onBlur: () => void;
   }) => React.ReactNode;
+  /** v1.2.0: Show validation icon indicator */
+  showValidationIcon?: boolean;
+  /** v1.2.0: Debounce duration for validation (ms) */
+  debounceMs?: number;
+  /** v1.2.0: Animate error messages */
+  animateErrors?: boolean;
 }
 
 // ============================================
@@ -278,22 +288,44 @@ export interface FormProps<T = unknown>
   labelAlign?: 'left' | 'right';
   /** Disabled all fields */
   disabled?: boolean;
-  /** Size of all child components */
+  /**
+   * Disabled all fields
+   */
   size?: 'small' | 'middle' | 'large';
-  /** Scroll to first error on submit */
+  /**
+   * Scroll to first error on submit
+   */
   scrollToFirstError?:
     | boolean
     | { behavior?: ScrollBehavior; block?: ScrollLogicalPosition; inline?: ScrollLogicalPosition };
-  /** Custom className prefix */
+  /**
+   * Custom className prefix
+   */
   prefixCls?: string;
-  /** Required field mark - can be 'optional' to show optional label */
+  /**
+   * Required field mark - can be 'optional' to show optional label
+   */
   requiredMark?: boolean | 'optional';
-  /** Preserve form values when unmount */
+  /**
+   * Preserve form values when unmount
+   */
   preserve?: boolean;
-  /** Auto complete attribute */
+  /**
+   * Auto complete attribute
+   */
   autoComplete?: string;
-  /** Component to render form as (default: 'form') */
+  /**
+   * Component to render form as (default: 'form')
+   */
   component?: React.ElementType;
+  /**
+   * v1.2.0: Compact layout variant
+   */
+  compact?: boolean;
+  /**
+   * v1.2.0: Responsive breakpoint for layout changes
+   */
+  responsiveBreakpoint?: number;
 }
 
 // ============================================

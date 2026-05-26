@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const _path = require('node:path');
 
 const baseUrl = 'http://localhost:8080';
 const outputFile = '/Users/macworld/Desktop/dev/react-n-design/audit-findings.json';
@@ -24,7 +24,7 @@ async function auditStory(url, storyName) {
         if (!parent) return;
         const parentRect = parent.getBoundingClientRect();
         const cs = getComputedStyle(el);
-        const parentCs = getComputedStyle(parent);
+        const _parentCs = getComputedStyle(parent);
 
         // Check if element overflows its parent
         const overflowsRight = rect.right > parentRect.right + 2;
@@ -32,9 +32,13 @@ async function auditStory(url, storyName) {
         const overflowsBottom = rect.bottom > parentRect.bottom + 2;
         const overflowsTop = rect.top < parentRect.top - 2;
 
-        if ((overflowsRight || overflowsLeft || overflowsBottom || overflowsTop) &&
-            rect.width > 0 && rect.height > 0 &&
-            cs.position !== 'fixed' && cs.position !== 'absolute') {
+        if (
+          (overflowsRight || overflowsLeft || overflowsBottom || overflowsTop) &&
+          rect.width > 0 &&
+          rect.height > 0 &&
+          cs.position !== 'fixed' &&
+          cs.position !== 'absolute'
+        ) {
           results.push({
             type: 'overflow',
             tag: el.tagName,
@@ -61,8 +65,12 @@ async function auditStory(url, storyName) {
         }
 
         // Check text clipping in flex/grid items
-        if (cs.overflow === 'hidden' && cs.textOverflow !== 'ellipsis' &&
-            cs.whiteSpace === 'nowrap' && el.children.length === 0) {
+        if (
+          cs.overflow === 'hidden' &&
+          cs.textOverflow !== 'ellipsis' &&
+          cs.whiteSpace === 'nowrap' &&
+          el.children.length === 0
+        ) {
           const textWidth = el.scrollWidth;
           const containerWidth = el.clientWidth;
           if (textWidth > containerWidth + 2) {
@@ -91,11 +99,15 @@ async function auditStory(url, storyName) {
 
 (async () => {
   // Start server
-  const { spawn } = require('child_process');
-  const server = spawn('python3', ['-m', 'http.server', '8080', '--directory', 'storybook-static'], {
-    detached: true,
-    stdio: 'ignore',
-  });
+  const { spawn } = require('node:child_process');
+  const server = spawn(
+    'python3',
+    ['-m', 'http.server', '8080', '--directory', 'storybook-static'],
+    {
+      detached: true,
+      stdio: 'ignore',
+    }
+  );
   server.unref();
   await new Promise((r) => setTimeout(r, 2000));
 
@@ -157,13 +169,18 @@ async function auditStory(url, storyName) {
     .filter((r) => r.findings.length > 0)
     .map((r) => {
       const items = r.findings
-        .map((f) => `- [${f.type}] ${f.tag || ''} ${f.class || ''} \`${f.text || ''}\` — ${f.detail}`)
+        .map(
+          (f) => `- [${f.type}] ${f.tag || ''} ${f.class || ''} \`${f.text || ''}\` — ${f.detail}`
+        )
         .join('\n');
       return `## ${r.story}\n${items}`;
     })
     .join('\n\n');
 
-  fs.writeFileSync('/Users/macworld/Desktop/dev/react-n-design/audit-findings.md', `# Storybook Visual Audit\n\n${md}`);
+  fs.writeFileSync(
+    '/Users/macworld/Desktop/dev/react-n-design/audit-findings.md',
+    `# Storybook Visual Audit\n\n${md}`
+  );
   console.log('Markdown summary saved to audit-findings.md');
 
   process.exit(0);

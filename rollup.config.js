@@ -10,22 +10,22 @@ const config = (input, outputCjs, outputEsm, esmBanner) => ({
       format: 'cjs',
       sourcemap: true,
       exports: 'named',
-      interop: 'auto'
+      interop: 'auto',
     },
     {
       file: outputEsm,
       format: 'esm',
       sourcemap: true,
-      banner: esmBanner
-    }
+      banner: esmBanner,
+    },
   ],
   plugins: [
     resolve({
       browser: true,
-      preferBuiltins: false
+      preferBuiltins: false,
     }),
     commonjs({
-      include: ['node_modules/**']
+      include: ['node_modules/**'],
     }),
     typescript({
       tsconfig: './tsconfig.build.json',
@@ -33,8 +33,8 @@ const config = (input, outputCjs, outputEsm, esmBanner) => ({
       declarationMap: false,
       noEmitOnError: false, // Allow build to continue with warnings
       noImplicitAny: false,
-      skipLibCheck: true
-    })
+      skipLibCheck: true,
+    }),
   ],
   external: [
     'react',
@@ -46,11 +46,11 @@ const config = (input, outputCjs, outputEsm, esmBanner) => ({
     'react-icons',
     'react-icons/fa',
     'react-window',
-    'dompurify'
-  ]
+    'dompurify',
+  ],
 });
 
 module.exports = [
   config('src/index.ts', 'dist/cjs/index.js', 'dist/esm/index.js', "'use client';"),
-  config('src/rsc.ts', 'dist/cjs/rsc.js', 'dist/esm/rsc.js')
+  config('src/rsc.ts', 'dist/cjs/rsc.js', 'dist/esm/rsc.js'),
 ];

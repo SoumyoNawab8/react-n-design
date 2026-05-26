@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('CopyButton - Default', () => {
   test('renders default copy button - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-copybutton--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-copybutton--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -19,7 +21,9 @@ test.describe('CopyButton - Default', () => {
   });
 
   test('renders default copy button - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-copybutton--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-copybutton--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -107,7 +111,9 @@ test.describe('CopyButton - Disabled State', () => {
 
 test.describe('CopyButton - Custom Tooltip', () => {
   test('shows custom tooltip on hover', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-copybutton--with-custom-tooltip&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-copybutton--with-custom-tooltip&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.hover('[data-testid="copy-button"]');
@@ -121,7 +127,9 @@ test.describe('CopyButton - Custom Tooltip', () => {
 
 test.describe('CopyButton - Auto Detect Feature', () => {
   test('renders with auto-detect from element', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-copybutton--with-auto-detect&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-copybutton--with-auto-detect&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('copybutton-auto-detect.png', {

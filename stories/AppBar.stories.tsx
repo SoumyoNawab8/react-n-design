@@ -32,7 +32,9 @@ export const WithActions: Story = {
     title: 'My App',
     actions: (
       <>
-        <Button size="small" variant="secondary">Login</Button>
+        <Button size="small" variant="secondary">
+          Login
+        </Button>
         <Button size="small">Sign Up</Button>
       </>
     ),
@@ -45,7 +47,9 @@ export const Complete: Story = {
     onMenuClick: () => console.log('Menu opened'),
     actions: (
       <>
-        <Button size="small" variant="secondary">Settings</Button>
+        <Button size="small" variant="secondary">
+          Settings
+        </Button>
         <Button size="small">Profile</Button>
       </>
     ),

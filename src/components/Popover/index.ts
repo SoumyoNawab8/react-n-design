@@ -1,3 +1,9 @@
 export type { PopoverProps } from './Popover';
 export { Popover } from './Popover';
-export { PopoverTrigger, PopoverContent, PopoverWrapper, PopoverArrow, PopoverPortalWrapper } from './Popover.styles';
+export {
+  PopoverArrow,
+  PopoverContent,
+  PopoverPortalWrapper,
+  PopoverTrigger,
+  PopoverWrapper,
+} from './Popover.styles';

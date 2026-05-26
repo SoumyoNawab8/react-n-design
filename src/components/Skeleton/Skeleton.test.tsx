@@ -153,13 +153,7 @@ describe('Skeleton', () => {
 
   it('renders with all props combined', () => {
     renderWithTheme(
-      <Skeleton
-        loading
-        variant="rect"
-        width="200px"
-        height="100px"
-        active={false}
-      />
+      <Skeleton loading variant="rect" width="200px" height="100px" active={false} />
     );
     const skeleton = screen.getByRole('status');
     expect(skeleton).toBeInTheDocument();
@@ -167,9 +161,7 @@ describe('Skeleton', () => {
   });
 
   it('renders text children when not loading', () => {
-    renderWithTheme(
-      <Skeleton loading={false}>Just text</Skeleton>
-    );
+    renderWithTheme(<Skeleton loading={false}>Just text</Skeleton>);
     expect(screen.getByText('Just text')).toBeInTheDocument();
   });
 });

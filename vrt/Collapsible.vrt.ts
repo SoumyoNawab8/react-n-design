@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test';
-import type { StoryID } from './storyTypes';
 
 /**
  * VRT Tests for Collapsible component
@@ -21,7 +20,9 @@ test.describe('Collapsible Visual Regression', () => {
 
   // Test expanded state
   test('renders correctly in expanded state', async ({ page }) => {
-    await page.goto(`http://localhost:6006/?path=/story/react-n-design-${component}--initially-open`);
+    await page.goto(
+      `http://localhost:6006/?path=/story/react-n-design-${component}--initially-open`
+    );
     await page.waitForTimeout(500);
     await expect(page).toHaveScreenshot(`${component}-expanded.png`);
   });
@@ -42,7 +43,9 @@ test.describe('Collapsible Visual Regression', () => {
 
   // Test with rich content
   test('renders rich content correctly', async ({ page }) => {
-    await page.goto(`http://localhost:6006/?path=/story/react-n-design-${component}--with-rich-content`);
+    await page.goto(
+      `http://localhost:6006/?path=/story/react-n-design-${component}--with-rich-content`
+    );
     await page.waitForTimeout(500);
     await expect(page).toHaveScreenshot(`${component}-rich-content.png`);
   });
@@ -60,7 +63,9 @@ test.describe('Collapsible Visual Regression', () => {
 
   // Test custom trigger
   test('renders custom trigger correctly', async ({ page }) => {
-    await page.goto(`http://localhost:6006/?path=/story/react-n-design-${component}--with-custom-trigger`);
+    await page.goto(
+      `http://localhost:6006/?path=/story/react-n-design-${component}--with-custom-trigger`
+    );
     await page.waitForTimeout(500);
     await expect(page).toHaveScreenshot(`${component}-custom-trigger.png`);
   });

@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * Enhanced Playwright configuration for react-n-design visual testing
  * @see https://playwright.dev/docs/test-configuration
- * 
+ *
  * Supports visual regression testing across multiple viewports and themes
  */
 export default defineConfig({
@@ -47,7 +47,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
         /* Disable animations for consistent screenshots */
         launchOptions: {
@@ -79,7 +79,9 @@ export default defineConfig({
 
   /* Run local dev server before starting the tests */
   webServer: {
-    command: process.env.CI ? 'npm run build-storybook && npx serve storybook-static -p 6006' : 'npm run dev',
+    command: process.env.CI
+      ? 'npm run build-storybook && npx serve storybook-static -p 6006'
+      : 'npm run dev',
     url: 'http://localhost:6006',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

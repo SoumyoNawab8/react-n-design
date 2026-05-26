@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -92,9 +92,7 @@ describe('Segmented', () => {
   });
 
   it('renders in block mode', () => {
-    renderWithTheme(
-      <Segmented options={mockOptions} value="day" onChange={() => {}} block />
-    );
+    renderWithTheme(<Segmented options={mockOptions} value="day" onChange={() => {}} block />);
     expect(screen.getByRole('tablist')).toBeInTheDocument();
   });
 

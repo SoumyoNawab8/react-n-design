@@ -30,10 +30,15 @@ function validateRuleSync(
       number: () => typeof value === 'number' && !Number.isNaN(value),
       boolean: () => typeof value === 'boolean',
       email: () =>
-        typeof value === 'string' && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value),
+        typeof value === 'string' &&
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
+          value
+        ),
       url: () =>
         typeof value === 'string' &&
-        /^(https?:\/\/)[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(:[0-9]+)?(\/[a-zA-Z0-9-._~%!$()&'"*+,;=:@/\/?#]*)?$/.test(value),
+        /^(https?:\/\/)[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(:[0-9]+)?(\/[a-zA-Z0-9-._~%!$()&'"*+,;=:@//?#]*)?$/.test(
+          value
+        ),
     };
     if (validators[rule.type] && !validators[rule.type]()) {
       return rule.message || `Invalid ${rule.type}`;
@@ -89,6 +94,43 @@ async function validateField(
   return errors;
 }
 
+// useForm hook for creating form instances
+export function useForm<T = unknown>(): [FormInstance<T>] {
+  const [instance, _setInstance] = useState(() => {
+    // This will be populated when the Form component renders
+    let formRef: FormInstance<T> | null = null;
+    return {
+      get formRef() {
+        return formRef;
+      },
+      setFormRef: (ref: FormInstance<T>) => {
+        formRef = ref;
+      },
+    };
+  });
+
+  const formInstance = useMemo(() => {
+    // Return a proxy that always gets the latest formRef
+    const proxy = new Proxy(
+      {} as FormInstance<T>,
+      {
+        get(_target, prop: keyof FormInstance<T>) {
+          return instance.formRef?.[prop];
+        },
+        set(_target, prop: keyof FormInstance<T>, value: unknown) {
+          if (instance.formRef) {
+            (instance.formRef as Record<string, unknown>)[prop] = value;
+          }
+          return true;
+        },
+      }
+    );
+    return proxy;
+  }, [instance]);
+
+  return [formInstance];
+}
+
 export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(props, _ref) {
   const {
     children,
@@ -109,6 +151,9 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
     component: Component = 'form',
     className,
     style,
+    // v1.2.0 new props
+    compact = false,
+    responsiveBreakpoint = 768,
     ...restProps
   } = props;
 
@@ -140,17 +185,17 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
           if (action.payload?.names && Array.isArray(action.payload.names)) {
             setValues((prev) => {
               const next = { ...prev };
-              action.payload!.names!.forEach((n: string) => delete next[n]);
+              action.payload?.names?.forEach((n: string) => delete next[n]);
               return next;
             });
             setErrors((prev) => {
               const next = { ...prev };
-              action.payload!.names!.forEach((n: string) => delete next[n]);
+              action.payload?.names?.forEach((n: string) => delete next[n]);
               return next;
             });
             setTouched((prev) => {
               const next = { ...prev };
-              action.payload!.names!.forEach((n: string) => delete next[n]);
+              action.payload?.names?.forEach((n: string) => delete next[n]);
               return next;
             });
           } else {
@@ -227,7 +272,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
   );
 
   const handleSubmit = useCallback(
-    async (e?: React.FormEvent | React.MouseEvent <unknown>) => {
+    async (e?: React.FormEvent | React.MouseEvent<unknown>) => {
       if (e && 'preventDefault' in e) {
         e.preventDefault();
       }
@@ -293,6 +338,10 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
       colon,
       labelAlign,
       requiredMark,
+      disabled,
+      // v1.2.0 new context values
+      compact,
+      responsiveBreakpoint,
     }),
     [
       formInstance,
@@ -309,6 +358,9 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
       labelAlign,
       requiredMark,
       initialValues,
+      disabled,
+      compact,
+      responsiveBreakpoint,
     ]
   );
 
@@ -319,11 +371,13 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
         as={Component}
         onSubmit={handleSubmit}
         autoComplete={autoComplete}
-        className={className}
+        className={`n-form n-form-${layout} ${className || ''}`}
         style={style}
         data-layout={layout}
         data-size={size}
         data-disabled={disabled}
+        data-compact={compact}
+        $compact={compact}
         {...restProps}
       >
         {children}

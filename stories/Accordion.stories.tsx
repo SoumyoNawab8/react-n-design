@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within, userEvent, waitFor, screen } from '@storybook/test';
+import { expect, userEvent, waitFor, within } from '@storybook/test';
 import { useState } from 'react';
-import { FiInfo, FiCheckCircle, FiAlertCircle, FiSettings } from 'react-icons/fi';
+import { FiAlertCircle, FiCheckCircle, FiInfo, FiSettings } from 'react-icons/fi';
 import { Accordion, type AccordionItemProps } from '../src/components/Accordion';
 
 const meta: Meta<typeof Accordion> = {
@@ -9,23 +9,23 @@ const meta: Meta<typeof Accordion> = {
   component: Accordion,
   tags: ['autodocs'],
   argTypes: {
-    allowMultiple: { 
+    allowMultiple: {
       control: 'boolean',
       description: 'Allow multiple panels to be expanded simultaneously',
     },
-    bordered: { 
+    bordered: {
       control: 'boolean',
       description: 'Show borders around accordion items',
     },
-    defaultActiveKey: { 
+    defaultActiveKey: {
       control: false,
       description: 'Initially active panel(s)',
     },
-    activeKey: { 
+    activeKey: {
       control: false,
       description: 'Controlled active panel(s)',
     },
-    onChange: { 
+    onChange: {
       action: 'onChange',
       description: 'Callback when active panel(s) change',
     },
@@ -37,7 +37,8 @@ const meta: Meta<typeof Accordion> = {
   parameters: {
     docs: {
       description: {
-        component: 'A vertically stacked set of interactive headers used to reveal or hide content. Supports keyboard navigation (Arrow keys, Home, End, Enter, Space) and accessibility features.',
+        component:
+          'A vertically stacked set of interactive headers used to reveal or hide content. Supports keyboard navigation (Arrow keys, Home, End, Enter, Space) and accessibility features.',
       },
     },
   },
@@ -48,23 +49,27 @@ const sampleItems: AccordionItemProps[] = [
   {
     key: '1',
     label: 'Getting Started',
-    children: 'Welcome to React-N-Design! This accordion component provides a clean way to organize content into collapsible sections. It supports single and multiple expansion modes, keyboard navigation, and full accessibility compliance.',
+    children:
+      'Welcome to React-N-Design! This accordion component provides a clean way to organize content into collapsible sections. It supports single and multiple expansion modes, keyboard navigation, and full accessibility compliance.',
   },
   {
     key: '2',
     label: 'Features',
-    children: 'The accordion includes features like: smooth animations using Framer Motion, full keyboard accessibility, ARIA attributes for screen readers, disabled panel support, custom icons, and both bordered and borderless styles.',
+    children:
+      'The accordion includes features like: smooth animations using Framer Motion, full keyboard accessibility, ARIA attributes for screen readers, disabled panel support, custom icons, and both bordered and borderless styles.',
   },
   {
     key: '3',
     label: 'Disabled Panel',
-    children: 'This content will not be visible as the panel is disabled. Use the disabled property to prevent access to specific sections.',
+    children:
+      'This content will not be visible as the panel is disabled. Use the disabled property to prevent access to specific sections.',
     disabled: true,
   },
   {
     key: '4',
     label: 'Advanced Usage',
-    children: 'You can control the accordion externally using the activeKey prop, handle changes with onChange callback, and customize the appearance with the bordered prop. The component is fully typed with TypeScript generics.',
+    children:
+      'You can control the accordion externally using the activeKey prop, handle changes with onChange callback, and customize the appearance with the bordered prop. The component is fully typed with TypeScript generics.',
   },
 ];
 
@@ -78,7 +83,7 @@ export const Default: StoryObj<typeof Accordion> = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     const firstHeader = canvas.getByRole('tab', { name: /getting started/i });
-    
+
     // Verify initial state - first panel is open
     await waitFor(() => {
       expect(firstHeader).toHaveAttribute('aria-expanded', 'true');
@@ -89,7 +94,10 @@ export const Default: StoryObj<typeof Accordion> = {
     await userEvent.click(canvas.getByRole('tab', { name: /features/i }));
     await waitFor(() => {
       expect(firstHeader).toHaveAttribute('aria-expanded', 'false');
-      expect(canvas.getByRole('tab', { name: /features/i })).toHaveAttribute('aria-expanded', 'true');
+      expect(canvas.getByRole('tab', { name: /features/i })).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
     });
   },
 };
@@ -109,7 +117,7 @@ export const AllowMultiple: StoryObj<typeof Accordion> = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    
+
     // Verify two panels are open
     await waitFor(() => {
       const panels = canvas.getAllByRole('tabpanel');
@@ -153,13 +161,14 @@ export const AllDisabled: StoryObj<typeof Accordion> = {
   parameters: {
     docs: {
       description: {
-        story: 'All panels can be disabled. Disabled panels cannot be expanded and are skipped during keyboard navigation.',
+        story:
+          'All panels can be disabled. Disabled panels cannot be expanded and are skipped during keyboard navigation.',
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    
+
     // All headers should be disabled
     const headers = canvas.getAllByRole('tab');
     headers.forEach((header) => {
@@ -169,7 +178,7 @@ export const AllDisabled: StoryObj<typeof Accordion> = {
 
     // No panels should be visible
     expect(canvas.queryByRole('tabpanel')).not.toBeInTheDocument();
-    
+
     // Click should do nothing
     await userEvent.click(headers[0]);
     expect(canvas.queryByRole('tabpanel')).not.toBeInTheDocument();
@@ -230,17 +239,13 @@ export const Controlled: StoryObj<typeof Accordion> = {
           <strong>Active Panels:</strong> {activeKeys.length > 0 ? activeKeys.join(', ') : 'None'}
         </p>
         <div style={{ marginBottom: '16px' }}>
-          <button 
+          <button
             onClick={() => setActiveKeys(['1', '2', '3', '4'])}
             style={{ marginRight: '8px' }}
           >
             Expand All
           </button>
-          <button 
-            onClick={() => setActiveKeys([])}
-          >
-            Collapse All
-          </button>
+          <button onClick={() => setActiveKeys([])}>Collapse All</button>
         </div>
         <Accordion
           items={sampleItems}
@@ -254,13 +259,14 @@ export const Controlled: StoryObj<typeof Accordion> = {
   parameters: {
     docs: {
       description: {
-        story: 'The accordion can be controlled externally using the activeKey prop. This allows external controls to expand or collapse panels.',
+        story:
+          'The accordion can be controlled externally using the activeKey prop. This allows external controls to expand or collapse panels.',
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    
+
     // Initially one panel open
     await waitFor(() => {
       expect(canvas.getByRole('tabpanel')).toBeInTheDocument();
@@ -295,7 +301,10 @@ export const NestedContent: StoryObj<typeof Accordion> = {
               <li>Feature description 2</li>
               <li>Feature description 3</li>
             </ul>
-            <p>Accordion panels can contain any React elements, not just text. This includes lists, links, and other components.</p>
+            <p>
+              Accordion panels can contain any React elements, not just text. This includes lists,
+              links, and other components.
+            </p>
           </div>
         ),
       },
@@ -306,8 +315,12 @@ export const NestedContent: StoryObj<typeof Accordion> = {
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
-                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Feature</th>
-                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Supported</th>
+                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>
+                  Feature
+                </th>
+                <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>
+                  Supported
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -332,7 +345,8 @@ export const NestedContent: StoryObj<typeof Accordion> = {
   parameters: {
     docs: {
       description: {
-        story: 'Accordion panels support rich HTML content including lists, tables, and other components.',
+        story:
+          'Accordion panels support rich HTML content including lists, tables, and other components.',
       },
     },
   },
@@ -351,13 +365,14 @@ export const KeyboardNavigation: StoryObj<typeof Accordion> = {
   parameters: {
     docs: {
       description: {
-        story: 'Use Arrow Up/Down or Arrow Left/Right to navigate between panels. Home jumps to the first panel, End to the last. Enter or Space toggles the current panel. Disabled panels are skipped during navigation.',
+        story:
+          'Use Arrow Up/Down or Arrow Left/Right to navigate between panels. Home jumps to the first panel, End to the last. Enter or Space toggles the current panel. Disabled panels are skipped during navigation.',
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    
+
     // Focus first header
     const firstHeader = canvas.getByRole('tab', { name: /first panel/i });
     firstHeader.focus();
@@ -412,17 +427,20 @@ export const Responsive: StoryObj<typeof Accordion> = {
       {
         key: '1',
         label: 'Mobile Optimized',
-        children: 'The accordion adapts to different screen sizes. On mobile devices, touch targets are large enough for comfortable interaction. The text sizes and spacing adjust appropriately.',
+        children:
+          'The accordion adapts to different screen sizes. On mobile devices, touch targets are large enough for comfortable interaction. The text sizes and spacing adjust appropriately.',
       },
       {
         key: '2',
         label: 'Tablet Optimized',
-        children: 'On tablets, the accordion makes use of the extra width while maintaining readability.',
+        children:
+          'On tablets, the accordion makes use of the extra width while maintaining readability.',
       },
       {
         key: '3',
         label: 'Desktop Optimized',
-        children: 'On desktop screens, the accordion maintains the same functionality with optimized spacing for larger displays.',
+        children:
+          'On desktop screens, the accordion maintains the same functionality with optimized spacing for larger displays.',
       },
     ],
   },

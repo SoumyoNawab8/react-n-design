@@ -1,7 +1,7 @@
 'use client';
-import type React from 'react';
-import { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FaChevronRight } from '../../icons';
+import { useReducedMotion } from '../../context/ThemeContext';
 import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   AccordionChevron,
@@ -63,19 +63,50 @@ export interface AccordionProps<T = string> {
    */
   bordered?: boolean;
   /**
+   * The visual variant of the accordion.
+   * - 'default': Standard bordered accordion
+   * - 'glass': Glass morphism style with backdrop blur
+   * - 'minimal': Minimal borderless style
+   * @default 'default'
+   */
+  variant?: 'default' | 'glass' | 'minimal';
+  /**
+   * If `true`, the accordion takes full width on mobile devices.
+   * @default false
+   */
+  fullWidthMobile?: boolean;
+  /**
+   * If `true`, enables staggered entrance animations for items.
+   * @default false
+   */
+  stagger?: boolean;
+  /**
+   * The delay between staggered animations in seconds.
+   * @default 0.05
+   */
+  staggerDelay?: number;
+  /**
    * The custom class name for the wrapper
    */
   className?: string;
+  /**
+   * Optional inline styles for the wrapper
+   */
+  style?: React.CSSProperties;
   /**
    * Optional data-testid for testing purposes
    */
   'data-testid'?: string;
 }
 
+// Spring configuration for smooth animations
+const SPRING_CONFIG = { type: 'spring' as const, stiffness: 400, damping: 30 };
+
 /**
  * A vertically stacked set of interactive headers used to reveal or hide content.
  * Supports single or multiple panel expansion, keyboard navigation, and ARIA attributes.
- * 
+ * Features spring physics animations, stagger effects, glass morphism variant, and reduced motion support.
+ *
  * @example
  * ```tsx
  * <Accordion
@@ -86,16 +117,22 @@ export interface AccordionProps<T = string> {
  * />
  * ```
  */
-export const Accordion = <T extends string | number = string>({
+export const Accordion = React.memo(<T extends string | number = string>({
   items,
   defaultActiveKey,
   activeKey: controlledActiveKey,
   onChange,
   allowMultiple = false,
   bordered = true,
+  variant = 'default',
+  fullWidthMobile = false,
+  stagger = false,
+  staggerDelay = 0.05,
   className,
+  style,
   'data-testid': dataTestId,
 }: AccordionProps<T>) => {
+  const prefersReducedMotion = useReducedMotion();
   const [internalActiveKeys, setInternalActiveKeys] = useState<T[]>(() => {
     if (defaultActiveKey === undefined) return [];
     const keys = Array.isArray(defaultActiveKey) ? defaultActiveKey : [defaultActiveKey];
@@ -109,12 +146,12 @@ export const Accordion = <T extends string | number = string>({
       : [controlledActiveKey]
     : internalActiveKeys;
 
-  const activeKeysSet = new Set(activeKeys);
+  const activeKeysSet = useMemo(() => new Set(activeKeys), [activeKeys]);
   const headerRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const handleHeaderClick = useCallback(
     (key: T) => {
-      if (items.find(item => item.key === key)?.disabled) {
+      if (items.find((item) => item.key === key)?.disabled) {
         return;
       }
 
@@ -130,7 +167,7 @@ export const Accordion = <T extends string | number = string>({
       if (!isControlled) {
         setInternalActiveKeys(newActiveKeys);
       }
-      onChange?.(allowMultiple ? newActiveKeys : newActiveKeys[0] as T || ('' as T));
+      onChange?.(allowMultiple ? newActiveKeys : (newActiveKeys[0] as T) || ('' as T));
     },
     [allowMultiple, activeKeys, activeKeysSet, isControlled, onChange, items]
   );
@@ -142,7 +179,7 @@ export const Accordion = <T extends string | number = string>({
         .map((item, idx) => ({ item, idx }))
         .filter(({ item }) => !item.disabled)
         .map(({ idx }) => idx);
-      
+
       const currentIndexInEnabled = enabledIndices.indexOf(index);
       let nextIndex: number;
 
@@ -179,21 +216,61 @@ export const Accordion = <T extends string | number = string>({
     [items, handleHeaderClick]
   );
 
+  // Calculate stagger delay for each item
+  const getStaggerTransition = useCallback(
+    (index: number) => {
+      if (!stagger || prefersReducedMotion) {
+        return prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: 'easeInOut' as const };
+      }
+      return {
+        ...SPRING_CONFIG,
+        delay: index * staggerDelay,
+      };
+    },
+    [stagger, staggerDelay, prefersReducedMotion]
+  );
+
+  // Get panel transition based on reduced motion preference
+  const getPanelTransition = useCallback(() => {
+    if (prefersReducedMotion) {
+      return { duration: 0 };
+    }
+    return SPRING_CONFIG;
+  }, [prefersReducedMotion]);
+
   return (
-    <AccordionWrapper bordered={bordered} className={className} data-testid={dataTestId}>
+    <AccordionWrapper
+      variant={variant}
+      bordered={bordered}
+      fullWidthMobile={fullWidthMobile}
+      className={className}
+      style={style}
+      data-testid={dataTestId}
+    >
       {items.map((item, index) => {
         const isActive = activeKeysSet.has(item.key);
         const panelId = `accordion-panel-${item.key}`;
         const headerId = `accordion-header-${item.key}`;
+        const itemTransition = getStaggerTransition(index);
+
         return (
-          <AccordionItem key={String(item.key)} isLast={index === items.length - 1}>
+          <AccordionItem
+            key={String(item.key)}
+            isLast={index === items.length - 1}
+            variant={variant}
+            custom={index}
+            initial={stagger ? { opacity: 0, y: -10 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={itemTransition}
+          >
             <AccordionHeader
               ref={(el) => {
                 headerRefs.current[index] = el;
               }}
               id={headerId}
+              disabled={item.disabled || false}
               isActive={isActive}
-              disabled={item.disabled}
+              variant={variant}
               onClick={() => handleHeaderClick(item.key)}
               onKeyDown={(e) => handleKeyDown(e, index)}
               aria-expanded={isActive}
@@ -202,9 +279,9 @@ export const Accordion = <T extends string | number = string>({
               data-testid={`accordion-header-${item.key}`}
             >
               <AccordionLabel>{item.label}</AccordionLabel>
-              <AccordionChevron 
+              <AccordionChevron
                 animate={{ rotate: isActive ? 90 : 0 }}
-                transition={{ duration: 0.2 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2 }}
                 aria-hidden="true"
               >
                 {item.icon || <FaChevronRight />}
@@ -223,7 +300,7 @@ export const Accordion = <T extends string | number = string>({
                     open: { opacity: 1, height: 'auto' },
                     collapsed: { opacity: 0, height: 0 },
                   }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  transition={getPanelTransition()}
                   data-testid={`accordion-panel-${item.key}`}
                 >
                   <div>{item.children}</div>
@@ -235,7 +312,9 @@ export const Accordion = <T extends string | number = string>({
       })}
     </AccordionWrapper>
   );
-};
+});
+
+Accordion.displayName = 'Accordion';
 
 // Type guard for checking if a value is a valid key
 export const isValidKey = <T,>(value: unknown): value is T => {

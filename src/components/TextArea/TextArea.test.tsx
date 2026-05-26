@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type React from 'react';
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
 import { TextArea, type TextAreaRef } from './TextArea';
@@ -156,8 +156,12 @@ describe('TextArea', () => {
   it('renders with different sizes', () => {
     const { rerender } = renderWithTheme(<TextArea inputSize="small" />);
     expect(screen.getByRole('textbox')).toBeInTheDocument();
-    
-    rerender(<ThemeProvider theme={lightTheme}><TextArea inputSize="large" /></ThemeProvider>);
+
+    rerender(
+      <ThemeProvider theme={lightTheme}>
+        <TextArea inputSize="large" />
+      </ThemeProvider>
+    );
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 

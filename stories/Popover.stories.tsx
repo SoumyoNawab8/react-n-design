@@ -72,7 +72,9 @@ export const Default: Story = {
   render: PopoverWrapper,
   args: {
     trigger: <Button>Click Me</Button>,
-    content: <p>This is the default popover content. It appears when you click the trigger button.</p>,
+    content: (
+      <p>This is the default popover content. It appears when you click the trigger button.</p>
+    ),
     placement: 'bottom',
     triggerMode: 'click',
   },
@@ -82,7 +84,9 @@ export const ClickTrigger: Story = {
   render: PopoverWrapper,
   args: {
     trigger: <Button>Click Me</Button>,
-    content: <p>This popover opens on click. Click the trigger again or click outside to close it.</p>,
+    content: (
+      <p>This popover opens on click. Click the trigger again or click outside to close it.</p>
+    ),
     triggerMode: 'click',
   },
 };
@@ -160,28 +164,26 @@ export const RichContent: Story = {
     trigger: <Button>User Profile</Button>,
     content: (
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <div style={{
-          width: '50px',
-          height: '50px',
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          fontWeight: 'bold',
-          fontSize: '20px'
-        }}>
+        <div
+          style={{
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: '20px',
+          }}
+        >
           JD
         </div>
         <div>
           <strong>John Doe</strong>
-          <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
-            Software Engineer
-          </p>
-          <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#999' }}>
-            john.doe@example.com
-          </p>
+          <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>Software Engineer</p>
+          <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#999' }}>john.doe@example.com</p>
         </div>
       </div>
     ),
@@ -195,22 +197,22 @@ export const FormContent: Story = {
   args: {
     trigger: <Button>Edit Settings</Button>,
     content: (
-      <form style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '250px' }}
-      onSubmit={(e) => e.preventDefault()}>
+      <form
+        style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '250px' }}
+        onSubmit={(e) => e.preventDefault()}
+      >
         <div>
-          <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px' }}>
-            Name
-          </label>
+          <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px' }}>Name</label>
           <Input placeholder="Enter your name" />
         </div>
         <div>
-          <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px' }}>
-            Email
-          </label>
+          <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px' }}>Email</label>
           <Input placeholder="Enter your email" type="email" />
         </div>
         <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-          <Button variant="secondary" size="small">Cancel</Button>
+          <Button variant="secondary" size="small">
+            Cancel
+          </Button>
           <Button size="small">Save</Button>
         </div>
       </form>
@@ -228,8 +230,12 @@ export const ConfirmDelete: Story = {
       <div style={{ textAlign: 'center' }}>
         <p style={{ margin: '0 0 16px' }}>Are you sure you want to delete this item?</p>
         <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-          <Button variant="secondary" size="small">Cancel</Button>
-          <Button variant="danger" size="small">Delete</Button>
+          <Button variant="secondary" size="small">
+            Cancel
+          </Button>
+          <Button variant="danger" size="small">
+            Delete
+          </Button>
         </div>
       </div>
     ),
@@ -261,7 +267,9 @@ export const Controlled: Story = {
         </p>
         <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
           <Button onClick={() => setOpen(!open)}>Toggle Popover</Button>
-          <Button variant="secondary" onClick={() => setOpen(false)}>Close</Button>
+          <Button variant="secondary" onClick={() => setOpen(false)}>
+            Close
+          </Button>
         </div>
         <Popover
           trigger={<span>Controlled</span>}
@@ -279,14 +287,16 @@ export const Controlled: Story = {
 export const AllPositions: Story = {
   render: function AllPositionsPopover() {
     return (
-      <div style={{ 
-        padding: '150px', 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(2, 1fr)', 
-        gap: '80px',
-        alignItems: 'center',
-        justifyItems: 'center'
-      }}>
+      <div
+        style={{
+          padding: '150px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '80px',
+          alignItems: 'center',
+          justifyItems: 'center',
+        }}
+      >
         <Popover
           trigger={<Button>Top</Button>}
           content={<p>Popover on top</p>}
@@ -343,9 +353,9 @@ export const AccessibilityDemo: Story = {
                   padding: '8px 0',
                   border: 'none',
                   background: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
                 }}
-                onClick={() => setNotifications(n => Math.max(0, n - 1))}
+                onClick={() => setNotifications((n) => Math.max(0, n - 1))}
               >
                 Mark all as read
               </button>
@@ -384,7 +394,6 @@ export const DifferentAnimations: Story = {
       <div style={{ padding: '100px' }}>
         <h3>Animation Demonstrations</h3>
         <div style={{ display: 'flex', gap: '16px', marginTop: '20px' }}>
-          
           <Popover
             trigger={<Button onClick={() => setActivePopover('top')}>Slide from Top</Button>}
             content={<p>Animates from above!</p>}
@@ -426,14 +435,16 @@ export const Themes: Story = {
   render: function ThemeDemo() {
     return (
       <div style={{ padding: '100px' }}>
-        <div style={{ 
-          display: 'flex', 
-          gap: '20px', 
-          flexWrap: 'wrap',
-          background: '#f0f0f0', 
-          padding: '40px',
-          borderRadius: '8px'
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: '20px',
+            flexWrap: 'wrap',
+            background: '#f0f0f0',
+            padding: '40px',
+            borderRadius: '8px',
+          }}
+        >
           <Popover
             trigger={<Button>Light Theme</Button>}
             content={<p>Popover with default light theme styling.</p>}
@@ -442,9 +453,12 @@ export const Themes: Story = {
 
           <Popover
             trigger={<Button variant="secondary">Secondary</Button>}
-            content={<>
+            content={
+              <>
                 <p>Secondary styled popover.</p>
-                <Button size="small" variant="text">Action</Button>
+                <Button size="small" variant="text">
+                  Action
+                </Button>
               </>
             }
             placement="top"
