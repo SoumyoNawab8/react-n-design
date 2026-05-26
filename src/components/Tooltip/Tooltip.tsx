@@ -1,6 +1,6 @@
 'use client';
-import { AnimatePresence } from '../../utils/lazyMotion';
 import React, { useEffect, useId, useRef, useState } from 'react';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { TooltipContent, TooltipWrapper } from './Tooltip.styles';
 
 export interface TooltipProps {

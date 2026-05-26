@@ -1,7 +1,7 @@
 'use client';
 import type React from 'react';
 import { useCallback, useMemo, useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from "../../icons";
+import { FaChevronLeft, FaChevronRight } from '../../icons';
 import {
   CalendarDay,
   CalendarEventDot,
@@ -228,6 +228,7 @@ export const Calendar = ({ value, onChange, events = [], disabledDate }: Calenda
               {dayEvents.length > 0 && (
                 <CalendarEventDot>
                   {dayEvents.map((color, i) => (
+                    // biome-ignore lint/suspicious/noArrayIndexKey: event colors use sequential indexing
                     <span key={i} style={{ backgroundColor: color }} />
                   ))}
                 </CalendarEventDot>

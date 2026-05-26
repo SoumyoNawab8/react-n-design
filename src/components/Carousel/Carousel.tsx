@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from '../../icons';
 import {
   CarouselCounter,
@@ -103,7 +103,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       setCurrentIndex(next);
       onChange?.(next);
     },
-    [currentIndex, total, loop, onChange]
+    [total, loop, onChange]
   );
 
   const goNext = useCallback(() => {
@@ -144,7 +144,7 @@ export const Carousel: React.FC<CarouselProps> = ({
           break;
         case ' ':
           e.preventDefault();
-          setIsPlaying(prev => !prev);
+          setIsPlaying((prev) => !prev);
           break;
       }
     },
@@ -166,7 +166,7 @@ export const Carousel: React.FC<CarouselProps> = ({
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    
+
     if (isLeftSwipe && enableSwipe) {
       goNext();
     } else if (isRightSwipe && enableSwipe) {
@@ -179,9 +179,9 @@ export const Carousel: React.FC<CarouselProps> = ({
   // Autoplay
   useEffect(() => {
     if (!isPlaying || total <= 1) return;
-    
+
     timerRef.current = setInterval(goNext, autoPlayInterval);
-    
+
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
@@ -225,18 +225,11 @@ export const Carousel: React.FC<CarouselProps> = ({
       >
         {autoPlay && (
           <ProgressBar>
-            <ProgressFill
-              $duration={autoPlayInterval}
-              $isPlaying={isPlaying}
-              key={currentIndex}
-            />
+            <ProgressFill $duration={autoPlayInterval} $isPlaying={isPlaying} key={currentIndex} />
           </ProgressBar>
         )}
 
-        <CarouselTrack
-          $translateX={translateX}
-          style={{ width: `${total * 100}%` }}
-        >
+        <CarouselTrack $translateX={translateX} style={{ width: `${total * 100}%` }}>
           {slides.map((slide, index) => (
             <CarouselSlide
               key={slide.id}
@@ -303,9 +296,7 @@ export const Carousel: React.FC<CarouselProps> = ({
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => goTo(i)}
             >
-              {showThumbnails && slide.image && (
-                <img src={slide.image} alt="" />
-              )}
+              {showThumbnails && slide.image && <img src={slide.image} alt="" />}
             </CarouselDot>
           ))}
         </CarouselDots>

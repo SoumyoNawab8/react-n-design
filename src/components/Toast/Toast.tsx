@@ -1,13 +1,7 @@
 'use client';
 import type React from 'react';
 import { useCallback, useEffect, useRef } from 'react';
-import {
-  FaCheck,
-  FaExclamationTriangle,
-  FaInfoCircle,
-  FaTimes,
-  FaTimesCircle,
-} from "../../icons";
+import { FaCheck, FaExclamationTriangle, FaInfoCircle, FaTimes, FaTimesCircle } from '../../icons';
 import {
   ToastAction,
   ToastCloseButton,

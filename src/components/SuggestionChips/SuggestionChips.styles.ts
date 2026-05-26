@@ -25,14 +25,13 @@ export const SuggestionChipItem = styled.div`
   gap: 12px;
   padding: 12px 14px;
   border-radius: ${({ theme }) => theme.borderRadius};
-  background: ${({ theme }) => (theme as any).colors.cardBg};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  background: ${({ theme }) => theme.colors.cardBg};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   outline: none;
   transition: box-shadow 0.2s ease;
 
   &:focus-visible {
-    box-shadow: ${({ theme }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 `;
 
@@ -90,7 +89,7 @@ export const SuggestionChipButton = styled.button.withConfig({
           }
         `
       : css`
-          background: ${(theme as any).colors.hoverBg};
+          background: ${theme.colors.hoverBg};
           color: ${theme.colors.text};
           &:hover:not(:disabled) {
             filter: brightness(0.95);
@@ -113,7 +112,7 @@ export const SuggestionChipsFooter = styled.div`
   align-items: center;
   gap: 10px;
   padding-top: 10px;
-  border-top: 1px solid ${({ theme }) => `${(theme as any).colors.shadowDark}20`};
+  border-top: 1px solid ${({ theme }) => `${theme.colors.shadowDark}20`};
 `;
 
 export const SuggestionChipsFooterButton = styled.button.withConfig({
@@ -141,7 +140,7 @@ export const SuggestionChipsFooterButton = styled.button.withConfig({
           }
         `
       : css`
-          background: ${(theme as any).colors.hoverBg};
+          background: ${theme.colors.hoverBg};
           color: ${theme.colors.text};
           &:hover:not(:disabled) {
             filter: brightness(0.95);

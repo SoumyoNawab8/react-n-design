@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from '../../utils/lazyMotion';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import {
-  FloatButtonWrapper,
   FloatButtonContainer,
+  FloatButtonWrapper,
   MenuContainer,
   MenuItem,
 } from './FloatButton.styles';
@@ -65,6 +66,7 @@ export const FloatButton: React.FC<FloatButtonProps> = ({
           >
             {menu.map((item, index) => (
               <MenuItem
+                // biome-ignore lint/suspicious/noArrayIndexKey: Menu items are static and order is stable
                 key={index}
                 as={motion.button}
                 disabled={item.disabled}

@@ -29,7 +29,7 @@ export const TourCard = styled.div`
   p {
     margin: 0 0 16px;
     font-size: 14px;
-    color: ${({ theme }) => theme.colors?.textSecondary || '#666'};
+    color: ${({ theme }) => theme.colors?.text || '#555'};
   }
   
   .indicators {
@@ -100,7 +100,8 @@ export const TourButtons = styled.div`
   
   button {
     padding: 6px 12px;
-    border: 1px solid ${({ theme }) => theme.colors?.border || '#d9d9d9'};
+    border: 1px solid ${({ theme }) => theme.colors?.border || theme.colors?.textSecondary || '#d9d9d9'};
+  box-shadow: ${({ theme }) => theme.shadows?.soft || '0 4px 12px rgba(0,0,0,0.1)'};
     background: white;
     border-radius: 4px;
     cursor: pointer;

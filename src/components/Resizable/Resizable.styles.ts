@@ -5,8 +5,8 @@ const horizontalHandle = css`
   width: 8px;
   cursor: col-resize;
   background: ${({ theme }) => theme.colors.background};
-  border-left: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}30;
-  border-right: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}30;
+  border-left: 1px solid ${({ theme }) => theme.colors.shadowDark}30;
+  border-right: 1px solid ${({ theme }) => theme.colors.shadowDark}30;
   
   &::before {
     content: '';
@@ -16,7 +16,7 @@ const horizontalHandle = css`
     transform: translate(-50%, -50%);
     width: 2px;
     height: 20px;
-    background: ${({ theme }) => (theme as any).colors.shadowDark}40;
+    background: ${({ theme }) => theme.colors.shadowDark}40;
     border-radius: 1px;
   }
   
@@ -28,7 +28,7 @@ const horizontalHandle = css`
     transform: translate(-50%, -50%);
     width: 2px;
     height: 20px;
-    background: ${({ theme }) => (theme as any).colors.shadowDark}40;
+    background: ${({ theme }) => theme.colors.shadowDark}40;
     border-radius: 1px;
     margin-left: -3px;
   }
@@ -38,8 +38,8 @@ const verticalHandle = css`
   height: 8px;
   cursor: row-resize;
   background: ${({ theme }) => theme.colors.background};
-  border-top: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}30;
-  border-bottom: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}30;
+  border-top: 1px solid ${({ theme }) => theme.colors.shadowDark}30;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.shadowDark}30;
   
   &::before {
     content: '';
@@ -49,7 +49,7 @@ const verticalHandle = css`
     transform: translate(-50%, -50%);
     width: 20px;
     height: 2px;
-    background: ${({ theme }) => (theme as any).colors.shadowDark}40;
+    background: ${({ theme }) => theme.colors.shadowDark}40;
     border-radius: 1px;
   }
   
@@ -61,7 +61,7 @@ const verticalHandle = css`
     transform: translate(-50%, -50%);
     width: 20px;
     height: 2px;
-    background: ${({ theme }) => (theme as any).colors.shadowDark}40;
+    background: ${({ theme }) => theme.colors.shadowDark}40;
     border-radius: 1px;
     margin-top: -3px;
   }
@@ -91,8 +91,7 @@ export const ResizablePanel = styled.div`
 
 export const ResizableHandle = styled.div.withConfig({
   shouldForwardProp: (prop) => !['$direction', '$isDragging'].includes(prop),
-})
-<{
+})<{
   $direction: 'horizontal' | 'vertical';
   $isDragging: boolean;
 }>`
@@ -102,8 +101,7 @@ export const ResizableHandle = styled.div.withConfig({
   touch-action: none;
   transition: background-color 0.2s, opacity 0.2s;
   
-  ${({ $direction }) =>
-    $direction === 'horizontal' ? horizontalHandle : verticalHandle}
+  ${({ $direction }) => ($direction === 'horizontal' ? horizontalHandle : verticalHandle)}
   
   ${({ $isDragging, theme }) =>
     $isDragging
@@ -121,7 +119,7 @@ export const ResizableHandle = styled.div.withConfig({
     
     &::before,
     &::after {
-      background: ${({ theme }) => (theme as any).colors.shadowDark}60;
+      background: ${({ theme }) => theme.colors.shadowDark}60;
     }
   }
   
@@ -147,5 +145,4 @@ export const ResizableHandle = styled.div.withConfig({
             z-index: -1;
           `}
   }
-`
-;
+`;

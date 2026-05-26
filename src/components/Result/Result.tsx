@@ -1,21 +1,20 @@
 'use client';
 import type React from 'react';
-import { useState } from 'react';
+import {
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaInbox,
+  FaInfoCircle,
+  FaTimesCircle,
+} from '../../icons';
 import { motion } from '../../utils/lazyMotion';
 import {
   ResultContainer,
-  ResultIcon,
-  ResultTitle,
-  ResultSubtitle,
   ResultExtra,
+  ResultIcon,
+  ResultSubtitle,
+  ResultTitle,
 } from './Result.styles';
-import {
-  FaCheckCircle,
-  FaTimesCircle,
-  FaInfoCircle,
-  FaExclamationTriangle,
-  FaInbox,
-} from '../../icons';
 
 export type ResultStatus = 'success' | 'error' | 'info' | 'warning' | '404' | '403' | '500';
 
@@ -79,12 +78,7 @@ export const Result = ({
   const label = statusLabels[status];
 
   return (
-    <ResultContainer
-      role="status"
-      aria-live="polite"
-      aria-label={label}
-      {...props}
-    >
+    <ResultContainer role="status" aria-live="polite" aria-label={label} {...props}>
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -92,7 +86,7 @@ export const Result = ({
       >
         <ResultIcon status={status}>{resultIcon}</ResultIcon>
       </motion.div>
-      
+
       {title && (
         <motion.div
           initial={{ y: 10, opacity: 0 }}
@@ -102,7 +96,7 @@ export const Result = ({
           <ResultTitle>{title}</ResultTitle>
         </motion.div>
       )}
-      
+
       {subTitle && (
         <motion.div
           initial={{ y: 10, opacity: 0 }}
@@ -112,7 +106,7 @@ export const Result = ({
           <ResultSubtitle>{subTitle}</ResultSubtitle>
         </motion.div>
       )}
-      
+
       {extra && (
         <motion.div
           initial={{ y: 10, opacity: 0 }}

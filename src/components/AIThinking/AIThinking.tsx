@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { FaBrain } from "../../icons";
+import { FaBrain } from '../../icons';
 import {
   AIThinkingActiveDot,
   AIThinkingElapsed,
@@ -15,13 +15,13 @@ import {
   AIThinkingWrapper,
 } from './AIThinking.styles';
 
-export interface AIThinkingStep {
+export interface ThinkingStep {
   text: string;
   id?: string;
 }
 
 export interface AIThinkingProps {
-  steps: AIThinkingStep[];
+  steps: ThinkingStep[];
   isThinking?: boolean;
   title?: string;
   defaultExpanded?: boolean;

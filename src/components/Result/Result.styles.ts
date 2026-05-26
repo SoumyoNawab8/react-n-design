@@ -62,7 +62,7 @@ export const ResultTitle = styled.h2`
 export const ResultSubtitle = styled.div`
   margin: 0 0 24px;
   font-size: 16px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   line-height: 1.5;
   max-width: 400px;
 `;

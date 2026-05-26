@@ -1,5 +1,5 @@
 'use client';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const StatisticContainer = styled.div`
   display: inline-flex;
@@ -9,7 +9,7 @@ export const StatisticContainer = styled.div`
 
 export const StatisticTitle = styled.div`
   font-size: 14px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   line-height: 1.4;
 `;
 
@@ -26,18 +26,17 @@ export const StatisticValue = styled.div`
 
 export const StatisticPrefix = styled.span`
   font-size: 0.75em;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
 `;
 
 export const StatisticSuffix = styled.span`
   font-size: 0.75em;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
 `;
 
 export const TrendIndicator = styled.span.withConfig({
   shouldForwardProp: (prop) => prop !== 'trend',
-})
-<{ trend: 'up' | 'down' }>`
+})<{ trend: 'up' | 'down' }>`
   display: inline-flex;
   align-items: center;
   margin-left: 8px;

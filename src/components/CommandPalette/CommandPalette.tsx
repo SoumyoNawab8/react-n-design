@@ -1,9 +1,9 @@
 'use client';
-import { AnimatePresence } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FaSearch } from "../../icons";
+import { FaSearch } from '../../icons';
 import { saveFocus, trapFocus } from '../../utils/focus';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   CommandPaletteEmpty,
   CommandPaletteInput,

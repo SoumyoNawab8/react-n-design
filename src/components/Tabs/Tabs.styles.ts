@@ -1,5 +1,5 @@
-import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
   small: { padding: '8px 12px', fontSize: '14px' },
@@ -42,13 +42,13 @@ export const TabsList = styled.div.withConfig({
     tabPosition === 'left'
       ? css`
           flex-direction: column;
-          border-right: ${type === 'line' ? `2px solid ${(theme as any).colors.shadowDark}40` : 'none'};
+          border-right: ${type === 'line' ? `2px solid ${theme.colors.shadowDark}40` : 'none'};
           margin-right: 16px;
           border-bottom: none;
         `
       : css`
           flex-direction: row;
-          border-bottom: ${type === 'line' ? `2px solid ${(theme as any).colors.shadowDark}40` : 'none'};
+          border-bottom: ${type === 'line' ? `2px solid ${theme.colors.shadowDark}40` : 'none'};
           margin-bottom: ${type === 'line' ? '16px' : '0'};
         `}
 `;
@@ -77,9 +77,9 @@ export const TabButton = styled.button.withConfig({
   ${({ typeStyle, isActive, theme }) =>
     typeStyle === 'card' &&
     css`
-      border: 1px solid ${(theme as any).colors.shadowDark}40;
+      border: 1px solid ${theme.colors.shadowDark}40;
       border-radius: 8px 8px 0 0;
-      background: ${(theme as any).colors.cardBg};
+      background: ${theme.colors.cardBg};
       margin-right: 2px;
       
       ${
@@ -98,9 +98,9 @@ export const TabButton = styled.button.withConfig({
     `}
   
   &:disabled {
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    color: ${({ theme }) => theme.colors.shadowDark};
     cursor: not-allowed;
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 `;
 

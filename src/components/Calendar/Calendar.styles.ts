@@ -34,11 +34,11 @@ export const CalendarHeaderButton = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:active {
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
   }
 
   &:focus-visible {
@@ -99,8 +99,8 @@ export const CalendarDay = styled.button.withConfig({
   cursor: pointer;
   background: transparent;
   color: ${({ theme, isOtherMonth, isDisabled }) => {
-    if (isDisabled) return (theme as any).colors.shadowDark;
-    if (isOtherMonth) return (theme as any).colors.shadowDark;
+    if (isDisabled) return theme.colors.shadowDark;
+    if (isOtherMonth) return theme.colors.shadowDark;
     return theme.colors.text;
   }};
   position: relative;
@@ -124,8 +124,7 @@ export const CalendarDay = styled.button.withConfig({
     `}
 
   &:hover:not(:disabled) {
-    background: ${({ theme, isSelected }) =>
-      isSelected ? undefined : (theme as any).colors.hoverBg};
+    background: ${({ theme, isSelected }) => (isSelected ? undefined : theme.colors.hoverBg)};
   }
 
   &:disabled {

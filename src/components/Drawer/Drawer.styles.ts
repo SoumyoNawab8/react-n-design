@@ -1,5 +1,5 @@
-import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 const widthSizes = {
   small: '300px',
@@ -90,7 +90,7 @@ export const DrawerHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  border-bottom: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}40;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.shadowDark}40;
 `;
 
 export const DrawerTitle = styled.h3`
@@ -121,7 +121,7 @@ export const DrawerBody = styled.div`
 
 export const DrawerFooter = styled.div`
   padding: 16px 24px;
-  border-top: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}40;
+  border-top: 1px solid ${({ theme }) => theme.colors.shadowDark}40;
   display: flex;
   justify-content: flex-end;
   gap: 12px;

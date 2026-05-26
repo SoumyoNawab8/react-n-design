@@ -1,7 +1,7 @@
 'use client';
 import type React from 'react';
 import { useState } from 'react';
-import { FaEye, FaEyeSlash } from "../../icons";
+import { FaEye, FaEyeSlash } from '../../icons';
 import {
   ClearIcon,
   ErrorText,

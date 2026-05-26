@@ -43,7 +43,7 @@ export const SliderTrack = styled.div.withConfig({
   shouldForwardProp: (prop) => !['vertical'].includes(prop),
 })<{ vertical?: boolean }>`
   position: relative;
-  background: ${({ theme }) => (theme as any).colors.shadowDark}40;
+  background: ${({ theme }) => theme.colors.shadowDark}40;
   border-radius: 999px;
   cursor: pointer;
 

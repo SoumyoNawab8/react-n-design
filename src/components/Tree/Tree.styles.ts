@@ -40,13 +40,13 @@ export const TreeNodeContent = styled.div.withConfig({
   ${({ isSelected, theme }) =>
     isSelected &&
     css`
-      background: ${(theme as any).colors.hoverBg};
-      box-shadow: inset 3px 3px 6px ${(theme as any).colors.shadowDark},
-        inset -3px -3px 6px ${(theme as any).colors.shadowLight};
+      background: ${theme.colors.hoverBg};
+      box-shadow: inset 3px 3px 6px ${theme.colors.shadowDark},
+        inset -3px -3px 6px ${theme.colors.shadowLight};
     `}
 
   &:hover:not([disabled]) {
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:focus-visible {

@@ -27,7 +27,7 @@ export const StyledTextArea = styled.textarea`
   outline: none;
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   padding: 14px 16px;
   font-size: 14px;
   line-height: 1.5;
@@ -37,12 +37,11 @@ export const StyledTextArea = styled.textarea`
   transition: box-shadow 0.2s ease-in-out;
 
   &::placeholder {
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    color: ${({ theme }) => theme.colors.shadowDark};
   }
 
   &:focus {
-    box-shadow: ${({ theme }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 
   &:disabled {
@@ -92,7 +91,7 @@ export const SendButton = styled.button`
   }
 
   &:active:not(:disabled) {
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
   }
 
   &:focus-visible {
@@ -129,10 +128,10 @@ export const SlashMenuItem = styled.li.withConfig({
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text};
   background: ${({ isHighlighted, theme }) =>
-    isHighlighted ? (theme as any).colors.hoverBg : 'transparent'};
+    isHighlighted ? theme.colors.hoverBg : 'transparent'};
 
   &:hover {
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 
   & > span:first-child {

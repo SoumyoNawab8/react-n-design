@@ -44,7 +44,7 @@ export const MarkdownLink = styled.a`
 `;
 
 export const MarkdownCode = styled.code`
-  background: ${({ theme }) => (theme as any).colors.hoverBg};
+  background: ${({ theme }) => theme.colors.hoverBg};
   color: ${({ theme }) => theme.colors.primary};
   padding: 2px 6px;
   border-radius: 6px;
@@ -55,7 +55,7 @@ export const MarkdownCode = styled.code`
 export const MarkdownCodeBlock = styled.pre`
   background: ${({ theme }) => theme.colors.cardBg};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   padding: 16px;
   overflow-x: auto;
   margin: 0 0 16px;
@@ -74,7 +74,7 @@ export const MarkdownBlockquote = styled.blockquote`
   margin: 0 0 16px;
   padding: 8px 16px;
   border-left: 4px solid ${({ theme }) => theme.colors.primary};
-  background: ${({ theme }) => (theme as any).colors.hoverBg}30;
+  background: ${({ theme }) => theme.colors.hoverBg}30;
   border-radius: 0 ${({ theme }) => theme.borderRadius} ${({ theme }) => theme.borderRadius} 0;
   color: ${({ theme }) => theme.colors.text};
   font-style: italic;
@@ -99,7 +99,7 @@ export const MarkdownListItem = styled.li`
 export const MarkdownHr = styled.hr`
   border: none;
   height: 2px;
-  background: ${({ theme }) => (theme as any).colors.shadowDark}40;
+  background: ${({ theme }) => theme.colors.shadowDark}40;
   margin: 20px 0;
   border-radius: 1px;
 `;
@@ -122,13 +122,13 @@ export const MarkdownTable = styled.table`
 `;
 
 export const MarkdownTableHead = styled.thead`
-  background: ${({ theme }) => (theme as any).colors.hoverBg};
+  background: ${({ theme }) => theme.colors.hoverBg};
 `;
 
 export const MarkdownTableBody = styled.tbody``;
 
 export const MarkdownTableRow = styled.tr`
-  border-bottom: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}30;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.shadowDark}30;
 
   &:last-child {
     border-bottom: none;

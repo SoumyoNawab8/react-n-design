@@ -1,18 +1,11 @@
 import styled from 'styled-components';
+import type { Theme } from '../../styles/theme';
 import { motion } from '../../utils/lazyMotion';
 
 type AlertType = 'success' | 'info' | 'warning' | 'error';
 
-interface AlertWrapperProps {
-  alertType: AlertType;
-}
-
-interface AlertIconProps {
-  alertType: AlertType;
-}
-
 // Helper function to get theme-aware colors
-const getAlertColors = (theme: any, alertType: AlertType) => {
+const getAlertColors = (theme: Theme, alertType: AlertType) => {
   const isDark = theme.name === 'dark';
   switch (alertType) {
     case 'success':
@@ -56,7 +49,7 @@ export const AlertWrapper = styled(motion.div).withConfig({
   /* Use the helper function to set theme-aware colors */
   background: ${({ theme, alertType }) => getAlertColors(theme, alertType).bg};
   box-shadow: 5px 5px 10px ${({ theme, alertType }) => getAlertColors(theme, alertType).color}20, 
-              -5px -5px 10px ${({ theme }) => (theme as any).colors.shadowLight}80;
+              -5px -5px 10px ${({ theme }) => `${theme.colors.shadowLight}80`};
 `;
 
 export const AlertIcon = styled.div.withConfig({
@@ -95,7 +88,7 @@ export const CloseIcon = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   margin-left: 16px;
   font-size: 16px;
   flex-shrink: 0;

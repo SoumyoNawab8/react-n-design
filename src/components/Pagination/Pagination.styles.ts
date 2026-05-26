@@ -33,15 +33,15 @@ const baseButtonStyles = css`
   }
 
   &:active:not(:disabled) {
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
     transform: translateY(0);
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
+    color: ${({ theme }) => theme.colors.shadowDark};
     transform: none;
   }
 
@@ -65,7 +65,7 @@ export const PaginationItem = styled.button.withConfig({
     $isActive
       ? css`
           color: ${theme.colors.primary};
-          box-shadow: ${(theme as any).shadows.softInset};
+          box-shadow: ${theme.shadows.softInset};
           font-weight: 600;
         `
       : css``}
@@ -83,7 +83,7 @@ export const PaginationEllipsis = styled.span`
   justify-content: center;
   min-width: 40px;
   height: 40px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   font-size: 14px;
   font-weight: 500;
   user-select: none;

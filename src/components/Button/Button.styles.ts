@@ -6,21 +6,18 @@ const sizes = {
     height: '36px',
     padding: '0 16px',
     fontSize: '14px',
-    radius: '10px',
     circleSize: '36px',
   },
   medium: {
     height: '48px',
     padding: '0 24px',
     fontSize: '16px',
-    radius: ({ theme }: { theme: any }) => theme.borderRadius,
     circleSize: '48px',
   },
   large: {
     height: '56px',
     padding: '0 32px',
     fontSize: '18px',
-    radius: '16px',
     circleSize: '56px',
   },
 };
@@ -34,7 +31,7 @@ const spin = keyframes`
 
 // A simple CSS spinner component
 export const Spinner = styled.div`
-  border: 2px solid ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  border: 2px solid ${({ theme }) => `${theme.colors.shadowDark}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 1em;
@@ -90,7 +87,7 @@ export const StyledButton = styled.button.withConfig({
         `
       : css`
           padding: ${sizes[size].padding};
-          border-radius: ${sizes[size].radius};
+          border-radius: ${theme.borderRadius};
         `}
 
   /* Variant Styles */
@@ -102,10 +99,10 @@ export const StyledButton = styled.button.withConfig({
           box-shadow: none;
           color: ${theme.colors.primary};
           &:hover:not(:disabled) {
-            background: ${(theme as any).colors.hoverBg}50;
+            background: ${theme.colors.hoverBg}50;
           }
           &:active:not(:disabled) {
-            background: ${(theme as any).colors.hoverBg}80;
+            background: ${theme.colors.hoverBg}80;
           }
         `;
       default: // primary & secondary
@@ -119,7 +116,7 @@ export const StyledButton = styled.button.withConfig({
           }
 
           &:active:not(:disabled) {
-            box-shadow: ${(theme as any).shadows.softInset};
+            box-shadow: ${theme.shadows.softInset};
             color: ${theme.colors.primary};
           }
         `;
@@ -129,9 +126,9 @@ export const StyledButton = styled.button.withConfig({
   /* Disabled State */
   &:disabled {
     cursor: not-allowed;
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    color: ${({ theme }) => theme.colors.shadowDark};
     background: ${({ theme }) => theme.colors.background};
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
     
     ${Spinner} {
       border-top-color: #aaa;

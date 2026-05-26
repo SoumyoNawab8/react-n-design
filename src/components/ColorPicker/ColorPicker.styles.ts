@@ -20,8 +20,8 @@ export const ColorPreview = styled.div.withConfig({
   height: 48px;
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ color }) => color};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
-  border: 2px solid ${({ theme }) => (theme as any).colors.shadowDark}40;
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
+  border: 2px solid ${({ theme }) => theme.colors.shadowDark}40;
   transition: background 0.2s ease;
 `;
 
@@ -47,7 +47,7 @@ export const ColorHexInput = styled.input`
   outline: none;
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ theme }) => theme.colors.background};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   font-size: 14px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.text};
@@ -57,8 +57,7 @@ export const ColorHexInput = styled.input`
   box-sizing: border-box;
 
   &:focus {
-    box-shadow: ${({ theme }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 
   &::placeholder {
@@ -92,7 +91,7 @@ export const ColorSliderTrack = styled.div`
   position: relative;
   height: 6px;
   border-radius: 999px;
-  background: ${({ theme }) => (theme as any).colors.shadowDark}40;
+  background: ${({ theme }) => theme.colors.shadowDark}40;
 `;
 
 export const ColorSliderFill = styled.div.withConfig({

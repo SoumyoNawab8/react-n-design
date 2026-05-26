@@ -1,9 +1,9 @@
 'use client';
 import type React from 'react';
 import {
+  CalendarIcon,
   FaArrowRight,
   FaBell,
-  FaCalendar,
   FaCheck,
   FaCog,
   FaDownload,
@@ -23,11 +23,10 @@ import {
   FaTrash,
   FaUpload,
   FaUser,
-  CalendarIcon,
-} from "../../icons";
+} from '../../icons';
 import { IconContainer, StyledIcon } from './Icon.styles';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: Record<string, React.ComponentType<Record<string, unknown>>> = {
   home: FaHome,
   user: FaUser,
   search: FaSearch,
@@ -54,7 +53,7 @@ const iconMap: Record<string, React.ComponentType<any>> = {
 
 export interface IconProps {
   /** A react-icons component to render directly */
-  icon?: React.ComponentType<any>;
+  icon?: React.ComponentType<Record<string, unknown>>;
   /** Predefined icon name from the built-in map */
   name?: string;
   /** Pixel size of the icon (default: 24) */

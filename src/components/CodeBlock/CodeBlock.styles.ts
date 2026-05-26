@@ -14,8 +14,8 @@ export const CodeBlockHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  background: ${({ theme }) => (theme as any).colors.hoverBg}20;
-  border-bottom: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}20;
+  background: ${({ theme }) => theme.colors.hoverBg}20;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.shadowDark}20;
 `;
 
 export const CodeBlockLanguage = styled.span.withConfig({
@@ -43,7 +43,7 @@ export const CodeBlockCopyButton = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:focus-visible {
@@ -82,7 +82,7 @@ export const CodeBlockLineNumber = styled.span`
   width: 2.5em;
   text-align: right;
   margin-right: 12px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   opacity: 0.6;
   font-size: 12px;
   flex-shrink: 0;

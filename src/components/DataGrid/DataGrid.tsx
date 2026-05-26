@@ -1,14 +1,7 @@
 'use client';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  FaChevronDown,
-  FaChevronRight,
-  FaFilter,
-  FaSort,
-  FaSortDown,
-  FaSortUp,
-} from "../../icons";
 import { VariableSizeList as List, type ListChildComponentProps } from 'react-window';
+import { FaChevronDown, FaChevronRight, FaFilter, FaSort, FaSortDown, FaSortUp } from '../../icons';
 import { Button } from '../Button';
 import {
   CheckboxWrapper,
@@ -34,14 +27,14 @@ import {
   SortIconWrapper,
 } from './DataGrid.styles';
 
-export interface DataGridColumn<T = any> {
+export interface DataGridColumn<T = Record<string, unknown>> {
   key: string;
   title: React.ReactNode;
   width?: number;
   sortable?: boolean;
   sorter?: (a: T, b: T) => number;
   filterable?: boolean;
-  render?: (value: any, record: T) => React.ReactNode;
+  render?: (value: unknown, record: T) => React.ReactNode;
 }
 
 export interface DataGridPagination {
@@ -55,7 +48,7 @@ export interface DataGridRowSelection {
   onChange?: (selectedRowKeys: string[]) => void;
 }
 
-export interface DataGridExpandable<T = any> {
+export interface DataGridExpandable<T = Record<string, unknown>> {
   expandedRowRender?: (record: T) => React.ReactNode;
   defaultExpandedRowKeys?: string[];
   expandedRowKeys?: string[];
@@ -63,7 +56,7 @@ export interface DataGridExpandable<T = any> {
   rowExpandable?: (record: T) => boolean;
 }
 
-export interface DataGridProps<T = any> {
+export interface DataGridProps<T = Record<string, unknown>> {
   columns: DataGridColumn<T>[];
   dataSource: T[];
   rowKey?: string | ((record: T) => string);
@@ -84,19 +77,20 @@ const getRowKey = <T,>(
   rowKeyProp?: string | ((record: T) => string)
 ): string => {
   if (typeof rowKeyProp === 'function') return rowKeyProp(record);
-  if (typeof rowKeyProp === 'string') return String((record as any)[rowKeyProp]);
+  if (typeof rowKeyProp === 'string')
+    return String((record as Record<string, unknown>)[rowKeyProp]);
   return String(index);
 };
 
 interface RowItemData {
-  paginatedData: any[];
-  displayColumns: DataGridColumn<any>[];
+  paginatedData: Record<string, unknown>[];
+  displayColumns: DataGridColumn<Record<string, unknown>>[];
   columnWidths: Record<string, number>;
-  rowKeyProp?: string | ((record: any) => string);
+  rowKeyProp?: string | ((record: Record<string, unknown>) => string);
   expandedRowKeysSet: Set<string>;
   selectedRowKeysSet: Set<string>;
-  expandable?: DataGridExpandable<any>;
-  onToggleExpand: (key: string, record: any) => void;
+  expandable?: DataGridExpandable<Record<string, unknown>>;
+  onToggleExpand: (key: string, record: Record<string, unknown>) => void;
   onToggleSelect: (key: string) => void;
   activeCell: { row: number; col: number } | null;
   onCellClick: (row: number, col: number) => void;
@@ -200,8 +194,8 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
           }
 
           const cellContent = col.render
-            ? col.render((record as any)[col.key], record)
-            : String((record as any)[col.key] ?? '');
+            ? col.render((record as Record<string, unknown>)[col.key], record)
+            : String((record as Record<string, unknown>)[col.key] ?? '');
 
           return (
             <GridCell
@@ -321,7 +315,7 @@ export const DataGrid = <T extends object>({
     Object.entries(filters).forEach(([key, value]) => {
       if (!value) return;
       data = data.filter((row) => {
-        const val = (row as any)[key];
+        const val = (row as Record<string, unknown>)[key];
         return String(val).toLowerCase().includes(value.toLowerCase());
       });
     });
@@ -336,8 +330,8 @@ export const DataGrid = <T extends object>({
         });
       } else if (col?.sortable) {
         data.sort((a, b) => {
-          const av = String((a as any)[sortConfig.key]).localeCompare(
-            String((b as any)[sortConfig.key])
+          const av = String((a as Record<string, unknown>)[sortConfig.key]).localeCompare(
+            String((b as Record<string, unknown>)[sortConfig.key])
           );
           return sortConfig.order === 'asc' ? av : -av;
         });
@@ -484,7 +478,7 @@ export const DataGrid = <T extends object>({
         }
       }
 
-      const { row, col } = activeCell!;
+      const { row, col } = activeCell;
       let newRow = row;
       let newCol = col;
 
@@ -700,8 +694,10 @@ export const DataGrid = <T extends object>({
         <GridBodyWrapper ref={bodyRef}>
           {loading ? (
             Array.from({ length: 5 }).map((_, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton rows are static placeholders
               <SkeletonRow key={i} role="row">
                 {displayColumns.map((_, j) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton cells are static placeholders
                   <SkeletonCell key={j} role="gridcell" />
                 ))}
               </SkeletonRow>

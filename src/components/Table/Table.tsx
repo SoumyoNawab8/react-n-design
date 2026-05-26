@@ -1,7 +1,7 @@
 'use client';
 import type React from 'react';
 import { useMemo, useState } from 'react';
-import { FaArrowDown, FaArrowUp } from "../../icons";
+import { FaArrowDown, FaArrowUp } from '../../icons';
 import { Button } from '../Button';
 import {
   LoadingOverlay,
@@ -130,6 +130,7 @@ export const Table = <T extends object>({
         </TableHeader>
         <tbody>
           {processedData.map((record, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Table rows use index when no unique ID exists
             <TableRow key={index}>
               {columns.map((col) => (
                 <TableCell key={col.key}>
