@@ -1,7 +1,10 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme } from '../src/styles/theme';
+import { lightTheme, darkTheme } from '../src/styles/theme';
+
+// Theme type for global controls
+export type Theme = 'light' | 'dark';
 
 const preview: Preview = {
   parameters: {
@@ -11,15 +14,44 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    // Background colors for testing
+    backgrounds: {
+      default: 'neomorphic',
+      values: [
+        { name: 'neomorphic', value: '#e0e5ec' },
+        { name: 'dark', value: '#2c2f34' },
+        { name: 'white', value: '#ffffff' },
+        { name: 'black', value: '#000000' },
+      ],
+    },
+  },
+  globalTypes: {
+    theme: {
+      name: 'Theme',
+      description: 'Global theme for components',
+      defaultValue: 'light',
+      toolbar: {
+        title: 'Theme',
+        icon: 'circle',
+        items: [
+          { value: 'light', icon: 'sun', title: 'Light' },
+          { value: 'dark', icon: 'moon', title: 'Dark' },
+        ],
+        showName: true,
+      },
+    },
   },
   decorators: [
-    (Story) => (
-      <ThemeProvider theme={lightTheme}>
-        <div style={{ padding: '20px' }}>
-          <Story />
-        </div>
-      </ThemeProvider>
-    ),
+    (Story, context) => {
+      const theme = context.globals.theme === 'dark' ? darkTheme : lightTheme;
+      return (
+        <ThemeProvider theme={theme}>
+          <div style={{ padding: '20px' }}>
+            <Story />
+          </div>
+        </ThemeProvider>
+      );
+    },
   ],
 };
 
