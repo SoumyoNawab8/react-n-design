@@ -210,18 +210,14 @@ export const StepsConnector = styled.div.withConfig({
           top: ${sizes[size].gap};
           width: ${sizes[size].connectorThickness};
           height: 100%;
-          background: ${
-            isCompleted ? theme.colors.primary : `${theme.colors.shadowDark}40`
-          };
+          background: ${isCompleted ? theme.colors.primary : `${theme.colors.shadowDark}40`};
         `
       : css`
           top: calc(${sizes[size].icon} / 2 - ${sizes[size].connectorThickness} / 2);
           left: calc(50% + ${sizes[size].icon} / 2);
           right: calc(-50% + ${sizes[size].icon} / 2 + ${sizes[size].gap});
           height: ${sizes[size].connectorThickness};
-          background: ${
-            isCompleted ? theme.colors.primary : `${theme.colors.shadowDark}40`
-          };
+          background: ${isCompleted ? theme.colors.primary : `${theme.colors.shadowDark}40`};
 
           @media (max-width: 768px) {
             left: calc(${sizes[size].gap} / 2 - ${sizes[size].connectorThickness} / 2);

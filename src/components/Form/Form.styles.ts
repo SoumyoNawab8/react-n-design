@@ -147,7 +147,9 @@ export const FormFieldWrapper = styled.div`
 // Inline Layout Helper
 // ============================================
 
-export const FormItemHelp = styled.div<{ $status?: '' | 'success' | 'warning' | 'error' | 'validating' }>`
+export const FormItemHelp = styled.div<{
+  $status?: '' | 'success' | 'warning' | 'error' | 'validating';
+}>`
   display: flex;
   align-items: center;
   font-size: 12px;

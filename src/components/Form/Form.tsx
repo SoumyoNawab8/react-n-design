@@ -551,10 +551,16 @@ export const InternalForm = React.forwardRef<HTMLFormElement, FormProps>(
           dispatch({ type: 'SET_FIELD_VALUE', payload: { name: field as string, value } });
         },
         handleBlur: (field: string) => () => {
-          dispatch({ type: 'SET_FIELD_TOUCHED', payload: { name: field as string, touched: true } });
+          dispatch({
+            type: 'SET_FIELD_TOUCHED',
+            payload: { name: field as string, touched: true },
+          });
         },
         setFieldError: (field: string, error: string | string[]) => {
-          dispatch({ type: 'SET_FIELD_ERROR', payload: { name: field as string, errors: Array.isArray(error) ? error : [error] } });
+          dispatch({
+            type: 'SET_FIELD_ERROR',
+            payload: { name: field as string, errors: Array.isArray(error) ? error : [error] },
+          });
         },
         handleSubmit,
         isSubmitting: false,

@@ -65,8 +65,7 @@ export const CommandPaletteItem = styled.li.withConfig({
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.12s ease;
-  background: ${({ isSelected, theme }) =>
-    isSelected ? theme.colors.hoverBg : 'transparent'};
+  background: ${({ isSelected, theme }) => (isSelected ? theme.colors.hoverBg : 'transparent')};
   color: ${({ theme }) => theme.colors.text};
   outline: none;
 

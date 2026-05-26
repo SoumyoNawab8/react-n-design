@@ -57,8 +57,7 @@ export const ColorHexInput = styled.input`
   box-sizing: border-box;
 
   &:focus {
-    box-shadow: ${({ theme }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 
   &::placeholder {

@@ -124,8 +124,7 @@ export const CalendarDay = styled.button.withConfig({
     `}
 
   &:hover:not(:disabled) {
-    background: ${({ theme, isSelected }) =>
-      isSelected ? undefined : theme.colors.hoverBg};
+    background: ${({ theme, isSelected }) => (isSelected ? undefined : theme.colors.hoverBg)};
   }
 
   &:disabled {

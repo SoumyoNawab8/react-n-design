@@ -31,8 +31,7 @@ export const SuggestionChipItem = styled.div`
   transition: box-shadow 0.2s ease;
 
   &:focus-visible {
-    box-shadow: ${({ theme }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 `;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import type { Theme } from '../../styles/theme';
+import { motion } from '../../utils/lazyMotion';
 
 type AlertType = 'success' | 'info' | 'warning' | 'error';
 
