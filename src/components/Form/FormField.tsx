@@ -19,7 +19,7 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
     return <Input name={name} label={label} />;
   }
 
-  const fieldName = String(name);
+  const fieldName = String(name) as keyof typeof ctx.values;
   const value = ctx.optimisticValues?.[fieldName] ?? ctx.values[fieldName];
   const error = ctx.errors[fieldName];
   const touched = ctx.touched[fieldName];
