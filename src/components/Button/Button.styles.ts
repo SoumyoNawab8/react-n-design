@@ -78,7 +78,7 @@ export const StyledButton = styled.button.withConfig({
   font-size: ${({ size }) => sizes[size].fontSize};
 
   /* Shape Styles */
-  ${({ shape, size }) =>
+  ${({ shape, size, theme }) =>
     shape === 'circle'
       ? css`
           width: ${sizes[size].circleSize};
