@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import axe from 'axe-core';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { vi } from 'vitest';
@@ -136,6 +135,7 @@ describe('Tour', () => {
     expect(indicators[0]).toHaveClass('active');
     expect(indicators[1]).not.toHaveClass('active');
     expect(indicators[2]).not.toHaveClass('active');
+    // biome-ignore lint/correctness/noUnusedVariables: needed for assertions
   });
 
   it('updates active indicator when navigating', async () => {
@@ -147,6 +147,7 @@ describe('Tour', () => {
       const indicators = document.querySelectorAll('.indicators span');
       expect(indicators[1]).toHaveClass('active');
     });
+    // biome-ignore lint/correctness/noUnusedVariables: indicators used in test
   });
 
   it('does not show Previous button on first step', () => {

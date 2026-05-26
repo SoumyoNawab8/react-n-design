@@ -1,6 +1,5 @@
 'use client';
 import type React from 'react';
-import { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from '../../icons';
 import {
   PaginationButton,
@@ -110,7 +109,11 @@ export const Pagination = ({
       {pageNumbers.map((pageNumber, index) => {
         if (pageNumber === -1) {
           return (
-            <PaginationEllipsis key={`ellipsis-${index}`} aria-hidden="true">
+            <PaginationEllipsis
+              // biome-ignore lint/suspicious/noArrayIndexKey: Ellipsis at static positions
+              key={`ellipsis-${index}`}
+              aria-hidden="true"
+            >
               ⋯
             </PaginationEllipsis>
           );

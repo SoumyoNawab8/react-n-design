@@ -61,7 +61,7 @@ const createLazyMotionComponent = (tag: string): ComponentType<MotionProps> => {
   const LazyMotion = React.forwardRef<HTMLElement, MotionProps>((props, ref) => {
     const fm = useFramerMotion();
     const MotionComponent = fm?.motion[tag as keyof typeof fm.motion] as
-      | ComponentType<MotionProps>
+      | ComponentType<MotionProps & { ref?: React.Ref<HTMLElement> }>
       | undefined;
 
     if (!MotionComponent) {

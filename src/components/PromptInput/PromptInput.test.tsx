@@ -11,8 +11,8 @@ import { PromptInput } from './PromptInput';
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
 
-const ControlledPromptInput = (props: any) => {
-  const [value, setValue] = useState(props.value || '');
+const ControlledPromptInput = (props: { value?: string } & Record<string, unknown>) => {
+  const [value, setValue] = useState((props.value as string) || '');
   return <PromptInput {...props} value={value} onChange={setValue} />;
 };
 
@@ -75,7 +75,7 @@ describe('PromptInput', () => {
   });
 
   it('shows character count with max length', async () => {
-    const { rerender } = renderWithTheme(
+    renderWithTheme(
       <PromptInput value="abcde" onChange={() => {}} onSend={vi.fn()} maxLength={10} />
     );
     expect(screen.getByText(/5 \/ 10/i)).toBeInTheDocument();

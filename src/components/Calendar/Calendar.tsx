@@ -228,6 +228,7 @@ export const Calendar = ({ value, onChange, events = [], disabledDate }: Calenda
               {dayEvents.length > 0 && (
                 <CalendarEventDot>
                   {dayEvents.map((color, i) => (
+                    // biome-ignore lint/suspicious/noArrayIndexKey: event colors use sequential indexing
                     <span key={i} style={{ backgroundColor: color }} />
                   ))}
                 </CalendarEventDot>

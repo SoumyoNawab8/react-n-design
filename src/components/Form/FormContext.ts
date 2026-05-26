@@ -164,7 +164,7 @@ export interface FormContextValue<T = any> {
   /** Label alignment */
   labelAlign?: 'left' | 'right';
   /** Required mark */
-  requiredMark?: boolean;
+  requiredMark?: boolean | 'optional';
 }
 
 export interface FieldEntity {

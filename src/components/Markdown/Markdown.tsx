@@ -317,6 +317,7 @@ export const Markdown = ({ children, components = {} }: MarkdownProps) => {
           <Ul key={key} as="ul">
             {node.items?.map((item, i) => {
               const Li = components.li || MarkdownListItem;
+              // biome-ignore lint/suspicious/noArrayIndexKey: stable parent key prefix
               return <Li key={`${key}-li-${i}`}>{renderInline(item)}</Li>;
             })}
           </Ul>
@@ -328,6 +329,7 @@ export const Markdown = ({ children, components = {} }: MarkdownProps) => {
           <Ol key={key}>
             {node.items?.map((item, i) => {
               const Li = components.li || MarkdownListItem;
+              // biome-ignore lint/suspicious/noArrayIndexKey: stable parent key prefix
               return <Li key={`${key}-li-${i}`}>{renderInline(item)}</Li>;
             })}
           </Ol>
@@ -349,14 +351,17 @@ export const Markdown = ({ children, components = {} }: MarkdownProps) => {
             <Thead>
               <Tr>
                 {node.header?.map((h, hi) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: stable parent key prefix
                   <Th key={`${key}-th-${hi}`}>{renderInline(h)}</Th>
                 ))}
               </Tr>
             </Thead>
             <Tbody>
               {node.rows?.map((row, ri) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: stable parent key prefix
                 <Tr key={`${key}-tr-${ri}`}>
                   {row.map((cell, ci) => (
+                    // biome-ignore lint/suspicious/noArrayIndexKey: stable parent key prefix
                     <Td key={`${key}-td-${ri}-${ci}`}>{renderInline(cell)}</Td>
                   ))}
                 </Tr>

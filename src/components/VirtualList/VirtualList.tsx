@@ -97,7 +97,7 @@ export const VirtualList = <T,>({
       containerRef.current.scrollTop = 0;
     }
     setScrollTop(0);
-  }, [items]);
+  }, []);
 
   return (
     <VirtualListContainer

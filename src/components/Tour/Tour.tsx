@@ -2,7 +2,7 @@
 
 import type React from 'react';
 import { useCallback, useState } from 'react';
-import { AnimatePresence, motion } from '../../utils/lazyMotion';
+import { motion } from '../../utils/lazyMotion';
 import { TourArrow, TourButtons, TourCard, TourOverlay, TourSpotlight } from './Tour.styles';
 
 export interface TourStep {
@@ -75,10 +75,10 @@ export const Tour: React.FC<TourProps> = ({ steps, open, onClose, onFinish }) =>
           targetElement
             ? {
                 position: 'absolute',
-                top: targetElement.getBoundingClientRect().top - 8 + 'px',
-                left: targetElement.getBoundingClientRect().left - 8 + 'px',
-                width: targetElement.getBoundingClientRect().width + 16 + 'px',
-                height: targetElement.getBoundingClientRect().height + 16 + 'px',
+                top: `${targetElement.getBoundingClientRect().top - 8}px`,
+                left: `${targetElement.getBoundingClientRect().left - 8}px`,
+                width: `${targetElement.getBoundingClientRect().width + 16}px`,
+                height: `${targetElement.getBoundingClientRect().height + 16}px`,
               }
             : {}
         }
@@ -102,15 +102,22 @@ export const Tour: React.FC<TourProps> = ({ steps, open, onClose, onFinish }) =>
         <p>{step.description}</p>
 
         <TourButtons>
-          <button onClick={handleSkip}>Skip</button>
-          {current > 0 && <button onClick={handlePrev}>Previous</button>}
-          <button onClick={handleNext} className="primary">
+          <button type="button" onClick={handleSkip}>
+            Skip
+          </button>
+          {current > 0 && (
+            <button type="button" onClick={handlePrev}>
+              Previous
+            </button>
+          )}
+          <button type="button" onClick={handleNext} className="primary">
             {current === steps.length - 1 ? 'Finish' : 'Next'}
           </button>
         </TourButtons>
 
         <div className="indicators">
           {steps.map((_, idx) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: step indicators are sequential and stable
             <span key={idx} className={idx === current ? 'active' : ''} />
           ))}
         </div>

@@ -22,7 +22,9 @@ describe('Result', () => {
   });
 
   it('renders with extra content', () => {
-    renderWithTheme(<Result title="Not Found" status="404" extra={<button>Go Home</button>} />);
+    renderWithTheme(
+      <Result title="Not Found" status="404" extra={<button type="button">Go Home</button>} />
+    );
     expect(screen.getByText('Go Home')).toBeInTheDocument();
   });
 

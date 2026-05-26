@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';

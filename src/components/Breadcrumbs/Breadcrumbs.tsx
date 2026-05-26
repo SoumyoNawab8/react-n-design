@@ -38,6 +38,7 @@ export const Breadcrumbs = ({
           const isFirst = index === 0;
 
           return (
+            // biome-ignore lint/suspicious/noArrayIndexKey: breadcrumbs are stable and order-based
             <BreadcrumbItem key={index}>
               {isFirst && item.icon === undefined && homeIcon && (
                 <span style={{ display: 'inline-flex', marginRight: 4 }} aria-hidden="true">

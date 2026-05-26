@@ -54,7 +54,10 @@ const LANGUAGE_COLORS: Record<string, string> = {
 };
 
 function highlightCode(code: string, language?: string): React.ReactNode[] {
-  if (!language) return code.split('\n').map((line) => <span>{line}</span>);
+  if (!language) {
+    // biome-ignore lint/correctness/useJsxKeyInIterable: lines are rendered as children
+    return code.split('\n').map((line) => <span>{line}</span>);
+  }
 
   const lang = language.toLowerCase();
   const rules: { regex: RegExp; color: string }[] = [];
@@ -123,6 +126,7 @@ function highlightCode(code: string, language?: string): React.ReactNode[] {
   const lines = code.split('\n');
 
   return lines.map((line, lineIndex) => {
+    // biome-ignore lint/suspicious/noArrayIndexKey: line numbers are sequential and stable
     if (!line) return <span key={lineIndex}> </span>;
 
     const segments: { text: string; color?: string }[] = [{ text: line }];
@@ -134,13 +138,15 @@ function highlightCode(code: string, language?: string): React.ReactNode[] {
           newSegments.push(seg);
           return;
         }
-        let match;
+        // biome-ignore lint/suspicious/noImplicitAnyLet: properly typed via return value
+        let match: RegExpExecArray | null = null;
         const localRegex = new RegExp(
           regex.source,
           regex.flags.includes('g') ? regex.flags : `${regex.flags}g`
         );
         localRegex.lastIndex = 0;
         let lastIndex = 0;
+        // biome-ignore lint/suspicious/noAssignInExpressions: regex exec pattern
         while ((match = localRegex.exec(seg.text)) !== null) {
           if (match.index > lastIndex) {
             newSegments.push({ text: seg.text.slice(lastIndex, match.index) });
@@ -160,13 +166,16 @@ function highlightCode(code: string, language?: string): React.ReactNode[] {
     });
 
     return (
+      // biome-ignore lint/suspicious/noArrayIndexKey: line numbers are sequential and stable
       <span key={lineIndex}>
         {segments.map((seg, i) =>
           seg.color ? (
+            // biome-ignore lint/suspicious/noArrayIndexKey: segments within a line
             <span key={i} style={{ color: seg.color }}>
               {seg.text}
             </span>
           ) : (
+            // biome-ignore lint/suspicious/noArrayIndexKey: segments within a line
             <span key={i}>{seg.text}</span>
           )
         )}

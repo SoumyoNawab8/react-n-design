@@ -47,7 +47,9 @@ describe('Empty', () => {
   it('renders children content', () => {
     renderWithTheme(
       <Empty description="No data">
-        <button data-testid="action-btn">Create Item</button>
+        <button type="button" data-testid="action-btn">
+          Create Item
+        </button>
       </Empty>
     );
     expect(screen.getByTestId('action-btn')).toBeInTheDocument();
@@ -74,8 +76,8 @@ describe('Empty', () => {
     renderWithTheme(
       <Empty description="No items available">
         <div data-testid="actions">
-          <button>Refresh</button>
-          <button>Add New</button>
+          <button type="button">Refresh</button>
+          <button type="button">Add New</button>
         </div>
       </Empty>
     );

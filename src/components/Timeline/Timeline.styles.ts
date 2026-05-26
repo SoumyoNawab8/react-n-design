@@ -122,7 +122,7 @@ export const TimelineDot = styled.div.withConfig({
   flex-shrink: 0;
 
   ${({ $mode, $position }) => {
-    const resolvedPosition = $position || $mode;
+    const _resolvedPosition = $position || $mode;
 
     if ($mode === 'left') {
       return css`

@@ -217,7 +217,7 @@ export const CarouselDot = styled.button.withConfig({
     background: ${
       props.$isActive
         ? props.theme.colors?.primary || '#6d5dfc'
-        : (props.theme.colors?.shadowDark || '#b8b9be') + '60'
+        : `${props.theme.colors?.shadowDark || '#b8b9be'}60`
     };
     box-shadow: ${
       props.$isActive ? '0 4px 8px rgba(109, 95, 252, 0.4)' : 'inset 2px 2px 4px rgba(0,0,0,0.1)'

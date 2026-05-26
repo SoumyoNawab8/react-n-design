@@ -26,7 +26,7 @@ export interface FormContextValue<T = any> {
   wrapperCol?: ColSpan;
   colon?: boolean;
   labelAlign?: LabelAlign;
-  requiredMark?: boolean;
+  requiredMark?: boolean | 'optional';
   // Form instance
   form?: any;
   validating?: Record<string, boolean>;
@@ -141,7 +141,7 @@ export interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement
   size?: 'small' | 'middle' | 'large';
   scrollToFirstError?: boolean | ScrollIntoViewOptions;
   prefixCls?: string;
-  requiredMark?: boolean;
+  requiredMark?: boolean | 'optional';
   preserve?: boolean;
   autoComplete?: string;
   component?: string | React.ComponentType;

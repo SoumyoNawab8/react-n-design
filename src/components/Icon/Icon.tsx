@@ -4,7 +4,6 @@ import {
   CalendarIcon,
   FaArrowRight,
   FaBell,
-  FaCalendar,
   FaCheck,
   FaCog,
   FaDownload,

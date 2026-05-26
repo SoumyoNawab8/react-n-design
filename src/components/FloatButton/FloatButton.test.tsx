@@ -176,6 +176,7 @@ describe('FloatButton', () => {
     renderWithTheme(
       <FloatButton
         icon={
+          // biome-ignore lint/a11y/noSvgWithoutTitle: icon used for testing only
           <svg data-testid="svg-icon" viewBox="0 0 24 24">
             <path d="M12 4v16m8-8H4" />
           </svg>

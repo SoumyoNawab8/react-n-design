@@ -103,7 +103,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       setCurrentIndex(next);
       onChange?.(next);
     },
-    [currentIndex, total, loop, onChange]
+    [total, loop, onChange]
   );
 
   const goNext = useCallback(() => {

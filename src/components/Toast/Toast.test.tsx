@@ -44,7 +44,7 @@ describe('Toast', () => {
   });
 
   it('renders action when provided', () => {
-    renderWithTheme(<Toast {...DEFAULT_PROPS} action={<button>Undo</button>} />);
+    renderWithTheme(<Toast {...DEFAULT_PROPS} action={<button type="button">Undo</button>} />);
     expect(screen.getByRole('button', { name: /undo/i })).toBeInTheDocument();
   });
 
