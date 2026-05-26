@@ -104,7 +104,7 @@ export interface FieldData {
 }
 
 export type FormAction =
-  | { type: 'SET_FIELD_VALUE';    payload: { name: string; value: unknown }}
+  | { type: 'SET_FIELD_VALUE'; payload: { name: string; value: unknown } }
   | { type: 'SET_FIELD_ERROR'; payload: { name: string; errors: string[] } }
   | { type: 'SET_FIELD_TOUCHED'; payload: { name: string; touched: boolean } }
   | { type: 'SET_FIELD_VALIDATING'; payload: { name: string; validating: boolean } }

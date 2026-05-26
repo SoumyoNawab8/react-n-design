@@ -165,6 +165,8 @@ export interface FormContextValue<T = unknown> {
   labelAlign?: 'left' | 'right';
   /** Required mark */
   requiredMark?: boolean | 'optional';
+  /** Whether form is disabled */
+  disabled?: boolean;
 }
 
 export interface FieldEntity {
@@ -301,12 +303,12 @@ export interface FormProps<T = unknown>
 export const FormContext = createContext<FormContextValue<unknown> | null>(null);
 
 export function useFormContext<T = unknown>(): FormContextValue<T> | null {
-  return useContext(FormContext);
+  return useContext(FormContext) as FormContextValue<T> | null;
 }
 
 export function useFormInstance<T = unknown>(): FormInstance<T> | null {
   const ctx = useContext(FormContext);
-  return ctx?.form || null;
+  return (ctx?.form as FormInstance<T>) || null;
 }
 
 export default FormContext;

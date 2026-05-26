@@ -287,13 +287,14 @@ const InternalFormItem: React.FC<FormItemProps> = ({
     if (!React.isValidElement(children)) return children;
     const id = name ? getFieldId(name) : undefined;
     const errorId = fieldErrors?.length > 0 ? `${id}-error` : undefined;
-    const clonedProps: any = {
-      id: (children.props as any).id || id,
+    // biome-ignore lint/suspicious/noExplicitAny: dynamic child properties
+    const clonedProps = {
+      id: (children.props as { id?: string }).id || id,
       [valuePropName]: value,
       [trigger]: handleChange,
       onBlur: handleBlur,
       'aria-describedby': errorId,
-      disabled: (children.props as any).disabled || (formContext as any)?.disabled,
+      disabled: (children.props as { disabled?: boolean }).disabled || formContext?.disabled,
     };
     const shouldInjectProps =
       valuePropName in children.props ||
