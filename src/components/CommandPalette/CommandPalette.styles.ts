@@ -1,6 +1,6 @@
 'use client';
-import { motion } from '../../utils/lazyMotion';
 import styled from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export const CommandPaletteOverlay = styled(motion.div)`
   position: fixed;
@@ -29,7 +29,7 @@ export const CommandPaletteInputWrapper = styled.div`
   align-items: center;
   gap: 12px;
   padding: 16px 20px;
-  border-bottom: 1px solid ${({ theme }) => (theme as any).colors.shadowDark}30;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.shadowDark}30;
   color: ${({ theme }) => theme.colors.text};
   font-size: 18px;
 `;
@@ -43,7 +43,7 @@ export const CommandPaletteInput = styled.input`
   color: ${({ theme }) => theme.colors.text};
 
   &::placeholder {
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    color: ${({ theme }) => theme.colors.shadowDark};
   }
 `;
 
@@ -66,7 +66,7 @@ export const CommandPaletteItem = styled.li.withConfig({
   cursor: pointer;
   transition: background 0.12s ease;
   background: ${({ isSelected, theme }) =>
-    isSelected ? (theme as any).colors.hoverBg : 'transparent'};
+    isSelected ? theme.colors.hoverBg : 'transparent'};
   color: ${({ theme }) => theme.colors.text};
   outline: none;
 
@@ -85,9 +85,9 @@ export const CommandPaletteItemShortcut = styled.kbd`
   font-family: inherit;
   font-size: 12px;
   font-weight: 500;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   background: ${({ theme }) => theme.colors.background};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   padding: 2px 8px;
   border-radius: 6px;
   white-space: nowrap;
@@ -97,5 +97,5 @@ export const CommandPaletteEmpty = styled.div`
   padding: 24px;
   text-align: center;
   font-size: 14px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
 `;

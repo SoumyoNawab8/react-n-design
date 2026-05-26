@@ -1,6 +1,7 @@
 'use client';
 import type React from 'react';
 import {
+  CalendarIcon,
   FaArrowRight,
   FaBell,
   FaCalendar,
@@ -23,8 +24,7 @@ import {
   FaTrash,
   FaUpload,
   FaUser,
-  CalendarIcon,
-} from "../../icons";
+} from '../../icons';
 import { IconContainer, StyledIcon } from './Icon.styles';
 
 const iconMap: Record<string, React.ComponentType<any>> = {

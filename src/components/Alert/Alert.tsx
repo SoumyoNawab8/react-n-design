@@ -1,14 +1,8 @@
 'use client';
 import type React from 'react';
-import { AnimatePresence } from '../../utils/lazyMotion';
 import { useState } from 'react';
-import {
-  FaCheck,
-  FaTimesCircle,
-  FaExclamationTriangle,
-  FaInfoCircle,
-  FaTimes,
-} from "../../icons";
+import { FaCheck, FaExclamationTriangle, FaInfoCircle, FaTimes, FaTimesCircle } from '../../icons';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   AlertContent,
   AlertDescription,

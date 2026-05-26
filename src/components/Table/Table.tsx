@@ -1,7 +1,7 @@
 'use client';
 import type React from 'react';
 import { useMemo, useState } from 'react';
-import { FaArrowDown, FaArrowUp } from "../../icons";
+import { FaArrowDown, FaArrowUp } from '../../icons';
 import { Button } from '../Button';
 import {
   LoadingOverlay,

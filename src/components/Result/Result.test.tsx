@@ -1,15 +1,11 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
-import { Result } from './Result';
+import type React from 'react';
+import { describe, expect, it } from 'vitest';
 import { ThemeContextProvider } from '../../context/ThemeContext';
+import { Result } from './Result';
 
 const renderWithTheme = (component: React.ReactElement) => {
-  return render(
-    <ThemeContextProvider defaultTheme="light">
-      {component}
-    </ThemeContextProvider>
-  );
+  return render(<ThemeContextProvider defaultTheme="light">{component}</ThemeContextProvider>);
 };
 
 describe('Result', () => {
@@ -20,23 +16,13 @@ describe('Result', () => {
 
   it('renders with subtitle', () => {
     renderWithTheme(
-      <Result
-        title="Operation Complete"
-        subTitle="Your action was successful"
-        status="success"
-      />
+      <Result title="Operation Complete" subTitle="Your action was successful" status="success" />
     );
     expect(screen.getByText('Your action was successful')).toBeInTheDocument();
   });
 
   it('renders with extra content', () => {
-    renderWithTheme(
-      <Result
-        title="Not Found"
-        status="404"
-        extra={<button>Go Home</button>}
-      />
-    );
+    renderWithTheme(<Result title="Not Found" status="404" extra={<button>Go Home</button>} />);
     expect(screen.getByText('Go Home')).toBeInTheDocument();
   });
 
@@ -57,9 +43,7 @@ describe('Result', () => {
     ];
 
     statuses.forEach((status) => {
-      const { unmount } = renderWithTheme(
-        <Result title={status} status={status} />
-      );
+      const { unmount } = renderWithTheme(<Result title={status} status={status} />);
       expect(screen.getByText(status)).toBeInTheDocument();
       unmount();
     });

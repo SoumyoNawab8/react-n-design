@@ -1,5 +1,5 @@
-import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 import type { TooltipProps } from './Tooltip';
 
 const getPositionStyles = (position: TooltipProps['position'], theme: any) => {
@@ -60,14 +60,14 @@ export const TooltipContent = styled(motion.div).withConfig({
   withArrow: boolean;
 }>`
   position: absolute;
-  background-color: ${({ theme }) => (theme as any).colors.shadowDark};
+  background-color: ${({ theme }) => theme.colors.shadowDark};
   color: ${({ theme }) => theme.colors.white};
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 14px;
   max-width: 250px;
   white-space: normal;
-  box-shadow: 0 4px 8px ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  box-shadow: 0 4px 8px ${({ theme }) => `${theme.colors.shadowDark}40`};
   z-index: 900;
   
   &::after {

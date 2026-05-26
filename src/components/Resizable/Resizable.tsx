@@ -1,10 +1,7 @@
 'use client';
-import React, { useRef, useState, useCallback, useEffect } from 'react';
-import {
-  ResizableContainer,
-  ResizablePanel,
-  ResizableHandle,
-} from './Resizable.styles';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ResizableContainer, ResizableHandle, ResizablePanel } from './Resizable.styles';
 
 interface DragStartData {
   startPos: number;
@@ -61,55 +58,66 @@ export const Resizable = ({
   const [size, setSize] = useState<number | string>(defaultSize);
   const dragStartDataRef = useRef<DragStartData | null>(null);
 
-  const parseSize = useCallback((sizeValue: number | string, container: HTMLDivElement): number => {
-    if (typeof sizeValue === 'number') return sizeValue;
-    if (sizeValue.endsWith('%')) {
-      const total = direction === 'horizontal' 
-        ? container.clientWidth 
-        : container.clientHeight;
-      return (parseFloat(sizeValue) / 100) * total;
-    }
-    return parseFloat(sizeValue);
-  }, [direction]);
+  const parseSize = useCallback(
+    (sizeValue: number | string, container: HTMLDivElement): number => {
+      if (typeof sizeValue === 'number') return sizeValue;
+      if (sizeValue.endsWith('%')) {
+        const total = direction === 'horizontal' ? container.clientWidth : container.clientHeight;
+        return (parseFloat(sizeValue) / 100) * total;
+      }
+      return parseFloat(sizeValue);
+    },
+    [direction]
+  );
 
-  const currentSize = useCallback((container: HTMLDivElement): number => {
-    return parseSize(size, container);
-  }, [size, parseSize]);
+  const currentSize = useCallback(
+    (container: HTMLDivElement): number => {
+      return parseSize(size, container);
+    },
+    [size, parseSize]
+  );
 
-  const clampSize = useCallback((newSize: number, container: HTMLDivElement | null): number => {
-    if (!container) return minSize;
-    
-    const total = direction === 'horizontal' 
-      ? container.clientWidth 
-      : container.clientHeight;
-    
-    const effectiveMax = maxSize === Infinity ? total - minSize : maxSize;
-    return Math.max(minSize, Math.min(newSize, effectiveMax));
-  }, [direction, minSize, maxSize]);
+  const clampSize = useCallback(
+    (newSize: number, container: HTMLDivElement | null): number => {
+      if (!container) return minSize;
 
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-    
-    if (!containerRef.current) return;
-    
-    const startPos = direction === 'horizontal' ? e.clientX : e.clientY;
-    dragStartDataRef.current = {
-      startPos,
-      startSize: currentSize(containerRef.current),
-    };
-  }, [direction, currentSize]);
+      const total = direction === 'horizontal' ? container.clientWidth : container.clientHeight;
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!dragStartDataRef.current || !containerRef.current) return;
+      const effectiveMax = maxSize === Infinity ? total - minSize : maxSize;
+      return Math.max(minSize, Math.min(newSize, effectiveMax));
+    },
+    [direction, minSize, maxSize]
+  );
 
-    const currentPos = direction === 'horizontal' ? e.clientX : e.clientY;
-    const delta = currentPos - dragStartDataRef.current.startPos;
-    const newSize = clampSize(dragStartDataRef.current.startSize + delta, containerRef.current);
-    
-    setSize(newSize);
-    onSizeChange?.(newSize);
-  }, [direction, clampSize, onSizeChange]);
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      setIsDragging(true);
+
+      if (!containerRef.current) return;
+
+      const startPos = direction === 'horizontal' ? e.clientX : e.clientY;
+      dragStartDataRef.current = {
+        startPos,
+        startSize: currentSize(containerRef.current),
+      };
+    },
+    [direction, currentSize]
+  );
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!dragStartDataRef.current || !containerRef.current) return;
+
+      const currentPos = direction === 'horizontal' ? e.clientX : e.clientY;
+      const delta = currentPos - dragStartDataRef.current.startPos;
+      const newSize = clampSize(dragStartDataRef.current.startSize + delta, containerRef.current);
+
+      setSize(newSize);
+      onSizeChange?.(newSize);
+    },
+    [direction, clampSize, onSizeChange]
+  );
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -139,7 +147,7 @@ export const Resizable = ({
 
   const getPanelStyle = (): React.CSSProperties => {
     if (typeof size === 'number') {
-      return direction === 'horizontal' 
+      return direction === 'horizontal'
         ? { width: size, flex: 'none' }
         : { height: size, flex: 'none' };
     }
@@ -154,15 +162,9 @@ export const Resizable = ({
   const [firstChild, secondChild] = children;
 
   return (
-    <ResizableContainer
-      ref={containerRef}
-      $direction={direction}
-      {...props}
-    >
-      <ResizablePanel style={getPanelStyle()}>
-        {firstChild}
-      </ResizablePanel>
-      
+    <ResizableContainer ref={containerRef} $direction={direction} {...props}>
+      <ResizablePanel style={getPanelStyle()}>{firstChild}</ResizablePanel>
+
       <ResizableHandle
         $direction={direction}
         $isDragging={isDragging}
@@ -171,9 +173,7 @@ export const Resizable = ({
         aria-orientation={direction}
         aria-label="Resize panel"
       />
-      <ResizablePanel style={{ flex: 1, overflow: 'hidden' }}>
-        {secondChild}
-      </ResizablePanel>
+      <ResizablePanel style={{ flex: 1, overflow: 'hidden' }}>{secondChild}</ResizablePanel>
     </ResizableContainer>
   );
 };

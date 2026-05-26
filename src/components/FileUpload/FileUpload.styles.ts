@@ -15,7 +15,7 @@ export const FileUploadRegion = styled.div.withConfig({
   padding: 24px;
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ theme }) => theme.colors.background};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   display: flex;
@@ -30,7 +30,7 @@ export const FileUploadRegion = styled.div.withConfig({
     isDragOver &&
     css`
       border-color: ${theme.colors.primary};
-      box-shadow: ${(theme as any).shadows.softInset},
+      box-shadow: ${theme.shadows.softInset},
         0 0 0 3px ${theme.colors.primary}30;
     `}
 
@@ -43,7 +43,7 @@ export const FileUploadRegion = styled.div.withConfig({
   &:focus-within {
     outline: none;
     box-shadow: ${({ theme }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 
   ${({ disabled }) =>
@@ -80,7 +80,7 @@ export const FileUploadText = styled.p`
 export const FileUploadHint = styled.p`
   margin: 0;
   font-size: 12px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
 `;
 
 export const FileList = styled(motion.div)`
@@ -130,13 +130,13 @@ export const FileItemName = styled.span`
 
 export const FileItemSize = styled.span`
   font-size: 11px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
 `;
 
 export const FileItemProgress = styled.div`
   width: 100%;
   height: 4px;
-  background: ${({ theme }) => (theme as any).colors.shadowDark}40;
+  background: ${({ theme }) => theme.colors.shadowDark}40;
   border-radius: 999px;
   overflow: hidden;
 `;
@@ -158,7 +158,7 @@ export const FileItemRemove = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   font-size: 14px;
   padding: 4px;
   border-radius: 50%;

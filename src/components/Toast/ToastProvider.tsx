@@ -1,7 +1,7 @@
 'use client';
 import type React from 'react';
-import { AnimatePresence } from '../../utils/lazyMotion';
 import { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { Toast, type ToastProps } from './Toast';
 import { ToastContainer, type ToastPosition } from './Toast.styles';
 

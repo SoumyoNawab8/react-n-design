@@ -1,0 +1,478 @@
+'use client';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { FaCheckCircle, FaExclamationCircle } from '../../icons';
+import {
+  FormItemControl,
+  FormItemExtra,
+  FormItemHelp,
+  FormItemLabel,
+  FormItemWrapper,
+  RequiredMark,
+  ValidationIcon,
+} from './Form.styles';
+import type { FieldEntity, FormContextValue, FormItemProps, ValidationRule } from './FormContext';
+import { FormContext } from './FormContext';
+
+// ============================================
+// Utility Functions
+// ============================================
+
+function getValueFromEvent(...args: any[]): any {
+  const e = args[0];
+  if (e && typeof e === 'object' && 'target' in e) {
+    const { target } = e;
+    if ('value' in target) {
+      return target.value;
+    }
+    if ('checked' in target) {
+      return target.checked;
+    }
+  }
+  return e;
+}
+
+function getFieldId(name: string, formName?: string): string {
+  if (formName) {
+    return `${formName}_${name}`;
+  }
+  return `n-form-field-${name}`;
+}
+
+function hasName(children: React.ReactNode): boolean {
+  if (Array.isArray(children)) {
+    return children.some((child) => hasName(child));
+  }
+  if (React.isValidElement(children)) {
+    const props = children.props as any;
+    return props?.name !== undefined;
+  }
+  return false;
+}
+
+// ============================================
+// Internal FormItem Component
+// ============================================
+
+const InternalFormItem: React.FC<FormItemProps> = ({
+  name,
+  rules = [],
+  label,
+  labelCol,
+  wrapperCol,
+  initialValue: initialValueProp,
+  required: requiredProp,
+  validateStatus: validateStatusProp,
+  help: helpProp,
+  extra,
+  colon: colonProp,
+  labelAlign,
+  className,
+  prefixCls = 'n-form-item',
+  style,
+  children,
+  valuePropName = 'value',
+  trigger = 'onChange',
+  getValueFromEvent: customGetValueFromEvent,
+  normalize,
+  shouldUpdate,
+  dependencies = [],
+  hidden,
+  tooltip,
+  preserve = true,
+  validateTrigger,
+  noStyle,
+  render,
+}) => {
+  const formContext = useContext(FormContext);
+
+  const {
+    form,
+    layout = 'horizontal',
+    labelCol: formLabelCol,
+    wrapperCol: formWrapperCol,
+    colon: formColon = true,
+    labelAlign: formLabelAlign = 'right',
+    requiredMark: formRequiredMark = true,
+    dispatch,
+    values: formValues,
+    errors: formErrors,
+    touched: formTouched,
+    validating: formValidating,
+    registerField,
+    unregisterField,
+    getInitialValue,
+  } = formContext || {};
+
+  // Refs
+  const fieldRef = useRef<FieldEntity>({ name: name || '' });
+  const valueRef = useRef(initialValueProp ?? (name ? getInitialValue?.(name) : undefined));
+
+  // State
+  const [internalValue, setInternalValue] = useState(valueRef.current);
+  const [internalTouched, setInternalTouched] = useState(false);
+  const [internalValidating, setInternalValidating] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
+
+  // Sync with form state
+  const value = name ? (formValues?.[name] ?? internalValue) : internalValue;
+  const touched = name ? (formTouched?.[name] ?? internalTouched) : internalTouched;
+  const validating = name ? (formValidating?.[name] ?? internalValidating) : internalValidating;
+  const fieldErrors = name ? (formErrors?.[name] ?? []) : errors;
+
+  // Determine required from rules
+  const isRequired = useMemo(() => {
+    if (requiredProp !== undefined) return requiredProp;
+    return rules.some((rule) => rule.required);
+  }, [requiredProp, rules]);
+
+  // Determine validate status
+  const validateStatus = useMemo(() => {
+    if (validateStatusProp) return validateStatusProp;
+    if (validating) return 'validating';
+    if (fieldErrors?.length > 0) return 'error';
+    if (touched && !fieldErrors?.length) return 'success';
+    return '';
+  }, [validateStatusProp, validating, fieldErrors, touched]);
+
+  // Register field on mount
+  useEffect(() => {
+    if (!name || !formContext) return;
+
+    const entity: FieldEntity = {
+      name,
+      rules,
+      initialValue: initialValueProp ?? getInitialValue?.(name),
+      validateTrigger: validateTrigger || ['onChange', 'onBlur'],
+      onStoreChange: () => {},
+    };
+
+    registerField?.(name, entity);
+    fieldRef.current = entity;
+
+    return () => {
+      unregisterField?.(name);
+    };
+  }, [name, formContext]);
+
+  // Update field entity when rules change
+  useEffect(() => {
+    if (name && formContext) {
+      fieldRef.current = { ...fieldRef.current, rules };
+      registerField?.(name, fieldRef.current);
+    }
+  }, [name, rules, formContext, registerField]);
+
+  // Handle field change
+  const handleChange = useCallback(
+    (event: any) => {
+      const valueFromEvent = customGetValueFromEvent || getValueFromEvent;
+      let newValue = valueFromEvent(...(Array.isArray(event) ? event : [event]));
+
+      if (normalize) {
+        newValue = normalize(newValue, value, formValues);
+      }
+
+      if (name && formContext) {
+        form?.setFieldValue(name, newValue);
+      } else {
+        setInternalValue(newValue);
+      }
+
+      // Validate on change if validateTrigger includes 'onChange'
+      const triggers = Array.isArray(validateTrigger)
+        ? validateTrigger
+        : [validateTrigger || 'onChange'];
+      if (triggers.includes('change') || triggers.includes('onChange')) {
+        validateFieldValue(newValue);
+      }
+    },
+    [
+      name,
+      form,
+      formContext,
+      value,
+      formValues,
+      normalize,
+      customGetValueFromEvent,
+      validateTrigger,
+    ]
+  );
+
+  // Handle field blur
+  const handleBlur = useCallback(() => {
+    if (name && formContext) {
+      dispatch?.({ type: 'SET_FIELD_TOUCHED', payload: { name, touched: true } });
+    } else {
+      setInternalTouched(true);
+    }
+
+    // Validate on blur if validateTrigger includes 'onBlur'
+    const triggers = Array.isArray(validateTrigger)
+      ? validateTrigger
+      : [validateTrigger || 'onChange'];
+    if (triggers.includes('blur') || triggers.includes('onBlur')) {
+      validateFieldValue(value);
+    }
+  }, [name, formContext, dispatch, value, validateTrigger]);
+
+  // Validate field value
+  const validateFieldValue = useCallback(
+    async (fieldValue: any) => {
+      if (rules.length === 0) return;
+
+      if (name && formContext) {
+        dispatch?.({ type: 'SET_FIELD_VALIDATING', payload: { name, validating: true } });
+      } else {
+        setInternalValidating(true);
+      }
+
+      const validatorErrors: string[] = [];
+
+      for (const rule of rules) {
+        // Required check
+        if (rule.required) {
+          const isEmpty =
+            fieldValue === undefined ||
+            fieldValue === null ||
+            (typeof fieldValue === 'string' &&
+              (rule.whitespace ? fieldValue.trim() === '' : fieldValue === '')) ||
+            (Array.isArray(fieldValue) && fieldValue.length === 0);
+          if (isEmpty) {
+            validatorErrors.push(rule.message || 'This field is required');
+            continue;
+          }
+        }
+
+        // Skip further validation if empty and not required
+        if (fieldValue === undefined || fieldValue === null || fieldValue === '') {
+          continue;
+        }
+
+        // Pattern validation
+        if (rule.pattern && typeof fieldValue === 'string') {
+          if (!rule.pattern.test(fieldValue)) {
+            validatorErrors.push(rule.message || 'Invalid format');
+            continue;
+          }
+        }
+
+        // Length validation
+        if (rule.len !== undefined) {
+          const len =
+            typeof fieldValue === 'string' || Array.isArray(fieldValue)
+              ? fieldValue.length
+              : String(fieldValue).length;
+          if (len !== rule.len) {
+            validatorErrors.push(rule.message || `Length must be exactly ${rule.len}`);
+            continue;
+          }
+        }
+
+        // Min validation
+        if (rule.min !== undefined) {
+          if (typeof fieldValue === 'number' && fieldValue < rule.min) {
+            validatorErrors.push(rule.message || `Minimum value is ${rule.min}`);
+            continue;
+          }
+          const len =
+            typeof fieldValue === 'string' || Array.isArray(fieldValue)
+              ? fieldValue.length
+              : String(fieldValue).length;
+          if (len < rule.min) {
+            validatorErrors.push(rule.message || `Minimum length is ${rule.min}`);
+            continue;
+          }
+        }
+
+        // Max validation
+        if (rule.max !== undefined) {
+          if (typeof fieldValue === 'number' && fieldValue > rule.max) {
+            validatorErrors.push(rule.message || `Maximum value is ${rule.max}`);
+            continue;
+          }
+          const len =
+            typeof fieldValue === 'string' || Array.isArray(fieldValue)
+              ? fieldValue.length
+              : String(fieldValue).length;
+          if (len > rule.max) {
+            validatorErrors.push(rule.message || `Maximum length is ${rule.max}`);
+            continue;
+          }
+        }
+
+        // Type validation
+        if (rule.type) {
+          const validators: Record<string, () => boolean> = {
+            email: () =>
+              typeof fieldValue === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fieldValue),
+            url: () =>
+              typeof fieldValue === 'string' &&
+              /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})([/\w .-]*)*\/?$/.test(fieldValue),
+            number: () => typeof fieldValue === 'number' && !isNaN(fieldValue),
+          };
+          const validator = validators[rule.type];
+          if (validator && !validator()) {
+            validatorErrors.push(rule.message || `Invalid ${rule.type}`);
+            continue;
+          }
+        }
+
+        // Custom validator
+        if (rule.validator) {
+          try {
+            await new Promise<void>((resolve, reject) => {
+              rule.validator(rule, fieldValue, (error) => {
+                if (error) reject(error);
+                else resolve();
+              });
+            });
+          } catch (error) {
+            validatorErrors.push(String(error));
+          }
+        }
+      }
+
+      if (name && formContext) {
+        dispatch?.({ type: 'SET_FIELD_VALIDATING', payload: { name, validating: false } });
+        dispatch?.({ type: 'SET_FIELD_ERROR', payload: { name, errors: validatorErrors } });
+      } else {
+        setInternalValidating(false);
+        setErrors(validatorErrors);
+      }
+    },
+    [name, formContext, dispatch, rules]
+  );
+
+  // React to dependency changes
+  useEffect(() => {
+    if (dependencies.length > 0 && name && formContext) {
+      const hasDepChanged = dependencies.some((dep) => {
+        return formValues?.[dep] !== undefined;
+      });
+      if (hasDepChanged) {
+        validateFieldValue(value);
+      }
+    }
+  }, [dependencies, name, formContext, formValues, value, validateFieldValue]);
+
+  // Render child element with injected props
+  const renderChild = () => {
+    if (render) {
+      return render({ value, onChange: handleChange, onBlur: handleBlur });
+    }
+
+    if (!React.isValidElement(children)) {
+      return children;
+    }
+
+    const id = name ? getFieldId(name) : undefined;
+    const errorId = fieldErrors?.length > 0 ? `${id}-error` : undefined;
+
+    const clonedProps: any = {
+      id: (children.props as any).id || id,
+      [valuePropName]: value,
+      [trigger]: handleChange,
+      onBlur: handleBlur,
+      'aria-describedby': errorId,
+      disabled: (children.props as any).disabled || (formContext as any)?.disabled,
+    };
+
+    // Only add value/onChange for form components
+    const shouldInjectProps =
+      valuePropName in children.props ||
+      ['input', 'select', 'textarea'].includes(String(children.type).toLowerCase());
+
+    if (shouldInjectProps) {
+      return React.cloneElement(children, clonedProps);
+    }
+
+    return children;
+  };
+
+  // Render
+  const effectiveLabelCol = labelCol ?? formLabelCol;
+  const effectiveWrapperCol = wrapperCol ?? formWrapperCol;
+  const effectiveColon = colonProp ?? formColon;
+  const effectiveLabelAlign = labelAlign ?? formLabelAlign ?? 'right';
+  const finalLayout = layout;
+
+  // Validation icon
+  const validationIcon = useMemo(() => {
+    if (validateStatus === 'error') return <FaExclamationCircle />;
+    if (validateStatus === 'success') return <FaCheckCircle />;
+    return null;
+  }, [validateStatus]);
+
+  // Required mark
+  const requiredMark =
+    formRequiredMark === true && isRequired ? <RequiredMark> *</RequiredMark> : null;
+
+  // Help text (prop override or validation error)
+  const helpContent = helpProp || (fieldErrors?.length > 0 ? fieldErrors[0] : null);
+
+  if (noStyle) {
+    return <>{renderChild()}</>;
+  }
+
+  return (
+    <FormItemWrapper
+      className={`${prefixCls} ${className || ''}`}
+      style={{ ...style, display: hidden ? 'none' : undefined }}
+      $layout={finalLayout}
+      $validateStatus={validateStatus}
+    >
+      <FormItemLabel
+        $layout={finalLayout}
+        $labelAlign={effectiveLabelAlign}
+        $labelCol={effectiveLabelCol}
+        htmlFor={name ? getFieldId(name) : undefined}
+      >
+        {label}
+        {requiredMark}
+        {effectiveColon && label ? ':' : null}
+      </FormItemLabel>
+
+      <FormItemControl $layout={finalLayout} $wrapperCol={effectiveWrapperCol}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {renderChild()}
+          {validationIcon && (
+            <ValidationIcon $status={validateStatus}>{validationIcon}</ValidationIcon>
+          )}
+        </div>
+
+        {helpContent && (
+          <FormItemHelp
+            $status={validateStatus}
+            id={name ? `${getFieldId(name)}-error` : undefined}
+            role={validateStatus === 'error' ? 'alert' : undefined}
+          >
+            {fieldErrors?.length > 0 && <FaExclamationCircle style={{ marginRight: 6 }} />}
+            {helpContent}
+          </FormItemHelp>
+        )}
+
+        {extra && <FormItemExtra>{extra}</FormItemExtra>}
+      </FormItemControl>
+    </FormItemWrapper>
+  );
+};
+
+// Export FormItem
+export const FormItem = InternalFormItem;
+FormItem.displayName = 'FormItem';
+
+// Add dependencies dependency
+export const FormItemDeps: React.FC<{
+  names: string[];
+  children: (values: Record<string, any>) => React.ReactNode;
+}> = ({ names, children }) => {
+  const form = useContext(FormContext);
+  const values = names.reduce(
+    (acc, name) => {
+      acc[name] = form?.form?.getFieldValue(name);
+      return acc;
+    },
+    {} as Record<string, any>
+  );
+  return <>{children(values)}</>;
+};

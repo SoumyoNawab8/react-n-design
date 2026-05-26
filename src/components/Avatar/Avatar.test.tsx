@@ -44,7 +44,7 @@ describe('AvatarGroup', () => {
         <Avatar initials="C" />
       </AvatarGroup>
     );
-    
+
     expect(screen.getByRole('group', { name: /avatar group/i })).toBeInTheDocument();
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('B')).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe('AvatarGroup', () => {
         <Avatar initials="C" />
       </AvatarGroup>
     );
-    
+
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('B')).toBeInTheDocument();
     expect(screen.getByText(/\+1/i)).toBeInTheDocument();

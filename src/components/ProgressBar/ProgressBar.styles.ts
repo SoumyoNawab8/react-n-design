@@ -40,7 +40,7 @@ export const ProgressBarWrapper = styled.div.withConfig({
   /* 3. Access theme from props */
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 10px;
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   overflow: hidden;
 
   ${({ size }) => sizes[size]};
@@ -60,8 +60,8 @@ export const ProgressBarFill = styled.div.withConfig({
   overflow: hidden;
   
   /* 4. Use the helper function to set the color */
-  background-color: ${({ status, theme }) => getStatusColor(theme as any, status)};
-  
+  background-color: ${({ status, theme }) => getStatusColor(theme, status)};
+
   ${({ variant }) =>
     variant === 'striped' &&
     css`
@@ -86,7 +86,7 @@ export const ProgressBarFill = styled.div.withConfig({
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: ${getStatusColor(theme as any, status)};
+        background-color: ${getStatusColor(theme, status)};
         animation: ${indeterminate} 1.5s ease-in-out infinite;
       }
     `}

@@ -46,7 +46,7 @@ describe('Drawer', () => {
         Content
       </Drawer>
     );
-    
+
     await userEvent.click(screen.getByRole('button', { name: /close drawer/i }));
     expect(onClose).toHaveBeenCalledTimes(1);
   });

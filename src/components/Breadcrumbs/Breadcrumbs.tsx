@@ -1,6 +1,6 @@
 'use client';
 import type React from 'react';
-import { FaChevronRight, FaHome } from "../../icons";
+import { FaChevronRight, FaHome } from '../../icons';
 import {
   BreadcrumbItem,
   BreadcrumbLink,

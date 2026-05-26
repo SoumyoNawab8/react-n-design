@@ -4,9 +4,9 @@
 export * from './components';
 export * from './context';
 export * from './hooks';
+export * from './icons';
 export * from './styles/theme';
 export * from './styles/tokens';
-export * from './icons';
 
 import type { Theme } from './styles/theme';
 

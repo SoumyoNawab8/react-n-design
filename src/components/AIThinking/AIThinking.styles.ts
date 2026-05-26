@@ -105,6 +105,6 @@ export const AIThinkingActiveDot = styled.span`
 
 export const AIThinkingElapsed = styled.span`
   font-size: 12px;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   margin-left: auto;
 `;

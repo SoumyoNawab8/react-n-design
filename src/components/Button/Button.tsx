@@ -1,6 +1,6 @@
 'use client';
-import { motion } from '../../utils/lazyMotion';
 import type React from 'react';
+import { motion } from '../../utils/lazyMotion';
 import { ButtonContent, ButtonIcon, Spinner, StyledButton } from './Button.styles';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

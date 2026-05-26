@@ -28,12 +28,12 @@ describe('Tooltip', () => {
       </Tooltip>
     );
     const button = screen.getByRole('button');
-    
+
     // Hover to show tooltip
     await user.hover(button);
-    
+
     // Wait for the hover delay and check if tooltip is visible
-    await new Promise(resolve => setTimeout(resolve, 150));
+    await new Promise((resolve) => setTimeout(resolve, 150));
     expect(screen.getByRole('tooltip')).toHaveTextContent('Tooltip text');
   });
 
@@ -46,8 +46,8 @@ describe('Tooltip', () => {
     );
     const button = screen.getByRole('button');
     await user.hover(button);
-    await new Promise(resolve => setTimeout(resolve, 150));
-    
+    await new Promise((resolve) => setTimeout(resolve, 150));
+
     const tooltip = screen.getByRole('tooltip');
     expect(tooltip).toBeInTheDocument();
   });
@@ -60,15 +60,15 @@ describe('Tooltip', () => {
       </Tooltip>
     );
     const button = screen.getByRole('button');
-    
+
     // Show tooltip
     await user.hover(button);
-    await new Promise(resolve => setTimeout(resolve, 150));
+    await new Promise((resolve) => setTimeout(resolve, 150));
     expect(screen.getByRole('tooltip')).toBeInTheDocument();
-    
+
     // Hide on mouse leave
     await user.unhover(button);
-    await new Promise(resolve => setTimeout(resolve, 250));
+    await new Promise((resolve) => setTimeout(resolve, 250));
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
   });
 

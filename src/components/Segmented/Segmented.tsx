@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useCallback } from 'react';
+import type React from 'react';
+import { useCallback } from 'react';
 import { motion } from '../../utils/lazyMotion';
-import {
-  SegmentedWrapper,
-  SegmentedItem,
-} from './Segmented.styles';
+import { SegmentedItem, SegmentedWrapper } from './Segmented.styles';
 
 export interface SegmentedOption {
   label: React.ReactNode;
@@ -28,9 +26,12 @@ export const Segmented: React.FC<SegmentedProps> = ({
   size = 'medium',
   block = false,
 }) => {
-  const handleSelect = useCallback((val: string) => {
-    onChange(val);
-  }, [onChange]);
+  const handleSelect = useCallback(
+    (val: string) => {
+      onChange(val);
+    },
+    [onChange]
+  );
 
   return (
     <SegmentedWrapper $size={size} $block={block} role="tablist">
