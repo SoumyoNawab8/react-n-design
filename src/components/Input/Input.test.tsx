@@ -10,9 +10,9 @@ import { Input } from './Input';
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
 
-const ControlledInput = (props: any) => {
+const ControlledInput = (props: Record<string, unknown>) => {
   const [value, setValue] = useState(props.value || '');
-  return <Input {...props} value={value} onChange={(e: any) => setValue(e.target.value)} />;
+  return <Input {...props} value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />;
 };
 
 describe('Input', () => {

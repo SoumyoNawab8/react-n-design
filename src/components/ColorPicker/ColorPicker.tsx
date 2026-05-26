@@ -94,7 +94,7 @@ export const ColorPicker = ({
 }: ColorPickerProps) => {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState('#6d5dfc');
-  const currentValue = isControlled ? normalizeHex(value!) : internalValue;
+  const currentValue = isControlled && value !== undefined ? normalizeHex(value) : internalValue;
 
   const [rgb, setRgb] = useState(() => hexToRgb(currentValue));
   const [hexInput, setHexInput] = useState(currentValue);

@@ -27,7 +27,7 @@ export interface ValidationRule {
   /** Error message for this rule */
   message?: string;
   /** Custom validation function */
-  validator?: (rule: ValidationRule, value: any, callback: (error?: string) => void) => void;
+  validator?: (rule: ValidationRule, value: unknown, callback: (error?: string) => void) => void;
   /** RegExp pattern for validation */
   pattern?: RegExp;
   /** Minimum length (for strings/arrays) or value (for numbers) */
@@ -41,7 +41,7 @@ export interface ValidationRule {
   /** Whitespace validation - treat whitespace-only strings as empty */
   whitespace?: boolean;
   /** Transform value before validation */
-  transform?: (value: any) => any;
+  transform?: (value: unknown) => unknown;
   /** Enum validation - value must be one of these */
   enum?: (string | number | boolean)[];
   /** Built-in validation types */
@@ -62,7 +62,7 @@ export interface FieldData {
   /** Field name (can be nested like 'user.name') */
   name: string;
   /** Field value */
-  value: any;
+  value: unknown;
   /** Whether field has been touched */
   touched?: boolean;
   /** Validation errors */
@@ -73,7 +73,7 @@ export interface FieldData {
 
 export interface FieldChangePayload {
   name: string;
-  value: any;
+  value: unknown;
 }
 
 export interface FieldValidatePayload {
@@ -89,15 +89,15 @@ export type FormAction =
   | { type: 'RESET_FIELDS'; payload?: { names?: string[] } }
   | { type: 'CLEAR_ERRORS' };
 
-export interface FormInstance<T = any> {
+export interface FormInstance<T = unknown> {
   /** Get all field values */
   getFieldsValue: () => T;
   /** Get specific field value(s) */
-  getFieldValue: (name: string) => any;
+  getFieldValue: (name: string) => unknown;
   /** Set multiple field values */
   setFieldsValue: (values: Partial<T>) => void;
   /** Set specific field value */
-  setFieldValue: (name: string, value: any) => void;
+  setFieldValue: (name: string, value: unknown) => void;
   /** Validate all fields or specific fields */
   validateFields: (names?: string[]) => Promise<T>;
   /** Reset fields to initial values */
@@ -118,7 +118,7 @@ export interface FormInstance<T = any> {
 // Form Context Value
 // ============================================
 
-export interface FormContextValue<T = any> {
+export interface FormContextValue<T = unknown> {
   /** Form instance with methods */
   form: FormInstance<T>;
   /** Current form layout */
@@ -140,13 +140,13 @@ export interface FormContextValue<T = any> {
   /** Unregister a field */
   unregisterField: (name: string) => void;
   /** Get initial value for a field */
-  getInitialValue: (name: string) => any;
+  getInitialValue: (name: string) => unknown;
 
   // Legacy properties for compatibility
   /** Optimistic values */
   optimisticValues?: T;
   /** Handle field change */
-  handleChange: (field: keyof T) => (value: any) => void;
+  handleChange: (field: keyof T) => (value: unknown) => void;
   /** Handle field blur */
   handleBlur: (field: keyof T) => () => void;
   /** Set field error */
@@ -170,10 +170,10 @@ export interface FormContextValue<T = any> {
 export interface FieldEntity {
   name: string;
   rules?: ValidationRule[];
-  initialValue?: any;
+  initialValue?: unknown;
   validateTrigger?: string | string[];
   onStoreChange?: () => void;
-  getFieldProps?: () => any;
+  getFieldProps?: () => Record<string, unknown>;
 }
 
 // ============================================
@@ -192,7 +192,7 @@ export interface FormItemProps {
   /** Wrapper col span */
   wrapperCol?: { span?: number; offset?: number };
   /** Initial value */
-  initialValue?: any;
+  initialValue?: unknown;
   /** Whether to show required indicator */
   required?: boolean;
   /** Custom validate status */
@@ -218,11 +218,11 @@ export interface FormItemProps {
   /** Trigger prop name for children (default: 'onChange') */
   trigger?: string;
   /** Get value from event */
-  getValueFromEvent?: (...args: any[]) => any;
+  getValueFromEvent?: (...args: unknown[]) => unknown;
   /** Normalize value before storing */
-  normalize?: (value: any, prevValue: any, allValues: any) => any;
+  normalize?: (value: unknown, prevValue: unknown, allValues: unknown) => unknown;
   /** Should update callback */
-  shouldUpdate?: boolean | ((prevValues: any, nextValues: any) => boolean);
+  shouldUpdate?: boolean | ((prevValues: unknown, nextValues: unknown) => boolean);
   /** Dependencies - re-validate when these fields change */
   dependencies?: string[];
   /** Hidden field */
@@ -237,8 +237,8 @@ export interface FormItemProps {
   noStyle?: boolean;
   /** Render function as child */
   render?: (props: {
-    value: any;
-    onChange: (value: any) => void;
+    value: unknown;
+    onChange: (value: unknown) => void;
     onBlur: () => void;
   }) => React.ReactNode;
 }
@@ -247,7 +247,7 @@ export interface FormItemProps {
 // Form Props
 // ============================================
 
-export interface FormProps<T = any>
+export interface FormProps<T = unknown>
   extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
   /** Form instance (optional - will be created if not provided) */
   form?: FormInstance<T>;
@@ -298,13 +298,13 @@ export interface FormProps<T = any>
 // Context Creation
 // ============================================
 
-export const FormContext = createContext<FormContextValue<any> | null>(null);
+export const FormContext = createContext<FormContextValue<unknown> | null>(null);
 
-export function useFormContext<T = any>(): FormContextValue<T> | null {
+export function useFormContext<T = unknown>(): FormContextValue<T> | null {
   return useContext(FormContext);
 }
 
-export function useFormInstance<T = any>(): FormInstance<T> | null {
+export function useFormInstance<T = unknown>(): FormInstance<T> | null {
   const ctx = useContext(FormContext);
   return ctx?.form || null;
 }

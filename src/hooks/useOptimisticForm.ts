@@ -36,10 +36,10 @@ function useOptimistic<T>(
 
 export interface UseOptimisticFormReturn<T> extends UseFormReturn<T> {
   optimisticValues: T;
-  setOptimisticValue: (field: keyof T, value: any) => void;
+  setOptimisticValue: (field: keyof T, value: unknown) => void;
 }
 
-export function useOptimisticForm<T extends Record<string, any>>(
+export function useOptimisticForm<T extends Record<string, unknown>>(
   options: UseFormOptions<T>
 ): UseOptimisticFormReturn<T> {
   const form = useForm<T>(options);
@@ -50,7 +50,7 @@ export function useOptimisticForm<T extends Record<string, any>>(
   );
 
   const setOptimisticValue = useCallback(
-    (field: keyof T, value: any) => {
+    (field: keyof T, value: unknown) => {
       addOptimistic({ [field]: value } as Partial<T>);
     },
     [addOptimistic]
