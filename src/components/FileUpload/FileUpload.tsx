@@ -1,8 +1,8 @@
 'use client';
 import type React from 'react';
-import { AnimatePresence } from '../../utils/lazyMotion';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FaCloudUploadAlt, FaFile, FaTimes } from "../../icons";
+import { FaCloudUploadAlt, FaFile, FaTimes } from '../../icons';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   FileItem,
   FileItemIcon,

@@ -1,4 +1,5 @@
-import React, { ComponentType } from 'react';
+import type { MotionProps } from 'framer-motion';
+import React, { type ComponentType } from 'react';
 
 // Module cache for framer-motion
 let framerMotionModule: typeof import('framer-motion') | null = null;
@@ -24,46 +25,54 @@ export const loadFramerMotion = async (): Promise<typeof import('framer-motion')
  * Returns null while loading, then the module.
  */
 export const useFramerMotion = (): typeof import('framer-motion') | null => {
-  const [module, setModule] = React.useState<typeof import('framer-motion') | null>(framerMotionModule);
-  
+  const [module, setModule] = React.useState<typeof import('framer-motion') | null>(
+    framerMotionModule
+  );
+
   React.useEffect(() => {
     if (!module) {
       loadFramerMotion().then(setModule);
     }
   }, [module]);
-  
+
   return module;
 };
 
 // Track if framer-motion is already loaded
-let isMotionLoaded = false;
+const _isMotionLoaded = false;
 
 // Synchronously try to get module (returns null if not loaded)
-const getMotionSync = () => framerMotionModule;
+const _getMotionSync = () => framerMotionModule;
 
 // Motion component cache to preserve reference equality
-const motionComponentCache: Map<string, ComponentType<any>> = new Map();
+const motionComponentCache: Map<string, ComponentType<MotionProps>> = new Map();
 
 /**
  * Creates a lazy motion component that loads framer-motion on mount.
  */
-const createLazyMotionComponent = (tag: string): ComponentType<any> => {
+const createLazyMotionComponent = (tag: string): ComponentType<MotionProps> => {
   if (motionComponentCache.has(tag)) {
-    return motionComponentCache.get(tag)!;
+    const cachedComponent = motionComponentCache.get(tag);
+    if (cachedComponent) {
+      return cachedComponent;
+    }
   }
 
-  const LazyMotion = React.forwardRef<any, any>((props, ref) => {
+  const LazyMotion = React.forwardRef<HTMLElement, MotionProps>((props, ref) => {
     const fm = useFramerMotion();
-    const MotionComponent = fm?.motion[tag as keyof typeof fm.motion] as ComponentType<any>;
-    
+    const MotionComponent = fm?.motion[tag as keyof typeof fm.motion] as
+      | ComponentType<MotionProps & { ref?: React.Ref<HTMLElement> }>
+      | undefined;
+
     if (!MotionComponent) {
       // Return plain HTML element while loading
-      return React.createElement(tag, { ...props, ref });
+      const Tag = tag as keyof JSX.IntrinsicElements;
+      return React.createElement(Tag, { ...props, ref: ref as React.Ref<HTMLElement> });
     }
-    
+
     return React.createElement(MotionComponent, { ...props, ref });
   });
-  
+
   LazyMotion.displayName = `LazyMotion.${tag}`;
   motionComponentCache.set(tag, LazyMotion);
   return LazyMotion;
@@ -92,7 +101,11 @@ export const AnimatePresence: React.FC<
     // Render children without animation while loading
     return React.createElement(React.Fragment, null, props.children);
   }
-  return React.createElement(fm.AnimatePresence, { mode: props.mode, initial: props.initial }, props.children);
+  return React.createElement(
+    fm.AnimatePresence,
+    { mode: props.mode, initial: props.initial },
+    props.children
+  );
 };
 
 // Re-export types for compatibility

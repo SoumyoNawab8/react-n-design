@@ -1,7 +1,7 @@
 'use client';
 import type React from 'react';
 import { useCallback, useState } from 'react';
-import { FaCheck } from "../../icons";
+import { FaCheck } from '../../icons';
 import { Button } from '../Button';
 import {
   StepperActions,
@@ -89,6 +89,7 @@ export const Stepper = ({
 
           return (
             <StepperItem
+              // biome-ignore lint/suspicious/noArrayIndexKey: Step order is sequential and stable
               key={index}
               isActive={isActive}
               isCompleted={isCompleted}

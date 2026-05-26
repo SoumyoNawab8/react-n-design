@@ -1,8 +1,8 @@
 'use client';
-import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useCallback } from 'react';
-import { FaCheck, FaTimes } from "../../icons";
+import { FaCheck, FaTimes } from '../../icons';
+import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import {
   SuggestionChipActions,
   SuggestionChipButton,

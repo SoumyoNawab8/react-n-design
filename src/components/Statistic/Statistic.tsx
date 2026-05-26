@@ -1,17 +1,18 @@
 'use client';
 import type React from 'react';
+import { FaArrowDown, FaArrowUp } from '../../icons';
 import { motion } from '../../utils/lazyMotion';
 import {
   StatisticContainer,
-  StatisticTitle,
-  StatisticValue,
   StatisticPrefix,
   StatisticSuffix,
+  StatisticTitle,
+  StatisticValue,
   TrendIndicator,
 } from './Statistic.styles';
-import { FaArrowUp, FaArrowDown } from '../../icons';
 
-export interface StatisticProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'prefix'> {
+export interface StatisticProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'prefix'> {
   /**
    * The title/label for the statistic.
    */
@@ -71,18 +72,18 @@ export const Statistic = ({
 
   return (
     <StatisticContainer {...props}>
-      {title && (
-        <StatisticTitle>{title}</StatisticTitle>
-      )}
+      {title && <StatisticTitle>{title}</StatisticTitle>}
       <StatisticValue>
         {prefix && <StatisticPrefix>{prefix}</StatisticPrefix>}
-        {<motion.span
-          initial={animate ? { opacity: 0, y: 20 } : false}
-          animate={animate ? { opacity: 1, y: 0 } : false}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-        >
-          {displayedValue}
-        </motion.span>}
+        {
+          <motion.span
+            initial={animate ? { opacity: 0, y: 20 } : false}
+            animate={animate ? { opacity: 1, y: 0 } : false}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            {displayedValue}
+          </motion.span>
+        }
         {suffix && <StatisticSuffix>{suffix}</StatisticSuffix>}
         {trend && (
           <TrendIndicator trend={trend}>

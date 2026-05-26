@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import type React from 'react';
@@ -27,7 +27,7 @@ describe('Accordion', () => {
     renderWithTheme(<Accordion items={DEFAULT_ITEMS} />);
 
     const section1Button = screen.getByRole('button', { name: /section 1/i });
-    
+
     // Initially collapsed
     expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
 

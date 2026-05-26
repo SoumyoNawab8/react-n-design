@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -44,7 +43,7 @@ describe('AvatarGroup', () => {
         <Avatar initials="C" />
       </AvatarGroup>
     );
-    
+
     expect(screen.getByRole('group', { name: /avatar group/i })).toBeInTheDocument();
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('B')).toBeInTheDocument();
@@ -59,7 +58,7 @@ describe('AvatarGroup', () => {
         <Avatar initials="C" />
       </AvatarGroup>
     );
-    
+
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('B')).toBeInTheDocument();
     expect(screen.getByText(/\+1/i)).toBeInTheDocument();

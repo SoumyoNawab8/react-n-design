@@ -8,7 +8,7 @@
 
 <p align="center">
   <strong>The AI-native, Neomorphic React component library.</strong><br/>
-  40+ accessible components, zero-config install, RSC-ready, and built for the future of UI.
+  67 accessible components, zero-config install, RSC-ready, and built for the future of UI.
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
     <img src="https://img.shields.io/github/actions/workflow/status/SoumyoNawab8/react-n-design/main.yml?style=flat-square&color=blue" alt="build status" />
   </a>
   <a href="#testing">
-    <img src="https://img.shields.io/badge/tests-251%20passing-brightgreen.svg?style=flat-square" alt="test coverage" />
+    <img src="https://img.shields.io/badge/tests-348%20passing-brightgreen.svg?style=flat-square" alt="test coverage" />
   </a>
   <a href="#accessibility">
     <img src="https://img.shields.io/badge/a11y-axe--core-blueviolet.svg?style=flat-square" alt="accessibility" />
@@ -31,7 +31,7 @@
     <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&color=yellow" alt="license" />
   </a>
   <a href="#components">
-    <img src="https://img.shields.io/badge/components-55+-blue.svg?style=flat-square" alt="components" />
+    <img src="https://img.shields.io/badge/components-67+-blue.svg?style=flat-square" alt="components" />
   </a>
 </p>
 
@@ -73,16 +73,18 @@ No extra setup, no Tailwind config, no CSS imports needed. Just install and impo
 
 | Feature | Description |
 | --- | --- |
-| :art: **Neomorphic Design** | Soft UI with realistic shadows, light diffusion, and tactile depth. No flat boredom. |
-| :robot: **AI-Native Components** | Drop-in `AIChat`, `CommandPalette`, and Markdown renderers for LLM-powered apps. |
-| :zap: **Zero-Config Install** | No build plugins, no CSS resets, no global style leakage. It just works. |
-| :gear: **RSC-Ready** | Dual entry point (`react-n-design` and `react-n-design/rsc`) for Next.js App Router compatibility. |
-| :wheelchair: **Accessibility First** | axe-core validated, ARIA compliant, keyboard navigable, screen-reader friendly. |
-| :fire: **Styled-Components** | No runtime CSS injection conflicts. Zero-runtime CSS variable fallbacks available. |
-| :package: **Tree Shakable** | `sideEffects: false` ensures modern bundlers drop everything you do not use. |
-| :test_tube: **Battle Tested** | 41+ tests across Jest, React Testing Library, and Vitest. |
-| :moon: **Dark Mode Built-In** | `lightTheme` and `darkTheme` tokens with seamless toggle support. |
-| :rocket: **TypeScript** | Fully typed with autocomplete for all props and theme tokens. |
+|| 🎨 **Neomorphic Design** | Soft UI with realistic shadows, light diffusion, and tactile depth. No flat boredom. |
+|| 🤖 **AI-Native Components** | Drop-in `AIChat`, `CommandPalette`, and Markdown renderers for LLM-powered apps. |
+|| ⚡ **Zero-Config Install** | No build plugins, no CSS resets, no global style leakage. It just works. |
+|| ⚙️ **RSC-Ready** | Dual entry point (`react-n-design` and `react-n-design/rsc`) for Next.js App Router compatibility. |
+|| ♿ **Accessibility First** | axe-core validated, ARIA compliant, keyboard navigable, screen-reader friendly. |
+|| 🔥 **Styled-Components** | No runtime CSS injection conflicts. Zero-runtime CSS variable fallbacks available. |
+|| 📦 **Tree Shakable** | `sideEffects: false` ensures modern bundlers drop everything you do not use. |
+|| 67 Components | Complete library with Form, Tour, Steps, Timeline, Stepper |
+|| Full TypeScript | Strict mode, complete type declarations |
+|| Tree Shakable | `sideEffects: false` for optimal bundling |
+|| Battle Tested | 348+ tests across Vitest + axe-core |
+|| RSC Ready | Dual entry point for Server Components |
 
 ---
 
@@ -343,6 +345,11 @@ const customTheme: Theme = {
 | **Drawer** | Slide-over panel with focus trap and scroll lock |
 | **Modal** | Dialog window that appears over the main content |
 | **Tooltip** | Small pop-up label with multiple triggers and positions |
+| **Resizable** | Resizable panel containers |
+| **FloatButton** | Floating action button |
+| **AppBar** | Application header/navigation bar |
+| **ScrollArea** | Custom scrollbar container |
+| **VirtualList** | Virtualized list for large datasets |
 
 ### Navigation
 
@@ -354,7 +361,13 @@ const customTheme: Theme = {
 | **Menu** | Dropdown menu with keyboard navigation |
 | **Carousel** | Touch-friendly image/content slider |
 | **Stepper** | Multi-step wizard with navigation |
+| **Steps** | Horizontal step indicator |
+| **Timeline** | Vertical timeline with events |
 | **Tree** | Hierarchical tree view with expand/collapse |
+| **Tour** | Onboarding tour with spotlight |
+| **Pagination** | Page navigation with jump controls |
+| **Popover** | Floating content panel with trigger |
+| **Collapsible** | Expand/collapse content section |
 
 ### Forms
 
@@ -380,16 +393,29 @@ const customTheme: Theme = {
 | **Alert** | Contextual feedback messages |
 | **ProgressBar** | Visual indicator for task completion |
 | **Typography** | Text primitives: **Text**, **Title**, and **Paragraph** |
+| **Empty** | Empty state placeholder |
+| **Result** | Result page with status |
+| **Statistic** | Statistic value display |
+| **Rating** | Star rating component |
+| **Segmented** | Segmented control |
+| **Charts** | Chart components with Recharts integration |
 
 ### AI & Productivity
 
 | Component | Description |
 | --- | --- |
 | **AIChat** | Full chat interface with markdown, typing indicators, and copy actions |
+| **AIThinking** | AI thinking state indicator |
 | **CommandPalette** | Spotlight-style Cmd+K search with fuzzy matching and keyboard nav |
 | **Markdown** | Secure markdown renderer for assistant messages and docs |
 | **Calendar** | Interactive date grid with selection modes and keyboard nav |
 | **CodeBlock** | Syntax-highlighted code display with copy button |
+| **PromptInput** | Rich prompt input with history |
+| **SuggestionChips** | AI suggestion chips |
+| **Checkbox** | Checkbox with indeterminate state |
+| **RadioGroup** | Radio button group |
+| **Toggle** | Simple toggle switch |
+| **Skeleton** | Loading placeholder |
 
 ---
 
@@ -406,18 +432,24 @@ import { Button, Input } from 'react-n-design';
 
 ## Testing
 
-The library is tested with **Jest**, **React Testing Library**, and **Vitest**. Every component is run against **axe-core** for accessibility violations.
+The library is tested with **Vitest** and **React Testing Library**. Every component is run against **axe-core** for accessibility violations.
 
 ```bash
-# Run the Jest test suite
-npm test
-
-# Run in watch mode
-npm run test:watch
-
-# Run the Vitest suite
+# Run the full test suite (Vitest)
 npm run test:vitest
+
+# Run in watch mode  
+npm run test:vitest:watch
 ```
+
+---
+
+## Roadmap
+
+- **v1.1.0** *(Q3 2026)* - Performance & Accessibility: Bundle optimization, React Compiler support, WCAG 2.1 AA compliance
+- **v2.0.0** *(Q4 2026)* - API Modernization: CSS-only theming, React 19+, unstyled primitives
+
+See [ROADMAP.md](./ROADMAP.md) and [PLAN-v1.1.0.md](./PLAN-v1.1.0.md) for details.
 
 ---
 

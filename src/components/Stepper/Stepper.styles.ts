@@ -25,7 +25,7 @@ export const StepperItem = styled.div.withConfig({
     right: calc(-50% + 20px);
     height: 2px;
     background: ${({ isCompleted, theme }) =>
-      isCompleted ? theme.colors.primary : `${(theme as any).colors.shadowDark}40`};
+      isCompleted ? theme.colors.primary : `${theme.colors.shadowDark}40`};
     z-index: 0;
   }
 `;
@@ -81,7 +81,7 @@ export const StepperTitle = styled.span.withConfig({
 export const StepperDescription = styled.span`
   margin-top: 4px;
   font-size: 11px;
-  color: ${({ theme }) => (theme as any).colors.shadowLight};
+  color: ${({ theme }) => theme.colors.shadowLight};
   text-align: center;
   max-width: 120px;
   line-height: 1.3;

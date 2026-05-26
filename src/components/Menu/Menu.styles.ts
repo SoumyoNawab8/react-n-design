@@ -1,6 +1,6 @@
 'use client';
-import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export const MenuWrapper = styled.div`
   position: relative;
@@ -32,7 +32,7 @@ export const MenuTrigger = styled.button`
   }
 
   &[aria-expanded='true'] {
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
   }
 `;
 
@@ -72,13 +72,13 @@ export const MenuItem = styled.li.withConfig({
   ${({ active, theme }) =>
     active &&
     css`
-      background: ${(theme as any).colors.hoverBg};
+      background: ${theme.colors.hoverBg};
       color: ${theme.colors.primary};
       font-weight: 600;
     `}
 
   &:hover:not([aria-disabled='true']) {
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:focus-visible {
@@ -95,7 +95,7 @@ export const MenuItem = styled.li.withConfig({
 export const MenuDivider = styled.li`
   height: 1px;
   margin: 4px 0;
-  background: ${({ theme }) => `${(theme as any).colors.shadowLight}40`};
+  background: ${({ theme }) => `${theme.colors.shadowLight}40`};
   list-style: none;
 `;
 
@@ -105,6 +105,6 @@ export const MenuLabel = styled.li`
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: ${({ theme }) => (theme as any).colors.shadowLight};
+  color: ${({ theme }) => theme.colors.shadowLight};
   user-select: none;
 `;

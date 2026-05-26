@@ -23,7 +23,8 @@ export const RatingItem = styled.span.withConfig({
   transition: transform 0.15s ease-in-out;
   
   ${({ $isReadOnly }) =>
-    !$isReadOnly && css`
+    !$isReadOnly &&
+    css`
       &:hover {
         transform: scale(1.1);
       }
@@ -42,8 +43,7 @@ export const RatingItem = styled.span.withConfig({
 
 export const RatingStar = styled.span.withConfig({
   shouldForwardProp: (prop) => !['$isFilled', '$isHalf', '$size'].includes(prop),
-})
-<{
+})<{
   $isFilled: boolean;
   $isHalf?: boolean;
   $size: 'small' | 'medium' | 'large';
@@ -53,8 +53,7 @@ export const RatingStar = styled.span.withConfig({
   justify-content: center;
   width: ${({ $size }) => sizes[$size]};
   height: ${({ $size }) => sizes[$size]};
-  color: ${({ $isFilled, theme }) =>
-    $isFilled ? '#ffc107' : (theme as any).colors.shadowDark};
+  color: ${({ $isFilled, theme }) => ($isFilled ? '#ffc107' : theme.colors.shadowDark)};
   transition: color 0.2s ease-in-out;
   
   svg {

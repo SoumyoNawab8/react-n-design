@@ -37,7 +37,7 @@ export const BreadcrumbLink = styled.a.withConfig({
 
   &:hover:not([aria-current="page"]) {
     color: ${({ theme }) => theme.colors.primary};
-    background: ${({ theme }) => (theme as any).colors.hoverBg};
+    background: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:focus-visible {

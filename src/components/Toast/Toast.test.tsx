@@ -37,16 +37,14 @@ describe('Toast', () => {
   it('calls onDismiss when close button is clicked', async () => {
     const onDismiss = vi.fn();
     renderWithTheme(<Toast {...DEFAULT_PROPS} onDismiss={onDismiss} />);
-    
+
     await userEvent.click(screen.getByRole('button', { name: /dismiss notification/i }));
     expect(onDismiss).toHaveBeenCalledTimes(1);
     expect(onDismiss).toHaveBeenCalledWith('1');
   });
 
   it('renders action when provided', () => {
-    renderWithTheme(
-      <Toast {...DEFAULT_PROPS} action={<button>Undo</button>} />
-    );
+    renderWithTheme(<Toast {...DEFAULT_PROPS} action={<button type="button">Undo</button>} />);
     expect(screen.getByRole('button', { name: /undo/i })).toBeInTheDocument();
   });
 

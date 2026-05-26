@@ -1,5 +1,5 @@
-import { motion } from '../../utils/lazyMotion';
 import styled, { css, keyframes } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '6px 12px' },
@@ -42,7 +42,7 @@ export const SelectTrigger = styled.div.withConfig({
   /* 3. Access all theme values from props */
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   transition: all 0.2s ease-in-out;
   
   min-height: ${({ size }) => sizes[size].height};
@@ -63,14 +63,14 @@ export const SelectTrigger = styled.div.withConfig({
   ${({ isOpen, hasError, theme }) =>
     (isOpen || hasError) &&
     css`
-    box-shadow: ${(theme as any).shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}40;
+    box-shadow: ${theme.shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}40;
   `}
 
   ${({ disabled, theme }) =>
     disabled &&
     css`
     cursor: not-allowed;
-    background-color: ${(theme as any).colors.hoverBg};
+    background-color: ${theme.colors.hoverBg};
   `}
 `;
 
@@ -82,7 +82,7 @@ export const SelectValue = styled.span`
 `;
 
 export const SelectPlaceholder = styled(SelectValue)`
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
 `;
 
 export const SelectIcons = styled.div`
@@ -104,7 +104,7 @@ export const SelectChevron = styled.div.withConfig({
 export const ClearButton = styled.span`
   display: flex;
   align-items: center;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   &:hover { color: ${({ theme }) => theme.colors.text}; }
 `;
 
@@ -148,7 +148,7 @@ export const SelectOption = styled.div.withConfig({
     !disabled &&
     css`
       &:hover {
-        background: ${(theme as any).colors.hoverBg};
+        background: ${theme.colors.hoverBg};
       }
     `}
 `;

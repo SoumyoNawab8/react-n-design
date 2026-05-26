@@ -1,5 +1,5 @@
-import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export const AccordionWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !['bordered'].includes(prop),
@@ -11,7 +11,7 @@ export const AccordionWrapper = styled.div.withConfig({
   ${({ bordered, theme }) =>
     bordered &&
     css`
-      border: 1px solid ${(theme as any).colors.shadowDark}40;
+      border: 1px solid ${theme.colors.shadowDark}40;
     `}
 `;
 
@@ -21,7 +21,7 @@ export const AccordionItem = styled.div.withConfig({
   ${({ isLast, theme }) =>
     !isLast &&
     css`
-      border-bottom: 1px solid ${(theme as any).colors.shadowDark}40;
+      border-bottom: 1px solid ${theme.colors.shadowDark}40;
     `}
 `;
 
@@ -44,7 +44,7 @@ export const AccordionHeader = styled.button.withConfig({
   color: ${({ isActive, theme }) => (isActive ? theme.colors.primary : theme.colors.text)};
 
   &:disabled {
-    color: ${({ theme }) => (theme as any).colors.shadowDark};
+    color: ${({ theme }) => theme.colors.shadowDark};
     cursor: not-allowed;
   }
 `;

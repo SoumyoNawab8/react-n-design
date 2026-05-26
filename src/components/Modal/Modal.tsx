@@ -1,8 +1,8 @@
 'use client';
 import type React from 'react';
-import { AnimatePresence } from '../../utils/lazyMotion';
-import { useCallback, useEffect, useRef, useId } from 'react';
+import { useCallback, useEffect, useId, useRef } from 'react';
 import { saveFocus, trapFocus } from '../../utils/focus';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { Card } from '../Card';
 import {
   ModalBackdrop,

@@ -1,8 +1,8 @@
 'use client';
-import { AnimatePresence } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FaChevronDown } from "../../icons";
+import { FaChevronDown } from '../../icons';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   MenuDivider,
   MenuDropdown,
@@ -165,11 +165,21 @@ export const Menu = ({
           >
             {items.map((item, index) => {
               if (isDivider(item)) {
-                return <MenuDivider key={`divider-${index}`} role="separator" />;
+                return (
+                  <MenuDivider
+                    // biome-ignore lint/suspicious/noArrayIndexKey: Dividers at static positions
+                    key={`divider-${index}`}
+                    role="separator"
+                  />
+                );
               }
               if (isLabel(item)) {
                 return (
-                  <MenuLabel key={`label-${index}`} role="presentation">
+                  <MenuLabel
+                    // biome-ignore lint/suspicious/noArrayIndexKey: Labels at static positions
+                    key={`label-${index}`}
+                    role="presentation"
+                  >
                     {item.label}
                   </MenuLabel>
                 );

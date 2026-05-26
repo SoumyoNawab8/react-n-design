@@ -13,7 +13,7 @@ describe('Tooltip', () => {
   it('renders trigger element with describedby attribute', () => {
     renderWithTheme(
       <Tooltip content="Tooltip text">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const button = screen.getByRole('button');
@@ -24,16 +24,16 @@ describe('Tooltip', () => {
     const user = userEvent.setup();
     renderWithTheme(
       <Tooltip content="Tooltip text">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const button = screen.getByRole('button');
-    
+
     // Hover to show tooltip
     await user.hover(button);
-    
+
     // Wait for the hover delay and check if tooltip is visible
-    await new Promise(resolve => setTimeout(resolve, 150));
+    await new Promise((resolve) => setTimeout(resolve, 150));
     expect(screen.getByRole('tooltip')).toHaveTextContent('Tooltip text');
   });
 
@@ -41,13 +41,13 @@ describe('Tooltip', () => {
     const user = userEvent.setup();
     renderWithTheme(
       <Tooltip content="Tooltip" position="bottom">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const button = screen.getByRole('button');
     await user.hover(button);
-    await new Promise(resolve => setTimeout(resolve, 150));
-    
+    await new Promise((resolve) => setTimeout(resolve, 150));
+
     const tooltip = screen.getByRole('tooltip');
     expect(tooltip).toBeInTheDocument();
   });
@@ -56,26 +56,26 @@ describe('Tooltip', () => {
     const user = userEvent.setup();
     renderWithTheme(
       <Tooltip content="Tooltip text">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const button = screen.getByRole('button');
-    
+
     // Show tooltip
     await user.hover(button);
-    await new Promise(resolve => setTimeout(resolve, 150));
+    await new Promise((resolve) => setTimeout(resolve, 150));
     expect(screen.getByRole('tooltip')).toBeInTheDocument();
-    
+
     // Hide on mouse leave
     await user.unhover(button);
-    await new Promise(resolve => setTimeout(resolve, 250));
+    await new Promise((resolve) => setTimeout(resolve, 250));
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
   });
 
   it('has no accessibility violations', async () => {
     const { container } = renderWithTheme(
       <Tooltip content="Accessible tooltip">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const results = await axe.run(container);

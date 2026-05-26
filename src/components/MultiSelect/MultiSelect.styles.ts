@@ -1,6 +1,6 @@
 'use client';
-import { motion } from '../../utils/lazyMotion';
 import styled, { css } from 'styled-components';
+import { motion } from '../../utils/lazyMotion';
 
 export const MultiSelectWrapper = styled.div`
   position: relative;
@@ -26,22 +26,21 @@ export const MultiSelectInputGroup = styled.div.withConfig({
   padding: 8px 12px;
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+  box-shadow: ${({ theme }) => theme.shadows.softInset};
   transition: box-shadow 0.2s ease-in-out;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'text')};
   box-sizing: border-box;
 
   &:focus-within {
     z-index: 2;
-    box-shadow: ${({ theme }) =>
-      `${(theme as any).shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 
   ${({ disabled, theme }) =>
     disabled &&
     css`
       opacity: 0.6;
-      box-shadow: ${(theme as any).shadows.softInset};
+      box-shadow: ${theme.shadows.softInset};
     `}
 `;
 
@@ -161,7 +160,7 @@ export const MultiSelectOption = styled.div.withConfig({
 export const MultiSelectEmpty = styled.div`
   padding: 12px;
   text-align: center;
-  color: ${({ theme }) => (theme as any).colors.shadowDark};
+  color: ${({ theme }) => theme.colors.shadowDark};
   font-size: 14px;
 `;
 

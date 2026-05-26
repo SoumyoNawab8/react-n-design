@@ -1,9 +1,8 @@
 'use client';
-'use client';
-import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FaCheck, FaCopy, FaPaperPlane, FaRobot, FaUser } from "../../icons";
+import { FaCheck, FaCopy, FaPaperPlane, FaRobot, FaUser } from '../../icons';
+import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import { Markdown } from '../Markdown';
 import {
   AIChatEmptyState,
@@ -24,6 +23,14 @@ import {
   AIChatWrapper,
 } from './AIChat.styles';
 
+declare global {
+  interface Window {
+    DOMPurify?: {
+      sanitize: (text: string) => string;
+    };
+  }
+}
+
 function escapeHtml(text: string): string {
   return text
     .replace(/&/g, '&amp;')
@@ -34,8 +41,8 @@ function escapeHtml(text: string): string {
 
 function sanitizeUserContent(text: string): string {
   if (typeof window === 'undefined') return escapeHtml(text);
-  if (typeof (window as any).DOMPurify !== 'undefined') {
-    return (window as any).DOMPurify.sanitize(text);
+  if (typeof window.DOMPurify !== 'undefined') {
+    return window.DOMPurify.sanitize(text);
   }
   return escapeHtml(text);
 }
@@ -70,21 +77,27 @@ export const AIChat = ({
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const lastMessageCount = useRef(messages.length);
+  const lastMessageCountRef = useRef(messages.length);
 
-  // Auto-scroll to bottom when messages change
+  // Auto-scroll to bottom when messages change (smart scroll - only if user was already near bottom)
   useEffect(() => {
     if (messagesRef.current) {
-      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+      const { scrollTop, scrollHeight, clientHeight } = messagesRef.current;
+      const isNearBottom = scrollHeight - scrollTop - clientHeight < 100;
+      const messagesChanged = messages.length !== lastMessageCountRef.current;
+      
+      if (messagesChanged) {
+        lastMessageCountRef.current = messages.length;
+        // Only scroll if user was already near bottom
+        if (isNearBottom) {
+          messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+        }
+      }
     }
-  }, [messages]);
-
-  // Focus input when messages are added
-  useEffect(() => {
-    if (messages.length > lastMessageCount.current && !streaming) {
-      inputRef.current?.focus();
+    // Focus input when streaming ends
+    if (!streaming && inputRef.current) {
+      inputRef.current.focus();
     }
-    lastMessageCount.current = messages.length;
   }, [messages.length, streaming]);
 
   const handleSend = useCallback(() => {

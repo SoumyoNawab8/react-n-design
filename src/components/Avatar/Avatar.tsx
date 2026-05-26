@@ -1,6 +1,6 @@
 'use client';
 import React, { useCallback, useState } from 'react';
-import { FaUser } from "../../icons";
+import { FaUser } from '../../icons';
 import {
   AvatarFallback,
   AvatarGroupOverflow,
@@ -59,6 +59,7 @@ export const AvatarGroup = ({ children, max, size = 'medium' }: AvatarGroupProps
   return (
     <AvatarGroupWrapper role="group" aria-label="Avatar group">
       {visibleChildren.map((child, index) =>
+        // biome-ignore lint/suspicious/noArrayIndexKey: children don't have unique IDs
         React.cloneElement(child as React.ReactElement, { size, key: index })
       )}
       {overflowCount > 0 && (

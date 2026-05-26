@@ -11,15 +11,15 @@ export interface UseFormReturn<T> {
   errors: Partial<Record<keyof T, string>>;
   touched: Partial<Record<keyof T, boolean>>;
   isSubmitting: boolean;
-  handleChange: (field: keyof T) => (value: any) => void;
+  handleChange: (field: keyof T) => (value: unknown) => void;
   handleBlur: (field: keyof T) => () => void;
   handleSubmit: (e?: React.FormEvent) => void | Promise<void>;
-  setFieldValue: (field: keyof T, value: any) => void;
+  setFieldValue: (field: keyof T, value: unknown) => void;
   setFieldError: (field: keyof T, error: string) => void;
   reset: () => void;
 }
 
-function getValueFromEvent(value: any): any {
+function getValueFromEvent(value: unknown): unknown {
   if (
     value &&
     typeof value === 'object' &&
@@ -33,7 +33,7 @@ function getValueFromEvent(value: any): any {
   return value;
 }
 
-export function useForm<T extends Record<string, any>>(
+export function useForm<T extends Record<string, unknown>>(
   options: UseFormOptions<T>
 ): UseFormReturn<T> {
   const { initialValues, validate, onSubmit } = options;
@@ -47,7 +47,7 @@ export function useForm<T extends Record<string, any>>(
   initialValuesRef.current = initialValues;
 
   const handleChange = useCallback(
-    (field: keyof T) => (value: any) => {
+    (field: keyof T) => (value: unknown) => {
       const val = getValueFromEvent(value);
       setValues((prev) => ({ ...prev, [field]: val }));
       setErrors((prev) => {
@@ -84,7 +84,7 @@ export function useForm<T extends Record<string, any>>(
     [validate, values]
   );
 
-  const setFieldValue = useCallback((field: keyof T, value: any) => {
+  const setFieldValue = useCallback((field: keyof T, value: unknown) => {
     const val = getValueFromEvent(value);
     setValues((prev) => ({ ...prev, [field]: val }));
     setErrors((prev) => {

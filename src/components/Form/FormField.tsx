@@ -19,7 +19,7 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
     return <Input name={name} label={label} />;
   }
 
-  const fieldName = String(name);
+  const fieldName = String(name) as keyof typeof ctx.values;
   const value = ctx.optimisticValues?.[fieldName] ?? ctx.values[fieldName];
   const error = ctx.errors[fieldName];
   const touched = ctx.touched[fieldName];
@@ -28,7 +28,7 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
   const id = `form-field-${fieldName}`;
   const errorId = showError ? `${id}-error` : undefined;
 
-  const handleChange = (val: any) => {
+  const handleChange = (val: unknown) => {
     ctx.handleChange(fieldName)(val);
   };
 
@@ -37,8 +37,9 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
   };
 
   if (children) {
+    const childrenProps = children.props as Record<string, unknown>;
     return React.cloneElement(children, {
-      id: (children.props as any).id || id,
+      id: childrenProps.id || id,
       name: fieldName,
       value,
       onChange: handleChange,
@@ -46,8 +47,8 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
       error: showError ? error : undefined,
       'aria-invalid': showError ? true : undefined,
       'aria-describedby': errorId,
-      label: (children.props as any).label !== undefined ? (children.props as any).label : label,
-    } as any);
+      label: childrenProps.label !== undefined ? childrenProps.label : label,
+    } as Record<string, unknown>);
   }
 
   return (
@@ -58,7 +59,7 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
       value={value}
       onChange={handleChange}
       onBlur={handleBlur}
-      error={showError ? error : undefined}
+      error={showError ? (Array.isArray(error) ? error[0] : error) : undefined}
       aria-invalid={showError ? true : undefined}
       aria-describedby={errorId}
       fullWidth

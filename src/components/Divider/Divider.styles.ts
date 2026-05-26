@@ -7,11 +7,11 @@ export const StyledDivider = styled.div.withConfig({
   orientation?: 'horizontal' | 'vertical';
   type?: 'solid' | 'dashed' | 'dotted';
 }>`
-  background: ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+  background: ${({ theme }) => `${theme.colors.shadowDark}40`};
   transition: background 0.2s ease;
 
-  ${({ orientation, type }) =>
-    orientation === 'vertical'
+  ${({ orientation: _orientation, type: _type }) =>
+    _orientation === 'vertical'
       ? css`
           display: inline-block;
           width: 1px;
@@ -29,13 +29,13 @@ export const StyledDivider = styled.div.withConfig({
     type === 'dashed'
       ? css`
           background: none;
-          border-top: 1px dashed ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+          border-top: 1px dashed ${({ theme }) => `${theme.colors.shadowDark}40`};
           height: 0;
         `
       : type === 'dotted'
         ? css`
           background: none;
-          border-top: 1px dotted ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+          border-top: 1px dotted ${({ theme }) => `${theme.colors.shadowDark}40`};
           height: 0;
         `
         : css``}
@@ -63,6 +63,6 @@ export const DividerWithText = styled.div`
     content: '';
     flex: 1;
     height: 1px;
-    background: ${({ theme }) => `${(theme as any).colors.shadowDark}40`};
+    background: ${({ theme }) => `${theme.colors.shadowDark}40`};
   }
 `;

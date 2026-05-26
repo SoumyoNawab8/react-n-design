@@ -33,7 +33,7 @@ export const StyledAppBar = styled.header.withConfig({
           box-shadow: ${theme.shadows.soft};
         `
       : css`
-          border-bottom: 1px solid ${(theme as any).colors.shadowDark}30;
+          border-bottom: 1px solid ${theme.colors.shadowDark}30;
         `}
 `;
 
@@ -72,7 +72,7 @@ export const MenuButton = styled.button`
   }
 
   &:active {
-    box-shadow: ${({ theme }) => (theme as any).shadows.softInset};
+    box-shadow: ${({ theme }) => theme.shadows.softInset};
   }
 
   svg {

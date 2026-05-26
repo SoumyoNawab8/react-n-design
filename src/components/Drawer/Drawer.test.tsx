@@ -46,14 +46,14 @@ describe('Drawer', () => {
         Content
       </Drawer>
     );
-    
+
     await userEvent.click(screen.getByRole('button', { name: /close drawer/i }));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('renders footer when provided', () => {
     renderWithTheme(
-      <Drawer isOpen={true} onClose={vi.fn()} footer={<button>Action</button>}>
+      <Drawer isOpen={true} onClose={vi.fn()} footer={<button type="button">Action</button>}>
         Content
       </Drawer>
     );
