@@ -42,6 +42,7 @@ export function ChartBar({
       const y = PADDING.top + (i / count) * chartHeight;
       return (
         <line
+          // biome-ignore lint/suspicious/noArrayIndexKey: static grid lines
           key={`grid-${i}`}
           x1={PADDING.left}
           y1={y}
@@ -63,6 +64,7 @@ export function ChartBar({
       const y = PADDING.top + (i / count) * chartHeight;
       return (
         <text
+          // biome-ignore lint/suspicious/noArrayIndexKey: static axis labels
           key={`y-label-${i}`}
           x={PADDING.left - 8}
           y={y + 4}
@@ -107,6 +109,7 @@ export function ChartBar({
               const rx = Math.min(barWidth / 2, 6);
 
               return (
+                // biome-ignore lint/suspicious/noArrayIndexKey: data points use sequential indexing
                 <g key={`bar-${i}`}>
                   <rect
                     x={x}
@@ -120,6 +123,8 @@ export function ChartBar({
                     stroke={color}
                     strokeWidth={1}
                     style={{ cursor: 'pointer' }}
+                    role="button"
+                    tabIndex={0}
                     onMouseEnter={() =>
                       setTooltip({
                         x: x + barWidth / 2,

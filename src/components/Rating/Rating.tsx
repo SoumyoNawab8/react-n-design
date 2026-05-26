@@ -105,7 +105,7 @@ export const Rating = ({
     return (
       <RatingItem
         key={index}
-        onClick={(e) => handleStarClick(index, false)}
+        onClick={(_e) => handleStarClick(index, false)}
         onMouseMove={(e) => handleMouseMove(e, index)}
         onMouseLeave={handleMouseLeave}
         onKeyDown={(e) => handleKeyDown(e, index)}

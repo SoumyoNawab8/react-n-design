@@ -28,7 +28,7 @@ describe('Statistic', () => {
   });
 
   it('formats number with precision', () => {
-    renderWithTheme(<Statistic title="Rate" value={3.14159} precision={2} />);
+    renderWithTheme(<Statistic title="Rate" value={Math.PI} precision={2} />);
     expect(screen.getByText('3.14')).toBeInTheDocument();
   });
 

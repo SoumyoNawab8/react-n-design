@@ -74,7 +74,13 @@ export const Timeline = ({ items, mode = 'left', reverse = false, ...props }: Ti
           mode === 'alternate' ? item.position || (index % 2 === 0 ? 'left' : 'right') : mode;
 
         return (
-          <StyledTimelineItem key={index} $mode={mode} $position={item.position} $isLast={isLast}>
+          <StyledTimelineItem
+            // biome-ignore lint/suspicious/noArrayIndexKey: Timeline items are sequential and order is stable
+            key={index}
+            $mode={mode}
+            $position={item.position}
+            $isLast={isLast}
+          >
             {mode !== 'alternate' && (
               <TimelineLabel $mode={mode} $position={item.position}>
                 {item.label}

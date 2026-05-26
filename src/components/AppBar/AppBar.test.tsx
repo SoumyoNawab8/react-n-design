@@ -26,7 +26,7 @@ describe('AppBar', () => {
   });
 
   it('renders actions', () => {
-    renderWithTheme(<AppBar title="Test App" actions={<button>Action</button>} />);
+    renderWithTheme(<AppBar title="Test App" actions={<button type="button">Action</button>} />);
     expect(screen.getByText('Action')).toBeInTheDocument();
   });
 

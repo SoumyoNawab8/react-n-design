@@ -1,5 +1,5 @@
 'use client';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const StatisticContainer = styled.div`
   display: inline-flex;

@@ -46,6 +46,7 @@ export function ChartLine({
       const y = PADDING.top + (i / count) * chartHeight;
       return (
         <line
+          // biome-ignore lint/suspicious/noArrayIndexKey: static grid lines
           key={`grid-${i}`}
           x1={PADDING.left}
           y1={y}
@@ -67,6 +68,7 @@ export function ChartLine({
       const y = PADDING.top + (i / count) * chartHeight;
       return (
         <text
+          // biome-ignore lint/suspicious/noArrayIndexKey: static axis labels
           key={`y-label-${i}`}
           x={PADDING.left - 8}
           y={y + 4}
@@ -119,6 +121,7 @@ export function ChartLine({
               const px = xScale(i);
               const py = yScale(d.value);
               return (
+                // biome-ignore lint/suspicious/noArrayIndexKey: data points use sequential indexing
                 <g key={`point-${i}`}>
                   <circle
                     cx={px}
@@ -129,6 +132,8 @@ export function ChartLine({
                     strokeWidth={2}
                     fillOpacity={0.2}
                     style={{ cursor: 'pointer' }}
+                    role="button"
+                    tabIndex={0}
                     onMouseEnter={() =>
                       setTooltip({
                         x: px,

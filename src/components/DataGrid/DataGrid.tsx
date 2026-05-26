@@ -693,8 +693,10 @@ export const DataGrid = <T extends object>({
         <GridBodyWrapper ref={bodyRef}>
           {loading ? (
             Array.from({ length: 5 }).map((_, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton rows are static placeholders
               <SkeletonRow key={i} role="row">
                 {displayColumns.map((_, j) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton cells are static placeholders
                   <SkeletonCell key={j} role="gridcell" />
                 ))}
               </SkeletonRow>

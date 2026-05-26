@@ -94,6 +94,7 @@ export const Steps = ({
 
         return (
           <StepsItem
+            // biome-ignore lint/suspicious/noArrayIndexKey: Step order is sequential and stable
             key={index}
             direction={direction}
             size={size}

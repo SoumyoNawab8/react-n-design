@@ -89,6 +89,7 @@ export const Stepper = ({
 
           return (
             <StepperItem
+              // biome-ignore lint/suspicious/noArrayIndexKey: Step order is sequential and stable
               key={index}
               isActive={isActive}
               isCompleted={isCompleted}

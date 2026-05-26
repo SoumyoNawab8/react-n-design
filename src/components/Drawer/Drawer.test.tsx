@@ -53,7 +53,7 @@ describe('Drawer', () => {
 
   it('renders footer when provided', () => {
     renderWithTheme(
-      <Drawer isOpen={true} onClose={vi.fn()} footer={<button>Action</button>}>
+      <Drawer isOpen={true} onClose={vi.fn()} footer={<button type="button">Action</button>}>
         Content
       </Drawer>
     );

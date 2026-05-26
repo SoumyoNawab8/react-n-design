@@ -13,7 +13,7 @@ describe('Tooltip', () => {
   it('renders trigger element with describedby attribute', () => {
     renderWithTheme(
       <Tooltip content="Tooltip text">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const button = screen.getByRole('button');
@@ -24,7 +24,7 @@ describe('Tooltip', () => {
     const user = userEvent.setup();
     renderWithTheme(
       <Tooltip content="Tooltip text">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const button = screen.getByRole('button');
@@ -41,7 +41,7 @@ describe('Tooltip', () => {
     const user = userEvent.setup();
     renderWithTheme(
       <Tooltip content="Tooltip" position="bottom">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const button = screen.getByRole('button');
@@ -56,7 +56,7 @@ describe('Tooltip', () => {
     const user = userEvent.setup();
     renderWithTheme(
       <Tooltip content="Tooltip text">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const button = screen.getByRole('button');
@@ -75,7 +75,7 @@ describe('Tooltip', () => {
   it('has no accessibility violations', async () => {
     const { container } = renderWithTheme(
       <Tooltip content="Accessible tooltip">
-        <button>Trigger</button>
+        <button type="button">Trigger</button>
       </Tooltip>
     );
     const results = await axe.run(container);

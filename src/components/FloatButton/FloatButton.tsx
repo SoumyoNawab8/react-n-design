@@ -66,6 +66,7 @@ export const FloatButton: React.FC<FloatButtonProps> = ({
           >
             {menu.map((item, index) => (
               <MenuItem
+                // biome-ignore lint/suspicious/noArrayIndexKey: Menu items are static and order is stable
                 key={index}
                 as={motion.button}
                 disabled={item.disabled}

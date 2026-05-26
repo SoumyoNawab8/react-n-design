@@ -130,6 +130,7 @@ export const Table = <T extends object>({
         </TableHeader>
         <tbody>
           {processedData.map((record, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Table rows use index when no unique ID exists
             <TableRow key={index}>
               {columns.map((col) => (
                 <TableCell key={col.key}>
