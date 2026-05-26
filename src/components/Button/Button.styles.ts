@@ -6,21 +6,18 @@ const sizes = {
     height: '36px',
     padding: '0 16px',
     fontSize: '14px',
-    radius: '10px',
     circleSize: '36px',
   },
   medium: {
     height: '48px',
     padding: '0 24px',
     fontSize: '16px',
-    radius: '12px',
     circleSize: '48px',
   },
   large: {
     height: '56px',
     padding: '0 32px',
     fontSize: '18px',
-    radius: '16px',
     circleSize: '56px',
   },
 };
@@ -90,7 +87,7 @@ export const StyledButton = styled.button.withConfig({
         `
       : css`
           padding: ${sizes[size].padding};
-          border-radius: ${sizes[size].radius};
+          border-radius: ${theme.borderRadius};
         `}
 
   /* Variant Styles */

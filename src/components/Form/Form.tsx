@@ -29,10 +29,11 @@ function validateRuleSync(
       string: () => typeof value === 'string',
       number: () => typeof value === 'number' && !Number.isNaN(value),
       boolean: () => typeof value === 'boolean',
-      email: () => typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+      email: () =>
+        typeof value === 'string' && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value),
       url: () =>
         typeof value === 'string' &&
-        /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})([/\w .-]*)*\/?$/.test(value),
+        /^(https?:\/\/)[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(:[0-9]+)?(\/[a-zA-Z0-9-._~%!$()&'"*+,;=:@/\/?#]*)?$/.test(value),
     };
     if (validators[rule.type] && !validators[rule.type]()) {
       return rule.message || `Invalid ${rule.type}`;

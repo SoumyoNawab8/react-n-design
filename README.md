@@ -73,13 +73,13 @@ No extra setup, no Tailwind config, no CSS imports needed. Just install and impo
 
 | Feature | Description |
 | --- | --- |
-| :art: **Neomorphic Design** | Soft UI with realistic shadows, light diffusion, and tactile depth. No flat boredom. |
-| :robot: **AI-Native Components** | Drop-in `AIChat`, `CommandPalette`, and Markdown renderers for LLM-powered apps. |
-| :zap: **Zero-Config Install** | No build plugins, no CSS resets, no global style leakage. It just works. |
-| :gear: **RSC-Ready** | Dual entry point (`react-n-design` and `react-n-design/rsc`) for Next.js App Router compatibility. |
-| :wheelchair: **Accessibility First** | axe-core validated, ARIA compliant, keyboard navigable, screen-reader friendly. |
-| :fire: **Styled-Components** | No runtime CSS injection conflicts. Zero-runtime CSS variable fallbacks available. |
-| :package: **Tree Shakable** | `sideEffects: false` ensures modern bundlers drop everything you do not use. |
+|| 🎨 **Neomorphic Design** | Soft UI with realistic shadows, light diffusion, and tactile depth. No flat boredom. |
+|| 🤖 **AI-Native Components** | Drop-in `AIChat`, `CommandPalette`, and Markdown renderers for LLM-powered apps. |
+|| ⚡ **Zero-Config Install** | No build plugins, no CSS resets, no global style leakage. It just works. |
+|| ⚙️ **RSC-Ready** | Dual entry point (`react-n-design` and `react-n-design/rsc`) for Next.js App Router compatibility. |
+|| ♿ **Accessibility First** | axe-core validated, ARIA compliant, keyboard navigable, screen-reader friendly. |
+|| 🔥 **Styled-Components** | No runtime CSS injection conflicts. Zero-runtime CSS variable fallbacks available. |
+|| 📦 **Tree Shakable** | `sideEffects: false` ensures modern bundlers drop everything you do not use. |
 || 67 Components | Complete library with Form, Tour, Steps, Timeline, Stepper |
 || Full TypeScript | Strict mode, complete type declarations |
 || Tree Shakable | `sideEffects: false` for optimal bundling |
@@ -430,15 +430,6 @@ import { Button, Input } from 'react-n-design';
 
 ---
 
-## Roadmap
-
-- **v1.1.0** *(Q3 2026)* - Performance & Accessibility: Bundle optimization, React Compiler support, WCAG 2.1 AA compliance
-- **v2.0.0** *(Q4 2026)* - API Modernization: CSS-only theming, React 19+, unstyled primitives
-
-See [ROADMAP.md](./ROADMAP.md) and [PLAN-v1.1.0.md](./PLAN-v1.1.0.md) for details.
-
----
-
 ## Testing
 
 The library is tested with **Vitest** and **React Testing Library**. Every component is run against **axe-core** for accessibility violations.
@@ -459,8 +450,6 @@ npm run test:vitest:watch
 - **v2.0.0** *(Q4 2026)* - API Modernization: CSS-only theming, React 19+, unstyled primitives
 
 See [ROADMAP.md](./ROADMAP.md) and [PLAN-v1.1.0.md](./PLAN-v1.1.0.md) for details.
-
----
 
 ---
 

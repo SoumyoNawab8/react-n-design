@@ -77,19 +77,28 @@ export const AIChat = ({
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const hasScrolledRef = useRef(false);
+  const lastMessageCountRef = useRef(messages.length);
 
-  // Auto-scroll to bottom on first mount only, not on every message change
+  // Auto-scroll to bottom when messages change (smart scroll - only if user was already near bottom)
   useEffect(() => {
-    if (messagesRef.current && !hasScrolledRef.current) {
-      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
-      hasScrolledRef.current = true;
+    if (messagesRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = messagesRef.current;
+      const isNearBottom = scrollHeight - scrollTop - clientHeight < 100;
+      const messagesChanged = messages.length !== lastMessageCountRef.current;
+      
+      if (messagesChanged) {
+        lastMessageCountRef.current = messages.length;
+        // Only scroll if user was already near bottom
+        if (isNearBottom) {
+          messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+        }
+      }
     }
     // Focus input when streaming ends
     if (!streaming && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [streaming]);
+  }, [messages.length, streaming]);
 
   const handleSend = useCallback(() => {
     const trimmed = inputValue.trim();
