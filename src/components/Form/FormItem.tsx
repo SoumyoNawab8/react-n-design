@@ -1,5 +1,13 @@
 'use client';
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { FaCheckCircle, FaExclamationCircle } from '../../icons';
 import {
   FormItemControl,
@@ -27,6 +35,80 @@ function getFieldId(name: string, formName?: string): string {
   return formName ? `${formName}_${name}` : `n-form-field-${name}`;
 }
 
+// Debounce hook for validation
+function useDebouncedCallback<T extends (...args: unknown[]) => unknown>(
+  callback: T,
+  delay: number
+): T {
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const debouncedCallback = useCallback(
+    (...args: Parameters<T>) => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        callback(...args as unknown[]);
+      }, delay);
+    },
+    [callback, delay]
+  );
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  return debouncedCallback as T;
+}
+
+// Custom hook for mobile detection
+function useMobileDetect(breakpoint = 768): boolean {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= breakpoint);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [breakpoint]);
+
+  return isMobile;
+}
+
+// Memoized validation result computation
+function useValidationResult(
+  validateStatusProp: FormItemProps['validateStatus'],
+  validating: boolean,
+  touched: boolean,
+  fieldErrors: string[]
+) {
+  return useMemo(() => {
+    if (validateStatusProp) return validateStatusProp;
+    if (validating) return 'validating';
+    if (fieldErrors?.length > 0) return 'error';
+    if (touched && !fieldErrors?.length) return 'success';
+    return '';
+  }, [validateStatusProp, validating, touched, fieldErrors]);
+}
+
+// Memoized required check
+function useIsRequired(
+  requiredProp: boolean | undefined,
+  rules: FormItemProps['rules']
+) {
+  return useMemo(() => {
+    if (requiredProp !== undefined) return requiredProp;
+    return rules?.some((r) => r.required) || false;
+  }, [requiredProp, rules]);
+}
+
 const InternalFormItem: React.FC<FormItemProps> = ({
   name,
   rules = [],
@@ -51,9 +133,12 @@ const InternalFormItem: React.FC<FormItemProps> = ({
   dependencies = [],
   hidden,
   preserve = true,
-  validateTrigger,
+  validateTrigger = ['onChange', 'onBlur'],
   noStyle,
   render,
+  // v1.2.0 new props
+  showValidationIcon = true,
+  debounceMs = 300,
 }) => {
   const formContext = useContext(FormContext);
   const {
@@ -72,6 +157,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
     registerField,
     unregisterField,
     getInitialValue,
+    compact: formCompact,
   } = formContext || {};
 
   const fieldRef = useRef<FieldEntity>({ name: name || '' });
@@ -81,34 +167,49 @@ const InternalFormItem: React.FC<FormItemProps> = ({
   const [internalTouched, setInternalTouched] = useState(false);
   const [internalValidating, setInternalValidating] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [shakeKey, setShakeKey] = useState(0);
+
+  // Mobile detection
+  const isMobile = useMobileDetect();
+  const compact = layout === 'compact' || formCompact;
 
   const value = name ? (formValues?.[name] ?? internalValue) : internalValue;
   const touched = name ? (formTouched?.[name] ?? internalTouched) : internalTouched;
   const validating = name ? (formValidating?.[name] ?? internalValidating) : internalValidating;
   const fieldErrors = name ? (formErrors?.[name] ?? []) : errors;
 
-  const isRequired = useMemo(
-    () => (requiredProp !== undefined ? requiredProp : rules.some((r) => r.required)),
-    [requiredProp, rules]
+  // Memoized validation status
+  const validateStatus = useValidationResult(
+    validateStatusProp,
+    validating,
+    touched,
+    fieldErrors
   );
-  const validateStatus = useMemo(() => {
-    if (validateStatusProp) return validateStatusProp;
-    if (validating) return 'validating';
-    if (fieldErrors?.length > 0) return 'error';
-    if (touched && !fieldErrors?.length) return 'success';
-    return '';
-  }, [validateStatusProp, validating, fieldErrors, touched]);
 
-  // Validate function - defined BEFORE callbacks that use it
-  const validateFieldValue = useCallback(
+  // Memoized isRequired
+  const isRequired = useIsRequired(requiredProp, rules);
+
+  // Memoized validation rules
+  const memoizedRules = useMemo(() => rules, [rules]);
+
+  // Trigger shake animation on error
+  useEffect(() => {
+    if (validateStatus === 'error' && touched) {
+      setShakeKey((prev) => prev + 1);
+    }
+  }, [validateStatus, touched]);
+
+  // Validate function - memoized
+  const validateFieldValueImpl = useCallback(
     async (fieldValue: unknown) => {
-      if (rules.length === 0) return;
+      if (memoizedRules.length === 0) return;
+      
       if (name && formContext)
         dispatch?.({ type: 'SET_FIELD_VALIDATING', payload: { name, validating: true } });
       else setInternalValidating(true);
 
       const validatorErrors: string[] = [];
-      for (const rule of rules) {
+      for (const rule of memoizedRules) {
         if (rule.required) {
           const isEmpty =
             fieldValue === undefined ||
@@ -167,10 +268,15 @@ const InternalFormItem: React.FC<FormItemProps> = ({
         if (rule.type) {
           const validators: Record<string, () => boolean> = {
             email: () =>
-              typeof fieldValue === 'string' && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(fieldValue),
+              typeof fieldValue === 'string' &&
+              /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
+                fieldValue
+              ),
             url: () =>
               typeof fieldValue === 'string' &&
-              /^(https?:\/\/)[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(:[0-9]+)?(\/[a-zA-Z0-9-._~%!$()&'"*+,;=:@/\/?#]*)?$/.test(fieldValue),
+              /^(https?:\/\/)[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(:[0-9]+)?(\/[a-zA-Z0-9-._~%!$()&'"*+,;=:@//?#]*)?$/.test(
+                fieldValue
+              ),
             number: () => typeof fieldValue === 'number' && !Number.isNaN(fieldValue),
           };
           const validator = validators[rule.type];
@@ -201,7 +307,13 @@ const InternalFormItem: React.FC<FormItemProps> = ({
         setErrors(validatorErrors);
       }
     },
-    [name, formContext, dispatch, rules]
+    [name, formContext, dispatch, memoizedRules]
+  );
+
+  // Debounced validation
+  const debouncedValidateField = useDebouncedCallback(
+    validateFieldValueImpl,
+    debounceMs
   );
 
   // Register field
@@ -209,7 +321,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
     if (!name || !formContext) return;
     const entity: FieldEntity = {
       name,
-      rules,
+      rules: memoizedRules,
       initialValue: initialValueProp ?? getInitialValue?.(name),
       validateTrigger: validateTrigger || ['onChange', 'onBlur'],
       onStoreChange: () => {},
@@ -225,17 +337,17 @@ const InternalFormItem: React.FC<FormItemProps> = ({
     unregisterField,
     initialValueProp,
     validateTrigger,
-    rules,
+    memoizedRules,
     registerField,
     getInitialValue,
   ]);
 
   useEffect(() => {
     if (name && formContext) {
-      fieldRef.current = { ...fieldRef.current, rules };
+      fieldRef.current = { ...fieldRef.current, rules: memoizedRules };
       registerField?.(name, fieldRef.current);
     }
-  }, [name, rules, formContext, registerField]);
+  }, [name, memoizedRules, formContext, registerField]);
 
   // Handlers
   const handleChange = useCallback(
@@ -249,8 +361,10 @@ const InternalFormItem: React.FC<FormItemProps> = ({
       const triggers = Array.isArray(validateTrigger)
         ? validateTrigger
         : [validateTrigger || 'onChange'];
-      if (triggers.includes('change') || triggers.includes('onChange'))
-        validateFieldValue(newValue);
+      if (triggers.includes('change') || triggers.includes('onChange')) {
+        // Use debounced validation on input
+        debouncedValidateField(newValue);
+      }
     },
     [
       name,
@@ -261,7 +375,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
       normalize,
       customGetValueFromEvent,
       validateTrigger,
-      validateFieldValue,
+      debouncedValidateField,
     ]
   );
 
@@ -272,15 +386,18 @@ const InternalFormItem: React.FC<FormItemProps> = ({
     const triggers = Array.isArray(validateTrigger)
       ? validateTrigger
       : [validateTrigger || 'onChange'];
-    if (triggers.includes('blur') || triggers.includes('onBlur')) validateFieldValue(value);
-  }, [name, formContext, dispatch, value, validateTrigger, validateFieldValue]);
+    if (triggers.includes('blur') || triggers.includes('onBlur')) {
+      // Immediate validation on blur
+      validateFieldValueImpl(value);
+    }
+  }, [name, formContext, dispatch, value, validateTrigger, validateFieldValueImpl]);
 
   useEffect(() => {
     if (dependencies.length > 0 && name && formContext) {
       const hasDepChanged = dependencies.some((dep) => formValues?.[dep] !== undefined);
-      if (hasDepChanged) validateFieldValue(value);
+      if (hasDepChanged) debouncedValidateField(value);
     }
-  }, [dependencies, name, formContext, formValues, value, validateFieldValue]);
+  }, [dependencies, name, formContext, formValues, value, debouncedValidateField]);
 
   const renderChild = () => {
     if (render) return render({ value, onChange: handleChange, onBlur: handleBlur });
@@ -309,10 +426,11 @@ const InternalFormItem: React.FC<FormItemProps> = ({
   const effectiveLabelAlign = labelAlign ?? formLabelAlign ?? 'right';
 
   const validationIcon = useMemo(() => {
+    if (!showValidationIcon) return null;
     if (validateStatus === 'error') return <FaExclamationCircle />;
     if (validateStatus === 'success') return <FaCheckCircle />;
     return null;
-  }, [validateStatus]);
+  }, [validateStatus, showValidationIcon]);
 
   const requiredMark =
     formRequiredMark === true && isRequired ? <RequiredMark> *</RequiredMark> : null;
@@ -322,45 +440,61 @@ const InternalFormItem: React.FC<FormItemProps> = ({
 
   return (
     <FormItemWrapper
+      key={`form-item-${name}-${shakeKey}`}
       className={`${prefixCls} ${className || ''}`}
       style={{ ...style, display: hidden ? 'none' : undefined }}
       $layout={layout}
       $validateStatus={validateStatus}
+      $shake={shakeKey > 0}
+      $isMobile={isMobile}
     >
       <FormItemLabel
         $layout={layout}
         $labelAlign={effectiveLabelAlign}
         $labelCol={effectiveLabelCol}
+        $isMobile={isMobile}
+        $compact={compact}
         htmlFor={name ? getFieldId(name) : undefined}
       >
         {label}
         {requiredMark}
         {effectiveColon && label ? ':' : null}
       </FormItemLabel>
-      <FormItemControl $layout={layout} $wrapperCol={effectiveWrapperCol}>
+      <FormItemControl
+        $layout={layout}
+        $wrapperCol={effectiveWrapperCol}
+        $isMobile={isMobile}
+      >
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {renderChild()}
           {validationIcon && (
-            <ValidationIcon $status={validateStatus}>{validationIcon}</ValidationIcon>
+            <ValidationIcon
+              $status={validateStatus}
+              $shake={shakeKey > 0}
+              $compact={compact}
+            >
+              {validationIcon}
+            </ValidationIcon>
           )}
         </div>
         {helpContent && (
           <FormItemHelp
             $status={validateStatus}
+            $isMobile={isMobile}
             id={name ? `${getFieldId(name)}-error` : undefined}
             role={validateStatus === 'error' ? 'alert' : undefined}
           >
-            <FaExclamationCircle style={{ marginRight: 6 }} />
+            <FaExclamationCircle style={{ marginRight: 6, marginTop: 2, flexShrink: 0 }} />
             {helpContent}
           </FormItemHelp>
         )}
-        {extra && <FormItemExtra>{extra}</FormItemExtra>}
+        {extra && <FormItemExtra $isMobile={isMobile}>{extra}</FormItemExtra>}
       </FormItemControl>
     </FormItemWrapper>
   );
 };
 
-export const FormItem = InternalFormItem;
+export const FormItem = memo(InternalFormItem);
 FormItem.displayName = 'FormItem';
 
 export const FormItemDeps: React.FC<{

@@ -1,2 +1,2 @@
 'use client';
-export { Accordion, type AccordionProps, type AccordionItemProps, isValidKey } from './Accordion';
+export { Accordion, type AccordionItemProps, type AccordionProps, isValidKey } from './Accordion';

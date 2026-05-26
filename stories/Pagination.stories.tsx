@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Pagination } from '../src/components/Pagination';
 import { useState } from 'react';
+import { Pagination } from '../src/components/Pagination';
 
 const meta: Meta<typeof Pagination> = {
   title: 'react-n-design/Pagination',
@@ -13,13 +13,7 @@ type Story = StoryObj<typeof Pagination>;
 
 const PaginationDemo = (args: any) => {
   const [currentPage, setCurrentPage] = useState(args.currentPage);
-  return (
-    <Pagination
-      {...args}
-      currentPage={currentPage}
-      onChange={setCurrentPage}
-    />
-  );
+  return <Pagination {...args} currentPage={currentPage} onChange={setCurrentPage} />;
 };
 
 export const Default: Story = {

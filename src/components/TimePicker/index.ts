@@ -1,2 +1,2 @@
-export type { TimePickerProps, TimeValue, TimeFormat, MinuteInterval } from './TimePicker';
-export { TimePicker, formatTime, parseTime } from './TimePicker';
+export type { MinuteInterval, TimeFormat, TimePickerProps, TimeValue } from './TimePicker';
+export { formatTime, parseTime, TimePicker } from './TimePicker';

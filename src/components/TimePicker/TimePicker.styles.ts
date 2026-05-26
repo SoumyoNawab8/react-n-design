@@ -1,5 +1,5 @@
 'use client';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
@@ -248,8 +248,7 @@ export const TimePickerOption = styled.button.withConfig({
     `}
 
   &:hover:not(:disabled):not([disabled]) {
-    background: ${({ isSelected, theme }) =>
-      isSelected ? undefined : theme.colors.hoverBg};
+    background: ${({ isSelected, theme }) => (isSelected ? undefined : theme.colors.hoverBg)};
   }
 
   &:focus-visible {
@@ -282,8 +281,7 @@ export const TimePickerAmPmButton = styled.button.withConfig({
   box-shadow: ${({ isSelected, theme }) => (isSelected ? theme.shadows.soft : 'none')};
 
   &:hover {
-    background: ${({ isSelected, theme }) =>
-      isSelected ? undefined : theme.colors.hoverBg};
+    background: ${({ isSelected, theme }) => (isSelected ? undefined : theme.colors.hoverBg)};
   }
 
   &:focus-visible {

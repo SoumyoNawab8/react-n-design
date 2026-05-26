@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Result } from '../src/components/Result';
 import { Button } from '../src/components/Button';
+import { Result } from '../src/components/Result';
 
 const meta: Meta<typeof Result> = {
   title: 'react-n-design/Result',
@@ -89,6 +89,6 @@ export const WithCustomIcon: Story = {
     status: 'info',
     title: 'Custom Icon',
     subTitle: 'This result uses a custom icon.',
-    icon: (<img src="https://via.placeholder.com/72" alt="Custom" />),
+    icon: <img src="https://via.placeholder.com/72" alt="Custom" />,
   },
 };

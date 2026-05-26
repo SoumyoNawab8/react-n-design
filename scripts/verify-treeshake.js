@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const { rollup } = require('rollup');
 const resolve = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
@@ -27,7 +27,14 @@ async function main() {
         resolve.default({ browser: true, preferBuiltins: false }),
         commonjs.default({ include: ['node_modules/**'] }),
       ],
-      external: ['react', 'react-dom', 'styled-components', 'framer-motion', 'react-icons', 'react-window'],
+      external: [
+        'react',
+        'react-dom',
+        'styled-components',
+        'framer-motion',
+        'react-icons',
+        'react-window',
+      ],
     });
 
     const { output } = await bundle.generate({ format: 'esm' });

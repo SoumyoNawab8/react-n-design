@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import type React from 'react';
-import { FaHeart, FaStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
 import { Icon } from './Icon';
@@ -73,7 +73,11 @@ describe('Icon', () => {
     iconNames.forEach((name) => {
       const { rerender } = renderWithTheme(<Icon name={name} />);
       expect(document.querySelector('svg')).toBeInTheDocument();
-      rerender(<ThemeProvider theme={lightTheme}><Icon name={name} /></ThemeProvider>);
+      rerender(
+        <ThemeProvider theme={lightTheme}>
+          <Icon name={name} />
+        </ThemeProvider>
+      );
     });
   });
 

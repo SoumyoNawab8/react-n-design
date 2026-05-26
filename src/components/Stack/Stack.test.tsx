@@ -50,7 +50,9 @@ describe('Stack', () => {
     const alignValues = ['start', 'center', 'end', 'stretch'];
     alignValues.forEach((align) => {
       const { unmount } = renderWithTheme(
-        <Stack align={align as any}><div data-testid="item">Item</div></Stack>
+        <Stack align={align as any}>
+          <div data-testid="item">Item</div>
+        </Stack>
       );
       expect(screen.getByTestId('item')).toBeInTheDocument();
       unmount();
@@ -61,7 +63,9 @@ describe('Stack', () => {
     const justifyValues = ['start', 'center', 'end', 'between', 'around'];
     justifyValues.forEach((justify) => {
       const { unmount } = renderWithTheme(
-        <Stack justify={justify as any}><div data-testid="item">Item</div></Stack>
+        <Stack justify={justify as any}>
+          <div data-testid="item">Item</div>
+        </Stack>
       );
       expect(screen.getByTestId('item')).toBeInTheDocument();
       unmount();
@@ -110,10 +114,12 @@ describe('Stack', () => {
   it('renders children with fragment', () => {
     renderWithTheme(
       <Stack>
-        {<>
-          <span>First</span>
-          <span>Second</span>
-        </>}
+        {
+          <>
+            <span>First</span>
+            <span>Second</span>
+          </>
+        }
       </Stack>
     );
     expect(screen.getByText('First')).toBeInTheDocument();

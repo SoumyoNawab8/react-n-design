@@ -1,25 +1,20 @@
 'use client';
 
-import type { KeyboardEvent, HTMLAttributes, ReactElement, ReactNode, Ref } from 'react';
-import React, {
+import type React from 'react';
+import type { HTMLAttributes, KeyboardEvent, ReactElement, ReactNode, Ref } from 'react';
+import {
+  cloneElement,
+  isValidElement,
   useCallback,
   useEffect,
   useId,
   useRef,
   useState,
-  cloneElement,
-  isValidElement,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { saveFocus, trapFocus } from '../../utils/focus';
 import { AnimatePresence } from '../../utils/lazyMotion';
-import {
-  PopoverArrow,
-  PopoverContent,
-  PopoverPortalWrapper,
-  PopoverTrigger,
-  PopoverWrapper,
-} from './Popover.styles';
+import { PopoverArrow, PopoverContent, PopoverTrigger, PopoverWrapper } from './Popover.styles';
 
 export interface PopoverProps {
   /** The element that triggers the popover */
@@ -332,10 +327,7 @@ export const Popover: React.FC<PopoverProps> = ({
     if (!isOpen) return null;
 
     if (portal && typeof document !== 'undefined') {
-      return createPortal(
-        <AnimatePresence>{popoverContent}</AnimatePresence>,
-        document.body
-      );
+      return createPortal(<AnimatePresence>{popoverContent}</AnimatePresence>, document.body);
     }
 
     return <AnimatePresence>{popoverContent}</AnimatePresence>;

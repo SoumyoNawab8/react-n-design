@@ -106,14 +106,7 @@ describe('ComboBox', () => {
 
   it('clears all selections when clear button clicked', async () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <ComboBox
-        options={mockOptions}
-        value="1"
-        onChange={onChange}
-        allowClear
-      />
-    );
+    renderWithTheme(<ComboBox options={mockOptions} value="1" onChange={onChange} allowClear />);
     const clearButton = screen.getByLabelText('Clear selection');
     await userEvent.click(clearButton);
     expect(onChange).toHaveBeenCalledWith('');
@@ -153,11 +146,7 @@ describe('ComboBox', () => {
 
   it('renders with custom create label', async () => {
     renderWithTheme(
-      <ComboBox
-        options={mockOptions}
-        allowCreate
-        createLabel={(q) => `Add "${q}"`}
-      />
+      <ComboBox options={mockOptions} allowCreate createLabel={(q) => `Add "${q}"`} />
     );
     const input = screen.getByRole('combobox');
     await userEvent.type(input, 'Custom');
@@ -191,12 +180,7 @@ describe('ComboBox', () => {
   it('removes last tag on backspace in multiple mode', async () => {
     const onChange = vi.fn();
     renderWithTheme(
-      <ComboBox
-        options={mockOptions}
-        mode="multiple"
-        value={['1', '2']}
-        onChange={onChange}
-      />
+      <ComboBox options={mockOptions} mode="multiple" value={['1', '2']} onChange={onChange} />
     );
     const input = screen.getByRole('combobox');
     await userEvent.type(input, '{backspace}');

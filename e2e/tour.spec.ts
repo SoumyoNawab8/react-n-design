@@ -38,9 +38,9 @@ test.describe('Tour Component - Basic Rendering', () => {
     await page.waitForSelector('[role="dialog"]', { timeout: 5000 });
 
     // Check spotlight exists
-    const spotlight = await page.locator('[data-testid="tour-spotlight"]').or(
-      page.locator('div').filter({ hasText: '' }).nth(1)
-    );
+    const _spotlight = await page
+      .locator('[data-testid="tour-spotlight"]')
+      .or(page.locator('div').filter({ hasText: '' }).nth(1));
 
     await expect(page).toHaveScreenshot('tour-with-spotlight.png', {
       maxDiffPixels: 100,
@@ -55,7 +55,7 @@ test.describe('Tour Component - Navigation', () => {
 
     // Wait for initial render
     await page.waitForSelector('[role="dialog"]', { timeout: 5000 });
-    
+
     // Verify first step
     await expect(page.getByText('Welcome')).toBeVisible();
 
@@ -104,7 +104,9 @@ test.describe('Tour Component - Navigation', () => {
     await page.waitForSelector('[role="dialog"]', { timeout: 5000 });
 
     // First step - no Previous button
-    const prevButtonFirstStep = await page.locator('button:has-text("Previous")').isVisible()
+    const prevButtonFirstStep = await page
+      .locator('button:has-text("Previous")')
+      .isVisible()
       .catch(() => false);
     expect(prevButtonFirstStep).toBe(false);
 
@@ -165,7 +167,9 @@ test.describe('Tour Component - Navigation', () => {
 
 test.describe('Tour Component - Different Placements', () => {
   test('renders tour with top placement', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-tour--different-placements&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-tour--different-placements&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.waitForSelector('[role="dialog"]', { timeout: 5000 });
@@ -179,7 +183,9 @@ test.describe('Tour Component - Different Placements', () => {
   });
 
   test('renders tour with left placement', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-tour--different-placements&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-tour--different-placements&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.waitForSelector('[role="dialog"]', { timeout: 5000 });
@@ -196,7 +202,9 @@ test.describe('Tour Component - Different Placements', () => {
   });
 
   test('renders tour with right placement', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-tour--different-placements&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-tour--different-placements&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.waitForSelector('[role="dialog"]', { timeout: 5000 });
@@ -329,7 +337,7 @@ test.describe('Tour Component - Accessibility', () => {
     await page.waitForSelector('[role="dialog"]', { timeout: 5000 });
 
     // Try to click behind overlay
-    const buttonClicksBefore = await page.evaluate(() => {
+    const _buttonClicksBefore = await page.evaluate(() => {
       let count = 0;
       const btn = document.querySelector('.demo-button-1');
       if (btn) {

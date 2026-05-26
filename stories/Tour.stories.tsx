@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tour } from '../src/components/Tour';
 
 const meta: Meta<typeof Tour> = {
@@ -50,10 +50,12 @@ const defaultSteps = [
 
 const TourWithContainer = ({ open, steps }: { open: boolean; steps: typeof defaultSteps }) => {
   const [isOpen, setIsOpen] = useState(open);
-  
+
   return (
     <div style={{ padding: '200px', height: '500px', position: 'relative' }}>
-      <div style={{ display: 'flex', gap: '100px', alignItems: 'center', justifyContent: 'center' }}>
+      <div
+        style={{ display: 'flex', gap: '100px', alignItems: 'center', justifyContent: 'center' }}
+      >
         <button className="demo-button-1" style={{ padding: '12px 24px', borderRadius: '8px' }}>
           Button 1
         </button>
@@ -64,14 +66,14 @@ const TourWithContainer = ({ open, steps }: { open: boolean; steps: typeof defau
           Button 3
         </button>
       </div>
-      <Tour 
-        steps={steps} 
-        open={isOpen} 
-        onClose={() => setIsOpen(false)} 
+      <Tour
+        steps={steps}
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
         onFinish={() => {
           console.log('Tour finished');
           setIsOpen(false);
-        }} 
+        }}
       />
     </div>
   );
@@ -83,8 +85,8 @@ export const Default: Story = {
 
 export const SingleStep: Story = {
   render: () => (
-    <TourWithContainer 
-      open={true} 
+    <TourWithContainer
+      open={true}
       steps={[
         {
           target: '.demo-button-1',
@@ -92,15 +94,15 @@ export const SingleStep: Story = {
           description: 'Welcome to the application! This is a quick introduction.',
           placement: 'bottom',
         },
-      ]} 
+      ]}
     />
   ),
 };
 
 export const DifferentPlacements: Story = {
   render: () => (
-    <TourWithContainer 
-      open={true} 
+    <TourWithContainer
+      open={true}
       steps={[
         {
           target: '.demo-button-1',
@@ -120,15 +122,15 @@ export const DifferentPlacements: Story = {
           description: 'This card appears to the right of the target.',
           placement: 'right',
         },
-      ]} 
+      ]}
     />
   ),
 };
 
 export const LongTour: Story = {
   render: () => (
-    <TourWithContainer 
-      open={true} 
+    <TourWithContainer
+      open={true}
       steps={[
         ...defaultSteps,
         {
@@ -143,7 +145,7 @@ export const LongTour: Story = {
           description: 'A longer tour with more steps.',
           placement: 'left',
         },
-      ]} 
+      ]}
     />
   ),
 };

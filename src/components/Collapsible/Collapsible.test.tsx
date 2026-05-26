@@ -9,7 +9,7 @@ import { Collapsible } from './Collapsible';
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
 
-const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const _wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 describe('Collapsible', () => {
   // ========== Basic Rendering Tests ==========
@@ -328,7 +328,11 @@ describe('Collapsible', () => {
       const onOpenChange = vi.fn();
       renderWithTheme(
         <Collapsible
-          trigger={<button data-testid="custom-trigger" onClick={customOnClick}>Custom</button>}
+          trigger={
+            <button data-testid="custom-trigger" onClick={customOnClick}>
+              Custom
+            </button>
+          }
           onOpenChange={onOpenChange}
         >
           <div>Content</div>
@@ -370,7 +374,9 @@ describe('Collapsible', () => {
   describe('edge cases', () => {
     it('handles empty children', () => {
       renderWithTheme(
-        <Collapsible trigger="Open" open={true}>{null}</Collapsible>
+        <Collapsible trigger="Open" open={true}>
+          {null}
+        </Collapsible>
       );
       const trigger = screen.getByRole('button');
       expect(trigger).toBeInTheDocument();

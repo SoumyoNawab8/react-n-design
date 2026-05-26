@@ -1,5 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FaCheckCircle, FaClock, FaStar, FaExclamationCircle, FaUser, FaCalendar, FaBell, FaUpload } from 'react-icons/fa';
+import {
+  FaBell,
+  FaCalendar,
+  FaCheckCircle,
+  FaClock,
+  FaExclamationCircle,
+  FaStar,
+  FaUpload,
+  FaUser,
+} from 'react-icons/fa';
 import { Timeline } from '../src/components/Timeline';
 
 const meta: Meta<typeof Timeline> = {
@@ -28,7 +37,9 @@ const basicItems = [
     children: (
       <div>
         <h4 style={{ margin: '0 0 8px 0' }}>Project Started</h4>
-        <p style={{ margin: 0, color: 'var(--color-text-secondary, #666)' }}>Initial planning and setup completed</p>
+        <p style={{ margin: 0, color: 'var(--color-text-secondary, #666)' }}>
+          Initial planning and setup completed
+        </p>
       </div>
     ),
     color: '#6d5dfc',
@@ -38,7 +49,9 @@ const basicItems = [
     children: (
       <div>
         <h4 style={{ margin: '0 0 8px 0' }}>First Milestone</h4>
-        <p style={{ margin: 0, color: 'var(--color-text-secondary, #666)' }}>Core functionality implemented</p>
+        <p style={{ margin: 0, color: 'var(--color-text-secondary, #666)' }}>
+          Core functionality implemented
+        </p>
       </div>
     ),
     color: '#38a169',
@@ -48,7 +61,9 @@ const basicItems = [
     children: (
       <div>
         <h4 style={{ margin: '0 0 8px 0' }}>Review Phase</h4>
-        <p style={{ margin: 0, color: 'var(--color-text-secondary, #666)' }}>Code review and testing in progress</p>
+        <p style={{ margin: 0, color: 'var(--color-text-secondary, #666)' }}>
+          Code review and testing in progress
+        </p>
       </div>
     ),
     color: '#dd6b20',
@@ -58,7 +73,9 @@ const basicItems = [
     children: (
       <div>
         <h4 style={{ margin: '0 0 8px 0' }}>Launch</h4>
-        <p style={{ margin: 0, color: 'var(--color-text-secondary, #666)' }}>Production deployment</p>
+        <p style={{ margin: 0, color: 'var(--color-text-secondary, #666)' }}>
+          Production deployment
+        </p>
       </div>
     ),
     color: '#38a169',
@@ -133,7 +150,9 @@ export const CustomColors: Story = {
         label: 'Order Placed',
         children: (
           <div>
-            <p style={{ margin: '0 0 4px 0' }}><strong>Order #12345</strong></p>
+            <p style={{ margin: '0 0 4px 0' }}>
+              <strong>Order #12345</strong>
+            </p>
             <p style={{ margin: 0, fontSize: '12px', color: '#666' }}>Payment confirmed</p>
           </div>
         ),
@@ -144,7 +163,9 @@ export const CustomColors: Story = {
         label: 'Processing',
         children: (
           <div>
-            <p style={{ margin: '0 0 4px 0' }}><strong>Packing Items</strong></p>
+            <p style={{ margin: '0 0 4px 0' }}>
+              <strong>Packing Items</strong>
+            </p>
             <p style={{ margin: 0, fontSize: '12px', color: '#666' }}>Preparing for shipment</p>
           </div>
         ),
@@ -155,7 +176,9 @@ export const CustomColors: Story = {
         label: 'Shipped',
         children: (
           <div>
-            <p style={{ margin: '0 0 4px 0' }}><strong>On The Way</strong></p>
+            <p style={{ margin: '0 0 4px 0' }}>
+              <strong>On The Way</strong>
+            </p>
             <p style={{ margin: 0, fontSize: '12px', color: '#666' }}>Expected arrival: Tomorrow</p>
           </div>
         ),
@@ -166,7 +189,9 @@ export const CustomColors: Story = {
         label: 'Delivered',
         children: (
           <div>
-            <p style={{ margin: '0 0 4px 0' }}><strong>Package Arrived</strong></p>
+            <p style={{ margin: '0 0 4px 0' }}>
+              <strong>Package Arrived</strong>
+            </p>
             <p style={{ margin: 0, fontSize: '12px', color: '#666' }}>Left at front door</p>
           </div>
         ),
@@ -216,27 +241,47 @@ export const UserActivity: Story = {
   args: {
     items: [
       {
-        children: <div>Create new project <strong>MyAwesomeApp</strong></div>,
+        children: (
+          <div>
+            Create new project <strong>MyAwesomeApp</strong>
+          </div>
+        ),
         label: '2 hours ago',
         color: '#3182ce',
       },
       {
-        children: <div>Commented on <strong>PR #456</strong></div>,
+        children: (
+          <div>
+            Commented on <strong>PR #456</strong>
+          </div>
+        ),
         label: '5 hours ago',
         color: '#38a169',
       },
       {
-        children: <div>Pushed to <strong>main</strong> branch</div>,
+        children: (
+          <div>
+            Pushed to <strong>main</strong> branch
+          </div>
+        ),
         label: 'Yesterday',
         color: '#6d5dfc',
       },
       {
-        children: <div>Merged <strong>feature-branch</strong></div>,
+        children: (
+          <div>
+            Merged <strong>feature-branch</strong>
+          </div>
+        ),
         label: '2 days ago',
         color: '#38a169',
       },
       {
-        children: <div>Deployed to <strong>production</strong></div>,
+        children: (
+          <div>
+            Deployed to <strong>production</strong>
+          </div>
+        ),
         label: '3 days ago',
         color: '#38a169',
       },
@@ -261,31 +306,51 @@ export const Notifications: Story = {
     items: [
       {
         label: 'Just now',
-        children: <div><strong>New login</strong> from iPhone 13 Pro</div>,
+        children: (
+          <div>
+            <strong>New login</strong> from iPhone 13 Pro
+          </div>
+        ),
         dot: <FaUser />,
         color: '#38a169',
       },
       {
         label: '10 min ago',
-        children: <div><strong>Password changed</strong> successfully</div>,
+        children: (
+          <div>
+            <strong>Password changed</strong> successfully
+          </div>
+        ),
         dot: <FaBell />,
         color: '#6d5dfc',
       },
       {
         label: '1 hour ago',
-        children: <div><strong>Security alert</strong> - Unusual activity detected</div>,
+        children: (
+          <div>
+            <strong>Security alert</strong> - Unusual activity detected
+          </div>
+        ),
         dot: <FaExclamationCircle />,
         color: '#e53e3e',
       },
       {
         label: '2 hours ago',
-        children: <div><strong>Backup completed</strong></div>,
+        children: (
+          <div>
+            <strong>Backup completed</strong>
+          </div>
+        ),
         dot: <FaCheckCircle />,
         color: '#38a169',
       },
       {
         label: '1 day ago',
-        children: <div><strong>Account created</strong></div>,
+        children: (
+          <div>
+            <strong>Account created</strong>
+          </div>
+        ),
         dot: <FaStar />,
         color: '#38a169',
       },

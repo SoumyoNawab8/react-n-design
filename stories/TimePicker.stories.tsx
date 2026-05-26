@@ -12,7 +12,8 @@ const meta: Meta<typeof TimePicker> = {
     minuteInterval: {
       control: 'select',
       options: [1, 5, 10, 15, 30, 60],
-      description: 'Minute intervals: 1 (every minute), 5 (every 5 min), 15 (quarter), 30 (half), 60 (hour)',
+      description:
+        'Minute intervals: 1 (every minute), 5 (every 5 min), 15 (quarter), 30 (half), 60 (hour)',
     },
     disabled: { control: 'boolean' },
     placeholder: { control: 'text' },

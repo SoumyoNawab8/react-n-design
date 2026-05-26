@@ -125,10 +125,7 @@ describe('Menu', () => {
 
   it('renders with custom trigger', () => {
     renderWithTheme(
-      <Menu
-        items={mockItems}
-        trigger={<button data-testid="custom-trigger">Open</button>}
-      />
+      <Menu items={mockItems} trigger={<button data-testid="custom-trigger">Open</button>} />
     );
     expect(screen.getByTestId('custom-trigger')).toBeInTheDocument();
   });
@@ -171,7 +168,9 @@ describe('Menu', () => {
 
   it('does not call onClick for disabled items', async () => {
     const disabledItemCallback = vi.fn();
-    const items = [{ key: 'item1', label: 'Disabled Item', disabled: true, onClick: disabledItemCallback }];
+    const items = [
+      { key: 'item1', label: 'Disabled Item', disabled: true, onClick: disabledItemCallback },
+    ];
     renderWithTheme(<Menu items={items} />);
     const trigger = screen.getByRole('button', { name: 'Menu' });
     await userEvent.click(trigger);
@@ -236,6 +235,111 @@ describe('Menu', () => {
     await userEvent.click(trigger);
     await waitFor(() => {
       expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    });
+  });
+
+  // v1.2.0 New Tests
+  describe('v1.2.0 - Checkable Items', () => {
+    it('renders checkbox items', async () => {
+      const itemsWithCheckbox = [
+        { key: 'check1', label: 'Check Item', checkable: 'checkbox' as const, checked: false },
+        { key: 'check2', label: 'Checked Item', checkable: 'checkbox' as const, checked: true },
+      ];
+      renderWithTheme(<Menu items={itemsWithCheckbox} />);
+      const trigger = screen.getByRole('button', { name: 'Menu' });
+      await userEvent.click(trigger);
+      const menuItems = screen.getAllByRole('menuitem');
+      expect(menuItems[0]).toHaveAttribute('aria-checked', 'false');
+      expect(menuItems[1]).toHaveAttribute('aria-checked', 'true');
+    });
+
+    it('renders radio items', async () => {
+      const itemsWithRadio = [
+        { key: 'radio1', label: 'Option 1', checkable: 'radio' as const, checked: true },
+        { key: 'radio2', label: 'Option 2', checkable: 'radio' as const, checked: false },
+      ];
+      renderWithTheme(<Menu items={itemsWithRadio} />);
+      const trigger = screen.getByRole('button', { name: 'Menu' });
+      await userEvent.click(trigger);
+      const menuItems = screen.getAllByRole('menuitem');
+      expect(menuItems[0]).toHaveAttribute('aria-checked', 'true');
+      expect(menuItems[1]).toHaveAttribute('aria-checked', 'false');
+    });
+
+    it('radio items do not close menu on selection', async () => {
+      const onSelect = vi.fn();
+      const itemsWithRadio = [
+        { key: 'radio1', label: 'Option 1', checkable: 'radio' as const, checked: false, onClick: vi.fn() },
+      ];
+      renderWithTheme(<Menu items={itemsWithRadio} onSelect={onSelect} />);
+      const trigger = screen.getByRole('button', { name: 'Menu' });
+      await userEvent.click(trigger);
+      const menu = screen.getByRole('menu');
+      const item = screen.getByRole('menuitem');
+      await userEvent.click(item);
+      expect(onSelect).toHaveBeenCalledWith('radio1');
+      expect(menu).toBeInTheDocument();
+    });
+  });
+
+  describe('v1.2.0 - Badges', () => {
+    it('renders items with badges', async () => {
+      const itemsWithBadges = [
+        { key: 'badge1', label: 'Notifications', badge: '5', badgeColor: '#ff4444' },
+        { key: 'badge2', label: 'Messages', badge: 'New' },
+      ];
+      renderWithTheme(<Menu items={itemsWithBadges} />);
+      const trigger = screen.getByRole('button', { name: 'Menu' });
+      await userEvent.click(trigger);
+      expect(screen.getByText('5')).toBeInTheDocument();
+      expect(screen.getByText('New')).toBeInTheDocument();
+    });
+  });
+
+  describe('v1.2.0 - Danger Items', () => {
+    it('renders danger styled items', async () => {
+      const dangerItems = [
+        { key: 'delete', label: 'Delete', danger: true },
+      ];
+      renderWithTheme(<Menu items={dangerItems} />);
+      const trigger = screen.getByRole('button', { name: 'Menu' });
+      await userEvent.click(trigger);
+      const item = screen.getByRole('menuitem', { name: 'Delete' });
+      expect(item).toBeInTheDocument();
+    });
+  });
+
+  describe('v1.2.0 - Custom Props', () => {
+    it('accepts style prop', () => {
+      const { container } = renderWithTheme(
+        <Menu items={mockItems} style={{ backgroundColor: 'red' }} />
+      );
+      expect(container.firstChild).toHaveStyle({ backgroundColor: 'rgb(255, 0, 0)' });
+    });
+
+    it('accepts className prop', () => {
+      renderWithTheme(<Menu items={mockItems} className="custom-menu-class" />);
+      expect(document.querySelector('.custom-menu-class')).toBeInTheDocument();
+    });
+
+    it('supports custom renderItem', async () => {
+      const customRender = vi.fn((item, props) => (
+        <button
+          key={item.key}
+          onClick={props.onClick}
+          onMouseEnter={props.onMouseEnter}
+          data-active={props.isActive}
+          data-disabled={props.isDisabled}
+          data-testid={`custom-${item.key}`}
+        >
+          {item.label}
+        </button>
+      ));
+      renderWithTheme(<Menu items={mockItems} renderItem={customRender} />);
+      const trigger = screen.getByRole('button', { name: 'Menu' });
+      await userEvent.click(trigger);
+      expect(customRender).toHaveBeenCalled();
+      expect(screen.getByTestId('custom-item1')).toBeInTheDocument();
     });
   });
 });

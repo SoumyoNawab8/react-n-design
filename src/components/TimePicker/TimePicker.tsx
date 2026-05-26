@@ -2,7 +2,7 @@
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FaClock, FaTimes } from '../../icons';
-import { AnimatePresence, motion } from '../../utils/lazyMotion';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {
   TimePickerAmPmButton,
@@ -63,11 +63,7 @@ function parseTime(value: string | TimeValue | null | undefined): TimeValue | nu
   return null;
 }
 
-function formatTime(
-  time: TimeValue | null,
-  format: TimeFormat,
-  withSeconds = false
-): string {
+function formatTime(time: TimeValue | null, format: TimeFormat, withSeconds = false): string {
   if (!time) return '';
 
   const { hours, minutes } = time;
@@ -85,7 +81,7 @@ function formatTime(
   return withSeconds ? `${displayHours}:${m}:00 ${ampm}` : `${displayHours}:${m} ${ampm}`;
 }
 
-function isSameTime(t1: TimeValue | null, t2: TimeValue | null): boolean {
+function _isSameTime(t1: TimeValue | null, t2: TimeValue | null): boolean {
   if (!t1 || !t2) return false;
   return t1.hours === t2.hours && t1.minutes === t2.minutes;
 }
@@ -354,37 +350,34 @@ export const TimePicker = ({
     [disabled, isOpen]
   );
 
-  const handlePanelKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
-      const panel = panelRef.current;
-      if (!panel) return;
+  const handlePanelKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    const panel = panelRef.current;
+    if (!panel) return;
 
-      const focusable = Array.from(
-        panel.querySelectorAll<HTMLElement>(
-          'button:not([disabled]):not([tabindex="-1"]), select:not([disabled]), [tabindex="0"]'
-        )
-      ).filter((el) => el.offsetParent !== null);
+    const focusable = Array.from(
+      panel.querySelectorAll<HTMLElement>(
+        'button:not([disabled]):not([tabindex="-1"]), select:not([disabled]), [tabindex="0"]'
+      )
+    ).filter((el) => el.offsetParent !== null);
 
-      if (focusable.length === 0) return;
+    if (focusable.length === 0) return;
 
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
 
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault();
-          last?.focus();
-        }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault();
-          first?.focus();
-        }
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
       }
-    },
-    []
-  );
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    }
+  }, []);
 
   const inputId = id || (label ? label.replace(/\s+/g, '-').toLowerCase() : undefined);
   const panelId = inputId ? `${inputId}-panel` : 'timepicker-panel';
@@ -475,12 +468,7 @@ export const TimePicker = ({
                       hours: actualHours,
                       minutes: currentValue?.minutes ?? 0,
                     };
-                    const isDisabled = isTimeDisabled(
-                      timeValue,
-                      disabledTimes,
-                      minTime,
-                      maxTime
-                    );
+                    const isDisabled = isTimeDisabled(timeValue, disabledTimes, minTime, maxTime);
                     const isSelected = currentValue
                       ? getDisplayHours(currentValue.hours) === hour
                       : false;
@@ -511,12 +499,7 @@ export const TimePicker = ({
                       hours: currentValue?.hours ?? 0,
                       minutes: minute,
                     };
-                    const isDisabled = isTimeDisabled(
-                      timeValue,
-                      disabledTimes,
-                      minTime,
-                      maxTime
-                    );
+                    const isDisabled = isTimeDisabled(timeValue, disabledTimes, minTime, maxTime);
                     const isSelected = currentValue?.minutes === minute;
 
                     return (
@@ -578,5 +561,5 @@ export const TimePicker = ({
 
 // ─── Utility Exports ────────────────────────────────────────────────────────────
 
+export type { MinuteInterval, TimeFormat, TimeValue };
 export { formatTime, parseTime };
-export type { TimeValue, TimeFormat, MinuteInterval };

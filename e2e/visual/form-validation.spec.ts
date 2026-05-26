@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Form Validation - Basic States', () => {
   test('renders form with validation rules - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -19,7 +21,9 @@ test.describe('Form Validation - Basic States', () => {
   });
 
   test('renders form with validation rules - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -76,7 +80,9 @@ test.describe('Form Validation - Error States', () => {
 
 test.describe('Form Validation - Field States', () => {
   test('input with error styling', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     // Trigger validation
@@ -84,7 +90,7 @@ test.describe('Form Validation - Field States', () => {
     await page.waitForTimeout(500);
 
     // Check error input has red border (visual)
-    const input = page.locator('input').first();
+    const _input = page.locator('input').first();
 
     await expect(page).toHaveScreenshot('form-input-error-styling.png', {
       maxDiffPixels: 100,
@@ -92,7 +98,9 @@ test.describe('Form Validation - Field States', () => {
   });
 
   test('input with error in dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.click('button[type="submit"]');
@@ -201,7 +209,9 @@ test.describe('Form Validation - Responsive', () => {
 
 test.describe('Form Validation - Theme Variations', () => {
   test('error styling in light theme', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(300);
 
@@ -214,7 +224,9 @@ test.describe('Form Validation - Theme Variations', () => {
   });
 
   test('error styling in dark theme', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-form--with-validation&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(300);
 

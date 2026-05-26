@@ -27,11 +27,15 @@ export const lightTheme = {
     // CopyButton states
     error: '#dc3545',
     success: '#28a745',
+    // Menu v1.2.0
+    danger: '#ff4d4f',
   },
   shadows: {
     soft: '7px 7px 14px #bec3c9, -7px -7px 14px #ffffff',
     softInset: 'inset 7px 7px 14px #bec3c9, inset -7px -7px 14px #ffffff',
+    strong: '0 8px 30px rgba(0, 0, 0, 0.3)',
   },
+  mode: 'light',
 };
 
 // Dark Theme
@@ -57,11 +61,15 @@ export const darkTheme = {
     // CopyButton states
     error: '#dc3545',
     success: '#28a745',
+    // Menu v1.2.0
+    danger: '#ff4d4f',
   },
   shadows: {
     soft: '7px 7px 14px #25282c, -7px -7px 14px #33363c',
     softInset: 'inset 7px 7px 14px #25282c, inset -7px -7px 14px #33363c',
+    strong: '0 8px 30px rgba(0, 0, 0, 0.5)',
   },
+  mode: 'dark',
 };
 
 // Export a TypeScript type for our theme objects

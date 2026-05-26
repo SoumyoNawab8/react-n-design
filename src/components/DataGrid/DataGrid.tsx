@@ -1,11 +1,13 @@
 'use client';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { VariableSizeList as List, type ListChildComponentProps } from 'react-window';
-import { FaChevronDown, FaChevronRight, FaFilter, FaSort, FaSortDown, FaSortUp } from '../../icons';
+import { FaChevronDown, FaChevronRight, FaFilter, FaSort, FaSortDown, FaSortUp, FaBars } from '../../icons';
 import { Button } from '../Button';
 import {
   CheckboxWrapper,
   EmptyState,
+  EmptyStateIcon,
+  EmptyStateTitle,
   ExpandableContent,
   ExpandIconWrapper,
   FilterButton,
@@ -19,12 +21,19 @@ import {
   GridHeaderRow,
   GridRow,
   GridWrapper,
+  MobileColumnMenu,
+  MobileColumnMenuButton,
+  MobileColumnMenuItem,
+  MobileToolbar,
   PageSizeSelect,
   PaginationWrapper,
+  PinnedLeftCell,
+  PinnedRightCell,
   ResizeHandle,
   SkeletonCell,
   SkeletonRow,
   SortIconWrapper,
+  ToolbarWrapper,
 } from './DataGrid.styles';
 
 export interface DataGridColumn<T = Record<string, unknown>> {
@@ -35,6 +44,7 @@ export interface DataGridColumn<T = Record<string, unknown>> {
   sorter?: (a: T, b: T) => number;
   filterable?: boolean;
   render?: (value: unknown, record: T) => React.ReactNode;
+  pinned?: 'left' | 'right';
 }
 
 export interface DataGridPagination {
@@ -56,6 +66,12 @@ export interface DataGridExpandable<T = Record<string, unknown>> {
   rowExpandable?: (record: T) => boolean;
 }
 
+export interface ColumnVisibilityConfig {
+  sm?: string[];
+  md?: string[];
+  lg?: string[];
+}
+
 export interface DataGridProps<T = Record<string, unknown>> {
   columns: DataGridColumn<T>[];
   dataSource: T[];
@@ -69,6 +85,9 @@ export interface DataGridProps<T = Record<string, unknown>> {
   expandedRowHeight?: number;
   className?: string;
   style?: React.CSSProperties;
+  variant?: 'default' | 'minimal' | 'glass';
+  columnVisibility?: ColumnVisibilityConfig;
+  toolbar?: React.ReactNode | ((props: { columns: DataGridColumn<T>[] }) => React.ReactNode);
 }
 
 const getRowKey = <T,>(
@@ -82,9 +101,62 @@ const getRowKey = <T,>(
   return String(index);
 };
 
+// Hook to track window width for responsive column visibility
+const useWindowWidth = () => {
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+  
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  return width;
+};
+
+// Hook for touch gestures
+const useTouchScroll = (ref: React.RefObject<HTMLElement>) => {
+  const touchStartX = useRef<number | null>(null);
+  const scrollStartX = useRef<number>(0);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX;
+      scrollStartX.current = element.scrollLeft;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (touchStartX.current === null) return;
+      const touchX = e.touches[0].clientX;
+      const diff = touchStartX.current - touchX;
+      element.scrollLeft = scrollStartX.current + diff;
+    };
+
+    const handleTouchEnd = () => {
+      touchStartX.current = null;
+    };
+
+    element.addEventListener('touchstart', handleTouchStart, { passive: true });
+    element.addEventListener('touchmove', handleTouchMove, { passive: true });
+    element.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      element.removeEventListener('touchstart', handleTouchStart);
+      element.removeEventListener('touchmove', handleTouchMove);
+      element.removeEventListener('toucheend', handleTouchEnd);
+    };
+  }, [ref]);
+};
+
 interface RowItemData {
   paginatedData: Record<string, unknown>[];
   displayColumns: DataGridColumn<Record<string, unknown>>[];
+  pinnedLeftColumns: DataGridColumn<Record<string, unknown>>[];
+  pinnedRightColumns: DataGridColumn<Record<string, unknown>>[];
+  scrollableColumns: DataGridColumn<Record<string, unknown>>[];
   columnWidths: Record<string, number>;
   rowKeyProp?: string | ((record: Record<string, unknown>) => string);
   expandedRowKeysSet: Set<string>;
@@ -107,6 +179,9 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
   const {
     paginatedData,
     displayColumns,
+    pinnedLeftColumns,
+    pinnedRightColumns,
+    scrollableColumns,
     columnWidths,
     rowKeyProp,
     expandedRowKeysSet,
@@ -126,6 +201,100 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
   const isExpanded = expandedRowKeysSet.has(key);
   const isSelected = selectedRowKeysSet.has(key);
 
+  const renderCell = (col: DataGridColumn<Record<string, unknown>>, colIndex: number, isPinned?: 'left' | 'right') => {
+    const isActive = activeCell?.row === index && activeCell?.col === colIndex;
+    const cellWidth = columnWidths[col.key] ?? col.width ?? 150;
+    const CellComponent = isPinned === 'left' ? PinnedLeftCell : isPinned === 'right' ? PinnedRightCell : GridCell;
+
+    if (col.key === '__expand__') {
+      const canExpand = !expandable?.rowExpandable || expandable.rowExpandable(record);
+      return (
+        <CellComponent
+          key={col.key}
+          role="gridcell"
+          aria-colindex={colIndex + 1}
+          width={cellWidth}
+          isActive={isActive}
+          tabIndex={isActive ? 0 : -1}
+          data-grid-cell={`${index}-${colIndex}`}
+          onClick={() => onCellClick(index, colIndex)}
+          onFocus={() => onCellClick(index, colIndex)}
+        >
+          {canExpand && (
+            <ExpandIconWrapper
+              onClick={() => onToggleExpand(key, record)}
+              aria-expanded={isExpanded}
+              isExpanded={isExpanded}
+              aria-label={isExpanded ? 'Collapse row' : 'Expand row'}
+            >
+              {isExpanded ? <FaChevronDown size={12} /> : <FaChevronRight size={12} />}
+            </ExpandIconWrapper>
+          )}
+        </CellComponent>
+      );
+    }
+
+    if (col.key === '__selection__') {
+      return (
+        <CellComponent
+          key={col.key}
+          role="gridcell"
+          aria-colindex={colIndex + 1}
+          width={cellWidth}
+          isActive={isActive}
+          tabIndex={isActive ? 0 : -1}
+          data-grid-cell={`${index}-${colIndex}`}
+          onClick={() => onCellClick(index, colIndex)}
+          onFocus={() => onCellClick(index, colIndex)}
+        >
+          <CheckboxWrapper>
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={() => onToggleSelect(key)}
+              aria-label={`Select row ${key}`}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </CheckboxWrapper>
+        </CellComponent>
+      );
+    }
+
+    const cellContent = col.render
+      ? col.render((record as Record<string, unknown>)[col.key], record)
+      : String((record as Record<string, unknown>)[col.key] ?? '');
+
+    return (
+      <CellComponent
+        key={col.key}
+        role="gridcell"
+        aria-colindex={colIndex + 1}
+        width={cellWidth}
+        isActive={isActive}
+        tabIndex={isActive ? 0 : -1}
+        data-grid-cell={`${index}-${colIndex}`}
+        onClick={() => onCellClick(index, colIndex)}
+        onFocus={() => onCellClick(index, colIndex)}
+      >
+        {col.render ? (
+          cellContent
+        ) : (
+          <span
+            style={{
+              display: 'block',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              width: '100%',
+            }}
+          >
+            {cellContent}
+          </span>
+        )}
+      </CellComponent>
+    );
+  };
+
   return (
     <GridRow
       role="row"
@@ -136,100 +305,17 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
       style={style}
     >
       <GridCellsRow style={{ width: totalWidth, minWidth: totalWidth, height: rowHeight }}>
-        {displayColumns.map((col, colIndex) => {
-          const isActive = activeCell?.row === index && activeCell?.col === colIndex;
-          const cellWidth = columnWidths[col.key] ?? col.width ?? 150;
-
-          if (col.key === '__expand__') {
-            const canExpand = !expandable?.rowExpandable || expandable.rowExpandable(record);
-            return (
-              <GridCell
-                key={col.key}
-                role="gridcell"
-                aria-colindex={colIndex + 1}
-                width={cellWidth}
-                isActive={isActive}
-                tabIndex={isActive ? 0 : -1}
-                data-grid-cell={`${index}-${colIndex}`}
-                onClick={() => onCellClick(index, colIndex)}
-                onFocus={() => onCellClick(index, colIndex)}
-              >
-                {canExpand && (
-                  <ExpandIconWrapper
-                    onClick={() => onToggleExpand(key, record)}
-                    aria-expanded={isExpanded}
-                    aria-label={isExpanded ? 'Collapse row' : 'Expand row'}
-                  >
-                    {isExpanded ? <FaChevronDown size={12} /> : <FaChevronRight size={12} />}
-                  </ExpandIconWrapper>
-                )}
-              </GridCell>
-            );
-          }
-
-          if (col.key === '__selection__') {
-            return (
-              <GridCell
-                key={col.key}
-                role="gridcell"
-                aria-colindex={colIndex + 1}
-                width={cellWidth}
-                isActive={isActive}
-                tabIndex={isActive ? 0 : -1}
-                data-grid-cell={`${index}-${colIndex}`}
-                onClick={() => onCellClick(index, colIndex)}
-                onFocus={() => onCellClick(index, colIndex)}
-              >
-                <CheckboxWrapper>
-                  <input
-                    type="checkbox"
-                    checked={isSelected}
-                    onChange={() => onToggleSelect(key)}
-                    aria-label={`Select row ${key}`}
-                    onClick={(e) => e.stopPropagation()}
-                  />
-                </CheckboxWrapper>
-              </GridCell>
-            );
-          }
-
-          const cellContent = col.render
-            ? col.render((record as Record<string, unknown>)[col.key], record)
-            : String((record as Record<string, unknown>)[col.key] ?? '');
-
-          return (
-            <GridCell
-              key={col.key}
-              role="gridcell"
-              aria-colindex={colIndex + 1}
-              width={cellWidth}
-              isActive={isActive}
-              tabIndex={isActive ? 0 : -1}
-              data-grid-cell={`${index}-${colIndex}`}
-              onClick={() => onCellClick(index, colIndex)}
-              onFocus={() => onCellClick(index, colIndex)}
-            >
-              {col.render ? (
-                cellContent
-              ) : (
-                <span
-                  style={{
-                    display: 'block',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                    width: '100%',
-                  }}
-                >
-                  {cellContent}
-                </span>
-              )}
-            </GridCell>
-          );
-        })}
+        {/* Pinned Left Columns */}
+        {pinnedLeftColumns.map((col, i) => renderCell(col, i, 'left'))}
+        
+        {/* Scrollable Columns */}
+        {scrollableColumns.map((col, i) => renderCell(col, i + pinnedLeftColumns.length))}
+        
+        {/* Pinned Right Columns */}
+        {pinnedRightColumns.map((col, i) => renderCell(col, i + pinnedLeftColumns.length + scrollableColumns.length, 'right'))}
       </GridCellsRow>
       {isExpanded && expandable?.expandedRowRender && (
-        <ExpandableContent role="region" aria-label={`Row ${key} details`}>
+        <ExpandableContent role="region" aria-label={`Row ${key} details`} isExpanded={isExpanded}>
           {expandable.expandedRowRender(record)}
         </ExpandableContent>
       )}
@@ -237,7 +323,7 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
   );
 };
 
-export const DataGrid = <T extends object>({
+const DataGridBase = <T extends object>({
   columns,
   dataSource,
   rowKey,
@@ -250,6 +336,9 @@ export const DataGrid = <T extends object>({
   expandedRowHeight = 200,
   className,
   style: propStyle,
+  variant = 'default',
+  columnVisibility,
+  toolbar,
 }: DataGridProps<T>) => {
   const [sortConfig, setSortConfig] = useState<{ key: string; order: 'asc' | 'desc' | null }>({
     key: '',
@@ -273,12 +362,69 @@ export const DataGrid = <T extends object>({
     new Set(expandable?.defaultExpandedRowKeys || [])
   );
   const [activeCell, setActiveCell] = useState<{ row: number; col: number } | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [resizingCol, setResizingCol] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const windowWidth = useWindowWidth();
+  
+  useEffect(() => {
+    setIsMobile(windowWidth < 768);
+  }, [windowWidth]);
+
+  // Filter columns based on responsive visibility
+  const visibleColumns = useMemo(() => {
+    if (!columnVisibility || !isMobile) return columns;
+    
+    let visibleKeys: string[] = [];
+    if (windowWidth < 640 && columnVisibility.sm) {
+      visibleKeys = columnVisibility.sm;
+    } else if (windowWidth < 1024 && columnVisibility.md) {
+      visibleKeys = columnVisibility.md;
+    } else if (columnVisibility.lg) {
+      visibleKeys = columnVisibility.lg;
+    }
+    
+    if (visibleKeys.length === 0) return columns;
+    return columns.filter(col => visibleKeys.includes(col.key));
+  }, [columns, columnVisibility, windowWidth, isMobile]);
+
+  // Separate pinned columns
+  const { pinnedLeftColumns, pinnedRightColumns, scrollableColumns } = useMemo(() => {
+    const left: DataGridColumn<T>[] = [];
+    const right: DataGridColumn<T>[] = [];
+    const scrollable: DataGridColumn<T>[] = [];
+
+    let cols = [...visibleColumns];
+    if (expandable) {
+      cols = [{ key: '__expand__', title: '', width: 48 }, ...cols];
+    }
+    if (rowSelection) {
+      cols = [{ key: '__selection__', title: '', width: 48 }, ...cols];
+    }
+
+    cols.forEach(col => {
+      if (col.pinned === 'left') left.push(col);
+      else if (col.pinned === 'right') right.push(col);
+      else scrollable.push(col);
+    });
+
+    return { pinnedLeftColumns: left, pinnedRightColumns: right, scrollableColumns: scrollable };
+  }, [visibleColumns, expandable, rowSelection]);
+
+  const displayColumns = useMemo(() => {
+    return [...pinnedLeftColumns, ...scrollableColumns, ...pinnedRightColumns];
+  }, [pinnedLeftColumns, scrollableColumns, pinnedRightColumns]);
 
   const listRef = useRef<List>(null);
   const listOuterRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const [bodyHeight, setBodyHeight] = useState(height);
+
+  // Touch gestures
+  useTouchScroll(listOuterRef as React.RefObject<HTMLElement>);
+  useTouchScroll(headerRef as React.RefObject<HTMLElement>);
 
   useEffect(() => {
     const el = bodyRef.current;
@@ -399,17 +545,6 @@ export const DataGrid = <T extends object>({
     [expandedRowKeysSet, expandable]
   );
 
-  const displayColumns = useMemo(() => {
-    let cols: DataGridColumn<T>[] = [...columns];
-    if (expandable) {
-      cols = [{ key: '__expand__', title: '', width: 48 }, ...cols];
-    }
-    if (rowSelection) {
-      cols = [{ key: '__selection__', title: '', width: 48 }, ...cols];
-    }
-    return cols;
-  }, [columns, expandable, rowSelection]);
-
   const totalWidth = useMemo(() => {
     return displayColumns.reduce(
       (sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150),
@@ -434,32 +569,73 @@ export const DataGrid = <T extends object>({
     setActiveFilterCol((prev) => (prev === colKey ? null : colKey));
   }, []);
 
+  // RAF-based column resize for smooth updates
+  const resizeRafRef = useRef<number | null>(null);
+  const pendingWidthRef = useRef<{ colKey: string; width: number } | null>(null);
+
   const handleResizeStart = useCallback(
     (colKey: string, e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
+      setResizingCol(colKey);
       const startX = e.clientX;
       const startWidth = columnWidths[colKey] ?? 150;
+      
       const onMove = (moveEvent: MouseEvent) => {
         const delta = moveEvent.clientX - startX;
-        setColumnWidths((prev) => ({ ...prev, [colKey]: Math.max(50, startWidth + delta) }));
+        const newWidth = Math.max(50, startWidth + delta);
+        
+        // Cancel any pending RAF
+        if (resizeRafRef.current) {
+          cancelAnimationFrame(resizeRafRef.current);
+        }
+        
+        pendingWidthRef.current = { colKey, width: newWidth };
+        
+        // Use RAF for smooth updates
+        resizeRafRef.current = requestAnimationFrame(() => {
+          if (pendingWidthRef.current) {
+            setColumnWidths((prev) => ({ 
+              ...prev, 
+              [pendingWidthRef.current!.colKey]: pendingWidthRef.current!.width 
+            }));
+            pendingWidthRef.current = null;
+          }
+          resizeRafRef.current = null;
+        });
       };
+      
       const onUp = () => {
+        setResizingCol(null);
+        if (resizeRafRef.current) {
+          cancelAnimationFrame(resizeRafRef.current);
+          resizeRafRef.current = null;
+        }
+        pendingWidthRef.current = null;
         window.removeEventListener('mousemove', onMove);
         window.removeEventListener('mouseup', onUp);
       };
+      
       window.addEventListener('mousemove', onMove);
       window.addEventListener('mouseup', onUp);
     },
     [columnWidths]
   );
 
-  const getAriaSort = (colKey: string): 'ascending' | 'descending' | 'none' | undefined => {
+  useEffect(() => {
+    return () => {
+      if (resizeRafRef.current) {
+        cancelAnimationFrame(resizeRafRef.current);
+      }
+    };
+  }, []);
+
+  const getAriaSort = useCallback((colKey: string): 'ascending' | 'descending' | 'none' | undefined => {
     const col = columns.find((c) => c.key === colKey);
     if (!col?.sortable && !col?.sorter) return undefined;
     if (sortConfig.key !== colKey) return 'none';
     return sortConfig.order === 'asc' ? 'ascending' : 'descending';
-  };
+  }, [columns, sortConfig]);
 
   const totalCols = displayColumns.length;
 
@@ -551,6 +727,9 @@ export const DataGrid = <T extends object>({
     return {
       paginatedData,
       displayColumns,
+      pinnedLeftColumns,
+      pinnedRightColumns,
+      scrollableColumns,
       columnWidths,
       rowKeyProp: rowKey,
       expandedRowKeysSet,
@@ -566,6 +745,9 @@ export const DataGrid = <T extends object>({
   }, [
     paginatedData,
     displayColumns,
+    pinnedLeftColumns,
+    pinnedRightColumns,
+    scrollableColumns,
     columnWidths,
     rowKey,
     expandedRowKeysSet,
@@ -578,8 +760,42 @@ export const DataGrid = <T extends object>({
     rowHeight,
   ]);
 
+  const pinnedLeftWidth = useMemo(() => {
+    return pinnedLeftColumns.reduce((sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150), 0);
+  }, [pinnedLeftColumns, columnWidths]);
+
+  const pinnedRightWidth = useMemo(() => {
+    return pinnedRightColumns.reduce((sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150), 0);
+  }, [pinnedRightColumns, columnWidths]);
+
   return (
-    <GridWrapper className={className} style={{ height, ...propStyle }}>
+    <GridWrapper className={className} style={{ height, ...propStyle }} variant={variant}>
+      {/* Custom Toolbar */}
+      {(toolbar || (isMobile && columnVisibility)) && (
+        <ToolbarWrapper>
+          {toolbar && typeof toolbar === 'function' 
+            ? toolbar({ columns: visibleColumns }) 
+            : toolbar}
+          {isMobile && columnVisibility && (
+            <MobileToolbar>
+              <MobileColumnMenuButton onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                <FaBars size={16} />
+                Columns
+              </MobileColumnMenuButton>
+              {mobileMenuOpen && (
+                <MobileColumnMenu>
+                  {visibleColumns.filter(col => col.key !== '__selection__' && col.key !== '__expand__').map(col => (
+                    <MobileColumnMenuItem key={col.key}>
+                      {col.title}
+                    </MobileColumnMenuItem>
+                  ))}
+                </MobileColumnMenu>
+              )}
+            </MobileToolbar>
+          )}
+        </ToolbarWrapper>
+      )}
+
       <div
         role="grid"
         aria-rowcount={paginatedData.length + 1}
@@ -588,14 +804,21 @@ export const DataGrid = <T extends object>({
         onKeyDown={handleGridKeyDown}
         style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}
       >
-        <GridHeaderContainer ref={headerRef} onScroll={handleHeaderScroll}>
+        <GridHeaderContainer 
+          ref={headerRef} 
+          onScroll={handleHeaderScroll}
+          variant={variant}
+        >
           <GridHeaderRow
             role="row"
             aria-rowindex={1}
             style={{ width: totalWidth, minWidth: totalWidth }}
+            variant={variant}
           >
             {displayColumns.map((col, colIndex) => {
               const cellWidth = columnWidths[col.key] ?? col.width ?? 150;
+              const isPinned = pinnedLeftColumns.includes(col) ? 'left' : 
+                              pinnedRightColumns.includes(col) ? 'right' : undefined;
 
               if (col.key === '__selection__') {
                 return (
@@ -604,6 +827,10 @@ export const DataGrid = <T extends object>({
                     role="columnheader"
                     aria-colindex={colIndex + 1}
                     width={cellWidth}
+                    isPinned={isPinned}
+                    pinnedLeftWidth={isPinned === 'left' ? pinnedLeftWidth : undefined}
+                    pinnedRightWidth={isPinned === 'right' ? pinnedRightWidth : undefined}
+                    variant={variant}
                   >
                     <CheckboxWrapper>
                       <input
@@ -614,7 +841,10 @@ export const DataGrid = <T extends object>({
                         onClick={(e) => e.stopPropagation()}
                       />
                     </CheckboxWrapper>
-                    <ResizeHandle onMouseDown={(e) => handleResizeStart(col.key, e)} />
+                    <ResizeHandle 
+                      onMouseDown={(e) => handleResizeStart(col.key, e)} 
+                      isResizing={resizingCol === col.key}
+                    />
                   </GridHeaderCell>
                 );
               }
@@ -626,8 +856,15 @@ export const DataGrid = <T extends object>({
                     role="columnheader"
                     aria-colindex={colIndex + 1}
                     width={cellWidth}
+                    isPinned={isPinned}
+                    pinnedLeftWidth={isPinned === 'left' ? pinnedLeftWidth : undefined}
+                    pinnedRightWidth={isPinned === 'right' ? pinnedRightWidth : undefined}
+                    variant={variant}
                   >
-                    <ResizeHandle onMouseDown={(e) => handleResizeStart(col.key, e)} />
+                    <ResizeHandle 
+                      onMouseDown={(e) => handleResizeStart(col.key, e)} 
+                      isResizing={resizingCol === col.key}
+                    />
                   </GridHeaderCell>
                 );
               }
@@ -643,6 +880,10 @@ export const DataGrid = <T extends object>({
                   isSorted={sortConfig.key === col.key}
                   width={cellWidth}
                   onClick={() => handleSort(col)}
+                  isPinned={isPinned}
+                  pinnedLeftWidth={isPinned === 'left' ? pinnedLeftWidth : undefined}
+                  pinnedRightWidth={isPinned === 'right' ? pinnedRightWidth : undefined}
+                  variant={variant}
                 >
                   <span style={{ display: 'flex', alignItems: 'center' }}>
                     {col.title}
@@ -684,7 +925,10 @@ export const DataGrid = <T extends object>({
                       />
                     </FilterPopover>
                   )}
-                  <ResizeHandle onMouseDown={(e) => handleResizeStart(col.key, e)} />
+                  <ResizeHandle 
+                    onMouseDown={(e) => handleResizeStart(col.key, e)} 
+                    isResizing={resizingCol === col.key}
+                  />
                 </GridHeaderCell>
               );
             })}
@@ -696,15 +940,17 @@ export const DataGrid = <T extends object>({
             Array.from({ length: 5 }).map((_, i) => (
               // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton rows are static placeholders
               <SkeletonRow key={i} role="row">
-                {displayColumns.map((_, j) => (
+                {displayColumns.map((col, j) => (
                   // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton cells are static placeholders
-                  <SkeletonCell key={j} role="gridcell" />
+                  <SkeletonCell key={j} role="gridcell" style={{ width: columnWidths[col.key] ?? col.width ?? 150 }} />
                 ))}
               </SkeletonRow>
             ))
           ) : paginatedData.length === 0 ? (
             <EmptyState role="status" aria-live="polite">
-              No data
+              <EmptyStateIcon>📊</EmptyStateIcon>
+              <EmptyStateTitle>No Data</EmptyStateTitle>
+              <p>No records to display</p>
             </EmptyState>
           ) : (
             bodyHeight > 0 && (
@@ -765,3 +1011,7 @@ export const DataGrid = <T extends object>({
     </GridWrapper>
   );
 };
+
+// Memoize the entire DataGrid component
+export const DataGrid = React.memo(DataGridBase) as typeof DataGridBase;
+(DataGrid as React.FC).displayName = 'DataGrid';

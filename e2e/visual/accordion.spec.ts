@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Accordion - Default State', () => {
   test('renders default accordion - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -19,7 +21,9 @@ test.describe('Accordion - Default State', () => {
   });
 
   test('renders default accordion - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -31,7 +35,9 @@ test.describe('Accordion - Default State', () => {
 
 test.describe('Accordion - Expanded State', () => {
   test('renders expanded panel - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -42,7 +48,9 @@ test.describe('Accordion - Expanded State', () => {
   });
 
   test('renders all expanded panels - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--controlled&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--controlled&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -58,7 +66,9 @@ test.describe('Accordion - Expanded State', () => {
 
 test.describe('Accordion - Allow Multiple', () => {
   test('renders multiple expanded panels - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--allow-multiple&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--allow-multiple&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -68,7 +78,9 @@ test.describe('Accordion - Allow Multiple', () => {
   });
 
   test('renders multiple expanded panels - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--allow-multiple&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--allow-multiple&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -80,7 +92,9 @@ test.describe('Accordion - Allow Multiple', () => {
 
 test.describe('Accordion - Borderless', () => {
   test('renders borderless accordion - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--borderless&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--borderless&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -90,7 +104,9 @@ test.describe('Accordion - Borderless', () => {
   });
 
   test('renders borderless accordion - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--borderless&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--borderless&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -116,7 +132,7 @@ test.describe('Accordion - Disabled State', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
-    // Third panel ("Disabled Panel") is not visible in the default story 
+    // Third panel ("Disabled Panel") is not visible in the default story
     // but its header should show disabled state if we had one
     // This tests regular view with enabled items
     await expect(page).toHaveScreenshot('accordion-mixed-disabled.png', {
@@ -127,7 +143,9 @@ test.describe('Accordion - Disabled State', () => {
 
 test.describe('Accordion - Custom Icons', () => {
   test('renders accordion with custom icons - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--with-custom-icons&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--with-custom-icons&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -137,7 +155,9 @@ test.describe('Accordion - Custom Icons', () => {
   });
 
   test('renders accordion with custom icons - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--with-custom-icons&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--with-custom-icons&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -149,7 +169,9 @@ test.describe('Accordion - Custom Icons', () => {
 
 test.describe('Accordion - Nested Content', () => {
   test('renders accordion with rich content - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-accordion--nested-content&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-accordion--nested-content&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -182,7 +204,7 @@ test.describe('Accordion - Interactions', () => {
   test('accordion chevron rotates on expand', async ({ page }) => {
     await page.goto('/iframe.html?args=&id=react-n-design-accordion--default&viewMode=story');
     await page.waitForLoadState('networkidle');
-    
+
     // Click on a collapsed panel
     const header2 = page.locator('[data-testid="accordion-header-2"]');
     await header2.click();

@@ -3,7 +3,7 @@
 export type { ErrorMessageProps } from './ErrorMessage';
 export * from './ErrorMessage';
 // Form components
-export { Form, InternalForm } from './Form';
+export { Form, InternalForm, useForm } from './Form';
 // Types
 export type {
   FieldChangePayload,

@@ -1,16 +1,12 @@
 'use client';
 import type React from 'react';
 import { useCallback, useState } from 'react';
-import { Copy, Check } from '../../icons';
+import { Check, Copy } from '../../icons';
 import { Tooltip } from '../Tooltip';
-import {
-  StyledCopyButton,
-  CopyButtonIcon,
-  SuccessIcon,
-  sizes,
-} from './CopyButton.styles';
+import { StyledCopyButton, SuccessIcon, sizes } from './CopyButton.styles';
 
-export interface CopyButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'> {
+export interface CopyButtonProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'> {
   /**
    * The text to copy to clipboard. If not provided, will attempt to copy
    * from the target element or current selection.
@@ -189,9 +185,7 @@ export const CopyButton = ({
         data-testid="copy-button"
         {...props}
       >
-        {isCopied
-          ? (successIcon ?? defaultSuccessIcon)
-          : (copyIcon ?? defaultCopyIcon)}
+        {isCopied ? (successIcon ?? defaultSuccessIcon) : (copyIcon ?? defaultCopyIcon)}
       </StyledCopyButton>
     </Tooltip>
   );

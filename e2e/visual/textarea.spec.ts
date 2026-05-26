@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('TextArea - Default State', () => {
   test('renders default textarea - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -19,7 +21,9 @@ test.describe('TextArea - Default State', () => {
   });
 
   test('renders default textarea - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -42,7 +46,9 @@ test.describe('TextArea - Labeled State', () => {
 
 test.describe('TextArea - Focused State', () => {
   test('shows focused state styling', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.focus('textarea');
@@ -54,7 +60,9 @@ test.describe('TextArea - Focused State', () => {
   });
 
   test('shows focused state in dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.focus('textarea');
@@ -68,7 +76,9 @@ test.describe('TextArea - Focused State', () => {
 
 test.describe('TextArea - With Helper Text', () => {
   test('renders textarea with helper text', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--with-helper-text&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--with-helper-text&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('textarea-helper-text.png', {
@@ -79,7 +89,9 @@ test.describe('TextArea - With Helper Text', () => {
 
 test.describe('TextArea - Character Counter', () => {
   test('renders textarea with character count', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--with-character-count&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--with-character-count&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('textarea-with-count.png', {
@@ -141,7 +153,9 @@ test.describe('TextArea - Auto-Resize', () => {
   });
 
   test('shows auto-resize with content', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--auto-resize-with-content&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--auto-resize-with-content&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('textarea-autoresize-content.png', {
@@ -195,7 +209,9 @@ test.describe('TextArea - Full Width', () => {
 test.describe('TextArea - Responsive', () => {
   test('renders on mobile viewport', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--with-character-count&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--with-character-count&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('textarea-mobile.png', {
@@ -205,7 +221,9 @@ test.describe('TextArea - Responsive', () => {
 
   test('renders on tablet viewport', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--with-character-count&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--with-character-count&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('textarea-tablet.png', {
@@ -215,7 +233,9 @@ test.describe('TextArea - Responsive', () => {
 
   test('renders on desktop viewport', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--with-character-count&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--with-character-count&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('textarea-desktop.png', {
@@ -226,7 +246,9 @@ test.describe('TextArea - Responsive', () => {
 
 test.describe('TextArea - Contact Form Example', () => {
   test('renders complete form example', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-textarea--contact-form-example&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-textarea--contact-form-example&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('textarea-form-example.png', {

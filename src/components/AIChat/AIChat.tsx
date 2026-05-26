@@ -85,7 +85,7 @@ export const AIChat = ({
       const { scrollTop, scrollHeight, clientHeight } = messagesRef.current;
       const isNearBottom = scrollHeight - scrollTop - clientHeight < 100;
       const messagesChanged = messages.length !== lastMessageCountRef.current;
-      
+
       if (messagesChanged) {
         lastMessageCountRef.current = messages.length;
         // Only scroll if user was already near bottom

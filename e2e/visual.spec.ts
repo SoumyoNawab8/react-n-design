@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 
 /**
  * Visual Regression Tests Suite
- * 
+ *
  * This file imports all visual regression tests to run them together.
  * Individual test files are in ./visual/ directory.
  */

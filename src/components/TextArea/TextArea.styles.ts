@@ -35,7 +35,8 @@ export const HelperText = styled.p`
 `;
 
 export const TextAreaWrapper = styled.div.withConfig({
-  shouldForwardProp: (prop) => !['size', 'hasError', 'disabled', 'readOnly', 'isFocused'].includes(prop),
+  shouldForwardProp: (prop) =>
+    !['size', 'hasError', 'disabled', 'readOnly', 'isFocused'].includes(prop),
 })<{
   size: 'small' | 'medium' | 'large';
   hasError: boolean;

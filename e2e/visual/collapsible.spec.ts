@@ -7,7 +7,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Collapsible - Default State', () => {
   test('renders collapsed collapsible - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -17,7 +19,9 @@ test.describe('Collapsible - Default State', () => {
   });
 
   test('renders collapsed collapsible - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -29,7 +33,9 @@ test.describe('Collapsible - Default State', () => {
 
 test.describe('Collapsible - Expanded State', () => {
   test('renders expanded collapsible - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--initially-open&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--initially-open&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -39,7 +45,9 @@ test.describe('Collapsible - Expanded State', () => {
   });
 
   test('renders expanded collapsible - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--initially-open&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--initially-open&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -51,7 +59,9 @@ test.describe('Collapsible - Expanded State', () => {
 
 test.describe('Collapsible - Disabled State', () => {
   test('renders disabled collapsible - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--disabled&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--disabled&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -61,7 +71,9 @@ test.describe('Collapsible - Disabled State', () => {
   });
 
   test('renders disabled collapsible - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--disabled&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--disabled&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -73,7 +85,9 @@ test.describe('Collapsible - Disabled State', () => {
 
 test.describe('Collapsible - Nested', () => {
   test('renders nested collapsibles - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--nested&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--nested&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -85,7 +99,9 @@ test.describe('Collapsible - Nested', () => {
 
 test.describe('Collapsible - Rich Content', () => {
   test('renders collapsible with rich content - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--with-rich-content&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--with-rich-content&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -97,7 +113,9 @@ test.describe('Collapsible - Rich Content', () => {
 
 test.describe('Collapsible - Custom Trigger', () => {
   test('renders collapsible with custom trigger - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--with-custom-trigger&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--with-custom-trigger&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -138,7 +156,9 @@ test.describe('Collapsible - Interactions', () => {
   });
 
   test('collapsible collapses when clicked again', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--initially-open&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--initially-open&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -216,7 +236,9 @@ test.describe('Collapsible - Controlled Mode', () => {
 
 test.describe('Collapsible - UnmountOnExit', () => {
   test('renders collapsible with unmountOnExit', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-collapsible--unmount-on-exit&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-collapsible--unmount-on-exit&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 

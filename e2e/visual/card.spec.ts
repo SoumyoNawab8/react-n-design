@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Card - Default State', () => {
   test('renders default card - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -19,7 +21,9 @@ test.describe('Card - Default State', () => {
   });
 
   test('renders default card - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -31,7 +35,9 @@ test.describe('Card - Default State', () => {
 
 test.describe('Card - Header and Footer', () => {
   test('renders card with header and footer', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-card--with-header-and-footer&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--with-header-and-footer&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-header-footer.png', {
@@ -64,7 +70,9 @@ test.describe('Card - Hoverable State', () => {
   });
 
   test('card hover effect - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-card--hoverable&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--hoverable&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.hover('[data-testid="card"]');
@@ -76,7 +84,9 @@ test.describe('Card - Hoverable State', () => {
   });
 
   test('card hover effect - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-card--hoverable&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--hoverable&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.hover('[data-testid="card"]');
@@ -102,7 +112,9 @@ test.describe('Card - Loading State', () => {
 
 test.describe('Card - Variant Styles', () => {
   test('outset variant - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=variant:outset&id=react-n-design-card--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=variant:outset&id=react-n-design-card--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-outset-light.png', {
@@ -111,7 +123,9 @@ test.describe('Card - Variant Styles', () => {
   });
 
   test('inset variant - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=variant:inset&id=react-n-design-card--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=variant:inset&id=react-n-design-card--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-inset-light.png', {
@@ -120,7 +134,9 @@ test.describe('Card - Variant Styles', () => {
   });
 
   test('outset variant - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=variant:outset&id=react-n-design-card--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=variant:outset&id=react-n-design-card--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-outset-dark.png', {
@@ -129,7 +145,9 @@ test.describe('Card - Variant Styles', () => {
   });
 
   test('inset variant - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=variant:inset&id=react-n-design-card--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=variant:inset&id=react-n-design-card--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-inset-dark.png', {
@@ -140,7 +158,9 @@ test.describe('Card - Variant Styles', () => {
 
 test.describe('Card - Padding Variants', () => {
   test('render card with small padding', async ({ page }) => {
-    await page.goto('/iframe.html?args=padding:small&id=react-n-design-card--default&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=padding:small&id=react-n-design-card--default&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-padding-small.png', {
@@ -149,7 +169,9 @@ test.describe('Card - Padding Variants', () => {
   });
 
   test('render card with medium padding', async ({ page }) => {
-    await page.goto('/iframe.html?args=padding:medium&id=react-n-design-card--default&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=padding:medium&id=react-n-design-card--default&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-padding-medium.png', {
@@ -158,7 +180,9 @@ test.describe('Card - Padding Variants', () => {
   });
 
   test('render card with large padding', async ({ page }) => {
-    await page.goto('/iframe.html?args=padding:large&id=react-n-design-card--default&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=padding:large&id=react-n-design-card--default&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-padding-large.png', {
@@ -170,7 +194,9 @@ test.describe('Card - Padding Variants', () => {
 test.describe('Card - Responsive', () => {
   test('renders on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/iframe.html?args=&id=react-n-design-card--with-header-and-footer&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--with-header-and-footer&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-mobile.png', {
@@ -180,7 +206,9 @@ test.describe('Card - Responsive', () => {
 
   test('renders on tablet', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto('/iframe.html?args=&id=react-n-design-card--with-header-and-footer&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--with-header-and-footer&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('card-tablet.png', {

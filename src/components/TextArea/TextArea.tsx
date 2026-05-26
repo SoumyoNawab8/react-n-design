@@ -1,6 +1,14 @@
 'use client';
 import type React from 'react';
-import { useCallback, useEffect, useId, useImperativeHandle, useRef, useState, forwardRef } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import {
   CharacterCounter,
   ErrorText,
@@ -31,7 +39,11 @@ export interface TextAreaRef {
   focus: () => void;
   blur: () => void;
   select: () => void;
-  setSelectionRange: (start: number, end: number, direction?: 'forward' | 'backward' | 'none') => void;
+  setSelectionRange: (
+    start: number,
+    end: number,
+    direction?: 'forward' | 'backward' | 'none'
+  ) => void;
   textarea: HTMLTextAreaElement | null;
 }
 
@@ -86,7 +98,11 @@ export const TextArea = forwardRef<TextAreaRef, TextAreaProps>(
       focus: () => textareaRef.current?.focus(),
       blur: () => textareaRef.current?.blur(),
       select: () => textareaRef.current?.select(),
-      setSelectionRange: (start: number, end: number, direction?: 'forward' | 'backward' | 'none') => {
+      setSelectionRange: (
+        start: number,
+        end: number,
+        direction?: 'forward' | 'backward' | 'none'
+      ) => {
         textareaRef.current?.setSelectionRange(start, end, direction);
       },
       textarea: textareaRef.current,
@@ -105,7 +121,9 @@ export const TextArea = forwardRef<TextAreaRef, TextAreaProps>(
 
       // Calculate line height
       const lineHeight = parseInt(getComputedStyle(el).lineHeight, 10) || 24;
-      const borderHeight = parseInt(getComputedStyle(el).borderTopWidth, 10) + parseInt(getComputedStyle(el).borderBottomWidth, 10) || 0;
+      const borderHeight =
+        parseInt(getComputedStyle(el).borderTopWidth, 10) +
+          parseInt(getComputedStyle(el).borderBottomWidth, 10) || 0;
 
       // Calculate min and max heights
       const minHeight = minRows * lineHeight + borderHeight;
@@ -123,12 +141,12 @@ export const TextArea = forwardRef<TextAreaRef, TextAreaProps>(
     // Apply auto-resize when value changes
     useEffect(() => {
       adjustHeight();
-    }, [displayValue, adjustHeight]);
+    }, [adjustHeight]);
 
     // Initial height adjustment
     useEffect(() => {
       adjustHeight();
-    }, []);
+    }, [adjustHeight]);
 
     const handleFocus = useCallback(
       (e: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -176,11 +194,8 @@ export const TextArea = forwardRef<TextAreaRef, TextAreaProps>(
     const atLimit = maxLength ? charCount >= maxLength : false;
 
     // Build aria-describedby attribute
-    const describedByIds = [
-      helperId,
-      errorId,
-      showCount ? counterId : undefined,
-    ].filter(Boolean).join(' ') || undefined;
+    const describedByIds =
+      [helperId, errorId, showCount ? counterId : undefined].filter(Boolean).join(' ') || undefined;
 
     return (
       <TextAreaContainer fullWidth={fullWidth}>
@@ -220,9 +235,7 @@ export const TextArea = forwardRef<TextAreaRef, TextAreaProps>(
           <FooterWrapper>
             <div style={{ flex: 1 }}>
               {error && <ErrorText id={errorId}>{error}</ErrorText>}
-              {!error && helperText && (
-                <HelperText id={helperId}>{helperText}</HelperText>
-              )}
+              {!error && helperText && <HelperText id={helperId}>{helperText}</HelperText>}
             </div>
             {showCount && maxLength && (
               <CharacterCounter

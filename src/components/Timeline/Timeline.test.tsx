@@ -49,17 +49,13 @@ describe('Timeline', () => {
   });
 
   it('renders with custom dot content', () => {
-    const itemsWithDot = [
-      { children: <p>Event</p>, dot: <span data-testid="custom-dot">★</span> },
-    ];
+    const itemsWithDot = [{ children: <p>Event</p>, dot: <span data-testid="custom-dot">★</span> }];
     renderWithTheme(<Timeline items={itemsWithDot} />);
     expect(screen.getByTestId('custom-dot')).toBeInTheDocument();
   });
 
   it('renders with custom dot color', () => {
-    const itemsWithColor = [
-      { children: <p>Colored Event</p>, color: '#ff0000' },
-    ];
+    const itemsWithColor = [{ children: <p>Colored Event</p>, color: '#ff0000' }];
     renderWithTheme(<Timeline items={itemsWithColor} />);
     expect(screen.getByText('Colored Event')).toBeInTheDocument();
   });
@@ -135,12 +131,7 @@ describe('Timeline', () => {
 
   it('combines all props', () => {
     renderWithTheme(
-      <Timeline
-        items={mockItems}
-        mode="alternate"
-        reverse
-        className="custom-timeline"
-      />
+      <Timeline items={mockItems} mode="alternate" reverse className="custom-timeline" />
     );
     expect(screen.getByText('First event')).toBeInTheDocument();
   });

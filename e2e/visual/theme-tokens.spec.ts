@@ -18,7 +18,9 @@ test.describe('Theme Tokens - Light Theme', () => {
   });
 
   test('light theme primary color', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -29,7 +31,9 @@ test.describe('Theme Tokens - Light Theme', () => {
   });
 
   test('light theme text colors', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     // Check text contrast and color
@@ -39,7 +43,9 @@ test.describe('Theme Tokens - Light Theme', () => {
   });
 
   test('light theme soft shadows', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -50,7 +56,9 @@ test.describe('Theme Tokens - Light Theme', () => {
   });
 
   test('light theme border radius', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     // Verify border radius (12px)
@@ -72,7 +80,9 @@ test.describe('Theme Tokens - Dark Theme', () => {
   });
 
   test('dark theme primary color', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -83,7 +93,9 @@ test.describe('Theme Tokens - Dark Theme', () => {
   });
 
   test('dark theme text colors', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     // Check dark mode text (#d1d9e6)
@@ -93,7 +105,9 @@ test.describe('Theme Tokens - Dark Theme', () => {
   });
 
   test('dark theme soft shadows', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -106,7 +120,9 @@ test.describe('Theme Tokens - Dark Theme', () => {
 
 test.describe('Theme Tokens - Neomorphic Effects', () => {
   test('outset shadow in light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=variant:outset&id=react-n-design-card--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=variant:outset&id=react-n-design-card--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -117,7 +133,9 @@ test.describe('Theme Tokens - Neomorphic Effects', () => {
   });
 
   test('inset shadow in light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=variant:inset&id=react-n-design-card--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=variant:inset&id=react-n-design-card--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -128,7 +146,9 @@ test.describe('Theme Tokens - Neomorphic Effects', () => {
   });
 
   test('outset shadow in dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=variant:outset&id=react-n-design-card--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=variant:outset&id=react-n-design-card--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -139,7 +159,9 @@ test.describe('Theme Tokens - Neomorphic Effects', () => {
   });
 
   test('inset shadow in dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=variant:inset&id=react-n-design-card--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=variant:inset&id=react-n-design-card--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -152,7 +174,9 @@ test.describe('Theme Tokens - Neomorphic Effects', () => {
 
 test.describe('Theme Tokens - Color Tokens', () => {
   test('displays success color token', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--success&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--success&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('theme-color-success.png', {
@@ -161,7 +185,9 @@ test.describe('Theme Tokens - Color Tokens', () => {
   });
 
   test('displays error color token', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--error&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--error&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('theme-color-error.png', {
@@ -170,7 +196,9 @@ test.describe('Theme Tokens - Color Tokens', () => {
   });
 
   test('displays warning color token', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--warning&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--warning&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('theme-color-warning.png', {
@@ -179,7 +207,9 @@ test.describe('Theme Tokens - Color Tokens', () => {
   });
 
   test('displays info color token', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-alert--info&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('theme-color-info.png', {
@@ -200,7 +230,9 @@ test.describe('Theme Tokens - Typography', () => {
   });
 
   test('light mode typography contrast', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-typography--heading&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-typography--heading&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('theme-typography-light.png', {
@@ -209,7 +241,9 @@ test.describe('Theme Tokens - Typography', () => {
   });
 
   test('dark mode typography contrast', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-typography--heading&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-typography--heading&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('theme-typography-dark.png', {
@@ -220,7 +254,9 @@ test.describe('Theme Tokens - Typography', () => {
 
 test.describe('Theme Tokens - Theme Toggle', () => {
   test('theme toggle button display', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     // Initial light theme
@@ -230,7 +266,9 @@ test.describe('Theme Tokens - Theme Toggle', () => {
   });
 
   test('theme toggle to dark', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('theme-toggle-dark.png', {
@@ -242,7 +280,9 @@ test.describe('Theme Tokens - Theme Toggle', () => {
 test.describe('Theme Tokens - Responsive', () => {
   test('renders on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -253,7 +293,9 @@ test.describe('Theme Tokens - Responsive', () => {
 
   test('renders on tablet', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto('/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -264,7 +306,9 @@ test.describe('Theme Tokens - Responsive', () => {
 
   test('renders on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-card--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 

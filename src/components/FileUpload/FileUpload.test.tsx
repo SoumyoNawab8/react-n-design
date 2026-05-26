@@ -95,7 +95,7 @@ describe('FileUpload', () => {
   });
 
   it('opens file dialog on Enter key', () => {
-    const inputRef = { current: { click: vi.fn() } };
+    const _inputRef = { current: { click: vi.fn() } };
     renderWithTheme(<FileUpload />);
     const dropZone = screen.getByLabelText('File upload');
     fireEvent.keyDown(dropZone, { key: 'Enter' });

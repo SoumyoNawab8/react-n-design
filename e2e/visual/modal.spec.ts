@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Modal - Default State', () => {
   test('modal opens - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-modal--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-modal--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     // Click to open modal
@@ -22,7 +24,9 @@ test.describe('Modal - Default State', () => {
   });
 
   test('modal opens - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-modal--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-modal--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.click('button');
@@ -160,7 +164,9 @@ test.describe('Modal - Responsive', () => {
 
 test.describe('Modal - Theme Variations', () => {
   test('neomorphic styling in light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-modal--default&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-modal--default&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.click('button');
@@ -172,7 +178,9 @@ test.describe('Modal - Theme Variations', () => {
   });
 
   test('neomorphic styling in dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-modal--default&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-modal--default&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
 
     await page.click('button');

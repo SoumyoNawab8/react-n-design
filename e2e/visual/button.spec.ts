@@ -9,7 +9,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Button - Primary Variant', () => {
   test('renders primary button - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500); // Wait for styles to apply
 
@@ -19,7 +21,9 @@ test.describe('Button - Primary Variant', () => {
   });
 
   test('renders primary button - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--primary&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -58,7 +62,9 @@ test.describe('Button - Primary Variant', () => {
 
 test.describe('Button - Text Variant', () => {
   test('renders text button - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--text-button&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--text-button&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -68,7 +74,9 @@ test.describe('Button - Text Variant', () => {
   });
 
   test('renders text button - dark mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--text-button&viewMode=story&globals=theme:dark');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--text-button&viewMode=story&globals=theme:dark'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -119,7 +127,9 @@ test.describe('Button - Loading State', () => {
   });
 
   test('renders loading with text', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--loading-with-text&viewMode=story');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--loading-with-text&viewMode=story'
+    );
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
@@ -131,7 +141,9 @@ test.describe('Button - Loading State', () => {
 
 test.describe('Button - Link Variant', () => {
   test('renders button as link - light mode', async ({ page }) => {
-    await page.goto('/iframe.html?args=&id=react-n-design-button--as-link&viewMode=story&globals=theme:light');
+    await page.goto(
+      '/iframe.html?args=&id=react-n-design-button--as-link&viewMode=story&globals=theme:light'
+    );
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('button-link-light.png', {

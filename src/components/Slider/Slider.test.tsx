@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
@@ -173,9 +172,7 @@ describe('Slider', () => {
   });
 
   it('snapshots value to step increments', () => {
-    const { rerender } = renderWithTheme(
-      <Slider value={0} step={10} />
-    );
+    const { rerender } = renderWithTheme(<Slider value={0} step={10} />);
     rerender(
       <ThemeProvider theme={lightTheme}>
         <Slider value={23} step={10} />
@@ -186,9 +183,7 @@ describe('Slider', () => {
   });
 
   it('handles controlled mode', () => {
-    const { rerender } = renderWithTheme(
-      <Slider value={50} />
-    );
+    const { rerender } = renderWithTheme(<Slider value={50} />);
     rerender(
       <ThemeProvider theme={lightTheme}>
         <Slider value={75} />
@@ -208,6 +203,6 @@ describe('Slider', () => {
     const onChange = vi.fn();
     renderWithTheme(<Slider value={50} onChange={onChange} />);
     const slider = screen.getByRole('slider');
-    const event = fireEvent.keyDown(slider, { key: 'ArrowRight' });
+    const _event = fireEvent.keyDown(slider, { key: 'ArrowRight' });
   });
 });

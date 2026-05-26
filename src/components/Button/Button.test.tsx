@@ -69,4 +69,97 @@ describe('Button', () => {
     renderWithTheme(<Button data-testid="my-button">Test</Button>);
     expect(screen.getByTestId('my-button')).toBeInTheDocument();
   });
+
+  // New v1.2.0 tests
+  describe('v1.2.0 improvements', () => {
+    it('renders with danger variant', () => {
+      renderWithTheme(<Button variant="danger">Danger</Button>);
+      const button = screen.getByRole('button', { name: /danger/i });
+      expect(button).toBeInTheDocument();
+    });
+
+    it('renders with success variant', () => {
+      renderWithTheme(<Button variant="success">Success</Button>);
+      const button = screen.getByRole('button', { name: /success/i });
+      expect(button).toBeInTheDocument();
+    });
+
+    it('renders with ghost variant', () => {
+      renderWithTheme(<Button variant="ghost">Ghost</Button>);
+      const button = screen.getByRole('button', { name: /ghost/i });
+      expect(button).toBeInTheDocument();
+    });
+
+    it('renders with glassMorphism prop', () => {
+      renderWithTheme(<Button glassMorphism>Glass</Button>);
+      const button = screen.getByRole('button', { name: /glass/i });
+      expect(button).toBeInTheDocument();
+    });
+
+    it('renders with gradient prop', () => {
+      renderWithTheme(<Button gradient>Gradient</Button>);
+      const button = screen.getByRole('button', { name: /gradient/i });
+      expect(button).toBeInTheDocument();
+    });
+
+    it('memoizes click handler to prevent unnecessary re-renders', () => {
+      const handleClick = vi.fn();
+      const { rerender } = renderWithTheme(
+        <Button onClick={handleClick}>Click</Button>
+      );
+      
+      // Re-render with same props should not trigger click handler
+      rerender(<ThemeProvider theme={lightTheme}><Button onClick={handleClick}>Click</Button></ThemeProvider>);
+      expect(handleClick).not.toHaveBeenCalled();
+    });
+
+    it('accepts className prop', () => {
+      renderWithTheme(<Button className="my-custom-class">Custom</Button>);
+      const button = screen.getByRole('button', { name: /custom/i });
+      expect(button).toHaveClass('my-custom-class');
+    });
+
+    it('accepts style prop', () => {
+      renderWithTheme(<Button style={{ backgroundColor: 'red' }}>Styled</Button>);
+      const button = screen.getByRole('button', { name: /styled/i });
+      expect(button).toBeInTheDocument();
+    });
+
+    it('handles keyboard Enter key', async () => {
+      const handleClick = vi.fn();
+      renderWithTheme(<Button onClick={handleClick}>KB Test</Button>);
+      const button = screen.getByRole('button', { name: /kb test/i });
+      button.focus();
+      await userEvent.keyboard('{Enter}');
+      expect(handleClick).toHaveBeenCalled();
+    });
+
+    it('handles keyboard Space key', async () => {
+      const handleClick = vi.fn();
+      renderWithTheme(<Button onClick={handleClick}>KB Test</Button>);
+      const button = screen.getByRole('button', { name: /kb test/i });
+      button.focus();
+      await userEvent.keyboard(' ');
+      expect(handleClick).toHaveBeenCalled();
+    });
+
+    it('renders with responsive size configuration', () => {
+      renderWithTheme(
+        <Button size={{ sm: 'small', md: 'medium', lg: 'large' }}>
+          Responsive
+        </Button>
+      );
+      const button = screen.getByRole('button', { name: /responsive/i });
+      expect(button).toBeInTheDocument();
+    });
+
+    it('renders with responsive fullWidth configuration', () => {
+      const fullWidthConfig = { sm: true, md: false, lg: true };
+      renderWithTheme(
+        <Button fullWidth={fullWidthConfig}>Responsive Width</Button>
+      );
+      const button = screen.getByRole('button', { name: /responsive width/i });
+      expect(button).toBeInTheDocument();
+    });
+  });
 });

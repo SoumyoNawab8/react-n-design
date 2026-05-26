@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../src/components/Button';
 import { Collapsible } from '../src/components/Collapsible';
 
@@ -88,13 +88,12 @@ export const Controlled: Story = {
             State: {isOpen ? 'Open' : 'Closed'}
           </span>
         </div>
-        <Collapsible
-          trigger="Controlled Collapsible"
-          open={isOpen}
-          onOpenChange={setIsOpen}
-        >
+        <Collapsible trigger="Controlled Collapsible" open={isOpen} onOpenChange={setIsOpen}>
           <div>
-            <p>This collapsible is controlled externally. You can toggle it using either the trigger above or the external button.</p>
+            <p>
+              This collapsible is controlled externally. You can toggle it using either the trigger
+              above or the external button.
+            </p>
           </div>
         </Collapsible>
       </div>
@@ -114,8 +113,8 @@ export const WithRichContent: Story = {
           Neumorphic Design Principles
         </h3>
         <p style={{ margin: 0, lineHeight: 1.6 }}>
-          Neumorphism is all about soft-ui elements. It uses subtle shadow play to create depth while
-          maintaining a clean, modern aesthetic.
+          Neumorphism is all about soft-ui elements. It uses subtle shadow play to create depth
+          while maintaining a clean, modern aesthetic.
         </p>
         <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>Soft shadows create depth</li>
@@ -187,8 +186,8 @@ export const AccessibilityDemo: Story = {
         <div style={{ padding: 16, background: '#f5f5f5', borderRadius: 8 }}>
           <h4 style={{ margin: '0 0 8px 0' }}>Keyboard Navigation</h4>
           <p style={{ margin: 0, fontSize: '14px' }}>
-            Press Tab to focus, then Space or Enter to toggle. The collapsible fully supports
-            screen readers with proper ARIA attributes.
+            Press Tab to focus, then Space or Enter to toggle. The collapsible fully supports screen
+            readers with proper ARIA attributes.
           </p>
         </div>
         <Collapsible trigger="Screen Reader Friendly">
@@ -196,7 +195,9 @@ export const AccessibilityDemo: Story = {
             <p>This content is properly announced to screen readers:</p>
             <ul>
               <strong>Trigger</strong>: Button with aria-expanded and aria-controls
-              <lii><strong>Content</strong>: Region with aria-hidden and aria-labelledby</li>
+              <lii>
+                <strong>Content</strong>: Region with aria-hidden and aria-labelledby
+              </li>
             </ul>
           </div>
         </Collapsible>

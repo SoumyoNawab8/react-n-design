@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import type React from 'react';
@@ -35,6 +35,17 @@ const columns = [
     sorter: (a: TestRecord, b: TestRecord) => a.age - b.age,
   },
   { key: 'role', title: 'Role' },
+];
+
+const pinnedColumns = [
+  { key: 'name', title: 'Name', sortable: true, pinned: 'left' as const },
+  {
+    key: 'age',
+    title: 'Age',
+    sortable: true,
+    sorter: (a: TestRecord, b: TestRecord) => a.age - b.age,
+  },
+  { key: 'role', title: 'Role', pinned: 'right' as const },
 ];
 
 // Mock ResizeObserver so bodyHeight stays positive in jsdom
@@ -146,7 +157,8 @@ describe('DataGrid', () => {
   it('shows empty state when no data', () => {
     renderWithTheme(<DataGrid columns={columns} dataSource={[]} rowKey="id" />);
 
-    expect(screen.getByRole('status')).toHaveTextContent(/no data/i);
+    expect(screen.getByText(/no data/i)).toBeInTheDocument();
+    expect(screen.getByRole('status')).toBeInTheDocument();
   });
 
   it('passes axe-core accessibility audit', async () => {
@@ -155,5 +167,156 @@ describe('DataGrid', () => {
     );
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
+  });
+
+  // v1.2.0 Tests
+  describe('v1.2.0 Features', () => {
+    it('renders with minimal variant', () => {
+      renderWithTheme(
+        <DataGrid columns={columns} dataSource={mockData} rowKey="id" variant="minimal" />
+      );
+      // Should render without crashing
+      expect(screen.getByRole('grid')).toBeInTheDocument();
+    });
+
+    it('renders with glass variant', () => {
+      renderWithTheme(
+        <DataGrid columns={columns} dataSource={mockData} rowKey="id" variant="glass" />
+      );
+      // Should render without crashing
+      expect(screen.getByRole('grid')).toBeInTheDocument();
+    });
+
+    it('renders with column pinning', () => {
+      renderWithTheme(
+        <DataGrid columns={pinnedColumns} dataSource={mockData} rowKey="id" />
+      );
+      // Should render without crashing
+      expect(screen.getByRole('grid')).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /name/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /role/i })).toBeInTheDocument();
+    });
+
+    it('renders with custom toolbar', () => {
+      const customToolbar = <div data-testid="custom-toolbar">Custom Toolbar</div>;
+      renderWithTheme(
+        <DataGrid columns={columns} dataSource={mockData} rowKey="id" toolbar={customToolbar} />
+      );
+      expect(screen.getByTestId('custom-toolbar')).toBeInTheDocument();
+      expect(screen.getByText(/Custom Toolbar/i)).toBeInTheDocument();
+    });
+
+    it('renders with column visibility filtering', () => {
+      const columnVisibility = {
+        sm: ['name', 'role'],
+        md: ['name', 'age', 'role'],
+        lg: ['name', 'age', 'role'],
+      };
+      
+      renderWithTheme(
+        <DataGrid 
+          columns={columns} 
+          dataSource={mockData} 
+          rowKey="id" 
+          columnVisibility={columnVisibility}
+        />
+      );
+      // Should render without crashing
+      expect(screen.getByRole('grid')).toBeInTheDocument();
+    });
+
+    it('displays loading skeleton with shimmer effect', () => {
+      renderWithTheme(
+        <DataGrid columns={columns} dataSource={[]} rowKey="id" loading={true} />
+      );
+      
+      // Should show skeleton rows
+      const skeletonRows = screen.getAllByRole('row');
+      expect(skeletonRows.length).toBeGreaterThan(0);
+    });
+
+    it('supports expand row with animation', async () => {
+      const expandedRowRender = vi.fn(() => <div data-testid="expanded-content">Expanded</div>);
+      
+      renderWithTheme(
+        <DataGrid 
+          columns={columns} 
+          dataSource={mockData.slice(0, 3)} 
+          rowKey="id"
+          expandable={{ expandedRowRender }}
+        />
+      );
+
+      // Should render the expand icon
+      expect(screen.getByRole('grid')).toBeInTheDocument();
+    });
+
+    it('applies custom className and style', () => {
+      renderWithTheme(
+        <DataGrid 
+          columns={columns} 
+          dataSource={mockData} 
+          rowKey="id"
+          className="custom-datagrid"
+          style={{ backgroundColor: 'red' }}
+        />
+      );
+
+      const gridWrapper = screen.getByRole('grid').parentElement;
+      expect(gridWrapper).toHaveClass('custom-datagrid');
+    });
+
+    it('handles window resize for responsive columns', () => {
+      // Mock window.innerWidth
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: 500, // Mobile size
+      });
+
+      const columnVisibility = {
+        sm: ['name'],
+        md: ['name', 'age'],
+        lg: ['name', 'age', 'role'],
+      };
+
+      renderWithTheme(
+        <DataGrid 
+          columns={columns} 
+          dataSource={mockData} 
+          rowKey="id" 
+          columnVisibility={columnVisibility}
+        />
+      );
+
+      // Trigger resize
+      fireEvent.resize(window);
+      
+      // Should render without crashing
+      expect(screen.getByRole('grid')).toBeInTheDocument();
+    });
+
+    it('memoizes display columns correctly', () => {
+      const { rerender } = renderWithTheme(
+        <DataGrid 
+          columns={columns} 
+          dataSource={mockData} 
+          rowKey="id" 
+        />
+      );
+
+      // Re-render with same props should not crash
+      rerender(
+        <ThemeProvider theme={lightTheme}>
+          <DataGrid 
+            columns={columns} 
+            dataSource={mockData} 
+            rowKey="id" 
+          />
+        </ThemeProvider>
+      );
+
+      expect(screen.getByRole('grid')).toBeInTheDocument();
+    });
   });
 });

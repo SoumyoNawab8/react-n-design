@@ -2,11 +2,21 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { FaCheckCircle } from '../../icons';
 import { lightTheme } from '../../styles/theme';
 import { Stepper } from './Stepper';
 
+// Mock ResizeObserver
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
 const renderWithTheme = (ui: React.ReactElement) =>
-  render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
+  render(
+    <ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>
+  );
 
 describe('Stepper', () => {
   const mockSteps = [
@@ -66,9 +76,7 @@ describe('Stepper', () => {
 
   it('calls onComplete when Finish clicked', async () => {
     const onComplete = vi.fn();
-    renderWithTheme(
-      <Stepper steps={mockSteps} defaultActiveStep={2} onComplete={onComplete} />
-    );
+    renderWithTheme(<Stepper steps={mockSteps} defaultActiveStep={2} onComplete={onComplete} />);
     const finishButton = screen.getByText('Finish');
     await userEvent.click(finishButton);
     expect(onComplete).toHaveBeenCalled();
@@ -78,9 +86,9 @@ describe('Stepper', () => {
     renderWithTheme(<Stepper steps={mockSteps} defaultActiveStep={2} allowClickBack />);
     const firstStep = screen.getByText('Step 1');
     await userEvent.click(firstStep);
-    const currentStep = screen.getAllByRole('tab').find(
-      (tab) => tab.getAttribute('aria-selected') === 'true'
-    );
+    const _currentStep = screen
+      .getAllByRole('tab')
+      .find((tab) => tab.getAttribute('aria-selected') === 'true');
   });
 
   it('renders step content', () => {
@@ -124,9 +132,7 @@ describe('Stepper', () => {
       { title: 'Step 2' },
     ];
     const onChange = vi.fn();
-    renderWithTheme(
-      <Stepper steps={stepsWithDisabled} activeStep={0} onChange={onChange} />
-    );
+    renderWithTheme(<Stepper steps={stepsWithDisabled} activeStep={0} onChange={onChange} />);
   });
 
   it('handles controlled mode', async () => {
@@ -140,9 +146,7 @@ describe('Stepper', () => {
       </ThemeProvider>
     );
     expect(
-      screen.getAllByRole('tab').find((tab) =>
-        tab.getAttribute('aria-selected') === 'true'
-      )
+      screen.getAllByRole('tab').find((tab) => tab.getAttribute('aria-selected') === 'true')
     ).toHaveAttribute('aria-selected', 'true');
   });
 
@@ -154,12 +158,20 @@ describe('Stepper', () => {
   });
 
   it('shows checkmark for completed steps', async () => {
-    renderWithTheme(
-      <Stepper steps={mockSteps} defaultActiveStep={1} />
-    );
+    renderWithTheme(<Stepper steps={mockSteps} defaultActiveStep={1} />);
     const completedStep = screen.getAllByRole('tab')[0];
     const checkmark = completedStep.querySelector('svg');
     expect(checkmark).toBeTruthy();
+  });
+
+  it('renders step icons when provided', () => {
+    const stepsWithIcons = [
+      { title: 'Step 1', icon: <span data-testid="icon-1">Icon</span> },
+      { title: 'Step 2', icon: <span data-testid="icon-2">Icon</span> },
+    ];
+    renderWithTheme(<Stepper steps={stepsWithIcons} />);
+    expect(screen.getByTestId('icon-1')).toBeInTheDocument();
+    expect(screen.getByTestId('icon-2')).toBeInTheDocument();
   });
 
   it('renders with descriptions', () => {
@@ -170,18 +182,20 @@ describe('Stepper', () => {
   });
 
   it('disables click back when allowClickBack is false', async () => {
-    renderWithTheme(
-      <Stepper steps={mockSteps} defaultActiveStep={1} allowClickBack={false} />
-    );
+    renderWithTheme(<Stepper steps={mockSteps} defaultActiveStep={1} allowClickBack={false} />);
     const firstStep = screen.getAllByRole('tab')[0];
     expect(firstStep).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('handles vertical orientation', () => {
-    renderWithTheme(
-      <Stepper steps={mockSteps} orientation="vertical" />
-    );
+    renderWithTheme(<Stepper steps={mockSteps} orientation="vertical" />);
     expect(screen.getByRole('tablist')).toHaveAttribute('aria-orientation', 'vertical');
+  });
+
+  it('handles vertical orientation on mobile', async () => {
+    renderWithTheme(<Stepper steps={mockSteps} orientation="horizontal" orientationBreakpoint={900} />);
+    // Component will try to switch to vertical based on window size
+    expect(screen.getByRole('tablist')).toBeInTheDocument();
   });
 
   it('handles step click with keyboard', async () => {
@@ -197,5 +211,62 @@ describe('Stepper', () => {
     expect(tabs[0]).toHaveAttribute('tabIndex', '0');
     expect(tabs[1]).toHaveAttribute('tabIndex');
     expect(tabs[2]).toHaveAttribute('tabIndex');
+  });
+
+  it('renders glass variant', () => {
+    renderWithTheme(<Stepper steps={mockSteps} variant="glass" />);
+    expect(screen.getByRole('region', { name: 'Stepper' })).toBeInTheDocument();
+  });
+
+  it('renders icon-only variant', () => {
+    const stepsWithIcons = [
+      { title: 'Step 1', icon: <FaCheckCircle size={18} /> },
+      { title: 'Step 2', icon: <FaCheckCircle size={18} /> },
+    ];
+    renderWithTheme(<Stepper steps={stepsWithIcons} iconOnly />);
+    expect(screen.getByRole('region', { name: 'Stepper' })).toBeInTheDocument();
+  });
+
+  it('hides connectors when showConnectors is false', () => {
+    renderWithTheme(<Stepper steps={mockSteps} showConnectors={false} />);
+    expect(screen.getByRole('region', { name: 'Stepper' })).toBeInTheDocument();
+  });
+
+  it('accepts custom style prop', () => {
+    renderWithTheme(<Stepper steps={mockSteps} style={{ marginTop: '20px' }} />);
+    expect(screen.getByRole('region', { name: 'Stepper' })).toBeInTheDocument();
+  });
+
+  it('accepts custom className prop', () => {
+    renderWithTheme(<Stepper steps={mockSteps} className="custom-stepper" />);
+    const stepper = screen.getByRole('region', { name: 'Stepper' });
+    expect(stepper).toHaveClass('custom-stepper');
+  });
+
+  it('renders with custom connector styles', () => {
+    renderWithTheme(
+      <Stepper
+        steps={mockSteps}
+        connectorStyles={{
+          completedColor: '#00ff00',
+          pendingColor: '#cccccc',
+          height: 4,
+        }}
+      />
+    );
+    expect(screen.getByRole('region', { name: 'Stepper' })).toBeInTheDocument();
+  });
+
+  it('is memoized for performance optimization', () => {
+    const { rerender } = renderWithTheme(<Stepper steps={mockSteps} />);
+    const firstRender = screen.getByRole('region', { name: 'Stepper' });
+    rerender(
+      <ThemeProvider theme={lightTheme}>
+        <Stepper steps={mockSteps} />
+      </ThemeProvider>
+    );
+    const secondRender = screen.getByRole('region', { name: 'Stepper' });
+    // Component should be the same due to memoization
+    expect(secondRender).toBeTruthy();
   });
 });

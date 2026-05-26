@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FaPlus, FaEdit, FaTrash, FaShare, FaDownload, FaArrowUp } from 'react-icons/fa';
+import { FaArrowUp, FaDownload, FaEdit, FaPlus, FaShare, FaTrash } from 'react-icons/fa';
 import { FloatButton } from '../src/components/FloatButton';
 
 const meta: Meta<typeof FloatButton> = {

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
 
 export const CollapsibleWrapper = styled.div`
