@@ -18,7 +18,7 @@ function fuzzyMatch(text: string, query: string): boolean {
 
 function getItemText<T>(item: T, keys: string[]): string {
   if (typeof item === 'string') return item;
-  const obj = item as any;
+  const obj = item as Record<string, unknown>;
   for (const key of keys) {
     if (obj[key] != null) {
       return String(obj[key]);

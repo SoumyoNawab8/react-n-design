@@ -70,21 +70,24 @@ export const Accordion = ({
 
   const headerRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const handleHeaderClick = (key: string) => {
-    let newActiveKeys: string[];
-    if (allowMultiple) {
-      newActiveKeys = activeKeys.includes(key)
-        ? activeKeys.filter((k) => k !== key)
-        : [...activeKeys, key];
-    } else {
-      newActiveKeys = activeKeys.includes(key) ? [] : [key];
-    }
+  const handleHeaderClick = useCallback(
+    (key: string) => {
+      let newActiveKeys: string[];
+      if (allowMultiple) {
+        newActiveKeys = activeKeys.includes(key)
+          ? activeKeys.filter((k) => k !== key)
+          : [...activeKeys, key];
+      } else {
+        newActiveKeys = activeKeys.includes(key) ? [] : [key];
+      }
 
-    if (!isControlled) {
-      setInternalActiveKeys(newActiveKeys);
-    }
-    onChange?.(allowMultiple ? newActiveKeys : newActiveKeys[0] || '');
-  };
+      if (!isControlled) {
+        setInternalActiveKeys(newActiveKeys);
+      }
+      onChange?.(allowMultiple ? newActiveKeys : newActiveKeys[0] || '');
+    },
+    [allowMultiple, activeKeys, isControlled, onChange]
+  );
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {

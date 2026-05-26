@@ -10,8 +10,8 @@ export const StyledDivider = styled.div.withConfig({
   background: ${({ theme }) => `${theme.colors.shadowDark}40`};
   transition: background 0.2s ease;
 
-  ${({ orientation, type }) =>
-    orientation === 'vertical'
+  ${({ orientation: _orientation, type: _type }) =>
+    _orientation === 'vertical'
       ? css`
           display: inline-block;
           width: 1px;

@@ -13,8 +13,8 @@ import {
 import type { FieldEntity, FormItemProps } from './FormContext';
 import { FormContext } from './FormContext';
 
-function getValueFromEvent(...args: any[]): any {
-  const e = args[0];
+function getValueFromEvent(...args: unknown[]): unknown {
+  const e = args[0] as { target?: { value?: unknown; checked?: unknown } } | undefined;
   if (e && typeof e === 'object' && 'target' in e) {
     const { target } = e;
     if ('value' in target) return target.value;
@@ -101,7 +101,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
 
   // Validate function - defined BEFORE callbacks that use it
   const validateFieldValue = useCallback(
-    async (fieldValue: any) => {
+    async (fieldValue: unknown) => {
       if (rules.length === 0) return;
       if (name && formContext)
         dispatch?.({ type: 'SET_FIELD_VALIDATING', payload: { name, validating: true } });
@@ -239,7 +239,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
 
   // Handlers
   const handleChange = useCallback(
-    (event: any) => {
+    (event: unknown) => {
       const valueFromEvent = customGetValueFromEvent || getValueFromEvent;
       let newValue = valueFromEvent(...(Array.isArray(event) ? event : [event]));
       if (normalize) newValue = normalize(newValue, value, formValues);

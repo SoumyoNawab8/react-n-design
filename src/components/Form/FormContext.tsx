@@ -9,15 +9,15 @@ export interface ColSpan {
   offset?: number;
 }
 
-export interface FormContextValue<T = any> {
+export interface FormContextValue<T = unknown> {
   values: T;
   errors: Record<string, string[]> | Record<string, string>;
   touched: Partial<Record<keyof T, boolean>>;
   isSubmitting: boolean;
   optimisticValues?: T;
-  handleChange: (field: keyof T) => (value: any) => void;
+  handleChange: (field: keyof T) => (value: unknown) => void;
   handleBlur: (field: keyof T) => () => void;
-  setFieldValue: (field: keyof T, value: any) => void;
+  setFieldValue: (field: keyof T, value: unknown) => void;
   setFieldError: (field: keyof T, error: string | string[]) => void;
   handleSubmit: (e?: React.FormEvent) => void | Promise<void>;
   // Form layout properties
@@ -28,18 +28,18 @@ export interface FormContextValue<T = any> {
   labelAlign?: LabelAlign;
   requiredMark?: boolean | 'optional';
   // Form instance
-  form?: any;
+  form?: unknown;
   validating?: Record<string, boolean>;
-  fieldEntities?: Map<string, any>;
-  dispatch?: (action: any) => void;
-  registerField?: (name: string, entity: any) => void;
+  fieldEntities?: Map<string, unknown>;
+  dispatch?: (action: unknown) => void;
+  registerField?: (name: string, entity: unknown) => void;
   unregisterField?: (name: string) => void;
-  getInitialValue?: (name: string) => any;
+  getInitialValue?: (name: string) => unknown;
 }
 
-export const FormContext = createContext<FormContextValue<any> | null>(null);
+export const FormContext = createContext<FormContextValue<unknown> | null>(null);
 
-export function useFormContext<T = any>(): FormContextValue<T> | null {
+export function useFormContext<T = unknown>(): FormContextValue<T> | null {
   return useContext(FormContext);
 }
 
@@ -80,42 +80,42 @@ export interface ValidationRule {
   len?: number;
   min?: number;
   max?: number;
-  enum?: any[];
-  validator?: (rule: ValidationRule, value: any, callback: (error?: string) => void) => void;
+  enum?: (string | number)[];
+  validator?: (rule: ValidationRule, value: unknown, callback: (error?: string) => void) => void;
 }
 
 export interface FieldEntity {
   name: string;
   rules?: ValidationRule[];
-  initialValue?: any;
+  initialValue?: unknown;
   validateTrigger?: string[] | string;
   onStoreChange?: () => void;
   valuePropName?: string;
-  getValueFromEvent?: (...args: any[]) => any;
+  getValueFromEvent?: (...args: unknown[]) => unknown;
   trigger?: string;
 }
 
 export interface FieldData {
   name: string;
-  value?: any;
+  value?: unknown;
   errors?: string[];
   touched?: boolean;
   validating?: boolean;
 }
 
 export type FormAction =
-  | { type: 'SET_FIELD_VALUE'; payload: { name: string; value: any } }
+  | { type: 'SET_FIELD_VALUE';    payload: { name: string; value: unknown }}
   | { type: 'SET_FIELD_ERROR'; payload: { name: string; errors: string[] } }
   | { type: 'SET_FIELD_TOUCHED'; payload: { name: string; touched: boolean } }
   | { type: 'SET_FIELD_VALIDATING'; payload: { name: string; validating: boolean } }
   | { type: 'RESET_FIELDS'; payload?: { names: string[] } }
   | { type: 'CLEAR_ERRORS' };
 
-export interface FormInstance<T = any> {
+export interface FormInstance<T = unknown> {
   getFieldsValue: () => T;
-  getFieldValue: (name: string) => any;
+  getFieldValue: (name: string) => unknown;
   setFieldsValue: (values: Partial<T>) => void;
-  setFieldValue: (name: string, value: any) => void;
+  setFieldValue: (name: string, value: unknown) => void;
   validateFields: (names?: string[]) => Promise<T>;
   resetFields: (names?: string[]) => void;
   getFieldError: (name: string) => string[];
@@ -127,10 +127,10 @@ export interface FormInstance<T = any> {
 
 export interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
   form?: FormInstance;
-  initialValues?: Record<string, any>;
-  onFinish?: (values: any) => void;
-  onFinishFailed?: (errorInfo: any) => void;
-  onValuesChange?: (changedValues: any, allValues: any) => void;
+  initialValues?: Record<string, unknown>;
+  onFinish?: (values: unknown) => void;
+  onFinishFailed?: (errorInfo: unknown) => void;
+  onValuesChange?: (changedValues: unknown, allValues: unknown) => void;
   onFieldsChange?: (changedFields: FieldData[], allFields: FieldData[]) => void;
   layout?: FormLayout;
   labelCol?: ColSpan;
@@ -153,7 +153,7 @@ export interface FormItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   label?: React.ReactNode;
   labelCol?: ColSpan;
   wrapperCol?: ColSpan;
-  initialValue?: any;
+  initialValue?: unknown;
   required?: boolean;
   validateStatus?: '' | 'success' | 'warning' | 'error' | 'validating';
   help?: React.ReactNode;
@@ -166,9 +166,9 @@ export interface FormItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   children?: React.ReactNode;
   valuePropName?: string;
   trigger?: string;
-  getValueFromEvent?: (...args: any[]) => any;
-  normalize?: (value: any, prevValue: any, allValues: any) => any;
-  shouldUpdate?: boolean | ((prevValues: any, nextValues: any) => boolean);
+  getValueFromEvent?: (...args: unknown[]) => unknown;
+  normalize?: (value: unknown, prevValue: unknown, allValues: unknown) => unknown;
+  shouldUpdate?: boolean | ((prevValues: unknown, nextValues: unknown) => boolean);
   dependencies?: string[];
   hidden?: boolean;
   tooltip?: React.ReactNode;
@@ -176,8 +176,8 @@ export interface FormItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   validateTrigger?: string | string[];
   noStyle?: boolean;
   render?: (props: {
-    value: any;
-    onChange: (value: any) => void;
+    value: unknown;
+    onChange: (value: unknown) => void;
     onBlur: () => void;
   }) => React.ReactNode;
 }

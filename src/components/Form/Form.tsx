@@ -10,7 +10,11 @@ import type {
 } from './FormContext';
 import { FormContext, type FormContextValue } from './FormContext';
 
-function validateRuleSync(rule: ValidationRule, value: any, _allValues: any): string | undefined {
+function validateRuleSync(
+  rule: ValidationRule,
+  value: unknown,
+  _allValues: unknown
+): string | undefined {
   if (rule.required) {
     const isEmpty =
       value === undefined ||
@@ -60,9 +64,9 @@ function validateRuleSync(rule: ValidationRule, value: any, _allValues: any): st
 }
 
 async function validateField(
-  value: any,
+  value: unknown,
   rules: ValidationRule[],
-  allValues: any
+  allValues: unknown
 ): Promise<string[]> {
   const errors: string[] = [];
   for (const rule of rules) {
@@ -103,7 +107,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
     ...restProps
   } = props;
 
-  const [values, setValues] = useState<Record<string, any>>({ ...initialValues });
+  const [values, setValues] = useState<Record<string, unknown>>({ ...initialValues });
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [validating, setValidating] = useState<Record<string, boolean>>({});
@@ -163,13 +167,13 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
     () => ({
       getFieldsValue: () => values,
       getFieldValue: (name: string) => values[name],
-      setFieldsValue: (newValues: any) => {
+      setFieldsValue: (newValues: unknown) => {
         Object.entries(newValues).forEach(([key, value]) =>
           dispatch({ type: 'SET_FIELD_VALUE', payload: { name: key, value } })
         );
         onValuesChange?.(newValues, { ...values, ...newValues });
       },
-      setFieldValue: (name: string, value: any) => {
+      setFieldValue: (name: string, value: unknown) => {
         dispatch({ type: 'SET_FIELD_VALUE', payload: { name, value } });
         onValuesChange?.({ [name]: value }, { ...values, [name]: value });
       },
@@ -220,9 +224,10 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
       try {
         onFinish?.(await formInstance.validateFields());
       } catch (errorInfo) {
-        onFinishFailed?.(errorInfo as any);
+        onFinishFailed?.(errorInfo as { errorFields: { name: string }[] });
         if (scrollToFirstError && formRef.current) {
-          const firstErrorName = (errorInfo as any).errorFields?.[0]?.name;
+          const firstErrorName = (errorInfo as { errorFields: { name: string }[] }).errorFields?.[0]
+            ?.name;
           if (firstErrorName)
             formRef.current
               .querySelector(`[name="${firstErrorName}"]`)

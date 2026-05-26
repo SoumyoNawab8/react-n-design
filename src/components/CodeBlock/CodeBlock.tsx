@@ -138,7 +138,6 @@ function highlightCode(code: string, language?: string): React.ReactNode[] {
           newSegments.push(seg);
           return;
         }
-        // biome-ignore lint/suspicious/noImplicitAnyLet: properly typed via return value
         let match: RegExpExecArray | null = null;
         const localRegex = new RegExp(
           regex.source,
