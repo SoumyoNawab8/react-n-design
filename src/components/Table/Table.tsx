@@ -74,6 +74,7 @@ export const Table = <T extends object>({
     if (sortConfig.order && sorterColumn?.sorter) {
       sortedData.sort((a, b) => {
         const result = sorterColumn.sorter?.(a, b);
+        if (result === undefined) return 0;
         return sortConfig.order === 'ascend' ? result : -result;
       });
     }

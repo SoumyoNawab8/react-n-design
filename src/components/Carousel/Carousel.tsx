@@ -71,7 +71,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   onSlideClick,
   height,
 }) => {
-  const slides = useMemo(() => {
+  const slides = useMemo<CarouselSlideItem[]>(() => {
     if (items) return items;
     if (children) {
       return React.Children.toArray(children).map((child, i) => ({
@@ -230,30 +230,34 @@ export const Carousel: React.FC<CarouselProps> = ({
         )}
 
         <CarouselTrack $translateX={translateX} style={{ width: `${total * 100}%` }}>
-          {slides.map((slide, index) => (
-            <CarouselSlide
-              key={slide.id}
-              $isActive={index === currentIndex}
-              onClick={() => onSlideClick?.(slide, index)}
-              style={{ cursor: onSlideClick ? 'pointer' : 'default' }}
-            >
-              {slide.content ? (
-                slide.content
-              ) : (
-                <>
-                  <SlideImage $src={slide.image} />
-                  {(slide.title || slide.description) && (
-                    <SlideContent>
-                      {slide.title && <SlideTitle>{slide.title}</SlideTitle>}
-                      {slide.description && (
-                        <SlideDescription>{slide.description}</SlideDescription>
-                      )}
-                    </SlideContent>
-                  )}
-                </>
-              )}
-            </CarouselSlide>
-          ))}
+          {slides.map((slide, index) => {
+            const isContentSlide = 'content' in slide && slide.content !== undefined;
+            const isImageSlide = !isContentSlide && ('image' in slide || 'title' in slide || 'description' in slide);
+            return (
+              <CarouselSlide
+                key={slide.id}
+                $isActive={index === currentIndex}
+                onClick={() => onSlideClick?.(slide, index)}
+                style={{ cursor: onSlideClick ? 'pointer' : 'default' }}
+              >
+                {isContentSlide ? (
+                  slide.content
+                ) : isImageSlide ? (
+                  <>
+                    {slide.image !== undefined && <SlideImage $src={slide.image} />}
+                    {(slide.title || slide.description) && (
+                      <SlideContent>
+                        {slide.title && <SlideTitle>{slide.title}</SlideTitle>}
+                        {slide.description && (
+                          <SlideDescription>{slide.description}</SlideDescription>
+                        )}
+                      </SlideContent>
+                    )}
+                  </>
+                ) : null}
+              </CarouselSlide>
+            );
+          })}
         </CarouselTrack>
 
         {showNav && total > 1 && (
@@ -286,19 +290,22 @@ export const Carousel: React.FC<CarouselProps> = ({
 
       {showDots && total > 1 && (
         <CarouselDots role="tablist" aria-label="Carousel slides">
-          {slides.map((slide, i) => (
-            <CarouselDot
-              key={slide.id}
-              $isActive={i === currentIndex}
-              $hasImage={showThumbnails && !!slide.image}
-              role="tab"
-              aria-selected={i === currentIndex}
-              aria-label={`Go to slide ${i + 1}`}
-              onClick={() => goTo(i)}
-            >
-              {showThumbnails && slide.image && <img src={slide.image} alt="" />}
-            </CarouselDot>
-          ))}
+          {slides.map((slide, i) => {
+            const hasImage = 'image' in slide && slide.image !== undefined;
+            return (
+              <CarouselDot
+                key={slide.id}
+                $isActive={i === currentIndex}
+                $hasImage={showThumbnails && hasImage}
+                role="tab"
+                aria-selected={i === currentIndex}
+                aria-label={`Go to slide ${i + 1}`}
+                onClick={() => goTo(i)}
+              >
+                {showThumbnails && hasImage && <img src={slide.image} alt="" />}
+              </CarouselDot>
+            );
+          })}
         </CarouselDots>
       )}
     </CarouselWrapper>

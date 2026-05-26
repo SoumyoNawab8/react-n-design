@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
 
 export const CollapsibleWrapper = styled.div`
@@ -20,11 +20,35 @@ export const CollapsibleTrigger = styled.button`
   font-size: 16px;
   font-weight: 600;
   text-align: left;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
   color: ${({ theme }) => theme.colors.text};
 
-  &:hover {
+  &:hover:not(:disabled) {
     color: ${({ theme }) => theme.colors.primary};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    color: ${({ theme }) => theme.colors.textSecondary};
+  }
+
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.6;
+    color: ${({ theme }) => theme.colors.textSecondary};
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary};
+    outline-offset: -2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Ensure content of custom triggers still respects disabled state */
+  ~ * {
+    pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
   }
 `;
 
@@ -33,17 +57,29 @@ export const CollapsibleChevron = styled(motion.div).withConfig({
 })<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 14px;
   transform-origin: center;
+  flex-shrink: 0;
+  margin-left: 16px;
+  color: currentColor;
+
+  svg {
+    display: block;
+  }
 `;
 
-export const CollapsibleContent = styled(motion.div).withConfig({
-  shouldForwardProp: (prop) => !['isOpen'].includes(prop),
-})<{ isOpen: boolean }>`
+export const CollapsibleContent = styled(motion.div)<{ isOpen?: boolean }>`
   overflow: hidden;
   color: ${({ theme }) => theme.colors.text};
+  will-change: height, opacity;
+`;
 
-  & > div {
-    padding: 4px 20px 20px 20px;
+export const CollapsibleContentWrapper = styled.div`
+  padding: 4px 20px 20px 20px;
+
+  /* Add spacing for nested collapsibles */
+  > ${CollapsibleWrapper}:not(:last-child) {
+    margin-bottom: 12px;
   }
 `;

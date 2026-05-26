@@ -8,7 +8,7 @@
 
 <p align="center">
   <strong>The AI-native, Neomorphic React component library.</strong><br/>
-  67 accessible components, zero-config install, RSC-ready, and built for the future of UI.
+  70+ accessible components, zero-config install, RSC-ready, and built for the future of UI.
 </p>
 
 <p align="center">
@@ -31,7 +31,7 @@
     <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&color=yellow" alt="license" />
   </a>
   <a href="#components">
-    <img src="https://img.shields.io/badge/components-67+-blue.svg?style=flat-square" alt="components" />
+    <img src="https://img.shields.io/badge/components-70+-blue.svg?style=flat-square" alt="components" />
   </a>
 </p>
 
@@ -79,8 +79,8 @@ No extra setup, no Tailwind config, no CSS imports needed. Just install and impo
 || ⚙️ **RSC-Ready** | Dual entry point (`react-n-design` and `react-n-design/rsc`) for Next.js App Router compatibility. |
 || ♿ **Accessibility First** | axe-core validated, ARIA compliant, keyboard navigable, screen-reader friendly. |
 || 🔥 **Styled-Components** | No runtime CSS injection conflicts. Zero-runtime CSS variable fallbacks available. |
-|| 📦 **Tree Shakable** | `sideEffects: false` ensures modern bundlers drop everything you do not use. |
-|| 67 Components | Complete library with Form, Tour, Steps, Timeline, Stepper |
+||| 📦 **Tree Shakable** | `sideEffects: false` ensures modern bundlers drop everything you do not use. |
+||| 70 Components | Complete library with Form, Tour, Steps, Timeline, Stepper, Empty, FloatButton |
 || Full TypeScript | Strict mode, complete type declarations |
 || Tree Shakable | `sideEffects: false` for optimal bundling |
 || Battle Tested | 348+ tests across Vitest + axe-core |

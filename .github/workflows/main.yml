@@ -14,6 +14,8 @@ on:
     tags: ['v*']
   release:
     types: [created]
+  pull_request:
+    branches: [master, main]
 
 jobs:
   build-and-verify:
@@ -22,32 +24,56 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
         with:
           node-version: 20
-      - run: npm ci --legacy-peer-deps
+          cache: 'npm'
+      
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+      
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high
+      
       - name: Audit full dependency tree
         run: npm audit --audit-level=high
+      
       - name: Typecheck build config
         run: npx tsc --project tsconfig.build.json --noEmit
+      
       - name: Build library
         run: npm run build
+      
       - name: Verify dist output
         run: |
-          test -f dist/cjs/index.js  || (echo "❌ dist/cjs/index.js missing"  && exit 1)
-          test -f dist/esm/index.js  || (echo "❌ dist/esm/index.js missing"  && exit 1)
-          test -f dist/index.d.ts    || (echo "❌ dist/index.d.ts missing"    && exit 1)
+          test -f dist/cjs/index.js || (echo "❌ dist/cjs/index.js missing" && exit 1)
+          test -f dist/esm/index.js || (echo "❌ dist/esm/index.js missing" && exit 1)
+          test -f dist/index.d.ts || (echo "❌ dist/index.d.ts missing" && exit 1)
           echo "✅ All required dist files present"
+      
       - name: Check bundle size
         run: npm run size-limit
+      
+      - name: Run tests
+        run: npm run test:vitest
+      
       - name: Pack and smoke-test install
         run: |
           set -euo pipefail
           npm pack --dry-run
           PACK_FILE=$(npm pack | tail -1)
-          test -n "$PACK_FILE" || (echo "❌ npm pack did not produce a package file name" && exit 1)
+          test -n "$PACK_FILE" || (echo "❌ npm pack did not produce a package file name" &&exit1)
           mkdir -p /tmp/smoke-test
           cd /tmp/smoke-test
           npm init -y
