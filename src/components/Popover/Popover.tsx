@@ -1,8 +1,7 @@
 'use client';
-import React from 'react';
-import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { AnimatePresence } from '../../utils/lazyMotion';
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { saveFocus, trapFocus } from '../../utils/focus';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import { PopoverContent, PopoverTrigger, PopoverWrapper } from './Popover.styles';
 
 export interface PopoverProps {
@@ -46,8 +45,8 @@ export const Popover = ({
     [isControlled, onOpenChange]
   );
 
-  const toggle = useCallback(() => setOpen(!isOpen), [isOpen]);
-  const close = useCallback(() => setOpen(false), []);
+  const toggle = useCallback(() => setOpen(!isOpen), [isOpen, setOpen]);
+  const close = useCallback(() => setOpen(false), [setOpen]);
 
   // Save/restore focus
   useEffect(() => {

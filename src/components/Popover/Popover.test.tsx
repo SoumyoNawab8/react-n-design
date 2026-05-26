@@ -134,7 +134,11 @@ describe('Popover', () => {
   it('respects controlled open state', async () => {
     const onOpenChange = vi.fn();
     renderWithTheme(
-      <Popover trigger={<button type="button">Open popover</button>} open={true} onOpenChange={onOpenChange}>
+      <Popover
+        trigger={<button type="button">Open popover</button>}
+        open={true}
+        onOpenChange={onOpenChange}
+      >
         <div>Popover content</div>
       </Popover>
     );
