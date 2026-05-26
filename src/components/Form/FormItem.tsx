@@ -167,10 +167,10 @@ const InternalFormItem: React.FC<FormItemProps> = ({
         if (rule.type) {
           const validators: Record<string, () => boolean> = {
             email: () =>
-              typeof fieldValue === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fieldValue),
+              typeof fieldValue === 'string' && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(fieldValue),
             url: () =>
               typeof fieldValue === 'string' &&
-              /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})([/\w .-]*)*\/?$/.test(fieldValue),
+              /^(https?:\/\/)[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(:[0-9]+)?(\/[a-zA-Z0-9-._~%!$()&'"*+,;=:@/\/?#]*)?$/.test(fieldValue),
             number: () => typeof fieldValue === 'number' && !Number.isNaN(fieldValue),
           };
           const validator = validators[rule.type];

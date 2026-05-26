@@ -79,7 +79,7 @@ export default defineConfig({
 
   /* Run local dev server before starting the tests */
   webServer: {
-    command: process.env.CI ? 'npx serve storybook-static -p 6006' : 'npm run dev',
+    command: process.env.CI ? 'npm run build-storybook && npx serve storybook-static -p 6006' : 'npm run dev',
     url: 'http://localhost:6006',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
