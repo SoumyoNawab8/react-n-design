@@ -120,9 +120,7 @@ export const ComboBoxInputGroup = styled.div.withConfig({
   &:focus-within {
     z-index: 2;
     box-shadow: ${({ theme, hasError }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${
-        hasError ? '#e53e3e' : theme.colors.primary
-      }40`};
+      `${theme.shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}40`};
   }
 
   & .combobox-icons {

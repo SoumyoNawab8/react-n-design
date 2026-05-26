@@ -42,8 +42,7 @@ export const FileUploadRegion = styled.div.withConfig({
 
   &:focus-within {
     outline: none;
-    box-shadow: ${({ theme }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 
   ${({ disabled }) =>

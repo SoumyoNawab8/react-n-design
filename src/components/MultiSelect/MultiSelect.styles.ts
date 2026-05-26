@@ -33,8 +33,7 @@ export const MultiSelectInputGroup = styled.div.withConfig({
 
   &:focus-within {
     z-index: 2;
-    box-shadow: ${({ theme }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 
   ${({ disabled, theme }) =>

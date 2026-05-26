@@ -54,16 +54,12 @@ export const DatePickerInputGroup = styled.div.withConfig({
   &:focus-within {
     z-index: 2;
     box-shadow: ${({ theme, hasError }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${
-        hasError ? '#e53e3e' : theme.colors.primary
-      }40`};
+      `${theme.shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}40`};
   }
 
   &:hover:not(:disabled) {
     box-shadow: ${({ theme, hasError }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${
-        hasError ? '#e53e3e' : theme.colors.primary
-      }30`};
+      `${theme.shadows.softInset}, 0 0 0 2px ${hasError ? '#e53e3e' : theme.colors.primary}30`};
   }
 `;
 
@@ -194,8 +190,7 @@ export const DatePickerSelect = styled.select`
   outline: none;
 
   &:focus {
-    box-shadow: ${({ theme }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 `;
 
