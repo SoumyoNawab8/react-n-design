@@ -1,13 +1,5 @@
 'use client';
-import React, {
-  memo,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { FaCheckCircle, FaExclamationCircle } from '../../icons';
 import {
   FormItemControl,
@@ -25,8 +17,8 @@ function getValueFromEvent(...args: unknown[]): unknown {
   const e = args[0] as { target?: { value?: unknown; checked?: unknown } } | undefined;
   if (e && typeof e === 'object' && 'target' in e) {
     const { target } = e;
-    if ('value' in target) return target.value;
-    if ('checked' in target) return target.checked;
+    if (target && 'value' in target) return target.value;
+    if (target && 'checked' in target) return target.checked;
   }
   return e;
 }
@@ -48,7 +40,7 @@ function useDebouncedCallback<T extends (...args: unknown[]) => unknown>(
         clearTimeout(timeoutRef.current);
       }
       timeoutRef.current = setTimeout(() => {
-        callback(...args as unknown[]);
+        callback(...(args as unknown[]));
       }, delay);
     },
     [callback, delay]
@@ -73,7 +65,7 @@ function useMobileDetect(breakpoint = 768): boolean {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= breakpoint);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -99,10 +91,7 @@ function useValidationResult(
 }
 
 // Memoized required check
-function useIsRequired(
-  requiredProp: boolean | undefined,
-  rules: FormItemProps['rules']
-) {
+function useIsRequired(requiredProp: boolean | undefined, rules: FormItemProps['rules']) {
   return useMemo(() => {
     if (requiredProp !== undefined) return requiredProp;
     return rules?.some((r) => r.required) || false;
@@ -132,7 +121,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
   normalize,
   dependencies = [],
   hidden,
-  preserve = true,
+  preserve: _preserve = true,
   validateTrigger = ['onChange', 'onBlur'],
   noStyle,
   render,
@@ -171,20 +160,17 @@ const InternalFormItem: React.FC<FormItemProps> = ({
 
   // Mobile detection
   const isMobile = useMobileDetect();
-  const compact = layout === 'compact' || formCompact;
+  const compact = (layout as string) === 'compact' || formCompact;
 
-  const value = name ? (formValues?.[name] ?? internalValue) : internalValue;
+  const value = name
+    ? ((formValues as Record<string, unknown>)?.[name] ?? internalValue)
+    : internalValue;
   const touched = name ? (formTouched?.[name] ?? internalTouched) : internalTouched;
   const validating = name ? (formValidating?.[name] ?? internalValidating) : internalValidating;
   const fieldErrors = name ? (formErrors?.[name] ?? []) : errors;
 
   // Memoized validation status
-  const validateStatus = useValidationResult(
-    validateStatusProp,
-    validating,
-    touched,
-    fieldErrors
-  );
+  const validateStatus = useValidationResult(validateStatusProp, validating, touched, fieldErrors);
 
   // Memoized isRequired
   const isRequired = useIsRequired(requiredProp, rules);
@@ -203,7 +189,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
   const validateFieldValueImpl = useCallback(
     async (fieldValue: unknown) => {
       if (memoizedRules.length === 0) return;
-      
+
       if (name && formContext)
         dispatch?.({ type: 'SET_FIELD_VALIDATING', payload: { name, validating: true } });
       else setInternalValidating(true);
@@ -286,9 +272,10 @@ const InternalFormItem: React.FC<FormItemProps> = ({
           }
         }
         if (rule.validator) {
+          const validator = rule.validator;
           try {
             await new Promise<void>((resolve, reject) => {
-              rule.validator(rule, fieldValue, (error) => {
+              validator(rule, fieldValue, (error) => {
                 if (error) reject(error);
                 else resolve();
               });
@@ -311,10 +298,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
   );
 
   // Debounced validation
-  const debouncedValidateField = useDebouncedCallback(
-    validateFieldValueImpl,
-    debounceMs
-  );
+  const debouncedValidateField = useDebouncedCallback(validateFieldValueImpl, debounceMs);
 
   // Register field
   useEffect(() => {
@@ -394,7 +378,9 @@ const InternalFormItem: React.FC<FormItemProps> = ({
 
   useEffect(() => {
     if (dependencies.length > 0 && name && formContext) {
-      const hasDepChanged = dependencies.some((dep) => formValues?.[dep] !== undefined);
+      const hasDepChanged = dependencies.some(
+        (dep) => (formValues as Record<string, unknown>)?.[dep] !== undefined
+      );
       if (hasDepChanged) debouncedValidateField(value);
     }
   }, [dependencies, name, formContext, formValues, value, debouncedValidateField]);
@@ -404,7 +390,6 @@ const InternalFormItem: React.FC<FormItemProps> = ({
     if (!React.isValidElement(children)) return children;
     const id = name ? getFieldId(name) : undefined;
     const errorId = fieldErrors?.length > 0 ? `${id}-error` : undefined;
-    // biome-ignore lint/suspicious/noExplicitAny: dynamic child properties
     const clonedProps = {
       id: (children.props as { id?: string }).id || id,
       [valuePropName]: value,
@@ -460,19 +445,11 @@ const InternalFormItem: React.FC<FormItemProps> = ({
         {requiredMark}
         {effectiveColon && label ? ':' : null}
       </FormItemLabel>
-      <FormItemControl
-        $layout={layout}
-        $wrapperCol={effectiveWrapperCol}
-        $isMobile={isMobile}
-      >
+      <FormItemControl $layout={layout} $wrapperCol={effectiveWrapperCol} $isMobile={isMobile}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {renderChild()}
           {validationIcon && (
-            <ValidationIcon
-              $status={validateStatus}
-              $shake={shakeKey > 0}
-              $compact={compact}
-            >
+            <ValidationIcon $status={validateStatus} $shake={shakeKey > 0} $compact={compact}>
               {validationIcon}
             </ValidationIcon>
           )}
@@ -499,7 +476,7 @@ FormItem.displayName = 'FormItem';
 
 export const FormItemDeps: React.FC<{
   names: string[];
-  children: (values: Record<string, any>) => React.ReactNode;
+  children: (values: Record<string, unknown>) => React.ReactNode;
 }> = ({ names, children }) => {
   const form = useContext(FormContext);
   const values = names.reduce(
@@ -507,7 +484,7 @@ export const FormItemDeps: React.FC<{
       acc[name] = form?.form?.getFieldValue(name);
       return acc;
     },
-    {} as Record<string, any>
+    {} as Record<string, unknown>
   );
   return <>{children(values)}</>;
 };

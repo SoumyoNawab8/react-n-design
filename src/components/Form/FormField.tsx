@@ -19,11 +19,15 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
     return <Input name={name} label={label} />;
   }
 
-  const fieldName = String(name) as keyof typeof ctx.values;
-  const value = ctx.optimisticValues?.[fieldName] ?? ctx.values[fieldName];
-  const error = ctx.errors[fieldName];
-  const touched = ctx.touched[fieldName];
-  const showError = !!error && !!touched;
+  const fieldName = String(name);
+  const values = ctx.values as Record<string, unknown>;
+  const optimisticValues = ctx.optimisticValues as Record<string, unknown> | undefined;
+  const errors = ctx.errors as Record<string, unknown>;
+  const touched = ctx.touched as Record<string, unknown>;
+  const value = optimisticValues?.[fieldName] ?? values[fieldName];
+  const error = errors[fieldName];
+  const isTouched = touched[fieldName];
+  const showError = !!error && !!isTouched;
 
   const id = `form-field-${fieldName}`;
   const errorId = showError ? `${id}-error` : undefined;
@@ -56,7 +60,7 @@ export const FormField = ({ name, label, children }: FormFieldProps) => {
       id={id}
       name={fieldName}
       label={label}
-      value={value}
+      value={value as string | number | readonly string[] | undefined}
       onChange={handleChange}
       onBlur={handleBlur}
       error={showError ? (Array.isArray(error) ? error[0] : error) : undefined}
