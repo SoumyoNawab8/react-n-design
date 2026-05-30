@@ -153,6 +153,7 @@ export const Popover: React.FC<PopoverProps> = ({
       return () => clearTimeout(timer);
     } else {
       restoreFocusRef.current?.();
+      return undefined;
     }
   }, [isOpen]);
 

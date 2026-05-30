@@ -87,6 +87,7 @@ export const Drawer = ({
       };
     } else {
       restoreFocusRef.current?.();
+      return undefined;
     }
   }, [isOpen]);
 

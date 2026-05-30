@@ -111,20 +111,17 @@ export function useForm<T = unknown>(): [FormInstance<T>] {
 
   const formInstance = useMemo(() => {
     // Return a proxy that always gets the latest formRef
-    const proxy = new Proxy(
-      {} as FormInstance<T>,
-      {
-        get(_target, prop: keyof FormInstance<T>) {
-          return instance.formRef?.[prop];
-        },
-        set(_target, prop: keyof FormInstance<T>, value: unknown) {
-          if (instance.formRef) {
-            (instance.formRef as Record<string, unknown>)[prop] = value;
-          }
-          return true;
-        },
-      }
-    );
+    const proxy = new Proxy({} as FormInstance<T>, {
+      get(_target, prop: keyof FormInstance<T>) {
+        return instance.formRef?.[prop];
+      },
+      set(_target, prop: keyof FormInstance<T>, value: unknown) {
+        if (instance.formRef) {
+          (instance.formRef as unknown as Record<string, unknown>)[prop] = value;
+        }
+        return true;
+      },
+    });
     return proxy;
   }, [instance]);
 
@@ -185,17 +182,17 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
           if (action.payload?.names && Array.isArray(action.payload.names)) {
             setValues((prev) => {
               const next = { ...prev };
-              action.payload?.names?.forEach((n: string) => delete next[n]);
+              for (const n of action.payload?.names ?? []) delete next[n as string];
               return next;
             });
             setErrors((prev) => {
               const next = { ...prev };
-              action.payload?.names?.forEach((n: string) => delete next[n]);
+              for (const n of action.payload?.names ?? []) delete next[n as string];
               return next;
             });
             setTouched((prev) => {
               const next = { ...prev };
-              action.payload?.names?.forEach((n: string) => delete next[n]);
+              for (const n of action.payload?.names ?? []) delete next[n as string];
               return next;
             });
           } else {
@@ -218,9 +215,9 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
       getFieldsValue: () => values,
       getFieldValue: (name: string) => values[name],
       setFieldsValue: (newValues: Record<string, unknown>) => {
-        Object.entries(newValues).forEach(([key, value]) =>
-          dispatch({ type: 'SET_FIELD_VALUE', payload: { name: key, value } })
-        );
+        for (const [key, value] of Object.entries(newValues)) {
+          dispatch({ type: 'SET_FIELD_VALUE', payload: { name: key, value } });
+        }
         onValuesChange?.(
           newValues as Record<string, unknown>,
           { ...values, ...newValues } as Record<string, unknown>
