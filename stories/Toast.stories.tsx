@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../src/components/Button';
 import { ToastProvider } from '../src/components/Toast/ToastProvider';
 import { useToast } from '../src/components/Toast/useToast';
-import { FaBell, FaUser, FaCode } from '../src/icons';
+import { FaBell, FaCode, FaUser } from '../src/icons';
 
 const meta: Meta<typeof ToastProvider> = {
   title: 'react-n-design/Toast',
@@ -65,7 +65,9 @@ const ToastDemo = () => {
       <h3>Features</h3>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
         <Button onClick={handlePromise}>Promise Toast</Button>
-        <Button variant="secondary" onClick={sparkMultipleToasts}>Multiple Toasts</Button>
+        <Button variant="secondary" onClick={sparkMultipleToasts}>
+          Multiple Toasts
+        </Button>
       </div>
 
       <h3>New v1.2.0 Features</h3>
@@ -274,7 +276,14 @@ export const RichContent: Story = {
               info('New comment', {
                 description: 'Sarah commented on your post',
                 richContent: (
-                  <div style={{ marginTop: '8px', padding:'8px', background: '#f0f0f0', borderRadius: '4px' }}>
+                  <div
+                    style={{
+                      marginTop: '8px',
+                      padding: '8px',
+                      background: '#f0f0f0',
+                      borderRadius: '4px',
+                    }}
+                  >
                     This is amazing! Great work! 🤩
                   </div>
                 ),
@@ -287,7 +296,11 @@ export const RichContent: Story = {
             onClick={() =>
               info('Deployment Complete', {
                 description: 'Your app is live at https://example.app',
-                meta: <span style={{ fontSize: '12px', color: '#666' }}><FaCode style={{ marginRight:'4px' }}></FaCode>2 minutes ago</span>,
+                meta: (
+                  <span style={{ fontSize: '12px', color: '#666' }}>
+                    <FaCode style={{ marginRight: '4px' }}></FaCode>2 minutes ago
+                  </span>
+                ),
               })
             }
           >
@@ -300,7 +313,11 @@ export const RichContent: Story = {
                 description: 'Pull request #42 needs your review',
                 variant: 'info',
                 meta: <span>From @dev-team</span>,
-                richContent: <div style={{ marginTop:'8px', fontFamily:'monospace', fontSize:'12px' }}feature/user-auth</div>,
+                richContent: (
+                  <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '12px' }}>
+                    feature/user-auth
+                  </div>
+                ),
               })
             }
           >

@@ -195,7 +195,7 @@ export const AccessibilityDemo: Story = {
             <p>This content is properly announced to screen readers:</p>
             <ul>
               <strong>Trigger</strong>: Button with aria-expanded and aria-controls
-              <lii>
+              <li>
                 <strong>Content</strong>: Region with aria-hidden and aria-labelledby
               </li>
             </ul>
