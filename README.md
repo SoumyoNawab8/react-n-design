@@ -444,15 +444,6 @@ npm run test:vitest:watch
 
 ---
 
-## Roadmap
-
-- **v1.1.0** *(Q3 2026)* - Performance & Accessibility: Bundle optimization, React Compiler support, WCAG 2.1 AA compliance
-- **v2.0.0** *(Q4 2026)* - API Modernization: CSS-only theming, React 19+, unstyled primitives
-
-See [ROADMAP.md](./ROADMAP.md) and [PLAN-v1.1.0.md](./PLAN-v1.1.0.md) for details.
-
----
-
 ## CLI
 
 A small CLI is included to scaffold new components into your project:
