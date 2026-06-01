@@ -365,8 +365,9 @@ const TableComponent = <T extends object>({
 };
 
 // Export memoized version
-export const Table = memo(TableComponent) as typeof TableComponent;
-Table.displayName = 'Table';
+const TableMemo = memo(TableComponent);
+TableMemo.displayName = 'Table';
+export const Table = TableMemo as typeof TableComponent;
 
 // Type-safe default export
 export default Table;
