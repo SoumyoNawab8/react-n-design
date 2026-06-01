@@ -326,6 +326,10 @@ export interface FormProps<T = unknown>
    * v1.2.0: Responsive breakpoint for layout changes
    */
   responsiveBreakpoint?: number;
+  /**
+   * Optional Zod schema for form validation
+   */
+  zodSchema?: any;
 }
 
 // ============================================

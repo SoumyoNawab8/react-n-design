@@ -110,6 +110,15 @@ export const FileItemIcon = styled.div`
   flex-shrink: 0;
 `;
 
+export const FileItemPreview = styled.img`
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: ${({ theme }) => theme.colors.shadowDark}20;
+`;
+
 export const FileItemInfo = styled.div`
   flex: 1;
   min-width: 0;

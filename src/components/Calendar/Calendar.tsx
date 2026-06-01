@@ -182,13 +182,13 @@ export const Calendar = ({ value, onChange, events = [], disabledDate }: Calenda
     <CalendarWrapper role="application" aria-label="Calendar">
       <CalendarHeader>
         <CalendarHeaderButton type="button" aria-label="Previous month" onClick={goToPrevMonth}>
-          <FaChevronLeft />
+          <FaChevronLeft aria-hidden="true" />
         </CalendarHeaderButton>
         <CalendarMonthYear aria-live="polite">
           {MONTHS[viewDate.getMonth()]} {viewDate.getFullYear()}
         </CalendarMonthYear>
         <CalendarHeaderButton type="button" aria-label="Next month" onClick={goToNextMonth}>
-          <FaChevronRight />
+          <FaChevronRight aria-hidden="true" />
         </CalendarHeaderButton>
       </CalendarHeader>
 

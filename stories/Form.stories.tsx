@@ -4,7 +4,7 @@ import { ErrorMessage, Form, FormItem, useForm } from '../src/components/Form';
 import { Input } from '../src/components/Input';
 
 const meta: Meta<typeof Form> = {
-  title: 'react-n-design/Form v1.2.0',
+  title: 'react-n-design/Form',
   component: Form,
   tags: ['autodocs'],
   argTypes: {

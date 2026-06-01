@@ -1,0 +1,8 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://opencode.ai/zen",
+    "ANTHROPIC_MODEL": "claude-sonnet-4-6",
+    "ANTHROPIC_API_KEY": "sk-i5ywoQ6nAI45oxb4RdH2YDki3gmWOu4gNxHNW51Kdd1Q4d0H7rpRsW1SdnejChmW",
+    "ENABLE_TOOL_SEARCH": "true"
+  }
+}

@@ -131,6 +131,13 @@ export const FaChevronDown = createIcon(
 );
 export const ChevronDown = FaChevronDown;
 
+// ChevronUp icon
+export const FaChevronUp = createIcon(
+  <path d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z" />,
+  '0 0 24 24'
+);
+export const ChevronUp = FaChevronUp;
+
 // ArrowUp icon
 export const FaArrowUp = createIcon(
   <path d="M4 12L6 10L12 16L18 10L20 12L12 20L4 12Z" />,

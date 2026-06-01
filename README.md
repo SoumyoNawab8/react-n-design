@@ -8,7 +8,7 @@
 
 <p align="center">
   <strong>The AI-native, Neomorphic React component library.</strong><br/>
-  70+ accessible components, zero-config install, RSC-ready, and built for the future of UI.
+  89+ accessible components, zero-config install, RSC-ready, and built for the future of UI.
 </p>
 
 <p align="center">
@@ -31,7 +31,7 @@
     <img src="https://img.shields.io/npm/l/react-n-design.svg?style=flat-square&color=yellow" alt="license" />
   </a>
   <a href="#components">
-    <img src="https://img.shields.io/badge/components-70+-blue.svg?style=flat-square" alt="components" />
+    <img src="https://img.shields.io/badge/components-89+-blue.svg?style=flat-square" alt="components" />
   </a>
 </p>
 
@@ -80,7 +80,7 @@ No extra setup, no Tailwind config, no CSS imports needed. Just install and impo
 || ♿ **Accessibility First** | axe-core validated, ARIA compliant, keyboard navigable, screen-reader friendly. |
 || 🔥 **Styled-Components** | No runtime CSS injection conflicts. Zero-runtime CSS variable fallbacks available. |
 ||| 📦 **Tree Shakable** | `sideEffects: false` ensures modern bundlers drop everything you do not use. |
-||| 70 Components | Complete library with Form, Tour, Steps, Timeline, Stepper, Empty, FloatButton |
+||| 89 Components | Complete library with Form, Tour, Steps, Timeline, Stepper, Empty, FloatButton |
 || Full TypeScript | Strict mode, complete type declarations |
 || Tree Shakable | `sideEffects: false` for optimal bundling |
 || Battle Tested | 348+ tests across Vitest + axe-core |
@@ -263,7 +263,7 @@ function App() {
 
 - **Client components** (default entry): `import { Button, Modal } from 'react-n-design'`
   - Includes interactive and animated components that require a client environment.
-- **Server-safe exports** (RSC entry): `import { Button, Card } from 'react-n-design/rsc'`
+- **Server-safe exports** (RSC entry): `import { Button, Card, Badge, Divider, Skeleton } from 'react-n-design/rsc'`
   - Includes only components that can safely render in a server context (no `'use client'` directive).
 
 Use the `/rsc` entry when you need to import components inside Server Components without adding a `"use client"` boundary.
@@ -318,6 +318,90 @@ const customTheme: Theme = {
 
 ---
 
+## Form Validation
+
+Built-in support for schema-based validation and popular form libraries.
+
+### Zod Schema Validation
+
+Pass a Zod schema to the `Form` component for automatic validation and error messaging:
+
+```tsx
+import { Form } from 'react-n-design';
+import { z } from 'zod';
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+<Form zodSchema={schema} onSubmit={(data) => console.log(data)}>
+  <Form.Input name="email" label="Email" />
+  <Form.Input name="password" label="Password" type="password" />
+  <Button type="submit">Submit</Button>
+</Form>
+```
+
+### React Hook Form Adapter
+
+Use the `withReactHookForm` adapter to plug react-n-design components into React Hook Form:
+
+```tsx
+import { withReactHookForm } from 'react-n-design';
+import { useForm } from 'react-hook-form';
+
+const { Input, Select } = withReactHookForm();
+
+function MyForm() {
+  const { control, handleSubmit } = useForm();
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Input name="username" control={control} />
+      <Select name="role" control={control} options={roles} />
+    </form>
+  );
+}
+```
+
+---
+
+## Glassmorphism & Visual Effects
+
+Add modern glass-like depth and animated borders to your UI.
+
+### Glassmorphism Variants
+
+Card, Modal, and Drawer support a `variant="glass"` prop for frosted-glass aesthetics:
+
+```tsx
+<Card variant="glass">
+  <Typography.Text>See-through elegance</Typography.Text>
+</Card>
+
+<Modal variant="glass" open={isOpen} onClose={handleClose}>
+  <p>Glassmorphic dialog</p>
+</Modal>
+```
+
+### GradientBorder
+
+An animated conic-gradient border for eye-catching highlights:
+
+```tsx
+import { GradientBorder } from 'react-n-design';
+
+<GradientBorder>
+  <Card>Highlighted content</Card>
+</GradientBorder>
+```
+
+### Enhanced Dark Mode
+
+The built-in `darkTheme` now uses deep space blues (`#0f172a`) for a richer, more immersive night-time experience.
+
+---
+
 ## Components
 
 ### General
@@ -350,6 +434,8 @@ const customTheme: Theme = {
 | **AppBar** | Application header/navigation bar |
 | **ScrollArea** | Custom scrollbar container |
 | **VirtualList** | Virtualized list for large datasets |
+| **KanbanBoard** | Task board with columns and reordering |
+| **ImageGallery** | Masonry grid with lightbox and lazy loading |
 
 ### Navigation
 
@@ -380,9 +466,16 @@ const customTheme: Theme = {
 | **ComboBox** | Autocomplete with filtering, multi-select, and async loading |
 | **DatePicker** | Single/range date selection with keyboard navigation |
 | **ColorPicker** | Color selection with preset swatches and custom input |
-| **FileUpload** | Drag-and-drop file upload with progress and validation |
+| **FileUpload** | Drag-and-drop file upload with image previews, progress, and validation |
 | **MultiSelect** | Multiple selection dropdown with chips and search |
 | **Form** | Form state management with validation |
+
+### Input
+
+| Component | Description |
+| --- | --- |
+| **OTPInput** / **PinInput** | One-time password digit input |
+| **RichTextEditor** | Basic rich text editor with formatting toolbar |
 
 ### Data Display
 
@@ -399,6 +492,17 @@ const customTheme: Theme = {
 | **Rating** | Star rating component |
 | **Segmented** | Segmented control |
 | **Charts** | Chart components with Recharts integration |
+| **HeatmapCalendar** | GitHub-style contribution calendar |
+| **GanttChart** | Project timeline chart |
+
+### Visualization
+
+| Component | Description |
+| --- | --- |
+| **OrgChart** | Hierarchical tree diagram |
+| **Terminal** | Styled shell output for AI code execution |
+| **AudioWaveform** | Voice input/output visualization |
+| **GradientBorder** | Animated conic-gradient border component |
 
 ### AI & Productivity
 
@@ -415,7 +519,13 @@ const customTheme: Theme = {
 | **Checkbox** | Checkbox with indeterminate state |
 | **RadioGroup** | Radio button group |
 | **Toggle** | Simple toggle switch |
-| **Skeleton** | Loading placeholder |
+| **StreamingText** | Typewriter effect with Markdown rendering |
+| **ThinkingBlock** | Collapsible LLM reasoning chain visualization |
+| **ToolCallCard** | AI tool call loading/success/error states |
+| **PromptBuilder** | Few-shot prompt editor with variable highlighting |
+| **ModelSelector** | AI model dropdown with context window, pricing, latency |
+| **DiffViewer** | Side-by-side or inline diff for code/document comparison |
+| **MentionInput** | @ mention support for users/documents/agents |
 
 ---
 
@@ -449,6 +559,9 @@ npm run test:vitest:watch
 A small CLI is included to scaffold new components into your project:
 
 ```bash
+# Initialize react-n-design in your project (sets up config and theme)
+npx react-n-design init
+
 # Add a component to your project (copies source to your local codebase)
 npx react-n-design add <ComponentName>
 

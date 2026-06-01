@@ -24,6 +24,10 @@ export interface DrawerProps {
   footer?: React.ReactNode;
   preventBackdropClick?: boolean;
   lockScroll?: boolean;
+  /**
+   * Variant style: 'default' (default) or 'glass' (with backdrop blur)
+   */
+  variant?: 'default' | 'glass';
 }
 
 const getAnimationProps = (placement: 'left' | 'right' | 'top' | 'bottom') => {
@@ -53,6 +57,7 @@ export const Drawer = ({
   footer,
   preventBackdropClick = false,
   lockScroll = true,
+  variant = 'default',
 }: DrawerProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const restoreFocusRef = useRef<(() => void) | null>(null);
@@ -123,6 +128,7 @@ export const Drawer = ({
       {isOpen && (
         <DrawerWrapper>
           <DrawerBackdrop
+            variant={variant}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -137,6 +143,7 @@ export const Drawer = ({
             aria-labelledby={titleId}
             placement={placement}
             size={size}
+            variant={variant}
             initial={animation.initial}
             animate={animation.animate}
             exit={animation.exit}

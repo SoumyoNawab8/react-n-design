@@ -34,6 +34,7 @@ export const lightTheme = {
     soft: '7px 7px 14px #bec3c9, -7px -7px 14px #ffffff',
     softInset: 'inset 7px 7px 14px #bec3c9, inset -7px -7px 14px #ffffff',
     strong: '0 8px 30px rgba(0, 0, 0, 0.3)',
+    innerGlow: 'inset 0 0 20px rgba(109, 93, 252, 0.08)',
   },
   mode: 'light',
 };
@@ -45,19 +46,19 @@ export const darkTheme = {
   reducedMotion: false,
   colors: {
     primary: '#7b6efc',
-    background: '#2c2f34',
+    background: '#0f172a',
     white: '#ffffff',
     text: '#d1d9e6',
     textSecondary: '#9ba3ad',
     border: '#444851',
     // Neomorphic shadow colors
-    shadowDark: '#25282c',
-    shadowLight: '#33363c',
+    shadowDark: '#0c1425',
+    shadowLight: '#1e293b',
     // Component-specific colors
-    hoverBg: '#3c4047',
-    skeletonBg: '#3c4047',
-    knobBg: '#3c4047',
-    cardBg: '#25282c',
+    hoverBg: '#1e293b',
+    skeletonBg: '#1e293b',
+    knobBg: '#1e293b',
+    cardBg: '#1e293b',
     // CopyButton states
     error: '#dc3545',
     success: '#28a745',
@@ -65,9 +66,10 @@ export const darkTheme = {
     danger: '#ff4d4f',
   },
   shadows: {
-    soft: '7px 7px 14px #25282c, -7px -7px 14px #33363c',
-    softInset: 'inset 7px 7px 14px #25282c, inset -7px -7px 14px #33363c',
+    soft: '7px 7px 14px #0c1425, -7px -7px 14px #1e293b',
+    softInset: 'inset 7px 7px 14px #0c1425, inset -7px -7px 14px #1e293b',
     strong: '0 8px 30px rgba(0, 0, 0, 0.5)',
+    innerGlow: 'inset 0 0 20px rgba(123, 110, 252, 0.1)',
   },
   mode: 'dark',
 };
@@ -92,6 +94,7 @@ export const cssVariableMap: Record<string, string> = {
   'colors.cardBg': '--n-color-card-bg',
   'shadows.soft': '--n-shadow-soft',
   'shadows.softInset': '--n-shadow-soft-inset',
+  'shadows.innerGlow': '--n-shadow-inner-glow',
   borderRadius: '--n-border-radius',
 };
 

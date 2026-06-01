@@ -200,7 +200,7 @@ const GroupHeader = memo(({ label }: { label: React.ReactNode }) => (
 GroupHeader.displayName = 'GroupHeader';
 
 /**
- * Select v1.2.0 - An advanced dropdown component with virtualization, multi-select chips,
+ * An advanced dropdown component with virtualization, multi-select chips,
  * searchable dropdown, responsive sizing, and spring physics animations.
  */
 const SelectBase = ({

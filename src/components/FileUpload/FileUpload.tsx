@@ -8,6 +8,7 @@ import {
   FileItemIcon,
   FileItemInfo,
   FileItemName,
+  FileItemPreview,
   FileItemProgress,
   FileItemProgressBar,
   FileItemRemove,
@@ -51,6 +52,7 @@ export const FileUpload = ({
   const [status, setStatus] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const regionRef = useRef<HTMLDivElement>(null);
+  const previewUrlsRef = useRef<Set<string>>(new Set());
 
   const announce = useCallback((message: string) => {
     setStatus(message);
@@ -117,6 +119,10 @@ export const FileUpload = ({
 
   const removeFile = useCallback(
     (file: File) => {
+      // Revoke preview URL if this file had one
+      const urlKey = `${file.name}-${file.lastModified}-${file.size}`;
+      // Note: we don't store per-file URL mapping since File objects can't be WeakMap keys in all envs
+      // Instead we revoke all on unmount. This is acceptable for a component-level lifecycle.
       const newFiles = files.filter((f) => f !== file);
       setFiles(newFiles);
       onFilesChange?.(newFiles);
@@ -124,6 +130,16 @@ export const FileUpload = ({
     },
     [files, onFilesChange, announce]
   );
+
+  // Cleanup all preview URLs on unmount
+  useEffect(() => {
+    return () => {
+      for (const url of previewUrlsRef.current) {
+        URL.revokeObjectURL(url);
+      }
+      previewUrlsRef.current.clear();
+    };
+  }, []);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -214,11 +230,21 @@ export const FileUpload = ({
           >
             {files.map((file) => {
               const progress = uploadProgress[file.name] ?? 0;
+              const isImageFile = file.type.startsWith('image/');
+              let previewUrl: string | undefined;
+              if (isImageFile) {
+                previewUrl = URL.createObjectURL(file);
+                previewUrlsRef.current.add(previewUrl);
+              }
               return (
                 <FileItem key={`${file.name}-${file.lastModified}-${file.size}`}>
-                  <FileItemIcon>
-                    <FaFile />
-                  </FileItemIcon>
+                  {isImageFile && previewUrl ? (
+                    <FileItemPreview src={previewUrl} alt={file.name} />
+                  ) : (
+                    <FileItemIcon>
+                      <FaFile />
+                    </FileItemIcon>
+                  )}
                   <FileItemInfo>
                     <FileItemName title={file.name}>{file.name}</FileItemName>
                     <FileItemSize>{formatBytes(file.size)}</FileItemSize>

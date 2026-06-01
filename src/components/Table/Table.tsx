@@ -92,8 +92,6 @@ type SortOrder = 'ascend' | 'descend' | null;
  * A powerful Table component for displaying data in rows and columns
  * with support for sorting, pagination, sticky headers, skeleton loading,
  * and responsive column hiding.
- * 
- * @version 1.2.0
  */
 const TableComponent = <T extends object>({
   columns,
@@ -368,6 +366,7 @@ const TableComponent = <T extends object>({
 
 // Export memoized version
 export const Table = memo(TableComponent) as typeof TableComponent;
+Table.displayName = 'Table';
 
 // Type-safe default export
 export default Table;

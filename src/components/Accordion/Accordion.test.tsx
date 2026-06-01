@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import type React from 'react';
@@ -183,13 +183,17 @@ describe('Accordion - Disabled Items', () => {
   ];
 
   it('does not expand disabled items on click', async () => {
-    const user = userEvent.setup();
     renderWithTheme(<Accordion items={itemsWithDisabled} />);
 
     const disabledHeader = screen.getByText('Disabled').closest('button');
     expect(disabledHeader).toBeDisabled();
+    expect(screen.queryByText('Content 2')).not.toBeInTheDocument();
 
-    await user.click(disabledHeader!);
+    // Disabled buttons have pointer-events: none; use fireEvent since
+    // user-event refuses to interact with such elements.
+    if (disabledHeader) {
+      fireEvent.click(disabledHeader);
+    }
     expect(screen.queryByText('Content 2')).not.toBeInTheDocument();
   });
 });

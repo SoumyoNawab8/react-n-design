@@ -4,7 +4,7 @@ import { Table } from '../src/components/Table';
 import { Tag } from '../src/components/Tag';
 
 const meta: Meta<typeof Table> = {
-  title: 'react-n-design/Table v1.2.0',
+  title: 'react-n-design/Table',
   component: Table,
   tags: ['autodocs'],
   parameters: {

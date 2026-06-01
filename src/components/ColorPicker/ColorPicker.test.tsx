@@ -23,9 +23,9 @@ describe('ColorPicker', () => {
 
   it('renders RGB sliders', () => {
     renderWithTheme(<ColorPicker />);
-    expect(screen.getByLabelText(/R value/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/G value/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/B value/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^R value$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^G value$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^B value$/i)).toBeInTheDocument();
   });
 
   it('renders preset color swatches', () => {
@@ -46,7 +46,7 @@ describe('ColorPicker', () => {
   it('calls onChange when RGB slider changes', async () => {
     const onChange = vi.fn();
     renderWithTheme(<ColorPicker onChange={onChange} />);
-    const redSlider = screen.getByLabelText(/R value/i);
+    const redSlider = screen.getByLabelText(/^R value$/i);
     fireEvent.change(redSlider, { target: { value: '255' } });
     expect(onChange).toHaveBeenCalled();
   });

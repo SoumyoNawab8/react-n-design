@@ -169,7 +169,7 @@ export const AIChat = ({
                         aria-label={copiedId === msgId ? 'Copied' : 'Copy message'}
                         title={copiedId === msgId ? 'Copied!' : 'Copy'}
                       >
-                        {copiedId === msgId ? <FaCheck /> : <FaCopy />}
+                        {copiedId === msgId ? <FaCheck aria-hidden="true" /> : <FaCopy aria-hidden="true" />}
                         <span>{copiedId === msgId ? 'Copied' : 'Copy'}</span>
                       </AIChatMessageActionButton>
                     </AIChatMessageActions>
@@ -216,7 +216,7 @@ export const AIChat = ({
             disabled={!inputValue.trim() || streaming}
             aria-label="Send message"
           >
-            <FaPaperPlane />
+            <FaPaperPlane aria-hidden="true" />
           </AIChatSendButton>
         </AIChatInputWrapper>
       </AIChatInputArea>

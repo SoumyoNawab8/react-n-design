@@ -583,7 +583,7 @@ export const DatePicker = ({
         aria-controls={isOpen ? panelId : undefined}
         aria-label={label || 'Date picker'}
       >
-        <DatePickerCalendarIcon disabled={disabled}>
+        <DatePickerCalendarIcon disabled={disabled} aria-hidden="true">
           <FaCalendarAlt />
         </DatePickerCalendarIcon>
         <DatePickerInput
@@ -605,7 +605,7 @@ export const DatePicker = ({
             onKeyDown={handleClearKeyDown}
             tabIndex={0}
           >
-            <FaTimes />
+            <FaTimes aria-hidden="true" />
           </DatePickerClearButton>
         )}
       </DatePickerInputGroup>
@@ -639,7 +639,7 @@ export const DatePicker = ({
                 onKeyDown={(e) => handleHeaderKeyDown(e, goToPrevMonth)}
                 tabIndex={0}
               >
-                <FaChevronLeft />
+                <FaChevronLeft aria-hidden="true" />
               </DatePickerHeaderButton>
 
               <DatePickerMonthYear>
@@ -683,7 +683,7 @@ export const DatePicker = ({
                 onKeyDown={(e) => handleHeaderKeyDown(e, goToNextMonth)}
                 tabIndex={0}
               >
-                <FaChevronRight />
+                <FaChevronRight aria-hidden="true" />
               </DatePickerHeaderButton>
             </DatePickerHeader>
 

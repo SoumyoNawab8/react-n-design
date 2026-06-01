@@ -254,14 +254,14 @@ export const PaginationWrapper = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 16px;
-  padding: 16px 8px 8px;
-  
+  padding: 16px 0 8px;
+
   /* Touch-optimized for mobile */
   @media (max-width: 768px) {
     justify-content: center;
     gap: 8px;
-    padding: 12px 4px;
-    
+    padding: 12px 0;
+
     button {
       min-height: 44px;
       min-width: 44px;

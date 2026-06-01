@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Select, type SelectOptionProps, type SelectOptionGroup, type SelectProps } from '../src/components/Select';
 
 const meta: Meta<typeof Select> = {
-  title: 'react-n-design/Select v1.2.0',
+  title: 'react-n-design/Select',
   component: Select,
   tags: ['autodocs'],
   argTypes: {

@@ -152,6 +152,8 @@ export interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement
   // v1.2.0 new props
   compact?: boolean;
   responsiveBreakpoint?: number;
+  /** Optional Zod schema for form validation */
+  zodSchema?: any;
 }
 
 export interface FormItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {

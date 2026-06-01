@@ -40,7 +40,7 @@ export const ModalWrapper = styled.div.withConfig({
 export const ModalBackdrop = styled(motion.div).withConfig({
   shouldForwardProp: (prop) => !['variant', 'isBottomSheet'].includes(prop),
 })<{
-  variant?: 'modal' | 'glass';
+  variant?: 'default' | 'glass';
   isBottomSheet?: boolean;
 }>`
   position: absolute;
@@ -48,11 +48,11 @@ export const ModalBackdrop = styled(motion.div).withConfig({
   left: 0;
   width: 100%;
   height: 100%;
-  
+
   ${({ variant }) =>
     variant === 'glass'
       ? css`
-          background: rgba(0, 0, 0, 0.4);
+          background: rgba(0, 0, 0, 0.25);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
         `
@@ -61,7 +61,7 @@ export const ModalBackdrop = styled(motion.div).withConfig({
           backdrop-filter: blur(0px);
           -webkit-backdrop-filter: blur(0px);
         `}
-  
+
   /* Smooth transition for blur effect */
   transition: backdrop-filter 0.3s ease;
 `;
@@ -76,7 +76,7 @@ export const ModalContent = styled(motion.div).withConfig({
 })<{
   size: ModalSize;
   fullScreen: boolean;
-  variant?: 'modal' | 'glass';
+  variant?: 'default' | 'glass';
   isBottomSheet?: boolean;
 }>`
   position: relative;
@@ -84,39 +84,37 @@ export const ModalContent = styled(motion.div).withConfig({
   width: ${({ isBottomSheet }) => (isBottomSheet ? '100%' : '90vw')};
   max-width: ${({ size, isBottomSheet }) => (isBottomSheet ? 'none' : sizes[size])};
 
-  /* Glass variant styles */
-  ${({ variant }) =>
-    variant === 'glass' &&
-    css`
-      & > div {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-      }
-      
-      /* Dark mode support */
-      @media (prefers-color-scheme: dark) {
-        & > div {
-          background: rgba(30, 30, 30, 0.95);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-      }
-    `}
-
   /* Bottom-sheet styles for mobile */
-  ${({ isBottomSheet }) =>
+  ${({ isBottomSheet, variant }) =>
     isBottomSheet &&
     css`
       width: 100%;
       max-width: none;
       margin: 0;
       border-radius: 16px 16px 0 0;
-      
+
       & > div {
         border-radius: 16px 16px 0 0;
         padding-bottom: env(safe-area-inset-bottom, 20px);
+
+        ${variant === 'glass' &&
+        css`
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        `}
+      }
+
+      @media (prefers-color-scheme: dark) {
+        & > div {
+          ${variant === 'glass' &&
+          css`
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+          `}
+        }
       }
     `}
 

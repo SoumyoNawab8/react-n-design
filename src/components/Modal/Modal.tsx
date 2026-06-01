@@ -54,9 +54,9 @@ export interface ModalProps {
    */
   lockScroll?: boolean;
   /**
-   * Variant style: 'modal' (default) or 'glass' (with backdrop blur)
+   * Variant style: 'default' (default) or 'glass' (with backdrop blur)
    */
-  variant?: 'modal' | 'glass';
+  variant?: 'default' | 'glass';
   /**
    * Mobile variant: 'modal' (default) or 'bottom-sheet' (slides up from bottom)
    */
@@ -140,7 +140,7 @@ const ModalComponent = ({
   position = 'center',
   fullScreen = false,
   lockScroll = true,
-  variant = 'modal',
+  variant = 'default',
   mobileVariant = 'modal',
   animationConfig,
   style,
@@ -325,7 +325,11 @@ const ModalComponent = ({
             tabIndex={-1}
             style={style}
           >
-            <Card padding="large" style={{ height: effectiveFullScreen ? '100%' : undefined }}>
+            <Card
+              padding="large"
+              variant={variant === 'glass' ? 'glass' : undefined}
+              style={{ height: effectiveFullScreen ? '100%' : undefined }}
+            >
               {title && (
                 <ModalHeader>
                   <ModalTitle id={titleId}>{title}</ModalTitle>

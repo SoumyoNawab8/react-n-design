@@ -94,6 +94,35 @@ async function validateField(
   return errors;
 }
 
+function validateWithZod(
+  schema: unknown,
+  values: Record<string, unknown>
+): Record<string, string[]> {
+  if (!schema || typeof schema !== 'object') return {};
+  const s = schema as {
+    safeParse: (data: unknown) => {
+      success: boolean;
+      error?: {
+        flatten: () => {
+          fieldErrors: Record<string, string[] | undefined>;
+          formErrors: string[];
+        };
+      };
+    };
+  };
+  const result = s.safeParse(values);
+  if (result.success) return {};
+  const flattened = result.error?.flatten();
+  if (!flattened) return {};
+  const errors: Record<string, string[]> = {};
+  for (const [key, fieldErrors] of Object.entries(flattened.fieldErrors)) {
+    if (fieldErrors && fieldErrors.length > 0) {
+      errors[key] = fieldErrors;
+    }
+  }
+  return errors;
+}
+
 // useForm hook for creating form instances
 export function useForm<T = unknown>(): [FormInstance<T>] {
   const [instance, _setInstance] = useState(() => {
@@ -151,6 +180,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
     // v1.2.0 new props
     compact = false,
     responsiveBreakpoint = 768,
+    zodSchema,
     ...restProps
   } = props;
 
@@ -231,19 +261,42 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
         const fieldNames = names || Array.from(fieldEntities.current.keys());
         const allErrors: Record<string, string[]> = {};
         let hasError = false;
+
+        // 1. Validate with Zod schema if provided
+        if (zodSchema) {
+          const zodErrors = validateWithZod(zodSchema, values);
+          for (const [name, fieldErrors] of Object.entries(zodErrors)) {
+            if (!names || fieldNames.includes(name)) {
+              allErrors[name] = fieldErrors;
+              hasError = true;
+            }
+          }
+        }
+
+        // 2. Validate with per-field rules (backward compatibility)
         for (const name of fieldNames) {
           const entity = fieldEntities.current.get(name);
           if (entity?.rules?.length) {
             dispatch({ type: 'SET_FIELD_VALIDATING', payload: { name, validating: true } });
             const fieldErrors = await validateField(values[name], entity.rules, values);
             dispatch({ type: 'SET_FIELD_VALIDATING', payload: { name, validating: false } });
-            dispatch({ type: 'SET_FIELD_ERROR', payload: { name, errors: fieldErrors } });
             if (fieldErrors.length) {
-              allErrors[name] = fieldErrors;
+              allErrors[name] = [...(allErrors[name] || []), ...fieldErrors];
               hasError = true;
             }
           }
         }
+
+        // Dispatch all collected errors and clear fields that passed
+        for (const [name, errors] of Object.entries(allErrors)) {
+          dispatch({ type: 'SET_FIELD_ERROR', payload: { name, errors } });
+        }
+        for (const name of fieldNames) {
+          if (!allErrors[name]) {
+            dispatch({ type: 'SET_FIELD_ERROR', payload: { name, errors: [] } });
+          }
+        }
+
         if (hasError)
           throw {
             values,
@@ -265,7 +318,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
       isFieldValidating: (name: string) => validating[name] || false,
       submit: () => {},
     }),
-    [values, errors, touched, validating, onValuesChange, dispatch]
+    [values, errors, touched, validating, onValuesChange, dispatch, zodSchema]
   );
 
   const handleSubmit = useCallback(
