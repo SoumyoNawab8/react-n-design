@@ -23,6 +23,7 @@ export const tokens = {
     surface: 'var(--n-color-surface)',
     text: 'var(--n-color-text)',
     textInverse: 'var(--n-color-text-inverse)',
+    disabledText: 'var(--n-color-disabled-text)',
     shadowDark: 'var(--n-color-shadow-dark)',
     shadowLight: 'var(--n-color-shadow-light)',
     hoverBg: 'var(--n-color-hover-bg)',
@@ -60,6 +61,7 @@ export function injectCSSVariables(theme: 'light' | 'dark'): void {
     root.style.setProperty('--n-color-surface', '#ffffff');
     root.style.setProperty('--n-color-text', '#555555');
     root.style.setProperty('--n-color-text-inverse', '#ffffff');
+    root.style.setProperty('--n-color-disabled-text', '#8c929b');
     root.style.setProperty('--n-color-shadow-dark', '#bec3c9');
     root.style.setProperty('--n-color-shadow-light', '#ffffff');
     root.style.setProperty('--n-color-hover-bg', '#d1d9e6');
@@ -77,6 +79,7 @@ export function injectCSSVariables(theme: 'light' | 'dark'): void {
     root.style.setProperty('--n-color-surface', '#ffffff');
     root.style.setProperty('--n-color-text', '#d1d9e6');
     root.style.setProperty('--n-color-text-inverse', '#ffffff');
+    root.style.setProperty('--n-color-disabled-text', '#6b7280');
     root.style.setProperty('--n-color-shadow-dark', '#25282c');
     root.style.setProperty('--n-color-shadow-light', '#33363c');
     root.style.setProperty('--n-color-hover-bg', '#3c4047');
@@ -104,6 +107,7 @@ export function generateThemeCSS(theme: 'light' | 'dark'): string {
   --n-color-surface: #ffffff;
   --n-color-text: #555555;
   --n-color-text-inverse: #ffffff;
+  --n-color-disabled-text: #8c929b;
   --n-color-shadow-dark: #bec3c9;
   --n-color-shadow-light: #ffffff;
   --n-color-hover-bg: #d1d9e6;
@@ -123,6 +127,7 @@ export function generateThemeCSS(theme: 'light' | 'dark'): string {
   --n-color-surface: #ffffff;
   --n-color-text: #d1d9e6;
   --n-color-text-inverse: #ffffff;
+  --n-color-disabled-text: #6b7280;
   --n-color-shadow-dark: #25282c;
   --n-color-shadow-light: #33363c;
   --n-color-hover-bg: #3c4047;

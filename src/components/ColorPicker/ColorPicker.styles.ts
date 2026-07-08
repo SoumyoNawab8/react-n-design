@@ -61,7 +61,7 @@ export const ColorHexInput = styled.input`
   }
 
   &::placeholder {
-    color: #a0a5b0;
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 `;
 

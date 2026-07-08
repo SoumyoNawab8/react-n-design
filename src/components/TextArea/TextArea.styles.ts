@@ -98,11 +98,13 @@ export const StyledTextArea = styled.textarea`
   line-height: 1.5;
 
   &::placeholder {
-    color: #a0a5b0;
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
   &:disabled {
     cursor: not-allowed;
+    color: ${({ theme }) => theme.colors.disabledText};
+    opacity: 0.6;
   }
 
   &:read-only {

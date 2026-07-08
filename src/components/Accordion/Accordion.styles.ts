@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export interface AccordionWrapperProps {
   bordered: boolean;
@@ -104,7 +105,7 @@ export const AccordionHeader = styled.button.withConfig({
   text-align: left;
   transition: all 0.2s ease;
   color: ${({ isActive, theme, disabled, variant }) => {
-    if (disabled) return theme.colors?.shadowDark || '#999';
+    if (disabled) return theme.colors?.disabledText || '#8c929b';
     if (isActive) {
       if (variant === 'glass') {
         return theme.colors?.primary || '#1890ff';
@@ -140,13 +141,13 @@ export const AccordionHeader = styled.button.withConfig({
   }
 
   &:disabled {
-    color: ${({ theme }) => theme.colors?.shadowDark || '#999'};
+    color: ${({ theme }) => theme.colors?.disabledText || '#8c929b'};
     cursor: not-allowed;
     opacity: 0.6;
   }
 
   &[aria-disabled="true"] {
-    color: ${({ theme }) => theme.colors?.shadowDark || '#999'};
+    color: ${({ theme }) => theme.colors?.disabledText || '#8c929b'};
     cursor: not-allowed;
     opacity: 0.6;
     pointer-events: none;
@@ -175,6 +176,8 @@ export const AccordionChevron = styled(motion.div)`
   font-size: 14px;
   margin-left: 16px;
   flex-shrink: 0;
+  color: currentColor;
+  ${iconColor}
 
   /* Larger touch target on mobile */
   @media (pointer: coarse) {

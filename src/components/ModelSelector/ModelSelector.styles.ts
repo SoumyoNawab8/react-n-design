@@ -1,6 +1,7 @@
 'use client';
 import styled from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export const ModelSelectorWrapper = styled.div`
   position: relative;
@@ -72,6 +73,7 @@ export const SelectChevron = styled.div.withConfig({
   transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   color: ${({ theme }) => theme.colors.shadowDark};
   flex-shrink: 0;
+  ${iconColor}
 `;
 
 export const ModelDropdown = styled(motion.div)`

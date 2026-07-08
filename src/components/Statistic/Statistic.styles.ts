@@ -1,5 +1,6 @@
 'use client';
 import styled from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 export const StatisticContainer = styled.div`
   display: inline-flex;
@@ -42,7 +43,8 @@ export const TrendIndicator = styled.span.withConfig({
   margin-left: 8px;
   font-size: 0.5em;
   color: ${({ trend }) => (trend === 'up' ? '#52c41a' : '#ff4d4f')};
-  
+  ${iconColor}
+
   svg {
     width: 1.2em;
     height: 1.2em;

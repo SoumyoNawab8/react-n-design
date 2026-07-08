@@ -40,7 +40,7 @@
     <img src="https://img.shields.io/badge/NPM-View%20Package-cb3837?style=for-the-badge&cacheBuster=dsadad" alt="View on NPM" />
   </a>
   <a href="https://SoumyoNawab8.github.io/react-n-design/">
-    <img src="https://img.shields.io/badge/Storybook-Live%20Demo-ff4785?style=for-the-badge&cacheBuster=dsadad" alt="Storybook Live Demo" />
+    <img src="https://img.shields.io/badge/Docs-Live%20Site-0070f3?style=for-the-badge&cacheBuster=dsadad" alt="Documentation Site" />
   </a>
 </p>
 
@@ -263,23 +263,23 @@ function App() {
 
 - **Client components** (default entry): `import { Button, Modal } from 'react-n-design'`
   - Includes interactive and animated components that require a client environment.
-- **Server-safe exports** (RSC entry): `import { Button, Card, Badge, Divider, Skeleton } from 'react-n-design/rsc'`
+- **Server-safe exports** (RSC entry): `import { Badge, Divider, Skeleton } from 'react-n-design/rsc'`
   - Includes only components that can safely render in a server context (no `'use client'` directive).
 
 Use the `/rsc` entry when you need to import components inside Server Components without adding a `"use client"` boundary.
 
 ```tsx
 // In a Server Component (e.g., Next.js App Router)
-import { Card, Stack, Typography } from 'react-n-design/rsc';
+import { Badge, Divider, Skeleton } from 'react-n-design/rsc';
 
 export default function Page() {
   return (
-    <Card>
-      <Stack direction="column" gap="16px">
-        <Typography.Title level={1}>Server-rendered content</Typography.Title>
-        <Typography.Text>Hello from the server!</Typography.Text>
-      </Stack>
-    </Card>
+    <div>
+      <h1>Server-rendered content</h1>
+      <Badge status="success">Live</Badge>
+      <Divider />
+      <Skeleton rows={3} />
+    </div>
   );
 }
 ```
@@ -580,14 +580,14 @@ git clone https://github.com/SoumyoNawab8/react-n-design.git
 # Install dependencies
 npm install --legacy-peer-deps
 
-# Start Storybook for development
+# Start the documentation site for development
 npm run dev
 
 # Build the library
 npm run build
 
-# Build Storybook for static deployment
-npm run build-storybook
+# Build the documentation site for static deployment
+npm run build:site
 ```
 
 ---

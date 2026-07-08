@@ -1,6 +1,7 @@
 'use client';
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export const FileUploadRegion = styled.div.withConfig({
   shouldForwardProp: (prop) => !['isDragOver', 'disabled', 'hasError'].includes(prop),
@@ -67,6 +68,7 @@ export const FileUploadIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${iconColor}
 `;
 
 export const FileUploadText = styled.p`
@@ -108,6 +110,7 @@ export const FileItemIcon = styled.div`
   font-size: 20px;
   color: ${({ theme }) => theme.colors.primary};
   flex-shrink: 0;
+  ${iconColor}
 `;
 
 export const FileItemPreview = styled.img`
@@ -172,10 +175,11 @@ export const FileItemRemove = styled.button`
   border-radius: 50%;
   transition: color 0.15s ease, background 0.15s ease;
   flex-shrink: 0;
+  ${iconColor}
 
   &:hover {
-    color: #e53e3e;
-    background: #e53e3e15;
+    color: ${({ theme }) => theme.colors.error};
+    background: ${({ theme }) => `${theme.colors.error}15`};
   }
 
   &:focus-visible {
@@ -187,7 +191,7 @@ export const FileItemRemove = styled.button`
 export const FileUploadError = styled.p`
   margin: 0;
   font-size: 12px;
-  color: #e53e3e;
+  color: ${({ theme }) => theme.colors.error};
 `;
 
 export const FileUploadStatus = styled.div`

@@ -41,7 +41,7 @@ const baseButtonStyles = css`
     opacity: 0.5;
     cursor: not-allowed;
     box-shadow: ${({ theme }) => theme.shadows.softInset};
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.disabledText};
     transform: none;
   }
 

@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export type ToastVariant = 'success' | 'error' | 'warning' | 'info' | 'loading';
 export type ToastPosition =
@@ -247,6 +248,7 @@ export const ToastIcon = styled.div.withConfig({
     const mainColor = getVariantColors(theme, variant).main;
     return isGlass ? mainColor : mainColor;
   }};
+  ${iconColor}
 
   & svg {
     display: block;
@@ -318,7 +320,7 @@ export const ToastCloseButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #aaa;
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin-left: 12px;
   font-size: 16px;
   flex-shrink: 0;
@@ -328,6 +330,7 @@ export const ToastCloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.text};
@@ -355,7 +358,7 @@ export const ToastProgress = styled.div.withConfig({
 `;
 
 export const ToastSpinner = styled.div`
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid ${({ theme }) => `${theme.colors.textSecondary}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 18px;

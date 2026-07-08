@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>react-n-design</title>
+  <script type="text/javascript">
+    var base = '/react-n-design';
+    var path = window.location.pathname;
+    if (path.indexOf(base) === 0) path = path.slice(base.length);
+    sessionStorage.setItem('spa-redirect', path + window.location.search + window.location.hash);
+    window.location.href = window.location.origin + base + '/';
+  </script>
+</head>
+<body>
+</body>
+</html>

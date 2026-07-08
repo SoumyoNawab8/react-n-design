@@ -39,6 +39,7 @@
   --n-color-surface: #ffffff;
   --n-color-text: #555555;
   --n-color-text-inverse: #ffffff;
+  --n-color-disabled-text: #8c929b;
 
   /* Neomorphic shadow colors */
   --n-color-shadow-dark: #bec3c9;
@@ -62,6 +63,7 @@
   --n-color-surface: #ffffff;
   --n-color-text: #d1d9e6;
   --n-color-text-inverse: #ffffff;
+  --n-color-disabled-text: #6b7280;
 
   /* Neomorphic shadow colors */
   --n-color-shadow-dark: #25282c;
@@ -84,4 +86,15 @@
   transition-property: color, background-color, border-color, box-shadow, fill, stroke;
   transition-duration: 0.3s;
   transition-timing-function: ease;
+}
+
+/* High-contrast mode: keep disabled text distinguishable */
+@media (prefers-contrast: more) {
+  :root {
+    --n-color-disabled-text: #5a6370;
+  }
+
+  [data-theme="dark"] {
+    --n-color-disabled-text: #b0b8c2;
+  }
 }

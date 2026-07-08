@@ -1,6 +1,7 @@
 'use client';
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export const DatePickerWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !['fullWidth'].includes(prop),
@@ -76,12 +77,13 @@ export const DatePickerInput = styled.input`
   box-sizing: border-box;
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
   &:disabled {
     cursor: not-allowed;
-    color: #aaa;
+    color: ${({ theme }) => theme.colors.disabledText};
+    opacity: 0.7;
   }
 `;
 
@@ -91,9 +93,11 @@ export const DatePickerCalendarIcon = styled.span.withConfig({
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ disabled, theme }) => (disabled ? theme.colors.shadowDark : theme.colors.text)};
+  color: ${({ disabled, theme }) => (disabled ? theme.colors.disabledText : theme.colors.text)};
   font-size: 18px;
   flex-shrink: 0;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
+  ${iconColor}
 `;
 
 export const DatePickerClearButton = styled.button`
@@ -103,12 +107,13 @@ export const DatePickerClearButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 14px;
   padding: 0;
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.text};
@@ -151,6 +156,7 @@ export const DatePickerHeaderButton = styled.button`
   color: ${({ theme }) => theme.colors.text};
   box-shadow: ${({ theme }) => theme.shadows.soft};
   transition: all 0.2s ease;
+  ${iconColor}
 
   &:hover:not(:disabled) {
     background: ${({ theme }) => theme.colors.hoverBg};
@@ -248,8 +254,8 @@ export const DatePickerDay = styled.button.withConfig({
   cursor: pointer;
   background: transparent;
   color: ${({ theme, isOtherMonth, isDisabled }) => {
-    if (isDisabled) return theme.colors.shadowDark;
-    if (isOtherMonth) return theme.colors.shadowDark;
+    if (isDisabled) return theme.colors.disabledText;
+    if (isOtherMonth) return theme.colors.textSecondary;
     return theme.colors.text;
   }};
   position: relative;
@@ -267,7 +273,7 @@ export const DatePickerDay = styled.button.withConfig({
         width: 4px;
         height: 4px;
         border-radius: 50%;
-        background: ${isSelected ? '#ffffff' : theme.colors.primary};
+        background: ${isSelected ? theme.colors.background : theme.colors.primary};
       }
     `}
 
@@ -276,7 +282,7 @@ export const DatePickerDay = styled.button.withConfig({
     isRangeEnd &&
     css`
       background: ${theme.colors.primary};
-      color: #ffffff;
+      color: ${theme.colors.background};
       border-radius: 8px;
       font-weight: 700;
     `}
@@ -285,7 +291,7 @@ export const DatePickerDay = styled.button.withConfig({
     isSelected &&
     css`
       background: ${theme.colors.primary};
-      color: #ffffff;
+      color: ${theme.colors.background};
       box-shadow: ${theme.shadows.soft};
       font-weight: 700;
     `}
@@ -304,7 +310,7 @@ export const DatePickerDay = styled.button.withConfig({
     !isRangeEnd &&
     css`
       background: ${theme.colors.primary};
-      color: #ffffff;
+      color: ${theme.colors.background};
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
       font-weight: 700;
@@ -315,7 +321,7 @@ export const DatePickerDay = styled.button.withConfig({
     !isRangeStart &&
     css`
       background: ${theme.colors.primary};
-      color: #ffffff;
+      color: ${theme.colors.background};
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       font-weight: 700;

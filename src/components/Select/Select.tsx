@@ -306,10 +306,10 @@ const SelectBase = ({
 
   // Scroll to highlighted item in virtual list
   useEffect(() => {
-    if (isOpen && listRef.current && allOptions.length > virtualThreshold) {
+    if (isOpen && listRef.current && filteredOptions.length > virtualThreshold) {
       listRef.current.scrollToItem(highlightedIndex, 'smart');
     }
-  }, [highlightedIndex, isOpen, allOptions.length, virtualThreshold]);
+  }, [highlightedIndex, isOpen, filteredOptions.length, virtualThreshold]);
 
   const handleSelect = useCallback(
     (option: SelectOptionProps) => {
@@ -522,7 +522,7 @@ const SelectBase = ({
   // Virtual list item data
   const virtualItemData: VirtualItemData = useMemo(
     () => ({
-      options: allOptions,
+      options: filteredOptions,
       enabledOptions,
       currentValue,
       mode,
@@ -535,7 +535,7 @@ const SelectBase = ({
       enabledIndexOf,
     }),
     [
-      allOptions,
+      filteredOptions,
       enabledOptions,
       currentValue,
       mode,
@@ -549,7 +549,7 @@ const SelectBase = ({
   );
 
   // Determine if we should use virtual list
-  const useVirtualList = allOptions.length > virtualThreshold;
+  const useVirtualList = filteredOptions.length > virtualThreshold;
 
   // Empty state
   const renderEmptyState = () => {
@@ -727,7 +727,7 @@ const SelectBase = ({
                     <List
                       ref={listRef}
                       height={maxDropdownHeight}
-                      itemCount={allOptions.length}
+                      itemCount={filteredOptions.length}
                       itemSize={itemHeight}
                       itemData={virtualItemData}
                       width="100%"

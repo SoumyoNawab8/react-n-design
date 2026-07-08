@@ -1,5 +1,6 @@
 'use client';
 import styled from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 export const FloatButtonWrapper = styled.div<{ $position: string }>`
   position: fixed;
@@ -31,7 +32,7 @@ export const FloatButtonContainer = styled.button`
   border-radius: 50%;
   border: none;
   background: ${({ theme }) => theme.colors?.primary || '#1890ff'};
-  color: white;
+  color: ${({ theme }) => theme.colors?.background || '#ffffff'};
   font-size: 24px;
   cursor: pointer;
   display: flex;
@@ -39,11 +40,12 @@ export const FloatButtonContainer = styled.button`
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.2s;
-  
+  ${iconColor}
+
   &:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   }
-  
+
   &:focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors?.primary || '#1890ff'};
     outline-offset: 2px;
@@ -62,24 +64,21 @@ export const MenuItem = styled.button`
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  background: white;
+  background: ${({ theme }) => theme.colors?.background || '#ffffff'};
   border: 1px solid ${({ theme }) => theme.colors?.border || '#d9d9d9'};
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   white-space: nowrap;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
+  color: ${({ theme }) => theme.colors?.text || '#333'};
+
   &:hover:not(:disabled) {
-    background: ${({ theme }) => theme.colors?.background || '#f5f5f5'};
+    background: ${({ theme }) => theme.colors?.hoverBg || '#f5f5f5'};
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-  
-  & span {
-    color: ${({ theme }) => theme.colors?.text || '#333'};
   }
 `;

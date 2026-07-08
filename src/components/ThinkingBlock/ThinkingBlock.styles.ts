@@ -1,6 +1,7 @@
 'use client';
 import styled, { keyframes } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 const stepReveal = keyframes`
   from { opacity: 0; transform: translateY(-4px); }
@@ -48,10 +49,11 @@ export const ThinkingBlockIcon = styled.div`
   height: 24px;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.background};
   font-size: 12px;
   font-weight: 700;
   flex-shrink: 0;
+  ${iconColor}
 
   svg {
     width: 12px;
@@ -73,6 +75,7 @@ export const ThinkingBlockChevron = styled(motion.div)`
   color: ${({ theme }) => theme.colors.primary};
   opacity: 0.7;
   font-size: 12px;
+  ${iconColor}
 
   svg {
     width: 12px;

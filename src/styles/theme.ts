@@ -15,6 +15,7 @@ export const lightTheme = {
     white: '#ffffff',
     text: '#555',
     textSecondary: '#888',
+    disabledText: '#8c929b',
     border: '#d9d9d9',
     // Neomorphic shadow colors
     shadowDark: '#bec3c9',
@@ -50,6 +51,7 @@ export const darkTheme = {
     white: '#ffffff',
     text: '#d1d9e6',
     textSecondary: '#9ba3ad',
+    disabledText: '#6b7280',
     border: '#444851',
     // Neomorphic shadow colors
     shadowDark: '#0c1425',
@@ -86,6 +88,7 @@ export const cssVariableMap: Record<string, string> = {
   'colors.background': '--n-color-background',
   'colors.white': '--n-color-surface',
   'colors.text': '--n-color-text',
+  'colors.disabledText': '--n-color-disabled-text',
   'colors.shadowDark': '--n-color-shadow-dark',
   'colors.shadowLight': '--n-color-shadow-light',
   'colors.hoverBg': '--n-color-hover-bg',

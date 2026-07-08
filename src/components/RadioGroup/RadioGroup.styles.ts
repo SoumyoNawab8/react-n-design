@@ -59,8 +59,13 @@ export const RadioInnerDot = styled.div`
 export const RadioLabel = styled.span.withConfig({
   shouldForwardProp: (prop) => !['disabled'].includes(prop),
 })<{ disabled: boolean }>`
-  color: ${({ disabled, theme }) => (disabled ? theme.colors.shadowDark : theme.colors.text)};
+  color: ${({ disabled, theme }) => (disabled ? theme.colors.disabledText : theme.colors.text)};
   font-size: 16px;
   font-weight: 500;
   user-select: none;
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.7;
+    `}
 `;

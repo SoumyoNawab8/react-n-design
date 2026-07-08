@@ -38,6 +38,8 @@ export const TabsContainer = styled.div`
   position: relative;
   flex-grow: 1;
   display: flex;
+  min-width: 0;
+  overflow: hidden;
 `;
 
 export const TabBarExtraContent = styled.div`
@@ -233,9 +235,10 @@ export const TabButton = styled.button.withConfig({
     `}
   
   &:disabled {
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.disabledText};
     cursor: not-allowed;
     background: ${({ theme }) => theme.colors.hoverBg};
+    opacity: 0.7;
   }
 
   /* Hover effects */

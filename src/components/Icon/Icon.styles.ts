@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 export const IconContainer = styled.div.withConfig({
   shouldForwardProp: (prop) => !['variant', 'size'].includes(prop),
@@ -33,6 +34,7 @@ export const StyledIcon = styled.span.withConfig({
   font-size: ${({ size }) => size}px;
   color: ${({ color, theme }) => color || theme.colors.text};
   line-height: 1;
+  ${iconColor}
 
   svg {
     width: ${({ size }) => size}px;

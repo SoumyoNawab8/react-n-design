@@ -1,5 +1,6 @@
 'use client';
 import styled, { css } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 export const BadgeWrapper = styled.span.withConfig({
   shouldForwardProp: (prop) => !['variant', 'size', 'dot'].includes(prop),
@@ -31,20 +32,22 @@ export const BadgeWrapper = styled.span.withConfig({
           height: ${dot ? '10px' : '22px'};
         `}
 
-  ${({ variant }) => {
+  ${({ variant, theme }) => {
     switch (variant) {
       case 'success':
-        return css`background: #28a745; color: #fff;`;
+        return css`background: #28a745; color: ${theme.colors.background};`;
       case 'warning':
-        return css`background: #FAAD14; color: #fff;`;
+        return css`background: #FAAD14; color: ${theme.colors.background};`;
       case 'error':
-        return css`background: #DC3545; color: #fff;`;
+        return css`background: #DC3545; color: ${theme.colors.background};`;
       case 'secondary':
-        return css`background: ${({ theme }) => theme.colors.hoverBg}; color: ${({ theme }) => theme.colors.text};`;
+        return css`background: ${theme.colors.hoverBg}; color: ${theme.colors.text};`;
       default:
-        return css`background: ${({ theme }) => theme.colors.primary}; color: #fff;`;
+        return css`background: ${theme.colors.primary}; color: ${theme.colors.background};`;
     }
   }}
+
+  ${iconColor}
 `;
 
 export const BadgeContainer = styled.span`

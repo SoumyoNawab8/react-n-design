@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 // --- Animations ---
 const spin = keyframes`to { transform: rotate(360deg); }`;
@@ -166,18 +167,19 @@ export const SortIcon = styled.span.withConfig({
   color: ${({ theme }) => theme.colors.shadowDark};
   font-size: 0.8em;
   transition: transform 0.2s ease;
-  
+  ${iconColor}
+
   ${({ isActive }) =>
     isActive &&
     css`
       animation: ${sortPulse} 0.3s ease;
     `}
-  
+
   & svg:first-child { /* Up arrow */
     opacity: ${({ isActive, isAscending }) => (isActive && isAscending ? 1 : 0.3)};
     color: ${({ isActive, isAscending, theme }) => (isActive && isAscending ? theme.colors.primary : 'inherit')};
   }
-  
+
   & svg:last-child { /* Down arrow */
     opacity: ${({ isActive, isAscending }) => (isActive && !isAscending ? 1 : 0.3)};
     color: ${({ isActive, isAscending, theme }) => (isActive && !isAscending ? theme.colors.primary : 'inherit')};

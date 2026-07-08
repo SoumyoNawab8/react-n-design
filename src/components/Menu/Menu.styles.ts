@@ -1,6 +1,7 @@
 'use client';
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export const MenuWrapper = styled.div`
   position: relative;
@@ -97,8 +98,9 @@ export const MenuItem = styled.li.withConfig({
   font-size: 14px;
   min-height: 44px;
   color: ${({ theme, disabled, $danger }) =>
-    disabled ? '#aaa' : $danger ? theme.colors.danger : theme.colors.text};
+    disabled ? theme.colors.disabledText : $danger ? theme.colors.danger : theme.colors.text};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   position: relative;
@@ -138,6 +140,7 @@ export const MenuItemIcon = styled.span`
   color: inherit;
   opacity: 0.8;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  ${iconColor}
 
   ${MenuItem}:hover & {
     opacity: 1;
@@ -167,7 +170,7 @@ export const MenuItemBadge = styled.span<{ $color?: string }>`
   font-size: 11px;
   font-weight: 600;
   background: ${({ $color, theme }) => $color || theme.colors.primary};
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   min-width: 20px;
   height: 20px;
   flex-shrink: 0;
@@ -189,9 +192,10 @@ export const MenuItemCheckbox = styled.span<{ $checked?: boolean }>`
   border-radius: 4px;
   background: ${({ theme, $checked }) =>
     $checked ? theme.colors.primary : 'transparent'};
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   flex-shrink: 0;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  ${iconColor}
 
   ${MenuItem}:hover & {
     border-color: ${({ theme }) => theme.colors.primary};

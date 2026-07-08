@@ -61,7 +61,7 @@ export const MentionTextarea = styled.textarea`
   transition: box-shadow 0.2s ease-in-out;
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
   &:focus {

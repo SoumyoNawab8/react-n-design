@@ -18,17 +18,15 @@
     "noImplicitReturns": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noEmitOnError": false,
+    "noEmitOnError": true,
     "noEmit": false,
     "rootDir": "src"
   },
   "include": ["src/**/*"],
   "exclude": [
-    "src/**/*.stories.tsx",
     "src/**/*.test.tsx",
     "src/setupTests.ts",
     "src/types/jest-dom.d.ts",
-    "stories/**/*",
     "dist",
     "node_modules"
   ]

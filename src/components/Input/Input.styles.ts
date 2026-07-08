@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import { iconColor } from '../../styles/iconColor';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '0 12px' },
@@ -207,13 +208,14 @@ const IconWrapper = styled.span`
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.colors.text};
+  ${iconColor}
 `;
 
 export const InputPrefix = styled(IconWrapper)`
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 export const InputSuffix = styled(IconWrapper)`
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 export const ClearIcon = styled(IconWrapper).withConfig({
@@ -223,7 +225,7 @@ export const ClearIcon = styled(IconWrapper).withConfig({
 }>`
   cursor: pointer;
   font-size: 1.2em;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   min-width: 44px;
   min-height: 44px;
   display: flex;
@@ -233,14 +235,14 @@ export const ClearIcon = styled(IconWrapper).withConfig({
   padding: 8px;
   border-radius: 8px;
   transition: background-color 0.15s ease, color 0.15s ease;
-  
+
   &:hover {
     color: ${({ theme }) => theme.colors.text};
-    background-color: ${({ theme }) => theme.colors.shadowLight}40;
+    background-color: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.colors.shadowDark}40;
+    background-color: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:focus-visible {
@@ -260,15 +262,15 @@ export const PasswordToggleIcon = styled(IconWrapper)`
   padding: 8px;
   border-radius: 8px;
   transition: background-color 0.15s ease, color 0.15s ease;
-  color: ${({ theme }) => theme.colors.shadowDark};
-  
+  color: ${({ theme }) => theme.colors.textSecondary};
+
   &:hover {
     color: ${({ theme }) => theme.colors.text};
-    background-color: ${({ theme }) => theme.colors.shadowLight}40;
+    background-color: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.colors.shadowDark}40;
+    background-color: ${({ theme }) => theme.colors.hoverBg};
   }
 
   &:focus-visible {
@@ -288,11 +290,12 @@ export const StyledInput = styled.input`
   box-sizing: border-box;
 
   &::placeholder {
-    color: #a0a5b0;
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
   &:disabled {
     cursor: not-allowed;
+    color: ${({ theme }) => theme.colors.disabledText};
     opacity: 0.6;
   }
 `;

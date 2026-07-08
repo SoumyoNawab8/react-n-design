@@ -1,5 +1,6 @@
 'use client';
 import styled, { keyframes } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 const stepReveal = keyframes`
   from { opacity: 0; transform: translateY(-4px); }
@@ -39,10 +40,11 @@ export const AIThinkingIcon = styled.div`
   height: 24px;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary};
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.background};
   font-size: 12px;
   font-weight: 700;
   animation: ${thinkingPulse} 2s ease-in-out infinite;
+  ${iconColor}
 `;
 
 export const AIThinkingTitle = styled.span`
@@ -56,6 +58,7 @@ export const AIThinkingToggle = styled.span`
   font-size: 12px;
   color: ${({ theme }) => theme.colors.primary};
   opacity: 0.7;
+  ${iconColor}
 `;
 
 export const AIThinkingSteps = styled.div`

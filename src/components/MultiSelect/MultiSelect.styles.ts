@@ -1,6 +1,7 @@
 'use client';
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export const MultiSelectWrapper = styled.div`
   position: relative;
@@ -79,6 +80,7 @@ export const MultiSelectTag = styled.span`
     height: 16px;
     border-radius: 50%;
     transition: background 0.15s ease;
+    ${iconColor}
 
     &:hover {
       background: ${({ theme }) => theme.colors.primary}25;
@@ -102,11 +104,13 @@ export const MultiSelectInput = styled.input`
   padding: 4px 0;
 
   &::placeholder {
-    color: #a0a5b0;
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
   &:disabled {
     cursor: not-allowed;
+    color: ${({ theme }) => theme.colors.disabledText};
+    opacity: 0.7;
   }
 `;
 
@@ -160,7 +164,7 @@ export const MultiSelectOption = styled.div.withConfig({
 export const MultiSelectEmpty = styled.div`
   padding: 12px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 14px;
 `;
 
@@ -170,4 +174,5 @@ export const MultiSelectCheck = styled.span`
   justify-content: center;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.primary};
+  ${iconColor}
 `;

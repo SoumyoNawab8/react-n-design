@@ -31,9 +31,10 @@ export const TreeNodeContent = styled.div.withConfig({
   border-radius: 8px;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   color: ${({ disabled, isSelected, theme }) =>
-    disabled ? '#aaa' : isSelected ? theme.colors.primary : theme.colors.text};
+    disabled ? theme.colors.disabledText : isSelected ? theme.colors.primary : theme.colors.text};
   font-weight: ${({ isSelected }) => (isSelected ? 600 : 400)};
   transition: all 0.15s ease;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
   user-select: none;
   outline: none;
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export const CollapsibleWrapper = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -63,6 +64,7 @@ export const CollapsibleChevron = styled(motion.div).withConfig({
   flex-shrink: 0;
   margin-left: 16px;
   color: currentColor;
+  ${iconColor}
 
   svg {
     display: block;

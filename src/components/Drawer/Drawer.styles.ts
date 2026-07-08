@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 const widthSizes = {
   small: '300px',
@@ -143,6 +144,7 @@ export const DrawerCloseButton = styled.button`
   color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
   padding: 0 4px;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};

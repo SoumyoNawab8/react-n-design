@@ -1,5 +1,6 @@
 'use client';
 import styled, { css, keyframes } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 // ============================================
 // Animation Keyframes
@@ -344,7 +345,7 @@ export const FormItemExtra = styled.div<{ $isMobile?: boolean }>`
 export const RequiredMark = styled.span`
   display: inline-block;
   margin-left: 4px;
-  color: #e53e3e;
+  color: ${({ theme }) => theme.colors.error};
   font-weight: bold;
 `;
 
@@ -361,18 +362,19 @@ export const ValidationIcon = styled.span<{
   align-items: center;
   margin-left: ${({ $compact }) => ($compact ? '6px' : '8px')};
   font-size: ${({ $compact }) => ($compact ? '14px' : '16px')};
-  color: ${({ $status }) => {
+  color: ${({ $status, theme }) => {
     switch ($status) {
       case 'error':
-        return '#e53e3e';
+        return theme.colors.error;
       case 'success':
-        return '#38a169';
+        return theme.colors.success;
       case 'warning':
         return '#dd6b20';
       default:
         return 'inherit';
     }
   }};
+  ${iconColor}
 
   /* Success checkmark animation */
   ${({ $status }) =>
@@ -436,7 +438,7 @@ export const LegacyFormFieldWrapper = styled.div`
 
   .form-field-error {
     font-size: 12px;
-    color: #e53e3e;
+    color: ${({ theme }) => theme.colors.error};
     margin-top: 2px;
     display: flex;
     align-items: center;
@@ -467,7 +469,7 @@ export const ValidationTooltip = styled.div<{
         return '#dd6b20';
     }
   }};
-  color: white;
+  color: ${({ theme }) => theme.colors.background};
   padding: ${({ $isMobile }) => ($isMobile ? '8px 12px' : '6px 10px')};
   border-radius: 6px;
   font-size: ${({ $isMobile }) => ($isMobile ? '13px' : '12px')};

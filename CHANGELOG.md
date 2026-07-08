@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+## [1.3.0] - 2026-07-08
+
+### Changed
+
+- Removed Storybook in favor of the new Vite-based documentation site.
+- `npm run dev` now starts the documentation site instead of Storybook.
+- GitHub Pages deploy workflow now publishes `site/dist`.
+
 ## [1.1.0] - 2026-05-26
 
 ### Added

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 export type ModalSize = 'small' | 'medium' | 'large';
 
@@ -168,14 +169,15 @@ export const ModalCloseButton = styled.button`
   min-width: 36px;
   border-radius: 4px;
   transition: background-color 0.15s ease;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: ${({ theme }) => `${theme.colors.shadowDark}20`};
   }
-  
+
   &:active {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: ${({ theme }) => `${theme.colors.shadowDark}30`};
   }
 `;
 

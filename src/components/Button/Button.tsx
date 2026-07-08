@@ -1,6 +1,6 @@
 'use client';
 import type React from 'react';
-import { memo, useCallback, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from '../../utils/lazyMotion';
 import { useReducedMotion } from '../../context/ThemeContext';
 import {
@@ -50,7 +50,7 @@ const useResponsiveSize = (
     typeof size === 'string' ? size : size.md
   );
 
-  useMemo(() => {
+  useEffect(() => {
     if (typeof size === 'string') return;
 
     const updateSize = () => {

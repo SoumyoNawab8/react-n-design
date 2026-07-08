@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 const sizes = {
   small: { wrapperWidth: '40px', wrapperHeight: '22px', knobSize: '16px' },
@@ -16,11 +17,14 @@ export const SwitchContainer = styled.div.withConfig({
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
-export const LabelText = styled.span`
+export const LabelText = styled.span.withConfig({
+  shouldForwardProp: (prop) => !['disabled'].includes(prop),
+})<{ disabled?: boolean }>`
   /* 2. Access theme from props */
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ disabled, theme }) => (disabled ? theme.colors.disabledText : theme.colors.text)};
   font-size: 16px;
   font-weight: 500;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
   user-select: none; /* Prevents text selection on click */
 `;
 
@@ -66,6 +70,7 @@ export const KnobIcon = styled.div`
   justify-content: center;
   color: ${({ theme }) => theme.colors.primary};
   font-size: 0.6em; /* Scale icon size relative to knob */
+  ${iconColor}
 `;
 
 export const SwitchKnob = styled(motion.div).withConfig({

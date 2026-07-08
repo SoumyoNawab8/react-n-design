@@ -1,5 +1,6 @@
 'use client';
 import styled, { css } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 const getStatusColor = (status: string, theme: any): string => {
   const colors: Record<string, string> = {
@@ -37,14 +38,15 @@ export const ResultIcon = styled.div.withConfig({
   height: 72px;
   font-size: 72px;
   margin-bottom: 24px;
-  
+
   ${({ status, theme }) => {
     const colorValue = getStatusColor(status, theme);
     return css`
       color: ${colorValue};
     `;
   }}
-  
+  ${iconColor}
+
   svg {
     width: 100%;
     height: 100%;

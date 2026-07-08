@@ -44,6 +44,7 @@ export * from './Markdown';
 export * from './Menu';
 export * from './MentionInput';
 export * from './Modal';
+export * from './ModelSelector';
 export * from './MultiSelect';
 export * from './OrgChart';
 export * from './OTPInput';

@@ -230,22 +230,14 @@ function getComponentFromLocal(componentName) {
 
 // Check and fix imports in component code
 function _fixImports(content, _componentName) {
-  // Replace relative imports to internal components with local paths
-  // Pattern: from '../ComponentName' or from './ComponentName'
-
-  // First, let's identify the imports
-  const importRegex = /from\s+['"]([^'"]+)['"];?/g;
-  const imports = [];
-  let match;
-
-  while ((match = importRegex.exec(content)) !== null) {
-    imports.push(match[1]);
-  }
-
-  // For peer dependencies, keep them as-is (react, framer-motion, etc.)
-  // For sibling components in the same library, we need to handle imports
-
-  return content;
+  // When a component is copied into the consumer's project, relative imports that
+  // escape its own directory stop resolving. Rewrite imports targeting other
+  // internal package modules (../ComponentName, ../../context, ../../utils, etc.)
+  // to the package entry so they resolve through the installed dependency.
+  // Same-directory imports (e.g. ./ComponentName.styles) are preserved.
+  return content
+    .replace(/from\s+(['"])(\.\.\/[^'"]+)\1/g, 'from $1react-n-design$1')
+    .replace(/require\s*\(\s*(['"])(\.\.\/[^'"]+)\1\s*\)/g, 'require($1react-n-design$1)');
 }
 
 // Create component in target directory
@@ -257,10 +249,11 @@ function installComponent(componentName, files) {
     fs.mkdirSync(targetPath, { recursive: true });
   }
 
-  // Write each file
+  // Write each file (fixing relative imports to package imports)
   for (const [fileName, content] of Object.entries(files)) {
     const filePath = path.join(targetPath, fileName);
-    fs.writeFileSync(filePath, content, 'utf8');
+    const fixedContent = _fixImports(content, componentName);
+    fs.writeFileSync(filePath, fixedContent, 'utf8');
   }
 
   return targetPath;

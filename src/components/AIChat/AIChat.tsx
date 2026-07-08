@@ -1,5 +1,5 @@
 'use client';
-import type React from 'react';
+import React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FaCheck, FaCopy, FaPaperPlane, FaRobot, FaUser } from '../../icons';
 import { AnimatePresence, motion } from '../../utils/lazyMotion';
@@ -23,14 +23,6 @@ import {
   AIChatWrapper,
 } from './AIChat.styles';
 
-declare global {
-  interface Window {
-    DOMPurify?: {
-      sanitize: (text: string) => string;
-    };
-  }
-}
-
 function escapeHtml(text: string): string {
   return text
     .replace(/&/g, '&amp;')
@@ -39,12 +31,13 @@ function escapeHtml(text: string): string {
     .replace(/"/g, '&quot;');
 }
 
-function sanitizeUserContent(text: string): string {
-  if (typeof window === 'undefined') return escapeHtml(text);
-  if (typeof window.DOMPurify !== 'undefined') {
-    return window.DOMPurify.sanitize(text);
-  }
-  return escapeHtml(text);
+function renderUserText(text: string): React.ReactNode {
+  return text.split('\n').map((line, i) => (
+    <React.Fragment key={i}>
+      {i > 0 && <br />}
+      {escapeHtml(line)}
+    </React.Fragment>
+  ));
 }
 
 export interface AIChatMessage {
@@ -157,9 +150,7 @@ export const AIChat = ({
                     {isAssistant ? (
                       <Markdown>{msg.content}</Markdown>
                     ) : (
-                      <span
-                        dangerouslySetInnerHTML={{ __html: sanitizeUserContent(msg.content) }}
-                      />
+                      <span>{renderUserText(msg.content)}</span>
                     )}
                   </AIChatMessageContent>
                   {isAssistant && (

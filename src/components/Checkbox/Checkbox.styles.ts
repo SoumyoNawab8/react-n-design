@@ -60,9 +60,12 @@ export const IndeterminateIcon = styled.div`
   background: currentColor;
 `;
 
-export const CheckboxLabel = styled.span`
-  color: ${({ theme }) => theme.colors.text};
+export const CheckboxLabel = styled.span.withConfig({
+  shouldForwardProp: (prop) => !['disabled'].includes(prop),
+})<{ disabled?: boolean }>`
+  color: ${({ disabled, theme }) => (disabled ? theme.colors.disabledText : theme.colors.text)};
   font-size: 16px;
   font-weight: 500;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
   user-select: none;
 `;

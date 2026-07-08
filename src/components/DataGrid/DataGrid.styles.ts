@@ -1,5 +1,6 @@
 'use client';
 import styled, { css, keyframes } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 const skeletonPulse = keyframes`
   0%, 100% { opacity: 0.7; }
@@ -209,6 +210,7 @@ export const SortIconWrapper = styled.span`
   margin-left: 8px;
   opacity: 0.6;
   font-size: 0.85em;
+  ${iconColor}
 `;
 
 export const FilterButton = styled.button`
@@ -222,6 +224,8 @@ export const FilterButton = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: ${({ theme }) => theme.borderRadius};
+  ${iconColor}
+
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -344,6 +348,7 @@ export const ExpandIconWrapper = styled.button.withConfig({
   justify-content: center;
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  ${iconColor}
 
   ${({ isExpanded }) =>
     isExpanded &&
@@ -383,6 +388,7 @@ export const EmptyStateIcon = styled.div`
   font-size: 48px;
   margin-bottom: 16px;
   opacity: 0.6;
+  ${iconColor}
 `;
 
 export const EmptyStateTitle = styled.h3`

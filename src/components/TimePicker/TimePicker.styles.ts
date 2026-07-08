@@ -1,6 +1,7 @@
 'use client';
 import styled, { css } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '0 12px' },
@@ -93,12 +94,13 @@ export const TimePickerInput = styled.input`
   box-sizing: border-box;
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
   &:disabled {
     cursor: not-allowed;
-    color: #aaa;
+    color: ${({ theme }) => theme.colors.disabledText};
+    opacity: 0.7;
   }
 `;
 
@@ -108,9 +110,11 @@ export const TimePickerClockIcon = styled.span.withConfig({
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ disabled, theme }) => (disabled ? theme.colors.shadowDark : theme.colors.text)};
+  color: ${({ disabled, theme }) => (disabled ? theme.colors.disabledText : theme.colors.text)};
   font-size: 18px;
   flex-shrink: 0;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
+  ${iconColor}
 `;
 
 export const TimePickerClearButton = styled.button`
@@ -120,12 +124,13 @@ export const TimePickerClearButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 14px;
   padding: 0;
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.text};
@@ -234,7 +239,7 @@ export const TimePickerOption = styled.button.withConfig({
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   background: ${({ isSelected, theme }) => (isSelected ? theme.colors.primary : 'transparent')};
   color: ${({ isSelected, disabled, theme }) => {
-    if (disabled) return theme.colors.shadowDark;
+    if (disabled) return theme.colors.disabledText;
     return isSelected ? '#ffffff' : theme.colors.text;
   }};
   transition: all 0.15s ease;

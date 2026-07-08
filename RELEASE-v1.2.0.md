@@ -239,8 +239,8 @@ yarn add react-n-design@1.2.0
 
 - **NPM:** https://www.npmjs.com/package/react-n-design
 - **GitHub:** https://github.com/SoumyoNawab8/react-n-design
-- **Storybook:** https://soumyonawab8.github.io/react-n-design
-- **Documentation:** https://github.com/SoumyoNawab8/react-n-design#readme
+- **Documentation Site:** https://soumyonawab8.github.io/react-n-design
+- **README:** https://github.com/SoumyoNawab8/react-n-design#readme
 
 ---
 

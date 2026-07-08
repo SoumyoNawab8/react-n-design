@@ -1,6 +1,7 @@
 'use client';
 import styled, { css, keyframes } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '6px 12px' },
@@ -13,7 +14,7 @@ const spin = keyframes`
 `;
 
 export const ComboBoxSpinner = styled.div`
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid ${({ theme }) => `${theme.colors.textSecondary}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 1em;
@@ -73,9 +74,10 @@ export const ComboBoxTag = styled.span`
     font-size: 10px;
     padding: 0;
     margin-left: 2px;
+    ${iconColor}
 
     &:hover {
-      color: #e53e3e;
+      color: ${({ theme }) => theme.colors.error};
     }
   }
 `;
@@ -144,12 +146,14 @@ export const ComboBoxInput = styled.input`
   height: 100%;
 
   &::placeholder {
-    color: #a0a5b0;
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
   &:disabled {
     cursor: not-allowed;
     background: transparent;
+    color: ${({ theme }) => theme.colors.disabledText};
+    opacity: 0.7;
   }
 `;
 
@@ -160,11 +164,12 @@ export const ComboBoxClearButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 14px;
   padding: 0;
   width: 20px;
   height: 20px;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.text};
@@ -179,6 +184,7 @@ export const ComboBoxChevron = styled.div.withConfig({
   transition: transform 0.2s;
   transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   color: ${({ theme }) => theme.colors.text};
+  ${iconColor}
 `;
 
 export const ComboBoxDropdown = styled(motion.div)`
@@ -207,9 +213,10 @@ export const ComboBoxOption = styled.div.withConfig({
   ${({ disabled, theme }) =>
     disabled &&
     css`
-      color: ${theme.colors.shadowDark};
+      color: ${theme.colors.disabledText};
       cursor: not-allowed;
       background: ${theme.colors.hoverBg};
+      opacity: 0.7;
     `}
 
   ${({ isActive, theme }) =>
@@ -231,6 +238,6 @@ export const ComboBoxOption = styled.div.withConfig({
 export const ComboBoxEmpty = styled.div`
   padding: 12px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 14px;
 `;

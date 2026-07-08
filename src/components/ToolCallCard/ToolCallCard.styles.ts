@@ -1,5 +1,6 @@
 'use client';
 import styled, { css, keyframes } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 const spin = keyframes`
   to { transform: rotate(360deg); }
@@ -79,6 +80,7 @@ export const ToolIcon = styled.div.withConfig({
   border-radius: 50%;
   font-size: 14px;
   flex-shrink: 0;
+  ${iconColor}
 
   ${({ status }) => {
     const bg = statusColors[status]?.iconBg || '#00000010';
@@ -143,6 +145,7 @@ export const StatusIcon = styled.div.withConfig({
   height: 20px;
   flex-shrink: 0;
   font-size: 14px;
+  ${iconColor}
 
   ${({ status }) => {
     if (status === 'loading') {
@@ -212,6 +215,7 @@ export const ArgsToggle = styled.button`
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.15s ease;
+  ${iconColor}
 
   &:hover {
     background: ${({ theme }) => `${theme.colors.primary}10`};

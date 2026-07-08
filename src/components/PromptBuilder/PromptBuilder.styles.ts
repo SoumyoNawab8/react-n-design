@@ -1,5 +1,6 @@
 'use client';
 import styled from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 export const PromptBuilderWrapper = styled.div`
   display: flex;
@@ -169,6 +170,7 @@ export const IconButton = styled.button`
   cursor: pointer;
   box-shadow: ${({ theme }) => theme.shadows.soft};
   transition: all 0.2s ease;
+  ${iconColor}
 
   &:hover:not(:disabled) {
     color: ${({ theme }) => theme.colors.primary};
@@ -205,12 +207,13 @@ export const AddButton = styled.button`
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ theme }) => theme.colors.primary};
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.background};
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   box-shadow: ${({ theme }) => theme.shadows.soft};
   transition: all 0.2s ease;
+  ${iconColor}
 
   &:hover {
     filter: brightness(1.1);

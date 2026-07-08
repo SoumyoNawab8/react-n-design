@@ -1,5 +1,6 @@
 'use client';
 import styled, { css, keyframes } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 const iconSizes = {
   sm: '16px',
@@ -87,7 +88,7 @@ export const StyledCopyButton = styled.button.withConfig({
   /* Disabled State */
   &:disabled {
     cursor: not-allowed;
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.disabledText};
     opacity: 0.6;
   }
 
@@ -109,6 +110,7 @@ export const CopyButtonIcon = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  ${iconColor}
 `;
 
 export const SuccessIcon = styled.span<{
@@ -118,4 +120,5 @@ export const SuccessIcon = styled.span<{
   align-items: center;
   justify-content: center;
   color: inherit;
+  ${iconColor}
 `;

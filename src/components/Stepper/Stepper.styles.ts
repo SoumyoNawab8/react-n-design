@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 import type { StepperConnectorStyles } from './Stepper';
 
 // Glassmorphism variant styles
@@ -136,7 +137,7 @@ export const StepperCircle = styled(motion.div).withConfig({
     if ($isActive) {
       return css`
         background: ${theme.colors.primary};
-        color: #fff;
+        color: ${theme.colors.background};
         box-shadow: ${theme.shadows.soft};
         transform: scale(1.05);
       `;
@@ -144,7 +145,7 @@ export const StepperCircle = styled(motion.div).withConfig({
     if ($isCompleted) {
       return css`
         background: ${theme.colors.primary};
-        color: #fff;
+        color: ${theme.colors.background};
       `;
     }
     return css`
@@ -153,6 +154,7 @@ export const StepperCircle = styled(motion.div).withConfig({
       box-shadow: ${theme.shadows.softInset};
     `;
   }}
+  ${iconColor}
 
   /* Glass morphism variant additions */
   ${({ $variant, $isActive, theme }) =>

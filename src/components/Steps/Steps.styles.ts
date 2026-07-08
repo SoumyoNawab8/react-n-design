@@ -1,5 +1,6 @@
 'use client';
 import styled, { css } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 // Size configurations
 const sizes = {
@@ -163,14 +164,14 @@ export const StepsItemIcon = styled.div.withConfig({
     if (isActive) {
       return css`
         background: ${theme.colors.primary};
-        color: #fff;
+        color: ${theme.colors.background};
         box-shadow: ${theme.shadows.soft};
       `;
     }
     if (isCompleted) {
       return css`
         background: ${theme.colors.primary};
-        color: #fff;
+        color: ${theme.colors.background};
       `;
     }
     return css`
@@ -179,6 +180,7 @@ export const StepsItemIcon = styled.div.withConfig({
       box-shadow: ${theme.shadows.softInset};
     `;
   }}
+  ${iconColor}
 `;
 
 export const StepsIcon = styled.span.withConfig({
@@ -190,6 +192,7 @@ export const StepsIcon = styled.span.withConfig({
   align-items: center;
   justify-content: center;
   font-size: ${({ size }) => sizes[size].iconFontSize};
+  ${iconColor}
 `;
 
 export const StepsConnector = styled.div.withConfig({

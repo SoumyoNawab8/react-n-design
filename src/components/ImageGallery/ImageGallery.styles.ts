@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 export const GalleryContainer = styled.div<{
   $columns: number;
@@ -102,6 +103,7 @@ export const LightboxCloseButton = styled.button`
   box-shadow: ${({ theme }) => theme.shadows.soft};
   cursor: pointer;
   transition: all 0.2s ease;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary};

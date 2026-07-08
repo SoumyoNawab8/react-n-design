@@ -1,0 +1,873 @@
+{
+  "Button": {
+    "0": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n          <Button>Primary</Button>\n          <Button variant=\"secondary\">Secondary</Button>\n          <Button variant=\"ghost\">Ghost</Button>\n          <Button variant=\"danger\">Danger</Button>\n        </Stack>",
+    "1": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n          <Button size=\"small\">Small</Button>\n          <Button size=\"medium\">Medium</Button>\n          <Button size=\"large\">Large</Button>\n        </Stack>",
+    "2": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n          <Button loading={true}>Loading</Button>\n          <Button disabled={true}>Disabled</Button>\n        </Stack>",
+    "3": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n          <Button leftIcon={<span>←</span>}>Back</Button>\n          <Button rightIcon={<span>→</span>}>Next</Button>\n        </Stack>",
+    "4": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Button shape=\"default\">Default</Button>\n    <Button shape=\"circle\" aria-label=\"Add\">+</Button>\n  </Stack>",
+    "5": "<div style={{ width: 240 }}>\n    <Button fullWidth={true}>Full-width button</Button>\n  </div>",
+    "6": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Button loading={true} loadingText=\"Saving...\">\n      Save\n    </Button>\n    <Button loading={true} />\n  </Stack>",
+    "7": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Button glassMorphism={true}>Glass</Button>\n    <Button gradient={true}>Gradient</Button>\n  </Stack>",
+    "8": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Button variant=\"success\">Success</Button>\n    <Button variant=\"text\">Text link</Button>\n  </Stack>"
+  },
+  "Input": {
+    "0": "<Input placeholder=\"Type something…\" />",
+    "1": "<Stack direction=\"column\" gap={12}>\n          <Input placeholder=\"Disabled\" disabled={true} />\n          <Input placeholder=\"Error\" error=\"Invalid input\" />\n        </Stack>",
+    "2": "<Stack direction=\"column\" gap={12}>\n          <Input placeholder=\"Small\" inputSize=\"small\" />\n          <Input placeholder=\"Medium\" inputSize=\"medium\" />\n        </Stack>",
+    "3": "<Input\n    label=\"Email address\"\n    placeholder=\"you@example.com\"\n    helperText=\"We will never share your email.\"\n  />",
+    "4": "<Input\n    placeholder=\"Amount\"\n    addonBefore={<span>$</span>}\n    addonAfter={<span>USD</span>}\n  />",
+    "5": "<Stack direction=\"column\" gap={12}>\n    <Input placeholder=\"Search\" prefix={<Icon name=\"search\" size={16} />} />\n    <Input placeholder=\"Website\" suffix={<Icon name=\"globe\" size={16} />} />\n  </Stack>",
+    "6": "<Input\n    label=\"Username\"\n    placeholder=\"Enter username\"\n    floatingLabel={true}\n  />",
+    "7": "<Input\n    placeholder=\"Bio\"\n    maxLength={80}\n    characterCount={true}\n  />"
+  },
+  "Card": {
+    "0": "<Stack direction=\"row\" gap={16} wrap={true}>\n          <Card variant=\"outset\" style={{ width: 180, padding: 20 }}>\n            Outset\n          </Card>\n          <Card variant=\"inset\" style={{ width: 180, padding: 20 }}>\n            Inset\n          </Card>\n          <Card variant=\"glass\" style={{ width: 180, padding: 20 }}>\n            Glass\n          </Card>\n        </Stack>",
+    "1": "<Card variant=\"outset\" style={{ maxWidth: 320, padding: 24 }}>\n          <strong style={{ fontSize: '1.1rem' }}>Card Title</strong>\n          <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n            This is the card body with some description text.\n          </p>\n        </Card>",
+    "2": "<Stack direction=\"row\" gap={16} wrap={true}>\n          <Card loading={true} style={{ width: 180, padding: 20 }}>\n            Loading content\n          </Card>\n          <Card shimmer={true} style={{ width: 180, padding: 20 }}>\n            Shimmer content\n          </Card>\n        </Stack>",
+    "3": "<Stack direction=\"row\" gap={16} wrap={true}>\n    <Card variant=\"elevated\" style={{ width: 180, padding: 20 }}>\n      Elevated\n    </Card>\n    <Card variant=\"outset\" bordered={true} style={{ width: 180, padding: 20 }}>\n      Bordered outset\n    </Card>\n  </Stack>",
+    "4": "<Card\n    style={{ maxWidth: 320 }}\n    header={<strong>Plan</strong>}\n    footer={\n      <Button size=\"small\" fullWidth={true}>\n        Select plan\n      </Button>\n    }\n  >\n    <p style={{ margin: 0, color: 'var(--n-color-text-secondary)' }}>\n      Everything you need to ship faster.\n    </p>\n  </Card>",
+    "5": "<Card\n    variant=\"outset\"\n    cover={<div style={{ background: 'var(--n-color-primary)', height: '100%' }} />}\n    coverAspectRatio=\"16/9\"\n    style={{ maxWidth: 280, padding: 16 }}\n  >\n    <strong>Project preview</strong>\n    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n      A cover area adds visual context.\n    </p>\n  </Card>",
+    "6": "<Card hoverable={true} style={{ width: 220, padding: 20 }}>\n    <strong>Hover me</strong>\n    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n      The whole card responds to hover.\n    </p>\n  </Card>",
+    "7": "<Card entrance=\"fade\" style={{ width: 220, padding: 20 }}>\n    <strong>Fade in</strong>\n    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n      This card animates on mount.\n    </p>\n  </Card>"
+  },
+  "Badge": {
+    "0": "<Stack direction=\"row\" gap={24} align=\"center\">\n          <Badge count={5}>\n            <div\n              style={{\n                width: 24,\n                height: 24,\n                borderRadius: 8,\n                background: 'rgba(128,128,128,0.3)',\n              }}\n            />\n          </Badge>\n          <Badge dot={true}>\n            <div\n              style={{\n                width: 24,\n                height: 24,\n                borderRadius: 8,\n                background: 'rgba(128,128,128,0.3)',\n              }}\n            />\n          </Badge>\n        </Stack>",
+    "1": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n          <Badge count={1} variant=\"primary\" />\n          <Badge count={2} variant=\"success\" />\n          <Badge count={3} variant=\"warning\" />\n          <Badge count={4} variant=\"error\" />\n        </Stack>",
+    "2": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <Badge count={120} overflowCount={99} />\n          <Badge count={0} showZero={true} />\n        </Stack>",
+    "3": "<Stack direction=\"row\" gap={24} align=\"center\">\n    <Badge count={3} size=\"small\">\n      <Icon name=\"mail\" size={24} />\n    </Badge>\n    <Badge count={3} size=\"medium\">\n      <Icon name=\"mail\" size={24} />\n    </Badge>\n  </Stack>",
+    "4": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Badge count={1} variant=\"secondary\" />\n    <Badge count={2} variant=\"success\" />\n    <Badge count={3} variant=\"warning\" />\n    <Badge count={4} variant=\"error\" />\n  </Stack>",
+    "5": "<Stack direction=\"row\" gap={24} align=\"center\" wrap={true}>\n    <Badge dot={true} variant=\"success\">\n      <Icon name=\"user\" size={24} />\n    </Badge>\n    <Badge dot={true} variant=\"warning\">\n      <Icon name=\"bell\" size={24} />\n    </Badge>\n    <Badge dot={true} variant=\"error\">\n      <Icon name=\"heart\" size={24} />\n    </Badge>\n  </Stack>",
+    "6": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Badge count={8} />\n    <Badge count={0} showZero={true} />\n    <Badge dot={true} />\n  </Stack>",
+    "7": "<Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Badge count={50} overflowCount={9} />\n    <Badge count={1000} overflowCount={999} />\n  </Stack>"
+  },
+  "Alert": {
+    "0": "<Stack direction=\"column\" gap={12}>\n          <Alert type=\"info\" message=\"This is an informational alert.\" />\n          <Alert type=\"success\" message=\"Operation completed successfully.\" />\n          <Alert type=\"warning\" message=\"Please review your settings.\" />\n          <Alert type=\"error\" message=\"Something went wrong.\" />\n        </Stack>",
+    "1": "<Alert\n          type=\"info\"\n          message=\"Update available\"\n          description=\"A new version of the library has been released with bug fixes.\"\n        />",
+    "2": "<Alert\n          type=\"warning\"\n          message=\"Unsaved changes\"\n          description=\"Your changes will be lost if you leave this page.\"\n          closable={true}\n          showIcon={true}\n        />",
+    "3": "<Alert\n    type=\"info\"\n    message=\"Custom icon\"\n    description=\"You can override the default alert icon.\"\n    showIcon={true}\n    icon={<Icon name=\"star\" size={20} />}\n  />",
+    "4": "<Alert\n    type=\"success\"\n    message=\"No icon\"\n    description=\"This alert keeps the layout minimal.\"\n    showIcon={false}\n  />",
+    "5": "<Stack direction=\"column\" gap={8}>\n    <Alert type=\"info\" message=\"Info note\" showIcon={true} />\n    <Alert type=\"success\" message=\"Saved\" showIcon={true} />\n    <Alert type=\"error\" message=\"Failed\" showIcon={true} />\n  </Stack>",
+    "6": "<Alert\n    type=\"warning\"\n    message=\"Dismissible\"\n    description=\"Click the close icon to trigger the onClose callback.\"\n    closable={true}\n    onClose={() => console.log('Alert closed')}\n  />",
+    "7": "<Alert\n    type=\"error\"\n    message=\"Connection lost\"\n    description=\"Please check your network and try again.\"\n    showIcon={true}\n  />"
+  },
+  "Tag": {
+    "0": "<Stack direction=\"row\" gap={8} wrap={true}>\n          <Tag color=\"blue\">Blue</Tag>\n          <Tag color=\"green\">Green</Tag>\n          <Tag color=\"red\">Red</Tag>\n          <Tag color=\"orange\">Orange</Tag>\n          <Tag color=\"purple\">Purple</Tag>\n        </Stack>",
+    "1": "<Stack direction=\"row\" gap={8} wrap={true}>\n          <Tag onClose={() => {}}>Removable</Tag>\n          <Tag onClose={() => {}}>Tag B</Tag>\n        </Stack>",
+    "2": "<Stack direction=\"row\" gap={8} wrap={true}>\n          <Tag variant=\"primary\" leftIcon={<Icon name=\"check\" size={14} />}>\n            Primary\n          </Tag>\n          <Tag variant=\"outline\" leftIcon={<Icon name=\"star\" size={14} />}>\n            Outline\n          </Tag>\n          <Tag size=\"small\">Small</Tag>\n        </Stack>",
+    "3": "<Stack direction=\"row\" gap={8} align=\"center\" wrap={true}>\n    <Tag size=\"small\">Small</Tag>\n    <Tag size=\"medium\">Medium</Tag>\n  </Stack>",
+    "4": "<Stack direction=\"row\" gap={8} wrap={true}>\n    <Tag variant=\"outline\">Design</Tag>\n    <Tag variant=\"outline\">Engineering</Tag>\n    <Tag variant=\"outline\">Product</Tag>\n  </Stack>",
+    "5": "<Stack direction=\"row\" gap={8} wrap={true}>\n    <Tag color=\"#6d5dfc\">Purple</Tag>\n    <Tag color=\"#f43f5e\">Pink</Tag>\n    <Tag color=\"#10b981\">Teal</Tag>\n  </Stack>",
+    "6": "<Stack direction=\"row\" gap={8} wrap={true}>\n    <Tag leftIcon={<Icon name=\"check\" size={14} />}>Verified</Tag>\n    <Tag leftIcon={<Icon name=\"lock\" size={14} />}>Secure</Tag>\n    <Tag leftIcon={<Icon name=\"star\" size={14} />}>Featured</Tag>\n  </Stack>",
+    "7": "<Stack direction=\"row\" gap={8} wrap={true}>\n    <Tag onClose={() => {}}>React</Tag>\n    <Tag onClose={() => {}}>TypeScript</Tag>\n    <Tag onClose={() => {}}>Storybook</Tag>\n  </Stack>"
+  },
+  "Switch": {
+    "0": "<Stack direction=\"row\" gap={24} align=\"center\">\n          <Switch checked={false} />\n          <Switch checked={true} />\n        </Stack>",
+    "1": "<Stack direction=\"row\" gap={24} align=\"center\">\n          <Switch size=\"small\" />\n          <Switch size=\"medium\" />\n        </Stack>",
+    "2": "<ControlledSwitchExample />",
+    "3": "<Stack direction=\"column\" gap={16}>\n    <Switch checked={true} onChange={() => {}} label=\"Label right\" labelPosition=\"right\" />\n    <Switch checked={false} onChange={() => {}} label=\"Label left\" labelPosition=\"left\" />\n  </Stack>",
+    "4": "<Stack direction=\"row\" gap={24} align=\"center\">\n    <Switch\n      checked={true}\n      onChange={() => {}}\n      onIcon={<Icon name=\"check\" size={12} />}\n      offIcon={<Icon name=\"x\" size={12} />}\n    />\n    <Switch\n      checked={false}\n      onChange={() => {}}\n      onIcon={<Icon name=\"check\" size={12} />}\n      offIcon={<Icon name=\"x\" size={12} />}\n    />\n  </Stack>",
+    "5": "<Stack direction=\"row\" gap={24} align=\"center\">\n    <Switch checked={true} onChange={() => {}} disabled={true} />\n    <Switch checked={false} onChange={() => {}} disabled={true} />\n  </Stack>",
+    "6": "<Switch\n          checked={true}\n          onChange={() => {}}\n          loading={true}\n          label=\"Syncing\"\n        />",
+    "7": "<Stack direction=\"column\" gap={16}>\n          <Switch size=\"small\" checked={true} onChange={() => {}} label=\"Compact mode\" />\n          <Switch size=\"medium\" checked={true} onChange={() => {}} label=\"Standard mode\" />\n          <Switch size=\"large\" checked={true} onChange={() => {}} label=\"Large mode\" />\n        </Stack>"
+  },
+  "Checkbox": {
+    "0": "<Stack direction=\"column\" gap={12}>\n          <Checkbox checked={false} label=\"Unchecked\" />\n          <Checkbox checked={true} label=\"Checked\" />\n          <Checkbox indeterminate={true} label=\"Indeterminate\" />\n        </Stack>",
+    "1": "<Stack direction=\"column\" gap={12}>\n          <Checkbox disabled={true} label=\"Disabled unchecked\" />\n          <Checkbox checked={true} disabled={true} label=\"Disabled checked\" />\n        </Stack>",
+    "2": "<ControlledCheckboxExample />",
+    "3": "<Stack direction=\"column\" gap={12}>\n    <Checkbox indeterminate={true} label=\"Select all\" />\n    <Checkbox checked={true} label=\"Item selected\" />\n  </Stack>",
+    "4": "<Stack direction=\"column\" gap={12}>\n    <Checkbox name=\"features\" value=\"darkMode\" label=\"Dark mode\" />\n    <Checkbox name=\"features\" value=\"notifications\" label=\"Notifications\" />\n  </Stack>",
+    "5": "<Stack direction=\"row\" gap={24} align=\"center\">\n    <Checkbox checked={false} />\n    <Checkbox checked={true} />\n    <Checkbox indeterminate={true} />\n  </Stack>",
+    "6": "<Stack direction=\"column\" gap={12}>\n          <Checkbox checked={true} label=\"In stock\" />\n          <Checkbox checked={false} label=\"On sale\" />\n          <Checkbox checked={false} label=\"Backorder\" />\n        </Stack>",
+    "7": "<Stack direction=\"row\" gap={16} wrap={true}>\n          <Card variant=\"outset\" style={{ width: 180, padding: 20 }}>\n            <Stack direction=\"column\" gap={12}>\n              <strong>Analytics</strong>\n              <Checkbox checked={true} label=\"Enable tracking\" />\n            </Stack>\n          </Card>\n          <Card variant=\"outset\" style={{ width: 180, padding: 20 }}>\n            <Stack direction=\"column\" gap={12}>\n              <strong>Notifications</strong>\n              <Checkbox checked={false} label=\"Email alerts\" />\n            </Stack>\n          </Card>\n        </Stack>"
+  },
+  "RadioGroup": {
+    "0": "<RadioGroup\n          options={[\n            { value: 'a', label: 'Option A' },\n            { value: 'b', label: 'Option B' },\n            { value: 'c', label: 'Option C' },\n          ]}\n          value=\"a\"\n        />",
+    "1": "<RadioGroup\n          options={[\n            { value: 'day', label: 'Day' },\n            { value: 'week', label: 'Week' },\n            { value: 'month', label: 'Month' },\n          ]}\n          value=\"day\"\n          orientation=\"horizontal\"\n        />",
+    "2": "<ControlledRadioGroupExample />",
+    "3": "<RadioGroup\n        options={[\n          { value: 'free', label: 'Free' },\n          { value: 'pro', label: 'Pro', disabled: true },\n          { value: 'enterprise', label: 'Enterprise' }\n        ]}\n        value=\"free\"\n      />",
+    "4": "<RadioGroup\n        options={[\n          { value: 'email', label: 'Email' },\n          { value: 'sms', label: 'SMS' },\n          { value: 'push', label: 'Push' }\n        ]}\n        value=\"sms\"\n      />",
+    "5": "<RadioGroup\n        name=\"notification-channel\"\n        options={[\n          { value: 'email', label: 'Email' },\n          { value: 'sms', label: 'SMS' },\n          { value: 'push', label: 'Push' }\n        ]}\n        value=\"email\"\n      />",
+    "6": "<RadioGroup\n        orientation=\"horizontal\"\n        options={[\n          { value: 'active', label: 'Active' },\n          { value: 'paused', label: 'Paused' },\n          { value: 'archived', label: 'Archived', disabled: true }\n        ]}\n        value=\"active\"\n      />",
+    "7": "<Card variant=\"outset\" style={{ padding: 20, maxWidth: 320 }}>\n        <RadioGroup\n          options={[\n            { value: 'monthly', label: 'Monthly' },\n            { value: 'yearly', label: 'Yearly' },\n            { value: 'lifetime', label: 'Lifetime' }\n          ]}\n          value=\"yearly\"\n        />\n      </Card>"
+  },
+  "Select": {
+    "0": "<Select\n          options={[\n            { value: '1', label: 'Option One' },\n            { value: '2', label: 'Option Two' },\n            { value: '3', label: 'Option Three' },\n          ]}\n          placeholder=\"Select an option\"\n        />",
+    "1": "<Stack direction=\"column\" gap={12}>\n          <Select size=\"small\" options={[{ value: '1', label: 'Small' }]} />\n          <Select size=\"medium\" options={[{ value: '1', label: 'Medium' }]} />\n          <Select size=\"large\" options={[{ value: '1', label: 'Large' }]} />\n        </Stack>",
+    "2": "<ControlledSelectExample />",
+    "3": "<Select\n        options={[\n          {\n            label: 'Frontend',\n            options: [\n              { value: 'react', label: 'React' },\n              { value: 'vue', label: 'Vue' }\n            ]\n          },\n          {\n            label: 'Backend',\n            options: [\n              { value: 'node', label: 'Node.js' },\n              { value: 'go', label: 'Go' }\n            ]\n          }\n        ]}\n        placeholder=\"Pick a stack\"\n        style={{ width: 240 }}\n      />",
+    "4": "<Select\n        options={[\n          { value: 'draft', label: 'Draft' },\n          { value: 'published', label: 'Published' }\n        ]}\n        defaultValue=\"published\"\n        allowClear\n        style={{ width: 220 }}\n      />",
+    "5": "<Select\n        options={[\n          { value: 'apple', label: 'Apple' },\n          { value: 'banana', label: 'Banana' },\n          { value: 'cherry', label: 'Cherry' },\n          { value: 'date', label: 'Date' }\n        ]}\n        placeholder=\"Search fruit\"\n        searchable\n        style={{ width: 240 }}\n      />",
+    "6": "<Select\n        options={[\n          { value: '1', label: 'Option One' },\n          { value: '2', label: 'Option Two' }\n        ]}\n        placeholder=\"Loading options…\"\n        loading\n        style={{ width: 220 }}\n      />",
+    "7": "<Select\n        options={[\n          { value: 'valid', label: 'Valid choice' },\n          { value: 'invalid', label: 'Invalid choice', disabled: true }\n        ]}\n        placeholder=\"Required field\"\n        error\n        style={{ width: 240 }}\n      />"
+  },
+  "ThinkingBlock": {
+    "0": "<ThinkingBlock\n          steps={[\n            { id: '1', text: 'Received user question' },\n            { id: '2', text: 'Retrieved relevant documentation' },\n            { id: '3', text: 'Formulated response' },\n          ]}\n          isThinking={false}\n        />",
+    "1": "<ThinkingBlock\n          steps={[\n            { id: '1', text: 'Planning approach' },\n            { id: '2', text: 'Executing steps' },\n          ]}\n          isThinking={true}\n          title=\"AI is thinking\"\n        />",
+    "2": "<ThinkingBlock\n          steps={[\n            { id: '1', text: 'Received user question', timestamp: Date.now() - 3000 },\n            { id: '2', text: 'Retrieved relevant documentation', timestamp: Date.now() - 2000 },\n            { id: '3', text: 'Formulated response', timestamp: Date.now() - 1000 },\n          ]}\n          showTimestamps={true}\n        />",
+    "3": "<ThinkingBlock\n        defaultExpanded={false}\n        title=\"Reasoning\"\n        steps={[\n          { id: '1', text: 'Analyzing request' },\n          { id: '2', text: 'Retrieving data' }\n        ]}\n      />",
+    "4": "<ThinkingBlock\n        title=\"How the AI decided\"\n        steps={[\n          { id: '1', text: 'Parsed user intent' },\n          { id: '2', text: 'Ranked candidate answers' },\n          { id: '3', text: 'Selected best response' }\n        ]}\n      />",
+    "5": "<ThinkingBlock\n        isThinking={true}\n        title=\"Processing request\"\n        steps={[]}\n      />",
+    "6": "<ThinkingBlock\n        title=\"Step-by-step reasoning\"\n        steps={[\n          { id: '1', text: 'Understand the question' },\n          { id: '2', text: 'Break down into sub-tasks' },\n          { id: '3', text: 'Search knowledge base' },\n          { id: '4', text: 'Evaluate candidate answers' },\n          { id: '5', text: 'Format final response' }\n        ]}\n      />",
+    "7": "<ThinkingBlock\n        title=\"Agent trace\"\n        showTimestamps={true}\n        steps={[\n          { id: '1', text: 'Received prompt', timestamp: Date.now() - 5000 },\n          { id: '2', text: 'Called search tool', timestamp: Date.now() - 3000 },\n          { id: '3', text: 'Synthesized answer', timestamp: Date.now() - 1000 }\n        ]}\n      />"
+  },
+  "Tabs": {
+    "0": "<Tabs\n          items={[\n            { key: '1', label: 'Design', children: <p>Design content</p> },\n            { key: '2', label: 'Code', children: <p>Code content</p> },\n            { key: '3', label: 'Preview', children: <p>Preview content</p> },\n          ]}\n        />",
+    "1": "<Tabs\n          type=\"card\"\n          items={[\n            { key: '1', label: 'Tab A', children: <p>Content A</p> },\n            { key: '2', label: 'Tab B', children: <p>Content B</p> },\n          ]}\n        />",
+    "2": "<ControlledTabsExample />",
+    "3": "<Tabs\n        tabPosition=\"left\"\n        items={[\n          { key: '1', label: 'General', children: <p>General settings</p> },\n          { key: '2', label: 'Security', children: <p>Security settings</p> },\n          { key: '3', label: 'Billing', children: <p>Billing settings</p> }\n        ]}\n      />",
+    "4": "<Tabs\n        items={[\n          { key: '1', label: 'Inbox', icon: <Icon name=\"mail\" size={14} />, badge: 3, children: <p>Inbox content</p> },\n          { key: '2', label: 'Sent', icon: <Icon name=\"send\" size={14} />, children: <p>Sent content</p> },\n          { key: '3', label: 'Archive', icon: <Icon name=\"archive\" size={14} />, badge: { dot: true }, children: <p>Archive content</p> }\n        ]}\n      />",
+    "5": "<Tabs\n        items={[\n          { key: '1', label: 'Preview', children: <p>Preview content</p> },\n          { key: '2', label: 'Settings', disabled: true, children: <p>Settings content</p> },\n          { key: '3', label: 'Share', children: <p>Share content</p> }\n        ]}\n      />",
+    "6": "<Tabs\n        tabBarExtraContent={<Button size=\"small\">New</Button>}\n        items={[\n          { key: '1', label: 'Projects', children: <p>Projects list</p> },\n          { key: '2', label: 'Teams', children: <p>Teams list</p> }\n        ]}\n      />",
+    "7": "<Tabs\n        size=\"small\"\n        centered\n        items={[\n          { key: '1', label: 'Day', children: <p>Day view</p> },\n          { key: '2', label: 'Week', children: <p>Week view</p> },\n          { key: '3', label: 'Month', children: <p>Month view</p> }\n        ]}\n      />"
+  },
+  "Table": {
+    "0": "const cols = [\n          { key: 'name', title: 'Name', dataIndex: 'name' as const },\n          { key: 'role', title: 'Role', dataIndex: 'role' as const },\n          { key: 'status', title: 'Status', dataIndex: 'status' as const },\n        ];\n        const data = [\n          { name: 'Alice', role: 'Engineer', status: 'Active' },\n          { name: 'Bob', role: 'Designer', status: 'Away' },\n          { name: 'Carol', role: 'Manager', status: 'Active' },\n        ];\n        return <Table columns={cols} dataSource={data} pagination={false} />;",
+    "1": "const cols = [\n          { key: 'product', title: 'Product', dataIndex: 'product' as const },\n          { key: 'price', title: 'Price', dataIndex: 'price' as const },\n        ];\n        const data = [\n          { product: 'Widget A', price: '$19.99' },\n          { product: 'Widget B', price: '$29.99' },\n        ];\n        return <Table columns={cols} dataSource={data} rowSelection={{}} pagination={false} />;",
+    "2": "const cols = [\n          { key: 'name', title: 'Name', dataIndex: 'name' as const },\n          { key: 'role', title: 'Role', dataIndex: 'role' as const },\n        ];\n        return (\n          <Table\n            columns={cols}\n            dataSource={[]}\n            loading={true}\n            skeletonRows={4}\n            pagination={false}\n          />\n        );",
+    "3": "const cols = [\n        { key: 'name', title: 'Name', dataIndex: 'name' as const, sorter: (a, b) => a.name.localeCompare(b.name) },\n        { key: 'age', title: 'Age', dataIndex: 'age' as const, sorter: (a, b) => a.age - b.age }\n      ];\n      const data = [\n        { name: 'Alice', age: 34 },\n        { name: 'Bob', age: 27 },\n        { name: 'Carol', age: 42 }\n      ];\n      return <Table columns={cols} dataSource={data} pagination={false} />;",
+    "4": "const cols = [\n        { key: 'task', title: 'Task', dataIndex: 'task' as const },\n        {\n          key: 'status',\n          title: 'Status',\n          dataIndex: 'status' as const,\n          render: (status) => <Tag color={status === 'done' ? 'green' : 'orange'}>{status}</Tag>\n        }\n      ];\n      const data = [\n        { task: 'Design review', status: 'done' },\n        { task: 'Write tests', status: 'in progress' }\n      ];\n      return <Table columns={cols} dataSource={data} pagination={false} />;",
+    "5": "const cols = [\n        { key: 'id', title: 'ID', dataIndex: 'id' as const },\n        { key: 'item', title: 'Item', dataIndex: 'item' as const }\n      ];\n      const data = Array.from({ length: 20 }, (_, i) => ({ id: i + 1, item: `Item ${i + 1}` }));\n      return (\n        <div style={{ maxHeight: 200, overflow: 'auto' }}>\n          <Table columns={cols} dataSource={data} stickyHeader pagination={false} />\n        </div>\n      );",
+    "6": "const cols = [\n        { key: 'id', title: 'ID', dataIndex: 'id' as const },\n        { key: 'name', title: 'Name', dataIndex: 'name' as const }\n      ];\n      const data = Array.from({ length: 35 }, (_, i) => ({ id: i + 1, name: `User ${i + 1}` }));\n      return <Table columns={cols} dataSource={data} pagination={{ pageSize: 5 }} />;",
+    "7": "const cols = [\n        { key: 'name', title: 'Name', dataIndex: 'name' as const },\n        { key: 'role', title: 'Role', dataIndex: 'role' as const }\n      ];\n      return (\n        <Table\n          columns={cols}\n          dataSource={[]}\n          pagination={false}\n          emptyTitle=\"No team members\"\n          emptyDescription=\"Invite teammates to see them here.\"\n        />\n      );"
+  },
+  "Modal": {
+    "0": "<ModalBasicExample />",
+    "1": "<ModalSizesExample />",
+    "2": "<ModalWithFooterExample />",
+    "3": "<Modal isOpen={true} onClose={() => {}} title=\"Full Screen\" fullScreen>\n        <p>This modal takes up the whole screen.</p>\n      </Modal>",
+    "4": "<Modal isOpen={true} onClose={() => {}} title=\"Glass\" variant=\"glass\">\n        <p>Glass modal content.</p>\n      </Modal>",
+    "5": "<Modal isOpen={true} onClose={() => {}} title=\"Top Aligned\" position=\"top\">\n        <p>This modal is positioned at the top.</p>\n      </Modal>",
+    "6": "<Modal isOpen={true} onClose={() => {}} title=\"Confirm\" preventBackdropClick>\n        <p>Clicking outside will not close this modal.</p>\n        <Button size=\"small\" onClick={() => {}} style={{ marginTop: 12 }}>Understood</Button>\n      </Modal>",
+    "7": "<Modal\n        isOpen={true}\n        onClose={() => {}}\n        title=\"Custom Backdrop\"\n        backdropStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.85)' }}\n      >\n        <p>Darker backdrop for focused attention.</p>\n      </Modal>"
+  },
+  "SkipToContent": {
+    "0": "<SkipToContent targetId=\"main-content\" />",
+    "1": "<SkipToContent targetId=\"main-content\" label=\"Jump to main content\" />",
+    "2": "<SkipToContent />",
+    "3": "<SkipToContent targetId=\"article-content\" label=\"Skip to article\" />",
+    "4": "<SkipToContent targetId=\"main\" label=\"Skip\" />",
+    "5": "<Card variant=\"outset\" style={{ padding: 20 }}>\n        <SkipToContent targetId=\"content\" label=\"Jump to content\" />\n        <p style={{ marginTop: 12, color: 'var(--n-color-text-secondary)' }}>\n          Tab into the card to reveal the skip link.\n        </p>\n      </Card>",
+    "6": "<SkipToContent targetId=\"section-details\" label=\"Skip to section details\" />"
+  },
+  "Skeleton": {
+    "0": "<Stack direction=\"column\" gap={12}>\n          <Skeleton variant=\"text\" width=\"100%\" height={16} active={true} />\n          <Skeleton variant=\"text\" width=\"80%\" height={16} active={true} />\n          <Skeleton variant=\"text\" width=\"60%\" height={16} active={true} />\n        </Stack>",
+    "1": "<Stack direction=\"row\" gap={12} align=\"center\">\n          <Skeleton variant=\"circle\" width={40} height={40} active={true} />\n          <Stack direction=\"column\" gap={8}>\n            <Skeleton variant=\"text\" width={120} height={16} active={true} />\n            <Skeleton variant=\"text\" width={80} height={12} active={true} />\n          </Stack>\n        </Stack>",
+    "2": "<Skeleton loading={true}>\n          <Card style={{ width: 220, padding: 16 }}>\n            <strong>Card Title</strong>\n            <p>This content is hidden while loading.</p>\n          </Card>\n        </Skeleton>",
+    "3": "<Card style={{ width: 260, padding: 16 }}>\n    <Stack direction=\"column\" gap={12}>\n      <Skeleton variant=\"rect\" width=\"100%\" height={120} active={true} />\n      <Skeleton variant=\"text\" width=\"60%\" height={18} active={true} />\n      <Skeleton variant=\"text\" width=\"90%\" height={14} active={true} />\n      <Skeleton variant=\"text\" width=\"70%\" height={14} active={true} />\n    </Stack>\n  </Card>",
+    "4": "<Stack direction=\"column\" gap={12} style={{ width: 240 }}>\n    <Skeleton variant=\"text\" width=\"100%\" height={16} active={false} />\n    <Skeleton variant=\"text\" width=\"80%\" height={16} active={false} />\n    <Skeleton variant=\"circle\" width={40} height={40} active={false} />\n  </Stack>",
+    "5": "<Stack direction=\"row\" gap={16} align=\"center\">\n    <Skeleton variant=\"rect\" width={120} height={80} active={true} />\n    <Skeleton variant=\"rect\" width={160} height={90} active={true} />\n    <Skeleton variant=\"rect\" width={80} height={80} active={true} />\n  </Stack>",
+    "6": "<Stack direction=\"row\" gap={16} align=\"center\">\n    <Skeleton variant=\"circle\" width={24} height={24} active={true} />\n    <Skeleton variant=\"circle\" width={40} height={40} active={true} />\n    <Skeleton variant=\"circle\" width={64} height={64} active={true} />\n  </Stack>",
+    "7": "<Skeleton loading={false}>\n    <Card style={{ width: 220, padding: 16 }}>\n      <strong>Loaded Title</strong>\n      <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n        This content is shown once data has finished loading.\n      </p>\n    </Card>\n  </Skeleton>"
+  },
+  "ProgressBar": {
+    "0": "<Stack direction=\"column\" gap={16} style={{ width: 300 }}>\n          <ProgressBar value={30} />\n          <ProgressBar value={60} />\n          <ProgressBar value={90} />\n          <ProgressBar value={100} />\n        </Stack>",
+    "1": "<Stack direction=\"column\" gap={16} style={{ width: 300 }}>\n          <ProgressBar value={60} status=\"success\" showLabel />\n          <ProgressBar value={40} status=\"warning\" />\n          <ProgressBar value={80} status=\"error\" />\n        </Stack>",
+    "2": "<ProgressBar value={0} indeterminate={true} style={{ width: 300 }} />",
+    "3": "<Stack direction=\"column\" gap={16} style={{ width: 300 }}>\n    <ProgressBar value={40} size=\"small\" />\n    <ProgressBar value={60} size=\"medium\" />\n    <ProgressBar value={80} size=\"large\" />\n  </Stack>",
+    "4": "<Stack direction=\"column\" gap={16} style={{ width: 300 }}>\n    <ProgressBar value={25} showLabel />\n    <ProgressBar value={50} showLabel />\n    <ProgressBar value={75} showLabel />\n  </Stack>",
+    "5": "<Card style={{ width: 320, padding: 16 }}>\n    <p style={{ margin: '0 0 8px' }}>Upload complete</p>\n    <ProgressBar value={100} status=\"success\" showLabel />\n  </Card>",
+    "6": "<Card style={{ width: 320, padding: 16 }}>\n    <p style={{ margin: '0 0 8px' }}>Upload failed</p>\n    <ProgressBar value={45} status=\"error\" showLabel />\n  </Card>",
+    "7": "<Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>\n      <span style={{ fontSize: '0.875rem', width: 80 }}>Processing</span>\n      <ProgressBar value={60} size=\"small\" style={{ flex: 1 }} />\n    </div>\n    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>\n      <span style={{ fontSize: '0.875rem', width: 80 }}>Saving</span>\n      <ProgressBar value={30} size=\"small\" status=\"warning\" style={{ flex: 1 }} />\n    </div>\n  </Stack>"
+  },
+  "Avatar": {
+    "0": "<Stack direction=\"row\" gap={12} align=\"center\">\n          <Avatar name=\"Alice Baker\" />\n          <Avatar name=\"Bob Chen\" />\n          <Avatar name=\"Carol Davis\" />\n        </Stack>",
+    "1": "<Stack direction=\"row\" gap={12} align=\"center\">\n          <Avatar name=\"User\" size=\"small\" />\n          <Avatar name=\"User\" size=\"medium\" />\n          <Avatar name=\"User\" size=\"large\" />\n        </Stack>",
+    "2": "<Stack direction=\"row\" gap={12} align=\"center\">\n          <Avatar name=\"User\" shape=\"circle\" />\n          <Avatar name=\"User\" shape=\"square\" />\n        </Stack>",
+    "3": "<Stack direction=\"row\" gap={12} align=\"center\">\n    <Avatar icon={<Icon name=\"user\" size={20} />} size=\"small\" />\n    <Avatar icon={<Icon name=\"user\" size={24} />} size=\"medium\" />\n    <Avatar icon={<Icon name=\"user\" size={32} />} size=\"large\" />\n  </Stack>",
+    "4": "<Stack direction=\"row\" gap={12} align=\"center\">\n    <Avatar src=\"https://i.pravatar.cc/150?img=1\" alt=\"User one\" size=\"medium\" />\n    <Avatar src=\"https://i.pravatar.cc/150?img=5\" alt=\"User two\" size=\"medium\" />\n    <Avatar src=\"https://i.pravatar.cc/150?img=8\" alt=\"User three\" size=\"medium\" />\n  </Stack>",
+    "5": "<Stack direction=\"row\" gap={24} align=\"center\">\n    <AvatarGroup\n      size=\"small\"\n      max={3}\n      avatars={[\n        { name: 'Alice', src: 'https://i.pravatar.cc/150?img=1' },\n        { name: 'Bob', src: 'https://i.pravatar.cc/150?img=2' },\n        { name: 'Carol', src: 'https://i.pravatar.cc/150?img=3' },\n        { name: 'Dave', src: 'https://i.pravatar.cc/150?img=4' },\n      ]}\n    />\n    <AvatarGroup\n      size=\"medium\"\n      max={2}\n      avatars={[\n        { name: 'Eve', initials: 'E' },\n        { name: 'Frank', initials: 'F' },\n        { name: 'Grace', initials: 'G' },\n      ]}\n    />\n  </Stack>",
+    "6": "<Stack direction=\"row\" gap={16} align=\"center\">\n    <Avatar initials=\"AB\" shape=\"circle\" size=\"small\" />\n    <Avatar initials=\"CD\" shape=\"square\" size=\"medium\" />\n    <Avatar initials=\"EF\" shape=\"circle\" size=\"large\" />\n  </Stack>",
+    "7": "<Card style={{ width: 280, padding: 16 }}>\n    <Stack direction=\"row\" gap={12} align=\"center\">\n      <Avatar initials=\"JD\" size=\"large\" />\n      <Stack direction=\"column\" gap={4}>\n        <strong>Jane Doe</strong>\n        <span style={{ fontSize: '0.875rem', color: 'var(--n-color-text-secondary)' }}>Product Designer</span>\n      </Stack>\n    </Stack>\n  </Card>"
+  },
+  "Breadcrumbs": {
+    "0": "<Breadcrumbs\n          items={[\n            { label: 'Home', href: '/' },\n            { label: 'Components', href: '/components' },\n            { label: 'Button' },\n          ]}\n        />",
+    "1": "<Breadcrumbs\n          items={[\n            { label: 'Home', href: '/' },\n            { label: 'Library', href: '/library' },\n            { label: 'Book' },\n          ]}\n          separator=\">\"\n        />",
+    "2": "<Breadcrumbs\n          ariaLabel=\"Breadcrumb navigation\"\n          items={[\n            { label: 'Home', href: '/' },\n            { label: 'Components', href: '/components' },\n            { label: 'Button' },\n          ]}\n          homeIcon={<Icon name=\"home\" size={14} />}\n        />",
+    "3": "<Breadcrumbs\n    items={[\n      { label: 'Home', href: '/' },\n      { label: 'Products', href: '/products' },\n      { label: 'Electronics', href: '/products/electronics' },\n      { label: 'Laptops', href: '/products/electronics/laptops' },\n      { label: 'ProBook 15' },\n    ]}\n  />",
+    "4": "<Breadcrumbs\n    separator={<Icon name=\"chevron-right\" size={12} />}\n    items={[\n      { label: 'Home', href: '/' },\n      { label: 'Library', href: '/library' },\n      { label: 'Data', href: '/library/data' },\n      { label: 'Current' },\n    ]}\n  />",
+    "5": "<Breadcrumbs\n    homeIcon={null}\n    items={[\n      { label: 'App', href: '/' },\n      { label: 'Settings', href: '/settings' },\n      { label: 'Profile' },\n    ]}\n  />",
+    "6": "<Breadcrumbs\n    ariaLabel=\"Project navigation\"\n    items={[\n      { label: 'Projects', href: '/projects' },\n      { label: 'Acme Corp', href: '/projects/acme' },\n      { label: 'Settings' },\n    ]}\n  />",
+    "7": "<Card style={{ width: '100%', padding: 16 }}>\n    <Breadcrumbs\n      items={[\n        { label: 'Dashboard', href: '/' },\n        { label: 'Reports', href: '/reports' },\n        { label: 'Monthly Sales' },\n      ]}\n    />\n    <h3 style={{ margin: '12px 0 0' }}>Monthly Sales Report</h3>\n  </Card>"
+  },
+  "Divider": {
+    "0": "<Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n          <p>Above</p>\n          <Divider />\n          <p>Below</p>\n        </Stack>",
+    "1": "<Divider>OR</Divider>",
+    "2": "<Stack direction=\"row\" gap={12} align=\"center\">\n          <span>Left</span>\n          <Divider type=\"vertical\" />\n          <span>Right</span>\n        </Stack>",
+    "3": "<Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n    <span>Section A</span>\n    <Divider type=\"dashed\" />\n    <span>Section B</span>\n  </Stack>",
+    "4": "<Stack direction=\"column\" style={{ width: 240 }}>\n    <span style={{ padding: '8px 0' }}>First item</span>\n    <Divider />\n    <span style={{ padding: '8px 0' }}>Second item</span>\n    <Divider />\n    <span style={{ padding: '8px 0' }}>Third item</span>\n  </Stack>",
+    "5": "<Stack direction=\"row\" gap={12} align=\"center\">\n    <Button size=\"small\">Edit</Button>\n    <Divider orientation=\"vertical\" />\n    <Button size=\"small\" variant=\"secondary\">Delete</Button>\n  </Stack>",
+    "6": "<Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n    <p>Above the line</p>\n    <Divider role=\"presentation\" />\n    <p>Below the line</p>\n  </Stack>",
+    "7": "<Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n    <span>Top content</span>\n    <Divider style={{ borderTopWidth: 2 }} />\n    <span>Bottom content</span>\n  </Stack>"
+  },
+  "Tooltip": {
+    "0": "<Stack direction=\"row\" gap={24} align=\"center\">\n        <Tooltip content=\"Top\" position=\"top\"><Button size=\"small\">Top</Button></Tooltip>\n        <Tooltip content=\"Bottom\" position=\"bottom\"><Button size=\"small\">Bottom</Button></Tooltip>\n        <Tooltip content=\"Left\" position=\"left\"><Button size=\"small\">Left</Button></Tooltip>\n        <Tooltip content=\"Right\" position=\"right\"><Button size=\"small\">Right</Button></Tooltip>\n      </Stack>",
+    "1": "<Stack direction=\"row\" gap={24} align=\"center\">\n        <Tooltip content=\"Click tooltip\" trigger=\"click\"><Button size=\"small\">Click</Button></Tooltip>\n        <Tooltip content=\"Focus tooltip\" trigger=\"focus\"><Button size=\"small\">Focus</Button></Tooltip>\n      </Stack>",
+    "2": "<Tooltip content=\"Appears after 500ms\" mouseEnterDelay={500} mouseLeaveDelay={500}>\n    <Button size=\"small\">Delayed tooltip</Button>\n  </Tooltip>",
+    "3": "<Tooltip content=\"I stay visible\" isOpen={true}>\n    <Button size=\"small\">Pinned tooltip</Button>\n  </Tooltip>",
+    "4": "<Tooltip\n    content={\n      <Stack direction=\"column\" gap={4}>\n        <strong>Tip</strong>\n        <span>Use concise labels for clarity.</span>\n      </Stack>\n    }\n  >\n    <Button size=\"small\">Rich tooltip</Button>\n  </Tooltip>",
+    "5": "<Stack direction=\"row\" gap={24} align=\"center\">\n    <Tooltip content=\"No arrow here\" withArrow={false}>\n      <Button size=\"small\">No arrow</Button>\n    </Tooltip>\n    <Tooltip content=\"Default arrow\" withArrow={true}>\n      <Button size=\"small\">With arrow</Button>\n    </Tooltip>\n  </Stack>",
+    "6": "<Tooltip content=\"Password must be at least 8 characters.\" position=\"right\">\n    <Input placeholder=\"Password\" type=\"password\" style={{ width: 200 }} />\n  </Tooltip>"
+  },
+  "Popover": {
+    "0": "<Popover\n          trigger={<Button size=\"small\">Click me</Button>}\n          content={\n            <div style={{ padding: 8 }}>\n              <p>Popover content</p>\n            </div>\n          }\n        />",
+    "1": "<Popover\n          trigger={<Button size=\"small\">Hover me</Button>}\n          content={\n            <div style={{ padding: 8 }}>\n              <p>Hover popover</p>\n            </div>\n          }\n          triggerMode=\"hover\"\n          placement=\"top\"\n        />",
+    "2": "<ControlledPopoverExample />",
+    "3": "<Stack direction=\"row\" gap={16} align=\"center\">\n    <Popover\n      trigger={<Button size=\"small\">Bottom</Button>}\n      placement=\"bottom\"\n      content={<div style={{ padding: 8 }}>Bottom content</div>}\n    />\n    <Popover\n      trigger={<Button size=\"small\">Left</Button>}\n      placement=\"left\"\n      content={<div style={{ padding: 8 }}>Left content</div>}\n    />\n    <Popover\n      trigger={<Button size=\"small\">Right</Button>}\n      placement=\"right\"\n      content={<div style={{ padding: 8 }}>Right content</div>}\n    />\n  </Stack>",
+    "4": "<Popover\n    withArrow={false}\n    trigger={<Button size=\"small\">No arrow</Button>}\n    content={<div style={{ padding: 8 }}>Popover without an arrow.</div>}\n  />",
+    "5": "<Popover\n    defaultOpen={true}\n    trigger={<Button size=\"small\">Trigger</Button>}\n    content={<div style={{ padding: 8 }}>This popover starts open.</div>}\n  />",
+    "6": "<Popover\n    triggerMode=\"hover\"\n    hoverDelay={300}\n    trigger={<Button size=\"small\">Hover me</Button>}\n    content={<div style={{ padding: 8 }}>Appears after 300ms hover.</div>}\n  />",
+    "7": "<Popover\n    trigger={<Button size=\"small\">User profile</Button>}\n    content={\n      <Stack direction=\"column\" gap={12} style={{ padding: 8, width: 200 }}>\n        <Stack direction=\"row\" gap={12} align=\"center\">\n          <Avatar initials=\"AB\" size=\"small\" />\n          <Stack direction=\"column\" gap={2}>\n            <strong style={{ fontSize: '0.875rem' }}>Alex Brown</strong>\n            <span style={{ fontSize: '0.75rem', color: 'var(--n-color-text-secondary)' }}>Developer</span>\n          </Stack>\n        </Stack>\n        <Button size=\"small\" fullWidth>View profile</Button>\n      </Stack>\n    }\n  />"
+  },
+  "Steps": {
+    "0": "<Steps\n          current={1}\n          items={[\n            { title: 'Cart', description: 'Review items' },\n            { title: 'Shipping', description: 'Enter address' },\n            { title: 'Payment', description: 'Confirm order' },\n          ]}\n        />",
+    "1": "<Steps\n          direction=\"vertical\"\n          current={1}\n          items={[\n            { title: 'Cart', description: 'Review items' },\n            { title: 'Shipping', description: 'Enter address' },\n            { title: 'Payment', description: 'Confirm order' },\n          ]}\n        />",
+    "2": "<ControlledStepsExample />",
+    "3": "<Stack direction=\"column\" gap={24}>\n    <Steps\n      size=\"small\"\n      current={1}\n      items={[\n        { title: 'Cart', description: 'Review' },\n        { title: 'Address', description: 'Shipping' },\n        { title: 'Pay', description: 'Payment' },\n      ]}\n    />\n    <Steps\n      size=\"default\"\n      current={1}\n      items={[\n        { title: 'Cart', description: 'Review' },\n        { title: 'Address', description: 'Shipping' },\n        { title: 'Pay', description: 'Payment' },\n      ]}\n    />\n  </Stack>",
+    "4": "<Steps\n    current={1}\n    onChange={(index) => console.log('Moved to step', index)}\n    items={[\n      { title: 'Plan', description: 'Choose plan' },\n      { title: 'Billing', description: 'Add billing' },\n      { title: 'Review', description: 'Confirm' },\n    ]}\n  />",
+    "5": "<Card style={{ width: '100%', padding: 16 }}>\n    <Steps\n      current={3}\n      items={[\n        { title: 'Account', description: 'Created' },\n        { title: 'Profile', description: 'Completed' },\n        { title: 'Settings', description: 'Saved' },\n      ]}\n    />\n  </Card>",
+    "6": "<Card style={{ width: '100%', padding: 20 }}>\n    <h4 style={{ margin: '0 0 16px' }}>Setup Progress</h4>\n    <Steps\n      current={2}\n      items={[\n        { title: 'Connect', description: 'Integrate data source' },\n        { title: 'Configure', description: 'Map fields' },\n        { title: 'Sync', description: 'Start syncing' },\n      ]}\n    />\n  </Card>",
+    "7": "<Steps\n    size=\"small\"\n    direction=\"horizontal\"\n    current={0}\n    items={[\n      { title: 'Draft', description: 'Created' },\n      { title: 'Review', description: 'Pending' },\n      { title: 'Publish', description: 'Pending' },\n    ]}\n  />"
+  },
+  "Stack": {
+    "0": "<Stack direction=\"row\" gap={16} align=\"center\">\n        <Badge count={1} />\n        <Badge count={2} />\n        <Badge count={3} />\n      </Stack>",
+    "1": "<Stack direction=\"column\" gap={16}>\n        <Badge count={1} />\n        <Badge count={2} />\n        <Badge count={3} />\n      </Stack>",
+    "2": "<Stack direction=\"column\" gap={16}><Stack direction=\"row\" gap={4} align=\"center\"><Tag>A</Tag><Tag>B</Tag></Stack><Stack direction=\"row\" gap={16} align=\"center\"><Tag>A</Tag><Tag>B</Tag></Stack><Stack direction=\"row\" gap={32} align=\"center\"><Tag>A</Tag><Tag>B</Tag></Stack></Stack>",
+    "3": "<Stack direction=\"column\" gap={16} style={{ width: 320 }}><Stack direction=\"row\" gap={8} justify=\"flex-start\"><Tag>Start</Tag></Stack><Stack direction=\"row\" gap={8} justify=\"center\"><Tag>Center</Tag></Stack><Stack direction=\"row\" gap={8} justify=\"flex-end\"><Tag>End</Tag></Stack></Stack>",
+    "4": "<Stack direction=\"row\" gap={8} wrap={true} style={{ width: 160 }}><Tag>One</Tag><Tag>Two</Tag><Tag>Three</Tag><Tag>Four</Tag><Tag>Five</Tag></Stack>",
+    "5": "<Stack direction=\"column\" gap={16}><Stack direction=\"row\" gap={12}><Card style={{ padding: 16, flex: 1 }}>Metric A</Card><Card style={{ padding: 16, flex: 1 }}>Metric B</Card></Stack><Card style={{ padding: 16 }}>Chart area</Card></Stack>",
+    "6": "<Stack direction=\"row\" gap={16} align=\"center\" style={{ height: 60, border: '1px dashed var(--n-color-border)' }}><div style={{ height: 40, width: 40, background: 'var(--n-color-primary)', borderRadius: 8 }} /><Tag>Centered</Tag></Stack>"
+  },
+  "Statistic": {
+    "0": "<Stack direction=\"row\" gap={24} wrap={true}>\n          <Statistic title=\"Users\" value={1234} />\n          <Statistic title=\"Revenue\" value={5678} prefix=\"$\" />\n        </Stack>",
+    "1": "<Stack direction=\"row\" gap={24} wrap={true}>\n          <Statistic title=\"Growth\" value={12.5} precision={1} suffix=\"%\" trend=\"up\" />\n          <Statistic title=\"Churn\" value={2.4} precision={1} suffix=\"%\" trend=\"down\" />\n        </Stack>",
+    "2": "<Statistic title=\"Downloads\" value={5420} animate={true} />",
+    "3": "<Statistic title=\"Monthly Recurring Revenue\" value={12453.21} prefix=\"$\" precision={2} />",
+    "4": "<Grid columns={2} gap={16} style={{ width: 360 }}><Statistic title=\"Users\" value={8920} trend=\"up\" /><Statistic title=\"Bounce Rate\" value={42.3} suffix=\"%\" precision={1} trend=\"down\" /><Statistic title=\"Revenue\" value={12450} prefix=\"$\" /><Statistic title=\"Sessions\" value={15300} /></Grid>",
+    "5": "<Statistic title=\"Total Downloads\" value={1.2} suffix=\"M\" precision={1} animate={true} />",
+    "6": "<Statistic title=\"Active Users\" value={98} suffix=\"%\" prefix={<Icon name=\"check\" size={20} />} precision={0} />",
+    "7": "<Statistic title=\"Server Uptime\" value={99.99} suffix=\"%\" precision={2} animate={false} />"
+  },
+  "Slider": {
+    "0": "<Stack direction=\"column\" gap={24} style={{ width: 300 }}>\n          <Slider value={30} />\n          <Slider value={70} />\n        </Stack>",
+    "1": "<ControlledSliderExample />",
+    "2": "<Slider\n          value={50}\n          marks={[\n            { value: 0, label: '0' },\n            { value: 25, label: '25' },\n            { value: 50, label: '50' },\n            { value: 75, label: '75' },\n            { value: 100, label: '100' },\n          ]}\n          style={{ width: 300 }}\n        />",
+    "3": "<Slider defaultValue={0} min={-50} max={50} style={{ width: 300 }} />",
+    "4": "<Slider defaultValue={30} step={10} marks={[{ value: 0, label: '0' }, { value: 50, label: '50' }, { value: 100, label: '100' }]} style={{ width: 300 }} />",
+    "5": "<Slider value={60} disabled={true} style={{ width: 300 }} />",
+    "6": "<div style={{ height: 160 }}><Slider defaultValue={40} vertical={true} /></div>",
+    "7": "<Slider defaultValue={20} error=\"Select at least 50%\" style={{ width: 300 }} />"
+  },
+  "TextArea": {
+    "0": "<TextArea placeholder=\"Enter your message…\" rows={4} />",
+    "1": "<Stack direction=\"column\" gap={12}>\n          <TextArea placeholder=\"Disabled\" disabled={true} />\n          <TextArea placeholder=\"Error\" error=\"Invalid input\" />\n        </Stack>",
+    "2": "<ControlledTextAreaExample />",
+    "3": "<TextArea label=\"Feedback\" placeholder=\"Share your thoughts…\" minRows={3} />",
+    "4": "<TextArea placeholder=\"Max 120 characters\" maxLength={120} showCount={true} minRows={3} />",
+    "5": "<TextArea placeholder=\"Type to expand…\" autoResize={true} minRows={2} maxRows={6} style={{ width: 300 }} />",
+    "6": "<Stack direction=\"column\" gap={12}><TextArea inputSize=\"small\" placeholder=\"Small\" minRows={2} /><TextArea inputSize=\"medium\" placeholder=\"Medium\" minRows={2} /></Stack>",
+    "7": "<TextArea label=\"Bio\" placeholder=\"Tell us about yourself\" helperText=\"This will appear on your profile.\" required={true} minRows={3} />"
+  },
+  "DatePicker": {
+    "0": "<DatePicker placeholder=\"Pick a date\" />",
+    "1": "<ControlledDatePickerExample />",
+    "2": "<DatePicker mode=\"range\" placeholder=\"Pick a range\" />",
+    "3": "<DatePicker minDate={new Date('2026-01-01')} maxDate={new Date('2026-12-31')} placeholder=\"2026 only\" />",
+    "4": "<DatePicker format=\"dd/MM/yyyy\" placeholder=\"DD/MM/YYYY\" />",
+    "5": "<DatePicker label=\"Start date\" id=\"start-date\" placeholder=\"Choose start\" />",
+    "6": "<DatePicker disabled={true} placeholder=\"Unavailable\" />"
+  },
+  "TimePicker": {
+    "0": "<TimePicker placeholder=\"Select time\" />",
+    "1": "<ControlledTimePickerExample />",
+    "2": "<TimePicker value={{ hours: 10, minutes: 30 }} disabled />",
+    "3": "<TimePicker format=\"12h\" placeholder=\"Pick time\" />",
+    "4": "<TimePicker minuteInterval={30} placeholder=\"Every 30 min\" />",
+    "5": "<TimePicker minTime={{ hours: 9, minutes: 0 }} maxTime={{ hours: 17, minutes: 0 }} placeholder=\"9:00 - 17:00\" />",
+    "6": "<Stack direction=\"row\" gap={16} align=\"center\"><TimePicker size=\"small\" placeholder=\"Small\" /><TimePicker size=\"large\" placeholder=\"Large\" /></Stack>",
+    "7": "<TimePicker label=\"Meeting time\" helpText=\"Choose a time in your local timezone.\" placeholder=\"Select time\" />"
+  },
+  "OTPInput": {
+    "0": "<OTPInput length={6} />",
+    "1": "<ControlledOTPInputExample />",
+    "2": "<OTPInput length={6} value=\"123456\" disabled />",
+    "3": "<OTPInput length={4} />",
+    "4": "<OTPInput length={6} value=\"123\" error={true} />",
+    "5": "<OTPInput length={6} onComplete={(v) => console.log(v)} />",
+    "6": "<OTPInput length={8} value=\"ABCDEF12\" />",
+    "7": "<OTPInput length={6} value=\"654321\" disabled={true} />"
+  },
+  "Rating": {
+    "0": "<Stack direction=\"row\" gap={24} align=\"center\">\n          <Rating value={3} />\n          <Rating value={4.5} precision={0.5} />\n        </Stack>",
+    "1": "<ControlledRatingExample />",
+    "2": "<Rating value={4} precision={0.5} readOnly={true} />",
+    "3": "<Stack direction=\"row\" gap={24} align=\"center\"><Rating value={4} size=\"small\" /><Rating value={4} size=\"medium\" /><Rating value={4} size=\"large\" /></Stack>",
+    "4": "<Stack direction=\"row\" gap={24} align=\"center\"><Rating value={3.5} precision={0.5} /><Rating value={4.5} precision={0.5} readOnly={true} /></Stack>",
+    "5": "<Rating value={7} max={10} precision={1} readOnly={true} />",
+    "6": "<Rating value={2} label=\"Product rating\" readOnly={true} />",
+    "7": "<Stack direction=\"row\" gap={12} align=\"center\"><Rating value={4.5} precision={0.5} readOnly={true} /><Tag color=\"orange\">4.5 / 5</Tag></Stack>"
+  },
+  "Calendar": {
+    "0": "<Calendar />",
+    "1": "const today = new Date();\n        return (\n          <Calendar value={today} events={[{ date: today, title: 'Release', type: 'success' }]} />\n        );",
+    "2": "<ControlledCalendarExample />",
+    "3": "<Calendar value={new Date(2026, 5, 15)} />",
+    "4": "const today = new Date(); return <Calendar value={today} events={[{ date: today, title: 'Release', type: 'success' }, { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2), title: 'Review', type: 'warning' }, { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 5), title: 'Planning', type: 'info' }]} />;",
+    "5": "const today = new Date(); today.setHours(0, 0, 0, 0); return <Calendar value={new Date()} disabledDate={(d) => d < today} />;",
+    "6": "const year = new Date().getFullYear(); return <Calendar value={new Date(year, 0, 1)} events={[{ date: new Date(year, 0, 1), title: 'New Year', type: 'error' }, { date: new Date(year, 6, 4), title: 'Independence Day', type: 'success' }]} />;",
+    "7": "const today = new Date(); const sat = new Date(today); sat.setDate(today.getDate() + (6 - today.getDay())); return <Calendar value={today} events={[{ date: sat, title: 'Sprint review', type: 'info' }]} />;"
+  },
+  "Segmented": {
+    "0": "<Segmented options={['Day', 'Week', 'Month', 'Year']} value=\"Day\" />",
+    "1": "<ControlledSegmentedExample />",
+    "2": "<ControlledSegmentedExample2 />",
+    "3": "<Segmented options={['Day', 'Week', 'Month']} value=\"Week\" onChange={() => {}} block={true} />",
+    "4": "<Stack direction=\"column\" gap={16}><Segmented options={['S', 'M']} value=\"S\" onChange={() => {}} size=\"small\" /><Segmented options={['Day', 'Week']} value=\"Day\" onChange={() => {}} size=\"medium\" /><Segmented options={['Month', 'Year']} value=\"Year\" onChange={() => {}} size=\"large\" /></Stack>",
+    "5": "<Segmented options={['List', 'Grid', 'Kanban']} value=\"Grid\" onChange={() => {}} />",
+    "6": "<Segmented options={['All', 'Active', 'Archived']} value=\"Active\" onChange={() => {}} />",
+    "7": "<Segmented options={['Overview', 'Details', 'Settings']} value=\"Overview\" onChange={() => {}} size=\"large\" block={true} />"
+  },
+  "Pagination": {
+    "0": "<Pagination currentPage={1} totalPages={10} />",
+    "1": "<Pagination currentPage={5} totalPages={10} siblingCount={2} />",
+    "2": "<ControlledPaginationExample />",
+    "3": "<Pagination currentPage={3} totalPages={8} onChange={() => {}} showPrevNext={false} />",
+    "4": "<Pagination currentPage={2} totalPages={5} onChange={() => {}} disabled={true} />",
+    "5": "<Pagination currentPage={12} totalPages={24} onChange={() => {}} siblingCount={2} />",
+    "6": "<Pagination currentPage={1} totalPages={3} onChange={() => {}} />",
+    "7": "<Pagination currentPage={7} totalPages={20} onChange={() => {}} siblingCount={2} showPrevNext={true} />"
+  },
+  "RichTextEditor": {
+    "0": "<RichTextEditor defaultValue=\"<p>Edit this <strong>rich text</strong> content.</p>\" />",
+    "1": "<ControlledRichTextEditorExample />",
+    "2": "<ControlledRichTextEditorDisabledExample />",
+    "3": "<RichTextEditor value=\"\" onChange={() => {}} placeholder=\"Start writing your content here…\" />",
+    "4": "<RichTextEditor value=\"<h3>Release Notes</h3><p>Version <strong>1.2.0</strong> is now available.</p><ul><li>New components</li><li>Bug fixes</li></ul>\" onChange={() => {}} />",
+    "5": "<RichTextEditor value=\"<p>Styled editor content.</p>\" onChange={() => {}} className=\"demo-editor\" />",
+    "6": "<RichTextEditor value=\"<p>Edit me</p>\" onChange={() => {}} />",
+    "7": "<RichTextEditor value=\"<p>This content is <em>read only</em>.</p>\" onChange={() => {}} disabled={true} />"
+  },
+  "Result": {
+    "0": "<Result\n          status=\"success\"\n          title=\"Operation Successful\"\n          description=\"Your changes have been saved.\"\n        />",
+    "1": "<Result status=\"error\" title=\"Something Went Wrong\" description=\"Please try again later.\" />",
+    "2": "<Result\n          status=\"warning\"\n          title=\"Payment Failed\"\n          subTitle=\"We could not process your payment. Please check your details and try again.\"\n          extra={\n            <Stack direction=\"row\" gap={12}>\n              <Button size=\"small\">Retry</Button>\n              <Button size=\"small\" variant=\"secondary\">\n                Contact Support\n              </Button>\n            </Stack>\n          }\n        />",
+    "3": "<Result status=\"warning\" title=\"Attention Needed\" subTitle=\"Your account requires verification before continuing.\" />",
+    "4": "<Result status=\"info\" title=\"Update Available\" subTitle=\"A new version of the app is ready to install.\" />",
+    "5": "<Result status=\"success\" title=\"Custom Icon\" subTitle=\"This result uses a custom icon provided as a React node.\" icon={<Icon name=\"trophy\" size={48} color=\"orange\" />} />",
+    "6": "<Result status=\"info\" subTitle=\"No data matches your search filters.\" />",
+    "7": "<Result status=\"404\" title=\"Page Not Found\" subTitle=\"The page you are looking for does not exist.\" extra={<Button size=\"small\">Go Home</Button>} />"
+  },
+  "RSC": {
+    "0": "<div style={{ padding: 24, textAlign: 'center' }}>\n          <Text size=\"small\" color=\"textSecondary\">\n            Live demo unavailable in the browser build. Use the import path below.\n          </Text>\n        </div>",
+    "1": "<div style={{ padding: 24, textAlign: 'center' }}>\n          <Text size=\"small\" color=\"textSecondary\">\n            Available RSC components: Badge, Divider, Skeleton, Text.\n          </Text>\n        </div>",
+    "2": "<div style={{ padding: 24, textAlign: 'center' }}>\n          <Text size=\"small\" color=\"textSecondary\">\n            Use async components to fetch data on the server and render with react-n-design RSC primitives.\n          </Text>\n        </div>",
+    "3": "<Stack direction=\"column\" gap={12} align=\"center\"><Badge count={3} variant=\"success\" /><Divider /><Text>Server-rendered text</Text></Stack>",
+    "4": "<Card style={{ padding: 24, width: 320 }}><Skeleton variant=\"text\" width=\"60%\" height={16} active={true} /><Skeleton variant=\"text\" width=\"40%\" height={12} active={true} /></Card>",
+    "5": "<Stack direction=\"column\" gap={8}><Skeleton variant=\"text\" width=\"100%\" height={16} active={true} /><Skeleton variant=\"text\" width=\"80%\" height={16} active={true} /><Skeleton variant=\"text\" width=\"60%\" height={16} active={true} /></Stack>",
+    "6": "<Stack direction=\"row\" gap={16} align=\"center\"><Badge count={12} variant=\"primary\" /><Badge count={99} overflowCount={99} variant=\"error\" /><Badge dot={true} /></Stack>",
+    "7": "<Stack direction=\"column\" gap={8}><Divider /><Text size=\"small\">Item 1</Text><Divider /><Text size=\"small\">Item 2</Text><Divider /><Text size=\"small\">Item 3</Text></Stack>"
+  },
+  "Collapsible": {
+    "0": "<Collapsible trigger=\"Click to expand\">\n        This content is hidden until expanded.\n      </Collapsible>",
+    "1": "<Collapsible trigger=\"Expanded by default\" defaultOpen={true}>\n        This content starts visible.\n      </Collapsible>",
+    "2": "<Collapsible trigger=\"View details\" icon={<Icon name=\"chevron-down\" size={16} />}>Additional details are shown here with a custom icon.</Collapsible>",
+    "3": "<Collapsible trigger=\"Toggle content\" unmountOnExit={true}>This content is unmounted when the collapsible is closed.</Collapsible>",
+    "4": "<Collapsible trigger=\"Parent section\" defaultOpen={true}><p style={{ margin: '8px 0' }}>Parent content.</p><Collapsible trigger=\"Child section\">Nested child content.</Collapsible></Collapsible>",
+    "5": "<Card style={{ padding: 16, maxWidth: 360 }}><Collapsible trigger=\"Card settings\">Settings content inside a card.</Collapsible></Card>",
+    "6": "<Collapsible trigger={<Stack direction=\"row\" gap={8} align=\"center\"><Badge count={2} /><span>Notifications</span></Stack>}>Here are your latest notifications.</Collapsible>"
+  },
+  "CodeBlock": {
+    "0": "<CodeBlock code=\"const x = 1;\" language=\"typescript\" />",
+    "1": "<CodeBlock\n          code=\"function hello() {\\\\n  return 'world';\\\\n}\"\n          language=\"typescript\"\n          showLineNumbers={true}\n        />",
+    "2": "<ControlledCodeBlockExample />",
+    "3": "<CodeBlock code='{\n  \"name\": \"app\",\n  \"version\": \"1.0.0\",\n  \"private\": true\n}' language='json' showLineNumbers copyable />",
+    "4": "<CodeBlock code='.button {\n  background: #6d5dfc;\n  color: white;\n  border-radius: 8px;\n}' language='css' showLineNumbers={false} copyable />",
+    "5": "<CodeBlock code='git add .\ngit commit -m \"feat: update\"\ngit push origin main' language='bash' showLineNumbers />",
+    "6": "<CodeBlock code='SELECT id, name, email\nFROM users\nWHERE active = true\nORDER BY created_at DESC;' language='sql' copyable />",
+    "7": "<CodeBlock code='def greet(name):\n    return f\"Hello, {name}!\"\n\nprint(greet(\"World\"))' language='python' showLineNumbers={false} copyable={false} />"
+  },
+  "Tree": {
+    "0": "<Tree\n          data={[\n            {\n              key: '1',\n              title: 'Parent',\n              children: [\n                { key: '1-1', title: 'Child A' },\n                { key: '1-2', title: 'Child B', children: [{ key: '1-2-1', title: 'Grandchild' }] },\n              ],\n            },\n          ]}\n        />",
+    "1": "<Tree\n          defaultExpandedKeys={['1']}\n          data={[\n            {\n              key: '1',\n              title: 'Parent',\n              children: [\n                { key: '1-1', title: 'Child A' },\n                { key: '1-2', title: 'Child B', children: [{ key: '1-2-1', title: 'Grandchild' }] },\n              ],\n            },\n          ]}\n        />",
+    "2": "<ControlledTreeExample />",
+    "3": "<Tree data={[{ key: '1', title: 'Project', children: [{ key: '1-1', title: 'src' }, { key: '1-2', title: 'docs', children: [{ key: '1-2-1', title: 'README.md' }] }] }]} defaultSelectedKeys={['1-1']} />",
+    "4": "<Tree data={[{ key: 'root', title: 'Root', children: [{ key: 'a', title: 'Branch A' }, { key: 'b', title: 'Branch B' }] }]} defaultExpandedKeys={['root']} onExpand={(keys) => console.log(keys)} />",
+    "5": "<Tree data={[{ key: '1', title: 'Level 1', children: [{ key: '1-1', title: 'Level 2', children: [{ key: '1-1-1', title: 'Level 3', children: [{ key: '1-1-1-1', title: 'Level 4' }] }] }] }]} defaultExpandedKeys={['1', '1-1', '1-1-1']} />",
+    "6": "<Tree data={[{ key: 'a', title: 'Documents' }, { key: 'b', title: 'Downloads' }, { key: 'c', title: 'Pictures' }]} />",
+    "7": "<Tree data={[{ key: '1', title: 'Workspace', children: [{ key: '1-1', title: 'Design' }, { key: '1-2', title: 'Engineering' }] }]} defaultExpandedKeys={['1']} defaultSelectedKeys={['1-2']} onSelect={() => {}} onExpand={() => {}} />"
+  },
+  "Toast": {
+    "0": "<ToastProvider>\n        <ToastDemoExample />\n      </ToastProvider>",
+    "1": "<ToastProvider>\n        <ToastVariantsExample />\n      </ToastProvider>",
+    "2": "<Toast id='success-1' variant='success' title='Saved' description='Your changes were saved successfully.' duration={5000} onDismiss={() => {}} />",
+    "3": "<Toast id='action-1' variant='warning' title='Undo available' description='The item was deleted.' action={<Button size='small' onClick={() => {}}>Undo</Button>} onDismiss={() => {}} />",
+    "4": "<Toast id='glass-1' variant='info' title='New update' description='A new version is available.' isGlass onDismiss={() => {}} />",
+    "5": "<Toast id='avatar-1' variant='info' title='Alice commented' description='Looks great, ship it!' avatar={{ src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice', alt: 'Alice' }} onDismiss={() => {}} />",
+    "6": "<Toast id='rich-1' variant='success' title='Deployment complete' richContent={<div><strong>Production</strong> deployed at 12:30 PM.</div>} meta='2 minutes ago' onDismiss={() => {}} />"
+  },
+  "Toggle": {
+    "0": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <Toggle pressed={false}>Off</Toggle>\n          <Toggle pressed={true}>On</Toggle>\n        </Stack>",
+    "1": "<ControlledToggleExample />",
+    "2": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <Toggle pressed={false} disabled={true}>\n            Off\n          </Toggle>\n          <Toggle pressed={true} disabled={true}>\n            On\n          </Toggle>\n        </Stack>",
+    "3": "<Toggle defaultPressed={true}>Dark mode</Toggle>",
+    "4": "<Stack direction=\"row\" gap={12} align=\"center\">\n          <Toggle pressed={false} value=\"star\">\n            <Icon name=\"star\" size={16} />\n          </Toggle>\n          <Toggle pressed={true} value=\"heart\">\n            <Icon name=\"heart\" size={16} />\n          </Toggle>\n        </Stack>",
+    "5": "<Stack direction=\"row\" gap={8} align=\"center\">\n          <Toggle pressed={true} value=\"bold\">\n            <strong>B</strong>\n          </Toggle>\n          <Toggle pressed={false} value=\"italic\">\n            <em>I</em>\n          </Toggle>\n          <Toggle pressed={true} value=\"underline\">\n            <span style={{ textDecoration: 'underline' }}>U</span>\n          </Toggle>\n        </Stack>",
+    "6": "<Toggle pressed={true} disabled={true}>Locked</Toggle>",
+    "7": "<Stack direction='row' gap={12} align='center'><Toggle value='bold'>Bold</Toggle><Toggle value='italic'>Italic</Toggle><Toggle value='underline'>Underline</Toggle></Stack>"
+  },
+  "Timeline": {
+    "0": "<Timeline\n          items={[\n            { children: 'Created project', color: 'blue' },\n            { children: 'Added first component', color: 'green' },\n            { children: 'Released v1.0', color: 'red' },\n          ]}\n        />",
+    "1": "<Timeline\n          mode=\"right\"\n          items={[\n            { children: 'Created project', color: 'blue' },\n            { children: 'Released v1.0', color: 'red' },\n          ]}\n        />",
+    "2": "<ControlledTimelineExample />",
+    "3": "<Timeline mode='alternate' items={[{ children: 'Created repository', label: 'Jan 1', color: 'blue' }, { children: 'First commit', label: 'Jan 2', color: 'green' }, { children: 'Released v1.0', label: 'Jan 5', color: 'red' }]} />",
+    "4": "<Timeline reverse items={[{ children: 'Project finished', color: 'green' }, { children: 'Development started', color: 'blue' }, { children: 'Ideation', color: 'gray' }]} />",
+    "5": "<Timeline items={[{ children: 'Design review', label: '09:00', color: 'purple' }, { children: 'Stand-up', label: '10:30', color: 'orange' }, { children: 'Demo', label: '14:00', color: 'blue' }]} />",
+    "6": "<Timeline items={[{ children: 'In progress', dot: <Icon name='clock' size={14} />, color: 'blue' }, { children: 'Done', dot: <Icon name='check' size={14} />, color: 'green' }, { children: 'Blocked', dot: <Icon name='alert' size={14} />, color: 'red' }]} />",
+    "7": "<Timeline items={[{ children: 'Onboarding', position: 'right', color: 'blue' }, { children: 'Training', position: 'right', color: 'green' }, { children: 'Graduation', position: 'right', color: 'gold' }]} />"
+  },
+  "Terminal": {
+    "0": "<Terminal\n          lines={[{ text: 'npm install react-n-design' }, { text: '✓ Installed 1 package' }]}\n        />",
+    "1": "<Terminal title=\"Build output\" lines={[{ text: 'npm run build' }, { text: '✓ Done' }]} />",
+    "2": "<Terminal\n          showTimestamps={true}\n          lines={[\n            { text: 'npm install react-n-design' },\n            { text: '✓ Installed 1 package' },\n            { text: 'npm run build' },\n          ]}\n        />",
+    "3": "<Terminal title='Short log' maxHeight='120px' lines={[{ content: 'npm install', type: 'command' }, { content: 'added 42 packages', type: 'output' }]} />",
+    "4": "<Terminal title='Static output' autoScroll={false} lines={[{ content: 'Starting server...', type: 'info' }, { content: 'Server ready on port 3000', type: 'output' }]} />",
+    "5": "<Terminal title='Error output' lines={[{ content: 'npm run lint', type: 'command' }, { content: 'src/index.ts:12:10 - error TS2345', type: 'error' }, { content: 'Found 1 error.', type: 'output' }]} />",
+    "6": "<Terminal title='Build output' lines={[{ content: 'npm run build', type: 'command' }, { content: 'vite v5.0 building for production...', type: 'info' }, { content: 'dist/assets/index-abc.js', type: 'output' }, { content: 'Build completed in 2.34s', type: 'output' }]} />",
+    "7": "<Terminal title='Long output' maxHeight='160px' lines={Array.from({ length: 20 }, (_, i) => ({ content: `Line ${i + 1}: processing item ${i + 1}`, type: i % 5 === 0 ? 'info' : 'output' }))} />"
+  },
+  "Markdown": {
+    "0": "<Markdown># Hello\\n\\nThis is **bold** and *italic* text.\\n\\n- Item 1\\n- Item 2\\n</Markdown>",
+    "1": "<Markdown># Features\\n\\n- Fast\\n- Accessible\\n\\n[Read more](https://example.com)</Markdown>",
+    "2": "<Markdown># Code Example\\n\\n```tsx\\nconst x = 1;\\n```\\n\\nUse `code` inline.</Markdown>",
+    "3": "<Markdown>{`> Design is not just what it looks like and feels like.\n> Design is how it works.\n\n— Steve Jobs`}</Markdown>",
+    "4": "<Markdown>{`| Name | Role | Status |\n|------|------|--------|\n| Alice | Engineer | Active |\n| Bob | Designer | Away |`}</Markdown>",
+    "5": "<Markdown>{`1. Install the package\n2. Import the component\n3. Build your UI`}</Markdown>",
+    "6": "<Markdown>{`# Heading 1\n## Heading 2\n### Heading 3\n#### Heading 4`}</Markdown>",
+    "7": "<Markdown components={{ h1: ({ children }) => <h1 style={{ color: '#6d5dfc' }}>{children}</h1> }}>{`# Custom styled heading\n\nThis paragraph uses the default renderer.`}</Markdown>"
+  },
+  "CopyButton": {
+    "0": "<CopyButton text=\"Copy this text\" />",
+    "1": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <CopyButton text=\"Copied\" size=\"sm\" />\n          <CopyButton text=\"Copied\" size=\"md\" />\n          <CopyButton text=\"Copied\" size=\"lg\" />\n        </Stack>",
+    "2": "<CopyButton\n          text=\"Copy me\"\n          tooltipLabel=\"Click to copy\"\n          successTooltipLabel=\"Copied!\"\n          successDuration={2000}\n        />",
+    "3": "<CopyButton\n          text=\"Copy me\"\n          copyIcon={<Icon name=\"copy\" size={16} />}\n          successIcon={<Icon name=\"check\" size={16} />}\n        />",
+    "4": "<CopyButton\n          text=\"npm install react-n-design\"\n          tooltipLabel=\"Copy install command\"\n          successTooltipLabel=\"Copied to clipboard\"\n          successDuration={1500}\n        />",
+    "5": "<CopyButton\n          text=\"Copy and log\"\n          onCopySuccess={(text) => console.log('Copied:', text)}\n          successDuration={2000}\n        />",
+    "6": "<CopyButton\n          text=\"Copy with fallback\"\n          onCopyError={(error) => console.log('Copy failed:', error.message)}\n        />",
+    "7": "<CopyButton\n          text=\"Copy\"\n          size=\"sm\"\n          aria-label=\"Copy email address to clipboard\"\n        />"
+  },
+  "DiffViewer": {
+    "0": "<DiffViewer oldValue=\"const a = 1;\" newValue=\"const a = 2;\" />",
+    "1": "<DiffViewer oldValue=\"const a = 1;\" newValue=\"const a = 2;\" mode=\"inline\" />",
+    "2": "<DiffViewer\n          oldValue={`function sum(a, b) {\\n  return a + b;\\n}`}\n          newValue={`function sum(...numbers) {\\n  return numbers.reduce((a, b) => a + b, 0);\\n}`}\n        />",
+    "3": "<DiffViewer oldValue=\"function add(a, b) { return a + b; }\" newValue=\"function add(a, b) { return a + b + 1; }\" mode=\"unified\" />",
+    "4": "<DiffViewer oldValue='{\\\\n  \"name\": \"alice\"\\\\n}' newValue='{\\\\n  \"name\": \"alice\",\\\\n  \"age\": 30\\\\n}' />",
+    "5": "<DiffViewer className=\"demo-diff\" oldValue=\"theme: light\" newValue=\"theme: dark\" />",
+    "6": "<DiffViewer oldValue=\"debug: true\\ntimeout: 5000\" newValue=\"debug: false\\ntimeout: 10000\" />",
+    "7": "<DiffViewer oldValue=\"\" newValue=\"function hello() {\\n  return 'world';\\n}\" />"
+  },
+  "Drawer": {
+    "0": "<DrawerExample />",
+    "1": "<DrawerLeftExample />",
+    "2": "<>\n          <Button size=\"small\" onClick={() => {}}>\n            Large Drawer\n          </Button>\n          <Drawer isOpen={false} onClose={() => {}} title=\"Large Drawer\" size=\"large\">\n            <p>Large drawer content.</p>\n          </Drawer>\n        </>",
+    "3": "const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Top</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Top Drawer\" placement=\"top\"><p>This drawer slides down from the top.</p></Drawer></>);",
+    "4": "const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Bottom</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Bottom Drawer\" placement=\"bottom\"><p>This drawer slides up from the bottom.</p></Drawer></>);",
+    "5": "const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Glass</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Glass Drawer\" variant=\"glass\"><p>Content behind the backdrop is blurred.</p></Drawer></>);",
+    "6": "const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Drawer</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Confirm\" footer={<Stack direction=\"row\" gap={12}><Button size=\"small\" variant=\"secondary\" onClick={() => setOpen(false)}>Cancel</Button><Button size=\"small\" onClick={() => setOpen(false)}>Confirm</Button></Stack>}><p>Are you sure you want to continue?</p></Drawer></>);",
+    "7": "const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Drawer</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Backdrop Locked\" preventBackdropClick={true}><p>Click outside will not close this drawer.</p></Drawer></>);"
+  },
+  "Empty": {
+    "0": "<Empty description=\"There is nothing to show here.\" />",
+    "1": "<Empty\n          description={\n            <div>\n              <strong>No Projects</strong>\n              <p>Create your first project to get started.</p>\n            </div>\n          }\n        >\n          <Button size=\"small\" style={{ marginTop: 16 }}>\n            Create Project\n          </Button>\n        </Empty>",
+    "2": "<Empty\n          description=\"No search results found.\"\n          image={<Icon name=\"search\" size={64} color=\"var(--n-color-text-secondary)\" />}\n        />",
+    "3": "<Empty />",
+    "4": "<Empty description=\"No messages\" image={<Icon name=\"inbox\" size={64} color=\"var(--n-color-text-secondary)\" />} />",
+    "5": "<Empty description={<div><strong>No projects</strong><p>Create a project to get started.</p></div>} />",
+    "6": "<Card style={{ width: 320, padding: 24 }}><Empty description=\"No data\" /></Card>",
+    "7": "<Empty description=\"No projects found\"><Stack direction=\"row\" gap={12} style={{ marginTop: 16 }}><Button size=\"small\">Create</Button><Button size=\"small\" variant=\"secondary\">Import</Button></Stack></Empty>"
+  },
+  "HeatmapCalendar": {
+    "0": "<HeatmapCalendar\n          data={[\n            { date: '2024-01-01', count: 5 },\n            { date: '2024-01-02', count: 3 },\n          ]}\n        />",
+    "1": "<HeatmapCalendar\n          year={2023}\n          data={[\n            { date: '2023-01-01', count: 5 },\n            { date: '2023-01-02', count: 3 },\n          ]}\n        />",
+    "2": "<HeatmapCalendar\n          startWeekOnMonday={true}\n          data={[\n            { date: '2024-06-03', count: 4 },\n            { date: '2024-06-04', count: 7 },\n            { date: '2024-06-05', count: 2 },\n          ]}\n        />",
+    "3": "<HeatmapCalendar startWeekOnMonday={false} data={[{ date: '2024-01-07', count: 5 }, { date: '2024-01-14', count: 3 }, { date: '2024-01-21', count: 8 }]} />",
+    "4": "<HeatmapCalendar year={2024} data={[{ date: '2024-01-05', count: 2 }, { date: '2024-02-12', count: 6 }, { date: '2024-03-20', count: 4 }, { date: '2024-04-08', count: 9 }, { date: '2024-05-15', count: 1 }, { date: '2024-06-30', count: 7 }, { date: '2024-07-18', count: 5 }, { date: '2024-08-25', count: 3 }, { date: '2024-09-10', count: 8 }, { date: '2024-10-31', count: 4 }, { date: '2024-11-22', count: 6 }, { date: '2024-12-12', count: 10 }]} />",
+    "5": "<HeatmapCalendar data={[{ date: '2024-06-01', count: 1 }, { date: '2024-06-15', count: 3 }]} />",
+    "6": "<HeatmapCalendar className=\"demo-heatmap\" data={[{ date: '2024-07-04', count: 4 }, { date: '2024-07-05', count: 7 }, { date: '2024-07-06', count: 2 }]} />",
+    "7": "<HeatmapCalendar year={2025} data={[{ date: '2025-01-10', count: 3 }, { date: '2025-02-14', count: 6 }, { date: '2025-03-22', count: 9 }, { date: '2025-04-05', count: 2 }]} />"
+  },
+  "KanbanBoard": {
+    "0": "<KanbanBoard\n          columns={[\n            { title: 'To Do', tasks: [{ id: '1', title: 'Design' }] },\n            { title: 'Done', tasks: [{ id: '2', title: 'Research' }] },\n          ]}\n        />",
+    "1": "<KanbanBoard\n          columns={[\n            {\n              title: 'Backlog',\n              tasks: [\n                { id: '1', title: 'Idea' },\n                { id: '2', title: 'Spec' },\n              ],\n            },\n            { title: 'In Progress', tasks: [{ id: '3', title: 'Coding' }] },\n            { title: 'Done', tasks: [{ id: '4', title: 'Shipped' }] },\n          ]}\n        />",
+    "2": "<ControlledKanbanExample />",
+    "3": "<KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Design mockups', description: 'Create initial screens' }] }]} />",
+    "4": "<KanbanBoard onChange={() => {}} columns={[{ id: 'backlog', title: 'Backlog', tasks: [] }, { id: 'doing', title: 'In Progress', tasks: [{ id: 't1', title: 'Wireframes' }] }]} />",
+    "5": "<KanbanBoard className=\"demo-kanban\" onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Research' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't2', title: 'Planning' }] }]} />",
+    "6": "<Card style={{ padding: 16 }}><KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Design' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't2', title: 'Deploy' }] }]} /></Card>",
+    "7": "<KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Refactor auth', description: 'Simplify login flow', tags: ['backend'] }, { id: 't2', title: 'Update docs', tags: ['docs'] }, { id: 't3', title: 'Fix icons' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't4', title: 'Setup CI', description: 'GitHub Actions workflow' }] }]} />"
+  },
+  "DataGrid": {
+    "0": "const cols = [\n          { key: 'name', title: 'Name', dataIndex: 'name' as const },\n          { key: 'email', title: 'Email', dataIndex: 'email' as const },\n        ];\n        const data = [\n          { name: 'Alice', email: 'alice@example.com' },\n          { name: 'Bob', email: 'bob@example.com' },\n        ];\n        return <DataGrid columns={cols} dataSource={data} pagination={false} />;",
+    "1": "<DataGrid\n          columns={[{ key: 'name', title: 'Name', dataIndex: 'name' }]}\n          dataSource={[]}\n          loading={true}\n        />",
+    "2": "const cols = [\n          { key: 'name', title: 'Name', dataIndex: 'name' as const },\n          { key: 'role', title: 'Role', dataIndex: 'role' as const },\n        ];\n        const data = [\n          { name: 'Alice', role: 'Engineer' },\n          { name: 'Bob', role: 'Designer' },\n        ];\n        return (\n          <DataGrid\n            columns={cols}\n            dataSource={data}\n            expandable={{\n              expandedRowRender: (record) => <p>Details for {record.name}</p>,\n            }}\n            pagination={false}\n          />\n        );",
+    "3": "const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} variant=\"minimal\" pagination={false} />;",
+    "4": "const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} variant=\"glass\" pagination={false} />;",
+    "5": "const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }, { name: 'Dave', role: 'QA' }, { name: 'Eve', role: 'DevOps' }, { name: 'Frank', role: 'PM' }]; return <DataGrid columns={cols} dataSource={data} pagination={{ pageSize: 3, defaultCurrent: 1 }} />;",
+    "6": "const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} rowSelection={{}} pagination={false} />;",
+    "7": "const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }]; return <DataGrid columns={cols} dataSource={data} toolbar={<Button size=\"small\">Export</Button>} pagination={false} />;"
+  },
+  "Form": {
+    "0": "<Form>\n          <Input placeholder=\"Name\" />\n          <Input placeholder=\"Email\" />\n          <Button>Submit</Button>\n        </Form>",
+    "1": "<Form layout=\"vertical\">\n          <Input placeholder=\"Username\" />\n          <Input placeholder=\"Password\" type=\"password\" />\n          <Button>Submit</Button>\n        </Form>",
+    "2": "<Form layout=\"inline\">\n          <Input placeholder=\"Username\" />\n          <Input placeholder=\"Password\" type=\"password\" />\n          <Button>Submit</Button>\n        </Form>",
+    "3": "<Form initialValues={{ name: 'Alice', email: 'alice@example.com' }}><Input placeholder=\"Name\" name=\"name\" /><Input placeholder=\"Email\" name=\"email\" /><Button>Submit</Button></Form>",
+    "4": "<Form layout=\"horizontal\" labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}><Input label=\"Name\" placeholder=\"Name\" /><Input label=\"Email\" placeholder=\"Email\" /><Button>Submit</Button></Form>",
+    "5": "<Form disabled><Input placeholder=\"Name\" /><Input placeholder=\"Email\" /><Button disabled>Submit</Button></Form>",
+    "6": "<Form compact><Input placeholder=\"Name\" /><Input placeholder=\"Email\" /><Button>Submit</Button></Form>",
+    "7": "<Form onFinish={(values) => alert(JSON.stringify(values))}><Input placeholder=\"Name\" name=\"name\" /><Input placeholder=\"Email\" name=\"email\" /><Button>Submit</Button></Form>"
+  },
+  "CommandPalette": {
+    "0": "<CommandPaletteExample />",
+    "1": "<CommandPaletteGroupsExample />",
+    "2": "<CommandPalette\n          open={true}\n          onClose={() => {}}\n          items={[\n            { id: '1', label: 'Copy', shortcut: '⌘C', onSelect: () => alert('Copy selected') },\n            { id: '2', label: 'Paste', shortcut: '⌘V', onSelect: () => alert('Paste selected') },\n          ]}\n        />",
+    "3": "<CommandPalette open={true} onClose={() => {}} placeholder=\"Search actions...\" items={[{ id: '1', label: 'Go to Dashboard', shortcut: '⌘D', onSelect: () => {} }, { id: '2', label: 'Open Settings', shortcut: '⌘,', onSelect: () => {} }, { id: '3', label: 'Toggle Theme', shortcut: '⌘T', onSelect: () => {} }]} />",
+    "4": "<CommandPalette open={true} onClose={() => {}} placeholder=\"Find an editor command...\" items={[{ id: '1', label: 'Find', shortcut: '⌘F', onSelect: () => {} }, { id: '2', label: 'Replace', shortcut: '⌘H', onSelect: () => {} }, { id: '3', label: 'Save File', shortcut: '⌘S', onSelect: () => {} }, { id: '4', label: 'Command Palette', shortcut: '⇧⌘P', onSelect: () => {} }]} />",
+    "5": "<CommandPalette open={true} onClose={() => {}} placeholder=\"Type to run...\" items={[{ id: '1', label: 'Run Build', shortcut: '⌘B', onSelect: () => {} }]} />",
+    "6": "<CommandPalette open={true} onClose={() => {}} placeholder=\"Search project actions...\" items={[{ id: '1', label: 'Deploy to Production', shortcut: '⌘D', onSelect: () => {} }, { id: '2', label: 'Run Tests', shortcut: '⌘T', onSelect: () => {} }, { id: '3', label: 'Open Documentation', onSelect: () => {} }, { id: '4', label: 'Archive Project', onSelect: () => {} }]} />",
+    "7": "<CommandPalette open={true} onClose={() => {}} placeholder=\"Search...\" items={[{ id: '1', label: 'New File', onSelect: () => {} }, { id: '2', label: 'Open Recent', onSelect: () => {} }, { id: '3', label: 'Preferences', onSelect: () => {} }]} />"
+  },
+  "AppBar": {
+    "0": "<AppBar title=\"My App\" />",
+    "1": "<AppBar title=\"Dashboard\" actions={<Button size=\"small\">Logout</Button>} />",
+    "2": "<AppBar\n          title=\"Settings\"\n          elevated={true}\n          onMenuClick={() => {}}\n          actions={\n            <Button size=\"small\" variant=\"secondary\">\n              Logout\n            </Button>\n          }\n        />",
+    "3": "<AppBar title=\"Products\" onMenuClick={() => {}} />",
+    "4": "<AppBar title=\"Dashboard\" position=\"sticky\" actions={<Button size=\"small\">Profile</Button>} />",
+    "5": "<AppBar title=\"Flat Header\" elevated={false} actions={<Button size=\"small\" variant=\"ghost\">Help</Button>} />",
+    "6": "<AppBar title={<Stack direction=\"row\" gap={8} align=\"center\"><Icon name=\"home\" size={20} /><span>Home</span></Stack>} actions={<Button size=\"small\">Logout</Button>} />",
+    "7": "<AppBar title=\"Fixed AppBar\" position=\"fixed\" onMenuClick={() => {}} actions={<Button size=\"small\">Search</Button>} />"
+  },
+  "FloatButton": {
+    "0": "<FloatButton icon=\"+\" />",
+    "1": "<FloatButton icon=\"?\" tooltip=\"Help\" position=\"bottom-left\" />",
+    "2": "<ControlledFloatButtonExample />",
+    "3": "<FloatButton icon=\"+\" position=\"top-left\" tooltip=\"Add\" />",
+    "4": "<FloatButton icon=\"?\" position=\"bottom-left\" tooltip=\"Help\" />",
+    "5": "<FloatButton icon=\"≡\" menu={[{ icon: '✎', label: 'Edit', onClick: () => {} }, { icon: '⚙', label: 'Settings', onClick: () => {} }, { icon: '↶', label: 'Undo', onClick: () => {} }]} />",
+    "6": "<FloatButton icon=\"≡\" tooltip=\"More\" menu={[{ icon: '✎', label: 'Edit', onClick: () => {} }, { icon: '✕', label: 'Delete', disabled: true, onClick: () => {} }]} />",
+    "7": "<FloatButton icon=\"+\" position=\"bottom-right\" tooltip=\"Create\" onClick={() => {}} />"
+  },
+  "ScrollArea": {
+    "0": "<ScrollArea style={{ height: 120, width: 200 }}>\n          <div style={{ height: 400 }}>Scrollable content</div>\n        </ScrollArea>",
+    "1": "<ScrollArea horizontal style={{ width: 300 }}>\n          <div style={{ width: 600, whiteSpace: 'nowrap' }}>\n            Long horizontal content that scrolls...\n          </div>\n        </ScrollArea>",
+    "2": "<ScrollArea autoHide style={{ height: 120, width: 200 }}>\n          <div style={{ height: 400 }}>Hover to reveal the scrollbar.</div>\n        </ScrollArea>",
+    "3": "<div style={{ width: 260 }}><ScrollArea maxHeight={150}><Stack direction=\"column\" gap={12}>{[1, 2, 3, 4, 5].map((i) => (<Card key={i} style={{ padding: 14 }}>Card {i}</Card>))}</Stack></ScrollArea></div>",
+    "4": "<div style={{ width: 260 }}><ScrollArea maxHeight={160}><Stack direction=\"column\" gap={12}>{['Design', 'Code', 'Review', 'Deploy', 'Ship'].map((label) => (<Card key={label} style={{ padding: 14 }}>{label}</Card>))}</Stack></ScrollArea></div>",
+    "5": "<div style={{ width: 260 }}><ScrollArea autoHide maxHeight={120}><Stack direction=\"column\" gap={12}>{[1, 2, 3, 4].map((i) => (<Card key={i} style={{ padding: 14 }}>Item {i}</Card>))}</Stack></ScrollArea></div>",
+    "6": "<div style={{ width: 320 }}><ScrollArea horizontal><div style={{ width: 600, display: 'flex', gap: 8, padding: 8 }}>{['React', 'Vue', 'Angular', 'Svelte', 'Solid', 'Preact'].map((t) => (<Tag key={t}>{t}</Tag>))}</div></ScrollArea></div>",
+    "7": "<div style={{ width: 260 }}><ScrollArea className=\"demo-scroll\" maxHeight={140}><Stack direction=\"column\" gap={12}>{[1, 2, 3].map((i) => (<Card key={i} style={{ padding: 14 }}>Row {i}</Card>))}</Stack></ScrollArea></div>"
+  },
+  "Grid": {
+    "0": "<Grid columns={3} gap={12}>\n          <Card>Item 1</Card>\n          <Card>Item 2</Card>\n          <Card>Item 3</Card>\n        </Grid>",
+    "1": "<Grid minChildWidth={120} gap={12}>\n          {[1, 2, 3, 4, 5, 6].map((n) => (\n            <Card key={n} style={{ padding: 16, textAlign: 'center' }}>\n              {n}\n            </Card>\n          ))}\n        </Grid>",
+    "2": "<Grid columns={{ base: 1, md: 2, lg: 4 }} gap={24}>\n          {[1, 2, 3, 4].map((n) => (\n            <Card key={n} style={{ padding: 16, textAlign: 'center' }}>\n              {n}\n            </Card>\n          ))}\n        </Grid>",
+    "3": "<Grid columns={2} gap={16}>{[1, 2, 3, 4].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>",
+    "4": "<Grid columns={4} gap={8}>{['A', 'B', 'C', 'D'].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>",
+    "5": "<Grid columns={3} gap={40}>{[1, 2, 3].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>",
+    "6": "<Grid minChildWidth={120} gap={12}>{[1, 2, 3, 4, 5, 6].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>",
+    "7": "<Grid columns=\"1fr 2fr 1fr\" gap={16}>{['Sidebar', 'Main', 'Sidebar'].map((label, i) => (<Card key={i} style={{ padding: 16, textAlign: 'center' }}>{label}</Card>))}</Grid>"
+  },
+  "Tour": {
+    "0": "<TourExample />",
+    "1": "<TourMultiStepExample />",
+    "2": "<Tour\n          open={false}\n          onClose={() => {}}\n          steps={[\n            { target: '#demo', title: 'Top', description: 'Step placed above.', placement: 'top' },\n            {\n              target: '#demo',\n              title: 'Left',\n              description: 'Step placed to the left.',\n              placement: 'left',\n            },\n          ]}\n        />",
+    "3": "<Tour open={true} onClose={() => {}} onFinish={() => {}} steps={[{ target: '#demo', title: 'Welcome', description: 'Start your guided tour.' }, { target: '#demo', title: 'Finish', description: 'Complete the tour to continue.' }]} />",
+    "4": "<Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Single Highlight', description: 'This is the only step in the tour.', placement: 'bottom' }]} />",
+    "5": "<Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Below Target', description: 'This tooltip appears below the target.', placement: 'bottom' }]} />",
+    "6": "<Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Right Side', description: 'This tooltip appears to the right.', placement: 'right' }]} />",
+    "7": "<Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Step 1', description: 'First step of the flow.' }, { target: '#demo', title: 'Step 2', description: 'Second and final step.' }]} />"
+  },
+  "AIChat": {
+    "0": "<AIChat\n          messages={[\n            { role: 'user', content: 'Hello!' },\n            { role: 'assistant', content: 'Hi! How can I help you today?' },\n          ]}\n        />",
+    "1": "<AIChat\n          messages={[{ role: 'user', content: 'Hello!' }]}\n          onSend={() => {}}\n          isLoading={true}\n          placeholder=\"Type a message...\"\n        />",
+    "2": "<AIChat\n          messages={[\n            { role: 'user', content: 'Write a haiku' },\n            { role: 'assistant', content: 'Code flows like a stream...' },\n          ]}\n          isStreaming={true}\n          placeholder=\"Type a message...\"\n        />",
+    "3": "<AIChat messages={[]} onSend={() => {}} placeholder=\"Ask the assistant anything...\" />",
+    "4": "<AIChat messages={[{ role: 'user', content: 'What is react-n-design?' }, { role: 'assistant', content: 'It is a modern React component library.' }, { role: 'user', content: 'Is it accessible?' }, { role: 'assistant', content: 'Yes, every component follows WCAG guidelines.' }]} onSend={() => {}} />",
+    "5": "<AIChat messages={[{ role: 'user', content: 'Refactor this function' }]} onSend={() => {}} placeholder=\"Paste code or ask a question...\" />",
+    "6": "<AIChat messages={[{ id: 'm1', role: 'user', content: 'Hello!' }, { id: 'm2', role: 'assistant', content: 'Hi there, how can I help?' }]} onSend={() => {}} />",
+    "7": "<AIChat messages={[{ role: 'user', content: 'Write a poem' }, { role: 'assistant', content: 'Roses are red...' }]} onSend={() => {}} isLoading={true} isStreaming={true} placeholder=\"Type a message...\" />"
+  },
+  "PromptInput": {
+    "0": "<PromptInput value=\"\" onSend={() => {}} placeholder=\"Ask anything…\" />",
+    "1": "<ControlledPromptInputExample />",
+    "2": "<PromptInput\n          value=\"\"\n          onSend={() => {}}\n          isLoading={true}\n          maxLength={100}\n          placeholder=\"Ask anything…\"\n        />",
+    "3": "<PromptInput value=\"\" onChange={() => {}} onSend={() => {}} maxLength={50} placeholder=\"Brief prompt...\" />",
+    "4": "<PromptInput value=\"Summarize this document\" onChange={() => {}} onSend={() => {}} showTokenCount={true} maxTokens={20} tokenLabel=\"tokens\" />",
+    "5": "<PromptInput value=\"/\" onChange={() => {}} onSend={() => {}} slashCommands={[{ command: '/summarize', description: 'Summarize selection' }, { command: '/translate', description: 'Translate text' }]} placeholder=\"Type / for commands...\" />",
+    "6": "<PromptInput value=\"@\" onChange={() => {}} onSend={() => {}} mentionTargets={[{ id: '1', name: 'Alice' }, { id: '2', name: 'Bob' }]} placeholder=\"Type @ to mention...\" />",
+    "7": "<PromptInput value=\"This input is disabled\" onChange={() => {}} onSend={() => {}} disabled={true} placeholder=\"Cannot type...\" />"
+  },
+  "SuggestionChips": {
+    "0": "<SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Explain quantum computing' },\n            { id: '2', label: 'Write a poem' },\n          ]}\n          onAccept={() => {}}\n        />",
+    "1": "<SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Summarize' },\n            { id: '2', label: 'Translate' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n          onAcceptAll={() => {}}\n          onRejectAll={() => {}}\n        />",
+    "2": "<SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Explain' },\n            { id: '2', label: 'Summarize' },\n            { id: '3', label: 'Translate' },\n          ]}\n          onAccept={() => {}}\n          compact={true}\n        />",
+    "3": "<SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Summarize this article' },\n            { id: '2', label: 'Translate to Spanish' },\n            { id: '3', label: 'Rewrite more formally' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n          onAcceptAll={() => {}}\n          onRejectAll={() => {}}\n        />",
+    "4": "<div style={{ maxWidth: 420 }}>\n          <SuggestionChips\n            suggestions={[\n              { id: '1', label: 'Explain' },\n              { id: '2', label: 'Compare' },\n              { id: '3', label: 'Examples' },\n              { id: '4', label: 'Pros & cons' },\n              { id: '5', label: 'Simplify' },\n              { id: '6', label: 'Code' },\n            ]}\n            onAccept={() => {}}\n            onReject={() => {}}\n          />\n        </div>",
+    "5": "<SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Yes' },\n            { id: '2', label: 'No' },\n            { id: '3', label: 'Maybe' },\n            { id: '4', label: 'Later' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n        />",
+    "6": "<SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Generate a unit test for this function' },\n            { id: '2', label: 'Refactor the code to use async/await' },\n            { id: '3', label: 'Add JSDoc comments to the public API' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n        />",
+    "7": "<SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Apply all fixes' },\n            { id: '2', label: 'Update all dependencies' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n          onAcceptAll={() => {}}\n          onRejectAll={() => {}}\n        />"
+  },
+  "MentionInput": {
+    "0": "<MentionInput options={[{ id: '1', label: 'Alice', value: 'alice' }]} value=\"\" />",
+    "1": "<ControlledMentionInputExample />",
+    "2": "<MentionInput\n          options={[\n            { id: '1', label: 'Alice', value: 'alice' },\n            { id: '2', label: 'Bob', value: 'bob' },\n            { id: '3', label: 'Carol', value: 'carol' },\n          ]}\n          value=\"\"\n          placeholder=\"Type @ to mention\"\n        />",
+    "3": "<MentionInput\n          value=\"\"\n          onChange={() => {}}\n          options={[{ id: '1', label: 'Alice', value: 'alice' }]}\n          placeholder=\"Type @alice to mention\"\n        />",
+    "4": "<MentionInput\n          value=\"\"\n          onChange={() => {}}\n          options={[\n            { id: '1', label: 'Alice Chen', value: 'alice' },\n            { id: '2', label: 'Bob Davis', value: 'bob' },\n            { id: '3', label: 'Carol Evans', value: 'carol' },\n            { id: '4', label: 'Dave Foster', value: 'dave' },\n            { id: '5', label: 'Eve Garcia', value: 'eve' },\n            { id: '6', label: 'Frank Hall', value: 'frank' },\n          ]}\n          placeholder=\"@mention a teammate\"\n        />",
+    "5": "<MentionInput\n          value=\"\"\n          onChange={() => {}}\n          options={[\n            { id: '1', label: 'Design', value: 'design' },\n            { id: '2', label: 'Engineering', value: 'engineering' },\n            { id: '3', label: 'Product', value: 'product' },\n          ]}\n          placeholder=\"Type @ to assign an owner\"\n        />",
+    "6": "<MentionInput\n          value=\"Thanks @alice for the review!\"\n          onChange={() => {}}\n          options={[\n            { id: '1', label: 'Alice', value: 'alice' },\n            { id: '2', label: 'Bob', value: 'bob' },\n            { id: '3', label: 'Carol', value: 'carol' },\n          ]}\n        />",
+    "7": "<MentionInput\n          value=\"\"\n          onChange={() => {}}\n          options={[\n            { id: '1', label: 'Alice', value: 'alice' },\n            { id: '2', label: 'Bob', value: 'bob' },\n          ]}\n          placeholder=\"Type @ to mention\"\n          className=\"mention-wide\"\n        />"
+  },
+  "Accordion": {
+    "0": "<Accordion\n          items={[\n            {\n              key: '1',\n              label: 'What is react-n-design?',\n              children: 'A modern neomorphic React component library.',\n            },\n            {\n              key: '2',\n              label: 'Is it accessible?',\n              children: 'Yes, all components follow WCAG guidelines.',\n            },\n          ]}\n        />",
+    "1": "<Accordion\n          multiple\n          defaultActiveKey={['1']}\n          items={[\n            { key: '1', label: 'Panel A', children: 'Content for panel A.' },\n            { key: '2', label: 'Panel B', children: 'Content for panel B.' },\n            { key: '3', label: 'Panel C', children: 'Content for panel C.' },\n          ]}\n        />",
+    "2": "<ControlledAccordionExample />",
+    "3": "<Accordion\n          variant=\"minimal\"\n          items={[\n            { key: '1', label: 'General', children: 'General account settings.' },\n            { key: '2', label: 'Security', children: 'Password and two-factor options.' },\n            { key: '3', label: 'Notifications', children: 'Email and push notification preferences.' },\n          ]}\n        />",
+    "4": "<Accordion\n          variant=\"glass\"\n          items={[\n            { key: '1', label: 'Overview', children: 'High-level project overview.' },\n            { key: '2', label: 'Metrics', children: 'Performance and usage metrics.' },\n            { key: '3', label: 'Logs', children: 'Recent activity logs.' },\n          ]}\n        />",
+    "5": "<Accordion\n          bordered={false}\n          items={[\n            { key: '1', label: 'Plan', children: 'Choose the right plan for your team.' },\n            { key: '2', label: 'Billing', children: 'Manage invoices and payment methods.' },\n            { key: '3', label: 'Usage', children: 'Review current resource usage.' },\n          ]}\n        />",
+    "6": "<Accordion\n          stagger={true}\n          staggerDelay={0.1}\n          items={[\n            { key: '1', label: 'Step 1', children: 'Define the problem statement.' },\n            { key: '2', label: 'Step 2', children: 'Collect relevant data and constraints.' },\n            { key: '3', label: 'Step 3', children: 'Iterate on a solution.' },\n          ]}\n        />",
+    "7": "<Accordion\n          defaultActiveKey=\"1\"\n          items={[\n            { key: '1', label: 'Getting started', children: 'Welcome! Here is how to begin.' },\n            { key: '2', label: 'Configuration', children: 'Set up your environment variables.' },\n            { key: '3', label: 'Deployment', children: 'Deploy to your preferred platform.' },\n          ]}\n        />"
+  },
+  "MultiSelect": {
+    "0": "<MultiSelect\n          options={['React', 'Vue', 'Angular', 'Svelte']}\n          placeholder=\"Pick frameworks\"\n        />",
+    "1": "<MultiSelect\n          options={['Red', 'Green', 'Blue']}\n          value={['Red', 'Blue']}\n          placeholder=\"Pick colors\"\n        />",
+    "2": "<ControlledMultiSelectExample />",
+    "3": "<MultiSelect\n          options={[\n            'January',\n            'February',\n            'March',\n            'April',\n            'May',\n            'June',\n            'July',\n            'August',\n            'September',\n            'October',\n            'November',\n            'December',\n          ]}\n          placeholder=\"Select months\"\n          maxHeight={120}\n        />",
+    "4": "<MultiSelect\n          options={['React', 'Vue', 'Angular']}\n          value={['React']}\n          disabled={true}\n          placeholder=\"Pick frameworks\"\n        />",
+    "5": "<MultiSelect\n          options={[\n            'January',\n            'February',\n            'March',\n            'April',\n            'May',\n            'June',\n            'July',\n            'August',\n            'September',\n            'October',\n            'November',\n            'December',\n          ]}\n          placeholder=\"Select months\"\n          maxHeight={220}\n        />",
+    "6": "<MultiSelect\n          options={['TypeScript', 'React', 'Node.js', 'CSS', 'Accessibility']}\n          placeholder=\"Choose your skills\"\n        />",
+    "7": "<MultiSelect options={['Only option']} placeholder=\"Select an option\" />"
+  },
+  "Resizable": {
+    "0": "<Resizable direction=\"horizontal\" defaultSize=\"50%\">\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Left Panel\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Right Panel\n          </div>\n        </Resizable>",
+    "1": "<Resizable direction=\"vertical\" defaultSize=\"40%\">\n          <div style={{ padding: 16 }}>Top Panel</div>\n          <div style={{ padding: 16 }}>Bottom Panel</div>\n        </Resizable>",
+    "2": "<Resizable direction=\"horizontal\" defaultSize=\"50%\" minSize={100} maxSize={400}>\n          <div style={{ padding: 16 }}>Left</div>\n          <div style={{ padding: 16 }}>Right</div>\n        </Resizable>",
+    "3": "<Resizable direction=\"horizontal\" defaultSize=\"33%\">\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Narrow panel\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Wide panel\n          </div>\n        </Resizable>",
+    "4": "<Resizable direction=\"horizontal\" defaultSize={180}>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            180px start\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Remaining space\n          </div>\n        </Resizable>",
+    "5": "<Resizable direction=\"horizontal\" defaultSize=\"50%\" onSizeChange={() => {}}>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Left\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Right\n          </div>\n        </Resizable>",
+    "6": "<Resizable direction=\"horizontal\" defaultSize={160} minSize={120} maxSize={240}>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Bounded\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Flexible\n          </div>\n        </Resizable>",
+    "7": "<Resizable direction=\"vertical\" defaultSize=\"60%\">\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Top panel\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Bottom panel\n          </div>\n        </Resizable>"
+  },
+  "ColorPicker": {
+    "0": "<ColorPicker value=\"#6d5dfc\" />",
+    "1": "<ControlledColorPickerExample />",
+    "2": "<ColorPicker value=\"#ff6b6b\" disabled={true} />",
+    "3": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <span style={{ fontSize: '0.9375rem', color: 'var(--n-color-text-secondary)' }}>Brand color</span>\n          <ColorPicker value=\"#6d5dfc\" presets={['#6d5dfc', '#0ea5e9', '#10b981', '#f59e0b']} />\n        </Stack>",
+    "4": "<ColorPicker\n          value=\"#0ea5e9\"\n          presets={['#ef4444', '#f97316', '#f59e0b', '#22c55e', '#0ea5e9', '#8b5cf6']}\n        />",
+    "5": "<ColorPicker value=\"#10b981\" showInput={false} presets={['#10b981', '#06b6d4', '#3b82f6']} />",
+    "6": "<ColorPicker\n          value=\"#f97316\"\n          presets={['#7f1d1d', '#b91c1c', '#ef4444', '#f97316', '#f59e0b', '#eab308']}\n        />",
+    "7": "<ColorPicker\n          value=\"#64748b\"\n          presets={['#0f172a', '#334155', '#64748b', '#94a3b8', '#e2e8f0', '#f8fafc']}\n        />"
+  },
+  "FileUpload": {
+    "0": "<FileUpload accept=\"image/*\" />",
+    "1": "<ControlledFileUploadExample />",
+    "2": "<FileUpload accept=\".pdf\" multiple maxFiles={3} />",
+    "3": "<FileUpload\n          accept=\"image/*\"\n          maxSize={1024}\n          multiple={false}\n        />",
+    "4": "<FileUpload accept=\".pdf\" multiple={false} />",
+    "5": "<FileUpload accept=\"image/*\" maxSize={2 * 1024 * 1024} />",
+    "6": "<FileUpload\n          accept=\".zip\"\n          multiple\n          uploadProgress={{ 'archive.zip': 65, 'data.zip': 30 }}\n        />",
+    "7": "<FileUpload accept=\".csv\" multiple />"
+  },
+  "ComboBox": {
+    "0": "<ComboBox\n          options={[\n            { value: 'react', label: 'React' },\n            { value: 'vue', label: 'Vue' },\n            { value: 'angular', label: 'Angular' },\n          ]}\n          placeholder=\"Search framework...\"\n        />",
+    "1": "<ControlledComboBoxExample />",
+    "2": "<ComboBox options={[{ value: 'react', label: 'React' }]} value=\"react\" disabled={true} />",
+    "3": "<ComboBox mode=\"multiple\" defaultValue={['react']} options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }, { value: 'angular', label: 'Angular' }, { value: 'svelte', label: 'Svelte' }]} placeholder=\"Pick frameworks\" />",
+    "4": "<ComboBox loading allowClear options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }]} placeholder=\"Loading options...\" />",
+    "5": "<ComboBox allowCreate options={[{ value: 'new-york', label: 'New York' }, { value: 'los-angeles', label: 'Los Angeles' }]} placeholder=\"Search or create a city\" />",
+    "6": "<ComboBox label=\"Assignee\" error=\"Please select an assignee\" id=\"assignee-combobox\" options={[{ value: 'alice', label: 'Alice' }, { value: 'bob', label: 'Bob' }]} placeholder=\"Select assignee\" />",
+    "7": "<ComboBox filterOption={(input, option) => option.value.toLowerCase().includes(input.toLowerCase())} onSearch={() => {}} options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }, { value: 'angular', label: 'Angular' }]} placeholder=\"Filter by value\" />"
+  },
+  "VisuallyHidden": {
+    "0": "<Button aria-label=\"Close dialog\">\n          <VisuallyHidden>Close dialog</VisuallyHidden>×\n        </Button>",
+    "1": "<>\n          <label htmlFor=\"search\" style={{ display: 'block', marginBottom: 8 }}>\n            Search\n          </label>\n          <VisuallyHidden>Start typing to search the site</VisuallyHidden>\n          <Input id=\"search\" placeholder=\"Search…\" />\n        </>",
+    "2": "<>\n          <VisuallyHidden>Monthly sales report by region</VisuallyHidden>\n          <Table\n            columns={[\n              { key: 'region', title: 'Region', dataIndex: 'region' as const },\n              { key: 'sales', title: 'Sales', dataIndex: 'sales' as const },\n            ]}\n            dataSource={[\n              { region: 'North', sales: '$12,000' },\n              { region: 'South', sales: '$8,500' },\n            ]}\n            pagination={false}\n          />\n        </>",
+    "3": "<><label htmlFor=\"password\" style={{ display: 'block', marginBottom: 8 }}>Password</label><VisuallyHidden>Must be at least 8 characters with a number and symbol.</VisuallyHidden><Input id=\"password\" type=\"password\" placeholder=\"Enter password\" /></>",
+    "4": "<Card style={{ padding: 16, width: 260 }}><p style={{ margin: 0 }}>Saved</p><VisuallyHidden>Your changes have been saved successfully.</VisuallyHidden></Card>",
+    "5": "<Button aria-label=\"Close\"><VisuallyHidden>Close notification</VisuallyHidden><Icon name=\"times\" size={16} /></Button>",
+    "6": "<><a href=\"https://example.com\">Documentation</a><VisuallyHidden>Opens in a new tab</VisuallyHidden></>",
+    "7": "<VisuallyHidden>Press Shift plus question mark to open the keyboard shortcuts dialog.</VisuallyHidden>"
+  },
+  "VirtualList": {
+    "0": "<VirtualList\n          items={Array.from({ length: 1000 }, (_, i) => `Item ${i + 1}`)}\n          itemHeight={40}\n          renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>}\n          containerHeight={200}\n        />",
+    "1": "<VirtualList\n          items={Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`)}\n          itemHeight={40}\n          renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>}\n          containerHeight={200}\n          overscan={5}\n        />",
+    "2": "<VirtualList\n          items={Array.from({ length: 1000 }, (_, i) => `Item ${i + 1}`)}\n          itemHeight={40}\n          renderItem={(item) => <div style={{ padding: '8px 12px', minWidth: 120 }}>{item}</div>}\n          containerHeight={200}\n          direction=\"horizontal\"\n        />",
+    "3": "<VirtualList items={Array.from({ length: 500 }, (_, i) => `Item ${i + 1}`)} itemHeight={60} containerHeight={240} renderItem={(item) => <div style={{ padding: '16px 12px' }}>{item}</div>} />",
+    "4": "<VirtualList items={Array.from({ length: 200 }, (_, i) => `Task ${i + 1}`)} itemHeight={40} containerHeight={200} stickyHeaders={[{ index: 0, height: 40 }, { index: 50, height: 40 }, { index: 100, height: 40 }]} renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>} />",
+    "5": "<VirtualList items={Array.from({ length: 1000 }, (_, i) => `Row ${i + 1}`)} itemHeight={40} containerHeight={200} onScroll={(scrollTop) => console.log(scrollTop)} renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>} />",
+    "6": "<VirtualList items={Array.from({ length: 100 }, (_, i) => `Entry ${i + 1}`)} itemHeight={32} containerHeight={150} overscan={2} renderItem={(item) => <div style={{ padding: '6px 12px', fontSize: 14 }}>{item}</div>} />",
+    "7": "<VirtualList items={Array.from({ length: 300 }, (_, i) => `Card ${i + 1}`)} itemHeight={56} containerHeight={220} renderItem={(item) => <Card style={{ padding: '12px 16px', margin: '0 8px' }}>{item}</Card>} />"
+  },
+  "OrgChart": {
+    "0": "<OrgChart\n          root={{\n            id: '1',\n            label: 'CEO',\n            role: 'Chief Executive',\n            children: [\n              {\n                id: '2',\n                label: 'CTO',\n                role: 'Engineering',\n                children: [{ id: '4', label: 'Dev Lead', role: 'Frontend' }],\n              },\n              { id: '3', label: 'CFO', role: 'Finance' },\n            ],\n          }}\n        />",
+    "1": "<OrgChart\n          root={{\n            id: '1',\n            label: 'CEO',\n            role: 'Executive',\n            children: [\n              {\n                id: '2',\n                label: 'CTO',\n                role: 'Engineering',\n                children: [{ id: '4', label: 'Dev Lead', role: 'Frontend' }],\n              },\n              { id: '3', label: 'CFO', role: 'Finance' },\n            ],\n          }}\n        />",
+    "2": "<OrgChart\n          root={{\n            id: '1',\n            label: 'CEO',\n            role: 'Executive',\n            children: [\n              {\n                id: '2',\n                label: 'CTO',\n                role: 'Engineering',\n                children: [{ id: '4', label: 'Dev Lead', role: 'Frontend' }],\n              },\n              { id: '3', label: 'CFO', role: 'Finance' },\n            ],\n          }}\n          onNodeClick={(node) => alert(node.label)}\n        />",
+    "3": "<OrgChart\n          root={{\n            id: '1',\n            label: 'CEO',\n            role: 'Chief Executive',\n            children: [\n              {\n                id: '2',\n                label: 'VP Engineering',\n                role: 'Engineering',\n                children: [\n                  {\n                    id: '5',\n                    label: 'Engineering Manager',\n                    role: 'Platform',\n                    children: [{ id: '8', label: 'Senior Engineer', role: 'Backend' }],\n                  },\n                  {\n                    id: '6',\n                    label: 'Engineering Manager',\n                    role: 'Frontend',\n                    children: [{ id: '9', label: 'Senior Engineer', role: 'UI' }],\n                  },\n                ],\n              },\n              { id: '3', label: 'VP Product', role: 'Product', children: [{ id: '7', label: 'Product Manager', role: 'Growth' }] },\n              { id: '4', label: 'VP Design', role: 'Design' },\n            ],\n          }}\n        />",
+    "4": "<OrgChart\n          root={{\n            id: '1',\n            label: 'Engineering Director',\n            role: 'Engineering',\n            children: [\n              { id: '2', label: 'Platform Lead', role: 'Infrastructure' },\n              { id: '3', label: 'Frontend Lead', role: 'Web' },\n              { id: '4', label: 'Mobile Lead', role: 'Mobile' },\n              { id: '5', label: 'QA Lead', role: 'Quality' },\n            ],\n          }}\n        />",
+    "5": "<OrgChart\n          root={{\n            id: '1',\n            label: 'Team Lead',\n            role: 'Squad Lead',\n            children: [\n              { id: '2', label: 'Alice', role: 'Engineer' },\n              { id: '3', label: 'Bob', role: 'Engineer' },\n              { id: '4', label: 'Carol', role: 'Designer' },\n              { id: '5', label: 'Dave', role: 'Product Manager' },\n              { id: '6', label: 'Eve', role: 'QA Engineer' },\n            ],\n          }}\n        />",
+    "6": "<OrgChart\n          className=\"org-chart-demo\"\n          root={{\n            id: '1',\n            label: 'CTO',\n            role: 'Technology',\n            children: [\n              { id: '2', label: 'Architect', role: 'Systems' },\n              { id: '3', label: 'DevOps Lead', role: 'Operations' },\n            ],\n          }}\n        />",
+    "7": "<OrgChart\n          root={{\n            id: '1',\n            label: 'Product Director',\n            role: 'Product',\n            children: [\n              {\n                id: '2',\n                label: 'Product Manager',\n                role: 'Core',\n                children: [{ id: '5', label: 'Analyst', role: 'Data' }],\n              },\n              {\n                id: '3',\n                label: 'Design Lead',\n                role: 'Design',\n                children: [\n                  { id: '6', label: 'UX Designer', role: 'Research' },\n                  { id: '7', label: 'Visual Designer', role: 'Brand' },\n                ],\n              },\n              {\n                id: '4',\n                label: 'Tech Lead',\n                role: 'Engineering',\n                children: [{ id: '8', label: 'Full-stack Engineer', role: 'Web' }],\n              },\n            ],\n          }}\n        />"
+  },
+  "GanttChart": {
+    "0": "<GanttChart\n          tasks={[\n            { id: '1', name: 'Design', start: new Date('2024-01-01'), end: new Date('2024-01-10'), progress: 100 },\n            { id: '2', name: 'Development', start: new Date('2024-01-11'), end: new Date('2024-02-10'), progress: 60 },\n          ]}\n        />",
+    "1": "<GanttChart\n          tasks={[\n            { id: '1', name: 'Design', start: new Date('2024-01-01'), end: new Date('2024-01-10'), progress: 100 },\n            { id: '2', name: 'Development', start: new Date('2024-01-11'), end: new Date('2024-02-10'), progress: 60 },\n          ]}\n          rowHeight={48}\n        />",
+    "2": "<GanttChart\n          startDate={new Date('2024-01-01')}\n          endDate={new Date('2024-03-01')}\n          tasks={[\n            { id: '1', name: 'Design', start: new Date('2024-01-01'), end: new Date('2024-01-10'), progress: 100 },\n            { id: '2', name: 'Development', start: new Date('2024-01-11'), end: new Date('2024-02-10'), progress: 60 },\n          ]}\n        />",
+    "3": "<GanttChart\n          tasks={[\n            { id: '1', name: 'Discovery', start: new Date('2024-01-01'), end: new Date('2024-01-10'), progress: 100 },\n            { id: '2', name: 'Design', start: new Date('2024-01-08'), end: new Date('2024-01-20'), progress: 80 },\n            { id: '3', name: 'Development', start: new Date('2024-01-18'), end: new Date('2024-02-15'), progress: 45 },\n            { id: '4', name: 'QA', start: new Date('2024-02-12'), end: new Date('2024-02-28'), progress: 10 },\n          ]}\n        />",
+    "4": "<GanttChart\n          rowHeight={32}\n          tasks={[\n            { id: '1', name: 'Task A', start: new Date('2024-03-01'), end: new Date('2024-03-05'), progress: 100 },\n            { id: '2', name: 'Task B', start: new Date('2024-03-04'), end: new Date('2024-03-10'), progress: 60 },\n            { id: '3', name: 'Task C', start: new Date('2024-03-09'), end: new Date('2024-03-15'), progress: 30 },\n          ]}\n        />",
+    "5": "<GanttChart\n          startDate={new Date('2024-04-01')}\n          endDate={new Date('2024-06-30')}\n          tasks={[\n            { id: '1', name: 'Q2 Planning', start: new Date('2024-04-01'), end: new Date('2024-04-15'), progress: 100 },\n            { id: '2', name: 'Feature Work', start: new Date('2024-04-10'), end: new Date('2024-05-30'), progress: 70 },\n            { id: '3', name: 'Q2 Review', start: new Date('2024-05-25'), end: new Date('2024-06-28'), progress: 20 },\n          ]}\n        />",
+    "6": "<GanttChart\n          tasks={[\n            { id: '1', name: 'Kickoff', start: new Date('2024-01-01'), end: new Date('2024-01-02'), progress: 100 },\n            { id: '2', name: 'Alpha Release', start: new Date('2024-02-01'), end: new Date('2024-02-02'), progress: 0 },\n            { id: '3', name: 'Beta Release', start: new Date('2024-03-01'), end: new Date('2024-03-02'), progress: 0 },\n            { id: '4', name: 'GA Release', start: new Date('2024-04-01'), end: new Date('2024-04-02'), progress: 0 },\n          ]}\n        />",
+    "7": "<GanttChart\n          className=\"gantt-demo\"\n          tasks={[\n            { id: '1', name: 'Design', start: new Date('2024-05-01'), end: new Date('2024-05-10'), progress: 100 },\n            { id: '2', name: 'Build', start: new Date('2024-05-11'), end: new Date('2024-05-25'), progress: 55 },\n          ]}\n        />"
+  },
+  "GradientBorder": {
+    "0": "<GradientBorder>\n          <div style={{ padding: 24 }}>Content inside gradient border</div>\n        </GradientBorder>",
+    "1": "<GradientBorder animated>\n          <div style={{ padding: 24 }}>Animated gradient border</div>\n        </GradientBorder>",
+    "2": "<GradientBorder gradient=\"linear-gradient(45deg, #ff6b6b, #4ecdc4)\" animated>\n          <div style={{ padding: 24 }}>Custom gradient border</div>\n        </GradientBorder>",
+    "3": "<GradientBorder animated><Card style={{ padding: 20, width: 220, textAlign: 'center' }}>Premium feature</Card></GradientBorder>",
+    "4": "<GradientBorder animated><Button>Upgrade now</Button></GradientBorder>",
+    "5": "<GradientBorder animated><Alert type=\"warning\" message=\"Limited time offer\" showIcon /></GradientBorder>",
+    "6": "<GradientBorder animated><Input placeholder=\"Search...\" /></GradientBorder>",
+    "7": "<GradientBorder className=\"gradient-border-static\"><Card style={{ padding: 20, width: 220, textAlign: 'center' }}>Static highlight</Card></GradientBorder>"
+  },
+  "Icon": {
+    "0": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <Icon name=\"home\" size={24} />\n          <Icon name=\"user\" size={32} />\n          <Icon name=\"cog\" size={40} />\n        </Stack>",
+    "1": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <Icon name=\"heart\" size={28} color=\"red\" />\n          <Icon name=\"star\" size={28} color=\"orange\" />\n          <Icon name=\"check\" size={28} color=\"green\" />\n        </Stack>",
+    "2": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <Icon name=\"bell\" size={28} variant=\"filled\" />\n          <Icon name=\"bell\" size={28} variant=\"outlined\" />\n        </Stack>",
+    "3": "<Stack direction=\"row\" gap={16} align=\"center\"><Icon name=\"home\" size={16} /><Icon name=\"home\" size={24} /><Icon name=\"home\" size={32} /><Icon name=\"home\" size={48} /></Stack>",
+    "4": "<Stack direction=\"row\" gap={16} align=\"center\"><Icon name=\"search\" size={24} ariaLabel=\"Search\" /><Icon name=\"bell\" size={24} ariaLabel=\"Notifications\" /><Icon name=\"user\" size={24} ariaLabel=\"Account\" /></Stack>",
+    "5": "<Stack direction=\"row\" gap={12} align=\"center\"><Button size=\"small\" leftIcon={<Icon name=\"plus\" size={14} />}>Add</Button><Button size=\"small\" variant=\"secondary\" leftIcon={<Icon name=\"trash\" size={14} />}>Delete</Button></Stack>",
+    "6": "<Stack direction=\"row\" gap={16} align=\"center\"><Icon name=\"star\" size={28} variant=\"default\" /><Icon name=\"star\" size={28} variant=\"circle\" /><Icon name=\"star\" size={28} variant=\"square\" /></Stack>",
+    "7": "<Stack direction=\"row\" gap={16} align=\"center\"><Icon name=\"check\" size={28} color=\"green\" className=\"icon-success\" /><Icon name=\"times\" size={28} color=\"red\" className=\"icon-error\" /></Stack>"
+  },
+  "ImageGallery": {
+    "0": "<ImageGallery\n          images={[\n            { src: 'https://picsum.photos/400/300?random=1', alt: 'Sample 1' },\n            { src: 'https://picsum.photos/400/300?random=2', alt: 'Sample 2' },\n          ]}\n        />",
+    "1": "<ImageGallery\n          columns={2}\n          gap=\"8px\"\n          images={[\n            { src: 'https://picsum.photos/400/300?random=1', alt: 'Sample 1' },\n            { src: 'https://picsum.photos/400/300?random=2', alt: 'Sample 2' },\n            { src: 'https://picsum.photos/400/300?random=3', alt: 'Sample 3' },\n            { src: 'https://picsum.photos/400/300?random=4', alt: 'Sample 4' },\n          ]}\n        />",
+    "2": "<ImageGallery\n          images={[\n            {\n              src: 'https://picsum.photos/400/300?random=1',\n              alt: 'Mountain',\n              caption: 'Mountain view',\n            },\n            {\n              src: 'https://picsum.photos/400/300?random=2',\n              alt: 'Ocean',\n              caption: 'Ocean sunset',\n            },\n          ]}\n        />",
+    "3": "<ImageGallery\n    columns={4}\n    images={[\n      { src: 'https://picsum.photos/300/200?random=10', alt: 'Sample 10' },\n      { src: 'https://picsum.photos/300/200?random=11', alt: 'Sample 11' },\n      { src: 'https://picsum.photos/300/200?random=12', alt: 'Sample 12' },\n      { src: 'https://picsum.photos/300/200?random=13', alt: 'Sample 13' },\n    ]}\n  />",
+    "4": "<ImageGallery\n    columns={1}\n    images={[\n      { src: 'https://picsum.photos/400/200?random=20', alt: 'Sample 20' },\n      { src: 'https://picsum.photos/400/200?random=21', alt: 'Sample 21' },\n    ]}\n  />",
+    "5": "<ImageGallery\n    columns={3}\n    gap=\"4px\"\n    images={[\n      { src: 'https://picsum.photos/300/200?random=30', alt: 'Sample 30' },\n      { src: 'https://picsum.photos/300/200?random=31', alt: 'Sample 31' },\n      { src: 'https://picsum.photos/300/200?random=32', alt: 'Sample 32' },\n    ]}\n  />",
+    "6": "<ImageGallery\n    columns={2}\n    gap=\"32px\"\n    images={[\n      { src: 'https://picsum.photos/400/300?random=40', alt: 'Sample 40' },\n      { src: 'https://picsum.photos/400/300?random=41', alt: 'Sample 41' },\n      { src: 'https://picsum.photos/400/300?random=42', alt: 'Sample 42' },\n      { src: 'https://picsum.photos/400/300?random=43', alt: 'Sample 43' },\n    ]}\n  />",
+    "7": "<ImageGallery\n    columns={3}\n    images={[\n      { src: 'https://picsum.photos/200/300?random=50', alt: 'Portrait 50', caption: 'Portrait one' },\n      { src: 'https://picsum.photos/200/300?random=51', alt: 'Portrait 51', caption: 'Portrait two' },\n      { src: 'https://picsum.photos/200/300?random=52', alt: 'Portrait 52', caption: 'Portrait three' },\n    ]}\n  />"
+  },
+  "AvatarGroup": {
+    "0": "<AvatarGroup\n          avatars={[\n            { name: 'Alice' },\n            { name: 'Bob' },\n            { name: 'Carol' },\n            { name: 'Dave' },\n            { name: 'Eve' },\n          ]}\n          max={3}\n        />",
+    "1": "<Stack direction=\"row\" gap={16} align=\"center\">\n          <AvatarGroup\n            size=\"small\"\n            avatars={[{ name: 'Alice' }, { name: 'Bob' }, { name: 'Carol' }]}\n            max={3}\n          />\n          <AvatarGroup\n            size=\"large\"\n            avatars={[{ name: 'Alice' }, { name: 'Bob' }, { name: 'Carol' }]}\n            max={3}\n          />\n        </Stack>",
+    "2": "<AvatarGroup\n          avatars={[\n            { name: 'Alice' },\n            { name: 'Bob' },\n            { name: 'Carol' },\n            { name: 'Dave' },\n            { name: 'Eve' },\n          ]}\n          max={4}\n          spread={true}\n        />",
+    "3": "<AvatarGroup max={2}>\n    <Avatar initials=\"AB\" alt=\"Alice\" />\n    <Avatar initials=\"BC\" alt=\"Bob\" />\n    <Avatar initials=\"CD\" alt=\"Carol\" />\n    <Avatar initials=\"DE\" alt=\"Dave\" />\n  </AvatarGroup>",
+    "4": "<AvatarGroup size=\"small\" max={3}>\n    <Avatar initials=\"A\" alt=\"A\" />\n    <Avatar initials=\"B\" alt=\"B\" />\n    <Avatar initials=\"C\" alt=\"C\" />\n    <Avatar initials=\"D\" alt=\"D\" />\n  </AvatarGroup>",
+    "5": "<AvatarGroup size=\"large\" max={3}>\n    <Avatar initials=\"A\" alt=\"A\" />\n    <Avatar initials=\"B\" alt=\"B\" />\n    <Avatar initials=\"C\" alt=\"C\" />\n    <Avatar initials=\"D\" alt=\"D\" />\n  </AvatarGroup>",
+    "6": "<AvatarGroup max={4}>\n    <Avatar initials=\"AL\" alt=\"Alice\" />\n    <Avatar initials=\"BO\" alt=\"Bob\" />\n    <Avatar initials=\"CA\" alt=\"Carol\" />\n    <Avatar initials=\"DA\" alt=\"Dave\" />\n    <Avatar initials=\"EV\" alt=\"Eve\" />\n  </AvatarGroup>",
+    "7": "<AvatarGroup max={3}>\n    <Avatar initials=\"S1\" shape=\"circle\" alt=\"Shape one\" />\n    <Avatar initials=\"S2\" shape=\"square\" alt=\"Shape two\" />\n    <Avatar initials=\"S3\" shape=\"rounded\" alt=\"Shape three\" />\n    <Avatar initials=\"S4\" shape=\"circle\" alt=\"Shape four\" />\n  </AvatarGroup>"
+  },
+  "AudioWaveform": {
+    "0": "<AudioWaveform bars={20} isActive={true} />",
+    "1": "<Stack direction=\"row\" gap={24} align=\"center\">\n        <AudioWaveform bars={20} amplitude={0.3} barGap={1} isActive={true} />\n        <AudioWaveform bars={30} amplitude={0.8} barGap={4} isActive={true} />\n      </Stack>",
+    "2": "<AudioWaveform bars={60} isActive={true} amplitude={0.5} barGap={1} />",
+    "3": "<AudioWaveform bars={12} isActive={true} amplitude={0.6} barGap={6} />",
+    "4": "<AudioWaveform bars={30} isActive={true} amplitude={0.2} barGap={2} />",
+    "5": "<AudioWaveform bars={30} isActive={true} amplitude={0.9} barGap={2} />",
+    "6": "<AudioWaveform bars={24} isActive={true} amplitude={0.5} barGap={8} />"
+  },
+  "PinInput": {
+    "0": "<PinInput length={4} />",
+    "1": "<ControlledPinInputExample />",
+    "2": "<PinInput length={4} value=\"12\" error={true} />",
+    "3": "<PinInput length={6} />",
+    "4": "<PinInput length={3} />",
+    "5": "<PinInput length={4} disabled={true} value=\"12\" />",
+    "6": "<PinInput length={4} value=\"1234\" />",
+    "7": "<PinInput length={4} onComplete={() => {}} />"
+  },
+  "Stepper": {
+    "0": "<Stepper\n        activeStep={1}\n        steps={[\n          { title: 'Account' },\n          { title: 'Profile' },\n          { title: 'Confirm' },\n        ]}\n      />",
+    "1": "<Stepper\n        activeStep={1}\n        orientation=\"vertical\"\n        steps={[\n          { title: 'Account' },\n          { title: 'Profile' },\n          { title: 'Confirm' },\n        ]}\n      />",
+    "2": "<Stepper\n    variant=\"glass\"\n    activeStep={1}\n    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}\n  />",
+    "3": "<Stepper\n    iconOnly={true}\n    activeStep={1}\n    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}\n  />",
+    "4": "<Stepper\n    showConnectors={false}\n    activeStep={1}\n    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}\n  />",
+    "5": "<Stepper\n    defaultActiveStep={1}\n    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}\n  />",
+    "6": "<Stepper\n    activeStep={1}\n    steps={[\n      { title: 'Account', description: 'Create your account' },\n      { title: 'Profile', description: 'Add your details' },\n      { title: 'Confirm', description: 'Review and submit' },\n    ]}\n  />"
+  },
+  "Menu": {
+    "0": "<Menu\n        trigger={<Button size=\"small\">Open Menu</Button>}\n        items={[\n          { key: '1', label: 'Copy' },\n          { key: '2', label: 'Paste' },\n          { key: '3', label: 'Delete', danger: true },\n        ]}\n      />",
+    "1": "<Menu\n        trigger={<Button size=\"small\" variant=\"secondary\">Actions</Button>}\n        items={[\n          { key: '1', label: 'Copy', icon: <span>📄</span> },\n          { key: '2', label: 'Paste', icon: <span>📋</span> },\n        ]}\n      />",
+    "2": "<Menu\n    trigger={<Button size=\"small\">Open Menu</Button>}\n    placement=\"bottom-right\"\n    items={[\n      { key: '1', label: 'Copy' },\n      { key: '2', label: 'Paste' },\n      { key: '3', label: 'Delete', danger: true },\n    ]}\n  />",
+    "3": "<Menu\n    trigger={<Button size=\"small\" variant=\"secondary\">Actions</Button>}\n    items={[\n      { key: '1', label: 'Edit' },\n      { key: '2', label: 'Duplicate' },\n      { type: 'divider' },\n      { key: '3', label: 'Archive' },\n      { key: '4', label: 'Delete', danger: true },\n    ]}\n  />",
+    "4": "<Menu\n    trigger={<Button size=\"small\" variant=\"secondary\">Options</Button>}\n    items={[\n      { type: 'label', label: 'View' },\n      { key: '1', label: 'List' },\n      { key: '2', label: 'Grid' },\n      { type: 'label', label: 'Settings' },\n      { key: '3', label: 'Preferences' },\n    ]}\n  />",
+    "5": "<Menu\n    trigger={<Button size=\"small\" variant=\"secondary\">Actions</Button>}\n    items={[\n      { key: '1', label: 'Share' },\n      { key: '2', label: 'Export', disabled: true },\n      { key: '3', label: 'Delete', danger: true, disabled: true },\n    ]}\n  />",
+    "6": "<Menu\n    trigger={<Button size=\"small\" variant=\"secondary\">Settings</Button>}\n    items={[\n      { key: '1', label: 'Show sidebar', checkable: 'checkbox', checked: true },\n      { key: '2', label: 'Show status bar', checkable: 'checkbox', checked: false },\n      { key: '3', label: 'Theme: Dark', checkable: 'radio', checked: true },\n      { key: '4', label: 'Theme: Light', checkable: 'radio', checked: false },\n    ]}\n  />"
+  },
+  "ModelSelector": {
+    "0": "<ModelSelector\n          models={[\n            {\n              id: 'gpt-4',\n              name: 'GPT-4',\n              provider: 'OpenAI',\n              contextWindow: 128000,\n              pricePer1kTokens: 0.03,\n            },\n            {\n              id: 'claude',\n              name: 'Claude 3',\n              provider: 'Anthropic',\n              contextWindow: 200000,\n              pricePer1kTokens: 0.008,\n            },\n          ]}\n          placeholder=\"Select a model\"\n        />",
+    "1": "<ControlledModelSelectorExample />",
+    "2": "<ModelSelector\n          models={[\n            {\n              id: 'gpt-4',\n              name: 'GPT-4',\n              provider: 'OpenAI',\n              contextWindow: 128000,\n              pricePer1kTokens: 0.03,\n              latencyMs: 250,\n              description: 'Reliable general-purpose model',\n            },\n            {\n              id: 'claude',\n              name: 'Claude 3',\n              provider: 'Anthropic',\n              contextWindow: 200000,\n              pricePer1kTokens: 0.008,\n              latencyMs: 180,\n              description: 'Strong for long context tasks',\n            },\n          ]}\n        />",
+    "3": "<ModelSelector\n    value=\"gpt-4\"\n    onChange={() => {}}\n    models={[\n      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },\n      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },\n    ]}\n  />",
+    "4": "<ModelSelector\n    placeholder=\"Pick a model for this task\"\n    onChange={() => {}}\n    models={[\n      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },\n      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },\n    ]}\n  />",
+    "5": "<ModelSelector\n    onChange={() => {}}\n    models={[\n      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },\n      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },\n      { id: 'gemini', name: 'Gemini', provider: 'Google', contextWindow: 1000000, pricePer1kTokens: 0.0005 },\n    ]}\n  />",
+    "6": "<ModelSelector\n    onChange={() => {}}\n    models={[\n      { id: 'fast', name: 'Fast-Llama', provider: 'Meta', contextWindow: 32000, pricePer1kTokens: 0.001, latencyMs: 120, description: 'Low latency for quick tasks' },\n      { id: 'balanced', name: 'GPT-4o', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.005, latencyMs: 300, description: 'Balanced speed and quality' },\n      { id: 'slow', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008, latencyMs: 600, description: 'Higher latency, strong reasoning' },\n    ]}\n  />",
+    "7": "<ModelSelector\n    onChange={() => {}}\n    models={[\n      { id: 'only', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },\n    ]}\n  />"
+  },
+  "PromptBuilder": {
+    "0": "<PromptBuilder\n          systemPrompt=\"You are a helpful assistant.\"\n          examples={[{ id: '1', role: 'user', content: 'Hello' }]}\n          onChange={() => {}}\n        />",
+    "1": "<PromptBuilder\n          systemPrompt=\"You are a helpful assistant.\"\n          variables={['topic', 'tone']}\n          examples={[\n            { id: '1', role: 'user', content: 'Write about {{topic}} in a {{tone}} tone.' },\n            { id: '2', role: 'assistant', content: 'Here is a {{tone}} response about {{topic}}.' },\n          ]}\n          onChange={() => {}}\n        />",
+    "2": "<PromptBuilder\n          systemPrompt=\"You are a helpful assistant.\"\n          variables={['topic']}\n          examples={[\n            { id: '1', role: 'user', content: 'Tell me about {{topic}}' },\n            { id: '2', role: 'assistant', content: '{{topic}} is a useful concept.' },\n          ]}\n          onChange={() => {}}\n        />",
+    "3": "<PromptBuilder\n          systemPrompt=\"You are a travel assistant.\"\n          examples={[\n            { id: '1', role: 'user', content: 'Plan a {{duration}} trip to {{destination}}.' },\n            { id: '2', role: 'assistant', content: 'Here is a {{duration}} itinerary for {{destination}}.' },\n          ]}\n          variables={['destination', 'duration']}\n          onChange={() => {}}\n        />",
+    "4": "<PromptBuilder\n          systemPrompt=\"You are a senior engineer reviewing pull requests.\"\n          examples={[\n            { id: '1', role: 'user', content: 'Review this diff: {{code}}' },\n            { id: '2', role: 'assistant', content: 'The code looks good, but consider edge cases.' },\n          ]}\n          variables={['code']}\n          onChange={() => {}}\n        />",
+    "5": "<PromptBuilder\n          systemPrompt=\"You are a helpful tutor.\"\n          examples={[\n            { id: '1', role: 'user', content: 'Explain {{topic}}' },\n            { id: '2', role: 'assistant', content: '{{topic}} is a fundamental concept.' },\n            { id: '3', role: 'user', content: 'Give an example' },\n            { id: '4', role: 'assistant', content: 'Here is a practical example.' },\n          ]}\n          variables={['topic']}\n          onChange={() => {}}\n        />",
+    "6": "<PromptBuilder\n          className=\"custom-prompt-builder\"\n          examples={[\n            { id: '1', role: 'user', content: 'Summarize: {{article}}' },\n            { id: '2', role: 'assistant', content: 'Summary of {{article}}...' },\n          ]}\n          variables={['article']}\n          onChange={() => {}}\n        />",
+    "7": "<PromptBuilder\n          systemPrompt=\"You are a professional email assistant.\"\n          examples={[\n            { id: '1', role: 'user', content: 'Write a {{tone}} email to {{recipient}} about {{subject}}.' },\n            { id: '2', role: 'assistant', content: 'Subject: {{subject}}...' },\n          ]}\n          variables={['tone', 'recipient', 'subject']}\n          onChange={() => {}}\n        />"
+  },
+  "AIThinking": {
+    "0": "<AIThinking steps={[{ id: '1', text: 'Analyzing request' }, { id: '2', text: 'Retrieving context' }]} />",
+    "1": "<AIThinking\n          steps={[{ id: '1', text: 'Planning approach' }, { id: '2', text: 'Executing steps' }]}\n          isThinking={true}\n          title=\"AI is thinking\"\n        />",
+    "2": "<AIThinking\n          steps={[\n            { id: '1', text: 'Understanding question' },\n            { id: '2', text: 'Retrieving sources' },\n            { id: '3', text: 'Synthesizing answer' },\n          ]}\n          isThinking={true}\n          showElapsed={true}\n          startTime={Date.now()}\n        />",
+    "3": "<AIThinking\n          steps={[{ id: '1', text: 'Parsing input' }, { id: '2', text: 'Checking constraints' }]}\n          defaultExpanded={false}\n          isThinking={false}\n          title=\"Reasoning\"\n        />",
+    "4": "<AIThinking\n          steps={[{ id: '1', text: 'Loading models' }, { id: '2', text: 'Preparing response' }]}\n          isThinking={true}\n          title=\"Assistant is reasoning...\"\n        />",
+    "5": "<AIThinking\n          steps={[\n            { id: '1', text: 'Analyzed request' },\n            { id: '2', text: 'Found sources' },\n            { id: '3', text: 'Produced answer' },\n          ]}\n          isThinking={false}\n          showElapsed={false}\n          title=\"Finished\"\n        />",
+    "6": "<AIThinking\n          steps={[{ id: '1', text: 'Indexing documents' }, { id: '2', text: 'Ranking results' }]}\n          isThinking={true}\n          showElapsed={false}\n          title=\"Searching\"\n        />",
+    "7": "<AIThinking\n          steps={[\n            { id: '1', text: 'Received query' },\n            { id: '2', text: 'Identified intent' },\n            { id: '3', text: 'Retrieved context' },\n            { id: '4', text: 'Drafted response' },\n            { id: '5', text: 'Verified facts' },\n          ]}\n          isThinking={true}\n          title=\"Thinking through response\"\n        />"
+  },
+  "ToolCallCard": {
+    "0": "<ToolCallCard\n        toolName=\"search\"\n        status=\"loading\"\n        args={{ query: 'weather' }}\n      />",
+    "1": "<ToolCallCard\n        toolName=\"search\"\n        status=\"success\"\n        args={{ query: 'weather' }}\n        result=\"Sunny, 24°C\"\n        durationMs={1200}\n      />",
+    "2": "<ToolCallCard toolName='search' toolIcon={<Icon name='search' size={16} />} status='success' args={{ query: 'react components' }} result='Found 3 results' durationMs={420} />",
+    "3": "<ToolCallCard toolName='ping' status='loading' args={{}} />",
+    "4": "<ToolCallCard toolName='query' status='success' args={{ select: 'name, email', from: 'users', where: 'active = true', limit: 50 }} result='12 records' durationMs={890} />",
+    "5": "<ToolCallCard toolName='status' status='success' args={{ service: 'api' }} result={<Tag color='green'>Healthy</Tag>} durationMs={210} />",
+    "6": "<ToolCallCard toolName='fetch' status='error' args={{ url: '/api/data' }} errorMessage='Request timeout after 30s' />"
+  },
+  "StreamingText": {
+    "0": "<StreamingText text=\"Hello, this is streaming text.\" speed={50} />",
+    "1": "<StreamingText\n          text=\"Hello, **this** is _streaming_ text.\"\n          renderMarkdown={true}\n          speed={50}\n        />",
+    "2": "<StreamingText text=\"This text streams quickly.\" speed={20} onComplete={() => {}} />",
+    "3": "<StreamingText text='This sentence appears one character at a time.' speed={80} />",
+    "4": "<StreamingText text='Loading complete.' speed={60} />",
+    "5": "<StreamingText text='Streaming longer content lets you preview how the assistant reveals a multi-sentence response without overwhelming the reader.' speed={35} />",
+    "6": "<StreamingText text='Styled streaming text example.' speed={40} className='streaming-demo' />",
+    "7": "<Card style={{ padding: 16 }}><StreamingText text='Streaming text inside a card.' speed={50} /></Card>"
+  },
+  "Carousel": {
+    "0": "<Carousel style={{ width: 300 }}>\n          <div\n            style={{\n              padding: 40,\n              textAlign: 'center',\n              background: 'var(--n-color-card-bg)',\n              color: 'var(--n-color-text)',\n              borderRadius: 12,\n            }}\n          >\n            Slide 1\n          </div>\n          <div\n            style={{\n              padding: 40,\n              textAlign: 'center',\n              background: 'var(--n-color-card-bg)',\n              color: 'var(--n-color-text)',\n              borderRadius: 12,\n            }}\n          >\n            Slide 2\n          </div>\n          <div\n            style={{\n              padding: 40,\n              textAlign: 'center',\n              background: 'var(--n-color-card-bg)',\n              color: 'var(--n-color-text)',\n              borderRadius: 12,\n            }}\n          >\n            Slide 3\n          </div>\n        </Carousel>",
+    "1": "<Carousel\n          autoPlay={true}\n          autoPlayInterval={3000}\n          showDots={true}\n          showNav={false}\n          style={{ width: 300 }}\n        >\n          <div\n            style={{\n              padding: 40,\n              textAlign: 'center',\n              background: 'var(--n-color-card-bg)',\n              color: 'var(--n-color-text)',\n              borderRadius: 12,\n            }}\n          >\n            Slide 1\n          </div>\n          <div\n            style={{\n              padding: 40,\n              textAlign: 'center',\n              background: 'var(--n-color-card-bg)',\n              color: 'var(--n-color-text)',\n              borderRadius: 12,\n            }}\n          >\n            Slide 2\n          </div>\n          <div\n            style={{\n              padding: 40,\n              textAlign: 'center',\n              background: 'var(--n-color-card-bg)',\n              color: 'var(--n-color-text)',\n              borderRadius: 12,\n            }}\n          >\n            Slide 3\n          </div>\n        </Carousel>",
+    "2": "<Carousel showCounter={true} loop={true} style={{ width: 300 }}>\n          <div\n            style={{\n              padding: 40,\n              textAlign: 'center',\n              background: 'var(--n-color-card-bg)',\n              color: 'var(--n-color-text)',\n              borderRadius: 12,\n            }}\n          >\n            Slide 1\n          </div>\n          <div\n            style={{\n              padding: 40,\n              textAlign: 'center',\n              background: 'var(--n-color-card-bg)',\n              color: 'var(--n-color-text)',\n              borderRadius: 12,\n            }}\n          >\n            Slide 2\n          </div>\n        </Carousel>",
+    "3": "<Carousel items={[{ id: '1', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Slide 1</div> }, { id: '2', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Slide 2</div> }]} style={{ width: 300 }} />",
+    "4": "<Carousel showThumbnails items={[{ id: '1', image: 'https://picsum.photos/seed/carousel1/400/200', title: 'Mountain' }, { id: '2', image: 'https://picsum.photos/seed/carousel2/400/200', title: 'Ocean' }, { id: '3', image: 'https://picsum.photos/seed/carousel3/400/200', title: 'Forest' }]} style={{ width: 320 }} />",
+    "5": "<Carousel loop={true} showNav={false} showDots={true} style={{ width: 300 }}><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>One</div><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Two</div></Carousel>",
+    "6": "<Carousel height={200} style={{ width: 300 }}><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12, height: '100%' }}>Tall slide</div><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12, height: '100%' }}>Another</div></Carousel>",
+    "7": "<Carousel enableSwipe={false} items={[{ id: '1', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Swipe off</div> }, { id: '2', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Use arrows</div> }]} style={{ width: 300 }} />"
+  },
+  "Charts": {
+    "0": "<ChartBar\n          data={[\n            { label: 'A', value: 30 },\n            { label: 'B', value: 50 },\n          ]}\n        />",
+    "1": "<ChartLine\n          data={[\n            { label: 'Jan', value: 10 },\n            { label: 'Feb', value: 25 },\n            { label: 'Mar', value: 18 },\n          ]}\n        />",
+    "2": "<ChartArea\n          data={[\n            { label: 'Q1', value: 40 },\n            { label: 'Q2', value: 60 },\n            { label: 'Q3', value: 35 },\n          ]}\n        />",
+    "3": "<ChartBar data={[{ label: 'North', value: 45 }, { label: 'South', value: 30 }, { label: 'East', value: 55 }, { label: 'West', value: 40 }]} />",
+    "4": "<ChartLine data={[{ label: 'Mon', value: 12 }, { label: 'Tue', value: 24 }, { label: 'Wed', value: 18 }, { label: 'Thu', value: 36 }, { label: 'Fri', value: 28 }, { label: 'Sat', value: 15 }, { label: 'Sun', value: 20 }]} />",
+    "5": "<ChartArea data={[{ label: 'Q1', value: 20 }, { label: 'Q2', value: 35 }, { label: 'Q3', value: 50 }, { label: 'Q4', value: 65 }]} />",
+    "6": "<Stack direction='column' gap={24}><ChartBar data={[{ label: 'A', value: 30 }, { label: 'B', value: 50 }]} /><ChartLine data={[{ label: 'Jan', value: 10 }, { label: 'Feb', value: 25 }]} /><ChartArea data={[{ label: 'Q1', value: 40 }, { label: 'Q2', value: 60 }]} /></Stack>",
+    "7": "<ChartBar data={[{ label: 'Jan', value: 10 }, { label: 'Feb', value: 25 }, { label: 'Mar', value: 18 }, { label: 'Apr', value: 32 }, { label: 'May', value: 22 }, { label: 'Jun', value: 38 }, { label: 'Jul', value: 28 }, { label: 'Aug', value: 45 }]} />"
+  }
+}

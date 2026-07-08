@@ -1,6 +1,7 @@
 'use client';
 import styled, { css, keyframes } from 'styled-components';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '6px 12px', minHeight: '36px' },
@@ -141,7 +142,7 @@ export const SelectValue = styled.span`
 `;
 
 export const SelectPlaceholder = styled(SelectValue)`
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 export const SelectIcons = styled.div`
@@ -149,6 +150,8 @@ export const SelectIcons = styled.div`
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  ${iconColor}
 `;
 
 export const SelectChevron = styled.div.withConfig({
@@ -158,14 +161,17 @@ export const SelectChevron = styled.div.withConfig({
   align-items: center;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  color: ${({ theme }) => theme.colors.text};
+  ${iconColor}
 `;
 
 export const ClearButton = styled.span`
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   cursor: pointer;
   transition: color 0.2s ease, transform 0.2s ease;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.text};
@@ -189,8 +195,9 @@ export const SearchContainer = styled.div`
 export const SearchIcon = styled.span`
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   flex-shrink: 0;
+  ${iconColor}
 `;
 
 export const SearchInput = styled.input`
@@ -205,7 +212,7 @@ export const SearchInput = styled.input`
   background: transparent;
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
   /* Touch-friendly for mobile */
@@ -259,12 +266,13 @@ export const SelectOption = styled.div.withConfig({
   margin: 2px 0;
   font-size: inherit;
 
-  ${({ disabled }) =>
+  ${({ disabled, theme }) =>
     disabled &&
     css`
-      color: #aaa;
+      color: ${theme.colors.disabledText};
       cursor: not-allowed;
-      background: #f8f9fa;
+      background: ${theme.colors.hoverBg};
+      opacity: 0.7;
     `}
 
   ${({ isActive, theme }) =>
@@ -304,7 +312,7 @@ export const EmptyState = styled.div`
   justify-content: center;
   padding: 24px 16px;
   gap: 8px;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 export const EmptyStateIcon = styled.div`
@@ -323,7 +331,7 @@ const spin = keyframes`
 `;
 
 export const Spinner = styled.div`
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid ${({ theme }) => `${theme.colors.textSecondary}40`};
   border-top-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 1em;
@@ -335,7 +343,7 @@ export const Spinner = styled.div`
 export const GroupHeader = styled.div`
   padding: 8px 12px;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.shadowDark};
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;

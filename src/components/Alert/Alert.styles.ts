@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import type { Theme } from '../../styles/theme';
 import { motion } from '../../utils/lazyMotion';
+import { iconColor } from '../../styles/iconColor';
 
 type AlertType = 'success' | 'info' | 'warning' | 'error';
 
@@ -59,9 +60,10 @@ export const AlertIcon = styled.div.withConfig({
   font-size: 22px;
   margin-top: 3px;
   flex-shrink: 0;
-  
+
   /* The icon's color will be the same as the colored part of the shadow */
   color: ${({ theme, alertType }) => getAlertColors(theme, alertType).color};
+  ${iconColor}
 
   & svg {
     display: block;
@@ -92,6 +94,7 @@ export const CloseIcon = styled.button`
   margin-left: 16px;
   font-size: 16px;
   flex-shrink: 0;
+  ${iconColor}
 
   &:hover {
     color: ${({ theme }) => theme.colors.text};

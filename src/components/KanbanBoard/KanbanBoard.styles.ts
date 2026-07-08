@@ -160,7 +160,7 @@ export const ActionButton = styled.button`
     cursor: not-allowed;
     opacity: 0.4;
     box-shadow: ${({ theme }) => theme.shadows.softInset};
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.disabledText};
   }
 
   &:focus-visible {

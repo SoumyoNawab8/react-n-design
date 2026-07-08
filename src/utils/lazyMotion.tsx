@@ -47,6 +47,64 @@ const _getMotionSync = () => framerMotionModule;
 // Motion component cache to preserve reference equality
 const motionComponentCache: Map<string, ComponentType<MotionProps>> = new Map();
 
+// Common Framer Motion props that should never be forwarded to a plain DOM fallback.
+// Keeping these off the fallback element prevents React 19 "unknown prop" warnings.
+const MOTION_PROP_DENYLIST = new Set<string>([
+  'initial',
+  'animate',
+  'exit',
+  'variants',
+  'transition',
+  'whileHover',
+  'whileTap',
+  'whileFocus',
+  'whileDrag',
+  'whileInView',
+  'layout',
+  'layoutId',
+  'layoutScroll',
+  'layoutRoot',
+  'drag',
+  'dragConstraints',
+  'dragElastic',
+  'dragMomentum',
+  'dragPropagation',
+  'dragControls',
+  'dragListener',
+  'dragSnapToOrigin',
+  'onHoverStart',
+  'onHoverEnd',
+  'onTap',
+  'onTapStart',
+  'onTapCancel',
+  'onPan',
+  'onPanStart',
+  'onPanEnd',
+  'onDrag',
+  'onDragStart',
+  'onDragEnd',
+  'onDragTransitionEnd',
+  'viewport',
+  'onViewportEnter',
+  'onViewportLeave',
+  'custom',
+  'transformTemplate',
+  'transformValues',
+  'onUpdate',
+  'onAnimationStart',
+  'onAnimationComplete',
+]);
+
+const filterMotionProps = <P extends Record<string, unknown>>(props: P): Partial<P> => {
+  const filtered: Partial<P> = {};
+  for (const key in props) {
+    if (Object.prototype.hasOwnProperty.call(props, key) && !MOTION_PROP_DENYLIST.has(key)) {
+      filtered[key] = props[key];
+    }
+  }
+  return filtered;
+};
+
 /**
  * Creates a lazy motion component that loads framer-motion on mount.
  */
@@ -65,9 +123,13 @@ const createLazyMotionComponent = (tag: string): ComponentType<MotionProps> => {
       | undefined;
 
     if (!MotionComponent) {
-      // Return plain HTML element while loading
+      // Return plain HTML element while loading, stripping motion-only props so
+      // React 19 does not warn about unknown DOM attributes.
       const Tag = tag as keyof JSX.IntrinsicElements;
-      return React.createElement(Tag, { ...props, ref: ref as React.Ref<HTMLElement> });
+      return React.createElement(Tag, {
+        ...filterMotionProps(props as Record<string, unknown>),
+        ref: ref as React.Ref<HTMLElement>,
+      });
     }
 
     return React.createElement(MotionComponent, { ...props, ref });
@@ -85,7 +147,8 @@ const createLazyMotionComponent = (tag: string): ComponentType<MotionProps> => {
 export const motion: typeof import('framer-motion').motion = new Proxy(
   {} as typeof import('framer-motion').motion,
   {
-    get: (_, tag: string) => {
+    get: (_, tag: string | symbol) => {
+      if (typeof tag === 'symbol') return undefined;
       return createLazyMotionComponent(tag);
     },
   }

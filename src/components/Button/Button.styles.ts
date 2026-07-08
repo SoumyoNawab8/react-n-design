@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 // Sizing for default and circle shapes - updated with minimum touch targets
 const sizes = {
@@ -54,6 +55,7 @@ export const ButtonIcon = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  ${iconColor}
 `;
 
 // Ripple effect component
@@ -239,14 +241,14 @@ export const StyledButton = styled.button.withConfig({
   /* Disabled State */
   &:disabled {
     cursor: not-allowed;
-    color: ${({ theme }) => theme.colors.shadowDark};
+    color: ${({ theme }) => theme.colors.disabledText};
     background: ${({ theme }) => theme.colors.background};
     box-shadow: ${({ theme }) => theme.shadows.softInset};
     transform: none !important;
     opacity: 0.7;
     
     ${Spinner} {
-      border-top-color: #aaa;
+      border-top-color: ${({ theme }) => theme.colors.textSecondary};
     }
   }
 

@@ -1,5 +1,6 @@
 'use client';
 import styled, { css } from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 
 const sizes = {
   small: css`
@@ -19,6 +20,7 @@ const sizes = {
 export const TagIcon = styled.span`
   display: inline-flex;
   align-items: center;
+  ${iconColor}
 `;
 
 export const CloseIcon = styled.span`
@@ -33,6 +35,7 @@ export const CloseIcon = styled.span`
   height: 1.2em;
   font-size: 1.1em;
   transition: background-color 0.2s;
+  ${iconColor}
 
   &:hover {
     /* 2. Use a theme-aware hover color */

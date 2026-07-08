@@ -3,7 +3,7 @@ node_modules
 
 # Build outputs
 dist/
-storybook-static/
+site/dist/
 
 # Environment files
 .env
@@ -44,3 +44,6 @@ ROADMAP-v0.7-DEEP-RESEARCH.md
 V070_TASKS.md
 V070_REMAINING.md
 audit-findings.md
+
+# Claude Code ignore file (local/session-level config, not tracked)
+.claudeignore

@@ -109,9 +109,17 @@ export const Switch = ({
 
   return (
     <SwitchContainer onClick={toggleSwitch} disabled={isDisabled}>
-      {label && labelPosition === 'left' && <LabelText id={labelId}>{label}</LabelText>}
+      {label && labelPosition === 'left' && (
+        <LabelText id={labelId} disabled={isDisabled}>
+          {label}
+        </LabelText>
+      )}
       {SwitchControl}
-      {label && labelPosition === 'right' && <LabelText id={labelId}>{label}</LabelText>}
+      {label && labelPosition === 'right' && (
+        <LabelText id={labelId} disabled={isDisabled}>
+          {label}
+        </LabelText>
+      )}
     </SwitchContainer>
   );
 };

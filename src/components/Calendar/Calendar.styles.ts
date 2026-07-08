@@ -99,8 +99,8 @@ export const CalendarDay = styled.button.withConfig({
   cursor: pointer;
   background: transparent;
   color: ${({ theme, isOtherMonth, isDisabled }) => {
-    if (isDisabled) return theme.colors.shadowDark;
-    if (isOtherMonth) return theme.colors.shadowDark;
+    if (isDisabled) return theme.colors.disabledText;
+    if (isOtherMonth) return theme.colors.textSecondary;
     return theme.colors.text;
   }};
   position: relative;
@@ -118,7 +118,7 @@ export const CalendarDay = styled.button.withConfig({
     isSelected &&
     css`
       background: ${theme.colors.primary};
-      color: #ffffff;
+      color: ${theme.colors.background};
       box-shadow: ${theme.shadows.soft};
       font-weight: 700;
     `}

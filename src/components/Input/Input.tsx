@@ -67,7 +67,7 @@ const useResponsiveSize = (size: InputSize | ResponsiveSizeConfig): InputSize =>
     typeof size === 'string' ? size : size.md
   );
 
-  useMemo(() => {
+  useEffect(() => {
     if (typeof size === 'string') return;
 
     const updateSize = () => {
