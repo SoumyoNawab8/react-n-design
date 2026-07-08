@@ -109,7 +109,7 @@
     "rollup": "^4.12.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "styled-components": "^6.4.1",
-    "three": "^0.184.0",
+    "three": "^0.185.1",
     "typescript": "^6.0.3",
     "uuid": "^11.1.1",
     "vite": "^8.1.3",
