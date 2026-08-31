@@ -14,7 +14,11 @@ export const componentCategories: ComponentCategory[] = [
     name: 'Layout',
     components: [
       { name: 'Accordion', description: 'Collapsible content panels.', category: 'Layout' },
-      { name: 'Card', description: 'Flexible container with neomorphic styling.', category: 'Layout' },
+      {
+        name: 'Card',
+        description: 'Flexible container with neomorphic styling.',
+        category: 'Layout',
+      },
       { name: 'Grid', description: 'Responsive grid system.', category: 'Layout' },
       { name: 'Stack', description: 'Vertical and horizontal stacking.', category: 'Layout' },
       { name: 'Divider', description: 'Visual content separator.', category: 'Layout' },
@@ -103,7 +107,11 @@ export const componentCategories: ComponentCategory[] = [
       { name: 'Pagination', description: 'Page navigation.', category: 'Navigation' },
       { name: 'Menu', description: 'Dropdown menu.', category: 'Navigation' },
       { name: 'AppBar', description: 'Top application bar.', category: 'Navigation' },
-      { name: 'CommandPalette', description: 'Keyboard-driven command search.', category: 'Navigation' },
+      {
+        name: 'CommandPalette',
+        description: 'Keyboard-driven command search.',
+        category: 'Navigation',
+      },
       { name: 'FloatButton', description: 'Floating action button.', category: 'Navigation' },
       { name: 'SkipToContent', description: 'Accessibility skip link.', category: 'Navigation' },
     ],

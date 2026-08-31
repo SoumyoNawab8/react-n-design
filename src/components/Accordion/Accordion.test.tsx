@@ -36,7 +36,9 @@ describe('Accordion - Rendering', () => {
   });
 
   it('applies custom className', () => {
-    const { container } = renderWithTheme(<Accordion items={DEFAULT_ITEMS} className="custom-accordion" />);
+    const { container } = renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} className="custom-accordion" />
+    );
     const wrapper = container.querySelector('.custom-accordion');
     expect(wrapper).toBeTruthy();
   });
@@ -53,21 +55,23 @@ describe('Accordion - Rendering', () => {
 
 describe('Accordion - Variants', () => {
   it('renders default variant correctly', () => {
-    renderWithTheme(<Accordion items={DEFAULT_ITEMS} variant="default" data-testid="default-variant" />);
+    renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} variant="default" data-testid="default-variant" />
+    );
     const accordion = screen.getByTestId('default-variant');
     expect(accordion).toBeInTheDocument();
   });
 
   it('renders glass variant correctly', () => {
-    const { container } = renderWithTheme(
-      <Accordion items={DEFAULT_ITEMS} variant="glass" />
-    );
+    const { container } = renderWithTheme(<Accordion items={DEFAULT_ITEMS} variant="glass" />);
     // Glass variant renders correctly - check class is applied
     expect(container.firstChild).toBeTruthy();
   });
 
   it('renders minimal variant correctly', () => {
-    renderWithTheme(<Accordion items={DEFAULT_ITEMS} variant="minimal" data-testid="minimal-variant" />);
+    renderWithTheme(
+      <Accordion items={DEFAULT_ITEMS} variant="minimal" data-testid="minimal-variant" />
+    );
     const accordion = screen.getByTestId('minimal-variant');
     expect(accordion).toBeInTheDocument();
   });
@@ -206,8 +210,7 @@ describe('Accordion - Controlled Mode', () => {
   });
 
   it('renders controlled array value', () => {
-    renderWithTheme(<Accordion items={DEFAULT_ITEMS} activeKey={['1', '2']} allowMultiple />
-    );
+    renderWithTheme(<Accordion items={DEFAULT_ITEMS} activeKey={['1', '2']} allowMultiple />);
     expect(screen.getByText('Content 1')).toBeInTheDocument();
     expect(screen.getByText('Content 2')).toBeInTheDocument();
     expect(screen.queryByText('Content 3')).not.toBeInTheDocument();
@@ -379,9 +382,7 @@ describe('Accordion - Accessibility', () => {
   });
 
   it('has no accessibility violations with expanded panel', async () => {
-    const { container } = renderWithTheme(
-      <Accordion items={DEFAULT_ITEMS} defaultActiveKey="1" />
-    );
+    const { container } = renderWithTheme(<Accordion items={DEFAULT_ITEMS} defaultActiveKey="1" />);
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
   });
@@ -405,17 +406,13 @@ describe('Accordion - Accessibility', () => {
   });
 
   it('glass variant is accessible', async () => {
-    const { container } = renderWithTheme(
-      <Accordion items={DEFAULT_ITEMS} variant="glass" />
-    );
+    const { container } = renderWithTheme(<Accordion items={DEFAULT_ITEMS} variant="glass" />);
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
   });
 
   it('minimal variant is accessible', async () => {
-    const { container } = renderWithTheme(
-      <Accordion items={DEFAULT_ITEMS} variant="minimal" />
-    );
+    const { container } = renderWithTheme(<Accordion items={DEFAULT_ITEMS} variant="minimal" />);
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
   });
@@ -438,9 +435,7 @@ describe('Accordion - Custom Icons', () => {
 
 describe('Accordion - Stagger Animations', () => {
   it('renders with stagger enabled', () => {
-    renderWithTheme(
-      <Accordion items={DEFAULT_ITEMS} stagger data-testid="stagger-accordion" />
-    );
+    renderWithTheme(<Accordion items={DEFAULT_ITEMS} stagger data-testid="stagger-accordion" />);
     const accordion = screen.getByTestId('stagger-accordion');
     expect(accordion).toBeInTheDocument();
     expect(screen.getAllByRole('button')).toHaveLength(3);
@@ -448,12 +443,7 @@ describe('Accordion - Stagger Animations', () => {
 
   it('applies stagger animation with custom delay', () => {
     renderWithTheme(
-      <Accordion
-        items={DEFAULT_ITEMS}
-        stagger
-        staggerDelay={0.1}
-        data-testid="custom-stagger"
-      />
+      <Accordion items={DEFAULT_ITEMS} stagger staggerDelay={0.1} data-testid="custom-stagger" />
     );
     const accordion = screen.getByTestId('custom-stagger');
     expect(accordion).toBeInTheDocument();

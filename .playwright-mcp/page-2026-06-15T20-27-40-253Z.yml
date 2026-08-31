@@ -1,0 +1,354 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link "react-n-design" [ref=e7] [cursor=pointer]:
+        - /url: /react-n-design
+      - navigation "Primary" [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /react-n-design
+        - link "Components" [ref=e10] [cursor=pointer]:
+          - /url: /react-n-design/components
+        - link "Get Started" [ref=e11] [cursor=pointer]:
+          - /url: /react-n-design/get-started
+        - combobox "Theme" [ref=e12] [cursor=pointer]:
+          - option "Light" [selected]
+          - option "Dark"
+          - option "System"
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - complementary [ref=e15]:
+        - generic [ref=e18]:
+          - img [ref=e20]
+          - textbox "Search components..." [ref=e23]
+        - generic [ref=e24]:
+          - button "Layout" [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: Layout
+            - img [ref=e27]
+          - generic [ref=e29]:
+            - button "Accordion" [ref=e30] [cursor=pointer]
+            - button "Card" [ref=e31] [cursor=pointer]
+            - button "Grid" [ref=e32] [cursor=pointer]
+            - button "Stack" [ref=e33] [cursor=pointer]
+            - button "Divider" [ref=e34] [cursor=pointer]
+            - button "ScrollArea" [ref=e35] [cursor=pointer]
+            - button "Resizable" [ref=e36] [cursor=pointer]
+          - separator [ref=e37]
+        - generic [ref=e38]:
+          - button "Data Entry" [ref=e39] [cursor=pointer]:
+            - generic [ref=e40]: Data Entry
+            - img [ref=e41]
+          - generic [ref=e43]:
+            - button "Button" [ref=e44] [cursor=pointer]
+            - button "Input" [ref=e45] [cursor=pointer]
+            - button "Select" [ref=e46] [cursor=pointer]
+            - button "Checkbox" [ref=e47] [cursor=pointer]
+            - button "RadioGroup" [ref=e48] [cursor=pointer]
+            - button "Switch" [ref=e49] [cursor=pointer]
+            - button "Slider" [ref=e50] [cursor=pointer]
+            - button "DatePicker" [ref=e51] [cursor=pointer]
+            - button "TimePicker" [ref=e52] [cursor=pointer]
+            - button "ColorPicker" [ref=e53] [cursor=pointer]
+            - button "PinInput" [ref=e54] [cursor=pointer]
+            - button "OTPInput" [ref=e55] [cursor=pointer]
+            - button "TextArea" [ref=e56] [cursor=pointer]
+            - button "FileUpload" [ref=e57] [cursor=pointer]
+            - button "Rating" [ref=e58] [cursor=pointer]
+            - button "ComboBox" [ref=e59] [cursor=pointer]
+            - button "MultiSelect" [ref=e60] [cursor=pointer]
+            - button "Segmented" [ref=e61] [cursor=pointer]
+            - button "Toggle" [ref=e62] [cursor=pointer]
+            - button "CopyButton" [ref=e63] [cursor=pointer]
+          - separator [ref=e64]
+        - generic [ref=e65]:
+          - button "Display" [ref=e66] [cursor=pointer]:
+            - generic [ref=e67]: Display
+            - img [ref=e68]
+          - generic [ref=e70]:
+            - button "AudioWaveform" [ref=e71] [cursor=pointer]
+            - button "Avatar" [ref=e72] [cursor=pointer]
+            - button "AvatarGroup" [ref=e73] [cursor=pointer]
+            - button "Badge" [ref=e74] [cursor=pointer]
+            - button "Tag" [ref=e75] [cursor=pointer]
+            - button "Statistic" [ref=e76] [cursor=pointer]
+            - button "ProgressBar" [ref=e77] [cursor=pointer]
+            - button "Skeleton" [ref=e78] [cursor=pointer]
+            - button "Empty" [ref=e79] [cursor=pointer]
+            - button "Timeline" [ref=e80] [cursor=pointer]
+            - button "Tree" [ref=e81] [cursor=pointer]
+            - button "OrgChart" [ref=e82] [cursor=pointer]
+            - button "GanttChart" [ref=e83] [cursor=pointer]
+            - button "KanbanBoard" [ref=e84] [cursor=pointer]
+            - button "Table" [ref=e85] [cursor=pointer]
+            - button "DataGrid" [ref=e86] [cursor=pointer]
+            - button "VirtualList" [ref=e87] [cursor=pointer]
+            - button "Charts" [ref=e88] [cursor=pointer]
+            - button "HeatmapCalendar" [ref=e89] [cursor=pointer]
+            - button "ImageGallery" [ref=e90] [cursor=pointer]
+            - button "Carousel" [ref=e91] [cursor=pointer]
+            - button "Calendar" [ref=e92] [cursor=pointer]
+            - button "Terminal" [ref=e93] [cursor=pointer]
+            - button "Markdown" [ref=e94] [cursor=pointer]
+            - button "StreamingText" [ref=e95] [cursor=pointer]
+            - button "Icon" [ref=e96] [cursor=pointer]
+          - separator [ref=e97]
+        - generic [ref=e98]:
+          - button "Feedback" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: Feedback
+            - img [ref=e101]
+          - generic [ref=e103]:
+            - button "Alert" [ref=e104] [cursor=pointer]
+            - button "Toast" [ref=e105] [cursor=pointer]
+            - button "Modal" [ref=e106] [cursor=pointer]
+            - button "Drawer" [ref=e107] [cursor=pointer]
+            - button "Tooltip" [ref=e108] [cursor=pointer]
+            - button "Popover" [ref=e109] [cursor=pointer]
+            - button "Tour" [ref=e110] [cursor=pointer]
+            - button "Result" [ref=e111] [cursor=pointer]
+            - button "AIThinking" [ref=e112] [cursor=pointer]
+            - button "ThinkingBlock" [ref=e113] [cursor=pointer]
+          - separator [ref=e114]
+        - generic [ref=e115]:
+          - button "Navigation" [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]: Navigation
+            - img [ref=e118]
+          - generic [ref=e120]:
+            - button "Breadcrumbs" [ref=e121] [cursor=pointer]
+            - button "Tabs" [ref=e122] [cursor=pointer]
+            - button "Steps" [ref=e123] [cursor=pointer]
+            - button "Stepper" [ref=e124] [cursor=pointer]
+            - button "Pagination" [ref=e125] [cursor=pointer]
+            - button "Menu" [ref=e126] [cursor=pointer]
+            - button "AppBar" [ref=e127] [cursor=pointer]
+            - button "CommandPalette" [ref=e128] [cursor=pointer]
+            - button "FloatButton" [ref=e129] [cursor=pointer]
+            - button "SkipToContent" [ref=e130] [cursor=pointer]
+          - separator [ref=e131]
+        - generic [ref=e132]:
+          - button "AI / Chat" [ref=e133] [cursor=pointer]:
+            - generic [ref=e134]: AI / Chat
+            - img [ref=e135]
+          - generic [ref=e137]:
+            - button "AIChat" [ref=e138] [cursor=pointer]
+            - button "PromptInput" [ref=e139] [cursor=pointer]
+            - button "PromptBuilder" [ref=e140] [cursor=pointer]
+            - button "ModelSelector" [ref=e141] [cursor=pointer]
+            - button "ToolCallCard" [ref=e142] [cursor=pointer]
+            - button "SuggestionChips" [ref=e143] [cursor=pointer]
+            - button "MentionInput" [ref=e144] [cursor=pointer]
+            - button "DiffViewer" [ref=e145] [cursor=pointer]
+          - separator [ref=e146]
+        - generic [ref=e147]:
+          - button "Other" [ref=e148] [cursor=pointer]:
+            - generic [ref=e149]: Other
+            - img [ref=e150]
+          - generic [ref=e152]:
+            - button "Form" [ref=e153] [cursor=pointer]
+            - button "GradientBorder" [ref=e154] [cursor=pointer]
+            - button "Collapsible" [ref=e155] [cursor=pointer]
+            - button "VisuallyHidden" [ref=e156] [cursor=pointer]
+            - button "CodeBlock" [ref=e157] [cursor=pointer]
+            - button "RichTextEditor" [ref=e158] [cursor=pointer]
+            - button "RSC" [ref=e159] [cursor=pointer]
+          - separator [ref=e160]
+      - generic [ref=e161]:
+        - generic [ref=e162]:
+          - heading "Button" [level=1] [ref=e163]
+          - paragraph [ref=e164]: Primary interaction element.
+        - generic [ref=e165]:
+          - heading "Examples" [level=2] [ref=e166]
+          - generic [ref=e170]:
+            - tablist [ref=e173]:
+              - tab "Variants" [selected] [ref=e174] [cursor=pointer]: Variants
+              - tab "Sizes" [ref=e176] [cursor=pointer]
+              - tab "States" [ref=e177] [cursor=pointer]
+              - tab "With Icons" [ref=e178] [cursor=pointer]
+            - tabpanel "Variants" [ref=e179]:
+              - generic [ref=e180]:
+                - generic [ref=e183]:
+                  - button "Primary" [ref=e185] [cursor=pointer]:
+                    - generic [ref=e187]: Primary
+                  - button "Secondary" [ref=e189] [cursor=pointer]:
+                    - generic [ref=e191]: Secondary
+                  - button "Ghost" [ref=e193] [cursor=pointer]:
+                    - generic [ref=e195]: Ghost
+                  - button "Danger" [ref=e197] [cursor=pointer]:
+                    - generic [ref=e199]: Danger
+                - button "View Code" [ref=e200] [cursor=pointer]
+        - generic [ref=e202]:
+          - heading "API" [level=2] [ref=e203]
+          - generic [ref=e204]:
+            - textbox "Search props…" [ref=e207]
+            - button "Clear" [disabled] [ref=e209]:
+              - generic [ref=e211]: Clear
+          - table [ref=e215]:
+            - rowgroup [ref=e216]:
+              - row "Name Type Default Required Description" [ref=e217]:
+                - columnheader "Name" [ref=e218]
+                - columnheader "Type" [ref=e219]
+                - columnheader "Default" [ref=e220]
+                - columnheader "Required" [ref=e221]
+                - columnheader "Description" [ref=e222]
+            - rowgroup [ref=e223]:
+              - row "as ElementType<any, keyof IntrinsicElements> | undefined — No —" [ref=e224]:
+                - cell "as" [ref=e225]:
+                  - code [ref=e226]: as
+                - cell "ElementType<any, keyof IntrinsicElements> | undefined" [ref=e227]:
+                  - generic [ref=e228]: ElementType<any, keyof IntrinsicElements> | undefined
+                - cell "—" [ref=e229]
+                - cell "No" [ref=e230]:
+                  - generic [ref=e231]: "No"
+                - cell "—" [ref=e232]
+              - row "size Size | ResponsiveSizeConfig | undefined medium No —" [ref=e233]:
+                - cell "size" [ref=e234]:
+                  - code [ref=e235]: size
+                - cell "Size | ResponsiveSizeConfig | undefined" [ref=e236]:
+                  - generic [ref=e237]: Size | ResponsiveSizeConfig | undefined
+                - cell "medium" [ref=e238]:
+                  - code [ref=e239]: medium
+                - cell "No" [ref=e240]:
+                  - generic [ref=e241]: "No"
+                - cell "—" [ref=e242]
+              - row "variant enum primary No —" [ref=e243]:
+                - cell "variant" [ref=e244]:
+                  - code [ref=e245]: variant
+                - cell "enum" [ref=e246]:
+                  - generic [ref=e247]: enum
+                - cell "primary" [ref=e248]:
+                  - code [ref=e249]: primary
+                - cell "No" [ref=e250]:
+                  - generic [ref=e251]: "No"
+                - cell "—" [ref=e252]
+              - row "shape enum default No —" [ref=e253]:
+                - cell "shape" [ref=e254]:
+                  - code [ref=e255]: shape
+                - cell "enum" [ref=e256]:
+                  - generic [ref=e257]: enum
+                - cell "default" [ref=e258]:
+                  - code [ref=e259]: default
+                - cell "No" [ref=e260]:
+                  - generic [ref=e261]: "No"
+                - cell "—" [ref=e262]
+              - 'row "fullWidth boolean | { sm: boolean; md: boolean; lg: boolean; } | undefined false No —" [ref=e263]':
+                - cell "fullWidth" [ref=e264]:
+                  - code [ref=e265]: fullWidth
+                - 'cell "boolean | { sm: boolean; md: boolean; lg: boolean; } | undefined" [ref=e266]':
+                  - generic [ref=e267]: "boolean | { sm: boolean; md: boolean; lg: boolean; } | undefined"
+                - cell "false" [ref=e268]:
+                  - code [ref=e269]: "false"
+                - cell "No" [ref=e270]:
+                  - generic [ref=e271]: "No"
+                - cell "—" [ref=e272]
+              - row "loading boolean | undefined false No —" [ref=e273]:
+                - cell "loading" [ref=e274]:
+                  - code [ref=e275]: loading
+                - cell "boolean | undefined" [ref=e276]:
+                  - generic [ref=e277]: boolean | undefined
+                - cell "false" [ref=e278]:
+                  - code [ref=e279]: "false"
+                - cell "No" [ref=e280]:
+                  - generic [ref=e281]: "No"
+                - cell "—" [ref=e282]
+              - row "loadingText string | undefined — No —" [ref=e283]:
+                - cell "loadingText" [ref=e284]:
+                  - code [ref=e285]: loadingText
+                - cell "string | undefined" [ref=e286]:
+                  - generic [ref=e287]: string | undefined
+                - cell "—" [ref=e288]
+                - cell "No" [ref=e289]:
+                  - generic [ref=e290]: "No"
+                - cell "—" [ref=e291]
+              - row "leftIcon ReactNode — No —" [ref=e292]:
+                - cell "leftIcon" [ref=e293]:
+                  - code [ref=e294]: leftIcon
+                - cell "ReactNode" [ref=e295]:
+                  - generic [ref=e296]: ReactNode
+                - cell "—" [ref=e297]
+                - cell "No" [ref=e298]:
+                  - generic [ref=e299]: "No"
+                - cell "—" [ref=e300]
+              - row "rightIcon ReactNode — No —" [ref=e301]:
+                - cell "rightIcon" [ref=e302]:
+                  - code [ref=e303]: rightIcon
+                - cell "ReactNode" [ref=e304]:
+                  - generic [ref=e305]: ReactNode
+                - cell "—" [ref=e306]
+                - cell "No" [ref=e307]:
+                  - generic [ref=e308]: "No"
+                - cell "—" [ref=e309]
+              - row "aria-label string | undefined — No Defines a string value that labels the current element." [ref=e310]:
+                - cell "aria-label" [ref=e311]:
+                  - code [ref=e312]: aria-label
+                - cell "string | undefined" [ref=e313]:
+                  - generic [ref=e314]: string | undefined
+                - cell "—" [ref=e315]
+                - cell "No" [ref=e316]:
+                  - generic [ref=e317]: "No"
+                - cell "Defines a string value that labels the current element." [ref=e318]
+              - row "glassMorphism boolean | undefined false No —" [ref=e319]:
+                - cell "glassMorphism" [ref=e320]:
+                  - code [ref=e321]: glassMorphism
+                - cell "boolean | undefined" [ref=e322]:
+                  - generic [ref=e323]: boolean | undefined
+                - cell "false" [ref=e324]:
+                  - code [ref=e325]: "false"
+                - cell "No" [ref=e326]:
+                  - generic [ref=e327]: "No"
+                - cell "—" [ref=e328]
+              - row "gradient boolean | undefined false No —" [ref=e329]:
+                - cell "gradient" [ref=e330]:
+                  - code [ref=e331]: gradient
+                - cell "boolean | undefined" [ref=e332]:
+                  - generic [ref=e333]: boolean | undefined
+                - cell "false" [ref=e334]:
+                  - code [ref=e335]: "false"
+                - cell "No" [ref=e336]:
+                  - generic [ref=e337]: "No"
+                - cell "—" [ref=e338]
+              - row "className string | undefined — No —" [ref=e339]:
+                - cell "className" [ref=e340]:
+                  - code [ref=e341]: className
+                - cell "string | undefined" [ref=e342]:
+                  - generic [ref=e343]: string | undefined
+                - cell "—" [ref=e344]
+                - cell "No" [ref=e345]:
+                  - generic [ref=e346]: "No"
+                - cell "—" [ref=e347]
+              - row "style CSSProperties | undefined — No —" [ref=e348]:
+                - cell "style" [ref=e349]:
+                  - code [ref=e350]: style
+                - cell "CSSProperties | undefined" [ref=e351]:
+                  - generic [ref=e352]: CSSProperties | undefined
+                - cell "—" [ref=e353]
+                - cell "No" [ref=e354]:
+                  - generic [ref=e355]: "No"
+                - cell "—" [ref=e356]
+              - row "onClick MouseEventHandler<HTMLButtonElement> | undefined — No —" [ref=e357]:
+                - cell "onClick" [ref=e358]:
+                  - code [ref=e359]: onClick
+                - cell "MouseEventHandler<HTMLButtonElement> | undefined" [ref=e360]:
+                  - generic [ref=e361]: MouseEventHandler<HTMLButtonElement> | undefined
+                - cell "—" [ref=e362]
+                - cell "No" [ref=e363]:
+                  - generic [ref=e364]: "No"
+                - cell "—" [ref=e365]
+        - generic [ref=e366]:
+          - button "Resizable" [ref=e368] [cursor=pointer]:
+            - generic [ref=e369]:
+              - img [ref=e371]
+              - generic [ref=e373]: Resizable
+          - button "Input" [ref=e375] [cursor=pointer]:
+            - generic [ref=e376]:
+              - generic [ref=e377]: Input
+              - img [ref=e379]
+  - contentinfo [ref=e381]:
+    - generic [ref=e382]:
+      - generic [ref=e383]: react-n-design
+      - generic [ref=e384]:
+        - link "GitHub" [ref=e385] [cursor=pointer]:
+          - /url: https://github.com/SoumyoNawab8/react-n-design
+          - img [ref=e386]
+          - text: GitHub
+        - generic [ref=e388]: v1.2.1
+        - generic [ref=e389]: © 2026 react-n-design

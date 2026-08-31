@@ -1,7 +1,7 @@
 'use client';
 import styled, { css, keyframes } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '6px 12px', minHeight: '36px' },
@@ -237,8 +237,7 @@ export const SelectDropdown = styled(motion.div)<{ size?: 'small' | 'medium' | '
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: ${({ theme }) => theme.shadows.soft};
   overflow: hidden;
-  max-height: ${({ size }) =>
-    size === 'small' ? '200px' : size === 'large' ? '300px' : '250px'};
+  max-height: ${({ size }) => (size === 'small' ? '200px' : size === 'large' ? '300px' : '250px')};
 
   /* Touch-friendly for mobile - full screen dropdown */
   @media (max-width: 768px) {

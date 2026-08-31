@@ -67,7 +67,7 @@ export const Timeline = ({ items, mode = 'left', reverse = false, ...props }: Ti
 
   return (
     <StyledTimeline $mode={mode} $reverse={reverse} {...props}>
-      <TimelineConnector $mode={mode} />
+      <TimelineConnector $mode={mode} data-testid="timeline-connector" />
       {displayItems.map((item, index) => {
         const isLast = index === displayItems.length - 1;
         const itemPosition =
@@ -87,7 +87,12 @@ export const Timeline = ({ items, mode = 'left', reverse = false, ...props }: Ti
               </TimelineLabel>
             )}
 
-            <TimelineDot $mode={mode} $position={itemPosition} $color={item.color}>
+            <TimelineDot
+              $mode={mode}
+              $position={itemPosition}
+              $color={item.color}
+              data-testid="timeline-dot"
+            >
               {item.dot && <TimelineDotContent>{item.dot}</TimelineDotContent>}
             </TimelineDot>
 

@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
   small: { wrapperWidth: '40px', wrapperHeight: '22px', knobSize: '16px' },

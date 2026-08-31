@@ -22,9 +22,7 @@ describe('ThinkingBlock', () => {
   });
 
   it('renders with a custom title', () => {
-    renderWithTheme(
-      <ThinkingBlock steps={steps} isThinking={false} title="Reasoning" />
-    );
+    renderWithTheme(<ThinkingBlock steps={steps} isThinking={false} title="Reasoning" />);
     expect(screen.getByText('Reasoning')).toBeInTheDocument();
   });
 
@@ -55,9 +53,7 @@ describe('ThinkingBlock', () => {
 
   it('calls onToggle when expanded/collapsed', async () => {
     const onToggle = vi.fn();
-    renderWithTheme(
-      <ThinkingBlock steps={steps} defaultExpanded onToggle={onToggle} />
-    );
+    renderWithTheme(<ThinkingBlock steps={steps} defaultExpanded onToggle={onToggle} />);
     const header = screen.getByRole('button', { name: /thinking/i });
 
     await userEvent.click(header);
@@ -68,18 +64,14 @@ describe('ThinkingBlock', () => {
   });
 
   it('shows timestamps when showTimestamps is true', () => {
-    renderWithTheme(
-      <ThinkingBlock steps={steps} defaultExpanded showTimestamps />
-    );
+    renderWithTheme(<ThinkingBlock steps={steps} defaultExpanded showTimestamps />);
     // Timestamps should be rendered as localized time strings
     const timestamps = screen.getAllByText(/\d{1,2}:\d{2}:\d{2}/);
     expect(timestamps.length).toBe(2);
   });
 
   it('does not show timestamps when showTimestamps is false', () => {
-    renderWithTheme(
-      <ThinkingBlock steps={steps} defaultExpanded showTimestamps={false} />
-    );
+    renderWithTheme(<ThinkingBlock steps={steps} defaultExpanded showTimestamps={false} />);
     const timestamps = screen.queryAllByText(/\d{1,2}:\d{2}:\d{2}/);
     expect(timestamps.length).toBe(0);
   });
@@ -91,9 +83,7 @@ describe('ThinkingBlock', () => {
 
   it('shows "Analyzing your request..." when isThinking is true and steps is empty', () => {
     renderWithTheme(<ThinkingBlock steps={[]} isThinking defaultExpanded />);
-    expect(
-      screen.getByText('Analyzing your request...')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Analyzing your request...')).toBeInTheDocument();
   });
 
   it('does not show thinking indicator when isThinking is false', () => {

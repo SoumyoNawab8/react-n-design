@@ -1,5 +1,6 @@
 'use client';
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Times } from '../../icons';
 import {
   GalleryContainer,
@@ -86,7 +87,11 @@ const ImageGalleryComponent: React.FC<ImageGalleryProps> = ({
         aria-label="Image gallery"
       >
         {images.map((image, index) => (
-          <ImageWrapper key={`${image.src}-${index}`} role="listitem" onClick={() => openLightbox(index)}>
+          <ImageWrapper
+            key={`${image.src}-${index}`}
+            role="listitem"
+            onClick={() => openLightbox(index)}
+          >
             <GalleryImage
               src={image.src}
               alt={image.alt || ''}
@@ -113,13 +118,8 @@ const ImageGalleryComponent: React.FC<ImageGalleryProps> = ({
             >
               <Times size={24} />
             </LightboxCloseButton>
-            <LightboxImage
-              src={activeImage.src}
-              alt={activeImage.alt || ''}
-            />
-            {activeImage.caption && (
-              <LightboxCaption>{activeImage.caption}</LightboxCaption>
-            )}
+            <LightboxImage src={activeImage.src} alt={activeImage.alt || ''} />
+            {activeImage.caption && <LightboxCaption>{activeImage.caption}</LightboxCaption>}
           </LightboxContent>
         </LightboxOverlay>
       )}

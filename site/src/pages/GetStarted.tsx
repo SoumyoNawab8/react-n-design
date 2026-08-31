@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Card, Stack, Divider, Title, Text } from 'react-n-design';
+import type React from 'react';
 import { FiGithub } from 'react-icons/fi';
+import { Card, Divider, Stack, Text, Title } from 'react-n-design';
+import styled from 'styled-components';
 import { CodePreview } from '../components/CodePreview';
 
 const Page = styled.div`
@@ -59,8 +59,7 @@ export const GetStarted: React.FC = () => {
       <Hero>
         <GradientTitle level={1}>Get Started with react-n-design</GradientTitle>
         <Subtitle as="p" size="large">
-          A modern, accessible, and animated React component library built with
-          neomorphism in mind.
+          A modern, accessible, and animated React component library built with neomorphism in mind.
         </Subtitle>
       </Hero>
 
@@ -68,9 +67,7 @@ export const GetStarted: React.FC = () => {
         <Section variant="outset" bordered>
           <Title level={2}>Installation</Title>
           <Divider />
-          <Text as="p">
-            Install the package via npm or your favourite package manager.
-          </Text>
+          <Text as="p">Install the package via npm or your favourite package manager.</Text>
           <CodePreview code="npm install react-n-design" language="bash" />
         </Section>
 
@@ -78,8 +75,8 @@ export const GetStarted: React.FC = () => {
           <Title level={2}>Quick Start</Title>
           <Divider />
           <Text as="p">
-            Wrap your application with <code>AppThemeProvider</code> and start
-            dropping in components.
+            Wrap your application with <code>AppThemeProvider</code> and start dropping in
+            components.
           </Text>
           <CodePreview
             code={`import { AppThemeProvider, Button } from 'react-n-design';
@@ -99,15 +96,13 @@ function App() {
           <Title level={2}>Theming</Title>
           <Divider />
           <Text as="p">
-            The library ships with <strong>light</strong>, <strong>dark</strong>,
-            and <strong>system</strong> modes out of the box. Use the{' '}
-            <code>useTheme</code> hook to read or switch the current theme at
-            runtime.
+            The library ships with <strong>light</strong>, <strong>dark</strong>, and{' '}
+            <strong>system</strong> modes out of the box. Use the <code>useTheme</code> hook to read
+            or switch the current theme at runtime.
           </Text>
           <Text as="p">
-            Design tokens are exposed as CSS custom properties, so you can
-            override colours, shadows, and radii in your own stylesheets without
-            touching component internals.
+            Design tokens are exposed as CSS custom properties, so you can override colours,
+            shadows, and radii in your own stylesheets without touching component internals.
           </Text>
           <CodePreview
             code={`import { useTheme } from 'react-n-design';
@@ -122,8 +117,8 @@ const { theme, setTheme } = useTheme();
           <Title level={2}>Tree Shaking</Title>
           <Divider />
           <Text as="p">
-            Prefer direct imports for the smallest possible bundle. The library
-            is fully tree-shakeable.
+            Prefer direct imports for the smallest possible bundle. The library is fully
+            tree-shakeable.
           </Text>
           <CodePreview
             code={`// Recommended direct import
@@ -139,8 +134,8 @@ import { Button } from 'react-n-design';`}
           <Title level={2}>Adapters</Title>
           <Divider />
           <Text as="p">
-            An official React Hook Form adapter is available so you can wire
-            complex inputs with minimal boilerplate.
+            An official React Hook Form adapter is available so you can wire complex inputs with
+            minimal boilerplate.
           </Text>
           <CodePreview
             code={`import { useForm } from 'react-hook-form';
@@ -154,17 +149,16 @@ import { InputAdapter } from 'react-n-design/adapters/react-hook-form';`}
           <Divider />
           <Stack gap={8} direction="column">
             <Text as="p">
-              All components are engineered for WCAG 2.1 AA compliance, with
-              robust keyboard navigation and focus management.
+              All components are engineered for WCAG 2.1 AA compliance, with robust keyboard
+              navigation and focus management.
             </Text>
             <Text as="p">
-              Drop the <code>SkipToContent</code> component at the top of your
-              layout to give keyboard and screen-reader users a fast-path to the
-              main content.
+              Drop the <code>SkipToContent</code> component at the top of your layout to give
+              keyboard and screen-reader users a fast-path to the main content.
             </Text>
             <Text as="p">
-              Animations automatically respect <code>prefers-reduced-motion</code>{' '}
-              when the user opts for reduced motion at the OS level.
+              Animations automatically respect <code>prefers-reduced-motion</code> when the user
+              opts for reduced motion at the OS level.
             </Text>
           </Stack>
           <CodePreview
@@ -179,8 +173,8 @@ import { InputAdapter } from 'react-n-design/adapters/react-hook-form';`}
           <Title level={2}>Print & Touch</Title>
           <Divider />
           <Text as="p">
-            Import utility stylesheets to ensure your UI looks great on paper and
-            feels native on touch devices.
+            Import utility stylesheets to ensure your UI looks great on paper and feels native on
+            touch devices.
           </Text>
           <CodePreview
             code={`import 'react-n-design/styles/tokens.css';
@@ -194,8 +188,8 @@ import 'react-n-design/styles/touch.css';`}
           <Title level={2}>Contributing</Title>
           <Divider />
           <Text as="p">
-            Found a bug or have an idea for a new component? We welcome
-            contributions! Open an issue or pull request on GitHub.
+            Found a bug or have an idea for a new component? We welcome contributions! Open an issue
+            or pull request on GitHub.
           </Text>
           <GithubLink
             href="https://github.com/SoumyoNawab8/react-n-design"

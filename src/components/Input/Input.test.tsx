@@ -1,8 +1,8 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import type React from 'react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../styles/theme';
 import { Input } from './Input';
@@ -98,27 +98,27 @@ describe('Input', () => {
       const clearButton = screen.getByRole('button', { name: /clear input/i });
       // Check computed styles for minimum dimensions
       const styles = window.getComputedStyle(clearButton);
-      expect(parseInt(styles.minWidth || '0')).toBeGreaterThanOrEqual(44);
-      expect(parseInt(styles.minHeight || '0')).toBeGreaterThanOrEqual(44);
+      expect(parseInt(styles.minWidth || '0', 10)).toBeGreaterThanOrEqual(44);
+      expect(parseInt(styles.minHeight || '0', 10)).toBeGreaterThanOrEqual(44);
     });
 
     it('clears input value when clicked', async () => {
       renderWithTheme(<ControlledInput allowClear initialValue="clear me" />);
       const input = screen.getByRole('textbox');
       expect(input).toHaveValue('clear me');
-      
+
       const clearButton = screen.getByRole('button', { name: /clear input/i });
       await userEvent.click(clearButton);
-      
+
       expect(input).toHaveValue('');
     });
 
     it('supports custom clear icon', () => {
       renderWithTheme(
-        <ControlledInput 
-          allowClear 
-          initialValue="text" 
-          clearIcon={<span data-testid="custom-clear">Clear</span>} 
+        <ControlledInput
+          allowClear
+          initialValue="text"
+          clearIcon={<span data-testid="custom-clear">Clear</span>}
         />
       );
       expect(screen.getByTestId('custom-clear')).toBeInTheDocument();
@@ -128,7 +128,7 @@ describe('Input', () => {
       renderWithTheme(<ControlledInput allowClear initialValue="clear me" />);
       const clearButton = screen.getByRole('button', { name: /clear input/i });
       await userEvent.type(clearButton, '{enter}');
-      
+
       const input = screen.getByRole('textbox');
       expect(input).toHaveValue('');
     });
@@ -145,7 +145,7 @@ describe('Input', () => {
       const user = userEvent.setup();
       renderWithTheme(<Input label="Name" floatingLabel id="name" />);
       const input = screen.getByLabelText(/name/i);
-      
+
       await user.click(input);
       // Label should float (CSS/animation handled by framer-motion)
       expect(input).toHaveFocus();
@@ -214,10 +214,7 @@ describe('Input', () => {
   describe('Responsive Sizing', () => {
     it('accepts responsive size prop', () => {
       renderWithTheme(
-        <Input 
-          inputSize={{ sm: 'small', md: 'medium', lg: 'large' }} 
-          label="Responsive" 
-        />
+        <Input inputSize={{ sm: 'small', md: 'medium', lg: 'large' }} label="Responsive" />
       );
       const input = screen.getByRole('textbox');
       expect(input).toBeInTheDocument();
@@ -252,8 +249,8 @@ describe('Input', () => {
       const toggle = screen.getByRole('button', { name: /show password/i });
       // Check computed styles for minimum dimensions
       const styles = window.getComputedStyle(toggle);
-      expect(parseInt(styles.minWidth || '0')).toBeGreaterThanOrEqual(44);
-      expect(parseInt(styles.minHeight || '0')).toBeGreaterThanOrEqual(44);
+      expect(parseInt(styles.minWidth || '0', 10)).toBeGreaterThanOrEqual(44);
+      expect(parseInt(styles.minHeight || '0', 10)).toBeGreaterThanOrEqual(44);
     });
   });
 
@@ -263,13 +260,13 @@ describe('Input', () => {
         const [count, setCount] = useState(0);
         return (
           <>
-            <button onClick={() => setCount(c => c + 1)}>Increment</button>
+            <button onClick={() => setCount((c) => c + 1)}>Increment</button>
             <span>Count: {count}</span>
             <Input value="static" readOnly onChange={() => {}} />
           </>
         );
       };
-      
+
       renderWithTheme(<TestComponent />);
       const button = screen.getByRole('button', { name: /increment/i });
       await userEvent.click(button);

@@ -1,7 +1,7 @@
 'use client';
 import styled, { keyframes } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 const stepReveal = keyframes`
   from { opacity: 0; transform: translateY(-4px); }

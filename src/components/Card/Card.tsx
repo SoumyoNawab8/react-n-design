@@ -1,15 +1,16 @@
 'use client';
-import React, { memo, useMemo } from 'react';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import {
   CardBody,
   CardCover,
   CardFooter,
   CardHeader,
   LoadingOverlay,
+  type ResponsiveSpacing,
   ShimmerEffect,
   Spinner,
   StyledCard,
-  type ResponsiveSpacing,
 } from './Card.styles';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -94,9 +95,7 @@ const CardComponent = ({
             <Spinner />
           </LoadingOverlay>
         )}
-        {shimmer && !loading && (
-          <ShimmerEffect aria-hidden="true" />
-        )}
+        {shimmer && !loading && <ShimmerEffect aria-hidden="true" />}
         {cover && <CardCover $aspectRatio={coverAspectRatio}>{cover}</CardCover>}
         <CardBody padding={padding}>
           {header && <CardHeader>{header}</CardHeader>}

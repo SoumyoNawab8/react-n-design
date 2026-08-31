@@ -1,0 +1,12 @@
+{
+  "screenshots": [
+    "site-test-button-v2.png",
+    "site-test-button-code-v2.png",
+    "site-test-accordion.png",
+    "site-test-carousel.png"
+  ],
+  "errors": {
+    "Accordion": [],
+    "Carousel": []
+  }
+}

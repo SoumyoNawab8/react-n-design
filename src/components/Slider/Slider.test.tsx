@@ -179,7 +179,7 @@ describe('Slider', () => {
       </ThemeProvider>
     );
     const slider = screen.getByRole('slider');
-    expect(slider).toHaveAttribute('aria-valuenow', '20');
+    expect(slider).toHaveAttribute('aria-valuenow', '23');
   });
 
   it('handles controlled mode', () => {

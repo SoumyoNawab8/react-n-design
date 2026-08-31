@@ -1,7 +1,7 @@
 'use client';
 import { useCallback, useId, useState } from 'react';
 import { FaBrain, FaChevronDown } from '../../icons';
-import { AnimatePresence, motion } from '../../utils/lazyMotion';
+import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   ThinkingBlockChevron,
   ThinkingBlockContent,
@@ -94,9 +94,7 @@ export const ThinkingBlock = ({
           <FaBrain />
         </ThinkingBlockIcon>
         <ThinkingBlockTitle>{title}</ThinkingBlockTitle>
-        {isThinking && (
-          <ThinkingBlockIndicatorDot aria-hidden="true" />
-        )}
+        {isThinking && <ThinkingBlockIndicatorDot aria-hidden="true" />}
         <ThinkingBlockChevron
           animate={{ rotate: expanded ? 180 : 0 }}
           transition={{ duration: 0.2, ease: 'easeInOut' }}
@@ -132,9 +130,7 @@ export const ThinkingBlock = ({
                     ease: 'easeOut',
                   }}
                 >
-                  <ThinkingBlockStepNumber aria-hidden="true">
-                    {index + 1}
-                  </ThinkingBlockStepNumber>
+                  <ThinkingBlockStepNumber aria-hidden="true">{index + 1}</ThinkingBlockStepNumber>
                   <ThinkingBlockStepText>
                     {step.text}
                     {showTimestamps && step.timestamp && (
@@ -149,9 +145,7 @@ export const ThinkingBlock = ({
               {isThinking && steps.length === 0 && (
                 <ThinkingBlockStep>
                   <ThinkingBlockIndicatorDot aria-hidden="true" />
-                  <ThinkingBlockStepText
-                    style={{ fontStyle: 'italic', opacity: 0.6 }}
-                  >
+                  <ThinkingBlockStepText style={{ fontStyle: 'italic', opacity: 0.6 }}>
                     Analyzing your request...
                   </ThinkingBlockStepText>
                 </ThinkingBlockStep>

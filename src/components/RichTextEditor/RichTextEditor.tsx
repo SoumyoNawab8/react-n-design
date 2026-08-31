@@ -1,12 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef } from 'react';
-import {
-  EditorArea,
-  FormatButton,
-  RichTextEditorWrapper,
-  Toolbar,
-} from './RichTextEditor.styles';
+import { EditorArea, FormatButton, RichTextEditorWrapper, Toolbar } from './RichTextEditor.styles';
 
 export interface RichTextEditorProps {
   value: string;

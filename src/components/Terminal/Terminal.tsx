@@ -48,7 +48,7 @@ export const Terminal: React.FC<TerminalProps> = ({
     if (autoScroll && contentRef.current) {
       contentRef.current.scrollTop = contentRef.current.scrollHeight;
     }
-  }, [lines, autoScroll]);
+  }, [autoScroll]);
 
   const handleCopy = useCallback(async () => {
     const text = lines.map((line) => line.content).join('\n');
@@ -62,7 +62,12 @@ export const Terminal: React.FC<TerminalProps> = ({
   }, [lines]);
 
   return (
-    <TerminalContainer className={className} role="region" aria-label={title} data-testid="terminal">
+    <TerminalContainer
+      className={className}
+      role="region"
+      aria-label={title}
+      data-testid="terminal"
+    >
       <TerminalHeader>
         <TerminalTitleBar>
           <TerminalWindowControls aria-hidden="true">

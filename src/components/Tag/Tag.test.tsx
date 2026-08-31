@@ -133,6 +133,7 @@ describe('Tag', () => {
   it('close button is focusable', () => {
     renderWithTheme(<Tag onClose={() => {}}>Closable</Tag>);
     const closeButton = screen.getByRole('button', { name: 'Remove tag' });
+    closeButton.focus();
     expect(closeButton).toHaveFocus();
   });
 

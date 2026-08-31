@@ -45,9 +45,7 @@ describe('PromptBuilder', () => {
         systemPrompt="You are a helpful assistant."
       />
     );
-    expect(
-      screen.getByDisplayValue('You are a helpful assistant.')
-    ).toBeInTheDocument();
+    expect(screen.getByDisplayValue('You are a helpful assistant.')).toBeInTheDocument();
   });
 
   it('renders all examples', () => {
@@ -61,11 +59,7 @@ describe('PromptBuilder', () => {
   it('calls onChange when typing in system prompt textarea', async () => {
     const onChange = vi.fn();
     renderWithTheme(
-      <ControlledPromptBuilder
-        examples={baseExamples}
-        systemPrompt=""
-        onChange={onChange}
-      />
+      <ControlledPromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />
     );
     const textarea = screen.getByLabelText('System prompt');
     await userEvent.type(textarea, 'New system prompt');
@@ -75,11 +69,7 @@ describe('PromptBuilder', () => {
   it('calls onChange when typing in an example textarea', async () => {
     const onChange = vi.fn();
     renderWithTheme(
-      <ControlledPromptBuilder
-        examples={baseExamples}
-        systemPrompt=""
-        onChange={onChange}
-      />
+      <ControlledPromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />
     );
     const textarea = screen.getByLabelText('User message content');
     await userEvent.clear(textarea);
@@ -95,9 +85,7 @@ describe('PromptBuilder', () => {
 
   it('calls onChange with a new user example when Add Example is clicked', async () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />
-    );
+    renderWithTheme(<PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />);
     const addButton = screen.getByRole('button', { name: /add example/i });
     await userEvent.click(addButton);
     const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
@@ -109,9 +97,7 @@ describe('PromptBuilder', () => {
 
   it('calls onChange with opposite role when Add Turn is clicked', async () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />
-    );
+    renderWithTheme(<PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />);
     const addTurnButton = screen.getByRole('button', { name: /add turn/i });
     await userEvent.click(addTurnButton);
     const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
@@ -122,9 +108,7 @@ describe('PromptBuilder', () => {
 
   it('calls onChange when deleting an example', async () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />
-    );
+    renderWithTheme(<PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />);
     const deleteButton = screen.getAllByRole('button', {
       name: /delete example/i,
     })[0];
@@ -137,9 +121,7 @@ describe('PromptBuilder', () => {
 
   it('moves example up when clicking up button', async () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />
-    );
+    renderWithTheme(<PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />);
     const upButtons = screen.getAllByRole('button', {
       name: /move example up/i,
     });
@@ -156,9 +138,7 @@ describe('PromptBuilder', () => {
 
   it('moves example down when clicking down button', async () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />
-    );
+    renderWithTheme(<PromptBuilder examples={baseExamples} systemPrompt="" onChange={onChange} />);
     const downButtons = screen.getAllByRole('button', {
       name: /move example down/i,
     });
@@ -174,13 +154,9 @@ describe('PromptBuilder', () => {
   });
 
   it('highlights variable placeholders in a distinct color', () => {
-    const { container } = renderWithTheme(
-      <ControlledPromptBuilder examples={baseExamples} />
-    );
+    const { container } = renderWithTheme(<ControlledPromptBuilder examples={baseExamples} />);
     const spans = container.querySelectorAll('span');
-    const variableSpan = Array.from(spans).find(
-      (s) => s.textContent === '{{user_input}}'
-    );
+    const variableSpan = Array.from(spans).find((s) => s.textContent === '{{user_input}}');
     expect(variableSpan).toBeTruthy();
     expect(variableSpan).toHaveStyle('color: #ff6b6b');
   });

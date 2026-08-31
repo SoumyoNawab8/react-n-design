@@ -1,3 +1,9 @@
 'use client';
+export type {
+  SelectOptionGroup,
+  SelectOptionProps,
+  SelectProps,
+  SelectSize,
+  SelectVariant,
+} from './Select';
 export * from './Select';
-export type { SelectProps, SelectOptionProps, SelectOptionGroup, SelectSize, SelectVariant } from './Select';

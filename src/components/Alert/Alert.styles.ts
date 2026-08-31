@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { iconColor } from '../../styles/iconColor';
 import type { Theme } from '../../styles/theme';
 import { motion } from '../../utils/lazyMotion';
-import { iconColor } from '../../styles/iconColor';
 
 type AlertType = 'success' | 'info' | 'warning' | 'error';
 

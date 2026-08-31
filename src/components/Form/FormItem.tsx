@@ -432,6 +432,7 @@ const InternalFormItem: React.FC<FormItemProps> = ({
       $validateStatus={validateStatus}
       $shake={shakeKey > 0}
       $isMobile={isMobile}
+      data-validate-status={validateStatus}
     >
       <FormItemLabel
         $layout={layout}

@@ -120,7 +120,7 @@ export const FileUpload = ({
   const removeFile = useCallback(
     (file: File) => {
       // Revoke preview URL if this file had one
-      const urlKey = `${file.name}-${file.lastModified}-${file.size}`;
+      const _urlKey = `${file.name}-${file.lastModified}-${file.size}`;
       // Note: we don't store per-file URL mapping since File objects can't be WeakMap keys in all envs
       // Instead we revoke all on unmount. This is acceptable for a component-level lifecycle.
       const newFiles = files.filter((f) => f !== file);
@@ -197,6 +197,7 @@ export const FileUpload = ({
         onDrop={handleDrop}
         tabIndex={0}
         onKeyDown={handleKeyDown}
+        data-dragover={isDragOver}
       >
         <FileUploadInput
           ref={inputRef}
@@ -217,7 +218,7 @@ export const FileUpload = ({
         {error && <FileUploadError>{error}</FileUploadError>}
       </FileUploadRegion>
 
-      <FileUploadStatus aria-live="polite" aria-atomic="true">
+      <FileUploadStatus role="status" aria-live="polite" aria-atomic="true">
         {status}
       </FileUploadStatus>
 
@@ -250,7 +251,13 @@ export const FileUpload = ({
                     <FileItemSize>{formatBytes(file.size)}</FileItemSize>
                     {progress > 0 && (
                       <FileItemProgress>
-                        <FileItemProgressBar progress={progress} />
+                        <FileItemProgressBar
+                          progress={progress}
+                          role="progressbar"
+                          aria-valuenow={progress}
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                        />
                       </FileItemProgress>
                     )}
                   </FileItemInfo>

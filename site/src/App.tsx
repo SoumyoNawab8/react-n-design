@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import { ThemeContextProvider } from 'react-n-design';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { FiArrowUp } from 'react-icons/fi';
+import { ThemeContextProvider } from 'react-n-design';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { Layout } from './components/Layout';
+import ComponentsPage from './pages/ComponentsPage';
 import { GetStarted } from './pages/GetStarted';
 import Home from './pages/Home';
-import ComponentsPage from './pages/ComponentsPage';
 
 const RedirectHandler: React.FC = () => {
   const navigate = useNavigate();

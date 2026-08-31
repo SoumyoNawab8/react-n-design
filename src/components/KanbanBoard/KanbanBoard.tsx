@@ -1,20 +1,21 @@
 'use client';
-import React, { memo, useCallback, useMemo } from 'react';
-import { ChevronUp, ChevronDown, ArrowRight } from '../../icons';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { ArrowRight, ChevronDown, ChevronUp } from '../../icons';
 import {
+  ActionButton,
   BoardContainer,
   ColumnContainer,
+  ColumnCount,
   ColumnHeader,
   ColumnTitle,
-  ColumnCount,
-  TaskCard,
-  TaskTitle,
-  TaskDescription,
-  TaskTags,
   Tag,
   TaskActions,
-  ActionButton,
+  TaskCard,
+  TaskDescription,
   TaskList,
+  TaskTags,
+  TaskTitle,
 } from './KanbanBoard.styles';
 
 export interface KanbanTask {
@@ -36,11 +37,7 @@ export interface KanbanBoardProps {
   className?: string;
 }
 
-const KanbanBoardComponent: React.FC<KanbanBoardProps> = ({
-  columns,
-  onChange,
-  className,
-}) => {
+const KanbanBoardComponent: React.FC<KanbanBoardProps> = ({ columns, onChange, className }) => {
   const handleMoveTask = useCallback(
     (columnIndex: number, taskIndex: number, direction: 'up' | 'down') => {
       const newColumns = columns.map((col) => ({ ...col, tasks: [...col.tasks] }));
@@ -80,9 +77,7 @@ const KanbanBoardComponent: React.FC<KanbanBoardProps> = ({
           {column.tasks.map((task, taskIndex) => (
             <TaskCard key={task.id} role="listitem">
               <TaskTitle>{task.title}</TaskTitle>
-              {task.description && (
-                <TaskDescription>{task.description}</TaskDescription>
-              )}
+              {task.description && <TaskDescription>{task.description}</TaskDescription>}
               {task.tags && task.tags.length > 0 && (
                 <TaskTags>
                   {task.tags.map((tag) => (

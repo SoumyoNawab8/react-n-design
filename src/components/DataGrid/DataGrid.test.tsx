@@ -188,9 +188,7 @@ describe('DataGrid', () => {
     });
 
     it('renders with column pinning', () => {
-      renderWithTheme(
-        <DataGrid columns={pinnedColumns} dataSource={mockData} rowKey="id" />
-      );
+      renderWithTheme(<DataGrid columns={pinnedColumns} dataSource={mockData} rowKey="id" />);
       // Should render without crashing
       expect(screen.getByRole('grid')).toBeInTheDocument();
       expect(screen.getByRole('columnheader', { name: /name/i })).toBeInTheDocument();
@@ -212,12 +210,12 @@ describe('DataGrid', () => {
         md: ['name', 'age', 'role'],
         lg: ['name', 'age', 'role'],
       };
-      
+
       renderWithTheme(
-        <DataGrid 
-          columns={columns} 
-          dataSource={mockData} 
-          rowKey="id" 
+        <DataGrid
+          columns={columns}
+          dataSource={mockData}
+          rowKey="id"
           columnVisibility={columnVisibility}
         />
       );
@@ -226,10 +224,8 @@ describe('DataGrid', () => {
     });
 
     it('displays loading skeleton with shimmer effect', () => {
-      renderWithTheme(
-        <DataGrid columns={columns} dataSource={[]} rowKey="id" loading={true} />
-      );
-      
+      renderWithTheme(<DataGrid columns={columns} dataSource={[]} rowKey="id" loading={true} />);
+
       // Should show skeleton rows
       const skeletonRows = screen.getAllByRole('row');
       expect(skeletonRows.length).toBeGreaterThan(0);
@@ -237,11 +233,11 @@ describe('DataGrid', () => {
 
     it('supports expand row with animation', async () => {
       const expandedRowRender = vi.fn(() => <div data-testid="expanded-content">Expanded</div>);
-      
+
       renderWithTheme(
-        <DataGrid 
-          columns={columns} 
-          dataSource={mockData.slice(0, 3)} 
+        <DataGrid
+          columns={columns}
+          dataSource={mockData.slice(0, 3)}
           rowKey="id"
           expandable={{ expandedRowRender }}
         />
@@ -253,9 +249,9 @@ describe('DataGrid', () => {
 
     it('applies custom className and style', () => {
       renderWithTheme(
-        <DataGrid 
-          columns={columns} 
-          dataSource={mockData} 
+        <DataGrid
+          columns={columns}
+          dataSource={mockData}
           rowKey="id"
           className="custom-datagrid"
           style={{ backgroundColor: 'red' }}
@@ -281,38 +277,30 @@ describe('DataGrid', () => {
       };
 
       renderWithTheme(
-        <DataGrid 
-          columns={columns} 
-          dataSource={mockData} 
-          rowKey="id" 
+        <DataGrid
+          columns={columns}
+          dataSource={mockData}
+          rowKey="id"
           columnVisibility={columnVisibility}
         />
       );
 
       // Trigger resize
       fireEvent.resize(window);
-      
+
       // Should render without crashing
       expect(screen.getByRole('grid')).toBeInTheDocument();
     });
 
     it('memoizes display columns correctly', () => {
       const { rerender } = renderWithTheme(
-        <DataGrid 
-          columns={columns} 
-          dataSource={mockData} 
-          rowKey="id" 
-        />
+        <DataGrid columns={columns} dataSource={mockData} rowKey="id" />
       );
 
       // Re-render with same props should not crash
       rerender(
         <ThemeProvider theme={lightTheme}>
-          <DataGrid 
-            columns={columns} 
-            dataSource={mockData} 
-            rowKey="id" 
-          />
+          <DataGrid columns={columns} dataSource={mockData} rowKey="id" />
         </ThemeProvider>
       );
 

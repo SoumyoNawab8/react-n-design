@@ -1,14 +1,6 @@
 'use client';
 import type React from 'react';
-import {
-  memo,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence } from '../../utils/lazyMotion';
 import {
   OverflowShadow,
@@ -96,7 +88,7 @@ const defaultPanelSpring = { stiffness: 300, damping: 30 };
 /**
  * An advanced component for organizing content into switchable views,
  * with support for multiple types, positions, sizes, animations, and responsive overflow.
- * 
+ *
  * v1.2.0 Features:
  * - React.memo() for performance optimization
  * - All 4 tab positions: top, bottom, left, right
@@ -124,9 +116,7 @@ export const Tabs = memo(
     overflow = 'auto',
     collapsible = false,
   }: TabsProps) => {
-    const [internalActiveKey, setInternalActiveKey] = useState(
-      defaultActiveKey || items[0]?.key
-    );
+    const [internalActiveKey, setInternalActiveKey] = useState(defaultActiveKey || items[0]?.key);
     const [isScrolling, setIsScrolling] = useState({ start: false, end: false });
     const [collapsedTabs, setCollapsedTabs] = useState<string[]>([]);
     const [showMoreMenu, setShowMoreMenu] = useState(false);
@@ -144,10 +134,7 @@ export const Tabs = memo(
       () => items.findIndex((item) => item.key === activeKey),
       [items, activeKey]
     );
-    const activeTab = useMemo(
-      () => items[activeIndex],
-      [items, activeIndex]
-    );
+    const activeTab = useMemo(() => items[activeIndex], [items, activeIndex]);
 
     const isVertical = tabPosition === 'left' || tabPosition === 'right';
 
@@ -247,14 +234,11 @@ export const Tabs = memo(
     );
 
     // Use callback for ref assignment instead of inline function
-    const setTabRefCallback = useCallback(
-      (index: number) => {
-        return (el: HTMLButtonElement | null) => {
-          tabRefs.current[index] = el;
-        };
-      },
-      []
-    );
+    const setTabRefCallback = useCallback((index: number) => {
+      return (el: HTMLButtonElement | null) => {
+        tabRefs.current[index] = el;
+      };
+    }, []);
 
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -434,11 +418,7 @@ export const Tabs = memo(
     };
 
     return (
-      <TabsWrapper
-        tabPosition={tabPosition}
-        className={className}
-        style={style}
-      >
+      <TabsWrapper tabPosition={tabPosition} className={className} style={style}>
         <TabBarHeader>
           <TabsContainer>
             {isScrolling.start && overflow !== 'wrap' && (
@@ -478,9 +458,7 @@ export const Tabs = memo(
                     tabIndex={isActive ? 0 : -1}
                     data-size={size}
                   >
-                    {item.icon && (
-                      <span style={{ marginRight: 8 }}>{item.icon}</span>
-                    )}
+                    {item.icon && <span style={{ marginRight: 8 }}>{item.icon}</span>}
                     {item.label}
                     {renderBadge(item.badge)}
                     {isActive && type === 'line' && (
@@ -522,9 +500,7 @@ export const Tabs = memo(
             )}
           </TabsContainer>
 
-          {tabBarExtraContent && (
-            <TabBarExtraContent>{tabBarExtraContent}</TabBarExtraContent>
-          )}
+          {tabBarExtraContent && <TabBarExtraContent>{tabBarExtraContent}</TabBarExtraContent>}
         </TabBarHeader>
 
         {/* More menu for collapsed tabs */}

@@ -2,7 +2,7 @@
 import styled, { css, keyframes } from 'styled-components';
 import { iconColor } from '../../styles/iconColor';
 
-const skeletonPulse = keyframes`
+const _skeletonPulse = keyframes`
   0%, 100% { opacity: 0.7; }
   50% { opacity: 0.4; }
 `;
@@ -113,9 +113,16 @@ export const GridHeaderRow = styled.div<{ variant?: 'default' | 'minimal' | 'gla
 
 export const GridHeaderCell = styled.div.withConfig({
   shouldForwardProp: (prop) =>
-    !['isSortable', 'isSorted', 'width', 'isPinned', 'pinnedLeftWidth', 'pinnedRightWidth', 'variant', 'isResizing'].includes(
-      String(prop)
-    ),
+    ![
+      'isSortable',
+      'isSorted',
+      'width',
+      'isPinned',
+      'pinnedLeftWidth',
+      'pinnedRightWidth',
+      'variant',
+      'isResizing',
+    ].includes(String(prop)),
 })<{
   isSortable?: boolean;
   isSorted?: boolean;

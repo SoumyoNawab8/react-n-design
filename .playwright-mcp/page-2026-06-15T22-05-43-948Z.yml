@@ -1,0 +1,124 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link "react-n-design" [ref=e7] [cursor=pointer]:
+        - /url: /react-n-design
+      - navigation "Primary" [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /react-n-design
+        - link "Components" [ref=e10] [cursor=pointer]:
+          - /url: /react-n-design/components
+        - link "Get Started" [ref=e11] [cursor=pointer]:
+          - /url: /react-n-design/get-started
+        - combobox "Theme" [ref=e12] [cursor=pointer]:
+          - option "Light" [selected]
+          - option "Dark"
+          - option "System"
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e20]:
+        - heading "react-n-design" [level=1] [ref=e22]
+        - paragraph [ref=e24]: A modern, lightweight, and animated React component library. Built with neomorphism, motion, and accessibility in mind.
+        - generic [ref=e26]:
+          - button "Get Started" [ref=e179] [cursor=pointer]:
+            - generic [ref=e181]: Get Started
+          - button "Browse Components" [ref=e183] [cursor=pointer]:
+            - generic [ref=e185]: Browse Components
+      - generic [ref=e36]:
+        - heading "Why react-n-design?" [level=2] [ref=e38]
+        - generic [ref=e39]:
+          - generic [ref=e42] [cursor=pointer]:
+            - generic [ref=e43]: 🧩
+            - heading "80+ Components" [level=4] [ref=e44]
+            - text: A comprehensive set of UI primitives and advanced patterns.
+          - generic [ref=e47] [cursor=pointer]:
+            - generic [ref=e48]: ✨
+            - heading "Neomorphic Design" [level=4] [ref=e49]
+            - text: Soft shadows and subtle depth for a modern tactile feel.
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: 🎨
+            - heading "Theme Ready" [level=4] [ref=e54]
+            - text: Light and dark modes with CSS custom properties.
+          - generic [ref=e57] [cursor=pointer]:
+            - generic [ref=e58]: 🎬
+            - heading "Motion Rich" [level=4] [ref=e59]
+            - text: Framer Motion powered animations with reduced-motion support.
+          - generic [ref=e62] [cursor=pointer]:
+            - generic [ref=e63]: 📘
+            - heading "TypeScript First" [level=4] [ref=e64]
+            - text: Fully typed components with strict generics support.
+          - generic [ref=e67] [cursor=pointer]:
+            - generic [ref=e68]: ♿
+            - heading "Accessible" [level=4] [ref=e69]
+            - text: ARIA labels, keyboard navigation, and focus management.
+      - generic [ref=e71]:
+        - heading "Preview" [level=2] [ref=e73]
+        - generic [ref=e74]:
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - button "Primary" [ref=e187] [cursor=pointer]:
+                - generic [ref=e189]: Primary
+              - button "Secondary" [ref=e191] [cursor=pointer]:
+                - generic [ref=e193]: Secondary
+            - text: Button
+          - generic [ref=e89]:
+            - generic [ref=e92]:
+              - generic [ref=e93]: Neomorphic card
+              - generic [ref=e94]: Subtle shadows & soft UI
+            - text: Card
+          - generic [ref=e97]:
+            - button "Open" [ref=e195] [cursor=pointer]:
+              - generic [ref=e197]: Open
+            - text: Modal
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - tablist [ref=e108]:
+                - tab "Design" [selected] [ref=e109] [cursor=pointer]
+                - tab "Code" [ref=e110] [cursor=pointer]
+              - tabpanel "Design" [ref=e198]: Design tab
+            - text: Tabs
+          - generic [ref=e114]:
+            - table [ref=e118]:
+              - rowgroup [ref=e119]:
+                - row "Name Role" [ref=e120]:
+                  - columnheader "Name" [ref=e121]
+                  - columnheader "Role" [ref=e122]
+              - rowgroup [ref=e123]:
+                - row "Alice Engineer" [ref=e124]:
+                  - cell "Alice" [ref=e125]
+                  - cell "Engineer" [ref=e126]
+                - row "Bob Designer" [ref=e127]:
+                  - cell "Bob" [ref=e128]
+                  - cell "Designer" [ref=e129]
+            - text: Table
+          - generic [ref=e132]:
+            - textbox "Type here..." [ref=e135]
+            - text: Input
+          - generic [ref=e138]:
+            - button "Trigger" [ref=e200] [cursor=pointer]:
+              - generic [ref=e202]: Trigger
+            - text: Toast
+          - generic [ref=e145]:
+            - generic [ref=e149]: "5"
+            - text: Badge
+        - button "Explore All Components" [ref=e204] [cursor=pointer]:
+          - generic [ref=e206]: Explore All Components
+      - generic [ref=e160]:
+        - heading "Built With" [level=3] [ref=e162]
+        - generic [ref=e164]:
+          - generic [ref=e165]: React 18
+          - generic [ref=e166]: TypeScript
+          - generic [ref=e167]: styled-components
+          - generic [ref=e168]: framer-motion
+  - contentinfo [ref=e169]:
+    - generic [ref=e170]:
+      - generic [ref=e171]: react-n-design
+      - generic [ref=e172]:
+        - link "GitHub" [ref=e173] [cursor=pointer]:
+          - /url: https://github.com/SoumyoNawab8/react-n-design
+          - img [ref=e174]
+          - text: GitHub
+        - generic [ref=e176]: v1.2.1
+        - generic [ref=e177]: © 2026 react-n-design

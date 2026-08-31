@@ -1,9 +1,10 @@
-import React, { useRef, useMemo, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
 import { RoundedBox } from '@react-three/drei';
-import * as THREE from 'three';
-import styled, { useTheme as useStyledTheme } from 'styled-components';
+import { Canvas, useFrame } from '@react-three/fiber';
+import type React from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import type { Theme } from 'react-n-design';
+import styled, { useTheme as useStyledTheme } from 'styled-components';
+import * as THREE from 'three';
 
 const HeroContainer = styled.div`
   position: relative;
@@ -26,10 +27,38 @@ interface ShapeConfig {
 
 const shapes: ShapeConfig[] = [
   { type: 'box', position: [-3.2, 1.2, -5], scale: 0.9, speed: 0.8, rotSpeed: 0.3, colorIndex: 0 },
-  { type: 'sphere', position: [3.2, -1.2, -5.5], scale: 0.7, speed: 1.2, rotSpeed: 0.2, colorIndex: 1 },
-  { type: 'torus', position: [0, 2.2, -6.5], scale: 0.85, speed: 0.6, rotSpeed: 0.4, colorIndex: 2 },
-  { type: 'box', position: [2.8, 1.8, -7.5], scale: 0.6, speed: 1.0, rotSpeed: 0.35, colorIndex: 1 },
-  { type: 'sphere', position: [-2.4, -2, -5.5], scale: 0.55, speed: 1.4, rotSpeed: 0.25, colorIndex: 3 },
+  {
+    type: 'sphere',
+    position: [3.2, -1.2, -5.5],
+    scale: 0.7,
+    speed: 1.2,
+    rotSpeed: 0.2,
+    colorIndex: 1,
+  },
+  {
+    type: 'torus',
+    position: [0, 2.2, -6.5],
+    scale: 0.85,
+    speed: 0.6,
+    rotSpeed: 0.4,
+    colorIndex: 2,
+  },
+  {
+    type: 'box',
+    position: [2.8, 1.8, -7.5],
+    scale: 0.6,
+    speed: 1.0,
+    rotSpeed: 0.35,
+    colorIndex: 1,
+  },
+  {
+    type: 'sphere',
+    position: [-2.4, -2, -5.5],
+    scale: 0.55,
+    speed: 1.4,
+    rotSpeed: 0.25,
+    colorIndex: 3,
+  },
   { type: 'torus', position: [0, -1.6, -5], scale: 0.65, speed: 0.9, rotSpeed: 0.3, colorIndex: 0 },
 ];
 

@@ -1,7 +1,7 @@
 'use client';
 import styled from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 export const ModelSelectorWrapper = styled.div`
   position: relative;

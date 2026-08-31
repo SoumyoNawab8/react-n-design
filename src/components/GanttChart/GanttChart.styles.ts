@@ -110,9 +110,6 @@ export const GanttBarProgress = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== '$color',
 })<{ $color?: string }>`
   height: 100%;
-  background-color: ${({ $color, theme }) =>
-    $color
-      ? 'rgba(0,0,0,0.25)'
-      : 'rgba(0,0,0,0.2)'};
+  background-color: ${({ $color, theme }) => ($color ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.2)')};
   border-radius: 8px 0 0 8px;
 `;

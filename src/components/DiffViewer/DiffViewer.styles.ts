@@ -57,7 +57,6 @@ export const DiffLine = styled.div.withConfig({
           background: #28a74515;
           color: #28a745;
         `;
-      case 'same':
       default:
         return css`
           background: transparent;

@@ -458,7 +458,9 @@ export const ValidationTooltip = styled.div<{
   position: absolute;
   ${({ $isMobile }) => ($isMobile ? 'bottom: 100%' : 'right: 100%')}
   ${({ $isMobile }) =>
-    $isMobile ? 'left: 0; right: 0; margin-bottom: 8px;' : 'top: 50%; transform: translateY(-50%); margin-right: 8px;'}
+    $isMobile
+      ? 'left: 0; right: 0; margin-bottom: 8px;'
+      : 'top: 50%; transform: translateY(-50%); margin-right: 8px;'}
   background: ${({ $status }) => {
     switch ($status) {
       case 'error':
@@ -490,9 +492,10 @@ export const ValidationTooltip = styled.div<{
     border-width: ${({ $isMobile }) => ($isMobile ? '6px 6px 0' : '6px 0 6px 6px')};
     border-style: solid;
     border-color: ${({ $status, $isMobile }) => {
-      const bg =
-        $status === 'error' ? '#e53e3e' : $status === 'success' ? '#38a169' : '#dd6b20';
-      return $isMobile ? `${bg} transparent transparent` : `transparent transparent transparent ${bg}`;
+      const bg = $status === 'error' ? '#e53e3e' : $status === 'success' ? '#38a169' : '#dd6b20';
+      return $isMobile
+        ? `${bg} transparent transparent`
+        : `transparent transparent transparent ${bg}`;
     }};
   }
 

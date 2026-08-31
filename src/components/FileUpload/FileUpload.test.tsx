@@ -31,7 +31,7 @@ describe('FileUpload', () => {
     const dropZone = screen.getByLabelText('File upload');
 
     fireEvent.dragOver(dropZone);
-    expect(dropZone).toHaveClass('dragover');
+    expect(dropZone).toHaveAttribute('data-dragover', 'true');
 
     fireEvent.drop(dropZone, {
       dataTransfer: {
@@ -73,15 +73,23 @@ describe('FileUpload', () => {
     renderWithTheme(<FileUpload maxSize={1024} onFilesChange={onFilesChange} />);
     const input = screen.getByLabelText('Choose files');
     await userEvent.upload(input, mockLargeFile);
-    expect(screen.getByText(/exceeds the maximum size/i)).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText(/exceeds the maximum size/i)).toBeInTheDocument());
   });
 
   it('validates file type', async () => {
     const onFilesChange = vi.fn();
     renderWithTheme(<FileUpload accept=".jpg,.png" onFilesChange={onFilesChange} />);
     const input = screen.getByLabelText('Choose files');
-    await userEvent.upload(input, mockFile);
-    expect(screen.getByText(/not an accepted file type/i)).toBeInTheDocument();
+    const fileList = Object.create(input.files);
+    Object.defineProperty(fileList, 'item', {
+      value: (index: number) => [mockFile][index],
+    });
+    Object.defineProperty(fileList, 'length', { value: 1 });
+    Object.setPrototypeOf(fileList, FileList.prototype);
+    fireEvent.change(input, {
+      target: { files: { item: (i: number) => [mockFile][i], length: 1, 0: mockFile } },
+    });
+    await waitFor(() => expect(screen.getByText(/not an accepted file type/i)).toBeInTheDocument());
   });
 
   it('shows accepted file types in hint', () => {
@@ -112,15 +120,15 @@ describe('FileUpload', () => {
     const dropZone = screen.getByLabelText('File upload');
     fireEvent.dragOver(dropZone);
     fireEvent.dragLeave(dropZone);
-    expect(dropZone).not.toHaveClass('dragover');
+    expect(dropZone).toHaveAttribute('data-dragover', 'false');
   });
 
   it('shows upload progress', async () => {
     renderWithTheme(<FileUpload uploadProgress={{ 'test.txt': 50 }} />);
     const input = screen.getByLabelText('Choose files');
     await userEvent.upload(input, mockFile);
-    const progressBar = document.querySelector('[role="progressbar"]');
-    expect(progressBar).toBeTruthy();
+    const progressBar = screen.getByRole('progressbar');
+    expect(progressBar).toBeInTheDocument();
   });
 
   it('formats file sizes correctly', async () => {

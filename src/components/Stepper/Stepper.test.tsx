@@ -14,9 +14,7 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
 }));
 
 const renderWithTheme = (ui: React.ReactElement) =>
-  render(
-    <ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>
-  );
+  render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
 
 describe('Stepper', () => {
   const mockSteps = [
@@ -193,7 +191,9 @@ describe('Stepper', () => {
   });
 
   it('handles vertical orientation on mobile', async () => {
-    renderWithTheme(<Stepper steps={mockSteps} orientation="horizontal" orientationBreakpoint={900} />);
+    renderWithTheme(
+      <Stepper steps={mockSteps} orientation="horizontal" orientationBreakpoint={900} />
+    );
     // Component will try to switch to vertical based on window size
     expect(screen.getByRole('tablist')).toBeInTheDocument();
   });
@@ -259,7 +259,7 @@ describe('Stepper', () => {
 
   it('is memoized for performance optimization', () => {
     const { rerender } = renderWithTheme(<Stepper steps={mockSteps} />);
-    const firstRender = screen.getByRole('region', { name: 'Stepper' });
+    const _firstRender = screen.getByRole('region', { name: 'Stepper' });
     rerender(
       <ThemeProvider theme={lightTheme}>
         <Stepper steps={mockSteps} />

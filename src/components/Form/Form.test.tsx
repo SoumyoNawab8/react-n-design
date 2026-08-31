@@ -14,7 +14,7 @@ describe('Form v1.2.0', () => {
   // ============================================
   // Performance Improvements
   // ============================================
-  
+
   describe('Performance Improvements', () => {
     it('uses useForm hook to create form instance', () => {
       const TestComponent = () => {
@@ -30,14 +30,11 @@ describe('Form v1.2.0', () => {
       const onFinishFailed = vi.fn();
 
       renderWithTheme(
-        <Form
-          onFinishFailed={onFinishFailed}
-          debounceMs={500}
-        >
+        <Form onFinishFailed={onFinishFailed} debounceMs={500}>
           <FormItem
             name="username"
             label="Username"
-            rules={[{ required: true, message: 'Username is required' }]}
+            rules={[{ required: true, min: 5, message: 'Username must be at least 5 characters' }]}
           >
             <input data-testid="username" />
           </FormItem>
@@ -46,28 +43,27 @@ describe('Form v1.2.0', () => {
       );
 
       const input = screen.getByTestId('username');
-      
+
       // Type rapidly
       await user.type(input, 'test');
-      
+
       // Should not show error immediately (debounce)
-      await new Promise(resolve => setTimeout(resolve, 100));
-      expect(screen.queryByText(/username is required/i)).not.toBeInTheDocument();
-      
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      expect(screen.queryByText(/at least 5 characters/i)).not.toBeInTheDocument();
+
       // After debounce period
-      await waitFor(() => {
-        expect(screen.getByText(/username is required/i)).toBeInTheDocument();
-      }, { timeout: 1000 });
+      await waitFor(
+        () => {
+          expect(screen.getByText(/at least 5 characters/i)).toBeInTheDocument();
+        },
+        { timeout: 1000 }
+      );
     });
 
     it('memoizes validation calculations', () => {
       const { rerender } = renderWithTheme(
         <Form>
-          <FormItem
-            name="test"
-            label="Test"
-            rules={[{ required: true }]}
-          >
+          <FormItem name="test" label="Test" rules={[{ required: true }]}>
             <input data-testid="test" />
           </FormItem>
         </Form>
@@ -77,11 +73,7 @@ describe('Form v1.2.0', () => {
       rerender(
         <ThemeProvider theme={lightTheme}>
           <Form>
-            <FormItem
-              name="test"
-              label="Test"
-              rules={[{ required: true }]}
-            >
+            <FormItem name="test" label="Test" rules={[{ required: true }]}>
               <input data-testid="test" />
             </FormItem>
           </Form>
@@ -95,7 +87,7 @@ describe('Form v1.2.0', () => {
   // ============================================
   // Animation Features
   // ============================================
-  
+
   describe('Validation Shake Animation', () => {
     it('triggers shake animation on validation error', async () => {
       const user = userEvent.setup();
@@ -136,12 +128,7 @@ describe('Form v1.2.0', () => {
             label="Email"
             rules={[{ type: 'email', message: 'Invalid email' }]}
           >
-            <input
-              data-testid="email"
-              type="email"
-              value="valid@example.com"
-              onChange={() => {}}
-            />
+            <input data-testid="email" type="email" value="valid@example.com" onChange={() => {}} />
           </FormItem>
           <button type="submit">Submit</button>
         </Form>
@@ -149,7 +136,7 @@ describe('Form v1.2.0', () => {
 
       const input = screen.getByTestId('email');
       await user.type(input, 'test@example.com');
-      
+
       // The input should have validation icon rendered
       expect(input).toBeInTheDocument();
     });
@@ -184,7 +171,7 @@ describe('Form v1.2.0', () => {
   // ============================================
   // Layout Variants
   // ============================================
-  
+
   describe('Layout Improvements', () => {
     it('supports compact layout variant', () => {
       const { container } = renderWithTheme(
@@ -235,7 +222,7 @@ describe('Form v1.2.0', () => {
   // ============================================
   // Responsive Layout
   // ============================================
-  
+
   describe('Responsive Layout', () => {
     it('applies responsiveBreakpoint prop', () => {
       const { container } = renderWithTheme(
@@ -286,16 +273,12 @@ describe('Form v1.2.0', () => {
   // ============================================
   // FormItem Props
   // ============================================
-  
+
   describe('FormItem v1.2.0 Props', () => {
     it('supports showValidationIcon prop', () => {
       renderWithTheme(
         <Form>
-          <FormItem
-            name="test"
-            label="Test"
-            showValidationIcon={false}
-          >
+          <FormItem name="test" label="Test" showValidationIcon={false}>
             <input />
           </FormItem>
         </Form>
@@ -307,11 +290,7 @@ describe('Form v1.2.0', () => {
     it('supports debounceMs prop', () => {
       renderWithTheme(
         <Form>
-          <FormItem
-            name="test"
-            label="Test"
-            debounceMs={500}
-          >
+          <FormItem name="test" label="Test" debounceMs={500}>
             <input />
           </FormItem>
         </Form>
@@ -323,11 +302,7 @@ describe('Form v1.2.0', () => {
     it('supports animateErrors prop', () => {
       renderWithTheme(
         <Form>
-          <FormItem
-            name="test"
-            label="Test"
-            animateErrors={true}
-          >
+          <FormItem name="test" label="Test" animateErrors={true}>
             <input />
           </FormItem>
         </Form>
@@ -340,7 +315,7 @@ describe('Form v1.2.0', () => {
   // ============================================
   // Accessibility
   // ============================================
-  
+
   describe('Accessibility', () => {
     it('is accessible with shake animation', async () => {
       const { container } = renderWithTheme(
@@ -377,7 +352,6 @@ describe('Form v1.2.0', () => {
       );
 
       const input = screen.getByTestId('email-input');
-      expect(input).toHaveAttribute('aria-describedby');
 
       // Trigger error
       const submitButton = screen.getByRole('button', { name: /submit/i });
@@ -387,13 +361,14 @@ describe('Form v1.2.0', () => {
         const errorMessage = screen.getByText(/email is required/i);
         expect(errorMessage).toHaveAttribute('role', 'alert');
       });
+      expect(input).toHaveAttribute('aria-describedby');
     });
   });
 
   // ============================================
   // Original Tests (maintained compatibility)
   // ============================================
-  
+
   describe('Original Functionality', () => {
     it('renders form and is accessible', async () => {
       const { container } = renderWithTheme(

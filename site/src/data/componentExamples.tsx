@@ -1,23 +1,22 @@
 import React from 'react';
-import exampleCodeJson from './exampleCode.json';
 import {
   Accordion,
-  AudioWaveform,
-  Avatar,
-  AvatarGroup,
   AIChat,
   AIThinking,
   Alert,
   AppBar,
+  AudioWaveform,
+  Avatar,
+  AvatarGroup,
   Badge,
   Breadcrumbs,
   Button,
   Calendar,
   Card,
   Carousel,
+  ChartArea,
   ChartBar,
   ChartLine,
-  ChartArea,
   Checkbox,
   CodeBlock,
   Collapsible,
@@ -43,8 +42,8 @@ import {
   Input,
   KanbanBoard,
   Markdown,
-  Menu,
   MentionInput,
+  Menu,
   Modal,
   ModelSelector,
   MultiSelect,
@@ -60,6 +59,7 @@ import {
   Rating,
   Resizable,
   Result,
+  RichTextEditor,
   ScrollArea,
   Segmented,
   Select,
@@ -76,24 +76,24 @@ import {
   Table,
   Tabs,
   Tag,
-  RichTextEditor,
   Terminal,
   Text,
   TextArea,
   ThinkingBlock,
-  TimePicker,
   Timeline,
+  TimePicker,
   Toast,
+  ToastProvider,
   Toggle,
   ToolCallCard,
   Tooltip,
   Tour,
   Tree,
+  useToast,
   VirtualList,
   VisuallyHidden,
-  ToastProvider,
-  useToast,
 } from 'react-n-design';
+import exampleCodeJson from './exampleCode.json';
 
 export interface Example {
   title: string;
@@ -673,7 +673,6 @@ const ControlledFloatButtonExample: React.FC = () => {
   );
 };
 
-
 export const componentExamples: Record<string, Example[]> = {
   Button: [
     {
@@ -719,58 +718,60 @@ export const componentExamples: Record<string, Example[]> = {
         </Stack>
       ),
     },
-      {
+    {
       title: 'Shapes',
       description: 'Default and circle buttons for different layouts.',
       render: () => (
-  <Stack direction="row" gap={12} align="center" wrap={true}>
-    <Button shape="default">Default</Button>
-    <Button shape="circle" aria-label="Add">+</Button>
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center" wrap={true}>
+          <Button shape="default">Default</Button>
+          <Button shape="circle" aria-label="Add">
+            +
+          </Button>
+        </Stack>
+      ),
     },
     {
       title: 'Full Width',
       description: 'Button that spans the full width of its container.',
       render: () => (
-  <div style={{ width: 240 }}>
-    <Button fullWidth={true}>Full-width button</Button>
-  </div>
-),
+        <div style={{ width: 240 }}>
+          <Button fullWidth={true}>Full-width button</Button>
+        </div>
+      ),
     },
     {
       title: 'Loading Text',
       description: 'Loading state with custom text feedback.',
       render: () => (
-  <Stack direction="row" gap={12} align="center" wrap={true}>
-    <Button loading={true} loadingText="Saving...">
-      Save
-    </Button>
-    <Button loading={true} />
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center" wrap={true}>
+          <Button loading={true} loadingText="Saving...">
+            Save
+          </Button>
+          <Button loading={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Glass & Gradient',
       description: 'Glass morphism and gradient visual styles.',
       render: () => (
-  <Stack direction="row" gap={12} align="center" wrap={true}>
-    <Button glassMorphism={true}>Glass</Button>
-    <Button gradient={true}>Gradient</Button>
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center" wrap={true}>
+          <Button glassMorphism={true}>Glass</Button>
+          <Button gradient={true}>Gradient</Button>
+        </Stack>
+      ),
     },
     {
       title: 'Success & Text',
       description: 'Success and text variants for subtle actions.',
       render: () => (
-  <Stack direction="row" gap={12} align="center" wrap={true}>
-    <Button variant="success">Success</Button>
-    <Button variant="text">Text link</Button>
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center" wrap={true}>
+          <Button variant="success">Success</Button>
+          <Button variant="text">Text link</Button>
+        </Stack>
+      ),
     },
-],
+  ],
 
   Input: [
     {
@@ -798,61 +799,45 @@ export const componentExamples: Record<string, Example[]> = {
         </Stack>
       ),
     },
-      {
+    {
       title: 'Label and Helper',
       description: 'Input with a visible label and helper text.',
       render: () => (
-  <Input
-    label="Email address"
-    placeholder="you@example.com"
-    helperText="We will never share your email."
-  />
-),
+        <Input
+          label="Email address"
+          placeholder="you@example.com"
+          helperText="We will never share your email."
+        />
+      ),
     },
     {
       title: 'Add-ons',
       description: 'Input with before and after add-ons.',
       render: () => (
-  <Input
-    placeholder="Amount"
-    addonBefore={<span>$</span>}
-    addonAfter={<span>USD</span>}
-  />
-),
+        <Input placeholder="Amount" addonBefore={<span>$</span>} addonAfter={<span>USD</span>} />
+      ),
     },
     {
       title: 'Prefix and Suffix',
       description: 'Input with inline prefix and suffix icons.',
       render: () => (
-  <Stack direction="column" gap={12}>
-    <Input placeholder="Search" prefix={<Icon name="search" size={16} />} />
-    <Input placeholder="Website" suffix={<Icon name="globe" size={16} />} />
-  </Stack>
-),
+        <Stack direction="column" gap={12}>
+          <Input placeholder="Search" prefix={<Icon name="search" size={16} />} />
+          <Input placeholder="Website" suffix={<Icon name="globe" size={16} />} />
+        </Stack>
+      ),
     },
     {
       title: 'Floating Label',
       description: 'Input with an animated floating label.',
-      render: () => (
-  <Input
-    label="Username"
-    placeholder="Enter username"
-    floatingLabel={true}
-  />
-),
+      render: () => <Input label="Username" placeholder="Enter username" floatingLabel={true} />,
     },
     {
       title: 'Character Count',
       description: 'Input that shows remaining characters with a max length.',
-      render: () => (
-  <Input
-    placeholder="Bio"
-    maxLength={80}
-    characterCount={true}
-  />
-),
+      render: () => <Input placeholder="Bio" maxLength={80} characterCount={true} />,
     },
-],
+  ],
 
   Card: [
     {
@@ -898,81 +883,81 @@ export const componentExamples: Record<string, Example[]> = {
         </Stack>
       ),
     },
-      {
+    {
       title: 'Elevated Variant',
       description: 'Card with an elevated shadow style.',
       render: () => (
-  <Stack direction="row" gap={16} wrap={true}>
-    <Card variant="elevated" style={{ width: 180, padding: 20 }}>
-      Elevated
-    </Card>
-    <Card variant="outset" bordered={true} style={{ width: 180, padding: 20 }}>
-      Bordered outset
-    </Card>
-  </Stack>
-),
+        <Stack direction="row" gap={16} wrap={true}>
+          <Card variant="elevated" style={{ width: 180, padding: 20 }}>
+            Elevated
+          </Card>
+          <Card variant="outset" bordered={true} style={{ width: 180, padding: 20 }}>
+            Bordered outset
+          </Card>
+        </Stack>
+      ),
     },
     {
       title: 'Header and Footer',
       description: 'Card with structured header, body, and footer.',
       render: () => (
-  <Card
-    style={{ maxWidth: 320 }}
-    header={<strong>Plan</strong>}
-    footer={
-      <Button size="small" fullWidth={true}>
-        Select plan
-      </Button>
-    }
-  >
-    <p style={{ margin: 0, color: 'var(--n-color-text-secondary)' }}>
-      Everything you need to ship faster.
-    </p>
-  </Card>
-),
+        <Card
+          style={{ maxWidth: 320 }}
+          header={<strong>Plan</strong>}
+          footer={
+            <Button size="small" fullWidth={true}>
+              Select plan
+            </Button>
+          }
+        >
+          <p style={{ margin: 0, color: 'var(--n-color-text-secondary)' }}>
+            Everything you need to ship faster.
+          </p>
+        </Card>
+      ),
     },
     {
       title: 'Cover Image',
       description: 'Card with a top cover area and aspect ratio.',
       render: () => (
-  <Card
-    variant="outset"
-    cover={<div style={{ background: 'var(--n-color-primary)', height: '100%' }} />}
-    coverAspectRatio="16/9"
-    style={{ maxWidth: 280, padding: 16 }}
-  >
-    <strong>Project preview</strong>
-    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>
-      A cover area adds visual context.
-    </p>
-  </Card>
-),
+        <Card
+          variant="outset"
+          cover={<div style={{ background: 'var(--n-color-primary)', height: '100%' }} />}
+          coverAspectRatio="16/9"
+          style={{ maxWidth: 280, padding: 16 }}
+        >
+          <strong>Project preview</strong>
+          <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>
+            A cover area adds visual context.
+          </p>
+        </Card>
+      ),
     },
     {
       title: 'Hoverable Card',
       description: 'Card that lifts on hover, useful for clickable surfaces.',
       render: () => (
-  <Card hoverable={true} style={{ width: 220, padding: 20 }}>
-    <strong>Hover me</strong>
-    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>
-      The whole card responds to hover.
-    </p>
-  </Card>
-),
+        <Card hoverable={true} style={{ width: 220, padding: 20 }}>
+          <strong>Hover me</strong>
+          <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>
+            The whole card responds to hover.
+          </p>
+        </Card>
+      ),
     },
     {
       title: 'Entrance Animation',
       description: 'Card that animates in with a fade effect.',
       render: () => (
-  <Card entrance="fade" style={{ width: 220, padding: 20 }}>
-    <strong>Fade in</strong>
-    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>
-      This card animates on mount.
-    </p>
-  </Card>
-),
+        <Card entrance="fade" style={{ width: 220, padding: 20 }}>
+          <strong>Fade in</strong>
+          <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>
+            This card animates on mount.
+          </p>
+        </Card>
+      ),
     },
-],
+  ],
 
   Badge: [
     {
@@ -1025,71 +1010,71 @@ export const componentExamples: Record<string, Example[]> = {
         </Stack>
       ),
     },
-      {
+    {
       title: 'Sizes',
       description: 'Badge in small and medium sizes.',
       render: () => (
-  <Stack direction="row" gap={24} align="center">
-    <Badge count={3} size="small">
-      <Icon name="mail" size={24} />
-    </Badge>
-    <Badge count={3} size="medium">
-      <Icon name="mail" size={24} />
-    </Badge>
-  </Stack>
-),
+        <Stack direction="row" gap={24} align="center">
+          <Badge count={3} size="small">
+            <Icon name="mail" size={24} />
+          </Badge>
+          <Badge count={3} size="medium">
+            <Icon name="mail" size={24} />
+          </Badge>
+        </Stack>
+      ),
     },
     {
       title: 'Secondary Variant',
       description: 'Badge rendered with secondary and status variants.',
       render: () => (
-  <Stack direction="row" gap={12} align="center" wrap={true}>
-    <Badge count={1} variant="secondary" />
-    <Badge count={2} variant="success" />
-    <Badge count={3} variant="warning" />
-    <Badge count={4} variant="error" />
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center" wrap={true}>
+          <Badge count={1} variant="secondary" />
+          <Badge count={2} variant="success" />
+          <Badge count={3} variant="warning" />
+          <Badge count={4} variant="error" />
+        </Stack>
+      ),
     },
     {
       title: 'Status Dots',
       description: 'Dot badges used as status indicators.',
       render: () => (
-  <Stack direction="row" gap={24} align="center" wrap={true}>
-    <Badge dot={true} variant="success">
-      <Icon name="user" size={24} />
-    </Badge>
-    <Badge dot={true} variant="warning">
-      <Icon name="bell" size={24} />
-    </Badge>
-    <Badge dot={true} variant="error">
-      <Icon name="heart" size={24} />
-    </Badge>
-  </Stack>
-),
+        <Stack direction="row" gap={24} align="center" wrap={true}>
+          <Badge dot={true} variant="success">
+            <Icon name="user" size={24} />
+          </Badge>
+          <Badge dot={true} variant="warning">
+            <Icon name="bell" size={24} />
+          </Badge>
+          <Badge dot={true} variant="error">
+            <Icon name="heart" size={24} />
+          </Badge>
+        </Stack>
+      ),
     },
     {
       title: 'Standalone',
       description: 'Badge used without a child element.',
       render: () => (
-  <Stack direction="row" gap={12} align="center" wrap={true}>
-    <Badge count={8} />
-    <Badge count={0} showZero={true} />
-    <Badge dot={true} />
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center" wrap={true}>
+          <Badge count={8} />
+          <Badge count={0} showZero={true} />
+          <Badge dot={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Custom Overflow',
       description: 'Badge with a custom overflow limit.',
       render: () => (
-  <Stack direction="row" gap={12} align="center" wrap={true}>
-    <Badge count={50} overflowCount={9} />
-    <Badge count={1000} overflowCount={999} />
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center" wrap={true}>
+          <Badge count={50} overflowCount={9} />
+          <Badge count={1000} overflowCount={999} />
+        </Stack>
+      ),
     },
-],
+  ],
 
   Alert: [
     {
@@ -1128,68 +1113,68 @@ export const componentExamples: Record<string, Example[]> = {
         />
       ),
     },
-      {
+    {
       title: 'Custom Icon',
       description: 'Alert with a manually provided icon.',
       render: () => (
-  <Alert
-    type="info"
-    message="Custom icon"
-    description="You can override the default alert icon."
-    showIcon={true}
-    icon={<Icon name="star" size={20} />}
-  />
-),
+        <Alert
+          type="info"
+          message="Custom icon"
+          description="You can override the default alert icon."
+          showIcon={true}
+          icon={<Icon name="star" size={20} />}
+        />
+      ),
     },
     {
       title: 'Without Icon',
       description: 'Compact alert with the icon hidden.',
       render: () => (
-  <Alert
-    type="success"
-    message="No icon"
-    description="This alert keeps the layout minimal."
-    showIcon={false}
-  />
-),
+        <Alert
+          type="success"
+          message="No icon"
+          description="This alert keeps the layout minimal."
+          showIcon={false}
+        />
+      ),
     },
     {
       title: 'Inline Types',
       description: 'Multiple alert types in a compact row.',
       render: () => (
-  <Stack direction="column" gap={8}>
-    <Alert type="info" message="Info note" showIcon={true} />
-    <Alert type="success" message="Saved" showIcon={true} />
-    <Alert type="error" message="Failed" showIcon={true} />
-  </Stack>
-),
+        <Stack direction="column" gap={8}>
+          <Alert type="info" message="Info note" showIcon={true} />
+          <Alert type="success" message="Saved" showIcon={true} />
+          <Alert type="error" message="Failed" showIcon={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Close Callback',
       description: 'Alert that logs when it is dismissed.',
       render: () => (
-  <Alert
-    type="warning"
-    message="Dismissible"
-    description="Click the close icon to trigger the onClose callback."
-    closable={true}
-    onClose={() => console.log('Alert closed')}
-  />
-),
+        <Alert
+          type="warning"
+          message="Dismissible"
+          description="Click the close icon to trigger the onClose callback."
+          closable={true}
+          onClose={() => console.log('Alert closed')}
+        />
+      ),
     },
     {
       title: 'Error Banner',
       description: 'A prominent error alert with description.',
       render: () => (
-  <Alert
-    type="error"
-    message="Connection lost"
-    description="Please check your network and try again."
-    showIcon={true}
-  />
-),
+        <Alert
+          type="error"
+          message="Connection lost"
+          description="Please check your network and try again."
+          showIcon={true}
+        />
+      ),
     },
-],
+  ],
 
   Tag: [
     {
@@ -1230,61 +1215,61 @@ export const componentExamples: Record<string, Example[]> = {
         </Stack>
       ),
     },
-      {
+    {
       title: 'Sizes',
       description: 'Tags in small and medium sizes.',
       render: () => (
-  <Stack direction="row" gap={8} align="center" wrap={true}>
-    <Tag size="small">Small</Tag>
-    <Tag size="medium">Medium</Tag>
-  </Stack>
-),
+        <Stack direction="row" gap={8} align="center" wrap={true}>
+          <Tag size="small">Small</Tag>
+          <Tag size="medium">Medium</Tag>
+        </Stack>
+      ),
     },
     {
       title: 'Outline Variant',
       description: 'Outline tags for subtle categorization.',
       render: () => (
-  <Stack direction="row" gap={8} wrap={true}>
-    <Tag variant="outline">Design</Tag>
-    <Tag variant="outline">Engineering</Tag>
-    <Tag variant="outline">Product</Tag>
-  </Stack>
-),
+        <Stack direction="row" gap={8} wrap={true}>
+          <Tag variant="outline">Design</Tag>
+          <Tag variant="outline">Engineering</Tag>
+          <Tag variant="outline">Product</Tag>
+        </Stack>
+      ),
     },
     {
       title: 'Custom Colors',
       description: 'Tags with custom CSS colors.',
       render: () => (
-  <Stack direction="row" gap={8} wrap={true}>
-    <Tag color="#6d5dfc">Purple</Tag>
-    <Tag color="#f43f5e">Pink</Tag>
-    <Tag color="#10b981">Teal</Tag>
-  </Stack>
-),
+        <Stack direction="row" gap={8} wrap={true}>
+          <Tag color="#6d5dfc">Purple</Tag>
+          <Tag color="#f43f5e">Pink</Tag>
+          <Tag color="#10b981">Teal</Tag>
+        </Stack>
+      ),
     },
     {
       title: 'With Icons',
       description: 'Tags with leading icons.',
       render: () => (
-  <Stack direction="row" gap={8} wrap={true}>
-    <Tag leftIcon={<Icon name="check" size={14} />}>Verified</Tag>
-    <Tag leftIcon={<Icon name="lock" size={14} />}>Secure</Tag>
-    <Tag leftIcon={<Icon name="star" size={14} />}>Featured</Tag>
-  </Stack>
-),
+        <Stack direction="row" gap={8} wrap={true}>
+          <Tag leftIcon={<Icon name="check" size={14} />}>Verified</Tag>
+          <Tag leftIcon={<Icon name="lock" size={14} />}>Secure</Tag>
+          <Tag leftIcon={<Icon name="star" size={14} />}>Featured</Tag>
+        </Stack>
+      ),
     },
     {
       title: 'Removable Group',
       description: 'A row of tags that can be dismissed.',
       render: () => (
-  <Stack direction="row" gap={8} wrap={true}>
-    <Tag onClose={() => {}}>React</Tag>
-    <Tag onClose={() => {}}>TypeScript</Tag>
-    <Tag onClose={() => {}}>Storybook</Tag>
-  </Stack>
-),
+        <Stack direction="row" gap={8} wrap={true}>
+          <Tag onClose={() => {}}>React</Tag>
+          <Tag onClose={() => {}}>TypeScript</Tag>
+          <Tag onClose={() => {}}>Storybook</Tag>
+        </Stack>
+      ),
     },
-],
+  ],
 
   Switch: [
     {
@@ -1312,57 +1297,50 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Interactive switch with React state.',
       render: () => <ControlledSwitchExample />,
     },
-      {
+    {
       title: 'Label Position',
       description: 'Switch labels placed on the left or right.',
       render: () => (
-  <Stack direction="column" gap={16}>
-    <Switch checked={true} onChange={() => {}} label="Label right" labelPosition="right" />
-    <Switch checked={false} onChange={() => {}} label="Label left" labelPosition="left" />
-  </Stack>
-),
+        <Stack direction="column" gap={16}>
+          <Switch checked={true} onChange={() => {}} label="Label right" labelPosition="right" />
+          <Switch checked={false} onChange={() => {}} label="Label left" labelPosition="left" />
+        </Stack>
+      ),
     },
     {
       title: 'With Icons',
       description: 'Switch with custom on and off knob icons.',
       render: () => (
-  <Stack direction="row" gap={24} align="center">
-    <Switch
-      checked={true}
-      onChange={() => {}}
-      onIcon={<Icon name="check" size={12} />}
-      offIcon={<Icon name="x" size={12} />}
-    />
-    <Switch
-      checked={false}
-      onChange={() => {}}
-      onIcon={<Icon name="check" size={12} />}
-      offIcon={<Icon name="x" size={12} />}
-    />
-  </Stack>
-),
+        <Stack direction="row" gap={24} align="center">
+          <Switch
+            checked={true}
+            onChange={() => {}}
+            onIcon={<Icon name="check" size={12} />}
+            offIcon={<Icon name="x" size={12} />}
+          />
+          <Switch
+            checked={false}
+            onChange={() => {}}
+            onIcon={<Icon name="check" size={12} />}
+            offIcon={<Icon name="x" size={12} />}
+          />
+        </Stack>
+      ),
     },
     {
       title: 'Disabled States',
       description: 'Disabled switches in checked and unchecked states.',
       render: () => (
-  <Stack direction="row" gap={24} align="center">
-    <Switch checked={true} onChange={() => {}} disabled={true} />
-    <Switch checked={false} onChange={() => {}} disabled={true} />
-  </Stack>
-),
+        <Stack direction="row" gap={24} align="center">
+          <Switch checked={true} onChange={() => {}} disabled={true} />
+          <Switch checked={false} onChange={() => {}} disabled={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Loading',
       description: 'Switch showing a loading spinner and non-interactive state.',
-      render: () => (
-        <Switch
-          checked={true}
-          onChange={() => {}}
-          loading={true}
-          label="Syncing"
-        />
-      ),
+      render: () => <Switch checked={true} onChange={() => {}} loading={true} label="Syncing" />,
     },
     {
       title: 'Sizes with Labels',
@@ -1404,36 +1382,36 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Interactive checkbox with React state.',
       render: () => <ControlledCheckboxExample />,
     },
-      {
+    {
       title: 'Indeterminate',
       description: 'Checkbox in an indeterminate state for partial selection.',
       render: () => (
-  <Stack direction="column" gap={12}>
-    <Checkbox indeterminate={true} label="Select all" />
-    <Checkbox checked={true} label="Item selected" />
-  </Stack>
-),
+        <Stack direction="column" gap={12}>
+          <Checkbox indeterminate={true} label="Select all" />
+          <Checkbox checked={true} label="Item selected" />
+        </Stack>
+      ),
     },
     {
       title: 'Form Values',
       description: 'Checkboxes with name and value for form submissions.',
       render: () => (
-  <Stack direction="column" gap={12}>
-    <Checkbox name="features" value="darkMode" label="Dark mode" />
-    <Checkbox name="features" value="notifications" label="Notifications" />
-  </Stack>
-),
+        <Stack direction="column" gap={12}>
+          <Checkbox name="features" value="darkMode" label="Dark mode" />
+          <Checkbox name="features" value="notifications" label="Notifications" />
+        </Stack>
+      ),
     },
     {
       title: 'Without Label',
       description: 'Standalone checkbox with no text label.',
       render: () => (
-  <Stack direction="row" gap={24} align="center">
-    <Checkbox checked={false} />
-    <Checkbox checked={true} />
-    <Checkbox indeterminate={true} />
-  </Stack>
-),
+        <Stack direction="row" gap={24} align="center">
+          <Checkbox checked={false} />
+          <Checkbox checked={true} />
+          <Checkbox indeterminate={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Checked Group',
@@ -1503,81 +1481,81 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Interactive radio group with React state.',
       render: () => <ControlledRadioGroupExample />,
     },
-      {
+    {
       title: 'Disabled Option',
       description: 'Radio group with one option disabled.',
       render: () => (
-      <RadioGroup
-        options={[
-          { value: 'free', label: 'Free' },
-          { value: 'pro', label: 'Pro', disabled: true },
-          { value: 'enterprise', label: 'Enterprise' }
-        ]}
-        value="free"
-      />
-    ),
+        <RadioGroup
+          options={[
+            { value: 'free', label: 'Free' },
+            { value: 'pro', label: 'Pro', disabled: true },
+            { value: 'enterprise', label: 'Enterprise' },
+          ]}
+          value="free"
+        />
+      ),
     },
     {
       title: 'Preselected Value',
       description: 'Radio group with a default selection set via the value prop.',
       render: () => (
-      <RadioGroup
-        options={[
-          { value: 'email', label: 'Email' },
-          { value: 'sms', label: 'SMS' },
-          { value: 'push', label: 'Push' }
-        ]}
-        value="sms"
-      />
-    ),
+        <RadioGroup
+          options={[
+            { value: 'email', label: 'Email' },
+            { value: 'sms', label: 'SMS' },
+            { value: 'push', label: 'Push' },
+          ]}
+          value="sms"
+        />
+      ),
     },
     {
       title: 'Named Group',
       description: 'Radio group with a shared form name for accessible grouping.',
       render: () => (
-      <RadioGroup
-        name="notification-channel"
-        options={[
-          { value: 'email', label: 'Email' },
-          { value: 'sms', label: 'SMS' },
-          { value: 'push', label: 'Push' }
-        ]}
-        value="email"
-      />
-    ),
+        <RadioGroup
+          name="notification-channel"
+          options={[
+            { value: 'email', label: 'Email' },
+            { value: 'sms', label: 'SMS' },
+            { value: 'push', label: 'Push' },
+          ]}
+          value="email"
+        />
+      ),
     },
     {
       title: 'Horizontal States',
       description: 'Horizontal layout mixing enabled and disabled options.',
       render: () => (
-      <RadioGroup
-        orientation="horizontal"
-        options={[
-          { value: 'active', label: 'Active' },
-          { value: 'paused', label: 'Paused' },
-          { value: 'archived', label: 'Archived', disabled: true }
-        ]}
-        value="active"
-      />
-    ),
+        <RadioGroup
+          orientation="horizontal"
+          options={[
+            { value: 'active', label: 'Active' },
+            { value: 'paused', label: 'Paused' },
+            { value: 'archived', label: 'Archived', disabled: true },
+          ]}
+          value="active"
+        />
+      ),
     },
     {
       title: 'Vertical in Card',
       description: 'Vertical radio group wrapped in a card for layout context.',
       render: () => (
-      <Card variant="outset" style={{ padding: 20, maxWidth: 320 }}>
-        <RadioGroup
-          options={[
-            { value: 'monthly', label: 'Monthly' },
-            { value: 'yearly', label: 'Yearly' },
-            { value: 'lifetime', label: 'Lifetime' }
-          ]}
-          value="yearly"
-        />
-      </Card>
-    ),
+        <Card variant="outset" style={{ padding: 20, maxWidth: 320 }}>
+          <RadioGroup
+            options={[
+              { value: 'monthly', label: 'Monthly' },
+              { value: 'yearly', label: 'Yearly' },
+              { value: 'lifetime', label: 'Lifetime' },
+            ]}
+            value="yearly"
+          />
+        </Card>
+      ),
     },
-],
+  ],
 
   Select: [
     {
@@ -1610,95 +1588,95 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Interactive select with React state.',
       render: () => <ControlledSelectExample />,
     },
-      {
+    {
       title: 'Grouped Options',
       description: 'Select with categorized option groups.',
       render: () => (
-      <Select
-        options={[
-          {
-            label: 'Frontend',
-            options: [
-              { value: 'react', label: 'React' },
-              { value: 'vue', label: 'Vue' }
-            ]
-          },
-          {
-            label: 'Backend',
-            options: [
-              { value: 'node', label: 'Node.js' },
-              { value: 'go', label: 'Go' }
-            ]
-          }
-        ]}
-        placeholder="Pick a stack"
-        style={{ width: 240 }}
-      />
-    ),
+        <Select
+          options={[
+            {
+              label: 'Frontend',
+              options: [
+                { value: 'react', label: 'React' },
+                { value: 'vue', label: 'Vue' },
+              ],
+            },
+            {
+              label: 'Backend',
+              options: [
+                { value: 'node', label: 'Node.js' },
+                { value: 'go', label: 'Go' },
+              ],
+            },
+          ]}
+          placeholder="Pick a stack"
+          style={{ width: 240 }}
+        />
+      ),
     },
     {
       title: 'Clearable Selection',
       description: 'Select with a default value and a clear button.',
       render: () => (
-      <Select
-        options={[
-          { value: 'draft', label: 'Draft' },
-          { value: 'published', label: 'Published' }
-        ]}
-        defaultValue="published"
-        allowClear
-        style={{ width: 220 }}
-      />
-    ),
+        <Select
+          options={[
+            { value: 'draft', label: 'Draft' },
+            { value: 'published', label: 'Published' },
+          ]}
+          defaultValue="published"
+          allowClear
+          style={{ width: 220 }}
+        />
+      ),
     },
     {
       title: 'Searchable',
       description: 'Select with a search input to filter long option lists.',
       render: () => (
-      <Select
-        options={[
-          { value: 'apple', label: 'Apple' },
-          { value: 'banana', label: 'Banana' },
-          { value: 'cherry', label: 'Cherry' },
-          { value: 'date', label: 'Date' }
-        ]}
-        placeholder="Search fruit"
-        searchable
-        style={{ width: 240 }}
-      />
-    ),
+        <Select
+          options={[
+            { value: 'apple', label: 'Apple' },
+            { value: 'banana', label: 'Banana' },
+            { value: 'cherry', label: 'Cherry' },
+            { value: 'date', label: 'Date' },
+          ]}
+          placeholder="Search fruit"
+          searchable
+          style={{ width: 240 }}
+        />
+      ),
     },
     {
       title: 'Loading',
       description: 'Select in a loading state with a spinner.',
       render: () => (
-      <Select
-        options={[
-          { value: '1', label: 'Option One' },
-          { value: '2', label: 'Option Two' }
-        ]}
-        placeholder="Loading options…"
-        loading
-        style={{ width: 220 }}
-      />
-    ),
+        <Select
+          options={[
+            { value: '1', label: 'Option One' },
+            { value: '2', label: 'Option Two' },
+          ]}
+          placeholder="Loading options…"
+          loading
+          style={{ width: 220 }}
+        />
+      ),
     },
     {
       title: 'Error State',
       description: 'Select showing an error validation state.',
       render: () => (
-      <Select
-        options={[
-          { value: 'valid', label: 'Valid choice' },
-          { value: 'invalid', label: 'Invalid choice', disabled: true }
-        ]}
-        placeholder="Required field"
-        error
-        style={{ width: 240 }}
-      />
-    ),
+        <Select
+          options={[
+            { value: 'valid', label: 'Valid choice' },
+            { value: 'invalid', label: 'Invalid choice', disabled: true },
+          ]}
+          placeholder="Required field"
+          error
+          style={{ width: 240 }}
+        />
+      ),
     },
-],
+  ],
 
   ThinkingBlock: [
     {
@@ -1743,77 +1721,71 @@ export const componentExamples: Record<string, Example[]> = {
         />
       ),
     },
-      {
+    {
       title: 'Collapsed by Default',
       description: 'Thinking block that starts in a collapsed state.',
       render: () => (
-      <ThinkingBlock
-        defaultExpanded={false}
-        title="Reasoning"
-        steps={[
-          { id: '1', text: 'Analyzing request' },
-          { id: '2', text: 'Retrieving data' }
-        ]}
-      />
-    ),
+        <ThinkingBlock
+          defaultExpanded={false}
+          title="Reasoning"
+          steps={[
+            { id: '1', text: 'Analyzing request' },
+            { id: '2', text: 'Retrieving data' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Custom Title',
       description: 'Thinking block with a custom header title.',
       render: () => (
-      <ThinkingBlock
-        title="How the AI decided"
-        steps={[
-          { id: '1', text: 'Parsed user intent' },
-          { id: '2', text: 'Ranked candidate answers' },
-          { id: '3', text: 'Selected best response' }
-        ]}
-      />
-    ),
+        <ThinkingBlock
+          title="How the AI decided"
+          steps={[
+            { id: '1', text: 'Parsed user intent' },
+            { id: '2', text: 'Ranked candidate answers' },
+            { id: '3', text: 'Selected best response' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Empty Thinking',
       description: 'Thinking block shown while no steps have completed yet.',
-      render: () => (
-      <ThinkingBlock
-        isThinking={true}
-        title="Processing request"
-        steps={[]}
-      />
-    ),
+      render: () => <ThinkingBlock isThinking={true} title="Processing request" steps={[]} />,
     },
     {
       title: 'Long Reasoning Chain',
       description: 'Thinking block displaying many sequential reasoning steps.',
       render: () => (
-      <ThinkingBlock
-        title="Step-by-step reasoning"
-        steps={[
-          { id: '1', text: 'Understand the question' },
-          { id: '2', text: 'Break down into sub-tasks' },
-          { id: '3', text: 'Search knowledge base' },
-          { id: '4', text: 'Evaluate candidate answers' },
-          { id: '5', text: 'Format final response' }
-        ]}
-      />
-    ),
+        <ThinkingBlock
+          title="Step-by-step reasoning"
+          steps={[
+            { id: '1', text: 'Understand the question' },
+            { id: '2', text: 'Break down into sub-tasks' },
+            { id: '3', text: 'Search knowledge base' },
+            { id: '4', text: 'Evaluate candidate answers' },
+            { id: '5', text: 'Format final response' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Timestamped Steps',
       description: 'Reasoning steps with recorded timestamps.',
       render: () => (
-      <ThinkingBlock
-        title="Agent trace"
-        showTimestamps={true}
-        steps={[
-          { id: '1', text: 'Received prompt', timestamp: Date.now() - 5000 },
-          { id: '2', text: 'Called search tool', timestamp: Date.now() - 3000 },
-          { id: '3', text: 'Synthesized answer', timestamp: Date.now() - 1000 }
-        ]}
-      />
-    ),
+        <ThinkingBlock
+          title="Agent trace"
+          showTimestamps={true}
+          steps={[
+            { id: '1', text: 'Received prompt', timestamp: Date.now() - 5000 },
+            { id: '2', text: 'Called search tool', timestamp: Date.now() - 3000 },
+            { id: '3', text: 'Synthesized answer', timestamp: Date.now() - 1000 },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   Tabs: [
     {
@@ -1847,75 +1819,92 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Tabs controlled by React state with change handler.',
       render: () => <ControlledTabsExample />,
     },
-      {
+    {
       title: 'Left Position',
       description: 'Tabs with the tab bar positioned on the left.',
       render: () => (
-      <Tabs
-        tabPosition="left"
-        items={[
-          { key: '1', label: 'General', children: <p>General settings</p> },
-          { key: '2', label: 'Security', children: <p>Security settings</p> },
-          { key: '3', label: 'Billing', children: <p>Billing settings</p> }
-        ]}
-      />
-    ),
+        <Tabs
+          tabPosition="left"
+          items={[
+            { key: '1', label: 'General', children: <p>General settings</p> },
+            { key: '2', label: 'Security', children: <p>Security settings</p> },
+            { key: '3', label: 'Billing', children: <p>Billing settings</p> },
+          ]}
+        />
+      ),
     },
     {
       title: 'Badges and Icons',
       description: 'Tabs with badge counts and leading icons.',
       render: () => (
-      <Tabs
-        items={[
-          { key: '1', label: 'Inbox', icon: <Icon name="mail" size={14} />, badge: 3, children: <p>Inbox content</p> },
-          { key: '2', label: 'Sent', icon: <Icon name="send" size={14} />, children: <p>Sent content</p> },
-          { key: '3', label: 'Archive', icon: <Icon name="archive" size={14} />, badge: { dot: true }, children: <p>Archive content</p> }
-        ]}
-      />
-    ),
+        <Tabs
+          items={[
+            {
+              key: '1',
+              label: 'Inbox',
+              icon: <Icon name="mail" size={14} />,
+              badge: 3,
+              children: <p>Inbox content</p>,
+            },
+            {
+              key: '2',
+              label: 'Sent',
+              icon: <Icon name="send" size={14} />,
+              children: <p>Sent content</p>,
+            },
+            {
+              key: '3',
+              label: 'Archive',
+              icon: <Icon name="archive" size={14} />,
+              badge: { dot: true },
+              children: <p>Archive content</p>,
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Disabled Tab',
       description: 'Tab set with one disabled panel.',
       render: () => (
-      <Tabs
-        items={[
-          { key: '1', label: 'Preview', children: <p>Preview content</p> },
-          { key: '2', label: 'Settings', disabled: true, children: <p>Settings content</p> },
-          { key: '3', label: 'Share', children: <p>Share content</p> }
-        ]}
-      />
-    ),
+        <Tabs
+          items={[
+            { key: '1', label: 'Preview', children: <p>Preview content</p> },
+            { key: '2', label: 'Settings', disabled: true, children: <p>Settings content</p> },
+            { key: '3', label: 'Share', children: <p>Share content</p> },
+          ]}
+        />
+      ),
     },
     {
       title: 'Extra Toolbar Content',
       description: 'Tabs with an action button in the tab bar.',
       render: () => (
-      <Tabs
-        tabBarExtraContent={<Button size="small">New</Button>}
-        items={[
-          { key: '1', label: 'Projects', children: <p>Projects list</p> },
-          { key: '2', label: 'Teams', children: <p>Teams list</p> }
-        ]}
-      />
-    ),
+        <Tabs
+          tabBarExtraContent={<Button size="small">New</Button>}
+          items={[
+            { key: '1', label: 'Projects', children: <p>Projects list</p> },
+            { key: '2', label: 'Teams', children: <p>Teams list</p> },
+          ]}
+        />
+      ),
     },
     {
       title: 'Small and Centered',
       description: 'Compact centered tabs for narrow layouts.',
       render: () => (
-      <Tabs
-        size="small"
-        centered
-        items={[
-          { key: '1', label: 'Day', children: <p>Day view</p> },
-          { key: '2', label: 'Week', children: <p>Week view</p> },
-          { key: '3', label: 'Month', children: <p>Month view</p> }
-        ]}
-      />
-    ),
+        <Tabs
+          size="small"
+          centered
+          items={[
+            { key: '1', label: 'Day', children: <p>Day view</p> },
+            { key: '2', label: 'Week', children: <p>Week view</p> },
+            { key: '3', label: 'Month', children: <p>Month view</p> },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   Table: [
     {
@@ -1969,90 +1958,95 @@ export const componentExamples: Record<string, Example[]> = {
         );
       },
     },
-      {
+    {
       title: 'Sortable Columns',
       description: 'Table with sortable column headers.',
       render: () => {
-      const cols = [
-        { key: 'name', title: 'Name', dataIndex: 'name' as const, sorter: (a, b) => a.name.localeCompare(b.name) },
-        { key: 'age', title: 'Age', dataIndex: 'age' as const, sorter: (a, b) => a.age - b.age }
-      ];
-      const data = [
-        { name: 'Alice', age: 34 },
-        { name: 'Bob', age: 27 },
-        { name: 'Carol', age: 42 }
-      ];
-      return <Table columns={cols} dataSource={data} pagination={false} />;
-    },
+        const cols = [
+          {
+            key: 'name',
+            title: 'Name',
+            dataIndex: 'name' as const,
+            sorter: (a, b) => a.name.localeCompare(b.name),
+          },
+          { key: 'age', title: 'Age', dataIndex: 'age' as const, sorter: (a, b) => a.age - b.age },
+        ];
+        const data = [
+          { name: 'Alice', age: 34 },
+          { name: 'Bob', age: 27 },
+          { name: 'Carol', age: 42 },
+        ];
+        return <Table columns={cols} dataSource={data} pagination={false} />;
+      },
     },
     {
       title: 'Custom Cell Render',
       description: 'Table with a status column rendered as tags.',
       render: () => {
-      const cols = [
-        { key: 'task', title: 'Task', dataIndex: 'task' as const },
-        {
-          key: 'status',
-          title: 'Status',
-          dataIndex: 'status' as const,
-          render: (status) => <Tag color={status === 'done' ? 'green' : 'orange'}>{status}</Tag>
-        }
-      ];
-      const data = [
-        { task: 'Design review', status: 'done' },
-        { task: 'Write tests', status: 'in progress' }
-      ];
-      return <Table columns={cols} dataSource={data} pagination={false} />;
-    },
+        const cols = [
+          { key: 'task', title: 'Task', dataIndex: 'task' as const },
+          {
+            key: 'status',
+            title: 'Status',
+            dataIndex: 'status' as const,
+            render: (status) => <Tag color={status === 'done' ? 'green' : 'orange'}>{status}</Tag>,
+          },
+        ];
+        const data = [
+          { task: 'Design review', status: 'done' },
+          { task: 'Write tests', status: 'in progress' },
+        ];
+        return <Table columns={cols} dataSource={data} pagination={false} />;
+      },
     },
     {
       title: 'Sticky Header',
       description: 'Table with a sticky header inside a scrollable container.',
       render: () => {
-      const cols = [
-        { key: 'id', title: 'ID', dataIndex: 'id' as const },
-        { key: 'item', title: 'Item', dataIndex: 'item' as const }
-      ];
-      const data = Array.from({ length: 20 }, (_, i) => ({ id: i + 1, item: `Item ${i + 1}` }));
-      return (
-        <div style={{ maxHeight: 200, overflow: 'auto' }}>
-          <Table columns={cols} dataSource={data} stickyHeader pagination={false} />
-        </div>
-      );
-    },
+        const cols = [
+          { key: 'id', title: 'ID', dataIndex: 'id' as const },
+          { key: 'item', title: 'Item', dataIndex: 'item' as const },
+        ];
+        const data = Array.from({ length: 20 }, (_, i) => ({ id: i + 1, item: `Item ${i + 1}` }));
+        return (
+          <div style={{ maxHeight: 200, overflow: 'auto' }}>
+            <Table columns={cols} dataSource={data} stickyHeader pagination={false} />
+          </div>
+        );
+      },
     },
     {
       title: 'Pagination',
       description: 'Table with page navigation for many rows.',
       render: () => {
-      const cols = [
-        { key: 'id', title: 'ID', dataIndex: 'id' as const },
-        { key: 'name', title: 'Name', dataIndex: 'name' as const }
-      ];
-      const data = Array.from({ length: 35 }, (_, i) => ({ id: i + 1, name: `User ${i + 1}` }));
-      return <Table columns={cols} dataSource={data} pagination={{ pageSize: 5 }} />;
-    },
+        const cols = [
+          { key: 'id', title: 'ID', dataIndex: 'id' as const },
+          { key: 'name', title: 'Name', dataIndex: 'name' as const },
+        ];
+        const data = Array.from({ length: 35 }, (_, i) => ({ id: i + 1, name: `User ${i + 1}` }));
+        return <Table columns={cols} dataSource={data} pagination={{ pageSize: 5 }} />;
+      },
     },
     {
       title: 'Empty State',
       description: 'Table with a custom empty message.',
       render: () => {
-      const cols = [
-        { key: 'name', title: 'Name', dataIndex: 'name' as const },
-        { key: 'role', title: 'Role', dataIndex: 'role' as const }
-      ];
-      return (
-        <Table
-          columns={cols}
-          dataSource={[]}
-          pagination={false}
-          emptyTitle="No team members"
-          emptyDescription="Invite teammates to see them here."
-        />
-      );
+        const cols = [
+          { key: 'name', title: 'Name', dataIndex: 'name' as const },
+          { key: 'role', title: 'Role', dataIndex: 'role' as const },
+        ];
+        return (
+          <Table
+            columns={cols}
+            dataSource={[]}
+            pagination={false}
+            emptyTitle="No team members"
+            emptyDescription="Invite teammates to see them here."
+          />
+        );
+      },
     },
-    },
-],
+  ],
 
   Modal: [
     {
@@ -2070,58 +2064,60 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Modal with custom footer content.',
       render: () => <ModalWithFooterExample />,
     },
-      {
+    {
       title: 'Full Screen',
       description: 'Modal that fills the entire viewport.',
       render: () => (
-      <Modal isOpen={true} onClose={() => {}} title="Full Screen" fullScreen>
-        <p>This modal takes up the whole screen.</p>
-      </Modal>
-    ),
+        <Modal isOpen={true} onClose={() => {}} title="Full Screen" fullScreen>
+          <p>This modal takes up the whole screen.</p>
+        </Modal>
+      ),
     },
     {
       title: 'Glass Variant',
       description: 'Modal with a glassmorphism backdrop variant.',
       render: () => (
-      <Modal isOpen={true} onClose={() => {}} title="Glass" variant="glass">
-        <p>Glass modal content.</p>
-      </Modal>
-    ),
+        <Modal isOpen={true} onClose={() => {}} title="Glass" variant="glass">
+          <p>Glass modal content.</p>
+        </Modal>
+      ),
     },
     {
       title: 'Top Position',
       description: 'Modal aligned to the top of the viewport.',
       render: () => (
-      <Modal isOpen={true} onClose={() => {}} title="Top Aligned" position="top">
-        <p>This modal is positioned at the top.</p>
-      </Modal>
-    ),
+        <Modal isOpen={true} onClose={() => {}} title="Top Aligned" position="top">
+          <p>This modal is positioned at the top.</p>
+        </Modal>
+      ),
     },
     {
       title: 'Prevent Backdrop Click',
       description: 'Modal that does not close when clicking the backdrop.',
       render: () => (
-      <Modal isOpen={true} onClose={() => {}} title="Confirm" preventBackdropClick>
-        <p>Clicking outside will not close this modal.</p>
-        <Button size="small" onClick={() => {}} style={{ marginTop: 12 }}>Understood</Button>
-      </Modal>
-    ),
+        <Modal isOpen={true} onClose={() => {}} title="Confirm" preventBackdropClick>
+          <p>Clicking outside will not close this modal.</p>
+          <Button size="small" onClick={() => {}} style={{ marginTop: 12 }}>
+            Understood
+          </Button>
+        </Modal>
+      ),
     },
     {
       title: 'Custom Backdrop',
       description: 'Modal with a custom backdrop color style.',
       render: () => (
-      <Modal
-        isOpen={true}
-        onClose={() => {}}
-        title="Custom Backdrop"
-        backdropStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.85)' }}
-      >
-        <p>Darker backdrop for focused attention.</p>
-      </Modal>
-    ),
+        <Modal
+          isOpen={true}
+          onClose={() => {}}
+          title="Custom Backdrop"
+          backdropStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.85)' }}
+        >
+          <p>Darker backdrop for focused attention.</p>
+        </Modal>
+      ),
     },
-],
+  ],
 
   SkipToContent: [
     {
@@ -2134,7 +2130,7 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Skip link with a custom accessible label.',
       render: () => <SkipToContent targetId="main-content" label="Jump to main content" />,
     },
-      {
+    {
       title: 'Default Target',
       description: 'Skip link using the default main content target.',
       render: () => <SkipToContent />,
@@ -2153,21 +2149,20 @@ export const componentExamples: Record<string, Example[]> = {
       title: 'In Page Context',
       description: 'Skip link placed inside a page layout container.',
       render: () => (
-      <Card variant="outset" style={{ padding: 20 }}>
-        <SkipToContent targetId="content" label="Jump to content" />
-        <p style={{ marginTop: 12, color: 'var(--n-color-text-secondary)' }}>
-          Tab into the card to reveal the skip link.
-        </p>
-      </Card>
-    ),
+        <Card variant="outset" style={{ padding: 20 }}>
+          <SkipToContent targetId="content" label="Jump to content" />
+          <p style={{ marginTop: 12, color: 'var(--n-color-text-secondary)' }}>
+            Tab into the card to reveal the skip link.
+          </p>
+        </Card>
+      ),
     },
     {
       title: 'Section Target',
       description: 'Skip link targeting a secondary section id.',
       render: () => <SkipToContent targetId="section-details" label="Skip to section details" />,
     },
-],
-
+  ],
 
   Skeleton: [
     {
@@ -2206,68 +2201,68 @@ export const componentExamples: Record<string, Example[]> = {
         </Skeleton>
       ),
     },
-      {
+    {
       title: 'Card Skeleton',
       description: 'A realistic card placeholder layout with title, body lines, and a media block.',
       render: () => (
-  <Card style={{ width: 260, padding: 16 }}>
-    <Stack direction="column" gap={12}>
-      <Skeleton variant="rect" width="100%" height={120} active={true} />
-      <Skeleton variant="text" width="60%" height={18} active={true} />
-      <Skeleton variant="text" width="90%" height={14} active={true} />
-      <Skeleton variant="text" width="70%" height={14} active={true} />
-    </Stack>
-  </Card>
-),
+        <Card style={{ width: 260, padding: 16 }}>
+          <Stack direction="column" gap={12}>
+            <Skeleton variant="rect" width="100%" height={120} active={true} />
+            <Skeleton variant="text" width="60%" height={18} active={true} />
+            <Skeleton variant="text" width="90%" height={14} active={true} />
+            <Skeleton variant="text" width="70%" height={14} active={true} />
+          </Stack>
+        </Card>
+      ),
     },
     {
       title: 'Inactive Placeholder',
       description: 'Skeleton placeholders with the shimmer animation turned off.',
       render: () => (
-  <Stack direction="column" gap={12} style={{ width: 240 }}>
-    <Skeleton variant="text" width="100%" height={16} active={false} />
-    <Skeleton variant="text" width="80%" height={16} active={false} />
-    <Skeleton variant="circle" width={40} height={40} active={false} />
-  </Stack>
-),
+        <Stack direction="column" gap={12} style={{ width: 240 }}>
+          <Skeleton variant="text" width="100%" height={16} active={false} />
+          <Skeleton variant="text" width="80%" height={16} active={false} />
+          <Skeleton variant="circle" width={40} height={40} active={false} />
+        </Stack>
+      ),
     },
     {
       title: 'Media Placeholder',
       description: 'Rectangular skeleton used as an image or video placeholder.',
       render: () => (
-  <Stack direction="row" gap={16} align="center">
-    <Skeleton variant="rect" width={120} height={80} active={true} />
-    <Skeleton variant="rect" width={160} height={90} active={true} />
-    <Skeleton variant="rect" width={80} height={80} active={true} />
-  </Stack>
-),
+        <Stack direction="row" gap={16} align="center">
+          <Skeleton variant="rect" width={120} height={80} active={true} />
+          <Skeleton variant="rect" width={160} height={90} active={true} />
+          <Skeleton variant="rect" width={80} height={80} active={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Avatar Placeholder',
       description: 'Circular skeleton placeholders in different sizes for avatar loading states.',
       render: () => (
-  <Stack direction="row" gap={16} align="center">
-    <Skeleton variant="circle" width={24} height={24} active={true} />
-    <Skeleton variant="circle" width={40} height={40} active={true} />
-    <Skeleton variant="circle" width={64} height={64} active={true} />
-  </Stack>
-),
+        <Stack direction="row" gap={16} align="center">
+          <Skeleton variant="circle" width={24} height={24} active={true} />
+          <Skeleton variant="circle" width={40} height={40} active={true} />
+          <Skeleton variant="circle" width={64} height={64} active={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Loaded Content',
       description: 'Skeleton wrapper with loading set to false reveals the actual content.',
       render: () => (
-  <Skeleton loading={false}>
-    <Card style={{ width: 220, padding: 16 }}>
-      <strong>Loaded Title</strong>
-      <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>
-        This content is shown once data has finished loading.
-      </p>
-    </Card>
-  </Skeleton>
-),
+        <Skeleton loading={false}>
+          <Card style={{ width: 220, padding: 16 }}>
+            <strong>Loaded Title</strong>
+            <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>
+              This content is shown once data has finished loading.
+            </p>
+          </Card>
+        </Skeleton>
+      ),
     },
-],
+  ],
 
   ProgressBar: [
     {
@@ -2298,65 +2293,65 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Progress bar showing an indeterminate loading state.',
       render: () => <ProgressBar value={0} indeterminate={true} style={{ width: 300 }} />,
     },
-      {
+    {
       title: 'Sizes',
       description: 'Progress bars rendered in small, medium, and large sizes.',
       render: () => (
-  <Stack direction="column" gap={16} style={{ width: 300 }}>
-    <ProgressBar value={40} size="small" />
-    <ProgressBar value={60} size="medium" />
-    <ProgressBar value={80} size="large" />
-  </Stack>
-),
+        <Stack direction="column" gap={16} style={{ width: 300 }}>
+          <ProgressBar value={40} size="small" />
+          <ProgressBar value={60} size="medium" />
+          <ProgressBar value={80} size="large" />
+        </Stack>
+      ),
     },
     {
       title: 'With Labels',
       description: 'Progress bars showing percentage labels next to the bar.',
       render: () => (
-  <Stack direction="column" gap={16} style={{ width: 300 }}>
-    <ProgressBar value={25} showLabel />
-    <ProgressBar value={50} showLabel />
-    <ProgressBar value={75} showLabel />
-  </Stack>
-),
+        <Stack direction="column" gap={16} style={{ width: 300 }}>
+          <ProgressBar value={25} showLabel />
+          <ProgressBar value={50} showLabel />
+          <ProgressBar value={75} showLabel />
+        </Stack>
+      ),
     },
     {
       title: 'Completion State',
       description: 'A fully complete progress bar highlighted as successful.',
       render: () => (
-  <Card style={{ width: 320, padding: 16 }}>
-    <p style={{ margin: '0 0 8px' }}>Upload complete</p>
-    <ProgressBar value={100} status="success" showLabel />
-  </Card>
-),
+        <Card style={{ width: 320, padding: 16 }}>
+          <p style={{ margin: '0 0 8px' }}>Upload complete</p>
+          <ProgressBar value={100} status="success" showLabel />
+        </Card>
+      ),
     },
     {
       title: 'Error State',
       description: 'A progress bar colored to indicate a failed or blocked operation.',
       render: () => (
-  <Card style={{ width: 320, padding: 16 }}>
-    <p style={{ margin: '0 0 8px' }}>Upload failed</p>
-    <ProgressBar value={45} status="error" showLabel />
-  </Card>
-),
+        <Card style={{ width: 320, padding: 16 }}>
+          <p style={{ margin: '0 0 8px' }}>Upload failed</p>
+          <ProgressBar value={45} status="error" showLabel />
+        </Card>
+      ),
     },
     {
       title: 'Inline Progress',
       description: 'A compact progress bar shown alongside descriptive text.',
       render: () => (
-  <Stack direction="column" gap={12} style={{ width: 300 }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-      <span style={{ fontSize: '0.875rem', width: 80 }}>Processing</span>
-      <ProgressBar value={60} size="small" style={{ flex: 1 }} />
-    </div>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-      <span style={{ fontSize: '0.875rem', width: 80 }}>Saving</span>
-      <ProgressBar value={30} size="small" status="warning" style={{ flex: 1 }} />
-    </div>
-  </Stack>
-),
+        <Stack direction="column" gap={12} style={{ width: 300 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ fontSize: '0.875rem', width: 80 }}>Processing</span>
+            <ProgressBar value={60} size="small" style={{ flex: 1 }} />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ fontSize: '0.875rem', width: 80 }}>Saving</span>
+            <ProgressBar value={30} size="small" status="warning" style={{ flex: 1 }} />
+          </div>
+        </Stack>
+      ),
     },
-],
+  ],
 
   Avatar: [
     {
@@ -2391,82 +2386,84 @@ export const componentExamples: Record<string, Example[]> = {
         </Stack>
       ),
     },
-      {
+    {
       title: 'With Icons',
       description: 'Avatars that display an icon instead of initials or an image.',
       render: () => (
-  <Stack direction="row" gap={12} align="center">
-    <Avatar icon={<Icon name="user" size={20} />} size="small" />
-    <Avatar icon={<Icon name="user" size={24} />} size="medium" />
-    <Avatar icon={<Icon name="user" size={32} />} size="large" />
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center">
+          <Avatar icon={<Icon name="user" size={20} />} size="small" />
+          <Avatar icon={<Icon name="user" size={24} />} size="medium" />
+          <Avatar icon={<Icon name="user" size={32} />} size="large" />
+        </Stack>
+      ),
     },
     {
       title: 'With Images',
       description: 'Avatars using remote image sources with initials fallback.',
       render: () => (
-  <Stack direction="row" gap={12} align="center">
-    <Avatar src="https://i.pravatar.cc/150?img=1" alt="User one" size="medium" />
-    <Avatar src="https://i.pravatar.cc/150?img=5" alt="User two" size="medium" />
-    <Avatar src="https://i.pravatar.cc/150?img=8" alt="User three" size="medium" />
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center">
+          <Avatar src="https://i.pravatar.cc/150?img=1" alt="User one" size="medium" />
+          <Avatar src="https://i.pravatar.cc/150?img=5" alt="User two" size="medium" />
+          <Avatar src="https://i.pravatar.cc/150?img=8" alt="User three" size="medium" />
+        </Stack>
+      ),
     },
     {
       title: 'Grouped Stacked',
       description: 'Multiple avatars stacked together to show a team or group.',
       render: () => (
-  <Stack direction="row" gap={24} align="center">
-    <AvatarGroup
-      size="small"
-      max={3}
-      avatars={[
-        { name: 'Alice', src: 'https://i.pravatar.cc/150?img=1' },
-        { name: 'Bob', src: 'https://i.pravatar.cc/150?img=2' },
-        { name: 'Carol', src: 'https://i.pravatar.cc/150?img=3' },
-        { name: 'Dave', src: 'https://i.pravatar.cc/150?img=4' },
-      ]}
-    />
-    <AvatarGroup
-      size="medium"
-      max={2}
-      avatars={[
-        { name: 'Eve', initials: 'E' },
-        { name: 'Frank', initials: 'F' },
-        { name: 'Grace', initials: 'G' },
-      ]}
-    />
-  </Stack>
-),
+        <Stack direction="row" gap={24} align="center">
+          <AvatarGroup
+            size="small"
+            max={3}
+            avatars={[
+              { name: 'Alice', src: 'https://i.pravatar.cc/150?img=1' },
+              { name: 'Bob', src: 'https://i.pravatar.cc/150?img=2' },
+              { name: 'Carol', src: 'https://i.pravatar.cc/150?img=3' },
+              { name: 'Dave', src: 'https://i.pravatar.cc/150?img=4' },
+            ]}
+          />
+          <AvatarGroup
+            size="medium"
+            max={2}
+            avatars={[
+              { name: 'Eve', initials: 'E' },
+              { name: 'Frank', initials: 'F' },
+              { name: 'Grace', initials: 'G' },
+            ]}
+          />
+        </Stack>
+      ),
     },
     {
       title: 'Initials and Shapes',
       description: 'Avatars combining initials with different sizes and shapes.',
       render: () => (
-  <Stack direction="row" gap={16} align="center">
-    <Avatar initials="AB" shape="circle" size="small" />
-    <Avatar initials="CD" shape="square" size="medium" />
-    <Avatar initials="EF" shape="circle" size="large" />
-  </Stack>
-),
+        <Stack direction="row" gap={16} align="center">
+          <Avatar initials="AB" shape="circle" size="small" />
+          <Avatar initials="CD" shape="square" size="medium" />
+          <Avatar initials="EF" shape="circle" size="large" />
+        </Stack>
+      ),
     },
     {
       title: 'In a Card Header',
       description: 'Avatars placed inside a card header alongside text content.',
       render: () => (
-  <Card style={{ width: 280, padding: 16 }}>
-    <Stack direction="row" gap={12} align="center">
-      <Avatar initials="JD" size="large" />
-      <Stack direction="column" gap={4}>
-        <strong>Jane Doe</strong>
-        <span style={{ fontSize: '0.875rem', color: 'var(--n-color-text-secondary)' }}>Product Designer</span>
-      </Stack>
-    </Stack>
-  </Card>
-),
+        <Card style={{ width: 280, padding: 16 }}>
+          <Stack direction="row" gap={12} align="center">
+            <Avatar initials="JD" size="large" />
+            <Stack direction="column" gap={4}>
+              <strong>Jane Doe</strong>
+              <span style={{ fontSize: '0.875rem', color: 'var(--n-color-text-secondary)' }}>
+                Product Designer
+              </span>
+            </Stack>
+          </Stack>
+        </Card>
+      ),
     },
-],
+  ],
 
   Breadcrumbs: [
     {
@@ -2511,81 +2508,81 @@ export const componentExamples: Record<string, Example[]> = {
         />
       ),
     },
-      {
+    {
       title: 'Long Path',
       description: 'Breadcrumbs navigating through a deep page hierarchy.',
       render: () => (
-  <Breadcrumbs
-    items={[
-      { label: 'Home', href: '/' },
-      { label: 'Products', href: '/products' },
-      { label: 'Electronics', href: '/products/electronics' },
-      { label: 'Laptops', href: '/products/electronics/laptops' },
-      { label: 'ProBook 15' },
-    ]}
-  />
-),
+        <Breadcrumbs
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Products', href: '/products' },
+            { label: 'Electronics', href: '/products/electronics' },
+            { label: 'Laptops', href: '/products/electronics/laptops' },
+            { label: 'ProBook 15' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Icon Separator',
       description: 'Breadcrumbs using a custom icon as the path separator.',
       render: () => (
-  <Breadcrumbs
-    separator={<Icon name="chevron-right" size={12} />}
-    items={[
-      { label: 'Home', href: '/' },
-      { label: 'Library', href: '/library' },
-      { label: 'Data', href: '/library/data' },
-      { label: 'Current' },
-    ]}
-  />
-),
+        <Breadcrumbs
+          separator={<Icon name="chevron-right" size={12} />}
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Library', href: '/library' },
+            { label: 'Data', href: '/library/data' },
+            { label: 'Current' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Without Home Icon',
       description: 'Breadcrumbs rendered without the default home icon.',
       render: () => (
-  <Breadcrumbs
-    homeIcon={null}
-    items={[
-      { label: 'App', href: '/' },
-      { label: 'Settings', href: '/settings' },
-      { label: 'Profile' },
-    ]}
-  />
-),
+        <Breadcrumbs
+          homeIcon={null}
+          items={[
+            { label: 'App', href: '/' },
+            { label: 'Settings', href: '/settings' },
+            { label: 'Profile' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Accessible Label',
       description: 'Breadcrumbs with a custom accessible label for screen readers.',
       render: () => (
-  <Breadcrumbs
-    ariaLabel="Project navigation"
-    items={[
-      { label: 'Projects', href: '/projects' },
-      { label: 'Acme Corp', href: '/projects/acme' },
-      { label: 'Settings' },
-    ]}
-  />
-),
+        <Breadcrumbs
+          ariaLabel="Project navigation"
+          items={[
+            { label: 'Projects', href: '/projects' },
+            { label: 'Acme Corp', href: '/projects/acme' },
+            { label: 'Settings' },
+          ]}
+        />
+      ),
     },
     {
       title: 'In a Page Header',
       description: 'Breadcrumbs placed inside a card to mimic a page header.',
       render: () => (
-  <Card style={{ width: '100%', padding: 16 }}>
-    <Breadcrumbs
-      items={[
-        { label: 'Dashboard', href: '/' },
-        { label: 'Reports', href: '/reports' },
-        { label: 'Monthly Sales' },
-      ]}
-    />
-    <h3 style={{ margin: '12px 0 0' }}>Monthly Sales Report</h3>
-  </Card>
-),
+        <Card style={{ width: '100%', padding: 16 }}>
+          <Breadcrumbs
+            items={[
+              { label: 'Dashboard', href: '/' },
+              { label: 'Reports', href: '/reports' },
+              { label: 'Monthly Sales' },
+            ]}
+          />
+          <h3 style={{ margin: '12px 0 0' }}>Monthly Sales Report</h3>
+        </Card>
+      ),
     },
-],
+  ],
 
   Divider: [
     {
@@ -2615,146 +2612,160 @@ export const componentExamples: Record<string, Example[]> = {
         </Stack>
       ),
     },
-      {
+    {
       title: 'Dashed Divider',
       description: 'A horizontal divider with a dashed line style.',
       render: () => (
-  <Stack direction="column" gap={12} style={{ width: 300 }}>
-    <span>Section A</span>
-    <Divider type="dashed" />
-    <span>Section B</span>
-  </Stack>
-),
+        <Stack direction="column" gap={12} style={{ width: 300 }}>
+          <span>Section A</span>
+          <Divider type="dashed" />
+          <span>Section B</span>
+        </Stack>
+      ),
     },
     {
       title: 'Divider Between Items',
       description: 'Dividers used to separate rows in a vertical list.',
       render: () => (
-  <Stack direction="column" style={{ width: 240 }}>
-    <span style={{ padding: '8px 0' }}>First item</span>
-    <Divider />
-    <span style={{ padding: '8px 0' }}>Second item</span>
-    <Divider />
-    <span style={{ padding: '8px 0' }}>Third item</span>
-  </Stack>
-),
+        <Stack direction="column" style={{ width: 240 }}>
+          <span style={{ padding: '8px 0' }}>First item</span>
+          <Divider />
+          <span style={{ padding: '8px 0' }}>Second item</span>
+          <Divider />
+          <span style={{ padding: '8px 0' }}>Third item</span>
+        </Stack>
+      ),
     },
     {
       title: 'Vertical Separator',
       description: 'A vertical divider separating inline content with explicit orientation.',
       render: () => (
-  <Stack direction="row" gap={12} align="center">
-    <Button size="small">Edit</Button>
-    <Divider orientation="vertical" />
-    <Button size="small" variant="secondary">Delete</Button>
-  </Stack>
-),
+        <Stack direction="row" gap={12} align="center">
+          <Button size="small">Edit</Button>
+          <Divider orientation="vertical" />
+          <Button size="small" variant="secondary">
+            Delete
+          </Button>
+        </Stack>
+      ),
     },
     {
       title: 'Divider with Role',
       description: 'A divider explicitly exposed as a presentation role.',
       render: () => (
-  <Stack direction="column" gap={12} style={{ width: 300 }}>
-    <p>Above the line</p>
-    <Divider role="presentation" />
-    <p>Below the line</p>
-  </Stack>
-),
+        <Stack direction="column" gap={12} style={{ width: 300 }}>
+          <p>Above the line</p>
+          <Divider role="presentation" />
+          <p>Below the line</p>
+        </Stack>
+      ),
     },
     {
       title: 'Thick Divider',
       description: 'A thicker horizontal divider using inline styles for emphasis.',
       render: () => (
-  <Stack direction="column" gap={12} style={{ width: 300 }}>
-    <span>Top content</span>
-    <Divider style={{ borderTopWidth: 2 }} />
-    <span>Bottom content</span>
-  </Stack>
-),
+        <Stack direction="column" gap={12} style={{ width: 300 }}>
+          <span>Top content</span>
+          <Divider style={{ borderTopWidth: 2 }} />
+          <span>Bottom content</span>
+        </Stack>
+      ),
     },
-],
+  ],
 
   Tooltip: [
     {
       title: 'Positions',
       description: 'Tooltip shown in different positions.',
       render: () => (
-      <Stack direction="row" gap={24} align="center">
-        <Tooltip content="Top" position="top"><Button size="small">Top</Button></Tooltip>
-        <Tooltip content="Bottom" position="bottom"><Button size="small">Bottom</Button></Tooltip>
-        <Tooltip content="Left" position="left"><Button size="small">Left</Button></Tooltip>
-        <Tooltip content="Right" position="right"><Button size="small">Right</Button></Tooltip>
-      </Stack>
-    ),
+        <Stack direction="row" gap={24} align="center">
+          <Tooltip content="Top" position="top">
+            <Button size="small">Top</Button>
+          </Tooltip>
+          <Tooltip content="Bottom" position="bottom">
+            <Button size="small">Bottom</Button>
+          </Tooltip>
+          <Tooltip content="Left" position="left">
+            <Button size="small">Left</Button>
+          </Tooltip>
+          <Tooltip content="Right" position="right">
+            <Button size="small">Right</Button>
+          </Tooltip>
+        </Stack>
+      ),
     },
     {
       title: 'Triggers',
       description: 'Click and focus triggered tooltips.',
       render: () => (
-      <Stack direction="row" gap={24} align="center">
-        <Tooltip content="Click tooltip" trigger="click"><Button size="small">Click</Button></Tooltip>
-        <Tooltip content="Focus tooltip" trigger="focus"><Button size="small">Focus</Button></Tooltip>
-      </Stack>
-    ),
+        <Stack direction="row" gap={24} align="center">
+          <Tooltip content="Click tooltip" trigger="click">
+            <Button size="small">Click</Button>
+          </Tooltip>
+          <Tooltip content="Focus tooltip" trigger="focus">
+            <Button size="small">Focus</Button>
+          </Tooltip>
+        </Stack>
+      ),
     },
-      {
+    {
       title: 'Hover Delays',
       description: 'Tooltip with custom enter and leave hover delays.',
       render: () => (
-  <Tooltip content="Appears after 500ms" mouseEnterDelay={500} mouseLeaveDelay={500}>
-    <Button size="small">Delayed tooltip</Button>
-  </Tooltip>
-),
+        <Tooltip content="Appears after 500ms" mouseEnterDelay={500} mouseLeaveDelay={500}>
+          <Button size="small">Delayed tooltip</Button>
+        </Tooltip>
+      ),
     },
     {
       title: 'Always Visible',
       description: 'Tooltip controlled to stay open for demonstration.',
       render: () => (
-  <Tooltip content="I stay visible" isOpen={true}>
-    <Button size="small">Pinned tooltip</Button>
-  </Tooltip>
-),
+        <Tooltip content="I stay visible" isOpen={true}>
+          <Button size="small">Pinned tooltip</Button>
+        </Tooltip>
+      ),
     },
     {
       title: 'Rich Content',
       description: 'Tooltip containing formatted content instead of plain text.',
       render: () => (
-  <Tooltip
-    content={
-      <Stack direction="column" gap={4}>
-        <strong>Tip</strong>
-        <span>Use concise labels for clarity.</span>
-      </Stack>
-    }
-  >
-    <Button size="small">Rich tooltip</Button>
-  </Tooltip>
-),
+        <Tooltip
+          content={
+            <Stack direction="column" gap={4}>
+              <strong>Tip</strong>
+              <span>Use concise labels for clarity.</span>
+            </Stack>
+          }
+        >
+          <Button size="small">Rich tooltip</Button>
+        </Tooltip>
+      ),
     },
     {
       title: 'No Arrow',
       description: 'Tooltip with the pointer arrow hidden.',
       render: () => (
-  <Stack direction="row" gap={24} align="center">
-    <Tooltip content="No arrow here" withArrow={false}>
-      <Button size="small">No arrow</Button>
-    </Tooltip>
-    <Tooltip content="Default arrow" withArrow={true}>
-      <Button size="small">With arrow</Button>
-    </Tooltip>
-  </Stack>
-),
+        <Stack direction="row" gap={24} align="center">
+          <Tooltip content="No arrow here" withArrow={false}>
+            <Button size="small">No arrow</Button>
+          </Tooltip>
+          <Tooltip content="Default arrow" withArrow={true}>
+            <Button size="small">With arrow</Button>
+          </Tooltip>
+        </Stack>
+      ),
     },
     {
       title: 'With Input',
       description: 'Tooltip attached to a form input to explain validation rules.',
       render: () => (
-  <Tooltip content="Password must be at least 8 characters." position="right">
-    <Input placeholder="Password" type="password" style={{ width: 200 }} />
-  </Tooltip>
-),
+        <Tooltip content="Password must be at least 8 characters." position="right">
+          <Input placeholder="Password" type="password" style={{ width: 200 }} />
+        </Tooltip>
+      ),
     },
-],
+  ],
 
   Popover: [
     {
@@ -2792,85 +2803,89 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Popover controlled by React state.',
       render: () => <ControlledPopoverExample />,
     },
-      {
+    {
       title: 'Placements',
       description: 'Popovers opened in different positions relative to the trigger.',
       render: () => (
-  <Stack direction="row" gap={16} align="center">
-    <Popover
-      trigger={<Button size="small">Bottom</Button>}
-      placement="bottom"
-      content={<div style={{ padding: 8 }}>Bottom content</div>}
-    />
-    <Popover
-      trigger={<Button size="small">Left</Button>}
-      placement="left"
-      content={<div style={{ padding: 8 }}>Left content</div>}
-    />
-    <Popover
-      trigger={<Button size="small">Right</Button>}
-      placement="right"
-      content={<div style={{ padding: 8 }}>Right content</div>}
-    />
-  </Stack>
-),
+        <Stack direction="row" gap={16} align="center">
+          <Popover
+            trigger={<Button size="small">Bottom</Button>}
+            placement="bottom"
+            content={<div style={{ padding: 8 }}>Bottom content</div>}
+          />
+          <Popover
+            trigger={<Button size="small">Left</Button>}
+            placement="left"
+            content={<div style={{ padding: 8 }}>Left content</div>}
+          />
+          <Popover
+            trigger={<Button size="small">Right</Button>}
+            placement="right"
+            content={<div style={{ padding: 8 }}>Right content</div>}
+          />
+        </Stack>
+      ),
     },
     {
       title: 'Without Arrow',
       description: 'Popover with the pointer arrow disabled.',
       render: () => (
-  <Popover
-    withArrow={false}
-    trigger={<Button size="small">No arrow</Button>}
-    content={<div style={{ padding: 8 }}>Popover without an arrow.</div>}
-  />
-),
+        <Popover
+          withArrow={false}
+          trigger={<Button size="small">No arrow</Button>}
+          content={<div style={{ padding: 8 }}>Popover without an arrow.</div>}
+        />
+      ),
     },
     {
       title: 'Default Open',
       description: 'Popover that starts in an open state when rendered.',
       render: () => (
-  <Popover
-    defaultOpen={true}
-    trigger={<Button size="small">Trigger</Button>}
-    content={<div style={{ padding: 8 }}>This popover starts open.</div>}
-  />
-),
+        <Popover
+          defaultOpen={true}
+          trigger={<Button size="small">Trigger</Button>}
+          content={<div style={{ padding: 8 }}>This popover starts open.</div>}
+        />
+      ),
     },
     {
       title: 'Hover with Delay',
       description: 'Popover that opens on hover after a short delay.',
       render: () => (
-  <Popover
-    triggerMode="hover"
-    hoverDelay={300}
-    trigger={<Button size="small">Hover me</Button>}
-    content={<div style={{ padding: 8 }}>Appears after 300ms hover.</div>}
-  />
-),
+        <Popover
+          triggerMode="hover"
+          hoverDelay={300}
+          trigger={<Button size="small">Hover me</Button>}
+          content={<div style={{ padding: 8 }}>Appears after 300ms hover.</div>}
+        />
+      ),
     },
     {
       title: 'Rich Content',
       description: 'Popover containing structured content with action buttons.',
       render: () => (
-  <Popover
-    trigger={<Button size="small">User profile</Button>}
-    content={
-      <Stack direction="column" gap={12} style={{ padding: 8, width: 200 }}>
-        <Stack direction="row" gap={12} align="center">
-          <Avatar initials="AB" size="small" />
-          <Stack direction="column" gap={2}>
-            <strong style={{ fontSize: '0.875rem' }}>Alex Brown</strong>
-            <span style={{ fontSize: '0.75rem', color: 'var(--n-color-text-secondary)' }}>Developer</span>
-          </Stack>
-        </Stack>
-        <Button size="small" fullWidth>View profile</Button>
-      </Stack>
-    }
-  />
-),
+        <Popover
+          trigger={<Button size="small">User profile</Button>}
+          content={
+            <Stack direction="column" gap={12} style={{ padding: 8, width: 200 }}>
+              <Stack direction="row" gap={12} align="center">
+                <Avatar initials="AB" size="small" />
+                <Stack direction="column" gap={2}>
+                  <strong style={{ fontSize: '0.875rem' }}>Alex Brown</strong>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--n-color-text-secondary)' }}>
+                    Developer
+                  </span>
+                </Stack>
+              </Stack>
+              <Button size="small" fullWidth>
+                View profile
+              </Button>
+            </Stack>
+          }
+        />
+      ),
     },
-],
+  ],
 
   Steps: [
     {
@@ -2907,147 +2922,202 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Step indicator controlled by Next/Previous buttons.',
       render: () => <ControlledStepsExample />,
     },
-      {
+    {
       title: 'Sizes',
       description: 'Step indicators rendered in small, default, and large sizes.',
       render: () => (
-  <Stack direction="column" gap={24}>
-    <Steps
-      size="small"
-      current={1}
-      items={[
-        { title: 'Cart', description: 'Review' },
-        { title: 'Address', description: 'Shipping' },
-        { title: 'Pay', description: 'Payment' },
-      ]}
-    />
-    <Steps
-      size="default"
-      current={1}
-      items={[
-        { title: 'Cart', description: 'Review' },
-        { title: 'Address', description: 'Shipping' },
-        { title: 'Pay', description: 'Payment' },
-      ]}
-    />
-  </Stack>
-),
+        <Stack direction="column" gap={24}>
+          <Steps
+            size="small"
+            current={1}
+            items={[
+              { title: 'Cart', description: 'Review' },
+              { title: 'Address', description: 'Shipping' },
+              { title: 'Pay', description: 'Payment' },
+            ]}
+          />
+          <Steps
+            size="default"
+            current={1}
+            items={[
+              { title: 'Cart', description: 'Review' },
+              { title: 'Address', description: 'Shipping' },
+              { title: 'Pay', description: 'Payment' },
+            ]}
+          />
+        </Stack>
+      ),
     },
     {
       title: 'Clickable Steps',
       description: 'Steps that can be clicked to navigate between stages.',
       render: () => (
-  <Steps
-    current={1}
-    onChange={(index) => console.log('Moved to step', index)}
-    items={[
-      { title: 'Plan', description: 'Choose plan' },
-      { title: 'Billing', description: 'Add billing' },
-      { title: 'Review', description: 'Confirm' },
-    ]}
-  />
-),
+        <Steps
+          current={1}
+          onChange={(index) => console.log('Moved to step', index)}
+          items={[
+            { title: 'Plan', description: 'Choose plan' },
+            { title: 'Billing', description: 'Add billing' },
+            { title: 'Review', description: 'Confirm' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Completed Workflow',
       description: 'All steps marked as completed in a checkout-style workflow.',
       render: () => (
-  <Card style={{ width: '100%', padding: 16 }}>
-    <Steps
-      current={3}
-      items={[
-        { title: 'Account', description: 'Created' },
-        { title: 'Profile', description: 'Completed' },
-        { title: 'Settings', description: 'Saved' },
-      ]}
-    />
-  </Card>
-),
+        <Card style={{ width: '100%', padding: 16 }}>
+          <Steps
+            current={3}
+            items={[
+              { title: 'Account', description: 'Created' },
+              { title: 'Profile', description: 'Completed' },
+              { title: 'Settings', description: 'Saved' },
+            ]}
+          />
+        </Card>
+      ),
     },
     {
       title: 'In a Card',
       description: 'Steps displayed inside a card for a contained wizard feel.',
       render: () => (
-  <Card style={{ width: '100%', padding: 20 }}>
-    <h4 style={{ margin: '0 0 16px' }}>Setup Progress</h4>
-    <Steps
-      current={2}
-      items={[
-        { title: 'Connect', description: 'Integrate data source' },
-        { title: 'Configure', description: 'Map fields' },
-        { title: 'Sync', description: 'Start syncing' },
-      ]}
-    />
-  </Card>
-),
+        <Card style={{ width: '100%', padding: 20 }}>
+          <h4 style={{ margin: '0 0 16px' }}>Setup Progress</h4>
+          <Steps
+            current={2}
+            items={[
+              { title: 'Connect', description: 'Integrate data source' },
+              { title: 'Configure', description: 'Map fields' },
+              { title: 'Sync', description: 'Start syncing' },
+            ]}
+          />
+        </Card>
+      ),
     },
     {
       title: 'Compact Horizontal',
       description: 'A compact horizontal step indicator for dense layouts.',
       render: () => (
-  <Steps
-    size="small"
-    direction="horizontal"
-    current={0}
-    items={[
-      { title: 'Draft', description: 'Created' },
-      { title: 'Review', description: 'Pending' },
-      { title: 'Publish', description: 'Pending' },
-    ]}
-  />
-),
+        <Steps
+          size="small"
+          direction="horizontal"
+          current={0}
+          items={[
+            { title: 'Draft', description: 'Created' },
+            { title: 'Review', description: 'Pending' },
+            { title: 'Publish', description: 'Pending' },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   Stack: [
     {
       title: 'Horizontal',
       description: 'Horizontal stacking with gaps.',
       render: () => (
-      <Stack direction="row" gap={16} align="center">
-        <Badge count={1} />
-        <Badge count={2} />
-        <Badge count={3} />
-      </Stack>
-    ),
+        <Stack direction="row" gap={16} align="center">
+          <Badge count={1} />
+          <Badge count={2} />
+          <Badge count={3} />
+        </Stack>
+      ),
     },
     {
       title: 'Vertical',
       description: 'Vertical stacking with gaps.',
       render: () => (
-      <Stack direction="column" gap={16}>
-        <Badge count={1} />
-        <Badge count={2} />
-        <Badge count={3} />
-      </Stack>
-    ),
+        <Stack direction="column" gap={16}>
+          <Badge count={1} />
+          <Badge count={2} />
+          <Badge count={3} />
+        </Stack>
+      ),
     },
-      {
+    {
       title: 'Spacing Sizes',
       description: 'Various gap values between stacked items.',
-      render: () => (<Stack direction="column" gap={16}><Stack direction="row" gap={4} align="center"><Tag>A</Tag><Tag>B</Tag></Stack><Stack direction="row" gap={16} align="center"><Tag>A</Tag><Tag>B</Tag></Stack><Stack direction="row" gap={32} align="center"><Tag>A</Tag><Tag>B</Tag></Stack></Stack>),
+      render: () => (
+        <Stack direction="column" gap={16}>
+          <Stack direction="row" gap={4} align="center">
+            <Tag>A</Tag>
+            <Tag>B</Tag>
+          </Stack>
+          <Stack direction="row" gap={16} align="center">
+            <Tag>A</Tag>
+            <Tag>B</Tag>
+          </Stack>
+          <Stack direction="row" gap={32} align="center">
+            <Tag>A</Tag>
+            <Tag>B</Tag>
+          </Stack>
+        </Stack>
+      ),
     },
     {
       title: 'Justify Distribution',
       description: 'Row alignment using justify options.',
-      render: () => (<Stack direction="column" gap={16} style={{ width: 320 }}><Stack direction="row" gap={8} justify="flex-start"><Tag>Start</Tag></Stack><Stack direction="row" gap={8} justify="center"><Tag>Center</Tag></Stack><Stack direction="row" gap={8} justify="flex-end"><Tag>End</Tag></Stack></Stack>),
+      render: () => (
+        <Stack direction="column" gap={16} style={{ width: 320 }}>
+          <Stack direction="row" gap={8} justify="flex-start">
+            <Tag>Start</Tag>
+          </Stack>
+          <Stack direction="row" gap={8} justify="center">
+            <Tag>Center</Tag>
+          </Stack>
+          <Stack direction="row" gap={8} justify="flex-end">
+            <Tag>End</Tag>
+          </Stack>
+        </Stack>
+      ),
     },
     {
       title: 'Wrapping Items',
       description: 'Tags that wrap onto multiple lines when space is tight.',
-      render: () => (<Stack direction="row" gap={8} wrap={true} style={{ width: 160 }}><Tag>One</Tag><Tag>Two</Tag><Tag>Three</Tag><Tag>Four</Tag><Tag>Five</Tag></Stack>),
+      render: () => (
+        <Stack direction="row" gap={8} wrap={true} style={{ width: 160 }}>
+          <Tag>One</Tag>
+          <Tag>Two</Tag>
+          <Tag>Three</Tag>
+          <Tag>Four</Tag>
+          <Tag>Five</Tag>
+        </Stack>
+      ),
     },
     {
       title: 'Nested Layout',
       description: 'Rows nested inside a column to build a simple dashboard layout.',
-      render: () => (<Stack direction="column" gap={16}><Stack direction="row" gap={12}><Card style={{ padding: 16, flex: 1 }}>Metric A</Card><Card style={{ padding: 16, flex: 1 }}>Metric B</Card></Stack><Card style={{ padding: 16 }}>Chart area</Card></Stack>),
+      render: () => (
+        <Stack direction="column" gap={16}>
+          <Stack direction="row" gap={12}>
+            <Card style={{ padding: 16, flex: 1 }}>Metric A</Card>
+            <Card style={{ padding: 16, flex: 1 }}>Metric B</Card>
+          </Stack>
+          <Card style={{ padding: 16 }}>Chart area</Card>
+        </Stack>
+      ),
     },
     {
       title: 'Centered Alignment',
       description: 'Row items centered along the cross axis.',
-      render: () => (<Stack direction="row" gap={16} align="center" style={{ height: 60, border: '1px dashed var(--n-color-border)' }}><div style={{ height: 40, width: 40, background: 'var(--n-color-primary)', borderRadius: 8 }} /><Tag>Centered</Tag></Stack>),
+      render: () => (
+        <Stack
+          direction="row"
+          gap={16}
+          align="center"
+          style={{ height: 60, border: '1px dashed var(--n-color-border)' }}
+        >
+          <div
+            style={{ height: 40, width: 40, background: 'var(--n-color-primary)', borderRadius: 8 }}
+          />
+          <Tag>Centered</Tag>
+        </Stack>
+      ),
     },
-],
+  ],
 
   Statistic: [
     {
@@ -3075,32 +3145,53 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Statistic value animates when it changes.',
       render: () => <Statistic title="Downloads" value={5420} animate={true} />,
     },
-      {
+    {
       title: 'Currency',
       description: 'Monetary value with dollar prefix and two decimals.',
-      render: () => (<Statistic title="Monthly Recurring Revenue" value={12453.21} prefix="$" precision={2} />),
+      render: () => (
+        <Statistic title="Monthly Recurring Revenue" value={12453.21} prefix="$" precision={2} />
+      ),
     },
     {
       title: 'Metric Grid',
       description: 'Multiple statistics arranged in a compact grid.',
-      render: () => (<Grid columns={2} gap={16} style={{ width: 360 }}><Statistic title="Users" value={8920} trend="up" /><Statistic title="Bounce Rate" value={42.3} suffix="%" precision={1} trend="down" /><Statistic title="Revenue" value={12450} prefix="$" /><Statistic title="Sessions" value={15300} /></Grid>),
+      render: () => (
+        <Grid columns={2} gap={16} style={{ width: 360 }}>
+          <Statistic title="Users" value={8920} trend="up" />
+          <Statistic title="Bounce Rate" value={42.3} suffix="%" precision={1} trend="down" />
+          <Statistic title="Revenue" value={12450} prefix="$" />
+          <Statistic title="Sessions" value={15300} />
+        </Grid>
+      ),
     },
     {
       title: 'Large Number',
       description: 'Big metric with a millions suffix and animation.',
-      render: () => (<Statistic title="Total Downloads" value={1.2} suffix="M" precision={1} animate={true} />),
+      render: () => (
+        <Statistic title="Total Downloads" value={1.2} suffix="M" precision={1} animate={true} />
+      ),
     },
     {
       title: 'Prefix Icon',
       description: 'Statistic value with a leading icon as the prefix.',
-      render: () => (<Statistic title="Active Users" value={98} suffix="%" prefix={<Icon name="check" size={20} />} precision={0} />),
+      render: () => (
+        <Statistic
+          title="Active Users"
+          value={98}
+          suffix="%"
+          prefix={<Icon name="check" size={20} />}
+          precision={0}
+        />
+      ),
     },
     {
       title: 'Static Value',
       description: 'Statistic rendered without entry animation.',
-      render: () => (<Statistic title="Server Uptime" value={99.99} suffix="%" precision={2} animate={false} />),
+      render: () => (
+        <Statistic title="Server Uptime" value={99.99} suffix="%" precision={2} animate={false} />
+      ),
     },
-],
+  ],
 
   Slider: [
     {
@@ -3135,32 +3226,47 @@ export const componentExamples: Record<string, Example[]> = {
         />
       ),
     },
-      {
+    {
       title: 'Negative Range',
       description: 'Slider spanning from -50 to 50.',
-      render: () => (<Slider defaultValue={0} min={-50} max={50} style={{ width: 300 }} />),
+      render: () => <Slider defaultValue={0} min={-50} max={50} style={{ width: 300 }} />,
     },
     {
       title: 'Stepped',
       description: 'Discrete steps of 10 with labeled markers.',
-      render: () => (<Slider defaultValue={30} step={10} marks={[{ value: 0, label: '0' }, { value: 50, label: '50' }, { value: 100, label: '100' }]} style={{ width: 300 }} />),
+      render: () => (
+        <Slider
+          defaultValue={30}
+          step={10}
+          marks={[
+            { value: 0, label: '0' },
+            { value: 50, label: '50' },
+            { value: 100, label: '100' },
+          ]}
+          style={{ width: 300 }}
+        />
+      ),
     },
     {
       title: 'Disabled',
       description: 'Slider that cannot be interacted with.',
-      render: () => (<Slider value={60} disabled={true} style={{ width: 300 }} />),
+      render: () => <Slider value={60} disabled={true} style={{ width: 300 }} />,
     },
     {
       title: 'Vertical',
       description: 'Vertical slider orientation.',
-      render: () => (<div style={{ height: 160 }}><Slider defaultValue={40} vertical={true} /></div>),
+      render: () => (
+        <div style={{ height: 160 }}>
+          <Slider defaultValue={40} vertical={true} />
+        </div>
+      ),
     },
     {
       title: 'Error State',
       description: 'Slider showing a validation error.',
-      render: () => (<Slider defaultValue={20} error="Select at least 50%" style={{ width: 300 }} />),
+      render: () => <Slider defaultValue={20} error="Select at least 50%" style={{ width: 300 }} />,
     },
-],
+  ],
 
   TextArea: [
     {
@@ -3183,32 +3289,55 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Interactive text area with React state.',
       render: () => <ControlledTextAreaExample />,
     },
-      {
+    {
       title: 'With Label',
       description: 'Text area with a label and placeholder.',
-      render: () => (<TextArea label="Feedback" placeholder="Share your thoughts…" minRows={3} />),
+      render: () => <TextArea label="Feedback" placeholder="Share your thoughts…" minRows={3} />,
     },
     {
       title: 'Character Count',
       description: 'Text area showing remaining characters.',
-      render: () => (<TextArea placeholder="Max 120 characters" maxLength={120} showCount={true} minRows={3} />),
+      render: () => (
+        <TextArea placeholder="Max 120 characters" maxLength={120} showCount={true} minRows={3} />
+      ),
     },
     {
       title: 'Auto Resize',
       description: 'Text area that grows with content up to a max height.',
-      render: () => (<TextArea placeholder="Type to expand…" autoResize={true} minRows={2} maxRows={6} style={{ width: 300 }} />),
+      render: () => (
+        <TextArea
+          placeholder="Type to expand…"
+          autoResize={true}
+          minRows={2}
+          maxRows={6}
+          style={{ width: 300 }}
+        />
+      ),
     },
     {
       title: 'Sizes',
       description: 'Small and medium text area sizes.',
-      render: () => (<Stack direction="column" gap={12}><TextArea inputSize="small" placeholder="Small" minRows={2} /><TextArea inputSize="medium" placeholder="Medium" minRows={2} /></Stack>),
+      render: () => (
+        <Stack direction="column" gap={12}>
+          <TextArea inputSize="small" placeholder="Small" minRows={2} />
+          <TextArea inputSize="medium" placeholder="Medium" minRows={2} />
+        </Stack>
+      ),
     },
     {
       title: 'Helper Text',
       description: 'Text area with helper text and required marker.',
-      render: () => (<TextArea label="Bio" placeholder="Tell us about yourself" helperText="This will appear on your profile." required={true} minRows={3} />),
+      render: () => (
+        <TextArea
+          label="Bio"
+          placeholder="Tell us about yourself"
+          helperText="This will appear on your profile."
+          required={true}
+          minRows={3}
+        />
+      ),
     },
-],
+  ],
 
   DatePicker: [
     {
@@ -3221,32 +3350,38 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Interactive date picker with React state.',
       render: () => <ControlledDatePickerExample />,
     },
-      {
+    {
       title: 'Range Mode',
       description: 'Select a start and end date range.',
-      render: () => (<DatePicker mode="range" placeholder="Pick a range" />),
+      render: () => <DatePicker mode="range" placeholder="Pick a range" />,
     },
     {
       title: 'Bounded Dates',
       description: 'Picker limited to a minimum and maximum date.',
-      render: () => (<DatePicker minDate={new Date('2026-01-01')} maxDate={new Date('2026-12-31')} placeholder="2026 only" />),
+      render: () => (
+        <DatePicker
+          minDate={new Date('2026-01-01')}
+          maxDate={new Date('2026-12-31')}
+          placeholder="2026 only"
+        />
+      ),
     },
     {
       title: 'Custom Format',
       description: 'Date displayed in a custom format.',
-      render: () => (<DatePicker format="dd/MM/yyyy" placeholder="DD/MM/YYYY" />),
+      render: () => <DatePicker format="dd/MM/yyyy" placeholder="DD/MM/YYYY" />,
     },
     {
       title: 'With Label',
       description: 'Date picker with an accessible label.',
-      render: () => (<DatePicker label="Start date" id="start-date" placeholder="Choose start" />),
+      render: () => <DatePicker label="Start date" id="start-date" placeholder="Choose start" />,
     },
     {
       title: 'Disabled',
       description: 'Date picker in a disabled state.',
-      render: () => (<DatePicker disabled={true} placeholder="Unavailable" />),
+      render: () => <DatePicker disabled={true} placeholder="Unavailable" />,
     },
-],
+  ],
 
   TimePicker: [
     {
@@ -3264,32 +3399,49 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Time picker in a disabled state.',
       render: () => <TimePicker value={{ hours: 10, minutes: 30 }} disabled />,
     },
-      {
+    {
       title: '12-Hour Format',
       description: 'Time picker using AM/PM format.',
-      render: () => (<TimePicker format="12h" placeholder="Pick time" />),
+      render: () => <TimePicker format="12h" placeholder="Pick time" />,
     },
     {
       title: 'Minute Intervals',
       description: 'Selectable times in 30-minute steps.',
-      render: () => (<TimePicker minuteInterval={30} placeholder="Every 30 min" />),
+      render: () => <TimePicker minuteInterval={30} placeholder="Every 30 min" />,
     },
     {
       title: 'Time Bounds',
       description: 'Picker restricted to business hours.',
-      render: () => (<TimePicker minTime={{ hours: 9, minutes: 0 }} maxTime={{ hours: 17, minutes: 0 }} placeholder="9:00 - 17:00" />),
+      render: () => (
+        <TimePicker
+          minTime={{ hours: 9, minutes: 0 }}
+          maxTime={{ hours: 17, minutes: 0 }}
+          placeholder="9:00 - 17:00"
+        />
+      ),
     },
     {
       title: 'Sizes',
       description: 'Small and large time picker sizes.',
-      render: () => (<Stack direction="row" gap={16} align="center"><TimePicker size="small" placeholder="Small" /><TimePicker size="large" placeholder="Large" /></Stack>),
+      render: () => (
+        <Stack direction="row" gap={16} align="center">
+          <TimePicker size="small" placeholder="Small" />
+          <TimePicker size="large" placeholder="Large" />
+        </Stack>
+      ),
     },
     {
       title: 'Help Text',
       description: 'Time picker with helper text.',
-      render: () => (<TimePicker label="Meeting time" helpText="Choose a time in your local timezone." placeholder="Select time" />),
+      render: () => (
+        <TimePicker
+          label="Meeting time"
+          helpText="Choose a time in your local timezone."
+          placeholder="Select time"
+        />
+      ),
     },
-],
+  ],
 
   OTPInput: [
     {
@@ -3307,32 +3459,32 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'OTP input that cannot be edited.',
       render: () => <OTPInput length={6} value="123456" disabled />,
     },
-      {
+    {
       title: 'Four Digits',
       description: 'Shorter OTP input with four boxes.',
-      render: () => (<OTPInput length={4} />),
+      render: () => <OTPInput length={4} />,
     },
     {
       title: 'Error State',
       description: 'OTP input showing an invalid entry.',
-      render: () => (<OTPInput length={6} value="123" error={true} />),
+      render: () => <OTPInput length={6} value="123" error={true} />,
     },
     {
       title: 'Completion Callback',
       description: 'OTP input that logs when all digits are filled.',
-      render: () => (<OTPInput length={6} onComplete={(v) => console.log(v)} />),
+      render: () => <OTPInput length={6} onComplete={(v) => console.log(v)} />,
     },
     {
       title: 'Eight Digits',
       description: 'Longer OTP input for secure tokens.',
-      render: () => (<OTPInput length={8} value="ABCDEF12" />),
+      render: () => <OTPInput length={8} value="ABCDEF12" />,
     },
     {
       title: 'Disabled Filled',
       description: 'Completed OTP input that cannot be edited.',
-      render: () => (<OTPInput length={6} value="654321" disabled={true} />),
+      render: () => <OTPInput length={6} value="654321" disabled={true} />,
     },
-],
+  ],
 
   Rating: [
     {
@@ -3355,15 +3507,26 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Star rating displayed without user interaction.',
       render: () => <Rating value={4} precision={0.5} readOnly={true} />,
     },
-      {
+    {
       title: 'Sizes',
       description: 'Star ratings in small, medium, and large sizes.',
-      render: () => (<Stack direction="row" gap={24} align="center"><Rating value={4} size="small" /><Rating value={4} size="medium" /><Rating value={4} size="large" /></Stack>),
+      render: () => (
+        <Stack direction="row" gap={24} align="center">
+          <Rating value={4} size="small" />
+          <Rating value={4} size="medium" />
+          <Rating value={4} size="large" />
+        </Stack>
+      ),
     },
     {
       title: 'Half Stars',
       description: 'Ratings using half-star precision for finer scores.',
-      render: () => (<Stack direction="row" gap={24} align="center"><Rating value={3.5} precision={0.5} /><Rating value={4.5} precision={0.5} readOnly={true} /></Stack>),
+      render: () => (
+        <Stack direction="row" gap={24} align="center">
+          <Rating value={3.5} precision={0.5} />
+          <Rating value={4.5} precision={0.5} readOnly={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Ten Star Scale',
@@ -3378,9 +3541,14 @@ export const componentExamples: Record<string, Example[]> = {
     {
       title: 'Product Review',
       description: 'Read-only rating displayed as a product review score.',
-      render: () => (<Stack direction="row" gap={12} align="center"><Rating value={4.5} precision={0.5} readOnly={true} /><Tag color="orange">4.5 / 5</Tag></Stack>),
+      render: () => (
+        <Stack direction="row" gap={12} align="center">
+          <Rating value={4.5} precision={0.5} readOnly={true} />
+          <Tag color="orange">4.5 / 5</Tag>
+        </Stack>
+      ),
     },
-],
+  ],
 
   Calendar: [
     {
@@ -3403,7 +3571,7 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Calendar that disables Saturday and Sunday.',
       render: () => <ControlledCalendarExample />,
     },
-      {
+    {
       title: 'Preselected Date',
       description: 'Calendar with a preselected date value.',
       render: () => <Calendar value={new Date(2026, 5, 15)} />,
@@ -3411,24 +3579,66 @@ export const componentExamples: Record<string, Example[]> = {
     {
       title: 'Event Types',
       description: 'Calendar with multiple event types marked.',
-      render: () => { const today = new Date(); return <Calendar value={today} events={[{ date: today, title: 'Release', type: 'success' }, { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2), title: 'Review', type: 'warning' }, { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 5), title: 'Planning', type: 'info' }]} />; },
+      render: () => {
+        const today = new Date();
+        return (
+          <Calendar
+            value={today}
+            events={[
+              { date: today, title: 'Release', type: 'success' },
+              {
+                date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2),
+                title: 'Review',
+                type: 'warning',
+              },
+              {
+                date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 5),
+                title: 'Planning',
+                type: 'info',
+              },
+            ]}
+          />
+        );
+      },
     },
     {
       title: 'Disable Past Dates',
       description: 'Calendar that prevents selecting past dates.',
-      render: () => { const today = new Date(); today.setHours(0, 0, 0, 0); return <Calendar value={new Date()} disabledDate={(d) => d < today} />; },
+      render: () => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return <Calendar value={new Date()} disabledDate={(d) => d < today} />;
+      },
     },
     {
       title: 'Holiday Markers',
       description: 'Calendar highlighting important dates with event markers.',
-      render: () => { const year = new Date().getFullYear(); return <Calendar value={new Date(year, 0, 1)} events={[{ date: new Date(year, 0, 1), title: 'New Year', type: 'error' }, { date: new Date(year, 6, 4), title: 'Independence Day', type: 'success' }]} />; },
+      render: () => {
+        const year = new Date().getFullYear();
+        return (
+          <Calendar
+            value={new Date(year, 0, 1)}
+            events={[
+              { date: new Date(year, 0, 1), title: 'New Year', type: 'error' },
+              { date: new Date(year, 6, 4), title: 'Independence Day', type: 'success' },
+            ]}
+          />
+        );
+      },
     },
     {
       title: 'Weekend Events',
       description: 'Calendar showing events only on weekends.',
-      render: () => { const today = new Date(); const sat = new Date(today); sat.setDate(today.getDate() + (6 - today.getDay())); return <Calendar value={today} events={[{ date: sat, title: 'Sprint review', type: 'info' }]} />; },
+      render: () => {
+        const today = new Date();
+        const sat = new Date(today);
+        sat.setDate(today.getDate() + (6 - today.getDay()));
+        return (
+          <Calendar value={today} events={[{ date: sat, title: 'Sprint review', type: 'info' }]} />
+        );
+      },
     },
-],
+  ],
 
   Segmented: [
     {
@@ -3446,32 +3656,57 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Segmented control in different sizes.',
       render: () => <ControlledSegmentedExample2 />,
     },
-      {
+    {
       title: 'Block Mode',
       description: 'Segmented control that fills the full width of its container.',
-      render: () => <Segmented options={['Day', 'Week', 'Month']} value="Week" onChange={() => {}} block={true} />,
+      render: () => (
+        <Segmented
+          options={['Day', 'Week', 'Month']}
+          value="Week"
+          onChange={() => {}}
+          block={true}
+        />
+      ),
     },
     {
       title: 'Inline Sizes',
       description: 'Segmented controls shown in different sizes side by side.',
-      render: () => (<Stack direction="column" gap={16}><Segmented options={['S', 'M']} value="S" onChange={() => {}} size="small" /><Segmented options={['Day', 'Week']} value="Day" onChange={() => {}} size="medium" /><Segmented options={['Month', 'Year']} value="Year" onChange={() => {}} size="large" /></Stack>),
+      render: () => (
+        <Stack direction="column" gap={16}>
+          <Segmented options={['S', 'M']} value="S" onChange={() => {}} size="small" />
+          <Segmented options={['Day', 'Week']} value="Day" onChange={() => {}} size="medium" />
+          <Segmented options={['Month', 'Year']} value="Year" onChange={() => {}} size="large" />
+        </Stack>
+      ),
     },
     {
       title: 'View Switcher',
       description: 'Segmented control for switching between list and grid views.',
-      render: () => <Segmented options={['List', 'Grid', 'Kanban']} value="Grid" onChange={() => {}} />,
+      render: () => (
+        <Segmented options={['List', 'Grid', 'Kanban']} value="Grid" onChange={() => {}} />
+      ),
     },
     {
       title: 'Status Filter',
       description: 'Segmented control filtering by status.',
-      render: () => <Segmented options={['All', 'Active', 'Archived']} value="Active" onChange={() => {}} />,
+      render: () => (
+        <Segmented options={['All', 'Active', 'Archived']} value="Active" onChange={() => {}} />
+      ),
     },
     {
       title: 'Large Block Options',
       description: 'Large, full-width segmented control for primary navigation.',
-      render: () => <Segmented options={['Overview', 'Details', 'Settings']} value="Overview" onChange={() => {}} size="large" block={true} />,
+      render: () => (
+        <Segmented
+          options={['Overview', 'Details', 'Settings']}
+          value="Overview"
+          onChange={() => {}}
+          size="large"
+          block={true}
+        />
+      ),
     },
-],
+  ],
 
   Pagination: [
     {
@@ -3489,20 +3724,26 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Interactive pagination with React state.',
       render: () => <ControlledPaginationExample />,
     },
-      {
+    {
       title: 'Compact',
       description: 'Pagination without previous and next arrows.',
-      render: () => <Pagination currentPage={3} totalPages={8} onChange={() => {}} showPrevNext={false} />,
+      render: () => (
+        <Pagination currentPage={3} totalPages={8} onChange={() => {}} showPrevNext={false} />
+      ),
     },
     {
       title: 'Disabled',
       description: 'Pagination in a disabled, non-interactive state.',
-      render: () => <Pagination currentPage={2} totalPages={5} onChange={() => {}} disabled={true} />,
+      render: () => (
+        <Pagination currentPage={2} totalPages={5} onChange={() => {}} disabled={true} />
+      ),
     },
     {
       title: 'Wide Range',
       description: 'Pagination spanning many pages.',
-      render: () => <Pagination currentPage={12} totalPages={24} onChange={() => {}} siblingCount={2} />,
+      render: () => (
+        <Pagination currentPage={12} totalPages={24} onChange={() => {}} siblingCount={2} />
+      ),
     },
     {
       title: 'Small Total',
@@ -3512,9 +3753,17 @@ export const componentExamples: Record<string, Example[]> = {
     {
       title: 'Two Siblings',
       description: 'Pagination showing two sibling pages on each side.',
-      render: () => <Pagination currentPage={7} totalPages={20} onChange={() => {}} siblingCount={2} showPrevNext={true} />,
+      render: () => (
+        <Pagination
+          currentPage={7}
+          totalPages={20}
+          onChange={() => {}}
+          siblingCount={2}
+          showPrevNext={true}
+        />
+      ),
     },
-],
+  ],
 
   RichTextEditor: [
     {
@@ -3534,20 +3783,37 @@ export const componentExamples: Record<string, Example[]> = {
       description: 'Read-only rich text editor.',
       render: () => <ControlledRichTextEditorDisabledExample />,
     },
-      {
+    {
       title: 'Placeholder',
       description: 'Empty rich text editor with placeholder text.',
-      render: () => <RichTextEditor value="" onChange={() => {}} placeholder="Start writing your content here…" />,
+      render: () => (
+        <RichTextEditor
+          value=""
+          onChange={() => {}}
+          placeholder="Start writing your content here…"
+        />
+      ),
     },
     {
       title: 'Pre-filled Content',
       description: 'Rich text editor initialized with formatted HTML content.',
-      render: () => <RichTextEditor value="<h3>Release Notes</h3><p>Version <strong>1.2.0</strong> is now available.</p><ul><li>New components</li><li>Bug fixes</li></ul>" onChange={() => {}} />,
+      render: () => (
+        <RichTextEditor
+          value="<h3>Release Notes</h3><p>Version <strong>1.2.0</strong> is now available.</p><ul><li>New components</li><li>Bug fixes</li></ul>"
+          onChange={() => {}}
+        />
+      ),
     },
     {
       title: 'Styled Container',
       description: 'Rich text editor with a custom class name for styling.',
-      render: () => <RichTextEditor value="<p>Styled editor content.</p>" onChange={() => {}} className="demo-editor" />,
+      render: () => (
+        <RichTextEditor
+          value="<p>Styled editor content.</p>"
+          onChange={() => {}}
+          className="demo-editor"
+        />
+      ),
     },
     {
       title: 'Minimal Value',
@@ -3557,9 +3823,15 @@ export const componentExamples: Record<string, Example[]> = {
     {
       title: 'Read Only View',
       description: 'Rich text editor rendered in a read-only state.',
-      render: () => <RichTextEditor value="<p>This content is <em>read only</em>.</p>" onChange={() => {}} disabled={true} />,
+      render: () => (
+        <RichTextEditor
+          value="<p>This content is <em>read only</em>.</p>"
+          onChange={() => {}}
+          disabled={true}
+        />
+      ),
     },
-],
+  ],
 
   Result: [
     {
@@ -3599,20 +3871,39 @@ export const componentExamples: Record<string, Example[]> = {
         />
       ),
     },
-      {
+    {
       title: 'Warning Status',
       description: 'Result page for a warning state.',
-      render: () => <Result status="warning" title="Attention Needed" subTitle="Your account requires verification before continuing." />,
+      render: () => (
+        <Result
+          status="warning"
+          title="Attention Needed"
+          subTitle="Your account requires verification before continuing."
+        />
+      ),
     },
     {
       title: 'Info Status',
       description: 'Result page for an informational state.',
-      render: () => <Result status="info" title="Update Available" subTitle="A new version of the app is ready to install." />,
+      render: () => (
+        <Result
+          status="info"
+          title="Update Available"
+          subTitle="A new version of the app is ready to install."
+        />
+      ),
     },
     {
       title: 'Custom Icon',
       description: 'Result with a custom icon override.',
-      render: () => <Result status="success" title="Custom Icon" subTitle="This result uses a custom icon provided as a React node." icon={<Icon name="trophy" size={48} color="orange" />} />,
+      render: () => (
+        <Result
+          status="success"
+          title="Custom Icon"
+          subTitle="This result uses a custom icon provided as a React node."
+          icon={<Icon name="trophy" size={48} color="orange" />}
+        />
+      ),
     },
     {
       title: 'Subtitle Focus',
@@ -3622,9 +3913,16 @@ export const componentExamples: Record<string, Example[]> = {
     {
       title: '404 Not Found',
       description: 'Result page for a missing resource.',
-      render: () => <Result status="404" title="Page Not Found" subTitle="The page you are looking for does not exist." extra={<Button size="small">Go Home</Button>} />,
+      render: () => (
+        <Result
+          status="404"
+          title="Page Not Found"
+          subTitle="The page you are looking for does not exist."
+          extra={<Button size="small">Go Home</Button>}
+        />
+      ),
     },
-],
+  ],
 
   RSC: [
     {
@@ -3678,7 +3976,8 @@ export default async function ServerPage() {
       render: () => (
         <div style={{ padding: 24, textAlign: 'center' }}>
           <Text size="small" color="textSecondary">
-            Use async components to fetch data on the server and render with react-n-design RSC primitives.
+            Use async components to fetch data on the server and render with react-n-design RSC
+            primitives.
           </Text>
         </div>
       ),
@@ -3706,78 +4005,136 @@ export default async function ServerPage() {
   );
 }`,
     },
-      {
+    {
       title: 'Static Primitives',
       description: 'RSC entry renders static presentational components on the server.',
-      render: () => (<Stack direction="column" gap={12} align="center"><Badge count={3} variant="success" /><Divider /><Text>Server-rendered text</Text></Stack>),
+      render: () => (
+        <Stack direction="column" gap={12} align="center">
+          <Badge count={3} variant="success" />
+          <Divider />
+          <Text>Server-rendered text</Text>
+        </Stack>
+      ),
     },
     {
       title: 'Suspense Fallback',
       description: 'RSC page uses Skeleton as a streaming fallback while data loads.',
-      render: () => (<Card style={{ padding: 24, width: 320 }}><Skeleton variant="text" width="60%" height={16} active={true} /><Skeleton variant="text" width="40%" height={12} active={true} /></Card>),
+      render: () => (
+        <Card style={{ padding: 24, width: 320 }}>
+          <Skeleton variant="text" width="60%" height={16} active={true} />
+          <Skeleton variant="text" width="40%" height={12} active={true} />
+        </Card>
+      ),
     },
     {
       title: 'Loading Skeletons',
       description: 'RSC-compatible skeleton placeholders for server-rendered lists.',
-      render: () => (<Stack direction="column" gap={8}><Skeleton variant="text" width="100%" height={16} active={true} /><Skeleton variant="text" width="80%" height={16} active={true} /><Skeleton variant="text" width="60%" height={16} active={true} /></Stack>),
+      render: () => (
+        <Stack direction="column" gap={8}>
+          <Skeleton variant="text" width="100%" height={16} active={true} />
+          <Skeleton variant="text" width="80%" height={16} active={true} />
+          <Skeleton variant="text" width="60%" height={16} active={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Server Badge Count',
       description: 'RSC page can render dynamic badge counts from server data.',
-      render: () => (<Stack direction="row" gap={16} align="center"><Badge count={12} variant="primary" /><Badge count={99} overflowCount={99} variant="error" /><Badge dot={true} /></Stack>),
+      render: () => (
+        <Stack direction="row" gap={16} align="center">
+          <Badge count={12} variant="primary" />
+          <Badge count={99} overflowCount={99} variant="error" />
+          <Badge dot={true} />
+        </Stack>
+      ),
     },
     {
       title: 'Async List Pattern',
       description: 'RSC pattern for streaming an async list of presentational items.',
-      render: () => (<Stack direction="column" gap={8}><Divider /><Text size="small">Item 1</Text><Divider /><Text size="small">Item 2</Text><Divider /><Text size="small">Item 3</Text></Stack>),
+      render: () => (
+        <Stack direction="column" gap={8}>
+          <Divider />
+          <Text size="small">Item 1</Text>
+          <Divider />
+          <Text size="small">Item 2</Text>
+          <Divider />
+          <Text size="small">Item 3</Text>
+        </Stack>
+      ),
     },
-],
+  ],
 
   Collapsible: [
     {
       title: 'Basic',
       description: 'Expandable content with a trigger.',
       render: () => (
-      <Collapsible trigger="Click to expand">
-        This content is hidden until expanded.
-      </Collapsible>
-    ),
+        <Collapsible trigger="Click to expand">This content is hidden until expanded.</Collapsible>
+      ),
     },
     {
       title: 'Default Open',
       description: 'Collapsible that starts expanded.',
       render: () => (
-      <Collapsible trigger="Expanded by default" defaultOpen={true}>
-        This content starts visible.
-      </Collapsible>
-    ),
+        <Collapsible trigger="Expanded by default" defaultOpen={true}>
+          This content starts visible.
+        </Collapsible>
+      ),
     },
-      {
+    {
       title: 'Custom Icon',
       description: 'Collapsible with a custom expand/collapse icon.',
-      render: () => (<Collapsible trigger="View details" icon={<Icon name="chevron-down" size={16} />}>Additional details are shown here with a custom icon.</Collapsible>),
+      render: () => (
+        <Collapsible trigger="View details" icon={<Icon name="chevron-down" size={16} />}>
+          Additional details are shown here with a custom icon.
+        </Collapsible>
+      ),
     },
     {
       title: 'Unmount on Exit',
       description: 'Collapsible that unmounts content when collapsed.',
-      render: () => (<Collapsible trigger="Toggle content" unmountOnExit={true}>This content is unmounted when the collapsible is closed.</Collapsible>),
+      render: () => (
+        <Collapsible trigger="Toggle content" unmountOnExit={true}>
+          This content is unmounted when the collapsible is closed.
+        </Collapsible>
+      ),
     },
     {
       title: 'Nested Panels',
       description: 'Collapsible panels nested inside one another.',
-      render: () => (<Collapsible trigger="Parent section" defaultOpen={true}><p style={{ margin: '8px 0' }}>Parent content.</p><Collapsible trigger="Child section">Nested child content.</Collapsible></Collapsible>),
+      render: () => (
+        <Collapsible trigger="Parent section" defaultOpen={true}>
+          <p style={{ margin: '8px 0' }}>Parent content.</p>
+          <Collapsible trigger="Child section">Nested child content.</Collapsible>
+        </Collapsible>
+      ),
     },
     {
       title: 'Card Wrapper',
       description: 'Collapsible styled inside a card container.',
-      render: () => (<Card style={{ padding: 16, maxWidth: 360 }}><Collapsible trigger="Card settings">Settings content inside a card.</Collapsible></Card>),
+      render: () => (
+        <Card style={{ padding: 16, maxWidth: 360 }}>
+          <Collapsible trigger="Card settings">Settings content inside a card.</Collapsible>
+        </Card>
+      ),
     },
     {
       title: 'Rich Trigger',
       description: 'Collapsible with a styled trigger containing multiple elements.',
-      render: () => (<Collapsible trigger={<Stack direction="row" gap={8} align="center"><Badge count={2} /><span>Notifications</span></Stack>}>Here are your latest notifications.</Collapsible>),
+      render: () => (
+        <Collapsible
+          trigger={
+            <Stack direction="row" gap={8} align="center">
+              <Badge count={2} />
+              <span>Notifications</span>
+            </Stack>
+          }
+        >
+          Here are your latest notifications.
+        </Collapsible>
+      ),
     },
-],
+  ],
 
   CodeBlock: [
     {
@@ -3801,48 +4158,81 @@ export default async function ServerPage() {
       description: 'Code block with a copy button.',
       render: () => <ControlledCodeBlockExample />,
     },
-      {
+    {
       title: 'JSON Config',
       description: 'Syntax-highlighted JSON configuration with line numbers and copy support.',
-      render: () => <CodeBlock code='{
+      render: () => (
+        <CodeBlock
+          code='{
   "name": "app",
   "version": "1.0.0",
   "private": true
-}' language='json' showLineNumbers copyable />,
+}'
+          language="json"
+          showLineNumbers
+          copyable
+        />
+      ),
     },
     {
       title: 'CSS Rules',
       description: 'CSS snippet rendered without line numbers for a focused preview.',
-      render: () => <CodeBlock code='.button {
+      render: () => (
+        <CodeBlock
+          code=".button {
   background: #6d5dfc;
   color: white;
   border-radius: 8px;
-}' language='css' showLineNumbers={false} copyable />,
+}"
+          language="css"
+          showLineNumbers={false}
+          copyable
+        />
+      ),
     },
     {
       title: 'Shell Script',
       description: 'A realistic shell workflow with line numbers enabled.',
-      render: () => <CodeBlock code='git add .
+      render: () => (
+        <CodeBlock
+          code='git add .
 git commit -m "feat: update"
-git push origin main' language='bash' showLineNumbers />,
+git push origin main'
+          language="bash"
+          showLineNumbers
+        />
+      ),
     },
     {
       title: 'SQL Query',
       description: 'SQL selection query with a copy button.',
-      render: () => <CodeBlock code='SELECT id, name, email
+      render: () => (
+        <CodeBlock
+          code="SELECT id, name, email
 FROM users
 WHERE active = true
-ORDER BY created_at DESC;' language='sql' copyable />,
+ORDER BY created_at DESC;"
+          language="sql"
+          copyable
+        />
+      ),
     },
     {
       title: 'Python Function',
       description: 'Python function without line numbers or copy support.',
-      render: () => <CodeBlock code='def greet(name):
+      render: () => (
+        <CodeBlock
+          code='def greet(name):
     return f"Hello, {name}!"
 
-print(greet("World"))' language='python' showLineNumbers={false} copyable={false} />,
+print(greet("World"))'
+          language="python"
+          showLineNumbers={false}
+          copyable={false}
+        />
+      ),
     },
-],
+  ],
 
   Tree: [
     {
@@ -3887,78 +4277,208 @@ print(greet("World"))' language='python' showLineNumbers={false} copyable={false
       description: 'Tree with node selection callback.',
       render: () => <ControlledTreeExample />,
     },
-      {
+    {
       title: 'Default Selection',
       description: 'Tree with a default selected node.',
-      render: () => <Tree data={[{ key: '1', title: 'Project', children: [{ key: '1-1', title: 'src' }, { key: '1-2', title: 'docs', children: [{ key: '1-2-1', title: 'README.md' }] }] }]} defaultSelectedKeys={['1-1']} />,
+      render: () => (
+        <Tree
+          data={[
+            {
+              key: '1',
+              title: 'Project',
+              children: [
+                { key: '1-1', title: 'src' },
+                { key: '1-2', title: 'docs', children: [{ key: '1-2-1', title: 'README.md' }] },
+              ],
+            },
+          ]}
+          defaultSelectedKeys={['1-1']}
+        />
+      ),
     },
     {
       title: 'Expand Handler',
       description: 'Tree that logs the expanded keys whenever a node is toggled.',
-      render: () => <Tree data={[{ key: 'root', title: 'Root', children: [{ key: 'a', title: 'Branch A' }, { key: 'b', title: 'Branch B' }] }]} defaultExpandedKeys={['root']} onExpand={(keys) => console.log(keys)} />,
+      render: () => (
+        <Tree
+          data={[
+            {
+              key: 'root',
+              title: 'Root',
+              children: [
+                { key: 'a', title: 'Branch A' },
+                { key: 'b', title: 'Branch B' },
+              ],
+            },
+          ]}
+          defaultExpandedKeys={['root']}
+          onExpand={(keys) => console.log(keys)}
+        />
+      ),
     },
     {
       title: 'Deeply Nested',
       description: 'Tree expanded down to a deeply nested hierarchy.',
-      render: () => <Tree data={[{ key: '1', title: 'Level 1', children: [{ key: '1-1', title: 'Level 2', children: [{ key: '1-1-1', title: 'Level 3', children: [{ key: '1-1-1-1', title: 'Level 4' }] }] }] }]} defaultExpandedKeys={['1', '1-1', '1-1-1']} />,
+      render: () => (
+        <Tree
+          data={[
+            {
+              key: '1',
+              title: 'Level 1',
+              children: [
+                {
+                  key: '1-1',
+                  title: 'Level 2',
+                  children: [
+                    {
+                      key: '1-1-1',
+                      title: 'Level 3',
+                      children: [{ key: '1-1-1-1', title: 'Level 4' }],
+                    },
+                  ],
+                },
+              ],
+            },
+          ]}
+          defaultExpandedKeys={['1', '1-1', '1-1-1']}
+        />
+      ),
     },
     {
       title: 'Flat List',
       description: 'Tree rendered as a flat list without nested children.',
-      render: () => <Tree data={[{ key: 'a', title: 'Documents' }, { key: 'b', title: 'Downloads' }, { key: 'c', title: 'Pictures' }]} />,
+      render: () => (
+        <Tree
+          data={[
+            { key: 'a', title: 'Documents' },
+            { key: 'b', title: 'Downloads' },
+            { key: 'c', title: 'Pictures' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Expand and Select',
       description: 'Tree with both default expansion and default selection combined.',
-      render: () => <Tree data={[{ key: '1', title: 'Workspace', children: [{ key: '1-1', title: 'Design' }, { key: '1-2', title: 'Engineering' }] }]} defaultExpandedKeys={['1']} defaultSelectedKeys={['1-2']} onSelect={() => {}} onExpand={() => {}} />,
+      render: () => (
+        <Tree
+          data={[
+            {
+              key: '1',
+              title: 'Workspace',
+              children: [
+                { key: '1-1', title: 'Design' },
+                { key: '1-2', title: 'Engineering' },
+              ],
+            },
+          ]}
+          defaultExpandedKeys={['1']}
+          defaultSelectedKeys={['1-2']}
+          onSelect={() => {}}
+          onExpand={() => {}}
+        />
+      ),
     },
-],
+  ],
 
   Toast: [
     {
       title: 'Basic',
       description: 'Show a temporary notification with the toast hook.',
       render: () => (
-      <ToastProvider>
-        <ToastDemoExample />
-      </ToastProvider>
-    ),
+        <ToastProvider>
+          <ToastDemoExample />
+        </ToastProvider>
+      ),
     },
     {
       title: 'Variants',
       description: 'Success, warning, and error toasts.',
       render: () => (
-      <ToastProvider>
-        <ToastVariantsExample />
-      </ToastProvider>
-    ),
+        <ToastProvider>
+          <ToastVariantsExample />
+        </ToastProvider>
+      ),
     },
-      {
+    {
       title: 'Success Toast',
       description: 'A standalone success toast with title, description, and duration.',
-      render: () => <Toast id='success-1' variant='success' title='Saved' description='Your changes were saved successfully.' duration={5000} onDismiss={() => {}} />,
+      render: () => (
+        <Toast
+          id="success-1"
+          variant="success"
+          title="Saved"
+          description="Your changes were saved successfully."
+          duration={5000}
+          onDismiss={() => {}}
+        />
+      ),
     },
     {
       title: 'With Action',
       description: 'Toast that includes a call-to-action button.',
-      render: () => <Toast id='action-1' variant='warning' title='Undo available' description='The item was deleted.' action={<Button size='small' onClick={() => {}}>Undo</Button>} onDismiss={() => {}} />,
+      render: () => (
+        <Toast
+          id="action-1"
+          variant="warning"
+          title="Undo available"
+          description="The item was deleted."
+          action={
+            <Button size="small" onClick={() => {}}>
+              Undo
+            </Button>
+          }
+          onDismiss={() => {}}
+        />
+      ),
     },
     {
       title: 'Glass Toast',
       description: 'Info toast using the glassmorphism style.',
-      render: () => <Toast id='glass-1' variant='info' title='New update' description='A new version is available.' isGlass onDismiss={() => {}} />,
+      render: () => (
+        <Toast
+          id="glass-1"
+          variant="info"
+          title="New update"
+          description="A new version is available."
+          isGlass
+          onDismiss={() => {}}
+        />
+      ),
     },
     {
       title: 'Avatar Toast',
       description: 'Toast with an avatar for a user-generated notification.',
-      render: () => <Toast id='avatar-1' variant='info' title='Alice commented' description='Looks great, ship it!' avatar={{ src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice', alt: 'Alice' }} onDismiss={() => {}} />,
+      render: () => (
+        <Toast
+          id="avatar-1"
+          variant="info"
+          title="Alice commented"
+          description="Looks great, ship it!"
+          avatar={{ src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice', alt: 'Alice' }}
+          onDismiss={() => {}}
+        />
+      ),
     },
     {
       title: 'Rich Content',
       description: 'Toast with rich custom content and meta text.',
-      render: () => <Toast id='rich-1' variant='success' title='Deployment complete' richContent={<div><strong>Production</strong> deployed at 12:30 PM.</div>} meta='2 minutes ago' onDismiss={() => {}} />,
+      render: () => (
+        <Toast
+          id="rich-1"
+          variant="success"
+          title="Deployment complete"
+          richContent={
+            <div>
+              <strong>Production</strong> deployed at 12:30 PM.
+            </div>
+          }
+          meta="2 minutes ago"
+          onDismiss={() => {}}
+        />
+      ),
     },
-],
+  ],
 
   Toggle: [
     {
@@ -3990,7 +4510,7 @@ print(greet("World"))' language='python' showLineNumbers={false} copyable={false
         </Stack>
       ),
     },
-      {
+    {
       title: 'Default On',
       description: 'Toggle that starts in the pressed state by default.',
       render: () => <Toggle defaultPressed={true}>Dark mode</Toggle>,
@@ -4029,14 +4549,24 @@ print(greet("World"))' language='python' showLineNumbers={false} copyable={false
     {
       title: 'Disabled Pressed',
       description: 'Toggle locked in the pressed state and disabled.',
-      render: () => <Toggle pressed={true} disabled={true}>Locked</Toggle>,
+      render: () => (
+        <Toggle pressed={true} disabled={true}>
+          Locked
+        </Toggle>
+      ),
     },
     {
       title: 'Form Values',
       description: 'Group of toggles with value attributes for toolbar-like forms.',
-      render: () => <Stack direction='row' gap={12} align='center'><Toggle value='bold'>Bold</Toggle><Toggle value='italic'>Italic</Toggle><Toggle value='underline'>Underline</Toggle></Stack>,
+      render: () => (
+        <Stack direction="row" gap={12} align="center">
+          <Toggle value="bold">Bold</Toggle>
+          <Toggle value="italic">Italic</Toggle>
+          <Toggle value="underline">Underline</Toggle>
+        </Stack>
+      ),
     },
-],
+  ],
 
   Timeline: [
     {
@@ -4070,32 +4600,74 @@ print(greet("World"))' language='python' showLineNumbers={false} copyable={false
       description: 'Timeline that can be reversed with a button.',
       render: () => <ControlledTimelineExample />,
     },
-      {
+    {
       title: 'Alternate Mode',
       description: 'Timeline items alternating between left and right sides.',
-      render: () => <Timeline mode='alternate' items={[{ children: 'Created repository', label: 'Jan 1', color: 'blue' }, { children: 'First commit', label: 'Jan 2', color: 'green' }, { children: 'Released v1.0', label: 'Jan 5', color: 'red' }]} />,
+      render: () => (
+        <Timeline
+          mode="alternate"
+          items={[
+            { children: 'Created repository', label: 'Jan 1', color: 'blue' },
+            { children: 'First commit', label: 'Jan 2', color: 'green' },
+            { children: 'Released v1.0', label: 'Jan 5', color: 'red' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Reversed',
       description: 'Timeline rendered in reverse chronological order.',
-      render: () => <Timeline reverse items={[{ children: 'Project finished', color: 'green' }, { children: 'Development started', color: 'blue' }, { children: 'Ideation', color: 'gray' }]} />,
+      render: () => (
+        <Timeline
+          reverse
+          items={[
+            { children: 'Project finished', color: 'green' },
+            { children: 'Development started', color: 'blue' },
+            { children: 'Ideation', color: 'gray' },
+          ]}
+        />
+      ),
     },
     {
       title: 'With Labels',
       description: 'Timeline items showing time labels alongside events.',
-      render: () => <Timeline items={[{ children: 'Design review', label: '09:00', color: 'purple' }, { children: 'Stand-up', label: '10:30', color: 'orange' }, { children: 'Demo', label: '14:00', color: 'blue' }]} />,
+      render: () => (
+        <Timeline
+          items={[
+            { children: 'Design review', label: '09:00', color: 'purple' },
+            { children: 'Stand-up', label: '10:30', color: 'orange' },
+            { children: 'Demo', label: '14:00', color: 'blue' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Custom Dots',
       description: 'Timeline using custom icon dots for each status.',
-      render: () => <Timeline items={[{ children: 'In progress', dot: <Icon name='clock' size={14} />, color: 'blue' }, { children: 'Done', dot: <Icon name='check' size={14} />, color: 'green' }, { children: 'Blocked', dot: <Icon name='alert' size={14} />, color: 'red' }]} />,
+      render: () => (
+        <Timeline
+          items={[
+            { children: 'In progress', dot: <Icon name="clock" size={14} />, color: 'blue' },
+            { children: 'Done', dot: <Icon name="check" size={14} />, color: 'green' },
+            { children: 'Blocked', dot: <Icon name="alert" size={14} />, color: 'red' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Right Aligned Items',
       description: 'Timeline with every item explicitly aligned to the right.',
-      render: () => <Timeline items={[{ children: 'Onboarding', position: 'right', color: 'blue' }, { children: 'Training', position: 'right', color: 'green' }, { children: 'Graduation', position: 'right', color: 'gold' }]} />,
+      render: () => (
+        <Timeline
+          items={[
+            { children: 'Onboarding', position: 'right', color: 'blue' },
+            { children: 'Training', position: 'right', color: 'green' },
+            { children: 'Graduation', position: 'right', color: 'gold' },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   Terminal: [
     {
@@ -4128,32 +4700,78 @@ print(greet("World"))' language='python' showLineNumbers={false} copyable={false
         />
       ),
     },
-      {
+    {
       title: 'Compact Height',
       description: 'Terminal constrained to a compact maximum height.',
-      render: () => <Terminal title='Short log' maxHeight='120px' lines={[{ content: 'npm install', type: 'command' }, { content: 'added 42 packages', type: 'output' }]} />,
+      render: () => (
+        <Terminal
+          title="Short log"
+          maxHeight="120px"
+          lines={[
+            { content: 'npm install', type: 'command' },
+            { content: 'added 42 packages', type: 'output' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Static Scroll',
       description: 'Terminal output with auto-scroll disabled.',
-      render: () => <Terminal title='Static output' autoScroll={false} lines={[{ content: 'Starting server...', type: 'info' }, { content: 'Server ready on port 3000', type: 'output' }]} />,
+      render: () => (
+        <Terminal
+          title="Static output"
+          autoScroll={false}
+          lines={[
+            { content: 'Starting server...', type: 'info' },
+            { content: 'Server ready on port 3000', type: 'output' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Error Log',
       description: 'Terminal styled for error output with command and error lines.',
-      render: () => <Terminal title='Error output' lines={[{ content: 'npm run lint', type: 'command' }, { content: 'src/index.ts:12:10 - error TS2345', type: 'error' }, { content: 'Found 1 error.', type: 'output' }]} />,
+      render: () => (
+        <Terminal
+          title="Error output"
+          lines={[
+            { content: 'npm run lint', type: 'command' },
+            { content: 'src/index.ts:12:10 - error TS2345', type: 'error' },
+            { content: 'Found 1 error.', type: 'output' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Build Log',
       description: 'Build output with a mix of command, info, and output lines.',
-      render: () => <Terminal title='Build output' lines={[{ content: 'npm run build', type: 'command' }, { content: 'vite v5.0 building for production...', type: 'info' }, { content: 'dist/assets/index-abc.js', type: 'output' }, { content: 'Build completed in 2.34s', type: 'output' }]} />,
+      render: () => (
+        <Terminal
+          title="Build output"
+          lines={[
+            { content: 'npm run build', type: 'command' },
+            { content: 'vite v5.0 building for production...', type: 'info' },
+            { content: 'dist/assets/index-abc.js', type: 'output' },
+            { content: 'Build completed in 2.34s', type: 'output' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Long Output',
       description: 'Terminal rendering a long scrolling list of generated lines.',
-      render: () => <Terminal title='Long output' maxHeight='160px' lines={Array.from({ length: 20 }, (_, i) => ({ content: `Line ${i + 1}: processing item ${i + 1}`, type: i % 5 === 0 ? 'info' : 'output' }))} />,
+      render: () => (
+        <Terminal
+          title="Long output"
+          maxHeight="160px"
+          lines={Array.from({ length: 20 }, (_, i) => ({
+            content: `Line ${i + 1}: processing item ${i + 1}`,
+            type: i % 5 === 0 ? 'info' : 'output',
+          }))}
+        />
+      ),
     },
-],
+  ],
 
   Markdown: [
     {
@@ -4177,45 +4795,57 @@ print(greet("World"))' language='python' showLineNumbers={false} copyable={false
         <Markdown># Code Example\n\n```tsx\nconst x = 1;\n```\n\nUse `code` inline.</Markdown>
       ),
     },
-      {
+    {
       title: 'Blockquote',
       description: 'Markdown rendering a formatted blockquote.',
-      render: () => <Markdown>{`> Design is not just what it looks like and feels like.
+      render: () => (
+        <Markdown>{`> Design is not just what it looks like and feels like.
 > Design is how it works.
 
-— Steve Jobs`}</Markdown>,
+— Steve Jobs`}</Markdown>
+      ),
     },
     {
       title: 'Table',
       description: 'Markdown table with headers and rows.',
-      render: () => <Markdown>{`| Name | Role | Status |
+      render: () => (
+        <Markdown>{`| Name | Role | Status |
 |------|------|--------|
 | Alice | Engineer | Active |
-| Bob | Designer | Away |`}</Markdown>,
+| Bob | Designer | Away |`}</Markdown>
+      ),
     },
     {
       title: 'Ordered List',
       description: 'Numbered Markdown list for step-by-step instructions.',
-      render: () => <Markdown>{`1. Install the package
+      render: () => (
+        <Markdown>{`1. Install the package
 2. Import the component
-3. Build your UI`}</Markdown>,
+3. Build your UI`}</Markdown>
+      ),
     },
     {
       title: 'Headings',
       description: 'Markdown heading hierarchy from h1 to h4.',
-      render: () => <Markdown>{`# Heading 1
+      render: () => (
+        <Markdown>{`# Heading 1
 ## Heading 2
 ### Heading 3
-#### Heading 4`}</Markdown>,
+#### Heading 4`}</Markdown>
+      ),
     },
     {
       title: 'Custom Components',
       description: 'Markdown with a custom component override for headings.',
-      render: () => <Markdown components={{ h1: ({ children }) => <h1 style={{ color: '#6d5dfc' }}>{children}</h1> }}>{`# Custom styled heading
+      render: () => (
+        <Markdown
+          components={{ h1: ({ children }) => <h1 style={{ color: '#6d5dfc' }}>{children}</h1> }}
+        >{`# Custom styled heading
 
-This paragraph uses the default renderer.`}</Markdown>,
+This paragraph uses the default renderer.`}</Markdown>
+      ),
     },
-],
+  ],
 
   CopyButton: [
     {
@@ -4294,11 +4924,7 @@ This paragraph uses the default renderer.`}</Markdown>,
       title: 'Accessible Label',
       description: 'Small copy button with a custom accessible label.',
       render: () => (
-        <CopyButton
-          text="Copy"
-          size="sm"
-          aria-label="Copy email address to clipboard"
-        />
+        <CopyButton text="Copy" size="sm" aria-label="Copy email address to clipboard" />
       ),
     },
   ],
@@ -4324,32 +4950,47 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Unified View',
       description: 'Diff rendered in a single unified column.',
-      render: () => <DiffViewer oldValue="function add(a, b) { return a + b; }" newValue="function add(a, b) { return a + b + 1; }" mode="unified" />,
+      render: () => (
+        <DiffViewer
+          oldValue="function add(a, b) { return a + b; }"
+          newValue="function add(a, b) { return a + b + 1; }"
+          mode="unified"
+        />
+      ),
     },
     {
       title: 'Split JSON',
       description: 'Side-by-side diff for JSON content.',
-      render: () => <DiffViewer oldValue='{\\n  "name": "alice"\\n}' newValue='{\\n  "name": "alice",\\n  "age": 30\\n}' />,
+      render: () => (
+        <DiffViewer
+          oldValue='{\\n  "name": "alice"\\n}'
+          newValue='{\\n  "name": "alice",\\n  "age": 30\\n}'
+        />
+      ),
     },
     {
       title: 'Styled Container',
       description: 'Diff viewer wrapped with a custom class name.',
-      render: () => <DiffViewer className="demo-diff" oldValue="theme: light" newValue="theme: dark" />,
+      render: () => (
+        <DiffViewer className="demo-diff" oldValue="theme: light" newValue="theme: dark" />
+      ),
     },
     {
       title: 'Configuration Diff',
       description: 'Diff for a simple key-value configuration change.',
-      render: () => <DiffViewer oldValue="debug: true\ntimeout: 5000" newValue="debug: false\ntimeout: 10000" />,
+      render: () => (
+        <DiffViewer oldValue="debug: true\ntimeout: 5000" newValue="debug: false\ntimeout: 10000" />
+      ),
     },
     {
       title: 'Added Content',
       description: 'Diff showing content added from an empty starting value.',
       render: () => <DiffViewer oldValue="" newValue="function hello() {\n  return 'world';\n}" />,
     },
-],
+  ],
 
   Drawer: [
     {
@@ -4376,32 +5017,121 @@ This paragraph uses the default renderer.`}</Markdown>,
         </>
       ),
     },
-      {
+    {
       title: 'Top Placement',
       description: 'Drawer that slides in from the top of the viewport.',
-      render: () => { const [open, setOpen] = React.useState(false); return (<><Button size="small" onClick={() => setOpen(true)}>Open Top</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title="Top Drawer" placement="top"><p>This drawer slides down from the top.</p></Drawer></>); },
+      render: () => {
+        const [open, setOpen] = React.useState(false);
+        return (
+          <>
+            <Button size="small" onClick={() => setOpen(true)}>
+              Open Top
+            </Button>
+            <Drawer isOpen={open} onClose={() => setOpen(false)} title="Top Drawer" placement="top">
+              <p>This drawer slides down from the top.</p>
+            </Drawer>
+          </>
+        );
+      },
     },
     {
       title: 'Bottom Placement',
       description: 'Drawer that slides in from the bottom of the viewport.',
-      render: () => { const [open, setOpen] = React.useState(false); return (<><Button size="small" onClick={() => setOpen(true)}>Open Bottom</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title="Bottom Drawer" placement="bottom"><p>This drawer slides up from the bottom.</p></Drawer></>); },
+      render: () => {
+        const [open, setOpen] = React.useState(false);
+        return (
+          <>
+            <Button size="small" onClick={() => setOpen(true)}>
+              Open Bottom
+            </Button>
+            <Drawer
+              isOpen={open}
+              onClose={() => setOpen(false)}
+              title="Bottom Drawer"
+              placement="bottom"
+            >
+              <p>This drawer slides up from the bottom.</p>
+            </Drawer>
+          </>
+        );
+      },
     },
     {
       title: 'Glass Variant',
       description: 'Drawer with a frosted-glass panel style.',
-      render: () => { const [open, setOpen] = React.useState(false); return (<><Button size="small" onClick={() => setOpen(true)}>Open Glass</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title="Glass Drawer" variant="glass"><p>Content behind the backdrop is blurred.</p></Drawer></>); },
+      render: () => {
+        const [open, setOpen] = React.useState(false);
+        return (
+          <>
+            <Button size="small" onClick={() => setOpen(true)}>
+              Open Glass
+            </Button>
+            <Drawer
+              isOpen={open}
+              onClose={() => setOpen(false)}
+              title="Glass Drawer"
+              variant="glass"
+            >
+              <p>Content behind the backdrop is blurred.</p>
+            </Drawer>
+          </>
+        );
+      },
     },
     {
       title: 'Footer Actions',
       description: 'Drawer with action buttons in the footer.',
-      render: () => { const [open, setOpen] = React.useState(false); return (<><Button size="small" onClick={() => setOpen(true)}>Open Drawer</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title="Confirm" footer={<Stack direction="row" gap={12}><Button size="small" variant="secondary" onClick={() => setOpen(false)}>Cancel</Button><Button size="small" onClick={() => setOpen(false)}>Confirm</Button></Stack>}><p>Are you sure you want to continue?</p></Drawer></>); },
+      render: () => {
+        const [open, setOpen] = React.useState(false);
+        return (
+          <>
+            <Button size="small" onClick={() => setOpen(true)}>
+              Open Drawer
+            </Button>
+            <Drawer
+              isOpen={open}
+              onClose={() => setOpen(false)}
+              title="Confirm"
+              footer={
+                <Stack direction="row" gap={12}>
+                  <Button size="small" variant="secondary" onClick={() => setOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button size="small" onClick={() => setOpen(false)}>
+                    Confirm
+                  </Button>
+                </Stack>
+              }
+            >
+              <p>Are you sure you want to continue?</p>
+            </Drawer>
+          </>
+        );
+      },
     },
     {
       title: 'Prevent Backdrop Click',
       description: 'Drawer that cannot be closed by clicking the backdrop.',
-      render: () => { const [open, setOpen] = React.useState(false); return (<><Button size="small" onClick={() => setOpen(true)}>Open Drawer</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title="Backdrop Locked" preventBackdropClick={true}><p>Click outside will not close this drawer.</p></Drawer></>); },
+      render: () => {
+        const [open, setOpen] = React.useState(false);
+        return (
+          <>
+            <Button size="small" onClick={() => setOpen(true)}>
+              Open Drawer
+            </Button>
+            <Drawer
+              isOpen={open}
+              onClose={() => setOpen(false)}
+              title="Backdrop Locked"
+              preventBackdropClick={true}
+            >
+              <p>Click outside will not close this drawer.</p>
+            </Drawer>
+          </>
+        );
+      },
     },
-],
+  ],
 
   Empty: [
     {
@@ -4437,7 +5167,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Default',
       description: 'Empty state using the default illustration and text.',
       render: () => <Empty />,
@@ -4445,24 +5175,51 @@ This paragraph uses the default renderer.`}</Markdown>,
     {
       title: 'Custom Icon',
       description: 'Empty state with a custom icon as the image.',
-      render: () => <Empty description="No messages" image={<Icon name="inbox" size={64} color="var(--n-color-text-secondary)" />} />,
+      render: () => (
+        <Empty
+          description="No messages"
+          image={<Icon name="inbox" size={64} color="var(--n-color-text-secondary)" />}
+        />
+      ),
     },
     {
       title: 'Rich Description',
       description: 'Empty state with structured description content.',
-      render: () => <Empty description={<div><strong>No projects</strong><p>Create a project to get started.</p></div>} />,
+      render: () => (
+        <Empty
+          description={
+            <div>
+              <strong>No projects</strong>
+              <p>Create a project to get started.</p>
+            </div>
+          }
+        />
+      ),
     },
     {
       title: 'In a Card',
       description: 'Empty state nested inside a card container.',
-      render: () => <Card style={{ width: 320, padding: 24 }}><Empty description="No data" /></Card>,
+      render: () => (
+        <Card style={{ width: 320, padding: 24 }}>
+          <Empty description="No data" />
+        </Card>
+      ),
     },
     {
       title: 'With Two Actions',
       description: 'Empty state with primary and secondary action buttons.',
-      render: () => <Empty description="No projects found"><Stack direction="row" gap={12} style={{ marginTop: 16 }}><Button size="small">Create</Button><Button size="small" variant="secondary">Import</Button></Stack></Empty>,
+      render: () => (
+        <Empty description="No projects found">
+          <Stack direction="row" gap={12} style={{ marginTop: 16 }}>
+            <Button size="small">Create</Button>
+            <Button size="small" variant="secondary">
+              Import
+            </Button>
+          </Stack>
+        </Empty>
+      ),
     },
-],
+  ],
 
   HeatmapCalendar: [
     {
@@ -4504,32 +5261,85 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Sunday Start',
       description: 'Heatmap calendar with weeks starting on Sunday.',
-      render: () => <HeatmapCalendar startWeekOnMonday={false} data={[{ date: '2024-01-07', count: 5 }, { date: '2024-01-14', count: 3 }, { date: '2024-01-21', count: 8 }]} />,
+      render: () => (
+        <HeatmapCalendar
+          startWeekOnMonday={false}
+          data={[
+            { date: '2024-01-07', count: 5 },
+            { date: '2024-01-14', count: 3 },
+            { date: '2024-01-21', count: 8 },
+          ]}
+        />
+      ),
     },
     {
       title: 'Full Year 2024',
       description: 'Heatmap showing activity distributed across the year.',
-      render: () => <HeatmapCalendar year={2024} data={[{ date: '2024-01-05', count: 2 }, { date: '2024-02-12', count: 6 }, { date: '2024-03-20', count: 4 }, { date: '2024-04-08', count: 9 }, { date: '2024-05-15', count: 1 }, { date: '2024-06-30', count: 7 }, { date: '2024-07-18', count: 5 }, { date: '2024-08-25', count: 3 }, { date: '2024-09-10', count: 8 }, { date: '2024-10-31', count: 4 }, { date: '2024-11-22', count: 6 }, { date: '2024-12-12', count: 10 }]} />,
+      render: () => (
+        <HeatmapCalendar
+          year={2024}
+          data={[
+            { date: '2024-01-05', count: 2 },
+            { date: '2024-02-12', count: 6 },
+            { date: '2024-03-20', count: 4 },
+            { date: '2024-04-08', count: 9 },
+            { date: '2024-05-15', count: 1 },
+            { date: '2024-06-30', count: 7 },
+            { date: '2024-07-18', count: 5 },
+            { date: '2024-08-25', count: 3 },
+            { date: '2024-09-10', count: 8 },
+            { date: '2024-10-31', count: 4 },
+            { date: '2024-11-22', count: 6 },
+            { date: '2024-12-12', count: 10 },
+          ]}
+        />
+      ),
     },
     {
       title: 'Sparse Data',
       description: 'Heatmap with only a few active days.',
-      render: () => <HeatmapCalendar data={[{ date: '2024-06-01', count: 1 }, { date: '2024-06-15', count: 3 }]} />,
+      render: () => (
+        <HeatmapCalendar
+          data={[
+            { date: '2024-06-01', count: 1 },
+            { date: '2024-06-15', count: 3 },
+          ]}
+        />
+      ),
     },
     {
       title: 'Custom Class',
       description: 'Heatmap calendar with a custom wrapper class name.',
-      render: () => <HeatmapCalendar className="demo-heatmap" data={[{ date: '2024-07-04', count: 4 }, { date: '2024-07-05', count: 7 }, { date: '2024-07-06', count: 2 }]} />,
+      render: () => (
+        <HeatmapCalendar
+          className="demo-heatmap"
+          data={[
+            { date: '2024-07-04', count: 4 },
+            { date: '2024-07-05', count: 7 },
+            { date: '2024-07-06', count: 2 },
+          ]}
+        />
+      ),
     },
     {
       title: 'Recent Year 2025',
       description: 'Heatmap calendar focused on a recent calendar year.',
-      render: () => <HeatmapCalendar year={2025} data={[{ date: '2025-01-10', count: 3 }, { date: '2025-02-14', count: 6 }, { date: '2025-03-22', count: 9 }, { date: '2025-04-05', count: 2 }]} />,
+      render: () => (
+        <HeatmapCalendar
+          year={2025}
+          data={[
+            { date: '2025-01-10', count: 3 },
+            { date: '2025-02-14', count: 6 },
+            { date: '2025-03-22', count: 9 },
+            { date: '2025-04-05', count: 2 },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   KanbanBoard: [
     {
@@ -4568,32 +5378,95 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'Interactive Kanban board with React state.',
       render: () => <ControlledKanbanExample />,
     },
-      {
+    {
       title: 'Single Column',
       description: 'Kanban board with a single task column.',
-      render: () => <KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Design mockups', description: 'Create initial screens' }] }]} />,
+      render: () => (
+        <KanbanBoard
+          onChange={() => {}}
+          columns={[
+            {
+              id: 'todo',
+              title: 'To Do',
+              tasks: [{ id: 't1', title: 'Design mockups', description: 'Create initial screens' }],
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Empty Column',
       description: 'Kanban board that includes an empty backlog column.',
-      render: () => <KanbanBoard onChange={() => {}} columns={[{ id: 'backlog', title: 'Backlog', tasks: [] }, { id: 'doing', title: 'In Progress', tasks: [{ id: 't1', title: 'Wireframes' }] }]} />,
+      render: () => (
+        <KanbanBoard
+          onChange={() => {}}
+          columns={[
+            { id: 'backlog', title: 'Backlog', tasks: [] },
+            { id: 'doing', title: 'In Progress', tasks: [{ id: 't1', title: 'Wireframes' }] },
+          ]}
+        />
+      ),
     },
     {
       title: 'Custom Class',
       description: 'Kanban board styled through a custom class name.',
-      render: () => <KanbanBoard className="demo-kanban" onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Research' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't2', title: 'Planning' }] }]} />,
+      render: () => (
+        <KanbanBoard
+          className="demo-kanban"
+          onChange={() => {}}
+          columns={[
+            { id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Research' }] },
+            { id: 'done', title: 'Done', tasks: [{ id: 't2', title: 'Planning' }] },
+          ]}
+        />
+      ),
     },
     {
       title: 'Wrapped in Card',
       description: 'Kanban board displayed inside a card container.',
-      render: () => <Card style={{ padding: 16 }}><KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Design' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't2', title: 'Deploy' }] }]} /></Card>,
+      render: () => (
+        <Card style={{ padding: 16 }}>
+          <KanbanBoard
+            onChange={() => {}}
+            columns={[
+              { id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Design' }] },
+              { id: 'done', title: 'Done', tasks: [{ id: 't2', title: 'Deploy' }] },
+            ]}
+          />
+        </Card>
+      ),
     },
     {
       title: 'Many Tasks',
       description: 'Kanban board with several tasks including tags and descriptions.',
-      render: () => <KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Refactor auth', description: 'Simplify login flow', tags: ['backend'] }, { id: 't2', title: 'Update docs', tags: ['docs'] }, { id: 't3', title: 'Fix icons' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't4', title: 'Setup CI', description: 'GitHub Actions workflow' }] }]} />,
+      render: () => (
+        <KanbanBoard
+          onChange={() => {}}
+          columns={[
+            {
+              id: 'todo',
+              title: 'To Do',
+              tasks: [
+                {
+                  id: 't1',
+                  title: 'Refactor auth',
+                  description: 'Simplify login flow',
+                  tags: ['backend'],
+                },
+                { id: 't2', title: 'Update docs', tags: ['docs'] },
+                { id: 't3', title: 'Fix icons' },
+              ],
+            },
+            {
+              id: 'done',
+              title: 'Done',
+              tasks: [{ id: 't4', title: 'Setup CI', description: 'GitHub Actions workflow' }],
+            },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   DataGrid: [
     {
@@ -4646,32 +5519,102 @@ This paragraph uses the default renderer.`}</Markdown>,
         );
       },
     },
-      {
+    {
       title: 'Minimal Variant',
       description: 'Data grid with a minimal visual variant.',
-      render: () => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} variant="minimal" pagination={false} />; },
+      render: () => {
+        const cols = [
+          { key: 'name', title: 'Name' },
+          { key: 'role', title: 'Role' },
+        ];
+        const data = [
+          { name: 'Alice', role: 'Engineer' },
+          { name: 'Bob', role: 'Designer' },
+          { name: 'Carol', role: 'Manager' },
+        ];
+        return <DataGrid columns={cols} dataSource={data} variant="minimal" pagination={false} />;
+      },
     },
     {
       title: 'Glass Variant',
       description: 'Data grid with a glassmorphism visual variant.',
-      render: () => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} variant="glass" pagination={false} />; },
+      render: () => {
+        const cols = [
+          { key: 'name', title: 'Name' },
+          { key: 'role', title: 'Role' },
+        ];
+        const data = [
+          { name: 'Alice', role: 'Engineer' },
+          { name: 'Bob', role: 'Designer' },
+          { name: 'Carol', role: 'Manager' },
+        ];
+        return <DataGrid columns={cols} dataSource={data} variant="glass" pagination={false} />;
+      },
     },
     {
       title: 'With Pagination',
       description: 'Data grid with paginated rows and custom page size.',
-      render: () => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }, { name: 'Dave', role: 'QA' }, { name: 'Eve', role: 'DevOps' }, { name: 'Frank', role: 'PM' }]; return <DataGrid columns={cols} dataSource={data} pagination={{ pageSize: 3, defaultCurrent: 1 }} />; },
+      render: () => {
+        const cols = [
+          { key: 'name', title: 'Name' },
+          { key: 'role', title: 'Role' },
+        ];
+        const data = [
+          { name: 'Alice', role: 'Engineer' },
+          { name: 'Bob', role: 'Designer' },
+          { name: 'Carol', role: 'Manager' },
+          { name: 'Dave', role: 'QA' },
+          { name: 'Eve', role: 'DevOps' },
+          { name: 'Frank', role: 'PM' },
+        ];
+        return (
+          <DataGrid
+            columns={cols}
+            dataSource={data}
+            pagination={{ pageSize: 3, defaultCurrent: 1 }}
+          />
+        );
+      },
     },
     {
       title: 'Row Selection',
       description: 'Data grid with row selection checkboxes.',
-      render: () => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} rowSelection={{}} pagination={false} />; },
+      render: () => {
+        const cols = [
+          { key: 'name', title: 'Name' },
+          { key: 'role', title: 'Role' },
+        ];
+        const data = [
+          { name: 'Alice', role: 'Engineer' },
+          { name: 'Bob', role: 'Designer' },
+          { name: 'Carol', role: 'Manager' },
+        ];
+        return <DataGrid columns={cols} dataSource={data} rowSelection={{}} pagination={false} />;
+      },
     },
     {
       title: 'Toolbar',
       description: 'Data grid with a custom toolbar action.',
-      render: () => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }]; return <DataGrid columns={cols} dataSource={data} toolbar={<Button size="small">Export</Button>} pagination={false} />; },
+      render: () => {
+        const cols = [
+          { key: 'name', title: 'Name' },
+          { key: 'role', title: 'Role' },
+        ];
+        const data = [
+          { name: 'Alice', role: 'Engineer' },
+          { name: 'Bob', role: 'Designer' },
+        ];
+        return (
+          <DataGrid
+            columns={cols}
+            dataSource={data}
+            toolbar={<Button size="small">Export</Button>}
+            pagination={false}
+          />
+        );
+      },
     },
-],
+  ],
 
   Form: [
     {
@@ -4707,32 +5650,62 @@ This paragraph uses the default renderer.`}</Markdown>,
         </Form>
       ),
     },
-      {
+    {
       title: 'Initial Values',
       description: 'Form populated with initial field values.',
-      render: () => <Form initialValues={{ name: 'Alice', email: 'alice@example.com' }}><Input placeholder="Name" name="name" /><Input placeholder="Email" name="email" /><Button>Submit</Button></Form>,
+      render: () => (
+        <Form initialValues={{ name: 'Alice', email: 'alice@example.com' }}>
+          <Input placeholder="Name" name="name" />
+          <Input placeholder="Email" name="email" />
+          <Button>Submit</Button>
+        </Form>
+      ),
     },
     {
       title: 'Horizontal Layout',
       description: 'Form with horizontal labels and wrapper columns.',
-      render: () => <Form layout="horizontal" labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}><Input label="Name" placeholder="Name" /><Input label="Email" placeholder="Email" /><Button>Submit</Button></Form>,
+      render: () => (
+        <Form layout="horizontal" labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
+          <Input label="Name" placeholder="Name" />
+          <Input label="Email" placeholder="Email" />
+          <Button>Submit</Button>
+        </Form>
+      ),
     },
     {
       title: 'Disabled Form',
       description: 'Form that disables all child fields.',
-      render: () => <Form disabled><Input placeholder="Name" /><Input placeholder="Email" /><Button disabled>Submit</Button></Form>,
+      render: () => (
+        <Form disabled>
+          <Input placeholder="Name" />
+          <Input placeholder="Email" />
+          <Button disabled>Submit</Button>
+        </Form>
+      ),
     },
     {
       title: 'Compact Layout',
       description: 'Form using the compact layout variant.',
-      render: () => <Form compact><Input placeholder="Name" /><Input placeholder="Email" /><Button>Submit</Button></Form>,
+      render: () => (
+        <Form compact>
+          <Input placeholder="Name" />
+          <Input placeholder="Email" />
+          <Button>Submit</Button>
+        </Form>
+      ),
     },
     {
       title: 'Submit Callback',
       description: 'Form that calls a callback with values on successful submit.',
-      render: () => <Form onFinish={(values) => alert(JSON.stringify(values))}><Input placeholder="Name" name="name" /><Input placeholder="Email" name="email" /><Button>Submit</Button></Form>,
+      render: () => (
+        <Form onFinish={(values) => alert(JSON.stringify(values))}>
+          <Input placeholder="Name" name="name" />
+          <Input placeholder="Email" name="email" />
+          <Button>Submit</Button>
+        </Form>
+      ),
     },
-],
+  ],
 
   CommandPalette: [
     {
@@ -4759,32 +5732,85 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Open by Default',
       description: 'Command palette rendered open with rich actions and a custom search prompt.',
-      render: () => (<CommandPalette open={true} onClose={() => {}} placeholder="Search actions..." items={[{ id: '1', label: 'Go to Dashboard', shortcut: '⌘D', onSelect: () => {} }, { id: '2', label: 'Open Settings', shortcut: '⌘,', onSelect: () => {} }, { id: '3', label: 'Toggle Theme', shortcut: '⌘T', onSelect: () => {} }]} />),
+      render: () => (
+        <CommandPalette
+          open={true}
+          onClose={() => {}}
+          placeholder="Search actions..."
+          items={[
+            { id: '1', label: 'Go to Dashboard', shortcut: '⌘D', onSelect: () => {} },
+            { id: '2', label: 'Open Settings', shortcut: '⌘,', onSelect: () => {} },
+            { id: '3', label: 'Toggle Theme', shortcut: '⌘T', onSelect: () => {} },
+          ]}
+        />
+      ),
     },
     {
       title: 'Editor Shortcuts',
       description: 'Common text editor commands with keyboard shortcuts.',
-      render: () => (<CommandPalette open={true} onClose={() => {}} placeholder="Find an editor command..." items={[{ id: '1', label: 'Find', shortcut: '⌘F', onSelect: () => {} }, { id: '2', label: 'Replace', shortcut: '⌘H', onSelect: () => {} }, { id: '3', label: 'Save File', shortcut: '⌘S', onSelect: () => {} }, { id: '4', label: 'Command Palette', shortcut: '⇧⌘P', onSelect: () => {} }]} />),
+      render: () => (
+        <CommandPalette
+          open={true}
+          onClose={() => {}}
+          placeholder="Find an editor command..."
+          items={[
+            { id: '1', label: 'Find', shortcut: '⌘F', onSelect: () => {} },
+            { id: '2', label: 'Replace', shortcut: '⌘H', onSelect: () => {} },
+            { id: '3', label: 'Save File', shortcut: '⌘S', onSelect: () => {} },
+            { id: '4', label: 'Command Palette', shortcut: '⇧⌘P', onSelect: () => {} },
+          ]}
+        />
+      ),
     },
     {
       title: 'Single Command',
       description: 'Minimal palette with one actionable command.',
-      render: () => (<CommandPalette open={true} onClose={() => {}} placeholder="Type to run..." items={[{ id: '1', label: 'Run Build', shortcut: '⌘B', onSelect: () => {} }]} />),
+      render: () => (
+        <CommandPalette
+          open={true}
+          onClose={() => {}}
+          placeholder="Type to run..."
+          items={[{ id: '1', label: 'Run Build', shortcut: '⌘B', onSelect: () => {} }]}
+        />
+      ),
     },
     {
       title: 'Project Actions',
       description: 'Palette scoped to project-level actions like deploy and archive.',
-      render: () => (<CommandPalette open={true} onClose={() => {}} placeholder="Search project actions..." items={[{ id: '1', label: 'Deploy to Production', shortcut: '⌘D', onSelect: () => {} }, { id: '2', label: 'Run Tests', shortcut: '⌘T', onSelect: () => {} }, { id: '3', label: 'Open Documentation', onSelect: () => {} }, { id: '4', label: 'Archive Project', onSelect: () => {} }]} />),
+      render: () => (
+        <CommandPalette
+          open={true}
+          onClose={() => {}}
+          placeholder="Search project actions..."
+          items={[
+            { id: '1', label: 'Deploy to Production', shortcut: '⌘D', onSelect: () => {} },
+            { id: '2', label: 'Run Tests', shortcut: '⌘T', onSelect: () => {} },
+            { id: '3', label: 'Open Documentation', onSelect: () => {} },
+            { id: '4', label: 'Archive Project', onSelect: () => {} },
+          ]}
+        />
+      ),
     },
     {
       title: 'Search Without Shortcuts',
       description: 'Command items displayed without keyboard shortcut labels.',
-      render: () => (<CommandPalette open={true} onClose={() => {}} placeholder="Search..." items={[{ id: '1', label: 'New File', onSelect: () => {} }, { id: '2', label: 'Open Recent', onSelect: () => {} }, { id: '3', label: 'Preferences', onSelect: () => {} }]} />),
+      render: () => (
+        <CommandPalette
+          open={true}
+          onClose={() => {}}
+          placeholder="Search..."
+          items={[
+            { id: '1', label: 'New File', onSelect: () => {} },
+            { id: '2', label: 'Open Recent', onSelect: () => {} },
+            { id: '3', label: 'Preferences', onSelect: () => {} },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   AppBar: [
     {
@@ -4813,7 +5839,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'With Menu Button',
       description: 'App bar with a hamburger menu button for navigation.',
       render: () => <AppBar title="Products" onMenuClick={() => {}} />,
@@ -4821,24 +5847,57 @@ This paragraph uses the default renderer.`}</Markdown>,
     {
       title: 'Sticky Header',
       description: 'App bar positioned sticky with actions.',
-      render: () => <AppBar title="Dashboard" position="sticky" actions={<Button size="small">Profile</Button>} />,
+      render: () => (
+        <AppBar
+          title="Dashboard"
+          position="sticky"
+          actions={<Button size="small">Profile</Button>}
+        />
+      ),
     },
     {
       title: 'Flat Style',
       description: 'App bar without elevation shadow for subtle headers.',
-      render: () => <AppBar title="Flat Header" elevated={false} actions={<Button size="small" variant="ghost">Help</Button>} />,
+      render: () => (
+        <AppBar
+          title="Flat Header"
+          elevated={false}
+          actions={
+            <Button size="small" variant="ghost">
+              Help
+            </Button>
+          }
+        />
+      ),
     },
     {
       title: 'Custom Title Content',
       description: 'App bar title rendered as a React node with an icon and text.',
-      render: () => <AppBar title={<Stack direction="row" gap={8} align="center"><Icon name="home" size={20} /><span>Home</span></Stack>} actions={<Button size="small">Logout</Button>} />,
+      render: () => (
+        <AppBar
+          title={
+            <Stack direction="row" gap={8} align="center">
+              <Icon name="home" size={20} />
+              <span>Home</span>
+            </Stack>
+          }
+          actions={<Button size="small">Logout</Button>}
+        />
+      ),
     },
     {
       title: 'Fixed Navigation',
       description: 'Fixed-position app bar spanning the viewport with menu and actions.',
-      render: () => <AppBar title="Fixed AppBar" position="fixed" onMenuClick={() => {}} actions={<Button size="small">Search</Button>} />,
+      render: () => (
+        <AppBar
+          title="Fixed AppBar"
+          position="fixed"
+          onMenuClick={() => {}}
+          actions={<Button size="small">Search</Button>}
+        />
+      ),
     },
-],
+  ],
 
   FloatButton: [
     {
@@ -4856,7 +5915,7 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'Floating button that updates a counter on click.',
       render: () => <ControlledFloatButtonExample />,
     },
-      {
+    {
       title: 'Top Left',
       description: 'Floating action button placed in the top-left corner.',
       render: () => <FloatButton icon="+" position="top-left" tooltip="Add" />,
@@ -4869,19 +5928,39 @@ This paragraph uses the default renderer.`}</Markdown>,
     {
       title: 'Action Menu',
       description: 'Floating button that expands into a small action menu.',
-      render: () => <FloatButton icon="≡" menu={[{ icon: '✎', label: 'Edit', onClick: () => {} }, { icon: '⚙', label: 'Settings', onClick: () => {} }, { icon: '↶', label: 'Undo', onClick: () => {} }]} />,
+      render: () => (
+        <FloatButton
+          icon="≡"
+          menu={[
+            { icon: '✎', label: 'Edit', onClick: () => {} },
+            { icon: '⚙', label: 'Settings', onClick: () => {} },
+            { icon: '↶', label: 'Undo', onClick: () => {} },
+          ]}
+        />
+      ),
     },
     {
       title: 'Menu with Disabled Item',
       description: 'Floating menu containing one disabled menu item.',
-      render: () => <FloatButton icon="≡" tooltip="More" menu={[{ icon: '✎', label: 'Edit', onClick: () => {} }, { icon: '✕', label: 'Delete', disabled: true, onClick: () => {} }]} />,
+      render: () => (
+        <FloatButton
+          icon="≡"
+          tooltip="More"
+          menu={[
+            { icon: '✎', label: 'Edit', onClick: () => {} },
+            { icon: '✕', label: 'Delete', disabled: true, onClick: () => {} },
+          ]}
+        />
+      ),
     },
     {
       title: 'Primary Add Button',
       description: 'Primary floating action button with a plus icon and click handler.',
-      render: () => <FloatButton icon="+" position="bottom-right" tooltip="Create" onClick={() => {}} />,
+      render: () => (
+        <FloatButton icon="+" position="bottom-right" tooltip="Create" onClick={() => {}} />
+      ),
     },
-],
+  ],
 
   ScrollArea: [
     {
@@ -4913,32 +5992,90 @@ This paragraph uses the default renderer.`}</Markdown>,
         </ScrollArea>
       ),
     },
-      {
+    {
       title: 'Bounded Max Height',
       description: 'Scrollable container constrained by a max height with several cards.',
-      render: () => (<div style={{ width: 260 }}><ScrollArea maxHeight={150}><Stack direction="column" gap={12}>{[1, 2, 3, 4, 5].map((i) => (<Card key={i} style={{ padding: 14 }}>Card {i}</Card>))}</Stack></ScrollArea></div>),
+      render: () => (
+        <div style={{ width: 260 }}>
+          <ScrollArea maxHeight={150}>
+            <Stack direction="column" gap={12}>
+              {[1, 2, 3, 4, 5].map((i) => (
+                <Card key={i} style={{ padding: 14 }}>
+                  Card {i}
+                </Card>
+              ))}
+            </Stack>
+          </ScrollArea>
+        </div>
+      ),
     },
     {
       title: 'Card List',
       description: 'A vertical list of cards inside a custom scroll area.',
-      render: () => (<div style={{ width: 260 }}><ScrollArea maxHeight={160}><Stack direction="column" gap={12}>{['Design', 'Code', 'Review', 'Deploy', 'Ship'].map((label) => (<Card key={label} style={{ padding: 14 }}>{label}</Card>))}</Stack></ScrollArea></div>),
+      render: () => (
+        <div style={{ width: 260 }}>
+          <ScrollArea maxHeight={160}>
+            <Stack direction="column" gap={12}>
+              {['Design', 'Code', 'Review', 'Deploy', 'Ship'].map((label) => (
+                <Card key={label} style={{ padding: 14 }}>
+                  {label}
+                </Card>
+              ))}
+            </Stack>
+          </ScrollArea>
+        </div>
+      ),
     },
     {
       title: 'Hidden Scrollbars',
       description: 'Scrollbars that auto-hide when the user is not interacting.',
-      render: () => (<div style={{ width: 260 }}><ScrollArea autoHide maxHeight={120}><Stack direction="column" gap={12}>{[1, 2, 3, 4].map((i) => (<Card key={i} style={{ padding: 14 }}>Item {i}</Card>))}</Stack></ScrollArea></div>),
+      render: () => (
+        <div style={{ width: 260 }}>
+          <ScrollArea autoHide maxHeight={120}>
+            <Stack direction="column" gap={12}>
+              {[1, 2, 3, 4].map((i) => (
+                <Card key={i} style={{ padding: 14 }}>
+                  Item {i}
+                </Card>
+              ))}
+            </Stack>
+          </ScrollArea>
+        </div>
+      ),
     },
     {
       title: 'Horizontal Tag Strip',
       description: 'Horizontally scrolling row of tags inside a scroll area.',
-      render: () => (<div style={{ width: 320 }}><ScrollArea horizontal><div style={{ width: 600, display: 'flex', gap: 8, padding: 8 }}>{['React', 'Vue', 'Angular', 'Svelte', 'Solid', 'Preact'].map((t) => (<Tag key={t}>{t}</Tag>))}</div></ScrollArea></div>),
+      render: () => (
+        <div style={{ width: 320 }}>
+          <ScrollArea horizontal>
+            <div style={{ width: 600, display: 'flex', gap: 8, padding: 8 }}>
+              {['React', 'Vue', 'Angular', 'Svelte', 'Solid', 'Preact'].map((t) => (
+                <Tag key={t}>{t}</Tag>
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
+      ),
     },
     {
       title: 'Custom Styled Container',
       description: 'Scroll area with a custom className and visible card content.',
-      render: () => (<div style={{ width: 260 }}><ScrollArea className="demo-scroll" maxHeight={140}><Stack direction="column" gap={12}>{[1, 2, 3].map((i) => (<Card key={i} style={{ padding: 14 }}>Row {i}</Card>))}</Stack></ScrollArea></div>),
+      render: () => (
+        <div style={{ width: 260 }}>
+          <ScrollArea className="demo-scroll" maxHeight={140}>
+            <Stack direction="column" gap={12}>
+              {[1, 2, 3].map((i) => (
+                <Card key={i} style={{ padding: 14 }}>
+                  Row {i}
+                </Card>
+              ))}
+            </Stack>
+          </ScrollArea>
+        </div>
+      ),
     },
-],
+  ],
 
   Grid: [
     {
@@ -4978,32 +6115,72 @@ This paragraph uses the default renderer.`}</Markdown>,
         </Grid>
       ),
     },
-      {
+    {
       title: 'Two Columns',
       description: 'A simple two-column grid layout.',
-      render: () => (<Grid columns={2} gap={16}>{[1, 2, 3, 4].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>),
+      render: () => (
+        <Grid columns={2} gap={16}>
+          {[1, 2, 3, 4].map((n) => (
+            <Card key={n} style={{ padding: 16, textAlign: 'center' }}>
+              {n}
+            </Card>
+          ))}
+        </Grid>
+      ),
     },
     {
       title: 'Four Columns',
       description: 'A tight four-column grid with smaller gaps.',
-      render: () => (<Grid columns={4} gap={8}>{['A', 'B', 'C', 'D'].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>),
+      render: () => (
+        <Grid columns={4} gap={8}>
+          {['A', 'B', 'C', 'D'].map((n) => (
+            <Card key={n} style={{ padding: 16, textAlign: 'center' }}>
+              {n}
+            </Card>
+          ))}
+        </Grid>
+      ),
     },
     {
       title: 'Large Gap',
       description: 'Grid with a large gap between items.',
-      render: () => (<Grid columns={3} gap={40}>{[1, 2, 3].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>),
+      render: () => (
+        <Grid columns={3} gap={40}>
+          {[1, 2, 3].map((n) => (
+            <Card key={n} style={{ padding: 16, textAlign: 'center' }}>
+              {n}
+            </Card>
+          ))}
+        </Grid>
+      ),
     },
     {
       title: 'Auto Fit Cards',
       description: 'Responsive grid that auto-fits cards based on a minimum child width.',
-      render: () => (<Grid minChildWidth={120} gap={12}>{[1, 2, 3, 4, 5, 6].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>),
+      render: () => (
+        <Grid minChildWidth={120} gap={12}>
+          {[1, 2, 3, 4, 5, 6].map((n) => (
+            <Card key={n} style={{ padding: 16, textAlign: 'center' }}>
+              {n}
+            </Card>
+          ))}
+        </Grid>
+      ),
     },
     {
       title: 'Mixed Column Sizing',
       description: 'Grid using a custom CSS track sizing string for uneven columns.',
-      render: () => (<Grid columns="1fr 2fr 1fr" gap={16}>{['Sidebar', 'Main', 'Sidebar'].map((label, i) => (<Card key={i} style={{ padding: 16, textAlign: 'center' }}>{label}</Card>))}</Grid>),
+      render: () => (
+        <Grid columns="1fr 2fr 1fr" gap={16}>
+          {['Sidebar', 'Main', 'Sidebar'].map((label, i) => (
+            <Card key={i} style={{ padding: 16, textAlign: 'center' }}>
+              {label}
+            </Card>
+          ))}
+        </Grid>
+      ),
     },
-],
+  ],
 
   Tour: [
     {
@@ -5035,32 +6212,90 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Finish Callback',
       description: 'Tour that triggers a callback when the final step is completed.',
-      render: () => <Tour open={true} onClose={() => {}} onFinish={() => {}} steps={[{ target: '#demo', title: 'Welcome', description: 'Start your guided tour.' }, { target: '#demo', title: 'Finish', description: 'Complete the tour to continue.' }]} />,
+      render: () => (
+        <Tour
+          open={true}
+          onClose={() => {}}
+          onFinish={() => {}}
+          steps={[
+            { target: '#demo', title: 'Welcome', description: 'Start your guided tour.' },
+            { target: '#demo', title: 'Finish', description: 'Complete the tour to continue.' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Single Step',
       description: 'Tour with only one highlighted step.',
-      render: () => <Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Single Highlight', description: 'This is the only step in the tour.', placement: 'bottom' }]} />,
+      render: () => (
+        <Tour
+          open={true}
+          onClose={() => {}}
+          steps={[
+            {
+              target: '#demo',
+              title: 'Single Highlight',
+              description: 'This is the only step in the tour.',
+              placement: 'bottom',
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Bottom Placement',
       description: 'Tour step positioned below the target element.',
-      render: () => <Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Below Target', description: 'This tooltip appears below the target.', placement: 'bottom' }]} />,
+      render: () => (
+        <Tour
+          open={true}
+          onClose={() => {}}
+          steps={[
+            {
+              target: '#demo',
+              title: 'Below Target',
+              description: 'This tooltip appears below the target.',
+              placement: 'bottom',
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Right Aligned',
       description: 'Tour step aligned to the right of the target.',
-      render: () => <Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Right Side', description: 'This tooltip appears to the right.', placement: 'right' }]} />,
+      render: () => (
+        <Tour
+          open={true}
+          onClose={() => {}}
+          steps={[
+            {
+              target: '#demo',
+              title: 'Right Side',
+              description: 'This tooltip appears to the right.',
+              placement: 'right',
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Inline Tour',
       description: 'Compact two-step tour rendered inline for small flows.',
-      render: () => <Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Step 1', description: 'First step of the flow.' }, { target: '#demo', title: 'Step 2', description: 'Second and final step.' }]} />,
+      render: () => (
+        <Tour
+          open={true}
+          onClose={() => {}}
+          steps={[
+            { target: '#demo', title: 'Step 1', description: 'First step of the flow.' },
+            { target: '#demo', title: 'Step 2', description: 'Second and final step.' },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   AIChat: [
     {
@@ -5101,32 +6336,69 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Empty Chat',
       description: 'AI chat interface with no messages and a custom placeholder.',
-      render: () => <AIChat messages={[]} onSend={() => {}} placeholder="Ask the assistant anything..." />,
+      render: () => (
+        <AIChat messages={[]} onSend={() => {}} placeholder="Ask the assistant anything..." />
+      ),
     },
     {
       title: 'Conversation History',
       description: 'Chat showing a longer back-and-forth conversation.',
-      render: () => <AIChat messages={[{ role: 'user', content: 'What is react-n-design?' }, { role: 'assistant', content: 'It is a modern React component library.' }, { role: 'user', content: 'Is it accessible?' }, { role: 'assistant', content: 'Yes, every component follows WCAG guidelines.' }]} onSend={() => {}} />,
+      render: () => (
+        <AIChat
+          messages={[
+            { role: 'user', content: 'What is react-n-design?' },
+            { role: 'assistant', content: 'It is a modern React component library.' },
+            { role: 'user', content: 'Is it accessible?' },
+            { role: 'assistant', content: 'Yes, every component follows WCAG guidelines.' },
+          ]}
+          onSend={() => {}}
+        />
+      ),
     },
     {
       title: 'Custom Placeholder',
       description: 'Chat with a tailored input placeholder for coding help.',
-      render: () => <AIChat messages={[{ role: 'user', content: 'Refactor this function' }]} onSend={() => {}} placeholder="Paste code or ask a question..." />,
+      render: () => (
+        <AIChat
+          messages={[{ role: 'user', content: 'Refactor this function' }]}
+          onSend={() => {}}
+          placeholder="Paste code or ask a question..."
+        />
+      ),
     },
     {
       title: 'Messages with IDs',
       description: 'Chat messages provided with unique IDs for stable keys and actions.',
-      render: () => <AIChat messages={[{ id: 'm1', role: 'user', content: 'Hello!' }, { id: 'm2', role: 'assistant', content: 'Hi there, how can I help?' }]} onSend={() => {}} />,
+      render: () => (
+        <AIChat
+          messages={[
+            { id: 'm1', role: 'user', content: 'Hello!' },
+            { id: 'm2', role: 'assistant', content: 'Hi there, how can I help?' },
+          ]}
+          onSend={() => {}}
+        />
+      ),
     },
     {
       title: 'Loading and Streaming',
       description: 'Chat interface showing both streaming and loading indicators at once.',
-      render: () => <AIChat messages={[{ role: 'user', content: 'Write a poem' }, { role: 'assistant', content: 'Roses are red...' }]} onSend={() => {}} isLoading={true} isStreaming={true} placeholder="Type a message..." />,
+      render: () => (
+        <AIChat
+          messages={[
+            { role: 'user', content: 'Write a poem' },
+            { role: 'assistant', content: 'Roses are red...' },
+          ]}
+          onSend={() => {}}
+          isLoading={true}
+          isStreaming={true}
+          placeholder="Type a message..."
+        />
+      ),
     },
-],
+  ],
 
   PromptInput: [
     {
@@ -5152,32 +6424,79 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Max Length',
       description: 'Prompt input limited to a maximum number of characters.',
-      render: () => <PromptInput value="" onChange={() => {}} onSend={() => {}} maxLength={50} placeholder="Brief prompt..." />,
+      render: () => (
+        <PromptInput
+          value=""
+          onChange={() => {}}
+          onSend={() => {}}
+          maxLength={50}
+          placeholder="Brief prompt..."
+        />
+      ),
     },
     {
       title: 'Token Counter',
       description: 'Prompt input with a visible token budget and count.',
-      render: () => <PromptInput value="Summarize this document" onChange={() => {}} onSend={() => {}} showTokenCount={true} maxTokens={20} tokenLabel="tokens" />,
+      render: () => (
+        <PromptInput
+          value="Summarize this document"
+          onChange={() => {}}
+          onSend={() => {}}
+          showTokenCount={true}
+          maxTokens={20}
+          tokenLabel="tokens"
+        />
+      ),
     },
     {
       title: 'Slash Commands',
       description: 'Prompt input with slash command suggestions for common actions.',
-      render: () => <PromptInput value="/" onChange={() => {}} onSend={() => {}} slashCommands={[{ command: '/summarize', description: 'Summarize selection' }, { command: '/translate', description: 'Translate text' }]} placeholder="Type / for commands..." />,
+      render: () => (
+        <PromptInput
+          value="/"
+          onChange={() => {}}
+          onSend={() => {}}
+          slashCommands={[
+            { command: '/summarize', description: 'Summarize selection' },
+            { command: '/translate', description: 'Translate text' },
+          ]}
+          placeholder="Type / for commands..."
+        />
+      ),
     },
     {
       title: 'Mention Targets',
       description: 'Prompt input configured with mentionable users.',
-      render: () => <PromptInput value="@" onChange={() => {}} onSend={() => {}} mentionTargets={[{ id: '1', name: 'Alice' }, { id: '2', name: 'Bob' }]} placeholder="Type @ to mention..." />,
+      render: () => (
+        <PromptInput
+          value="@"
+          onChange={() => {}}
+          onSend={() => {}}
+          mentionTargets={[
+            { id: '1', name: 'Alice' },
+            { id: '2', name: 'Bob' },
+          ]}
+          placeholder="Type @ to mention..."
+        />
+      ),
     },
     {
       title: 'Disabled',
       description: 'Prompt input in a non-editable disabled state.',
-      render: () => <PromptInput value="This input is disabled" onChange={() => {}} onSend={() => {}} disabled={true} placeholder="Cannot type..." />,
+      render: () => (
+        <PromptInput
+          value="This input is disabled"
+          onChange={() => {}}
+          onSend={() => {}}
+          disabled={true}
+          placeholder="Cannot type..."
+        />
+      ),
     },
-],
+  ],
 
   SuggestionChips: [
     {
@@ -5224,7 +6543,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Full Actions',
       description: 'Suggestion chips with accept/reject handlers for each chip and bulk actions.',
       render: () => (
@@ -5308,7 +6627,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-],
+  ],
 
   MentionInput: [
     {
@@ -5416,7 +6735,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-],
+  ],
 
   Accordion: [
     {
@@ -5459,7 +6778,7 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'Accordion controlled by React state.',
       render: () => <ControlledAccordionExample />,
     },
-      {
+    {
       title: 'Minimal Variant',
       description: 'Borderless accordion with a minimal visual style.',
       render: () => (
@@ -5468,7 +6787,11 @@ This paragraph uses the default renderer.`}</Markdown>,
           items={[
             { key: '1', label: 'General', children: 'General account settings.' },
             { key: '2', label: 'Security', children: 'Password and two-factor options.' },
-            { key: '3', label: 'Notifications', children: 'Email and push notification preferences.' },
+            {
+              key: '3',
+              label: 'Notifications',
+              children: 'Email and push notification preferences.',
+            },
           ]}
         />
       ),
@@ -5530,7 +6853,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-],
+  ],
 
   MultiSelect: [
     {
@@ -5632,11 +6955,9 @@ This paragraph uses the default renderer.`}</Markdown>,
     {
       title: 'Single Option',
       description: 'Multi-select with only one available option.',
-      render: () => (
-        <MultiSelect options={['Only option']} placeholder="Select an option" />
-      ),
+      render: () => <MultiSelect options={['Only option']} placeholder="Select an option" />,
     },
-],
+  ],
 
   Resizable: [
     {
@@ -5673,7 +6994,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         </Resizable>
       ),
     },
-      {
+    {
       title: 'Third Split',
       description: 'Horizontal panels with the first panel starting at one third.',
       render: () => (
@@ -5743,7 +7064,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         </Resizable>
       ),
     },
-],
+  ],
 
   ColorPicker: [
     {
@@ -5766,7 +7087,9 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'Color picker aligned with a label in a form layout.',
       render: () => (
         <Stack direction="row" gap={16} align="center">
-          <span style={{ fontSize: '0.9375rem', color: 'var(--n-color-text-secondary)' }}>Brand color</span>
+          <span style={{ fontSize: '0.9375rem', color: 'var(--n-color-text-secondary)' }}>
+            Brand color
+          </span>
           <ColorPicker value="#6d5dfc" presets={['#6d5dfc', '#0ea5e9', '#10b981', '#f59e0b']} />
         </Stack>
       ),
@@ -5785,7 +7108,11 @@ This paragraph uses the default renderer.`}</Markdown>,
       title: 'No Input',
       description: 'Color picker showing only swatches without the manual input.',
       render: () => (
-        <ColorPicker value="#10b981" showInput={false} presets={['#10b981', '#06b6d4', '#3b82f6']} />
+        <ColorPicker
+          value="#10b981"
+          showInput={false}
+          presets={['#10b981', '#06b6d4', '#3b82f6']}
+        />
       ),
     },
     {
@@ -5808,7 +7135,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-],
+  ],
 
   FileUpload: [
     {
@@ -5829,47 +7156,31 @@ This paragraph uses the default renderer.`}</Markdown>,
     {
       title: 'Validation Error',
       description: 'File upload with a strict size limit to demonstrate error feedback.',
-      render: () => (
-        <FileUpload
-          accept="image/*"
-          maxSize={1024}
-          multiple={false}
-        />
-      ),
+      render: () => <FileUpload accept="image/*" maxSize={1024} multiple={false} />,
     },
     {
       title: 'Single Document',
       description: 'File upload accepting a single PDF document.',
-      render: () => (
-        <FileUpload accept=".pdf" multiple={false} />
-      ),
+      render: () => <FileUpload accept=".pdf" multiple={false} />,
     },
     {
       title: 'Size Limit',
       description: 'File upload with a maximum file size of 2MB.',
-      render: () => (
-        <FileUpload accept="image/*" maxSize={2 * 1024 * 1024} />
-      ),
+      render: () => <FileUpload accept="image/*" maxSize={2 * 1024 * 1024} />,
     },
     {
       title: 'Upload Progress',
       description: 'File upload showing simulated progress for queued files.',
       render: () => (
-        <FileUpload
-          accept=".zip"
-          multiple
-          uploadProgress={{ 'archive.zip': 65, 'data.zip': 30 }}
-        />
+        <FileUpload accept=".zip" multiple uploadProgress={{ 'archive.zip': 65, 'data.zip': 30 }} />
       ),
     },
     {
       title: 'Spreadsheet Upload',
       description: 'File upload configured for CSV spreadsheet files.',
-      render: () => (
-        <FileUpload accept=".csv" multiple />
-      ),
+      render: () => <FileUpload accept=".csv" multiple />,
     },
-],
+  ],
 
   ComboBox: [
     {
@@ -5898,32 +7209,85 @@ This paragraph uses the default renderer.`}</Markdown>,
         <ComboBox options={[{ value: 'react', label: 'React' }]} value="react" disabled={true} />
       ),
     },
-      {
+    {
       title: 'Multi-select',
       description: 'Combo box allowing multiple selections with tags.',
-      render: () => (<ComboBox mode="multiple" defaultValue={['react']} options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }, { value: 'angular', label: 'Angular' }, { value: 'svelte', label: 'Svelte' }]} placeholder="Pick frameworks" />),
+      render: () => (
+        <ComboBox
+          mode="multiple"
+          defaultValue={['react']}
+          options={[
+            { value: 'react', label: 'React' },
+            { value: 'vue', label: 'Vue' },
+            { value: 'angular', label: 'Angular' },
+            { value: 'svelte', label: 'Svelte' },
+          ]}
+          placeholder="Pick frameworks"
+        />
+      ),
     },
     {
       title: 'Loading with Clear',
       description: 'Combo box showing a loading spinner with a clear button.',
-      render: () => (<ComboBox loading allowClear options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }]} placeholder="Loading options..." />),
+      render: () => (
+        <ComboBox
+          loading
+          allowClear
+          options={[
+            { value: 'react', label: 'React' },
+            { value: 'vue', label: 'Vue' },
+          ]}
+          placeholder="Loading options..."
+        />
+      ),
     },
     {
       title: 'Allow Create',
       description: 'Combo box that lets users create a new option when no match is found.',
-      render: () => (<ComboBox allowCreate options={[{ value: 'new-york', label: 'New York' }, { value: 'los-angeles', label: 'Los Angeles' }]} placeholder="Search or create a city" />),
+      render: () => (
+        <ComboBox
+          allowCreate
+          options={[
+            { value: 'new-york', label: 'New York' },
+            { value: 'los-angeles', label: 'Los Angeles' },
+          ]}
+          placeholder="Search or create a city"
+        />
+      ),
     },
     {
       title: 'With Label and Error',
       description: 'Combo box with an accessible label and an error message.',
-      render: () => (<ComboBox label="Assignee" error="Please select an assignee" id="assignee-combobox" options={[{ value: 'alice', label: 'Alice' }, { value: 'bob', label: 'Bob' }]} placeholder="Select assignee" />),
+      render: () => (
+        <ComboBox
+          label="Assignee"
+          error="Please select an assignee"
+          id="assignee-combobox"
+          options={[
+            { value: 'alice', label: 'Alice' },
+            { value: 'bob', label: 'Bob' },
+          ]}
+          placeholder="Select assignee"
+        />
+      ),
     },
     {
       title: 'Custom Filter',
       description: 'Combo box filtering options by value instead of label.',
-      render: () => (<ComboBox filterOption={(input, option) => option.value.toLowerCase().includes(input.toLowerCase())} onSearch={() => {}} options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }, { value: 'angular', label: 'Angular' }]} placeholder="Filter by value" />),
+      render: () => (
+        <ComboBox
+          filterOption={(input, option) => option.value.toLowerCase().includes(input.toLowerCase())}
+          onSearch={() => {}}
+          options={[
+            { value: 'react', label: 'React' },
+            { value: 'vue', label: 'Vue' },
+            { value: 'angular', label: 'Angular' },
+          ]}
+          placeholder="Filter by value"
+        />
+      ),
     },
-],
+  ],
 
   VisuallyHidden: [
     {
@@ -5968,32 +7332,59 @@ This paragraph uses the default renderer.`}</Markdown>,
         </>
       ),
     },
-      {
+    {
       title: 'Form Hint',
       description: 'Hidden helper text that describes password requirements.',
-      render: () => (<><label htmlFor="password" style={{ display: 'block', marginBottom: 8 }}>Password</label><VisuallyHidden>Must be at least 8 characters with a number and symbol.</VisuallyHidden><Input id="password" type="password" placeholder="Enter password" /></>),
+      render: () => (
+        <>
+          <label htmlFor="password" style={{ display: 'block', marginBottom: 8 }}>
+            Password
+          </label>
+          <VisuallyHidden>Must be at least 8 characters with a number and symbol.</VisuallyHidden>
+          <Input id="password" type="password" placeholder="Enter password" />
+        </>
+      ),
     },
     {
       title: 'Status Update',
       description: 'Hidden status message for screen-reader users.',
-      render: () => (<Card style={{ padding: 16, width: 260 }}><p style={{ margin: 0 }}>Saved</p><VisuallyHidden>Your changes have been saved successfully.</VisuallyHidden></Card>),
+      render: () => (
+        <Card style={{ padding: 16, width: 260 }}>
+          <p style={{ margin: 0 }}>Saved</p>
+          <VisuallyHidden>Your changes have been saved successfully.</VisuallyHidden>
+        </Card>
+      ),
     },
     {
       title: 'Button Context',
       description: 'Hidden context inside an icon-only button.',
-      render: () => (<Button aria-label="Close"><VisuallyHidden>Close notification</VisuallyHidden><Icon name="times" size={16} /></Button>),
+      render: () => (
+        <Button aria-label="Close">
+          <VisuallyHidden>Close notification</VisuallyHidden>
+          <Icon name="times" size={16} />
+        </Button>
+      ),
     },
     {
       title: 'Link Description',
       description: 'Hidden descriptive text for an external link.',
-      render: () => (<><a href="https://example.com">Documentation</a><VisuallyHidden>Opens in a new tab</VisuallyHidden></>),
+      render: () => (
+        <>
+          <a href="https://example.com">Documentation</a>
+          <VisuallyHidden>Opens in a new tab</VisuallyHidden>
+        </>
+      ),
     },
     {
       title: 'Skip Instructions',
       description: 'Hidden instructions for keyboard navigation shortcuts.',
-      render: () => (<VisuallyHidden>Press Shift plus question mark to open the keyboard shortcuts dialog.</VisuallyHidden>),
+      render: () => (
+        <VisuallyHidden>
+          Press Shift plus question mark to open the keyboard shortcuts dialog.
+        </VisuallyHidden>
+      ),
     },
-],
+  ],
 
   VirtualList: [
     {
@@ -6034,32 +7425,76 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Tall Items',
       description: 'Virtual list rendering taller list rows.',
-      render: () => (<VirtualList items={Array.from({ length: 500 }, (_, i) => `Item ${i + 1}`)} itemHeight={60} containerHeight={240} renderItem={(item) => <div style={{ padding: '16px 12px' }}>{item}</div>} />),
+      render: () => (
+        <VirtualList
+          items={Array.from({ length: 500 }, (_, i) => `Item ${i + 1}`)}
+          itemHeight={60}
+          containerHeight={240}
+          renderItem={(item) => <div style={{ padding: '16px 12px' }}>{item}</div>}
+        />
+      ),
     },
     {
       title: 'Sticky Headers',
       description: 'Virtual list with sticky headers at specific indices.',
-      render: () => (<VirtualList items={Array.from({ length: 200 }, (_, i) => `Task ${i + 1}`)} itemHeight={40} containerHeight={200} stickyHeaders={[{ index: 0, height: 40 }, { index: 50, height: 40 }, { index: 100, height: 40 }]} renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>} />),
+      render: () => (
+        <VirtualList
+          items={Array.from({ length: 200 }, (_, i) => `Task ${i + 1}`)}
+          itemHeight={40}
+          containerHeight={200}
+          stickyHeaders={[
+            { index: 0, height: 40 },
+            { index: 50, height: 40 },
+            { index: 100, height: 40 },
+          ]}
+          renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>}
+        />
+      ),
     },
     {
       title: 'Scroll Callback',
       description: 'Virtual list reporting scroll position via a callback.',
-      render: () => (<VirtualList items={Array.from({ length: 1000 }, (_, i) => `Row ${i + 1}`)} itemHeight={40} containerHeight={200} onScroll={(scrollTop) => console.log(scrollTop)} renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>} />),
+      render: () => (
+        <VirtualList
+          items={Array.from({ length: 1000 }, (_, i) => `Row ${i + 1}`)}
+          itemHeight={40}
+          containerHeight={200}
+          onScroll={(scrollTop) => console.log(scrollTop)}
+          renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>}
+        />
+      ),
     },
     {
       title: 'Compact List',
       description: 'Virtual list in a short container.',
-      render: () => (<VirtualList items={Array.from({ length: 100 }, (_, i) => `Entry ${i + 1}`)} itemHeight={32} containerHeight={150} overscan={2} renderItem={(item) => <div style={{ padding: '6px 12px', fontSize: 14 }}>{item}</div>} />),
+      render: () => (
+        <VirtualList
+          items={Array.from({ length: 100 }, (_, i) => `Entry ${i + 1}`)}
+          itemHeight={32}
+          containerHeight={150}
+          overscan={2}
+          renderItem={(item) => <div style={{ padding: '6px 12px', fontSize: 14 }}>{item}</div>}
+        />
+      ),
     },
     {
       title: 'Rendered Cards',
       description: 'Virtual list rendering card components for each item.',
-      render: () => (<VirtualList items={Array.from({ length: 300 }, (_, i) => `Card ${i + 1}`)} itemHeight={56} containerHeight={220} renderItem={(item) => <Card style={{ padding: '12px 16px', margin: '0 8px' }}>{item}</Card>} />),
+      render: () => (
+        <VirtualList
+          items={Array.from({ length: 300 }, (_, i) => `Card ${i + 1}`)}
+          itemHeight={56}
+          containerHeight={220}
+          renderItem={(item) => (
+            <Card style={{ padding: '12px 16px', margin: '0 8px' }}>{item}</Card>
+          )}
+        />
+      ),
     },
-],
+  ],
 
   OrgChart: [
     {
@@ -6158,7 +7593,12 @@ This paragraph uses the default renderer.`}</Markdown>,
                   },
                 ],
               },
-              { id: '3', label: 'VP Product', role: 'Product', children: [{ id: '7', label: 'Product Manager', role: 'Growth' }] },
+              {
+                id: '3',
+                label: 'VP Product',
+                role: 'Product',
+                children: [{ id: '7', label: 'Product Manager', role: 'Growth' }],
+              },
               { id: '4', label: 'VP Design', role: 'Design' },
             ],
           }}
@@ -6258,7 +7698,7 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-],
+  ],
 
   GanttChart: [
     {
@@ -6267,8 +7707,20 @@ This paragraph uses the default renderer.`}</Markdown>,
       render: () => (
         <GanttChart
           tasks={[
-            { id: '1', name: 'Design', start: new Date('2024-01-01'), end: new Date('2024-01-10'), progress: 100 },
-            { id: '2', name: 'Development', start: new Date('2024-01-11'), end: new Date('2024-02-10'), progress: 60 },
+            {
+              id: '1',
+              name: 'Design',
+              start: new Date('2024-01-01'),
+              end: new Date('2024-01-10'),
+              progress: 100,
+            },
+            {
+              id: '2',
+              name: 'Development',
+              start: new Date('2024-01-11'),
+              end: new Date('2024-02-10'),
+              progress: 60,
+            },
           ]}
         />
       ),
@@ -6279,8 +7731,20 @@ This paragraph uses the default renderer.`}</Markdown>,
       render: () => (
         <GanttChart
           tasks={[
-            { id: '1', name: 'Design', start: new Date('2024-01-01'), end: new Date('2024-01-10'), progress: 100 },
-            { id: '2', name: 'Development', start: new Date('2024-01-11'), end: new Date('2024-02-10'), progress: 60 },
+            {
+              id: '1',
+              name: 'Design',
+              start: new Date('2024-01-01'),
+              end: new Date('2024-01-10'),
+              progress: 100,
+            },
+            {
+              id: '2',
+              name: 'Development',
+              start: new Date('2024-01-11'),
+              end: new Date('2024-02-10'),
+              progress: 60,
+            },
           ]}
           rowHeight={48}
         />
@@ -6294,8 +7758,20 @@ This paragraph uses the default renderer.`}</Markdown>,
           startDate={new Date('2024-01-01')}
           endDate={new Date('2024-03-01')}
           tasks={[
-            { id: '1', name: 'Design', start: new Date('2024-01-01'), end: new Date('2024-01-10'), progress: 100 },
-            { id: '2', name: 'Development', start: new Date('2024-01-11'), end: new Date('2024-02-10'), progress: 60 },
+            {
+              id: '1',
+              name: 'Design',
+              start: new Date('2024-01-01'),
+              end: new Date('2024-01-10'),
+              progress: 100,
+            },
+            {
+              id: '2',
+              name: 'Development',
+              start: new Date('2024-01-11'),
+              end: new Date('2024-02-10'),
+              progress: 60,
+            },
           ]}
         />
       ),
@@ -6306,10 +7782,34 @@ This paragraph uses the default renderer.`}</Markdown>,
       render: () => (
         <GanttChart
           tasks={[
-            { id: '1', name: 'Discovery', start: new Date('2024-01-01'), end: new Date('2024-01-10'), progress: 100 },
-            { id: '2', name: 'Design', start: new Date('2024-01-08'), end: new Date('2024-01-20'), progress: 80 },
-            { id: '3', name: 'Development', start: new Date('2024-01-18'), end: new Date('2024-02-15'), progress: 45 },
-            { id: '4', name: 'QA', start: new Date('2024-02-12'), end: new Date('2024-02-28'), progress: 10 },
+            {
+              id: '1',
+              name: 'Discovery',
+              start: new Date('2024-01-01'),
+              end: new Date('2024-01-10'),
+              progress: 100,
+            },
+            {
+              id: '2',
+              name: 'Design',
+              start: new Date('2024-01-08'),
+              end: new Date('2024-01-20'),
+              progress: 80,
+            },
+            {
+              id: '3',
+              name: 'Development',
+              start: new Date('2024-01-18'),
+              end: new Date('2024-02-15'),
+              progress: 45,
+            },
+            {
+              id: '4',
+              name: 'QA',
+              start: new Date('2024-02-12'),
+              end: new Date('2024-02-28'),
+              progress: 10,
+            },
           ]}
         />
       ),
@@ -6321,9 +7821,27 @@ This paragraph uses the default renderer.`}</Markdown>,
         <GanttChart
           rowHeight={32}
           tasks={[
-            { id: '1', name: 'Task A', start: new Date('2024-03-01'), end: new Date('2024-03-05'), progress: 100 },
-            { id: '2', name: 'Task B', start: new Date('2024-03-04'), end: new Date('2024-03-10'), progress: 60 },
-            { id: '3', name: 'Task C', start: new Date('2024-03-09'), end: new Date('2024-03-15'), progress: 30 },
+            {
+              id: '1',
+              name: 'Task A',
+              start: new Date('2024-03-01'),
+              end: new Date('2024-03-05'),
+              progress: 100,
+            },
+            {
+              id: '2',
+              name: 'Task B',
+              start: new Date('2024-03-04'),
+              end: new Date('2024-03-10'),
+              progress: 60,
+            },
+            {
+              id: '3',
+              name: 'Task C',
+              start: new Date('2024-03-09'),
+              end: new Date('2024-03-15'),
+              progress: 30,
+            },
           ]}
         />
       ),
@@ -6336,9 +7854,27 @@ This paragraph uses the default renderer.`}</Markdown>,
           startDate={new Date('2024-04-01')}
           endDate={new Date('2024-06-30')}
           tasks={[
-            { id: '1', name: 'Q2 Planning', start: new Date('2024-04-01'), end: new Date('2024-04-15'), progress: 100 },
-            { id: '2', name: 'Feature Work', start: new Date('2024-04-10'), end: new Date('2024-05-30'), progress: 70 },
-            { id: '3', name: 'Q2 Review', start: new Date('2024-05-25'), end: new Date('2024-06-28'), progress: 20 },
+            {
+              id: '1',
+              name: 'Q2 Planning',
+              start: new Date('2024-04-01'),
+              end: new Date('2024-04-15'),
+              progress: 100,
+            },
+            {
+              id: '2',
+              name: 'Feature Work',
+              start: new Date('2024-04-10'),
+              end: new Date('2024-05-30'),
+              progress: 70,
+            },
+            {
+              id: '3',
+              name: 'Q2 Review',
+              start: new Date('2024-05-25'),
+              end: new Date('2024-06-28'),
+              progress: 20,
+            },
           ]}
         />
       ),
@@ -6349,10 +7885,34 @@ This paragraph uses the default renderer.`}</Markdown>,
       render: () => (
         <GanttChart
           tasks={[
-            { id: '1', name: 'Kickoff', start: new Date('2024-01-01'), end: new Date('2024-01-02'), progress: 100 },
-            { id: '2', name: 'Alpha Release', start: new Date('2024-02-01'), end: new Date('2024-02-02'), progress: 0 },
-            { id: '3', name: 'Beta Release', start: new Date('2024-03-01'), end: new Date('2024-03-02'), progress: 0 },
-            { id: '4', name: 'GA Release', start: new Date('2024-04-01'), end: new Date('2024-04-02'), progress: 0 },
+            {
+              id: '1',
+              name: 'Kickoff',
+              start: new Date('2024-01-01'),
+              end: new Date('2024-01-02'),
+              progress: 100,
+            },
+            {
+              id: '2',
+              name: 'Alpha Release',
+              start: new Date('2024-02-01'),
+              end: new Date('2024-02-02'),
+              progress: 0,
+            },
+            {
+              id: '3',
+              name: 'Beta Release',
+              start: new Date('2024-03-01'),
+              end: new Date('2024-03-02'),
+              progress: 0,
+            },
+            {
+              id: '4',
+              name: 'GA Release',
+              start: new Date('2024-04-01'),
+              end: new Date('2024-04-02'),
+              progress: 0,
+            },
           ]}
         />
       ),
@@ -6364,13 +7924,25 @@ This paragraph uses the default renderer.`}</Markdown>,
         <GanttChart
           className="gantt-demo"
           tasks={[
-            { id: '1', name: 'Design', start: new Date('2024-05-01'), end: new Date('2024-05-10'), progress: 100 },
-            { id: '2', name: 'Build', start: new Date('2024-05-11'), end: new Date('2024-05-25'), progress: 55 },
+            {
+              id: '1',
+              name: 'Design',
+              start: new Date('2024-05-01'),
+              end: new Date('2024-05-10'),
+              progress: 100,
+            },
+            {
+              id: '2',
+              name: 'Build',
+              start: new Date('2024-05-11'),
+              end: new Date('2024-05-25'),
+              progress: 55,
+            },
           ]}
         />
       ),
     },
-],
+  ],
 
   GradientBorder: [
     {
@@ -6400,32 +7972,52 @@ This paragraph uses the default renderer.`}</Markdown>,
         </GradientBorder>
       ),
     },
-      {
+    {
       title: 'Card Highlight',
       description: 'Animated gradient border highlighting a card.',
-      render: () => (<GradientBorder animated><Card style={{ padding: 20, width: 220, textAlign: 'center' }}>Premium feature</Card></GradientBorder>),
+      render: () => (
+        <GradientBorder animated>
+          <Card style={{ padding: 20, width: 220, textAlign: 'center' }}>Premium feature</Card>
+        </GradientBorder>
+      ),
     },
     {
       title: 'Button Glow',
       description: 'Gradient border wrapped around a call-to-action button.',
-      render: () => (<GradientBorder animated><Button>Upgrade now</Button></GradientBorder>),
+      render: () => (
+        <GradientBorder animated>
+          <Button>Upgrade now</Button>
+        </GradientBorder>
+      ),
     },
     {
       title: 'Alert Banner',
       description: 'Gradient border drawing attention to an important alert.',
-      render: () => (<GradientBorder animated><Alert type="warning" message="Limited time offer" showIcon /></GradientBorder>),
+      render: () => (
+        <GradientBorder animated>
+          <Alert type="warning" message="Limited time offer" showIcon />
+        </GradientBorder>
+      ),
     },
     {
       title: 'Input Field',
       description: 'Gradient border framing a search input.',
-      render: () => (<GradientBorder animated><Input placeholder="Search..." /></GradientBorder>),
+      render: () => (
+        <GradientBorder animated>
+          <Input placeholder="Search..." />
+        </GradientBorder>
+      ),
     },
     {
       title: 'Static Border',
       description: 'Non-animated gradient border for subtle emphasis.',
-      render: () => (<GradientBorder className="gradient-border-static"><Card style={{ padding: 20, width: 220, textAlign: 'center' }}>Static highlight</Card></GradientBorder>),
+      render: () => (
+        <GradientBorder className="gradient-border-static">
+          <Card style={{ padding: 20, width: 220, textAlign: 'center' }}>Static highlight</Card>
+        </GradientBorder>
+      ),
     },
-],
+  ],
 
   Icon: [
     {
@@ -6460,32 +8052,65 @@ This paragraph uses the default renderer.`}</Markdown>,
         </Stack>
       ),
     },
-      {
+    {
       title: 'Sizes',
       description: 'Built-in icons rendered at multiple sizes.',
-      render: () => (<Stack direction="row" gap={16} align="center"><Icon name="home" size={16} /><Icon name="home" size={24} /><Icon name="home" size={32} /><Icon name="home" size={48} /></Stack>),
+      render: () => (
+        <Stack direction="row" gap={16} align="center">
+          <Icon name="home" size={16} />
+          <Icon name="home" size={24} />
+          <Icon name="home" size={32} />
+          <Icon name="home" size={48} />
+        </Stack>
+      ),
     },
     {
       title: 'Accessible',
       description: 'Icon with an accessible label for screen readers.',
-      render: () => (<Stack direction="row" gap={16} align="center"><Icon name="search" size={24} ariaLabel="Search" /><Icon name="bell" size={24} ariaLabel="Notifications" /><Icon name="user" size={24} ariaLabel="Account" /></Stack>),
+      render: () => (
+        <Stack direction="row" gap={16} align="center">
+          <Icon name="search" size={24} ariaLabel="Search" />
+          <Icon name="bell" size={24} ariaLabel="Notifications" />
+          <Icon name="user" size={24} ariaLabel="Account" />
+        </Stack>
+      ),
     },
     {
       title: 'Inside Button',
       description: 'Icon used as a button icon for common actions.',
-      render: () => (<Stack direction="row" gap={12} align="center"><Button size="small" leftIcon={<Icon name="plus" size={14} />}>Add</Button><Button size="small" variant="secondary" leftIcon={<Icon name="trash" size={14} />}>Delete</Button></Stack>),
+      render: () => (
+        <Stack direction="row" gap={12} align="center">
+          <Button size="small" leftIcon={<Icon name="plus" size={14} />}>
+            Add
+          </Button>
+          <Button size="small" variant="secondary" leftIcon={<Icon name="trash" size={14} />}>
+            Delete
+          </Button>
+        </Stack>
+      ),
     },
     {
       title: 'Container Variants',
       description: 'Icons with different neomorphic container shapes.',
-      render: () => (<Stack direction="row" gap={16} align="center"><Icon name="star" size={28} variant="default" /><Icon name="star" size={28} variant="circle" /><Icon name="star" size={28} variant="square" /></Stack>),
+      render: () => (
+        <Stack direction="row" gap={16} align="center">
+          <Icon name="star" size={28} variant="default" />
+          <Icon name="star" size={28} variant="circle" />
+          <Icon name="star" size={28} variant="square" />
+        </Stack>
+      ),
     },
     {
       title: 'Custom Styling',
       description: 'Icons with a custom className for additional styling hooks.',
-      render: () => (<Stack direction="row" gap={16} align="center"><Icon name="check" size={28} color="green" className="icon-success" /><Icon name="times" size={28} color="red" className="icon-error" /></Stack>),
+      render: () => (
+        <Stack direction="row" gap={16} align="center">
+          <Icon name="check" size={28} color="green" className="icon-success" />
+          <Icon name="times" size={28} color="red" className="icon-error" />
+        </Stack>
+      ),
     },
-],
+  ],
 
   ImageGallery: [
     {
@@ -6536,80 +8161,92 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Four Column Grid',
       description: 'Image gallery arranged in a compact four-column grid.',
       render: () => (
-  <ImageGallery
-    columns={4}
-    images={[
-      { src: 'https://picsum.photos/300/200?random=10', alt: 'Sample 10' },
-      { src: 'https://picsum.photos/300/200?random=11', alt: 'Sample 11' },
-      { src: 'https://picsum.photos/300/200?random=12', alt: 'Sample 12' },
-      { src: 'https://picsum.photos/300/200?random=13', alt: 'Sample 13' },
-    ]}
-  />
-),
+        <ImageGallery
+          columns={4}
+          images={[
+            { src: 'https://picsum.photos/300/200?random=10', alt: 'Sample 10' },
+            { src: 'https://picsum.photos/300/200?random=11', alt: 'Sample 11' },
+            { src: 'https://picsum.photos/300/200?random=12', alt: 'Sample 12' },
+            { src: 'https://picsum.photos/300/200?random=13', alt: 'Sample 13' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Single Column',
       description: 'One image per row for a list-style gallery.',
       render: () => (
-  <ImageGallery
-    columns={1}
-    images={[
-      { src: 'https://picsum.photos/400/200?random=20', alt: 'Sample 20' },
-      { src: 'https://picsum.photos/400/200?random=21', alt: 'Sample 21' },
-    ]}
-  />
-),
+        <ImageGallery
+          columns={1}
+          images={[
+            { src: 'https://picsum.photos/400/200?random=20', alt: 'Sample 20' },
+            { src: 'https://picsum.photos/400/200?random=21', alt: 'Sample 21' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Compact Spacing',
       description: 'Gallery with a narrow 4px gap between images.',
       render: () => (
-  <ImageGallery
-    columns={3}
-    gap="4px"
-    images={[
-      { src: 'https://picsum.photos/300/200?random=30', alt: 'Sample 30' },
-      { src: 'https://picsum.photos/300/200?random=31', alt: 'Sample 31' },
-      { src: 'https://picsum.photos/300/200?random=32', alt: 'Sample 32' },
-    ]}
-  />
-),
+        <ImageGallery
+          columns={3}
+          gap="4px"
+          images={[
+            { src: 'https://picsum.photos/300/200?random=30', alt: 'Sample 30' },
+            { src: 'https://picsum.photos/300/200?random=31', alt: 'Sample 31' },
+            { src: 'https://picsum.photos/300/200?random=32', alt: 'Sample 32' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Roomy Spacing',
       description: 'Gallery with a wide 32px gap for a spacious layout.',
       render: () => (
-  <ImageGallery
-    columns={2}
-    gap="32px"
-    images={[
-      { src: 'https://picsum.photos/400/300?random=40', alt: 'Sample 40' },
-      { src: 'https://picsum.photos/400/300?random=41', alt: 'Sample 41' },
-      { src: 'https://picsum.photos/400/300?random=42', alt: 'Sample 42' },
-      { src: 'https://picsum.photos/400/300?random=43', alt: 'Sample 43' },
-    ]}
-  />
-),
+        <ImageGallery
+          columns={2}
+          gap="32px"
+          images={[
+            { src: 'https://picsum.photos/400/300?random=40', alt: 'Sample 40' },
+            { src: 'https://picsum.photos/400/300?random=41', alt: 'Sample 41' },
+            { src: 'https://picsum.photos/400/300?random=42', alt: 'Sample 42' },
+            { src: 'https://picsum.photos/400/300?random=43', alt: 'Sample 43' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Portrait Gallery',
       description: 'Portrait-oriented images with captions.',
       render: () => (
-  <ImageGallery
-    columns={3}
-    images={[
-      { src: 'https://picsum.photos/200/300?random=50', alt: 'Portrait 50', caption: 'Portrait one' },
-      { src: 'https://picsum.photos/200/300?random=51', alt: 'Portrait 51', caption: 'Portrait two' },
-      { src: 'https://picsum.photos/200/300?random=52', alt: 'Portrait 52', caption: 'Portrait three' },
-    ]}
-  />
-),
+        <ImageGallery
+          columns={3}
+          images={[
+            {
+              src: 'https://picsum.photos/200/300?random=50',
+              alt: 'Portrait 50',
+              caption: 'Portrait one',
+            },
+            {
+              src: 'https://picsum.photos/200/300?random=51',
+              alt: 'Portrait 51',
+              caption: 'Portrait two',
+            },
+            {
+              src: 'https://picsum.photos/200/300?random=52',
+              alt: 'Portrait 52',
+              caption: 'Portrait three',
+            },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   AvatarGroup: [
     {
@@ -6663,68 +8300,68 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Overflow',
       description: 'Avatar group showing an overflow count when avatars exceed the max.',
       render: () => (
-  <AvatarGroup max={2}>
-    <Avatar initials="AB" alt="Alice" />
-    <Avatar initials="BC" alt="Bob" />
-    <Avatar initials="CD" alt="Carol" />
-    <Avatar initials="DE" alt="Dave" />
-  </AvatarGroup>
-),
+        <AvatarGroup max={2}>
+          <Avatar initials="AB" alt="Alice" />
+          <Avatar initials="BC" alt="Bob" />
+          <Avatar initials="CD" alt="Carol" />
+          <Avatar initials="DE" alt="Dave" />
+        </AvatarGroup>
+      ),
     },
     {
       title: 'Small',
       description: 'Small-sized avatar group.',
       render: () => (
-  <AvatarGroup size="small" max={3}>
-    <Avatar initials="A" alt="A" />
-    <Avatar initials="B" alt="B" />
-    <Avatar initials="C" alt="C" />
-    <Avatar initials="D" alt="D" />
-  </AvatarGroup>
-),
+        <AvatarGroup size="small" max={3}>
+          <Avatar initials="A" alt="A" />
+          <Avatar initials="B" alt="B" />
+          <Avatar initials="C" alt="C" />
+          <Avatar initials="D" alt="D" />
+        </AvatarGroup>
+      ),
     },
     {
       title: 'Large',
       description: 'Large-sized avatar group.',
       render: () => (
-  <AvatarGroup size="large" max={3}>
-    <Avatar initials="A" alt="A" />
-    <Avatar initials="B" alt="B" />
-    <Avatar initials="C" alt="C" />
-    <Avatar initials="D" alt="D" />
-  </AvatarGroup>
-),
+        <AvatarGroup size="large" max={3}>
+          <Avatar initials="A" alt="A" />
+          <Avatar initials="B" alt="B" />
+          <Avatar initials="C" alt="C" />
+          <Avatar initials="D" alt="D" />
+        </AvatarGroup>
+      ),
     },
     {
       title: 'Initials',
       description: 'Avatar group displaying initials for each member.',
       render: () => (
-  <AvatarGroup max={4}>
-    <Avatar initials="AL" alt="Alice" />
-    <Avatar initials="BO" alt="Bob" />
-    <Avatar initials="CA" alt="Carol" />
-    <Avatar initials="DA" alt="Dave" />
-    <Avatar initials="EV" alt="Eve" />
-  </AvatarGroup>
-),
+        <AvatarGroup max={4}>
+          <Avatar initials="AL" alt="Alice" />
+          <Avatar initials="BO" alt="Bob" />
+          <Avatar initials="CA" alt="Carol" />
+          <Avatar initials="DA" alt="Dave" />
+          <Avatar initials="EV" alt="Eve" />
+        </AvatarGroup>
+      ),
     },
     {
       title: 'Mixed Shapes',
       description: 'Avatar group combining circle and square avatars.',
       render: () => (
-  <AvatarGroup max={3}>
-    <Avatar initials="S1" shape="circle" alt="Shape one" />
-    <Avatar initials="S2" shape="square" alt="Shape two" />
-    <Avatar initials="S3" shape="rounded" alt="Shape three" />
-    <Avatar initials="S4" shape="circle" alt="Shape four" />
-  </AvatarGroup>
-),
+        <AvatarGroup max={3}>
+          <Avatar initials="S1" shape="circle" alt="Shape one" />
+          <Avatar initials="S2" shape="square" alt="Shape two" />
+          <Avatar initials="S3" shape="rounded" alt="Shape three" />
+          <Avatar initials="S4" shape="circle" alt="Shape four" />
+        </AvatarGroup>
+      ),
     },
-],
+  ],
 
   AudioWaveform: [
     {
@@ -6736,13 +8373,13 @@ This paragraph uses the default renderer.`}</Markdown>,
       title: 'Sizes',
       description: 'Different amplitude and bar gaps.',
       render: () => (
-      <Stack direction="row" gap={24} align="center">
-        <AudioWaveform bars={20} amplitude={0.3} barGap={1} isActive={true} />
-        <AudioWaveform bars={30} amplitude={0.8} barGap={4} isActive={true} />
-      </Stack>
-    ),
+        <Stack direction="row" gap={24} align="center">
+          <AudioWaveform bars={20} amplitude={0.3} barGap={1} isActive={true} />
+          <AudioWaveform bars={30} amplitude={0.8} barGap={4} isActive={true} />
+        </Stack>
+      ),
     },
-      {
+    {
       title: 'Dense Bars',
       description: 'Audio waveform rendered with many narrow bars.',
       render: () => <AudioWaveform bars={60} isActive={true} amplitude={0.5} barGap={1} />,
@@ -6767,7 +8404,7 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'Waveform with an exaggerated bar gap for a different rhythm look.',
       render: () => <AudioWaveform bars={24} isActive={true} amplitude={0.5} barGap={8} />,
     },
-],
+  ],
 
   PinInput: [
     {
@@ -6785,7 +8422,7 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'PIN input showing an error state.',
       render: () => <PinInput length={4} value="12" error={true} />,
     },
-      {
+    {
       title: 'Six Digits',
       description: 'PIN input configured for a six-digit code.',
       render: () => <PinInput length={6} />,
@@ -6810,202 +8447,214 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'PIN input that triggers a callback when all digits are entered.',
       render: () => <PinInput length={4} onComplete={() => {}} />,
     },
-],
+  ],
 
   Stepper: [
     {
       title: 'Horizontal',
       description: 'Default horizontal stepper.',
       render: () => (
-      <Stepper
-        activeStep={1}
-        steps={[
-          { title: 'Account' },
-          { title: 'Profile' },
-          { title: 'Confirm' },
-        ]}
-      />
-    ),
+        <Stepper
+          activeStep={1}
+          steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
+        />
+      ),
     },
     {
       title: 'Vertical',
       description: 'Vertical stepper layout.',
       render: () => (
-      <Stepper
-        activeStep={1}
-        orientation="vertical"
-        steps={[
-          { title: 'Account' },
-          { title: 'Profile' },
-          { title: 'Confirm' },
-        ]}
-      />
-    ),
+        <Stepper
+          activeStep={1}
+          orientation="vertical"
+          steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
+        />
+      ),
     },
-      {
+    {
       title: 'Glass Variant',
       description: 'Stepper with a glass morphism visual style.',
       render: () => (
-  <Stepper
-    variant="glass"
-    activeStep={1}
-    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
-  />
-),
+        <Stepper
+          variant="glass"
+          activeStep={1}
+          steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
+        />
+      ),
     },
     {
       title: 'Icon Only',
       description: 'Stepper that hides labels and shows only step icons.',
       render: () => (
-  <Stepper
-    iconOnly={true}
-    activeStep={1}
-    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
-  />
-),
+        <Stepper
+          iconOnly={true}
+          activeStep={1}
+          steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
+        />
+      ),
     },
     {
       title: 'No Connectors',
       description: 'Stepper with the connecting lines removed.',
       render: () => (
-  <Stepper
-    showConnectors={false}
-    activeStep={1}
-    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
-  />
-),
+        <Stepper
+          showConnectors={false}
+          activeStep={1}
+          steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
+        />
+      ),
     },
     {
       title: 'Default Active Step',
       description: 'Stepper that starts on the second step by default.',
       render: () => (
-  <Stepper
-    defaultActiveStep={1}
-    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
-  />
-),
+        <Stepper
+          defaultActiveStep={1}
+          steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}
+        />
+      ),
     },
     {
       title: 'With Descriptions',
       description: 'Stepper steps with both titles and descriptions.',
       render: () => (
-  <Stepper
-    activeStep={1}
-    steps={[
-      { title: 'Account', description: 'Create your account' },
-      { title: 'Profile', description: 'Add your details' },
-      { title: 'Confirm', description: 'Review and submit' },
-    ]}
-  />
-),
+        <Stepper
+          activeStep={1}
+          steps={[
+            { title: 'Account', description: 'Create your account' },
+            { title: 'Profile', description: 'Add your details' },
+            { title: 'Confirm', description: 'Review and submit' },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   Menu: [
     {
       title: 'Basic',
       description: 'Dropdown menu triggered by a button.',
       render: () => (
-      <Menu
-        trigger={<Button size="small">Open Menu</Button>}
-        items={[
-          { key: '1', label: 'Copy' },
-          { key: '2', label: 'Paste' },
-          { key: '3', label: 'Delete', danger: true },
-        ]}
-      />
-    ),
+        <Menu
+          trigger={<Button size="small">Open Menu</Button>}
+          items={[
+            { key: '1', label: 'Copy' },
+            { key: '2', label: 'Paste' },
+            { key: '3', label: 'Delete', danger: true },
+          ]}
+        />
+      ),
     },
     {
       title: 'With Icons',
       description: 'Menu items with leading icons.',
       render: () => (
-      <Menu
-        trigger={<Button size="small" variant="secondary">Actions</Button>}
-        items={[
-          { key: '1', label: 'Copy', icon: <span>📄</span> },
-          { key: '2', label: 'Paste', icon: <span>📋</span> },
-        ]}
-      />
-    ),
+        <Menu
+          trigger={
+            <Button size="small" variant="secondary">
+              Actions
+            </Button>
+          }
+          items={[
+            { key: '1', label: 'Copy', icon: <span>📄</span> },
+            { key: '2', label: 'Paste', icon: <span>📋</span> },
+          ]}
+        />
+      ),
     },
-      {
+    {
       title: 'Bottom Right Placement',
       description: 'Menu dropdown aligned to the bottom-right of the trigger.',
       render: () => (
-  <Menu
-    trigger={<Button size="small">Open Menu</Button>}
-    placement="bottom-right"
-    items={[
-      { key: '1', label: 'Copy' },
-      { key: '2', label: 'Paste' },
-      { key: '3', label: 'Delete', danger: true },
-    ]}
-  />
-),
+        <Menu
+          trigger={<Button size="small">Open Menu</Button>}
+          placement="bottom-right"
+          items={[
+            { key: '1', label: 'Copy' },
+            { key: '2', label: 'Paste' },
+            { key: '3', label: 'Delete', danger: true },
+          ]}
+        />
+      ),
     },
     {
       title: 'With Divider',
       description: 'Menu with a visual separator between groups of items.',
       render: () => (
-  <Menu
-    trigger={<Button size="small" variant="secondary">Actions</Button>}
-    items={[
-      { key: '1', label: 'Edit' },
-      { key: '2', label: 'Duplicate' },
-      { type: 'divider' },
-      { key: '3', label: 'Archive' },
-      { key: '4', label: 'Delete', danger: true },
-    ]}
-  />
-),
+        <Menu
+          trigger={
+            <Button size="small" variant="secondary">
+              Actions
+            </Button>
+          }
+          items={[
+            { key: '1', label: 'Edit' },
+            { key: '2', label: 'Duplicate' },
+            { type: 'divider' },
+            { key: '3', label: 'Archive' },
+            { key: '4', label: 'Delete', danger: true },
+          ]}
+        />
+      ),
     },
     {
       title: 'With Section Label',
       description: 'Menu with a non-selectable section label.',
       render: () => (
-  <Menu
-    trigger={<Button size="small" variant="secondary">Options</Button>}
-    items={[
-      { type: 'label', label: 'View' },
-      { key: '1', label: 'List' },
-      { key: '2', label: 'Grid' },
-      { type: 'label', label: 'Settings' },
-      { key: '3', label: 'Preferences' },
-    ]}
-  />
-),
+        <Menu
+          trigger={
+            <Button size="small" variant="secondary">
+              Options
+            </Button>
+          }
+          items={[
+            { type: 'label', label: 'View' },
+            { key: '1', label: 'List' },
+            { key: '2', label: 'Grid' },
+            { type: 'label', label: 'Settings' },
+            { key: '3', label: 'Preferences' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Disabled Options',
       description: 'Menu with some items that cannot be selected.',
       render: () => (
-  <Menu
-    trigger={<Button size="small" variant="secondary">Actions</Button>}
-    items={[
-      { key: '1', label: 'Share' },
-      { key: '2', label: 'Export', disabled: true },
-      { key: '3', label: 'Delete', danger: true, disabled: true },
-    ]}
-  />
-),
+        <Menu
+          trigger={
+            <Button size="small" variant="secondary">
+              Actions
+            </Button>
+          }
+          items={[
+            { key: '1', label: 'Share' },
+            { key: '2', label: 'Export', disabled: true },
+            { key: '3', label: 'Delete', danger: true, disabled: true },
+          ]}
+        />
+      ),
     },
     {
       title: 'Checkable Items',
       description: 'Menu items rendered as checkbox and radio options.',
       render: () => (
-  <Menu
-    trigger={<Button size="small" variant="secondary">Settings</Button>}
-    items={[
-      { key: '1', label: 'Show sidebar', checkable: 'checkbox', checked: true },
-      { key: '2', label: 'Show status bar', checkable: 'checkbox', checked: false },
-      { key: '3', label: 'Theme: Dark', checkable: 'radio', checked: true },
-      { key: '4', label: 'Theme: Light', checkable: 'radio', checked: false },
-    ]}
-  />
-),
+        <Menu
+          trigger={
+            <Button size="small" variant="secondary">
+              Settings
+            </Button>
+          }
+          items={[
+            { key: '1', label: 'Show sidebar', checkable: 'checkbox', checked: true },
+            { key: '2', label: 'Show status bar', checkable: 'checkbox', checked: false },
+            { key: '3', label: 'Theme: Dark', checkable: 'radio', checked: true },
+            { key: '4', label: 'Theme: Light', checkable: 'radio', checked: false },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   ModelSelector: [
     {
@@ -7066,75 +8715,147 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Preselected Model',
       description: 'Model selector with a model already chosen.',
       render: () => (
-  <ModelSelector
-    value="gpt-4"
-    onChange={() => {}}
-    models={[
-      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },
-      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },
-    ]}
-  />
-),
+        <ModelSelector
+          value="gpt-4"
+          onChange={() => {}}
+          models={[
+            {
+              id: 'gpt-4',
+              name: 'GPT-4',
+              provider: 'OpenAI',
+              contextWindow: 128000,
+              pricePer1kTokens: 0.03,
+            },
+            {
+              id: 'claude',
+              name: 'Claude 3',
+              provider: 'Anthropic',
+              contextWindow: 200000,
+              pricePer1kTokens: 0.008,
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Custom Placeholder',
       description: 'Model selector with a custom placeholder message.',
       render: () => (
-  <ModelSelector
-    placeholder="Pick a model for this task"
-    onChange={() => {}}
-    models={[
-      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },
-      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },
-    ]}
-  />
-),
+        <ModelSelector
+          placeholder="Pick a model for this task"
+          onChange={() => {}}
+          models={[
+            {
+              id: 'gpt-4',
+              name: 'GPT-4',
+              provider: 'OpenAI',
+              contextWindow: 128000,
+              pricePer1kTokens: 0.03,
+            },
+            {
+              id: 'claude',
+              name: 'Claude 3',
+              provider: 'Anthropic',
+              contextWindow: 200000,
+              pricePer1kTokens: 0.008,
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Three Providers',
       description: 'Model selector listing models from three different providers.',
       render: () => (
-  <ModelSelector
-    onChange={() => {}}
-    models={[
-      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },
-      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },
-      { id: 'gemini', name: 'Gemini', provider: 'Google', contextWindow: 1000000, pricePer1kTokens: 0.0005 },
-    ]}
-  />
-),
+        <ModelSelector
+          onChange={() => {}}
+          models={[
+            {
+              id: 'gpt-4',
+              name: 'GPT-4',
+              provider: 'OpenAI',
+              contextWindow: 128000,
+              pricePer1kTokens: 0.03,
+            },
+            {
+              id: 'claude',
+              name: 'Claude 3',
+              provider: 'Anthropic',
+              contextWindow: 200000,
+              pricePer1kTokens: 0.008,
+            },
+            {
+              id: 'gemini',
+              name: 'Gemini',
+              provider: 'Google',
+              contextWindow: 1000000,
+              pricePer1kTokens: 0.0005,
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Latency Focused',
       description: 'Model selector highlighting response latency metadata.',
       render: () => (
-  <ModelSelector
-    onChange={() => {}}
-    models={[
-      { id: 'fast', name: 'Fast-Llama', provider: 'Meta', contextWindow: 32000, pricePer1kTokens: 0.001, latencyMs: 120, description: 'Low latency for quick tasks' },
-      { id: 'balanced', name: 'GPT-4o', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.005, latencyMs: 300, description: 'Balanced speed and quality' },
-      { id: 'slow', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008, latencyMs: 600, description: 'Higher latency, strong reasoning' },
-    ]}
-  />
-),
+        <ModelSelector
+          onChange={() => {}}
+          models={[
+            {
+              id: 'fast',
+              name: 'Fast-Llama',
+              provider: 'Meta',
+              contextWindow: 32000,
+              pricePer1kTokens: 0.001,
+              latencyMs: 120,
+              description: 'Low latency for quick tasks',
+            },
+            {
+              id: 'balanced',
+              name: 'GPT-4o',
+              provider: 'OpenAI',
+              contextWindow: 128000,
+              pricePer1kTokens: 0.005,
+              latencyMs: 300,
+              description: 'Balanced speed and quality',
+            },
+            {
+              id: 'slow',
+              name: 'Claude 3',
+              provider: 'Anthropic',
+              contextWindow: 200000,
+              pricePer1kTokens: 0.008,
+              latencyMs: 600,
+              description: 'Higher latency, strong reasoning',
+            },
+          ]}
+        />
+      ),
     },
     {
       title: 'Single Model',
       description: 'Model selector with only one available model.',
       render: () => (
-  <ModelSelector
-    onChange={() => {}}
-    models={[
-      { id: 'only', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },
-    ]}
-  />
-),
+        <ModelSelector
+          onChange={() => {}}
+          models={[
+            {
+              id: 'only',
+              name: 'GPT-4',
+              provider: 'OpenAI',
+              contextWindow: 128000,
+              pricePer1kTokens: 0.03,
+            },
+          ]}
+        />
+      ),
     },
-],
+  ],
 
   PromptBuilder: [
     {
@@ -7186,7 +8907,11 @@ This paragraph uses the default renderer.`}</Markdown>,
           systemPrompt="You are a travel assistant."
           examples={[
             { id: '1', role: 'user', content: 'Plan a {{duration}} trip to {{destination}}.' },
-            { id: '2', role: 'assistant', content: 'Here is a {{duration}} itinerary for {{destination}}.' },
+            {
+              id: '2',
+              role: 'assistant',
+              content: 'Here is a {{duration}} itinerary for {{destination}}.',
+            },
           ]}
           variables={['destination', 'duration']}
           onChange={() => {}}
@@ -7201,7 +8926,11 @@ This paragraph uses the default renderer.`}</Markdown>,
           systemPrompt="You are a senior engineer reviewing pull requests."
           examples={[
             { id: '1', role: 'user', content: 'Review this diff: {{code}}' },
-            { id: '2', role: 'assistant', content: 'The code looks good, but consider edge cases.' },
+            {
+              id: '2',
+              role: 'assistant',
+              content: 'The code looks good, but consider edge cases.',
+            },
           ]}
           variables={['code']}
           onChange={() => {}}
@@ -7247,7 +8976,11 @@ This paragraph uses the default renderer.`}</Markdown>,
         <PromptBuilder
           systemPrompt="You are a professional email assistant."
           examples={[
-            { id: '1', role: 'user', content: 'Write a {{tone}} email to {{recipient}} about {{subject}}.' },
+            {
+              id: '1',
+              role: 'user',
+              content: 'Write a {{tone}} email to {{recipient}} about {{subject}}.',
+            },
             { id: '2', role: 'assistant', content: 'Subject: {{subject}}...' },
           ]}
           variables={['tone', 'recipient', 'subject']}
@@ -7255,20 +8988,30 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-],
+  ],
 
   AIThinking: [
     {
       title: 'Basic',
       description: 'AI thinking animation with a default set of reasoning steps.',
-      render: () => <AIThinking steps={[{ id: '1', text: 'Analyzing request' }, { id: '2', text: 'Retrieving context' }]} />,
+      render: () => (
+        <AIThinking
+          steps={[
+            { id: '1', text: 'Analyzing request' },
+            { id: '2', text: 'Retrieving context' },
+          ]}
+        />
+      ),
     },
     {
       title: 'Thinking',
       description: 'AI thinking animation state with steps.',
       render: () => (
         <AIThinking
-          steps={[{ id: '1', text: 'Planning approach' }, { id: '2', text: 'Executing steps' }]}
+          steps={[
+            { id: '1', text: 'Planning approach' },
+            { id: '2', text: 'Executing steps' },
+          ]}
           isThinking={true}
           title="AI is thinking"
         />
@@ -7295,7 +9038,10 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'Thinking block collapsed by default to save space.',
       render: () => (
         <AIThinking
-          steps={[{ id: '1', text: 'Parsing input' }, { id: '2', text: 'Checking constraints' }]}
+          steps={[
+            { id: '1', text: 'Parsing input' },
+            { id: '2', text: 'Checking constraints' },
+          ]}
           defaultExpanded={false}
           isThinking={false}
           title="Reasoning"
@@ -7307,7 +9053,10 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'Thinking animation with a custom accessible title.',
       render: () => (
         <AIThinking
-          steps={[{ id: '1', text: 'Loading models' }, { id: '2', text: 'Preparing response' }]}
+          steps={[
+            { id: '1', text: 'Loading models' },
+            { id: '2', text: 'Preparing response' },
+          ]}
           isThinking={true}
           title="Assistant is reasoning..."
         />
@@ -7334,7 +9083,10 @@ This paragraph uses the default renderer.`}</Markdown>,
       description: 'Thinking steps shown while active but with the timer hidden.',
       render: () => (
         <AIThinking
-          steps={[{ id: '1', text: 'Indexing documents' }, { id: '2', text: 'Ranking results' }]}
+          steps={[
+            { id: '1', text: 'Indexing documents' },
+            { id: '2', text: 'Ranking results' },
+          ]}
           isThinking={true}
           showElapsed={false}
           title="Searching"
@@ -7358,59 +9110,85 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-],
+  ],
 
   ToolCallCard: [
     {
       title: 'Running',
       description: 'Tool call in progress.',
-      render: () => (
-      <ToolCallCard
-        toolName="search"
-        status="loading"
-        args={{ query: 'weather' }}
-      />
-    ),
+      render: () => <ToolCallCard toolName="search" status="loading" args={{ query: 'weather' }} />,
     },
     {
       title: 'Success',
       description: 'Completed tool call with result.',
       render: () => (
-      <ToolCallCard
-        toolName="search"
-        status="success"
-        args={{ query: 'weather' }}
-        result="Sunny, 24°C"
-        durationMs={1200}
-      />
-    ),
+        <ToolCallCard
+          toolName="search"
+          status="success"
+          args={{ query: 'weather' }}
+          result="Sunny, 24°C"
+          durationMs={1200}
+        />
+      ),
     },
-      {
+    {
       title: 'Custom Tool Icon',
       description: 'Tool call card with a custom icon for the tool name.',
-      render: () => (<ToolCallCard toolName='search' toolIcon={<Icon name='search' size={16} />} status='success' args={{ query: 'react components' }} result='Found 3 results' durationMs={420} />),
+      render: () => (
+        <ToolCallCard
+          toolName="search"
+          toolIcon={<Icon name="search" size={16} />}
+          status="success"
+          args={{ query: 'react components' }}
+          result="Found 3 results"
+          durationMs={420}
+        />
+      ),
     },
     {
       title: 'Empty Arguments',
       description: 'Tool call in progress with an empty arguments object.',
-      render: () => (<ToolCallCard toolName='ping' status='loading' args={{}} />),
+      render: () => <ToolCallCard toolName="ping" status="loading" args={{}} />,
     },
     {
       title: 'Long Arguments',
       description: 'Tool call showing a formatted query with multiple arguments.',
-      render: () => (<ToolCallCard toolName='query' status='success' args={{ select: 'name, email', from: 'users', where: 'active = true', limit: 50 }} result='12 records' durationMs={890} />),
+      render: () => (
+        <ToolCallCard
+          toolName="query"
+          status="success"
+          args={{ select: 'name, email', from: 'users', where: 'active = true', limit: 50 }}
+          result="12 records"
+          durationMs={890}
+        />
+      ),
     },
     {
       title: 'React Result',
       description: 'Tool call card rendering the result as a React node.',
-      render: () => (<ToolCallCard toolName='status' status='success' args={{ service: 'api' }} result={<Tag color='green'>Healthy</Tag>} durationMs={210} />),
+      render: () => (
+        <ToolCallCard
+          toolName="status"
+          status="success"
+          args={{ service: 'api' }}
+          result={<Tag color="green">Healthy</Tag>}
+          durationMs={210}
+        />
+      ),
     },
     {
       title: 'Error Without Duration',
       description: 'Tool call failure with a clear error message and no duration badge.',
-      render: () => (<ToolCallCard toolName='fetch' status='error' args={{ url: '/api/data' }} errorMessage='Request timeout after 30s' />),
+      render: () => (
+        <ToolCallCard
+          toolName="fetch"
+          status="error"
+          args={{ url: '/api/data' }}
+          errorMessage="Request timeout after 30s"
+        />
+      ),
     },
-],
+  ],
 
   StreamingText: [
     {
@@ -7436,32 +9214,49 @@ This paragraph uses the default renderer.`}</Markdown>,
         <StreamingText text="This text streams quickly." speed={20} onComplete={() => {}} />
       ),
     },
-      {
+    {
       title: 'Slow Cinematic',
       description: 'Streaming text with a slow, readable reveal speed.',
-      render: () => (<StreamingText text='This sentence appears one character at a time.' speed={80} />),
+      render: () => (
+        <StreamingText text="This sentence appears one character at a time." speed={80} />
+      ),
     },
     {
       title: 'Short Caption',
       description: 'A short phrase that streams quickly.',
-      render: () => (<StreamingText text='Loading complete.' speed={60} />),
+      render: () => <StreamingText text="Loading complete." speed={60} />,
     },
     {
       title: 'Long Paragraph',
       description: 'Streaming text across a longer paragraph.',
-      render: () => (<StreamingText text='Streaming longer content lets you preview how the assistant reveals a multi-sentence response without overwhelming the reader.' speed={35} />),
+      render: () => (
+        <StreamingText
+          text="Streaming longer content lets you preview how the assistant reveals a multi-sentence response without overwhelming the reader."
+          speed={35}
+        />
+      ),
     },
     {
       title: 'Styled Container',
       description: 'Streaming text using a custom class name for styling.',
-      render: () => (<StreamingText text='Styled streaming text example.' speed={40} className='streaming-demo' />),
+      render: () => (
+        <StreamingText
+          text="Styled streaming text example."
+          speed={40}
+          className="streaming-demo"
+        />
+      ),
     },
     {
       title: 'In a Card',
       description: 'Streaming text rendered inside a Card for layout context.',
-      render: () => (<Card style={{ padding: 16 }}><StreamingText text='Streaming text inside a card.' speed={50} /></Card>),
+      render: () => (
+        <Card style={{ padding: 16 }}>
+          <StreamingText text="Streaming text inside a card." speed={50} />
+        </Card>
+      ),
     },
-],
+  ],
 
   Carousel: [
     {
@@ -7582,32 +9377,171 @@ This paragraph uses the default renderer.`}</Markdown>,
         </Carousel>
       ),
     },
-      {
+    {
       title: 'Items API',
       description: 'Carousel built from the items prop with custom content slides.',
-      render: () => (<Carousel items={[{ id: '1', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Slide 1</div> }, { id: '2', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Slide 2</div> }]} style={{ width: 300 }} />),
+      render: () => (
+        <Carousel
+          items={[
+            {
+              id: '1',
+              content: (
+                <div
+                  style={{
+                    padding: 40,
+                    textAlign: 'center',
+                    background: 'var(--n-color-card-bg)',
+                    color: 'var(--n-color-text)',
+                    borderRadius: 12,
+                  }}
+                >
+                  Slide 1
+                </div>
+              ),
+            },
+            {
+              id: '2',
+              content: (
+                <div
+                  style={{
+                    padding: 40,
+                    textAlign: 'center',
+                    background: 'var(--n-color-card-bg)',
+                    color: 'var(--n-color-text)',
+                    borderRadius: 12,
+                  }}
+                >
+                  Slide 2
+                </div>
+              ),
+            },
+          ]}
+          style={{ width: 300 }}
+        />
+      ),
     },
     {
       title: 'Thumbnails',
       description: 'Carousel with image slides and thumbnail previews.',
-      render: () => (<Carousel showThumbnails items={[{ id: '1', image: 'https://picsum.photos/seed/carousel1/400/200', title: 'Mountain' }, { id: '2', image: 'https://picsum.photos/seed/carousel2/400/200', title: 'Ocean' }, { id: '3', image: 'https://picsum.photos/seed/carousel3/400/200', title: 'Forest' }]} style={{ width: 320 }} />),
+      render: () => (
+        <Carousel
+          showThumbnails
+          items={[
+            { id: '1', image: 'https://picsum.photos/seed/carousel1/400/200', title: 'Mountain' },
+            { id: '2', image: 'https://picsum.photos/seed/carousel2/400/200', title: 'Ocean' },
+            { id: '3', image: 'https://picsum.photos/seed/carousel3/400/200', title: 'Forest' },
+          ]}
+          style={{ width: 320 }}
+        />
+      ),
     },
     {
       title: 'Loop with Dots',
       description: 'Carousel set to loop with dot navigation only.',
-      render: () => (<Carousel loop={true} showNav={false} showDots={true} style={{ width: 300 }}><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>One</div><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Two</div></Carousel>),
+      render: () => (
+        <Carousel loop={true} showNav={false} showDots={true} style={{ width: 300 }}>
+          <div
+            style={{
+              padding: 40,
+              textAlign: 'center',
+              background: 'var(--n-color-card-bg)',
+              color: 'var(--n-color-text)',
+              borderRadius: 12,
+            }}
+          >
+            One
+          </div>
+          <div
+            style={{
+              padding: 40,
+              textAlign: 'center',
+              background: 'var(--n-color-card-bg)',
+              color: 'var(--n-color-text)',
+              borderRadius: 12,
+            }}
+          >
+            Two
+          </div>
+        </Carousel>
+      ),
     },
     {
       title: 'Custom Height',
       description: 'Carousel with a fixed height for taller slides.',
-      render: () => (<Carousel height={200} style={{ width: 300 }}><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12, height: '100%' }}>Tall slide</div><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12, height: '100%' }}>Another</div></Carousel>),
+      render: () => (
+        <Carousel height={200} style={{ width: 300 }}>
+          <div
+            style={{
+              padding: 40,
+              textAlign: 'center',
+              background: 'var(--n-color-card-bg)',
+              color: 'var(--n-color-text)',
+              borderRadius: 12,
+              height: '100%',
+            }}
+          >
+            Tall slide
+          </div>
+          <div
+            style={{
+              padding: 40,
+              textAlign: 'center',
+              background: 'var(--n-color-card-bg)',
+              color: 'var(--n-color-text)',
+              borderRadius: 12,
+              height: '100%',
+            }}
+          >
+            Another
+          </div>
+        </Carousel>
+      ),
     },
     {
       title: 'Swipe Disabled',
       description: 'Carousel with swipe gestures disabled so navigation uses arrows.',
-      render: () => (<Carousel enableSwipe={false} items={[{ id: '1', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Swipe off</div> }, { id: '2', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Use arrows</div> }]} style={{ width: 300 }} />),
+      render: () => (
+        <Carousel
+          enableSwipe={false}
+          items={[
+            {
+              id: '1',
+              content: (
+                <div
+                  style={{
+                    padding: 40,
+                    textAlign: 'center',
+                    background: 'var(--n-color-card-bg)',
+                    color: 'var(--n-color-text)',
+                    borderRadius: 12,
+                  }}
+                >
+                  Swipe off
+                </div>
+              ),
+            },
+            {
+              id: '2',
+              content: (
+                <div
+                  style={{
+                    padding: 40,
+                    textAlign: 'center',
+                    background: 'var(--n-color-card-bg)',
+                    color: 'var(--n-color-text)',
+                    borderRadius: 12,
+                  }}
+                >
+                  Use arrows
+                </div>
+              ),
+            },
+          ]}
+          style={{ width: 300 }}
+        />
+      ),
     },
-],
+  ],
 
   Charts: [
     {
@@ -7648,32 +9582,96 @@ This paragraph uses the default renderer.`}</Markdown>,
         />
       ),
     },
-      {
+    {
       title: 'Revenue by Region',
       description: 'Bar chart comparing revenue across regions.',
-      render: () => (<ChartBar data={[{ label: 'North', value: 45 }, { label: 'South', value: 30 }, { label: 'East', value: 55 }, { label: 'West', value: 40 }]} />),
+      render: () => (
+        <ChartBar
+          data={[
+            { label: 'North', value: 45 },
+            { label: 'South', value: 30 },
+            { label: 'East', value: 55 },
+            { label: 'West', value: 40 },
+          ]}
+        />
+      ),
     },
     {
       title: 'Weekly Signups',
       description: 'Line chart showing daily signups across a week.',
-      render: () => (<ChartLine data={[{ label: 'Mon', value: 12 }, { label: 'Tue', value: 24 }, { label: 'Wed', value: 18 }, { label: 'Thu', value: 36 }, { label: 'Fri', value: 28 }, { label: 'Sat', value: 15 }, { label: 'Sun', value: 20 }]} />),
+      render: () => (
+        <ChartLine
+          data={[
+            { label: 'Mon', value: 12 },
+            { label: 'Tue', value: 24 },
+            { label: 'Wed', value: 18 },
+            { label: 'Thu', value: 36 },
+            { label: 'Fri', value: 28 },
+            { label: 'Sat', value: 15 },
+            { label: 'Sun', value: 20 },
+          ]}
+        />
+      ),
     },
     {
       title: 'Quarterly Growth',
       description: 'Area chart visualizing growth over four quarters.',
-      render: () => (<ChartArea data={[{ label: 'Q1', value: 20 }, { label: 'Q2', value: 35 }, { label: 'Q3', value: 50 }, { label: 'Q4', value: 65 }]} />),
+      render: () => (
+        <ChartArea
+          data={[
+            { label: 'Q1', value: 20 },
+            { label: 'Q2', value: 35 },
+            { label: 'Q3', value: 50 },
+            { label: 'Q4', value: 65 },
+          ]}
+        />
+      ),
     },
     {
       title: 'All Chart Types',
       description: 'Stacked layout showing bar, line, and area charts together.',
-      render: () => (<Stack direction='column' gap={24}><ChartBar data={[{ label: 'A', value: 30 }, { label: 'B', value: 50 }]} /><ChartLine data={[{ label: 'Jan', value: 10 }, { label: 'Feb', value: 25 }]} /><ChartArea data={[{ label: 'Q1', value: 40 }, { label: 'Q2', value: 60 }]} /></Stack>),
+      render: () => (
+        <Stack direction="column" gap={24}>
+          <ChartBar
+            data={[
+              { label: 'A', value: 30 },
+              { label: 'B', value: 50 },
+            ]}
+          />
+          <ChartLine
+            data={[
+              { label: 'Jan', value: 10 },
+              { label: 'Feb', value: 25 },
+            ]}
+          />
+          <ChartArea
+            data={[
+              { label: 'Q1', value: 40 },
+              { label: 'Q2', value: 60 },
+            ]}
+          />
+        </Stack>
+      ),
     },
     {
       title: 'Dense Bar Chart',
       description: 'Bar chart with a larger set of monthly data points.',
-      render: () => (<ChartBar data={[{ label: 'Jan', value: 10 }, { label: 'Feb', value: 25 }, { label: 'Mar', value: 18 }, { label: 'Apr', value: 32 }, { label: 'May', value: 22 }, { label: 'Jun', value: 38 }, { label: 'Jul', value: 28 }, { label: 'Aug', value: 45 }]} />),
+      render: () => (
+        <ChartBar
+          data={[
+            { label: 'Jan', value: 10 },
+            { label: 'Feb', value: 25 },
+            { label: 'Mar', value: 18 },
+            { label: 'Apr', value: 32 },
+            { label: 'May', value: 22 },
+            { label: 'Jun', value: 38 },
+            { label: 'Jul', value: 28 },
+            { label: 'Aug', value: 45 },
+          ]}
+        />
+      ),
     },
-],
+  ],
 };
 
 // Fallback for any component not explicitly listed

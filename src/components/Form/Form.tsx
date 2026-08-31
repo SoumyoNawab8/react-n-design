@@ -327,7 +327,8 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
         e.preventDefault();
       }
       try {
-        onFinish?.(await formInstance.validateFields());
+        const result = await formInstance.validateFields();
+        onFinish?.(result);
       } catch (errorInfo) {
         onFinishFailed?.(
           errorInfo as {
@@ -364,11 +365,9 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(p
       dispatch,
       registerField: (name: string, entity: FieldEntity) => {
         fieldEntities.current.set(name, entity);
-        forceUpdate({});
       },
       unregisterField: (name: string) => {
         fieldEntities.current.delete(name);
-        forceUpdate({});
       },
       getInitialValue: (name: string) => initialValues[name as keyof typeof initialValues],
       optimisticValues: values,

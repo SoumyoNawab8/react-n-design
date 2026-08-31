@@ -1,13 +1,6 @@
 'use client';
 import React, { useCallback, useRef } from 'react';
-import {
-  FaArrowDown,
-  FaArrowUp,
-  FaPlus,
-  FaRobot,
-  FaTrash,
-  FaUser,
-} from '../../icons';
+import { FaArrowDown, FaArrowUp, FaPlus, FaRobot, FaTrash, FaUser } from '../../icons';
 import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import {
   AddButton,
@@ -60,11 +53,7 @@ interface HighlightTextAreaProps {
   rows?: number;
 }
 
-const HighlightTextArea: React.FC<HighlightTextAreaProps> = ({
-  value,
-  onChange,
-  ...props
-}) => {
+const HighlightTextArea: React.FC<HighlightTextAreaProps> = ({ value, onChange, ...props }) => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -109,9 +98,7 @@ export const PromptBuilder = ({
 
   const handleExampleChange = useCallback(
     (id: string, content: string) => {
-      const newExamples = examples.map((ex) =>
-        ex.id === id ? { ...ex, content } : ex
-      );
+      const newExamples = examples.map((ex) => (ex.id === id ? { ...ex, content } : ex));
       onChange(newExamples, systemPrompt);
     },
     [examples, systemPrompt, onChange]
@@ -130,10 +117,7 @@ export const PromptBuilder = ({
       const newIndex = index + direction;
       if (newIndex < 0 || newIndex >= examples.length) return;
       const newExamples = [...examples];
-      [newExamples[index], newExamples[newIndex]] = [
-        newExamples[newIndex],
-        newExamples[index],
-      ];
+      [newExamples[index], newExamples[newIndex]] = [newExamples[newIndex], newExamples[index]];
       onChange(newExamples, systemPrompt);
     },
     [examples, systemPrompt, onChange]
@@ -149,8 +133,7 @@ export const PromptBuilder = ({
   }, [examples, systemPrompt, onChange]);
 
   const handleAddTurn = useCallback(() => {
-    const lastRole =
-      examples.length > 0 ? examples[examples.length - 1].role : 'assistant';
+    const lastRole = examples.length > 0 ? examples[examples.length - 1].role : 'assistant';
     const newRole = lastRole === 'user' ? 'assistant' : 'user';
     const newExample: PromptExample = {
       id: `example-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
@@ -195,9 +178,7 @@ export const PromptBuilder = ({
 
                 <HighlightTextArea
                   value={example.content}
-                  onChange={(e) =>
-                    handleExampleChange(example.id, e.target.value)
-                  }
+                  onChange={(e) => handleExampleChange(example.id, e.target.value)}
                   placeholder="Enter message content..."
                   aria-label={`${example.role === 'user' ? 'User' : 'Assistant'} message content`}
                   rows={3}

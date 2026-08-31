@@ -1,7 +1,7 @@
 'use client';
 import styled, { css, keyframes } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 const sizes = {
   small: { height: '36px', fontSize: '14px', padding: '6px 12px' },

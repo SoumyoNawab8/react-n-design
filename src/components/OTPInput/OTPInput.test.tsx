@@ -29,13 +29,7 @@ const ControlledOTPInput = (
   }
 ) => {
   const [value, setValue] = useState(props.initialValue || '');
-  return (
-    <OTPInput
-      {...props}
-      value={value}
-      onChange={(v) => setValue(v)}
-    />
-  );
+  return <OTPInput {...props} value={value} onChange={(v) => setValue(v)} />;
 };
 
 describe('OTPInput', () => {
@@ -212,9 +206,7 @@ describe('OTPInput', () => {
 
   it('calls onComplete again after re-editing to a completed value', async () => {
     const onComplete = vi.fn();
-    renderWithTheme(
-      <ControlledOTPInput length={4} onComplete={onComplete} initialValue="1234" />
-    );
+    renderWithTheme(<ControlledOTPInput length={4} onComplete={onComplete} initialValue="1234" />);
     const inputs = screen.getAllByRole('textbox');
 
     // onComplete should not fire on initial mount even if value is complete

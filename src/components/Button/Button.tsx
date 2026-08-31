@@ -1,15 +1,9 @@
 'use client';
 import type React from 'react';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { motion } from '../../utils/lazyMotion';
 import { useReducedMotion } from '../../context/ThemeContext';
-import {
-  ButtonContent,
-  ButtonIcon,
-  Ripple,
-  Spinner,
-  StyledButton,
-} from './Button.styles';
+import { motion } from '../../utils/lazyMotion';
+import { ButtonContent, ButtonIcon, Ripple, Spinner, StyledButton } from './Button.styles';
 
 type Size = 'small' | 'medium' | 'large';
 type Variant = 'primary' | 'secondary' | 'text' | 'danger' | 'success' | 'ghost';
@@ -43,12 +37,8 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 /**
  * Get size based on current breakpoint for responsive sizing
  */
-const useResponsiveSize = (
-  size: Size | ResponsiveSizeConfig
-): Size => {
-  const [currentSize, setCurrentSize] = useState<Size>(
-    typeof size === 'string' ? size : size.md
-  );
+const useResponsiveSize = (size: Size | ResponsiveSizeConfig): Size => {
+  const [currentSize, setCurrentSize] = useState<Size>(typeof size === 'string' ? size : size.md);
 
   useEffect(() => {
     if (typeof size === 'string') return;

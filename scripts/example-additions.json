@@ -1,0 +1,2380 @@
+{
+  "additions": {
+    "Alert": [
+      {
+        "description": "Alert with a manually provided icon.",
+        "render": "() => (\n  <Alert\n    type=\"info\"\n    message=\"Custom icon\"\n    description=\"You can override the default alert icon.\"\n    showIcon={true}\n    icon={<Icon name=\"star\" size={20} />}\n  />\n)",
+        "title": "Custom Icon"
+      },
+      {
+        "description": "Compact alert with the icon hidden.",
+        "render": "() => (\n  <Alert\n    type=\"success\"\n    message=\"No icon\"\n    description=\"This alert keeps the layout minimal.\"\n    showIcon={false}\n  />\n)",
+        "title": "Without Icon"
+      },
+      {
+        "description": "Multiple alert types in a compact row.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={8}>\n    <Alert type=\"info\" message=\"Info note\" showIcon={true} />\n    <Alert type=\"success\" message=\"Saved\" showIcon={true} />\n    <Alert type=\"error\" message=\"Failed\" showIcon={true} />\n  </Stack>\n)",
+        "title": "Inline Types"
+      },
+      {
+        "description": "Alert that logs when it is dismissed.",
+        "render": "() => (\n  <Alert\n    type=\"warning\"\n    message=\"Dismissible\"\n    description=\"Click the close icon to trigger the onClose callback.\"\n    closable={true}\n    onClose={() => console.log('Alert closed')}\n  />\n)",
+        "title": "Close Callback"
+      },
+      {
+        "description": "A prominent error alert with description.",
+        "render": "() => (\n  <Alert\n    type=\"error\"\n    message=\"Connection lost\"\n    description=\"Please check your network and try again.\"\n    showIcon={true}\n  />\n)",
+        "title": "Error Banner"
+      }
+    ],
+    "Badge": [
+      {
+        "description": "Badge in small and medium sizes.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={24} align=\"center\">\n    <Badge count={3} size=\"small\">\n      <Icon name=\"mail\" size={24} />\n    </Badge>\n    <Badge count={3} size=\"medium\">\n      <Icon name=\"mail\" size={24} />\n    </Badge>\n  </Stack>\n)",
+        "title": "Sizes"
+      },
+      {
+        "description": "Badge rendered with secondary and status variants.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Badge count={1} variant=\"secondary\" />\n    <Badge count={2} variant=\"success\" />\n    <Badge count={3} variant=\"warning\" />\n    <Badge count={4} variant=\"error\" />\n  </Stack>\n)",
+        "title": "Secondary Variant"
+      },
+      {
+        "description": "Dot badges used as status indicators.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={24} align=\"center\" wrap={true}>\n    <Badge dot={true} variant=\"success\">\n      <Icon name=\"user\" size={24} />\n    </Badge>\n    <Badge dot={true} variant=\"warning\">\n      <Icon name=\"bell\" size={24} />\n    </Badge>\n    <Badge dot={true} variant=\"error\">\n      <Icon name=\"heart\" size={24} />\n    </Badge>\n  </Stack>\n)",
+        "title": "Status Dots"
+      },
+      {
+        "description": "Badge used without a child element.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Badge count={8} />\n    <Badge count={0} showZero={true} />\n    <Badge dot={true} />\n  </Stack>\n)",
+        "title": "Standalone"
+      },
+      {
+        "description": "Badge with a custom overflow limit.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Badge count={50} overflowCount={9} />\n    <Badge count={1000} overflowCount={999} />\n  </Stack>\n)",
+        "title": "Custom Overflow"
+      }
+    ],
+    "Button": [
+      {
+        "description": "Default and circle buttons for different layouts.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Button shape=\"default\">Default</Button>\n    <Button shape=\"circle\" aria-label=\"Add\">+</Button>\n  </Stack>\n)",
+        "title": "Shapes"
+      },
+      {
+        "description": "Button that spans the full width of its container.",
+        "render": "() => (\n  <div style={{ width: 240 }}>\n    <Button fullWidth={true}>Full-width button</Button>\n  </div>\n)",
+        "title": "Full Width"
+      },
+      {
+        "description": "Loading state with custom text feedback.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Button loading={true} loadingText=\"Saving...\">\n      Save\n    </Button>\n    <Button loading={true} />\n  </Stack>\n)",
+        "title": "Loading Text"
+      },
+      {
+        "description": "Glass morphism and gradient visual styles.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Button glassMorphism={true}>Glass</Button>\n    <Button gradient={true}>Gradient</Button>\n  </Stack>\n)",
+        "title": "Glass & Gradient"
+      },
+      {
+        "description": "Success and text variants for subtle actions.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\" wrap={true}>\n    <Button variant=\"success\">Success</Button>\n    <Button variant=\"text\">Text link</Button>\n  </Stack>\n)",
+        "title": "Success & Text"
+      }
+    ],
+    "Card": [
+      {
+        "description": "Card with an elevated shadow style.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={16} wrap={true}>\n    <Card variant=\"elevated\" style={{ width: 180, padding: 20 }}>\n      Elevated\n    </Card>\n    <Card variant=\"outset\" bordered={true} style={{ width: 180, padding: 20 }}>\n      Bordered outset\n    </Card>\n  </Stack>\n)",
+        "title": "Elevated Variant"
+      },
+      {
+        "description": "Card with structured header, body, and footer.",
+        "render": "() => (\n  <Card\n    style={{ maxWidth: 320 }}\n    header={<strong>Plan</strong>}\n    footer={\n      <Button size=\"small\" fullWidth={true}>\n        Select plan\n      </Button>\n    }\n  >\n    <p style={{ margin: 0, color: 'var(--n-color-text-secondary)' }}>\n      Everything you need to ship faster.\n    </p>\n  </Card>\n)",
+        "title": "Header and Footer"
+      },
+      {
+        "description": "Card with a top cover area and aspect ratio.",
+        "render": "() => (\n  <Card\n    variant=\"outset\"\n    cover={<div style={{ background: 'var(--n-color-primary)', height: '100%' }} />}\n    coverAspectRatio=\"16/9\"\n    style={{ maxWidth: 280, padding: 16 }}\n  >\n    <strong>Project preview</strong>\n    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n      A cover area adds visual context.\n    </p>\n  </Card>\n)",
+        "title": "Cover Image"
+      },
+      {
+        "description": "Card that lifts on hover, useful for clickable surfaces.",
+        "render": "() => (\n  <Card hoverable={true} style={{ width: 220, padding: 20 }}>\n    <strong>Hover me</strong>\n    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n      The whole card responds to hover.\n    </p>\n  </Card>\n)",
+        "title": "Hoverable Card"
+      },
+      {
+        "description": "Card that animates in with a fade effect.",
+        "render": "() => (\n  <Card entrance=\"fade\" style={{ width: 220, padding: 20 }}>\n    <strong>Fade in</strong>\n    <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n      This card animates on mount.\n    </p>\n  </Card>\n)",
+        "title": "Entrance Animation"
+      }
+    ],
+    "Checkbox": [
+      {
+        "description": "Checkbox in an indeterminate state for partial selection.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12}>\n    <Checkbox indeterminate={true} label=\"Select all\" />\n    <Checkbox checked={true} label=\"Item selected\" />\n  </Stack>\n)",
+        "title": "Indeterminate"
+      },
+      {
+        "description": "Checkboxes with name and value for form submissions.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12}>\n    <Checkbox name=\"features\" value=\"darkMode\" label=\"Dark mode\" />\n    <Checkbox name=\"features\" value=\"notifications\" label=\"Notifications\" />\n  </Stack>\n)",
+        "title": "Form Values"
+      },
+      {
+        "description": "Standalone checkbox with no text label.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={24} align=\"center\">\n    <Checkbox checked={false} />\n    <Checkbox checked={true} />\n    <Checkbox indeterminate={true} />\n  </Stack>\n)",
+        "title": "Without Label"
+      },
+      {
+        "description": "A group of checked and unchecked options.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12}>\n    <Checkbox checked={true} label=\"In stock\" />\n    <Checkbox checked={false} label=\"On sale\" />\n    <Checkbox checked={false} label=\"Backorder\" />\n  </Stack>\n)",
+        "title": "Checked Group"
+      },
+      {
+        "description": "Interactive checkbox managed by React state.",
+        "render": "() => <ControlledCheckboxExample />",
+        "title": "Controlled"
+      }
+    ],
+    "Input": [
+      {
+        "description": "Input with a visible label and helper text.",
+        "render": "() => (\n  <Input\n    label=\"Email address\"\n    placeholder=\"you@example.com\"\n    helperText=\"We will never share your email.\"\n  />\n)",
+        "title": "Label and Helper"
+      },
+      {
+        "description": "Input with before and after add-ons.",
+        "render": "() => (\n  <Input\n    placeholder=\"Amount\"\n    addonBefore={<span>$</span>}\n    addonAfter={<span>USD</span>}\n  />\n)",
+        "title": "Add-ons"
+      },
+      {
+        "description": "Input with inline prefix and suffix icons.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12}>\n    <Input placeholder=\"Search\" prefix={<Icon name=\"search\" size={16} />} />\n    <Input placeholder=\"Website\" suffix={<Icon name=\"globe\" size={16} />} />\n  </Stack>\n)",
+        "title": "Prefix and Suffix"
+      },
+      {
+        "description": "Input with an animated floating label.",
+        "render": "() => (\n  <Input\n    label=\"Username\"\n    placeholder=\"Enter username\"\n    floatingLabel={true}\n  />\n)",
+        "title": "Floating Label"
+      },
+      {
+        "description": "Input that shows remaining characters with a max length.",
+        "render": "() => (\n  <Input\n    placeholder=\"Bio\"\n    maxLength={80}\n    characterCount={true}\n  />\n)",
+        "title": "Character Count"
+      }
+    ],
+    "Switch": [
+      {
+        "description": "Switch labels placed on the left or right.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={16}>\n    <Switch checked={true} onChange={() => {}} label=\"Label right\" labelPosition=\"right\" />\n    <Switch checked={false} onChange={() => {}} label=\"Label left\" labelPosition=\"left\" />\n  </Stack>\n)",
+        "title": "Label Position"
+      },
+      {
+        "description": "Switch with custom on and off knob icons.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={24} align=\"center\">\n    <Switch\n      checked={true}\n      onChange={() => {}}\n      onIcon={<Icon name=\"check\" size={12} />}\n      offIcon={<Icon name=\"x\" size={12} />}\n    />\n    <Switch\n      checked={false}\n      onChange={() => {}}\n      onIcon={<Icon name=\"check\" size={12} />}\n      offIcon={<Icon name=\"x\" size={12} />}\n    />\n  </Stack>\n)",
+        "title": "With Icons"
+      },
+      {
+        "description": "Disabled switches in checked and unchecked states.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={24} align=\"center\">\n    <Switch checked={true} onChange={() => {}} disabled={true} />\n    <Switch checked={false} onChange={() => {}} disabled={true} />\n  </Stack>\n)",
+        "title": "Disabled States"
+      },
+      {
+        "description": "Switch showing a loading spinner and non-interactive state.",
+        "render": "() => (\n  <Switch\n    checked={true}\n    onChange={() => {}}\n    loading={true}\n    label=\"Syncing\"\n  />\n)",
+        "title": "Loading"
+      },
+      {
+        "description": "Interactive switch managed by React state.",
+        "render": "() => <ControlledSwitchExample />",
+        "title": "Controlled"
+      }
+    ],
+    "Tag": [
+      {
+        "description": "Tags in small and medium sizes.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={8} align=\"center\" wrap={true}>\n    <Tag size=\"small\">Small</Tag>\n    <Tag size=\"medium\">Medium</Tag>\n  </Stack>\n)",
+        "title": "Sizes"
+      },
+      {
+        "description": "Outline tags for subtle categorization.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={8} wrap={true}>\n    <Tag variant=\"outline\">Design</Tag>\n    <Tag variant=\"outline\">Engineering</Tag>\n    <Tag variant=\"outline\">Product</Tag>\n  </Stack>\n)",
+        "title": "Outline Variant"
+      },
+      {
+        "description": "Tags with custom CSS colors.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={8} wrap={true}>\n    <Tag color=\"#6d5dfc\">Purple</Tag>\n    <Tag color=\"#f43f5e\">Pink</Tag>\n    <Tag color=\"#10b981\">Teal</Tag>\n  </Stack>\n)",
+        "title": "Custom Colors"
+      },
+      {
+        "description": "Tags with leading icons.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={8} wrap={true}>\n    <Tag leftIcon={<Icon name=\"check\" size={14} />}>Verified</Tag>\n    <Tag leftIcon={<Icon name=\"lock\" size={14} />}>Secure</Tag>\n    <Tag leftIcon={<Icon name=\"star\" size={14} />}>Featured</Tag>\n  </Stack>\n)",
+        "title": "With Icons"
+      },
+      {
+        "description": "A row of tags that can be dismissed.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={8} wrap={true}>\n    <Tag onClose={() => {}}>React</Tag>\n    <Tag onClose={() => {}}>TypeScript</Tag>\n    <Tag onClose={() => {}}>Storybook</Tag>\n  </Stack>\n)",
+        "title": "Removable Group"
+      }
+    ],
+    "DatePicker": [
+      {
+        "description": "Select a start and end date range.",
+        "render": "() => (<DatePicker mode=\"range\" placeholder=\"Pick a range\" />)",
+        "title": "Range Mode"
+      },
+      {
+        "description": "Picker limited to a minimum and maximum date.",
+        "render": "() => (<DatePicker minDate={new Date('2026-01-01')} maxDate={new Date('2026-12-31')} placeholder=\"2026 only\" />)",
+        "title": "Bounded Dates"
+      },
+      {
+        "description": "Date displayed in a custom format.",
+        "render": "() => (<DatePicker format=\"dd/MM/yyyy\" placeholder=\"DD/MM/YYYY\" />)",
+        "title": "Custom Format"
+      },
+      {
+        "description": "Date picker with an accessible label.",
+        "render": "() => (<DatePicker label=\"Start date\" id=\"start-date\" placeholder=\"Choose start\" />)",
+        "title": "With Label"
+      },
+      {
+        "description": "Date picker in a disabled state.",
+        "render": "() => (<DatePicker disabled={true} placeholder=\"Unavailable\" />)",
+        "title": "Disabled"
+      }
+    ],
+    "OTPInput": [
+      {
+        "description": "Shorter OTP input with four boxes.",
+        "render": "() => (<OTPInput length={4} />)",
+        "title": "Four Digits"
+      },
+      {
+        "description": "OTP input showing an invalid entry.",
+        "render": "() => (<OTPInput length={6} value=\"123\" error={true} />)",
+        "title": "Error State"
+      },
+      {
+        "description": "OTP input that logs when all digits are filled.",
+        "render": "() => (<OTPInput length={6} onComplete={(v) => console.log(v)} />)",
+        "title": "Completion Callback"
+      },
+      {
+        "description": "Longer OTP input for secure tokens.",
+        "render": "() => (<OTPInput length={8} value=\"ABCDEF12\" />)",
+        "title": "Eight Digits"
+      },
+      {
+        "description": "Completed OTP input that cannot be edited.",
+        "render": "() => (<OTPInput length={6} value=\"654321\" disabled={true} />)",
+        "title": "Disabled Filled"
+      }
+    ],
+    "Slider": [
+      {
+        "description": "Slider spanning from -50 to 50.",
+        "render": "() => (<Slider defaultValue={0} min={-50} max={50} style={{ width: 300 }} />)",
+        "title": "Negative Range"
+      },
+      {
+        "description": "Discrete steps of 10 with labeled markers.",
+        "render": "() => (<Slider defaultValue={30} step={10} marks={[{ value: 0, label: '0' }, { value: 50, label: '50' }, { value: 100, label: '100' }]} style={{ width: 300 }} />)",
+        "title": "Stepped"
+      },
+      {
+        "description": "Slider that cannot be interacted with.",
+        "render": "() => (<Slider value={60} disabled={true} style={{ width: 300 }} />)",
+        "title": "Disabled"
+      },
+      {
+        "description": "Vertical slider orientation.",
+        "render": "() => (<div style={{ height: 160 }}><Slider defaultValue={40} vertical={true} /></div>)",
+        "title": "Vertical"
+      },
+      {
+        "description": "Slider showing a validation error.",
+        "render": "() => (<Slider defaultValue={20} error=\"Select at least 50%\" style={{ width: 300 }} />)",
+        "title": "Error State"
+      }
+    ],
+    "Stack": [
+      {
+        "description": "Various gap values between stacked items.",
+        "render": "() => (<Stack direction=\"column\" gap={16}><Stack direction=\"row\" gap={4} align=\"center\"><Tag>A</Tag><Tag>B</Tag></Stack><Stack direction=\"row\" gap={16} align=\"center\"><Tag>A</Tag><Tag>B</Tag></Stack><Stack direction=\"row\" gap={32} align=\"center\"><Tag>A</Tag><Tag>B</Tag></Stack></Stack>)",
+        "title": "Spacing Sizes"
+      },
+      {
+        "description": "Row alignment using justify options.",
+        "render": "() => (<Stack direction=\"column\" gap={16} style={{ width: 320 }}><Stack direction=\"row\" gap={8} justify=\"flex-start\"><Tag>Start</Tag></Stack><Stack direction=\"row\" gap={8} justify=\"center\"><Tag>Center</Tag></Stack><Stack direction=\"row\" gap={8} justify=\"flex-end\"><Tag>End</Tag></Stack></Stack>)",
+        "title": "Justify Distribution"
+      },
+      {
+        "description": "Tags that wrap onto multiple lines when space is tight.",
+        "render": "() => (<Stack direction=\"row\" gap={8} wrap={true} style={{ width: 160 }}><Tag>One</Tag><Tag>Two</Tag><Tag>Three</Tag><Tag>Four</Tag><Tag>Five</Tag></Stack>)",
+        "title": "Wrapping Items"
+      },
+      {
+        "description": "Rows nested inside a column to build a simple dashboard layout.",
+        "render": "() => (<Stack direction=\"column\" gap={16}><Stack direction=\"row\" gap={12}><Card style={{ padding: 16, flex: 1 }}>Metric A</Card><Card style={{ padding: 16, flex: 1 }}>Metric B</Card></Stack><Card style={{ padding: 16 }}>Chart area</Card></Stack>)",
+        "title": "Nested Layout"
+      },
+      {
+        "description": "Row items centered along the cross axis.",
+        "render": "() => (<Stack direction=\"row\" gap={16} align=\"center\" style={{ height: 60, border: '1px dashed var(--n-color-border)' }}><div style={{ height: 40, width: 40, background: 'var(--n-color-primary)', borderRadius: 8 }} /><Tag>Centered</Tag></Stack>)",
+        "title": "Centered Alignment"
+      }
+    ],
+    "Statistic": [
+      {
+        "description": "Monetary value with dollar prefix and two decimals.",
+        "render": "() => (<Statistic title=\"Monthly Recurring Revenue\" value={12453.21} prefix=\"$\" precision={2} />)",
+        "title": "Currency"
+      },
+      {
+        "description": "Multiple statistics arranged in a compact grid.",
+        "render": "() => (<Grid columns={2} gap={16} style={{ width: 360 }}><Statistic title=\"Users\" value={8920} trend=\"up\" /><Statistic title=\"Bounce Rate\" value={42.3} suffix=\"%\" precision={1} trend=\"down\" /><Statistic title=\"Revenue\" value={12450} prefix=\"$\" /><Statistic title=\"Sessions\" value={15300} /></Grid>)",
+        "title": "Metric Grid"
+      },
+      {
+        "description": "Big metric with a millions suffix and animation.",
+        "render": "() => (<Statistic title=\"Total Downloads\" value={1.2} suffix=\"M\" precision={1} animate={true} />)",
+        "title": "Large Number"
+      },
+      {
+        "description": "Statistic value with a leading icon as the prefix.",
+        "render": "() => (<Statistic title=\"Active Users\" value={98} suffix=\"%\" prefix={<Icon name=\"check\" size={20} />} precision={0} />)",
+        "title": "Prefix Icon"
+      },
+      {
+        "description": "Statistic rendered without entry animation.",
+        "render": "() => (<Statistic title=\"Server Uptime\" value={99.99} suffix=\"%\" precision={2} animate={false} />)",
+        "title": "Static Value"
+      }
+    ],
+    "TextArea": [
+      {
+        "description": "Text area with a label and placeholder.",
+        "render": "() => (<TextArea label=\"Feedback\" placeholder=\"Share your thoughts…\" minRows={3} />)",
+        "title": "With Label"
+      },
+      {
+        "description": "Text area showing remaining characters.",
+        "render": "() => (<TextArea placeholder=\"Max 120 characters\" maxLength={120} showCount={true} minRows={3} />)",
+        "title": "Character Count"
+      },
+      {
+        "description": "Text area that grows with content up to a max height.",
+        "render": "() => (<TextArea placeholder=\"Type to expand…\" autoResize={true} minRows={2} maxRows={6} style={{ width: 300 }} />)",
+        "title": "Auto Resize"
+      },
+      {
+        "description": "Small and medium text area sizes.",
+        "render": "() => (<Stack direction=\"column\" gap={12}><TextArea inputSize=\"small\" placeholder=\"Small\" minRows={2} /><TextArea inputSize=\"medium\" placeholder=\"Medium\" minRows={2} /></Stack>)",
+        "title": "Sizes"
+      },
+      {
+        "description": "Text area with helper text and required marker.",
+        "render": "() => (<TextArea label=\"Bio\" placeholder=\"Tell us about yourself\" helperText=\"This will appear on your profile.\" required={true} minRows={3} />)",
+        "title": "Helper Text"
+      }
+    ],
+    "TimePicker": [
+      {
+        "description": "Time picker using AM/PM format.",
+        "render": "() => (<TimePicker format=\"12h\" placeholder=\"Pick time\" />)",
+        "title": "12-Hour Format"
+      },
+      {
+        "description": "Selectable times in 30-minute steps.",
+        "render": "() => (<TimePicker minuteInterval={30} placeholder=\"Every 30 min\" />)",
+        "title": "Minute Intervals"
+      },
+      {
+        "description": "Picker restricted to business hours.",
+        "render": "() => (<TimePicker minTime={{ hours: 9, minutes: 0 }} maxTime={{ hours: 17, minutes: 0 }} placeholder=\"9:00 - 17:00\" />)",
+        "title": "Time Bounds"
+      },
+      {
+        "description": "Small and large time picker sizes.",
+        "render": "() => (<Stack direction=\"row\" gap={16} align=\"center\"><TimePicker size=\"small\" placeholder=\"Small\" /><TimePicker size=\"large\" placeholder=\"Large\" /></Stack>)",
+        "title": "Sizes"
+      },
+      {
+        "description": "Time picker with helper text.",
+        "render": "() => (<TimePicker label=\"Meeting time\" helpText=\"Choose a time in your local timezone.\" placeholder=\"Select time\" />)",
+        "title": "Help Text"
+      }
+    ],
+    "Calendar": [
+      {
+        "description": "Calendar with a preselected date value.",
+        "render": "() => <Calendar value={new Date(2026, 5, 15)} />",
+        "title": "Preselected Date"
+      },
+      {
+        "description": "Calendar with multiple event types marked.",
+        "render": "() => { const today = new Date(); return <Calendar value={today} events={[{ date: today, title: 'Release', type: 'success' }, { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2), title: 'Review', type: 'warning' }, { date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 5), title: 'Planning', type: 'info' }]} />; }",
+        "title": "Event Types"
+      },
+      {
+        "description": "Calendar that prevents selecting past dates.",
+        "render": "() => { const today = new Date(); today.setHours(0, 0, 0, 0); return <Calendar value={new Date()} disabledDate={(d) => d < today} />; }",
+        "title": "Disable Past Dates"
+      },
+      {
+        "description": "Calendar highlighting important dates with event markers.",
+        "render": "() => { const year = new Date().getFullYear(); return <Calendar value={new Date(year, 0, 1)} events={[{ date: new Date(year, 0, 1), title: 'New Year', type: 'error' }, { date: new Date(year, 6, 4), title: 'Independence Day', type: 'success' }]} />; }",
+        "title": "Holiday Markers"
+      },
+      {
+        "description": "Calendar showing events only on weekends.",
+        "render": "() => { const today = new Date(); const sat = new Date(today); sat.setDate(today.getDate() + (6 - today.getDay()))); return <Calendar value={today} events={[{ date: sat, title: 'Sprint review', type: 'info' }]} />; }",
+        "title": "Weekend Events"
+      }
+    ],
+    "Collapsible": [
+      {
+        "description": "Collapsible with a custom expand/collapse icon.",
+        "render": "() => (<Collapsible trigger=\"View details\" icon={<Icon name=\"chevron-down\" size={16} />}>Additional details are shown here with a custom icon.</Collapsible>)",
+        "title": "Custom Icon"
+      },
+      {
+        "description": "Collapsible that unmounts content when collapsed.",
+        "render": "() => (<Collapsible trigger=\"Toggle content\" unmountOnExit={true}>This content is unmounted when the collapsible is closed.</Collapsible>)",
+        "title": "Unmount on Exit"
+      },
+      {
+        "description": "Collapsible panels nested inside one another.",
+        "render": "() => (<Collapsible trigger=\"Parent section\" defaultOpen={true}><p style={{ margin: '8px 0' }}>Parent content.</p><Collapsible trigger=\"Child section\">Nested child content.</Collapsible></Collapsible>)",
+        "title": "Nested Panels"
+      },
+      {
+        "description": "Collapsible styled inside a card container.",
+        "render": "() => (<Card style={{ padding: 16, maxWidth: 360 }}><Collapsible trigger=\"Card settings\">Settings content inside a card.</Collapsible></Card>)",
+        "title": "Card Wrapper"
+      },
+      {
+        "description": "Collapsible with a styled trigger containing multiple elements.",
+        "render": "() => (<Collapsible trigger={<Stack direction=\"row\" gap={8} align=\"center\"><Badge count={2} /><span>Notifications</span></Stack>}>Here are your latest notifications.</Collapsible>)",
+        "title": "Rich Trigger"
+      }
+    ],
+    "Pagination": [
+      {
+        "description": "Pagination without previous and next arrows.",
+        "render": "() => <Pagination currentPage={3} totalPages={8} onChange={() => {}} showPrevNext={false} />",
+        "title": "Compact"
+      },
+      {
+        "description": "Pagination in a disabled, non-interactive state.",
+        "render": "() => <Pagination currentPage={2} totalPages={5} onChange={() => {}} disabled={true} />",
+        "title": "Disabled"
+      },
+      {
+        "description": "Pagination spanning many pages.",
+        "render": "() => <Pagination currentPage={12} totalPages={24} onChange={() => {}} siblingCount={2} />",
+        "title": "Wide Range"
+      },
+      {
+        "description": "Pagination with only a few pages.",
+        "render": "() => <Pagination currentPage={1} totalPages={3} onChange={() => {}} />",
+        "title": "Small Total"
+      },
+      {
+        "description": "Pagination showing two sibling pages on each side.",
+        "render": "() => <Pagination currentPage={7} totalPages={20} onChange={() => {}} siblingCount={2} showPrevNext={true} />",
+        "title": "Two Siblings"
+      }
+    ],
+    "RSC": [
+      {
+        "description": "RSC entry renders static presentational components on the server.",
+        "render": "() => (<Stack direction=\"column\" gap={12} align=\"center\"><Badge count={3} variant=\"success\" /><Divider /><Text>Server-rendered text</Text></Stack>)",
+        "title": "Static Primitives"
+      },
+      {
+        "description": "RSC page uses Skeleton as a streaming fallback while data loads.",
+        "render": "() => (<Card style={{ padding: 24, width: 320 }}><Skeleton variant=\"text\" width=\"60%\" height={16} active={true} /><Skeleton variant=\"text\" width=\"40%\" height={12} active={true} /></Card>)",
+        "title": "Suspense Fallback"
+      },
+      {
+        "description": "RSC-compatible skeleton placeholders for server-rendered lists.",
+        "render": "() => (<Stack direction=\"column\" gap={8}><Skeleton variant=\"text\" width=\"100%\" height={16} active={true} /><Skeleton variant=\"text\" width=\"80%\" height={16} active={true} /><Skeleton variant=\"text\" width=\"60%\" height={16} active={true} /></Stack>)",
+        "title": "Loading Skeletons"
+      },
+      {
+        "description": "RSC page can render dynamic badge counts from server data.",
+        "render": "() => (<Stack direction=\"row\" gap={16} align=\"center\"><Badge count={12} variant=\"primary\" /><Badge count={99} overflowCount={99} variant=\"error\" /><Badge dot={true} /></Stack>)",
+        "title": "Server Badge Count"
+      },
+      {
+        "description": "RSC pattern for streaming an async list of presentational items.",
+        "render": "() => (<Stack direction=\"column\" gap={8}><Divider /><Text size=\"small\">Item 1</Text><Divider /><Text size=\"small\">Item 2</Text><Divider /><Text size=\"small\">Item 3</Text></Stack>)",
+        "title": "Async List Pattern"
+      }
+    ],
+    "Rating": [
+      {
+        "description": "Star ratings in small, medium, and large sizes.",
+        "render": "() => (<Stack direction=\"row\" gap={24} align=\"center\"><Rating value={4} size=\"small\" /><Rating value={4} size=\"medium\" /><Rating value={4} size=\"large\" /></Stack>)",
+        "title": "Sizes"
+      },
+      {
+        "description": "Ratings using half-star precision for finer scores.",
+        "render": "() => (<Stack direction=\"row\" gap={24} align=\"center\"><Rating value={3.5} precision={0.5} /><Rating value={4.5} precision={0.5} readOnly={true} /></Stack>)",
+        "title": "Half Stars"
+      },
+      {
+        "description": "A wider rating scale out of ten stars.",
+        "render": "() => <Rating value={7} max={10} precision={1} readOnly={true} />",
+        "title": "Ten Star Scale"
+      },
+      {
+        "description": "Rating with a custom accessible label.",
+        "render": "() => <Rating value={2} label=\"Product rating\" readOnly={true} />",
+        "title": "Accessible Label"
+      },
+      {
+        "description": "Read-only rating displayed as a product review score.",
+        "render": "() => (<Stack direction=\"row\" gap={12} align=\"center\"><Rating value={4.5} precision={0.5} readOnly={true} /><Tag color=\"orange\">4.5 / 5</Tag></Stack>)",
+        "title": "Product Review"
+      }
+    ],
+    "Result": [
+      {
+        "description": "Result page for a warning state.",
+        "render": "() => <Result status=\"warning\" title=\"Attention Needed\" subTitle=\"Your account requires verification before continuing.\" />",
+        "title": "Warning Status"
+      },
+      {
+        "description": "Result page for an informational state.",
+        "render": "() => <Result status=\"info\" title=\"Update Available\" subTitle=\"A new version of the app is ready to install.\" />",
+        "title": "Info Status"
+      },
+      {
+        "description": "Result with a custom icon override.",
+        "render": "() => <Result status=\"success\" title=\"Custom Icon\" subTitle=\"This result uses a custom icon provided as a React node.\" icon={<Icon name=\"trophy\" size={48} color=\"orange\" />} />",
+        "title": "Custom Icon"
+      },
+      {
+        "description": "Result emphasizing the subtitle with no title.",
+        "render": "() => <Result status=\"info\" subTitle=\"No data matches your search filters.\" />",
+        "title": "Subtitle Focus"
+      },
+      {
+        "description": "Result page for a missing resource.",
+        "render": "() => <Result status=\"404\" title=\"Page Not Found\" subTitle=\"The page you are looking for does not exist.\" extra={<Button size=\"small\">Go Home</Button>} />",
+        "title": "404 Not Found"
+      }
+    ],
+    "RichTextEditor": [
+      {
+        "description": "Empty rich text editor with placeholder text.",
+        "render": "() => <RichTextEditor value=\"\" onChange={() => {}} placeholder=\"Start writing your content here…\" />",
+        "title": "Placeholder"
+      },
+      {
+        "description": "Rich text editor initialized with formatted HTML content.",
+        "render": "() => <RichTextEditor value=\"<h3>Release Notes</h3><p>Version <strong>1.2.0</strong> is now available.</p><ul><li>New components</li><li>Bug fixes</li></ul>\" onChange={() => {}} />",
+        "title": "Pre-filled Content"
+      },
+      {
+        "description": "Rich text editor with a custom class name for styling.",
+        "render": "() => <RichTextEditor value=\"<p>Styled editor content.</p>\" onChange={() => {}} className=\"demo-editor\" />",
+        "title": "Styled Container"
+      },
+      {
+        "description": "Rich text editor with a short plain value.",
+        "render": "() => <RichTextEditor value=\"<p>Edit me</p>\" onChange={() => {}} />",
+        "title": "Minimal Value"
+      },
+      {
+        "description": "Rich text editor rendered in a read-only state.",
+        "render": "() => <RichTextEditor value=\"<p>This content is <em>read only</em>.</p>\" onChange={() => {}} disabled={true} />",
+        "title": "Read Only View"
+      }
+    ],
+    "Segmented": [
+      {
+        "description": "Segmented control that fills the full width of its container.",
+        "render": "() => <Segmented options={['Day', 'Week', 'Month']} value=\"Week\" onChange={() => {}} block={true} />",
+        "title": "Block Mode"
+      },
+      {
+        "description": "Segmented controls shown in different sizes side by side.",
+        "render": "() => (<Stack direction=\"column\" gap={16}><Segmented options={['S', 'M']} value=\"S\" onChange={() => {}} size=\"small\" /><Segmented options={['Day', 'Week']} value=\"Day\" onChange={() => {}} size=\"medium\" /><Segmented options={['Month', 'Year']} value=\"Year\" onChange={() => {}} size=\"large\" /></Stack>)",
+        "title": "Inline Sizes"
+      },
+      {
+        "description": "Segmented control for switching between list and grid views.",
+        "render": "() => <Segmented options={['List', 'Grid', 'Kanban']} value=\"Grid\" onChange={() => {}} />",
+        "title": "View Switcher"
+      },
+      {
+        "description": "Segmented control filtering by status.",
+        "render": "() => <Segmented options={['All', 'Active', 'Archived']} value=\"Active\" onChange={() => {}} />",
+        "title": "Status Filter"
+      },
+      {
+        "description": "Large, full-width segmented control for primary navigation.",
+        "render": "() => <Segmented options={['Overview', 'Details', 'Settings']} value=\"Overview\" onChange={() => {}} size=\"large\" block={true} />",
+        "title": "Large Block Options"
+      }
+    ],
+    "CodeBlock": [
+      {
+        "description": "Syntax-highlighted JSON configuration with line numbers and copy support.",
+        "render": "() => <CodeBlock code='{\n  \"name\": \"app\",\n  \"version\": \"1.0.0\",\n  \"private\": true\n}' language='json' showLineNumbers copyable />",
+        "title": "JSON Config"
+      },
+      {
+        "description": "CSS snippet rendered without line numbers for a focused preview.",
+        "render": "() => <CodeBlock code='.button {\n  background: #6d5dfc;\n  color: white;\n  border-radius: 8px;\n}' language='css' showLineNumbers={false} copyable />",
+        "title": "CSS Rules"
+      },
+      {
+        "description": "A realistic shell workflow with line numbers enabled.",
+        "render": "() => <CodeBlock code='git add .\ngit commit -m \"feat: update\"\ngit push origin main' language='bash' showLineNumbers />",
+        "title": "Shell Script"
+      },
+      {
+        "description": "SQL selection query with a copy button.",
+        "render": "() => <CodeBlock code='SELECT id, name, email\nFROM users\nWHERE active = true\nORDER BY created_at DESC;' language='sql' copyable />",
+        "title": "SQL Query"
+      },
+      {
+        "description": "Python function without line numbers or copy support.",
+        "render": "() => <CodeBlock code='def greet(name):\n    return f\"Hello, {name}!\"\n\nprint(greet(\"World\"))' language='python' showLineNumbers={false} copyable={false} />",
+        "title": "Python Function"
+      }
+    ],
+    "Markdown": [
+      {
+        "description": "Markdown rendering a formatted blockquote.",
+        "render": "() => <Markdown>{`> Design is not just what it looks like and feels like.\n> Design is how it works.\n\n— Steve Jobs`}</Markdown>",
+        "title": "Blockquote"
+      },
+      {
+        "description": "Markdown table with headers and rows.",
+        "render": "() => <Markdown>{`| Name | Role | Status |\n|------|------|--------|\n| Alice | Engineer | Active |\n| Bob | Designer | Away |`}</Markdown>",
+        "title": "Table"
+      },
+      {
+        "description": "Numbered Markdown list for step-by-step instructions.",
+        "render": "() => <Markdown>{`1. Install the package\n2. Import the component\n3. Build your UI`}</Markdown>",
+        "title": "Ordered List"
+      },
+      {
+        "description": "Markdown heading hierarchy from h1 to h4.",
+        "render": "() => <Markdown>{`# Heading 1\n## Heading 2\n### Heading 3\n#### Heading 4`}</Markdown>",
+        "title": "Headings"
+      },
+      {
+        "description": "Markdown with a custom component override for headings.",
+        "render": "() => <Markdown components={{ h1: ({ children }) => <h1 style={{ color: '#6d5dfc' }}>{children}</h1> }}>{`# Custom styled heading\n\nThis paragraph uses the default renderer.`}</Markdown>",
+        "title": "Custom Components"
+      }
+    ],
+    "Terminal": [
+      {
+        "description": "Terminal constrained to a compact maximum height.",
+        "render": "() => <Terminal title='Short log' maxHeight='120px' lines={[{ content: 'npm install', type: 'command' }, { content: 'added 42 packages', type: 'output' }]} />",
+        "title": "Compact Height"
+      },
+      {
+        "description": "Terminal output with auto-scroll disabled.",
+        "render": "() => <Terminal title='Static output' autoScroll={false} lines={[{ content: 'Starting server...', type: 'info' }, { content: 'Server ready on port 3000', type: 'output' }]} />",
+        "title": "Static Scroll"
+      },
+      {
+        "description": "Terminal styled for error output with command and error lines.",
+        "render": "() => <Terminal title='Error output' lines={[{ content: 'npm run lint', type: 'command' }, { content: 'src/index.ts:12:10 - error TS2345', type: 'error' }, { content: 'Found 1 error.', type: 'output' }]} />",
+        "title": "Error Log"
+      },
+      {
+        "description": "Build output with a mix of command, info, and output lines.",
+        "render": "() => <Terminal title='Build output' lines={[{ content: 'npm run build', type: 'command' }, { content: 'vite v5.0 building for production...', type: 'info' }, { content: 'dist/assets/index-abc.js', type: 'output' }, { content: 'Build completed in 2.34s', type: 'output' }]} />",
+        "title": "Build Log"
+      },
+      {
+        "description": "Terminal rendering a long scrolling list of generated lines.",
+        "render": "() => <Terminal title='Long output' maxHeight='160px' lines={Array.from({ length: 20 }, (_, i) => ({ content: `Line ${i + 1}: processing item ${i + 1}`, type: i % 5 === 0 ? 'info' : 'output' }))} />",
+        "title": "Long Output"
+      }
+    ],
+    "Timeline": [
+      {
+        "description": "Timeline items alternating between left and right sides.",
+        "render": "() => <Timeline mode='alternate' items={[{ children: 'Created repository', label: 'Jan 1', color: 'blue' }, { children: 'First commit', label: 'Jan 2', color: 'green' }, { children: 'Released v1.0', label: 'Jan 5', color: 'red' }]} />",
+        "title": "Alternate Mode"
+      },
+      {
+        "description": "Timeline rendered in reverse chronological order.",
+        "render": "() => <Timeline reverse items={[{ children: 'Project finished', color: 'green' }, { children: 'Development started', color: 'blue' }, { children: 'Ideation', color: 'gray' }]} />",
+        "title": "Reversed"
+      },
+      {
+        "description": "Timeline items showing time labels alongside events.",
+        "render": "() => <Timeline items={[{ children: 'Design review', label: '09:00', color: 'purple' }, { children: 'Stand-up', label: '10:30', color: 'orange' }, { children: 'Demo', label: '14:00', color: 'blue' }]} />",
+        "title": "With Labels"
+      },
+      {
+        "description": "Timeline using custom icon dots for each status.",
+        "render": "() => <Timeline items={[{ children: 'In progress', dot: <Icon name='clock' size={14} />, color: 'blue' }, { children: 'Done', dot: <Icon name='check' size={14} />, color: 'green' }, { children: 'Blocked', dot: <Icon name='alert' size={14} />, color: 'red' }]} />",
+        "title": "Custom Dots"
+      },
+      {
+        "description": "Timeline with every item explicitly aligned to the right.",
+        "render": "() => <Timeline items={[{ children: 'Onboarding', position: 'right', color: 'blue' }, { children: 'Training', position: 'right', color: 'green' }, { children: 'Graduation', position: 'right', color: 'gold' }]} />",
+        "title": "Right Aligned Items"
+      }
+    ],
+    "Toast": [
+      {
+        "description": "A standalone success toast with title, description, and duration.",
+        "render": "() => <Toast id='success-1' variant='success' title='Saved' description='Your changes were saved successfully.' duration={5000} onDismiss={() => {}} />",
+        "title": "Success Toast"
+      },
+      {
+        "description": "Toast that includes a call-to-action button.",
+        "render": "() => <Toast id='action-1' variant='warning' title='Undo available' description='The item was deleted.' action={<Button size='small' onClick={() => {}}>Undo</Button>} onDismiss={() => {}} />",
+        "title": "With Action"
+      },
+      {
+        "description": "Info toast using the glassmorphism style.",
+        "render": "() => <Toast id='glass-1' variant='info' title='New update' description='A new version is available.' isGlass onDismiss={() => {}} />",
+        "title": "Glass Toast"
+      },
+      {
+        "description": "Toast with an avatar for a user-generated notification.",
+        "render": "() => <Toast id='avatar-1' variant='info' title='Alice commented' description='Looks great, ship it!' avatar={{ src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice', alt: 'Alice' }} onDismiss={() => {}} />",
+        "title": "Avatar Toast"
+      },
+      {
+        "description": "Toast with rich custom content and meta text.",
+        "render": "() => <Toast id='rich-1' variant='success' title='Deployment complete' richContent={<div><strong>Production</strong> deployed at 12:30 PM.</div>} meta='2 minutes ago' onDismiss={() => {}} />",
+        "title": "Rich Content"
+      }
+    ],
+    "Toggle": [
+      {
+        "description": "Toggle that starts in the pressed state by default.",
+        "render": "() => <Toggle defaultPressed={true}>Dark mode</Toggle>",
+        "title": "Default On"
+      },
+      {
+        "description": "Toggle buttons using icons as their content.",
+        "render": "() => <Stack direction='row' gap={12} align='center'><Toggle pressed={false} value='star'><Icon name='star' size={16} /></Toggle><Toggle pressed={true} value='heart'><Icon name='heart' size={16} /></Toggle></Stack>",
+        "title": "Icon Toggles"
+      },
+      {
+        "description": "Interactive toggle managed with React state.",
+        "render": "() => <ControlledToggleExample />",
+        "title": "Controlled"
+      },
+      {
+        "description": "Toggle locked in the pressed state and disabled.",
+        "render": "() => <Toggle pressed={true} disabled={true}>Locked</Toggle>",
+        "title": "Disabled Pressed"
+      },
+      {
+        "description": "Group of toggles with value attributes for toolbar-like forms.",
+        "render": "() => <Stack direction='row' gap={12} align='center'><Toggle value='bold'>Bold</Toggle><Toggle value='italic'>Italic</Toggle><Toggle value='underline'>Underline</Toggle></Stack>",
+        "title": "Form Values"
+      }
+    ],
+    "Tree": [
+      {
+        "description": "Tree with a default selected node.",
+        "render": "() => <Tree data={[{ key: '1', title: 'Project', children: [{ key: '1-1', title: 'src' }, { key: '1-2', title: 'docs', children: [{ key: '1-2-1', title: 'README.md' }] }] }]} defaultSelectedKeys={['1-1']} />",
+        "title": "Default Selection"
+      },
+      {
+        "description": "Tree that logs the expanded keys whenever a node is toggled.",
+        "render": "() => <Tree data={[{ key: 'root', title: 'Root', children: [{ key: 'a', title: 'Branch A' }, { key: 'b', title: 'Branch B' }] }]} defaultExpandedKeys={['root']} onExpand={(keys) => console.log(keys)} />",
+        "title": "Expand Handler"
+      },
+      {
+        "description": "Tree expanded down to a deeply nested hierarchy.",
+        "render": "() => <Tree data={[{ key: '1', title: 'Level 1', children: [{ key: '1-1', title: 'Level 2', children: [{ key: '1-1-1', title: 'Level 3', children: [{ key: '1-1-1-1', title: 'Level 4' }] }] }] }]} defaultExpandedKeys={['1', '1-1', '1-1-1']} />",
+        "title": "Deeply Nested"
+      },
+      {
+        "description": "Tree rendered as a flat list without nested children.",
+        "render": "() => <Tree data={[{ key: 'a', title: 'Documents' }, { key: 'b', title: 'Downloads' }, { key: 'c', title: 'Pictures' }]} />",
+        "title": "Flat List"
+      },
+      {
+        "description": "Tree with both default expansion and default selection combined.",
+        "render": "() => <Tree data={[{ key: '1', title: 'Workspace', children: [{ key: '1-1', title: 'Design' }, { key: '1-2', title: 'Engineering' }] }]} defaultExpandedKeys={['1']} defaultSelectedKeys={['1-2']} onSelect={() => {}} onExpand={() => {}} />",
+        "title": "Expand and Select"
+      }
+    ],
+    "CopyButton": [
+      {
+        "description": "Copy button with custom copy and success icons.",
+        "render": "() => <CopyButton text=\"Copy me\" copyIcon={<Icon name=\"copy\" size={16} />} successIcon={<Icon name=\"check\" size={16} />} />",
+        "title": "Custom Icons"
+      },
+      {
+        "description": "Copy a terminal command with tailored tooltip labels.",
+        "render": "() => <CopyButton text=\"npm install react-n-design\" tooltipLabel=\"Copy install command\" successTooltipLabel=\"Copied to clipboard\" successDuration={1500} />",
+        "title": "Command Snippet"
+      },
+      {
+        "description": "Copy button that logs the copied text after a successful copy.",
+        "render": "() => <CopyButton text=\"Copy and log\" onCopySuccess={(text) => console.log('Copied:', text)} successDuration={2000} />",
+        "title": "Success Callback"
+      },
+      {
+        "description": "Copy button that handles copy failures gracefully.",
+        "render": "() => <CopyButton text=\"Copy with fallback\" onCopyError={(error) => console.log('Copy failed:', error.message)} />",
+        "title": "Error Callback"
+      },
+      {
+        "description": "Small copy button with a custom accessible label.",
+        "render": "() => <CopyButton text=\"Copy\" size=\"sm\" aria-label=\"Copy email address to clipboard\" />",
+        "title": "Accessible Label"
+      }
+    ],
+    "DataGrid": [
+      {
+        "description": "Data grid with a minimal visual variant.",
+        "render": "() => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} variant=\"minimal\" pagination={false} />; }",
+        "title": "Minimal Variant"
+      },
+      {
+        "description": "Data grid with a glassmorphism visual variant.",
+        "render": "() => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} variant=\"glass\" pagination={false} />; }",
+        "title": "Glass Variant"
+      },
+      {
+        "description": "Data grid with paginated rows and custom page size.",
+        "render": "() => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }, { name: 'Dave', role: 'QA' }, { name: 'Eve', role: 'DevOps' }, { name: 'Frank', role: 'PM' }]; return <DataGrid columns={cols} dataSource={data} pagination={{ pageSize: 3, defaultCurrent: 1 }} />; }",
+        "title": "With Pagination"
+      },
+      {
+        "description": "Data grid with row selection checkboxes.",
+        "render": "() => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }, { name: 'Carol', role: 'Manager' }]; return <DataGrid columns={cols} dataSource={data} rowSelection={{}} pagination={false} />; }",
+        "title": "Row Selection"
+      },
+      {
+        "description": "Data grid with a custom toolbar action.",
+        "render": "() => { const cols = [{ key: 'name', title: 'Name' }, { key: 'role', title: 'Role' }]; const data = [{ name: 'Alice', role: 'Engineer' }, { name: 'Bob', role: 'Designer' }]; return <DataGrid columns={cols} dataSource={data} toolbar={<Button size=\"small\">Export</Button>} pagination={false} />; }",
+        "title": "Toolbar"
+      }
+    ],
+    "DiffViewer": [
+      {
+        "description": "Diff rendered in a single unified column.",
+        "render": "() => <DiffViewer oldValue=\"function add(a, b) { return a + b; }\" newValue=\"function add(a, b) { return a + b + 1; }\" mode=\"unified\" />",
+        "title": "Unified View"
+      },
+      {
+        "description": "Side-by-side diff for JSON content.",
+        "render": "() => <DiffViewer oldValue=\"{\\n  \\\"name\\\": \\\"alice\\\"\\n}\" newValue=\"{\\n  \\\"name\\\": \\\"alice\\\",\\n  \\\"age\\\": 30\\n}\" />",
+        "title": "Split JSON"
+      },
+      {
+        "description": "Diff viewer wrapped with a custom class name.",
+        "render": "() => <DiffViewer className=\"demo-diff\" oldValue=\"theme: light\" newValue=\"theme: dark\" />",
+        "title": "Styled Container"
+      },
+      {
+        "description": "Diff for a simple key-value configuration change.",
+        "render": "() => <DiffViewer oldValue=\"debug: true\\ntimeout: 5000\" newValue=\"debug: false\\ntimeout: 10000\" />",
+        "title": "Configuration Diff"
+      },
+      {
+        "description": "Diff showing content added from an empty starting value.",
+        "render": "() => <DiffViewer oldValue=\"\" newValue=\"function hello() {\\n  return 'world';\\n}\" />",
+        "title": "Added Content"
+      }
+    ],
+    "Drawer": [
+      {
+        "description": "Drawer that slides in from the top of the viewport.",
+        "render": "() => { const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Top</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Top Drawer\" placement=\"top\"><p>This drawer slides down from the top.</p></Drawer></>); }",
+        "title": "Top Placement"
+      },
+      {
+        "description": "Drawer that slides in from the bottom of the viewport.",
+        "render": "() => { const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Bottom</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Bottom Drawer\" placement=\"bottom\"><p>This drawer slides up from the bottom.</p></Drawer></>); }",
+        "title": "Bottom Placement"
+      },
+      {
+        "description": "Drawer with a frosted-glass panel style.",
+        "render": "() => { const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Glass</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Glass Drawer\" variant=\"glass\"><p>Content behind the backdrop is blurred.</p></Drawer></>); }",
+        "title": "Glass Variant"
+      },
+      {
+        "description": "Drawer with action buttons in the footer.",
+        "render": "() => { const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Drawer</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Confirm\" footer={<Stack direction=\"row\" gap={12}><Button size=\"small\" variant=\"secondary\" onClick={() => setOpen(false)}>Cancel</Button><Button size=\"small\" onClick={() => setOpen(false)}>Confirm</Button></Stack>}><p>Are you sure you want to continue?</p></Drawer></>); }",
+        "title": "Footer Actions"
+      },
+      {
+        "description": "Drawer that cannot be closed by clicking the backdrop.",
+        "render": "() => { const [open, setOpen] = React.useState(false); return (<><Button size=\"small\" onClick={() => setOpen(true)}>Open Drawer</Button><Drawer isOpen={open} onClose={() => setOpen(false)} title=\"Backdrop Locked\" preventBackdropClick={true}><p>Click outside will not close this drawer.</p></Drawer></>); }",
+        "title": "Prevent Backdrop Click"
+      }
+    ],
+    "Empty": [
+      {
+        "description": "Empty state using the default illustration and text.",
+        "render": "() => <Empty />",
+        "title": "Default"
+      },
+      {
+        "description": "Empty state with a custom icon as the image.",
+        "render": "() => <Empty description=\"No messages\" image={<Icon name=\"inbox\" size={64} color=\"var(--n-color-text-secondary)\" />} />",
+        "title": "Custom Icon"
+      },
+      {
+        "description": "Empty state with structured description content.",
+        "render": "() => <Empty description={<div><strong>No projects</strong><p>Create a project to get started.</p></div>} />",
+        "title": "Rich Description"
+      },
+      {
+        "description": "Empty state nested inside a card container.",
+        "render": "() => <Card style={{ width: 320, padding: 24 }}><Empty description=\"No data\" /></Card>",
+        "title": "In a Card"
+      },
+      {
+        "description": "Empty state with primary and secondary action buttons.",
+        "render": "() => <Empty description=\"No projects found\"><Stack direction=\"row\" gap={12} style={{ marginTop: 16 }}><Button size=\"small\">Create</Button><Button size=\"small\" variant=\"secondary\">Import</Button></Stack></Empty>",
+        "title": "With Two Actions"
+      }
+    ],
+    "Form": [
+      {
+        "description": "Form populated with initial field values.",
+        "render": "() => <Form initialValues={{ name: 'Alice', email: 'alice@example.com' }}><Input placeholder=\"Name\" name=\"name\" /><Input placeholder=\"Email\" name=\"email\" /><Button>Submit</Button></Form>",
+        "title": "Initial Values"
+      },
+      {
+        "description": "Form with horizontal labels and wrapper columns.",
+        "render": "() => <Form layout=\"horizontal\" labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}><Input label=\"Name\" placeholder=\"Name\" /><Input label=\"Email\" placeholder=\"Email\" /><Button>Submit</Button></Form>",
+        "title": "Horizontal Layout"
+      },
+      {
+        "description": "Form that disables all child fields.",
+        "render": "() => <Form disabled><Input placeholder=\"Name\" /><Input placeholder=\"Email\" /><Button disabled>Submit</Button></Form>",
+        "title": "Disabled Form"
+      },
+      {
+        "description": "Form using the compact layout variant.",
+        "render": "() => <Form compact><Input placeholder=\"Name\" /><Input placeholder=\"Email\" /><Button>Submit</Button></Form>",
+        "title": "Compact Layout"
+      },
+      {
+        "description": "Form that calls a callback with values on successful submit.",
+        "render": "() => <Form onFinish={(values) => alert(JSON.stringify(values))}><Input placeholder=\"Name\" name=\"name\" /><Input placeholder=\"Email\" name=\"email\" /><Button>Submit</Button></Form>",
+        "title": "Submit Callback"
+      }
+    ],
+    "HeatmapCalendar": [
+      {
+        "description": "Heatmap calendar with weeks starting on Sunday.",
+        "render": "() => <HeatmapCalendar startWeekOnMonday={false} data={[{ date: '2024-01-07', count: 5 }, { date: '2024-01-14', count: 3 }, { date: '2024-01-21', count: 8 }]} />",
+        "title": "Sunday Start"
+      },
+      {
+        "description": "Heatmap showing activity distributed across the year.",
+        "render": "() => <HeatmapCalendar year={2024} data={[{ date: '2024-01-05', count: 2 }, { date: '2024-02-12', count: 6 }, { date: '2024-03-20', count: 4 }, { date: '2024-04-08', count: 9 }, { date: '2024-05-15', count: 1 }, { date: '2024-06-30', count: 7 }, { date: '2024-07-18', count: 5 }, { date: '2024-08-25', count: 3 }, { date: '2024-09-10', count: 8 }, { date: '2024-10-31', count: 4 }, { date: '2024-11-22', count: 6 }, { date: '2024-12-12', count: 10 }]} />",
+        "title": "Full Year 2024"
+      },
+      {
+        "description": "Heatmap with only a few active days.",
+        "render": "() => <HeatmapCalendar data={[{ date: '2024-06-01', count: 1 }, { date: '2024-06-15', count: 3 }]} />",
+        "title": "Sparse Data"
+      },
+      {
+        "description": "Heatmap calendar with a custom wrapper class name.",
+        "render": "() => <HeatmapCalendar className=\"demo-heatmap\" data={[{ date: '2024-07-04', count: 4 }, { date: '2024-07-05', count: 7 }, { date: '2024-07-06', count: 2 }]} />",
+        "title": "Custom Class"
+      },
+      {
+        "description": "Heatmap calendar focused on a recent calendar year.",
+        "render": "() => <HeatmapCalendar year={2025} data={[{ date: '2025-01-10', count: 3 }, { date: '2025-02-14', count: 6 }, { date: '2025-03-22', count: 9 }, { date: '2025-04-05', count: 2 }]} />",
+        "title": "Recent Year 2025"
+      }
+    ],
+    "KanbanBoard": [
+      {
+        "description": "Kanban board with a single task column.",
+        "render": "() => <KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Design mockups', description: 'Create initial screens' }] }]} />",
+        "title": "Single Column"
+      },
+      {
+        "description": "Kanban board that includes an empty backlog column.",
+        "render": "() => <KanbanBoard onChange={() => {}} columns={[{ id: 'backlog', title: 'Backlog', tasks: [] }, { id: 'doing', title: 'In Progress', tasks: [{ id: 't1', title: 'Wireframes' }] }]} />",
+        "title": "Empty Column"
+      },
+      {
+        "description": "Kanban board styled through a custom class name.",
+        "render": "() => <KanbanBoard className=\"demo-kanban\" onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Research' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't2', title: 'Planning' }] }]} />",
+        "title": "Custom Class"
+      },
+      {
+        "description": "Kanban board displayed inside a card container.",
+        "render": "() => <Card style={{ padding: 16 }}><KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Design' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't2', title: 'Deploy' }] }]} /></Card>",
+        "title": "Wrapped in Card"
+      },
+      {
+        "description": "Kanban board with several tasks including tags and descriptions.",
+        "render": "() => <KanbanBoard onChange={() => {}} columns={[{ id: 'todo', title: 'To Do', tasks: [{ id: 't1', title: 'Refactor auth', description: 'Simplify login flow', tags: ['backend'] }, { id: 't2', title: 'Update docs', tags: ['docs'] }, { id: 't3', title: 'Fix icons' }] }, { id: 'done', title: 'Done', tasks: [{ id: 't4', title: 'Setup CI', description: 'GitHub Actions workflow' }] }]} />",
+        "title": "Many Tasks"
+      }
+    ],
+    "AIChat": [
+      {
+        "description": "AI chat interface with no messages and a custom placeholder.",
+        "render": "() => <AIChat messages={[]} onSend={() => {}} placeholder=\"Ask the assistant anything...\" />",
+        "title": "Empty Chat"
+      },
+      {
+        "description": "Chat showing a longer back-and-forth conversation.",
+        "render": "() => <AIChat messages={[{ role: 'user', content: 'What is react-n-design?' }, { role: 'assistant', content: 'It is a modern React component library.' }, { role: 'user', content: 'Is it accessible?' }, { role: 'assistant', content: 'Yes, every component follows WCAG guidelines.' }]} onSend={() => {}} />",
+        "title": "Conversation History"
+      },
+      {
+        "description": "Chat with a tailored input placeholder for coding help.",
+        "render": "() => <AIChat messages={[{ role: 'user', content: 'Refactor this function' }]} onSend={() => {}} placeholder=\"Paste code or ask a question...\" />",
+        "title": "Custom Placeholder"
+      },
+      {
+        "description": "Chat messages provided with unique IDs for stable keys and actions.",
+        "render": "() => <AIChat messages={[{ id: 'm1', role: 'user', content: 'Hello!' }, { id: 'm2', role: 'assistant', content: 'Hi there, how can I help?' }]} onSend={() => {}} />",
+        "title": "Messages with IDs"
+      },
+      {
+        "description": "Chat interface showing both streaming and loading indicators at once.",
+        "render": "() => <AIChat messages={[{ role: 'user', content: 'Write a poem' }, { role: 'assistant', content: 'Roses are red...' }]} onSend={() => {}} isLoading={true} isStreaming={true} placeholder=\"Type a message...\" />",
+        "title": "Loading and Streaming"
+      }
+    ],
+    "AppBar": [
+      {
+        "description": "App bar with a hamburger menu button for navigation.",
+        "render": "() => <AppBar title=\"Products\" onMenuClick={() => {}} />",
+        "title": "With Menu Button"
+      },
+      {
+        "description": "App bar positioned sticky with actions.",
+        "render": "() => <AppBar title=\"Dashboard\" position=\"sticky\" actions={<Button size=\"small\">Profile</Button>} />",
+        "title": "Sticky Header"
+      },
+      {
+        "description": "App bar without elevation shadow for subtle headers.",
+        "render": "() => <AppBar title=\"Flat Header\" elevated={false} actions={<Button size=\"small\" variant=\"ghost\">Help</Button>} />",
+        "title": "Flat Style"
+      },
+      {
+        "description": "App bar title rendered as a React node with an icon and text.",
+        "render": "() => <AppBar title={<Stack direction=\"row\" gap={8} align=\"center\"><Icon name=\"home\" size={20} /><span>Home</span></Stack>} actions={<Button size=\"small\">Logout</Button>} />",
+        "title": "Custom Title Content"
+      },
+      {
+        "description": "Fixed-position app bar spanning the viewport with menu and actions.",
+        "render": "() => <AppBar title=\"Fixed AppBar\" position=\"fixed\" onMenuClick={() => {}} actions={<Button size=\"small\">Search</Button>} />",
+        "title": "Fixed Navigation"
+      }
+    ],
+    "CommandPalette": [
+      {
+        "description": "Command palette rendered open with rich actions and a custom search prompt.",
+        "render": "() => (<CommandPalette open={true} onClose={() => {}} placeholder=\"Search actions...\" items={[{ id: '1', label: 'Go to Dashboard', shortcut: '⌘D', onSelect: () => {} }, { id: '2', label: 'Open Settings', shortcut: '⌘,', onSelect: () => {} }, { id: '3', label: 'Toggle Theme', shortcut: '⌘T', onSelect: () => {} }]} />)",
+        "title": "Open by Default"
+      },
+      {
+        "description": "Common text editor commands with keyboard shortcuts.",
+        "render": "() => (<CommandPalette open={true} onClose={() => {}} placeholder=\"Find an editor command...\" items={[{ id: '1', label: 'Find', shortcut: '⌘F', onSelect: () => {} }, { id: '2', label: 'Replace', shortcut: '⌘H', onSelect: () => {} }, { id: '3', label: 'Save File', shortcut: '⌘S', onSelect: () => {} }, { id: '4', label: 'Command Palette', shortcut: '⇧⌘P', onSelect: () => {} }]} />)",
+        "title": "Editor Shortcuts"
+      },
+      {
+        "description": "Minimal palette with one actionable command.",
+        "render": "() => (<CommandPalette open={true} onClose={() => {}} placeholder=\"Type to run...\" items={[{ id: '1', label: 'Run Build', shortcut: '⌘B', onSelect: () => {} }]} />)",
+        "title": "Single Command"
+      },
+      {
+        "description": "Palette scoped to project-level actions like deploy and archive.",
+        "render": "() => (<CommandPalette open={true} onClose={() => {}} placeholder=\"Search project actions...\" items={[{ id: '1', label: 'Deploy to Production', shortcut: '⌘D', onSelect: () => {} }, { id: '2', label: 'Run Tests', shortcut: '⌘T', onSelect: () => {} }, { id: '3', label: 'Open Documentation', onSelect: () => {} }, { id: '4', label: 'Archive Project', onSelect: () => {} }]} />)",
+        "title": "Project Actions"
+      },
+      {
+        "description": "Command items displayed without keyboard shortcut labels.",
+        "render": "() => (<CommandPalette open={true} onClose={() => {}} placeholder=\"Search...\" items={[{ id: '1', label: 'New File', onSelect: () => {} }, { id: '2', label: 'Open Recent', onSelect: () => {} }, { id: '3', label: 'Preferences', onSelect: () => {} }]} />)",
+        "title": "Search Without Shortcuts"
+      }
+    ],
+    "FloatButton": [
+      {
+        "description": "Floating action button placed in the top-left corner.",
+        "render": "() => <FloatButton icon=\"+\" position=\"top-left\" tooltip=\"Add\" />",
+        "title": "Top Left"
+      },
+      {
+        "description": "Floating help button anchored to the bottom-left.",
+        "render": "() => <FloatButton icon=\"?\" position=\"bottom-left\" tooltip=\"Help\" />",
+        "title": "Bottom Left"
+      },
+      {
+        "description": "Floating button that expands into a small action menu.",
+        "render": "() => <FloatButton icon=\"≡\" menu={[{ icon: '✎', label: 'Edit', onClick: () => {} }, { icon: '⚙', label: 'Settings', onClick: () => {} }, { icon: '↶', label: 'Undo', onClick: () => {} }]} />",
+        "title": "Action Menu"
+      },
+      {
+        "description": "Floating menu containing one disabled menu item.",
+        "render": "() => <FloatButton icon=\"≡\" tooltip=\"More\" menu={[{ icon: '✎', label: 'Edit', onClick: () => {} }, { icon: '✕', label: 'Delete', disabled: true, onClick: () => {} }]} />",
+        "title": "Menu with Disabled Item"
+      },
+      {
+        "description": "Primary floating action button with a plus icon and click handler.",
+        "render": "() => <FloatButton icon=\"+\" position=\"bottom-right\" tooltip=\"Create\" onClick={() => {}} />",
+        "title": "Primary Add Button"
+      }
+    ],
+    "Grid": [
+      {
+        "description": "A simple two-column grid layout.",
+        "render": "() => (<Grid columns={2} gap={16}>{[1, 2, 3, 4].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>)",
+        "title": "Two Columns"
+      },
+      {
+        "description": "A tight four-column grid with smaller gaps.",
+        "render": "() => (<Grid columns={4} gap={8}>{['A', 'B', 'C', 'D'].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>)",
+        "title": "Four Columns"
+      },
+      {
+        "description": "Grid with a large gap between items.",
+        "render": "() => (<Grid columns={3} gap={40}>{[1, 2, 3].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>)",
+        "title": "Large Gap"
+      },
+      {
+        "description": "Responsive grid that auto-fits cards based on a minimum child width.",
+        "render": "() => (<Grid minChildWidth={120} gap={12}>{[1, 2, 3, 4, 5, 6].map((n) => (<Card key={n} style={{ padding: 16, textAlign: 'center' }}>{n}</Card>))}</Grid>)",
+        "title": "Auto Fit Cards"
+      },
+      {
+        "description": "Grid using a custom CSS track sizing string for uneven columns.",
+        "render": "() => (<Grid columns=\"1fr 2fr 1fr\" gap={16}>{['Sidebar', 'Main', 'Sidebar'].map((label, i) => (<Card key={i} style={{ padding: 16, textAlign: 'center' }}>{label}</Card>))}</Grid>)",
+        "title": "Mixed Column Sizing"
+      }
+    ],
+    "PromptInput": [
+      {
+        "description": "Prompt input limited to a maximum number of characters.",
+        "render": "() => <PromptInput value=\"\" onChange={() => {}} onSend={() => {}} maxLength={50} placeholder=\"Brief prompt...\" />",
+        "title": "Max Length"
+      },
+      {
+        "description": "Prompt input with a visible token budget and count.",
+        "render": "() => <PromptInput value=\"Summarize this document\" onChange={() => {}} onSend={() => {}} showTokenCount={true} maxTokens={20} tokenLabel=\"tokens\" />",
+        "title": "Token Counter"
+      },
+      {
+        "description": "Prompt input with slash command suggestions for common actions.",
+        "render": "() => <PromptInput value=\"/\" onChange={() => {}} onSend={() => {}} slashCommands={[{ command: '/summarize', description: 'Summarize selection' }, { command: '/translate', description: 'Translate text' }]} placeholder=\"Type / for commands...\" />",
+        "title": "Slash Commands"
+      },
+      {
+        "description": "Prompt input configured with mentionable users.",
+        "render": "() => <PromptInput value=\"@\" onChange={() => {}} onSend={() => {}} mentionTargets={[{ id: '1', name: 'Alice' }, { id: '2', name: 'Bob' }]} placeholder=\"Type @ to mention...\" />",
+        "title": "Mention Targets"
+      },
+      {
+        "description": "Prompt input in a non-editable disabled state.",
+        "render": "() => <PromptInput value=\"This input is disabled\" onChange={() => {}} onSend={() => {}} disabled={true} placeholder=\"Cannot type...\" />",
+        "title": "Disabled"
+      }
+    ],
+    "ScrollArea": [
+      {
+        "description": "Scrollable container constrained by a max height with several cards.",
+        "render": "() => (<div style={{ width: 260 }}><ScrollArea maxHeight={150}><Stack direction=\"column\" gap={12}>{[1, 2, 3, 4, 5].map((i) => (<Card key={i} style={{ padding: 14 }}>Card {i}</Card>))}</Stack></ScrollArea></div>)",
+        "title": "Bounded Max Height"
+      },
+      {
+        "description": "A vertical list of cards inside a custom scroll area.",
+        "render": "() => (<div style={{ width: 260 }}><ScrollArea maxHeight={160}><Stack direction=\"column\" gap={12}>{['Design', 'Code', 'Review', 'Deploy', 'Ship'].map((label) => (<Card key={label} style={{ padding: 14 }}>{label}</Card>))}</Stack></ScrollArea></div>)",
+        "title": "Card List"
+      },
+      {
+        "description": "Scrollbars that auto-hide when the user is not interacting.",
+        "render": "() => (<div style={{ width: 260 }}><ScrollArea autoHide maxHeight={120}><Stack direction=\"column\" gap={12}>{[1, 2, 3, 4].map((i) => (<Card key={i} style={{ padding: 14 }}>Item {i}</Card>))}</Stack></ScrollArea></div>)",
+        "title": "Hidden Scrollbars"
+      },
+      {
+        "description": "Horizontally scrolling row of tags inside a scroll area.",
+        "render": "() => (<div style={{ width: 320 }}><ScrollArea horizontal><div style={{ width: 600, display: 'flex', gap: 8, padding: 8 }}>{['React', 'Vue', 'Angular', 'Svelte', 'Solid', 'Preact'].map((t) => (<Tag key={t}>{t}</Tag>))}</div></ScrollArea></div>)",
+        "title": "Horizontal Tag Strip"
+      },
+      {
+        "description": "Scroll area with a custom className and visible card content.",
+        "render": "() => (<div style={{ width: 260 }}><ScrollArea className=\"demo-scroll\" maxHeight={140}><Stack direction=\"column\" gap={12}>{[1, 2, 3].map((i) => (<Card key={i} style={{ padding: 14 }}>Row {i}</Card>))}</Stack></ScrollArea></div>)",
+        "title": "Custom Styled Container"
+      }
+    ],
+    "Tour": [
+      {
+        "description": "Tour that triggers a callback when the final step is completed.",
+        "render": "() => <Tour open={true} onClose={() => {}} onFinish={() => {}} steps={[{ target: '#demo', title: 'Welcome', description: 'Start your guided tour.' }, { target: '#demo', title: 'Finish', description: 'Complete the tour to continue.' }]} />",
+        "title": "Finish Callback"
+      },
+      {
+        "description": "Tour with only one highlighted step.",
+        "render": "() => <Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Single Highlight', description: 'This is the only step in the tour.', placement: 'bottom' }]} />",
+        "title": "Single Step"
+      },
+      {
+        "description": "Tour step positioned below the target element.",
+        "render": "() => <Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Below Target', description: 'This tooltip appears below the target.', placement: 'bottom' }]} />",
+        "title": "Bottom Placement"
+      },
+      {
+        "description": "Tour step aligned to the right of the target.",
+        "render": "() => <Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Right Side', description: 'This tooltip appears to the right.', placement: 'right' }]} />",
+        "title": "Right Aligned"
+      },
+      {
+        "description": "Compact two-step tour rendered inline for small flows.",
+        "render": "() => <Tour open={true} onClose={() => {}} steps={[{ target: '#demo', title: 'Step 1', description: 'First step of the flow.' }, { target: '#demo', title: 'Step 2', description: 'Second and final step.' }]} />",
+        "title": "Inline Tour"
+      }
+    ],
+    "Accordion": [
+      {
+        "description": "Borderless accordion with a minimal visual style.",
+        "render": "() => (\n        <Accordion\n          variant=\"minimal\"\n          items={[\n            { key: '1', label: 'General', children: 'General account settings.' },\n            { key: '2', label: 'Security', children: 'Password and two-factor options.' },\n            { key: '3', label: 'Notifications', children: 'Email and push notification preferences.' },\n          ]}\n        />\n      )",
+        "title": "Minimal Variant"
+      },
+      {
+        "description": "Accordion with a glassmorphism backdrop blur style.",
+        "render": "() => (\n        <Accordion\n          variant=\"glass\"\n          items={[\n            { key: '1', label: 'Overview', children: 'High-level project overview.' },\n            { key: '2', label: 'Metrics', children: 'Performance and usage metrics.' },\n            { key: '3', label: 'Logs', children: 'Recent activity logs.' },\n          ]}\n        />\n      )",
+        "title": "Glass Variant"
+      },
+      {
+        "description": "Accordion with borders hidden for a cleaner look.",
+        "render": "() => (\n        <Accordion\n          bordered={false}\n          items={[\n            { key: '1', label: 'Plan', children: 'Choose the right plan for your team.' },\n            { key: '2', label: 'Billing', children: 'Manage invoices and payment methods.' },\n            { key: '3', label: 'Usage', children: 'Review current resource usage.' },\n          ]}\n        />\n      )",
+        "title": "Borderless"
+      },
+      {
+        "description": "Accordion items animate in with a staggered entrance effect.",
+        "render": "() => (\n        <Accordion\n          stagger={true}\n          staggerDelay={0.1}\n          items={[\n            { key: '1', label: 'Step 1', children: 'Define the problem statement.' },\n            { key: '2', label: 'Step 2', children: 'Collect relevant data and constraints.' },\n            { key: '3', label: 'Step 3', children: 'Iterate on a solution.' },\n          ]}\n        />\n      )",
+        "title": "Staggered Entry"
+      },
+      {
+        "description": "Accordion with the first panel open by default.",
+        "render": "() => (\n        <Accordion\n          defaultActiveKey=\"1\"\n          items={[\n            { key: '1', label: 'Getting started', children: 'Welcome! Here is how to begin.' },\n            { key: '2', label: 'Configuration', children: 'Set up your environment variables.' },\n            { key: '3', label: 'Deployment', children: 'Deploy to your preferred platform.' },\n          ]}\n        />\n      )",
+        "title": "Default Expanded"
+      }
+    ],
+    "ColorPicker": [
+      {
+        "description": "Interactive color picker bound to React state.",
+        "render": "() => <ControlledColorPickerExample />",
+        "title": "Controlled"
+      },
+      {
+        "description": "Color picker with a curated set of brand presets.",
+        "render": "() => (\n        <ColorPicker\n          value=\"#0ea5e9\"\n          presets={['#ef4444', '#f97316', '#f59e0b', '#22c55e', '#0ea5e9', '#8b5cf6']}\n        />\n      )",
+        "title": "Custom Presets"
+      },
+      {
+        "description": "Color picker showing only swatches without the manual input.",
+        "render": "() => (\n        <ColorPicker value=\"#10b981\" showInput={false} presets={['#10b981', '#06b6d4', '#3b82f6']} />\n      )",
+        "title": "No Input"
+      },
+      {
+        "description": "Color picker restricted to warm color swatches.",
+        "render": "() => (\n        <ColorPicker\n          value=\"#f97316\"\n          presets={['#7f1d1d', '#b91c1c', '#ef4444', '#f97316', '#f59e0b', '#eab308']}\n        />\n      )",
+        "title": "Warm Palette"
+      },
+      {
+        "description": "Color picker initialized to a neutral gray value.",
+        "render": "() => (\n        <ColorPicker\n          value=\"#64748b\"\n          presets={['#0f172a', '#334155', '#64748b', '#94a3b8', '#e2e8f0', '#f8fafc']}\n        />\n      )",
+        "title": "Default Open Swatches"
+      }
+    ],
+    "FileUpload": [
+      {
+        "description": "Interactive file upload that tracks selected files in React state.",
+        "render": "() => <ControlledFileUploadExample />",
+        "title": "Controlled"
+      },
+      {
+        "description": "File upload accepting a single PDF document.",
+        "render": "() => (\n        <FileUpload accept=\".pdf\" multiple={false} />\n      )",
+        "title": "Single Document"
+      },
+      {
+        "description": "File upload with a maximum file size of 2MB.",
+        "render": "() => (\n        <FileUpload accept=\"image/*\" maxSize={2 * 1024 * 1024} />\n      )",
+        "title": "Size Limit"
+      },
+      {
+        "description": "File upload showing simulated progress for queued files.",
+        "render": "() => (\n        <FileUpload\n          accept=\".zip\"\n          multiple\n          uploadProgress={{ 'archive.zip': 65, 'data.zip': 30 }}\n        />\n      )",
+        "title": "Upload Progress"
+      },
+      {
+        "description": "File upload configured for CSV spreadsheet files.",
+        "render": "() => (\n        <FileUpload accept=\".csv\" multiple />\n      )",
+        "title": "Spreadsheet Upload"
+      }
+    ],
+    "MentionInput": [
+      {
+        "description": "Interactive mention input managed with React state.",
+        "render": "() => <ControlledMentionInputExample />",
+        "title": "Controlled"
+      },
+      {
+        "description": "Mention input populated with a long list of team members.",
+        "render": "() => (\n        <MentionInput\n          value=\"\"\n          onChange={() => {}}\n          options={[\n            { id: '1', label: 'Alice Chen', value: 'alice' },\n            { id: '2', label: 'Bob Davis', value: 'bob' },\n            { id: '3', label: 'Carol Evans', value: 'carol' },\n            { id: '4', label: 'Dave Foster', value: 'dave' },\n            { id: '5', label: 'Eve Garcia', value: 'eve' },\n            { id: '6', label: 'Frank Hall', value: 'frank' },\n          ]}\n          placeholder=\"@mention a teammate\"\n        />\n      )",
+        "title": "Large Team"
+      },
+      {
+        "description": "Mention input with a task-specific placeholder.",
+        "render": "() => (\n        <MentionInput\n          value=\"\"\n          onChange={() => {}}\n          options={[\n            { id: '1', label: 'Design', value: 'design' },\n            { id: '2', label: 'Engineering', value: 'engineering' },\n            { id: '3', label: 'Product', value: 'product' },\n          ]}\n          placeholder=\"Type @ to assign an owner\"\n        />\n      )",
+        "title": "Custom Placeholder"
+      },
+      {
+        "description": "Mention input initialized with an existing mention.",
+        "render": "() => (\n        <MentionInput\n          value=\"Thanks @alice for the review!\"\n          onChange={() => {}}\n          options={[\n            { id: '1', label: 'Alice', value: 'alice' },\n            { id: '2', label: 'Bob', value: 'bob' },\n            { id: '3', label: 'Carol', value: 'carol' },\n          ]}\n        />\n      )",
+        "title": "Prefilled Value"
+      },
+      {
+        "description": "Mention input stretched to fill a wider container using a className.",
+        "render": "() => (\n        <MentionInput\n          value=\"\"\n          onChange={() => {}}\n          options={[\n            { id: '1', label: 'Alice', value: 'alice' },\n            { id: '2', label: 'Bob', value: 'bob' },\n          ]}\n          placeholder=\"Type @ to mention\"\n          className=\"mention-wide\"\n        />\n      )",
+        "title": "Wide Input"
+      }
+    ],
+    "MultiSelect": [
+      {
+        "description": "Interactive multi-select with React state and change handler.",
+        "render": "() => <ControlledMultiSelectExample />",
+        "title": "Controlled"
+      },
+      {
+        "description": "Multi-select in a non-interactive disabled state.",
+        "render": "() => (\n        <MultiSelect\n          options={['React', 'Vue', 'Angular']}\n          value={['React']}\n          disabled={true}\n          placeholder=\"Pick frameworks\"\n        />\n      )",
+        "title": "Disabled"
+      },
+      {
+        "description": "Multi-select with an increased dropdown max height.",
+        "render": "() => (\n        <MultiSelect\n          options={[\n            'January',\n            'February',\n            'March',\n            'April',\n            'May',\n            'June',\n            'July',\n            'August',\n            'September',\n            'October',\n            'November',\n            'December',\n          ]}\n          placeholder=\"Select months\"\n          maxHeight={220}\n        />\n      )",
+        "title": "Tall Dropdown"
+      },
+      {
+        "description": "Multi-select with a tailored placeholder for skill selection.",
+        "render": "() => (\n        <MultiSelect\n          options={['TypeScript', 'React', 'Node.js', 'CSS', 'Accessibility']}\n          placeholder=\"Choose your skills\"\n        />\n      )",
+        "title": "Custom Placeholder"
+      },
+      {
+        "description": "Multi-select with only one available option.",
+        "render": "() => (\n        <MultiSelect options={['Only option']} placeholder=\"Select an option\" />\n      )",
+        "title": "Single Option"
+      }
+    ],
+    "Resizable": [
+      {
+        "description": "Horizontal panels with the first panel starting at one third.",
+        "render": "() => (\n        <Resizable direction=\"horizontal\" defaultSize=\"33%\">\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Narrow panel\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Wide panel\n          </div>\n        </Resizable>\n      )",
+        "title": "Third Split"
+      },
+      {
+        "description": "Resizable panels with a fixed pixel default for the first panel.",
+        "render": "() => (\n        <Resizable direction=\"horizontal\" defaultSize={180}>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            180px start\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Remaining space\n          </div>\n        </Resizable>\n      )",
+        "title": "Fixed Pixel Start"
+      },
+      {
+        "description": "Resizable panels that log size changes as the divider moves.",
+        "render": "() => (\n        <Resizable direction=\"horizontal\" defaultSize=\"50%\" onSizeChange={() => {}}>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Left\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Right\n          </div>\n        </Resizable>\n      )",
+        "title": "Size Change Callback"
+      },
+      {
+        "description": "Resizable panels constrained within a small size range.",
+        "render": "() => (\n        <Resizable direction=\"horizontal\" defaultSize={160} minSize={120} maxSize={240}>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Bounded\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Flexible\n          </div>\n        </Resizable>\n      )",
+        "title": "Narrow Range"
+      },
+      {
+        "description": "Vertically resizable panels with a 60/40 starting split.",
+        "render": "() => (\n        <Resizable direction=\"vertical\" defaultSize=\"60%\">\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Top panel\n          </div>\n          <div style={{ padding: 16, background: 'var(--n-color-card-bg)', borderRadius: 8 }}>\n            Bottom panel\n          </div>\n        </Resizable>\n      )",
+        "title": "Vertical Panels"
+      }
+    ],
+    "SuggestionChips": [
+      {
+        "description": "Suggestion chips with accept/reject handlers for each chip and bulk actions.",
+        "render": "() => (\n        <SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Summarize this article' },\n            { id: '2', label: 'Translate to Spanish' },\n            { id: '3', label: 'Rewrite more formally' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n          onAcceptAll={() => {}}\n          onRejectAll={() => {}}\n        />\n      )",
+        "title": "Full Actions"
+      },
+      {
+        "description": "Many suggestion chips arranged in a wrapping row.",
+        "render": "() => (\n        <div style={{ maxWidth: 420 }}>\n          <SuggestionChips\n            suggestions={[\n              { id: '1', label: 'Explain' },\n              { id: '2', label: 'Compare' },\n              { id: '3', label: 'Examples' },\n              { id: '4', label: 'Pros & cons' },\n              { id: '5', label: 'Simplify' },\n              { id: '6', label: 'Code' },\n            ]}\n            onAccept={() => {}}\n            onReject={() => {}}\n          />\n        </div>\n      )",
+        "title": "Inline Wrap"
+      },
+      {
+        "description": "Compact one-word suggestion chips for quick actions.",
+        "render": "() => (\n        <SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Yes' },\n            { id: '2', label: 'No' },\n            { id: '3', label: 'Maybe' },\n            { id: '4', label: 'Later' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n        />\n      )",
+        "title": "Short Prompts"
+      },
+      {
+        "description": "Longer, descriptive suggestion labels that explain the action.",
+        "render": "() => (\n        <SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Generate a unit test for this function' },\n            { id: '2', label: 'Refactor the code to use async/await' },\n            { id: '3', label: 'Add JSDoc comments to the public API' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n        />\n      )",
+        "title": "Rich Suggestions"
+      },
+      {
+        "description": "Suggestion chips that only expose accept all and reject all actions.",
+        "render": "() => (\n        <SuggestionChips\n          suggestions={[\n            { id: '1', label: 'Apply all fixes' },\n            { id: '2', label: 'Update all dependencies' },\n          ]}\n          onAccept={() => {}}\n          onReject={() => {}}\n          onAcceptAll={() => {}}\n          onRejectAll={() => {}}\n        />\n      )",
+        "title": "Bulk Actions Only"
+      }
+    ],
+    "AudioWaveform": [
+      {
+        "description": "Audio waveform rendered with many narrow bars.",
+        "render": "() => <AudioWaveform bars={60} isActive={true} amplitude={0.5} barGap={1} />",
+        "title": "Dense Bars"
+      },
+      {
+        "description": "Audio waveform rendered with fewer, wider bars.",
+        "render": "() => <AudioWaveform bars={12} isActive={true} amplitude={0.6} barGap={6} />",
+        "title": "Sparse Bars"
+      },
+      {
+        "description": "Subtle waveform with a low amplitude.",
+        "render": "() => <AudioWaveform bars={30} isActive={true} amplitude={0.2} barGap={2} />",
+        "title": "Low Amplitude"
+      },
+      {
+        "description": "Prominent waveform with a high amplitude.",
+        "render": "() => <AudioWaveform bars={30} isActive={true} amplitude={0.9} barGap={2} />",
+        "title": "High Amplitude"
+      },
+      {
+        "description": "Waveform with an exaggerated bar gap for a different rhythm look.",
+        "render": "() => <AudioWaveform bars={24} isActive={true} amplitude={0.5} barGap={8} />",
+        "title": "Custom Gap"
+      }
+    ],
+    "AvatarGroup": [
+      {
+        "description": "Avatar group showing an overflow count when avatars exceed the max.",
+        "render": "() => (\n  <AvatarGroup max={2}>\n    <Avatar initials=\"AB\" alt=\"Alice\" />\n    <Avatar initials=\"BC\" alt=\"Bob\" />\n    <Avatar initials=\"CD\" alt=\"Carol\" />\n    <Avatar initials=\"DE\" alt=\"Dave\" />\n  </AvatarGroup>\n)",
+        "title": "Overflow"
+      },
+      {
+        "description": "Small-sized avatar group.",
+        "render": "() => (\n  <AvatarGroup size=\"small\" max={3}>\n    <Avatar initials=\"A\" alt=\"A\" />\n    <Avatar initials=\"B\" alt=\"B\" />\n    <Avatar initials=\"C\" alt=\"C\" />\n    <Avatar initials=\"D\" alt=\"D\" />\n  </AvatarGroup>\n)",
+        "title": "Small"
+      },
+      {
+        "description": "Large-sized avatar group.",
+        "render": "() => (\n  <AvatarGroup size=\"large\" max={3}>\n    <Avatar initials=\"A\" alt=\"A\" />\n    <Avatar initials=\"B\" alt=\"B\" />\n    <Avatar initials=\"C\" alt=\"C\" />\n    <Avatar initials=\"D\" alt=\"D\" />\n  </AvatarGroup>\n)",
+        "title": "Large"
+      },
+      {
+        "description": "Avatar group displaying initials for each member.",
+        "render": "() => (\n  <AvatarGroup max={4}>\n    <Avatar initials=\"AL\" alt=\"Alice\" />\n    <Avatar initials=\"BO\" alt=\"Bob\" />\n    <Avatar initials=\"CA\" alt=\"Carol\" />\n    <Avatar initials=\"DA\" alt=\"Dave\" />\n    <Avatar initials=\"EV\" alt=\"Eve\" />\n  </AvatarGroup>\n)",
+        "title": "Initials"
+      },
+      {
+        "description": "Avatar group combining circle and square avatars.",
+        "render": "() => (\n  <AvatarGroup max={3}>\n    <Avatar initials=\"S1\" shape=\"circle\" alt=\"Shape one\" />\n    <Avatar initials=\"S2\" shape=\"square\" alt=\"Shape two\" />\n    <Avatar initials=\"S3\" shape=\"rounded\" alt=\"Shape three\" />\n    <Avatar initials=\"S4\" shape=\"circle\" alt=\"Shape four\" />\n  </AvatarGroup>\n)",
+        "title": "Mixed Shapes"
+      }
+    ],
+    "ImageGallery": [
+      {
+        "description": "Image gallery arranged in a compact four-column grid.",
+        "render": "() => (\n  <ImageGallery\n    columns={4}\n    images={[\n      { src: 'https://picsum.photos/300/200?random=10', alt: 'Sample 10' },\n      { src: 'https://picsum.photos/300/200?random=11', alt: 'Sample 11' },\n      { src: 'https://picsum.photos/300/200?random=12', alt: 'Sample 12' },\n      { src: 'https://picsum.photos/300/200?random=13', alt: 'Sample 13' },\n    ]}\n  />\n)",
+        "title": "Four Column Grid"
+      },
+      {
+        "description": "One image per row for a list-style gallery.",
+        "render": "() => (\n  <ImageGallery\n    columns={1}\n    images={[\n      { src: 'https://picsum.photos/400/200?random=20', alt: 'Sample 20' },\n      { src: 'https://picsum.photos/400/200?random=21', alt: 'Sample 21' },\n    ]}\n  />\n)",
+        "title": "Single Column"
+      },
+      {
+        "description": "Gallery with a narrow 4px gap between images.",
+        "render": "() => (\n  <ImageGallery\n    columns={3}\n    gap=\"4px\"\n    images={[\n      { src: 'https://picsum.photos/300/200?random=30', alt: 'Sample 30' },\n      { src: 'https://picsum.photos/300/200?random=31', alt: 'Sample 31' },\n      { src: 'https://picsum.photos/300/200?random=32', alt: 'Sample 32' },\n    ]}\n  />\n)",
+        "title": "Compact Spacing"
+      },
+      {
+        "description": "Gallery with a wide 32px gap for a spacious layout.",
+        "render": "() => (\n  <ImageGallery\n    columns={2}\n    gap=\"32px\"\n    images={[\n      { src: 'https://picsum.photos/400/300?random=40', alt: 'Sample 40' },\n      { src: 'https://picsum.photos/400/300?random=41', alt: 'Sample 41' },\n      { src: 'https://picsum.photos/400/300?random=42', alt: 'Sample 42' },\n      { src: 'https://picsum.photos/400/300?random=43', alt: 'Sample 43' },\n    ]}\n  />\n)",
+        "title": "Roomy Spacing"
+      },
+      {
+        "description": "Portrait-oriented images with captions.",
+        "render": "() => (\n  <ImageGallery\n    columns={3}\n    images={[\n      { src: 'https://picsum.photos/200/300?random=50', alt: 'Portrait 50', caption: 'Portrait one' },\n      { src: 'https://picsum.photos/200/300?random=51', alt: 'Portrait 51', caption: 'Portrait two' },\n      { src: 'https://picsum.photos/200/300?random=52', alt: 'Portrait 52', caption: 'Portrait three' },\n    ]}\n  />\n)",
+        "title": "Portrait Gallery"
+      }
+    ],
+    "Menu": [
+      {
+        "description": "Menu dropdown aligned to the bottom-right of the trigger.",
+        "render": "() => (\n  <Menu\n    trigger={<Button size=\"small\">Open Menu</Button>}\n    placement=\"bottom-right\"\n    items={[\n      { key: '1', label: 'Copy' },\n      { key: '2', label: 'Paste' },\n      { key: '3', label: 'Delete', danger: true },\n    ]}\n  />\n)",
+        "title": "Bottom Right Placement"
+      },
+      {
+        "description": "Menu with a visual separator between groups of items.",
+        "render": "() => (\n  <Menu\n    trigger={<Button size=\"small\" variant=\"secondary\">Actions</Button>}\n    items={[\n      { key: '1', label: 'Edit' },\n      { key: '2', label: 'Duplicate' },\n      { type: 'divider' },\n      { key: '3', label: 'Archive' },\n      { key: '4', label: 'Delete', danger: true },\n    ]}\n  />\n)",
+        "title": "With Divider"
+      },
+      {
+        "description": "Menu with a non-selectable section label.",
+        "render": "() => (\n  <Menu\n    trigger={<Button size=\"small\" variant=\"secondary\">Options</Button>}\n    items={[\n      { type: 'label', label: 'View' },\n      { key: '1', label: 'List' },\n      { key: '2', label: 'Grid' },\n      { type: 'label', label: 'Settings' },\n      { key: '3', label: 'Preferences' },\n    ]}\n  />\n)",
+        "title": "With Section Label"
+      },
+      {
+        "description": "Menu with some items that cannot be selected.",
+        "render": "() => (\n  <Menu\n    trigger={<Button size=\"small\" variant=\"secondary\">Actions</Button>}\n    items={[\n      { key: '1', label: 'Share' },\n      { key: '2', label: 'Export', disabled: true },\n      { key: '3', label: 'Delete', danger: true, disabled: true },\n    ]}\n  />\n)",
+        "title": "Disabled Options"
+      },
+      {
+        "description": "Menu items rendered as checkbox and radio options.",
+        "render": "() => (\n  <Menu\n    trigger={<Button size=\"small\" variant=\"secondary\">Settings</Button>}\n    items={[\n      { key: '1', label: 'Show sidebar', checkable: 'checkbox', checked: true },\n      { key: '2', label: 'Show status bar', checkable: 'checkbox', checked: false },\n      { key: '3', label: 'Theme: Dark', checkable: 'radio', checked: true },\n      { key: '4', label: 'Theme: Light', checkable: 'radio', checked: false },\n    ]}\n  />\n)",
+        "title": "Checkable Items"
+      }
+    ],
+    "ModelSelector": [
+      {
+        "description": "Model selector with a model already chosen.",
+        "render": "() => (\n  <ModelSelector\n    value=\"gpt-4\"\n    onChange={() => {}}\n    models={[\n      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },\n      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },\n    ]}\n  />\n)",
+        "title": "Preselected Model"
+      },
+      {
+        "description": "Model selector with a custom placeholder message.",
+        "render": "() => (\n  <ModelSelector\n    placeholder=\"Pick a model for this task\"\n    onChange={() => {}}\n    models={[\n      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },\n      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },\n    ]}\n  />\n)",
+        "title": "Custom Placeholder"
+      },
+      {
+        "description": "Model selector listing models from three different providers.",
+        "render": "() => (\n  <ModelSelector\n    onChange={() => {}}\n    models={[\n      { id: 'gpt-4', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },\n      { id: 'claude', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008 },\n      { id: 'gemini', name: 'Gemini', provider: 'Google', contextWindow: 1000000, pricePer1kTokens: 0.0005 },\n    ]}\n  />\n)",
+        "title": "Three Providers"
+      },
+      {
+        "description": "Model selector highlighting response latency metadata.",
+        "render": "() => (\n  <ModelSelector\n    onChange={() => {}}\n    models={[\n      { id: 'fast', name: 'Fast-Llama', provider: 'Meta', contextWindow: 32000, pricePer1kTokens: 0.001, latencyMs: 120, description: 'Low latency for quick tasks' },\n      { id: 'balanced', name: 'GPT-4o', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.005, latencyMs: 300, description: 'Balanced speed and quality' },\n      { id: 'slow', name: 'Claude 3', provider: 'Anthropic', contextWindow: 200000, pricePer1kTokens: 0.008, latencyMs: 600, description: 'Higher latency, strong reasoning' },\n    ]}\n  />\n)",
+        "title": "Latency Focused"
+      },
+      {
+        "description": "Model selector with only one available model.",
+        "render": "() => (\n  <ModelSelector\n    onChange={() => {}}\n    models={[\n      { id: 'only', name: 'GPT-4', provider: 'OpenAI', contextWindow: 128000, pricePer1kTokens: 0.03 },\n    ]}\n  />\n)",
+        "title": "Single Model"
+      }
+    ],
+    "PinInput": [
+      {
+        "description": "PIN input configured for a six-digit code.",
+        "render": "() => <PinInput length={6} />",
+        "title": "Six Digits"
+      },
+      {
+        "description": "Short PIN input with only three digits.",
+        "render": "() => <PinInput length={3} />",
+        "title": "Three Digits"
+      },
+      {
+        "description": "PIN input that cannot be edited.",
+        "render": "() => <PinInput length={4} disabled={true} value=\"12\" />",
+        "title": "Disabled"
+      },
+      {
+        "description": "PIN input prefilled with a complete value.",
+        "render": "() => <PinInput length={4} value=\"1234\" />",
+        "title": "Filled"
+      },
+      {
+        "description": "PIN input that triggers a callback when all digits are entered.",
+        "render": "() => <PinInput length={4} onComplete={() => {}} />",
+        "title": "Complete Handler"
+      }
+    ],
+    "Stepper": [
+      {
+        "description": "Stepper with a glass morphism visual style.",
+        "render": "() => (\n  <Stepper\n    variant=\"glass\"\n    activeStep={1}\n    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}\n  />\n)",
+        "title": "Glass Variant"
+      },
+      {
+        "description": "Stepper that hides labels and shows only step icons.",
+        "render": "() => (\n  <Stepper\n    iconOnly={true}\n    activeStep={1}\n    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}\n  />\n)",
+        "title": "Icon Only"
+      },
+      {
+        "description": "Stepper with the connecting lines removed.",
+        "render": "() => (\n  <Stepper\n    showConnectors={false}\n    activeStep={1}\n    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}\n  />\n)",
+        "title": "No Connectors"
+      },
+      {
+        "description": "Stepper that starts on the second step by default.",
+        "render": "() => (\n  <Stepper\n    defaultActiveStep={1}\n    steps={[{ title: 'Account' }, { title: 'Profile' }, { title: 'Confirm' }]}\n  />\n)",
+        "title": "Default Active Step"
+      },
+      {
+        "description": "Stepper steps with both titles and descriptions.",
+        "render": "() => (\n  <Stepper\n    activeStep={1}\n    steps={[\n      { title: 'Account', description: 'Create your account' },\n      { title: 'Profile', description: 'Add your details' },\n      { title: 'Confirm', description: 'Review and submit' },\n    ]}\n  />\n)",
+        "title": "With Descriptions"
+      }
+    ],
+    "AIThinking": [
+      {
+        "description": "Thinking block collapsed by default to save space.",
+        "render": "() => (<AIThinking steps={[{ id: '1', text: 'Parsing input' }, { id: '2', text: 'Checking constraints' }]} defaultExpanded={false} isThinking={false} title='Reasoning' />)",
+        "title": "Collapsed Reasoning"
+      },
+      {
+        "description": "Thinking animation with a custom accessible title.",
+        "render": "() => (<AIThinking isThinking={true} title='Assistant is reasoning...' />)",
+        "title": "Custom Title"
+      },
+      {
+        "description": "Thinking block showing finished reasoning without the elapsed timer.",
+        "render": "() => (<AIThinking steps={[{ id: '1', text: 'Analyzed request' }, { id: '2', text: 'Found sources' }, { id: '3', text: 'Produced answer' }]} isThinking={false} showElapsed={false} title='Finished' />)",
+        "title": "Completed Steps"
+      },
+      {
+        "description": "Thinking steps shown while active but with the timer hidden.",
+        "render": "() => (<AIThinking steps={[{ id: '1', text: 'Indexing documents' }, { id: '2', text: 'Ranking results' }]} isThinking={true} showElapsed={false} title='Searching' />)",
+        "title": "No Elapsed Timer"
+      },
+      {
+        "description": "Thinking block displaying a longer chain of reasoning steps.",
+        "render": "() => (<AIThinking steps={[{ id: '1', text: 'Received query' }, { id: '2', text: 'Identified intent' }, { id: '3', text: 'Retrieved context' }, { id: '4', text: 'Drafted response' }, { id: '5', text: 'Verified facts' }]} isThinking={true} title='Thinking through response' />)",
+        "title": "Long Reasoning Chain"
+      }
+    ],
+    "Carousel": [
+      {
+        "description": "Carousel built from the items prop with custom content slides.",
+        "render": "() => (<Carousel items={[{ id: '1', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Slide 1</div> }, { id: '2', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Slide 2</div> }]} style={{ width: 300 }} />)",
+        "title": "Items API"
+      },
+      {
+        "description": "Carousel with image slides and thumbnail previews.",
+        "render": "() => (<Carousel showThumbnails items={[{ id: '1', image: 'https://picsum.photos/seed/carousel1/400/200', title: 'Mountain' }, { id: '2', image: 'https://picsum.photos/seed/carousel2/400/200', title: 'Ocean' }, { id: '3', image: 'https://picsum.photos/seed/carousel3/400/200', title: 'Forest' }]} style={{ width: 320 }} />)",
+        "title": "Thumbnails"
+      },
+      {
+        "description": "Carousel set to loop with dot navigation only.",
+        "render": "() => (<Carousel loop={true} showNav={false} showDots={true} style={{ width: 300 }}><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>One</div><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Two</div></Carousel>)",
+        "title": "Loop with Dots"
+      },
+      {
+        "description": "Carousel with a fixed height for taller slides.",
+        "render": "() => (<Carousel height={200} style={{ width: 300 }}><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12, height: '100%' }}>Tall slide</div><div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12, height: '100%' }}>Another</div></Carousel>)",
+        "title": "Custom Height"
+      },
+      {
+        "description": "Carousel with swipe gestures disabled so navigation uses arrows.",
+        "render": "() => (<Carousel enableSwipe={false} items={[{ id: '1', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Swipe off</div> }, { id: '2', content: <div style={{ padding: 40, textAlign: 'center', background: 'var(--n-color-card-bg)', color: 'var(--n-color-text)', borderRadius: 12 }}>Use arrows</div> }]} style={{ width: 300 }} />)",
+        "title": "Swipe Disabled"
+      }
+    ],
+    "Charts": [
+      {
+        "description": "Bar chart comparing revenue across regions.",
+        "render": "() => (<ChartBar data={[{ label: 'North', value: 45 }, { label: 'South', value: 30 }, { label: 'East', value: 55 }, { label: 'West', value: 40 }]} />)",
+        "title": "Revenue by Region"
+      },
+      {
+        "description": "Line chart showing daily signups across a week.",
+        "render": "() => (<ChartLine data={[{ label: 'Mon', value: 12 }, { label: 'Tue', value: 24 }, { label: 'Wed', value: 18 }, { label: 'Thu', value: 36 }, { label: 'Fri', value: 28 }, { label: 'Sat', value: 15 }, { label: 'Sun', value: 20 }]} />)",
+        "title": "Weekly Signups"
+      },
+      {
+        "description": "Area chart visualizing growth over four quarters.",
+        "render": "() => (<ChartArea data={[{ label: 'Q1', value: 20 }, { label: 'Q2', value: 35 }, { label: 'Q3', value: 50 }, { label: 'Q4', value: 65 }]} />)",
+        "title": "Quarterly Growth"
+      },
+      {
+        "description": "Stacked layout showing bar, line, and area charts together.",
+        "render": "() => (<Stack direction='column' gap={24}><ChartBar data={[{ label: 'A', value: 30 }, { label: 'B', value: 50 }]} /><ChartLine data={[{ label: 'Jan', value: 10 }, { label: 'Feb', value: 25 }]} /><ChartArea data={[{ label: 'Q1', value: 40 }, { label: 'Q2', value: 60 }]} /></Stack>)",
+        "title": "All Chart Types"
+      },
+      {
+        "description": "Bar chart with a larger set of monthly data points.",
+        "render": "() => (<ChartBar data={[{ label: 'Jan', value: 10 }, { label: 'Feb', value: 25 }, { label: 'Mar', value: 18 }, { label: 'Apr', value: 32 }, { label: 'May', value: 22 }, { label: 'Jun', value: 38 }, { label: 'Jul', value: 28 }, { label: 'Aug', value: 45 }]} />)",
+        "title": "Dense Bar Chart"
+      }
+    ],
+    "PromptBuilder": [
+      {
+        "description": "Prompt builder for travel recommendations with variables and example turns.",
+        "render": "() => (<PromptBuilder systemPrompt='You are a travel assistant.' examples={[{ id: '1', role: 'user', content: 'Plan a {{duration}} trip to {{destination}}.' }, { id: '2', role: 'assistant', content: 'Here is a {{duration}} itinerary for {{destination}}.' }]} variables={['destination', 'duration']} onChange={() => {}} />)",
+        "title": "Travel Planner"
+      },
+      {
+        "description": "Structured prompt for reviewing code changes with a variable placeholder.",
+        "render": "() => (<PromptBuilder systemPrompt='You are a senior engineer reviewing pull requests.' examples={[{ id: '1', role: 'user', content: 'Review this diff: {{code}}' }, { id: '2', role: 'assistant', content: 'The code looks good, but consider edge cases.' }]} variables={['code']} onChange={() => {}} />)",
+        "title": "Code Reviewer"
+      },
+      {
+        "description": "Prompt builder with several alternating user and assistant turns.",
+        "render": "() => (<PromptBuilder systemPrompt='You are a helpful tutor.' examples={[{ id: '1', role: 'user', content: 'Explain {{topic}}' }, { id: '2', role: 'assistant', content: '{{topic}} is a fundamental concept.' }, { id: '3', role: 'user', content: 'Give an example' }, { id: '4', role: 'assistant', content: 'Here is a practical example.' }]} variables={['topic']} onChange={() => {}} />)",
+        "title": "Multi-turn Chat"
+      },
+      {
+        "description": "Prompt builder with a custom class name for themed styling.",
+        "render": "() => (<PromptBuilder className='custom-prompt-builder' examples={[{ id: '1', role: 'user', content: 'Summarize: {{article}}' }, { id: '2', role: 'assistant', content: 'Summary of {{article}}...' }]} variables={['article']} onChange={() => {}} />)",
+        "title": "Custom Class"
+      },
+      {
+        "description": "Prompt builder for drafting professional emails with multiple variables.",
+        "render": "() => (<PromptBuilder systemPrompt='You are a professional email assistant.' examples={[{ id: '1', role: 'user', content: 'Write a {{tone}} email to {{recipient}} about {{subject}}.' }, { id: '2', role: 'assistant', content: 'Subject: {{subject}}...' }]} variables={['tone', 'recipient', 'subject']} onChange={() => {}} />)",
+        "title": "Email Composer"
+      }
+    ],
+    "StreamingText": [
+      {
+        "description": "Streaming text with a slow, readable reveal speed.",
+        "render": "() => (<StreamingText text='This sentence appears one character at a time.' speed={80} />)",
+        "title": "Slow Cinematic"
+      },
+      {
+        "description": "A short phrase that streams quickly.",
+        "render": "() => (<StreamingText text='Loading complete.' speed={60} />)",
+        "title": "Short Caption"
+      },
+      {
+        "description": "Streaming text across a longer paragraph.",
+        "render": "() => (<StreamingText text='Streaming longer content lets you preview how the assistant reveals a multi-sentence response without overwhelming the reader.' speed={35} />)",
+        "title": "Long Paragraph"
+      },
+      {
+        "description": "Streaming text using a custom class name for styling.",
+        "render": "() => (<StreamingText text='Styled streaming text example.' speed={40} className='streaming-demo' />)",
+        "title": "Styled Container"
+      },
+      {
+        "description": "Streaming text rendered inside a Card for layout context.",
+        "render": "() => (<Card style={{ padding: 16 }}><StreamingText text='Streaming text inside a card.' speed={50} /></Card>)",
+        "title": "In a Card"
+      }
+    ],
+    "ToolCallCard": [
+      {
+        "description": "Tool call card with a custom icon for the tool name.",
+        "render": "() => (<ToolCallCard toolName='search' toolIcon={<Icon name='search' size={16} />} status='success' args={{ query: 'react components' }} result='Found 3 results' durationMs={420} />)",
+        "title": "Custom Tool Icon"
+      },
+      {
+        "description": "Tool call in progress with an empty arguments object.",
+        "render": "() => (<ToolCallCard toolName='ping' status='loading' args={{}} />)",
+        "title": "Empty Arguments"
+      },
+      {
+        "description": "Tool call showing a formatted query with multiple arguments.",
+        "render": "() => (<ToolCallCard toolName='query' status='success' args={{ select: 'name, email', from: 'users', where: 'active = true', limit: 50 }} result='12 records' durationMs={890} />)",
+        "title": "Long Arguments"
+      },
+      {
+        "description": "Tool call card rendering the result as a React node.",
+        "render": "() => (<ToolCallCard toolName='status' status='success' args={{ service: 'api' }} result={<Tag color='green'>Healthy</Tag>} durationMs={210} />)",
+        "title": "React Result"
+      },
+      {
+        "description": "Tool call failure with a clear error message and no duration badge.",
+        "render": "() => (<ToolCallCard toolName='fetch' status='error' args={{ url: '/api/data' }} errorMessage='Request timeout after 30s' />)",
+        "title": "Error Without Duration"
+      }
+    ],
+    "Modal": [
+      {
+        "description": "Modal that fills the entire viewport.",
+        "render": "() => (\n      <Modal isOpen={true} onClose={() => {}} title=\"Full Screen\" fullScreen>\n        <p>This modal takes up the whole screen.</p>\n      </Modal>\n    )",
+        "title": "Full Screen"
+      },
+      {
+        "description": "Modal with a glassmorphism backdrop variant.",
+        "render": "() => (\n      <Modal isOpen={true} onClose={() => {}} title=\"Glass\" variant=\"glass\">\n        <p>Glass modal content.</p>\n      </Modal>\n    )",
+        "title": "Glass Variant"
+      },
+      {
+        "description": "Modal aligned to the top of the viewport.",
+        "render": "() => (\n      <Modal isOpen={true} onClose={() => {}} title=\"Top Aligned\" position=\"top\">\n        <p>This modal is positioned at the top.</p>\n      </Modal>\n    )",
+        "title": "Top Position"
+      },
+      {
+        "description": "Modal that does not close when clicking the backdrop.",
+        "render": "() => (\n      <Modal isOpen={true} onClose={() => {}} title=\"Confirm\" preventBackdropClick>\n        <p>Clicking outside will not close this modal.</p>\n        <Button size=\"small\" onClick={() => {}} style={{ marginTop: 12 }}>Understood</Button>\n      </Modal>\n    )",
+        "title": "Prevent Backdrop Click"
+      },
+      {
+        "description": "Modal with a custom backdrop color style.",
+        "render": "() => (\n      <Modal\n        isOpen={true}\n        onClose={() => {}}\n        title=\"Custom Backdrop\"\n        backdropStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.85)' }}\n      >\n        <p>Darker backdrop for focused attention.</p>\n      </Modal>\n    )",
+        "title": "Custom Backdrop"
+      }
+    ],
+    "RadioGroup": [
+      {
+        "description": "Radio group with one option disabled.",
+        "render": "() => (\n      <RadioGroup\n        options={[\n          { value: 'free', label: 'Free' },\n          { value: 'pro', label: 'Pro', disabled: true },\n          { value: 'enterprise', label: 'Enterprise' }\n        ]}\n        value=\"free\"\n      />\n    )",
+        "title": "Disabled Option"
+      },
+      {
+        "description": "Radio group with a default selection set via the value prop.",
+        "render": "() => (\n      <RadioGroup\n        options={[\n          { value: 'email', label: 'Email' },\n          { value: 'sms', label: 'SMS' },\n          { value: 'push', label: 'Push' }\n        ]}\n        value=\"sms\"\n      />\n    )",
+        "title": "Preselected Value"
+      },
+      {
+        "description": "Radio group with a shared form name for accessible grouping.",
+        "render": "() => (\n      <RadioGroup\n        name=\"notification-channel\"\n        options={[\n          { value: 'email', label: 'Email' },\n          { value: 'sms', label: 'SMS' },\n          { value: 'push', label: 'Push' }\n        ]}\n        value=\"email\"\n      />\n    )",
+        "title": "Named Group"
+      },
+      {
+        "description": "Horizontal layout mixing enabled and disabled options.",
+        "render": "() => (\n      <RadioGroup\n        orientation=\"horizontal\"\n        options={[\n          { value: 'active', label: 'Active' },\n          { value: 'paused', label: 'Paused' },\n          { value: 'archived', label: 'Archived', disabled: true }\n        ]}\n        value=\"active\"\n      />\n    )",
+        "title": "Horizontal States"
+      },
+      {
+        "description": "Vertical radio group wrapped in a card for layout context.",
+        "render": "() => (\n      <Card variant=\"outset\" style={{ padding: 20, maxWidth: 320 }}>\n        <RadioGroup\n          options={[\n            { value: 'monthly', label: 'Monthly' },\n            { value: 'yearly', label: 'Yearly' },\n            { value: 'lifetime', label: 'Lifetime' }\n          ]}\n          value=\"yearly\"\n        />\n      </Card>\n    )",
+        "title": "Vertical in Card"
+      }
+    ],
+    "Select": [
+      {
+        "description": "Select with categorized option groups.",
+        "render": "() => (\n      <Select\n        options={[\n          {\n            label: 'Frontend',\n            options: [\n              { value: 'react', label: 'React' },\n              { value: 'vue', label: 'Vue' }\n            ]\n          },\n          {\n            label: 'Backend',\n            options: [\n              { value: 'node', label: 'Node.js' },\n              { value: 'go', label: 'Go' }\n            ]\n          }\n        ]}\n        placeholder=\"Pick a stack\"\n        style={{ width: 240 }}\n      />\n    )",
+        "title": "Grouped Options"
+      },
+      {
+        "description": "Select with a default value and a clear button.",
+        "render": "() => (\n      <Select\n        options={[\n          { value: 'draft', label: 'Draft' },\n          { value: 'published', label: 'Published' }\n        ]}\n        defaultValue=\"published\"\n        allowClear\n        style={{ width: 220 }}\n      />\n    )",
+        "title": "Clearable Selection"
+      },
+      {
+        "description": "Select with a search input to filter long option lists.",
+        "render": "() => (\n      <Select\n        options={[\n          { value: 'apple', label: 'Apple' },\n          { value: 'banana', label: 'Banana' },\n          { value: 'cherry', label: 'Cherry' },\n          { value: 'date', label: 'Date' }\n        ]}\n        placeholder=\"Search fruit\"\n        searchable\n        style={{ width: 240 }}\n      />\n    )",
+        "title": "Searchable"
+      },
+      {
+        "description": "Select in a loading state with a spinner.",
+        "render": "() => (\n      <Select\n        options={[\n          { value: '1', label: 'Option One' },\n          { value: '2', label: 'Option Two' }\n        ]}\n        placeholder=\"Loading options…\"\n        loading\n        style={{ width: 220 }}\n      />\n    )",
+        "title": "Loading"
+      },
+      {
+        "description": "Select showing an error validation state.",
+        "render": "() => (\n      <Select\n        options={[\n          { value: 'valid', label: 'Valid choice' },\n          { value: 'invalid', label: 'Invalid choice', disabled: true }\n        ]}\n        placeholder=\"Required field\"\n        error\n        style={{ width: 240 }}\n      />\n    )",
+        "title": "Error State"
+      }
+    ],
+    "SkipToContent": [
+      {
+        "description": "Skip link using the default main content target.",
+        "render": "() => <SkipToContent />",
+        "title": "Default Target"
+      },
+      {
+        "description": "Skip link targeting a specific article container.",
+        "render": "() => <SkipToContent targetId=\"article-content\" label=\"Skip to article\" />",
+        "title": "Article Target"
+      },
+      {
+        "description": "Skip link with a short accessible label.",
+        "render": "() => <SkipToContent targetId=\"main\" label=\"Skip\" />",
+        "title": "Compact Label"
+      },
+      {
+        "description": "Skip link placed inside a page layout container.",
+        "render": "() => (\n      <Card variant=\"outset\" style={{ padding: 20 }}>\n        <SkipToContent targetId=\"content\" label=\"Jump to content\" />\n        <p style={{ marginTop: 12, color: 'var(--n-color-text-secondary)' }}>\n          Tab into the card to reveal the skip link.\n        </p>\n      </Card>\n    )",
+        "title": "In Page Context"
+      },
+      {
+        "description": "Skip link targeting a secondary section id.",
+        "render": "() => <SkipToContent targetId=\"section-details\" label=\"Skip to section details\" />",
+        "title": "Section Target"
+      }
+    ],
+    "Table": [
+      {
+        "description": "Table with sortable column headers.",
+        "render": "() => {\n      const cols = [\n        { key: 'name', title: 'Name', dataIndex: 'name' as const, sorter: (a, b) => a.name.localeCompare(b.name) },\n        { key: 'age', title: 'Age', dataIndex: 'age' as const, sorter: (a, b) => a.age - b.age }\n      ];\n      const data = [\n        { name: 'Alice', age: 34 },\n        { name: 'Bob', age: 27 },\n        { name: 'Carol', age: 42 }\n      ];\n      return <Table columns={cols} dataSource={data} pagination={false} />;\n    }",
+        "title": "Sortable Columns"
+      },
+      {
+        "description": "Table with a status column rendered as tags.",
+        "render": "() => {\n      const cols = [\n        { key: 'task', title: 'Task', dataIndex: 'task' as const },\n        {\n          key: 'status',\n          title: 'Status',\n          dataIndex: 'status' as const,\n          render: (status) => <Tag color={status === 'done' ? 'green' : 'orange'}>{status}</Tag>\n        }\n      ];\n      const data = [\n        { task: 'Design review', status: 'done' },\n        { task: 'Write tests', status: 'in progress' }\n      ];\n      return <Table columns={cols} dataSource={data} pagination={false} />;\n    }",
+        "title": "Custom Cell Render"
+      },
+      {
+        "description": "Table with a sticky header inside a scrollable container.",
+        "render": "() => {\n      const cols = [\n        { key: 'id', title: 'ID', dataIndex: 'id' as const },\n        { key: 'item', title: 'Item', dataIndex: 'item' as const }\n      ];\n      const data = Array.from({ length: 20 }, (_, i) => ({ id: i + 1, item: `Item ${i + 1}` }));\n      return (\n        <div style={{ maxHeight: 200, overflow: 'auto' }}>\n          <Table columns={cols} dataSource={data} stickyHeader pagination={false} />\n        </div>\n      );\n    }",
+        "title": "Sticky Header"
+      },
+      {
+        "description": "Table with page navigation for many rows.",
+        "render": "() => {\n      const cols = [\n        { key: 'id', title: 'ID', dataIndex: 'id' as const },\n        { key: 'name', title: 'Name', dataIndex: 'name' as const }\n      ];\n      const data = Array.from({ length: 35 }, (_, i) => ({ id: i + 1, name: `User ${i + 1}` }));\n      return <Table columns={cols} dataSource={data} pagination={{ pageSize: 5 }} />;\n    }",
+        "title": "Pagination"
+      },
+      {
+        "description": "Table with a custom empty message.",
+        "render": "() => {\n      const cols = [\n        { key: 'name', title: 'Name', dataIndex: 'name' as const },\n        { key: 'role', title: 'Role', dataIndex: 'role' as const }\n      ];\n      return (\n        <Table\n          columns={cols}\n          dataSource={[]}\n          pagination={false}\n          emptyTitle=\"No team members\"\n          emptyDescription=\"Invite teammates to see them here.\"\n        />\n      );\n    }",
+        "title": "Empty State"
+      }
+    ],
+    "Tabs": [
+      {
+        "description": "Tabs with the tab bar positioned on the left.",
+        "render": "() => (\n      <Tabs\n        tabPosition=\"left\"\n        items={[\n          { key: '1', label: 'General', children: <p>General settings</p> },\n          { key: '2', label: 'Security', children: <p>Security settings</p> },\n          { key: '3', label: 'Billing', children: <p>Billing settings</p> }\n        ]}\n      />\n    )",
+        "title": "Left Position"
+      },
+      {
+        "description": "Tabs with badge counts and leading icons.",
+        "render": "() => (\n      <Tabs\n        items={[\n          { key: '1', label: 'Inbox', icon: <Icon name=\"mail\" size={14} />, badge: 3, children: <p>Inbox content</p> },\n          { key: '2', label: 'Sent', icon: <Icon name=\"send\" size={14} />, children: <p>Sent content</p> },\n          { key: '3', label: 'Archive', icon: <Icon name=\"archive\" size={14} />, badge: { dot: true }, children: <p>Archive content</p> }\n        ]}\n      />\n    )",
+        "title": "Badges and Icons"
+      },
+      {
+        "description": "Tab set with one disabled panel.",
+        "render": "() => (\n      <Tabs\n        items={[\n          { key: '1', label: 'Preview', children: <p>Preview content</p> },\n          { key: '2', label: 'Settings', disabled: true, children: <p>Settings content</p> },\n          { key: '3', label: 'Share', children: <p>Share content</p> }\n        ]}\n      />\n    )",
+        "title": "Disabled Tab"
+      },
+      {
+        "description": "Tabs with an action button in the tab bar.",
+        "render": "() => (\n      <Tabs\n        tabBarExtraContent={<Button size=\"small\">New</Button>}\n        items={[\n          { key: '1', label: 'Projects', children: <p>Projects list</p> },\n          { key: '2', label: 'Teams', children: <p>Teams list</p> }\n        ]}\n      />\n    )",
+        "title": "Extra Toolbar Content"
+      },
+      {
+        "description": "Compact centered tabs for narrow layouts.",
+        "render": "() => (\n      <Tabs\n        size=\"small\"\n        centered\n        items={[\n          { key: '1', label: 'Day', children: <p>Day view</p> },\n          { key: '2', label: 'Week', children: <p>Week view</p> },\n          { key: '3', label: 'Month', children: <p>Month view</p> }\n        ]}\n      />\n    )",
+        "title": "Small and Centered"
+      }
+    ],
+    "ThinkingBlock": [
+      {
+        "description": "Thinking block that starts in a collapsed state.",
+        "render": "() => (\n      <ThinkingBlock\n        defaultExpanded={false}\n        title=\"Reasoning\"\n        steps={[\n          { id: '1', text: 'Analyzing request' },\n          { id: '2', text: 'Retrieving data' }\n        ]}\n      />\n    )",
+        "title": "Collapsed by Default"
+      },
+      {
+        "description": "Thinking block with a custom header title.",
+        "render": "() => (\n      <ThinkingBlock\n        title=\"How the AI decided\"\n        steps={[\n          { id: '1', text: 'Parsed user intent' },\n          { id: '2', text: 'Ranked candidate answers' },\n          { id: '3', text: 'Selected best response' }\n        ]}\n      />\n    )",
+        "title": "Custom Title"
+      },
+      {
+        "description": "Thinking block shown while no steps have completed yet.",
+        "render": "() => (\n      <ThinkingBlock\n        isThinking={true}\n        title=\"Processing request\"\n        steps={[]}\n      />\n    )",
+        "title": "Empty Thinking"
+      },
+      {
+        "description": "Thinking block displaying many sequential reasoning steps.",
+        "render": "() => (\n      <ThinkingBlock\n        title=\"Step-by-step reasoning\"\n        steps={[\n          { id: '1', text: 'Understand the question' },\n          { id: '2', text: 'Break down into sub-tasks' },\n          { id: '3', text: 'Search knowledge base' },\n          { id: '4', text: 'Evaluate candidate answers' },\n          { id: '5', text: 'Format final response' }\n        ]}\n      />\n    )",
+        "title": "Long Reasoning Chain"
+      },
+      {
+        "description": "Reasoning steps with recorded timestamps.",
+        "render": "() => (\n      <ThinkingBlock\n        title=\"Agent trace\"\n        showTimestamps={true}\n        steps={[\n          { id: '1', text: 'Received prompt', timestamp: Date.now() - 5000 },\n          { id: '2', text: 'Called search tool', timestamp: Date.now() - 3000 },\n          { id: '3', text: 'Synthesized answer', timestamp: Date.now() - 1000 }\n        ]}\n      />\n    )",
+        "title": "Timestamped Steps"
+      }
+    ],
+    "Avatar": [
+      {
+        "description": "Avatars that display an icon instead of initials or an image.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\">\n    <Avatar icon={<Icon name=\"user\" size={20} />} size=\"small\" />\n    <Avatar icon={<Icon name=\"user\" size={24} />} size=\"medium\" />\n    <Avatar icon={<Icon name=\"user\" size={32} />} size=\"large\" />\n  </Stack>\n)",
+        "title": "With Icons"
+      },
+      {
+        "description": "Avatars using remote image sources with initials fallback.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\">\n    <Avatar src=\"https://i.pravatar.cc/150?img=1\" alt=\"User one\" size=\"medium\" />\n    <Avatar src=\"https://i.pravatar.cc/150?img=5\" alt=\"User two\" size=\"medium\" />\n    <Avatar src=\"https://i.pravatar.cc/150?img=8\" alt=\"User three\" size=\"medium\" />\n  </Stack>\n)",
+        "title": "With Images"
+      },
+      {
+        "description": "Multiple avatars stacked together to show a team or group.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={24} align=\"center\">\n    <AvatarGroup\n      size=\"small\"\n      max={3}\n      avatars={[\n        { name: 'Alice', src: 'https://i.pravatar.cc/150?img=1' },\n        { name: 'Bob', src: 'https://i.pravatar.cc/150?img=2' },\n        { name: 'Carol', src: 'https://i.pravatar.cc/150?img=3' },\n        { name: 'Dave', src: 'https://i.pravatar.cc/150?img=4' },\n      ]}\n    />\n    <AvatarGroup\n      size=\"medium\"\n      max={2}\n      avatars={[\n        { name: 'Eve', initials: 'E' },\n        { name: 'Frank', initials: 'F' },\n        { name: 'Grace', initials: 'G' },\n      ]}\n    />\n  </Stack>\n)",
+        "title": "Grouped Stacked"
+      },
+      {
+        "description": "Avatars combining initials with different sizes and shapes.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={16} align=\"center\">\n    <Avatar initials=\"AB\" shape=\"circle\" size=\"small\" />\n    <Avatar initials=\"CD\" shape=\"square\" size=\"medium\" />\n    <Avatar initials=\"EF\" shape=\"circle\" size=\"large\" />\n  </Stack>\n)",
+        "title": "Initials and Shapes"
+      },
+      {
+        "description": "Avatars placed inside a card header alongside text content.",
+        "render": "() => (\n  <Card style={{ width: 280, padding: 16 }}>\n    <Stack direction=\"row\" gap={12} align=\"center\">\n      <Avatar initials=\"JD\" size=\"large\" />\n      <Stack direction=\"column\" gap={4}>\n        <strong>Jane Doe</strong>\n        <span style={{ fontSize: '0.875rem', color: 'var(--n-color-text-secondary)' }}>Product Designer</span>\n      </Stack>\n    </Stack>\n  </Card>\n)",
+        "title": "In a Card Header"
+      }
+    ],
+    "Breadcrumbs": [
+      {
+        "description": "Breadcrumbs navigating through a deep page hierarchy.",
+        "render": "() => (\n  <Breadcrumbs\n    items={[\n      { label: 'Home', href: '/' },\n      { label: 'Products', href: '/products' },\n      { label: 'Electronics', href: '/products/electronics' },\n      { label: 'Laptops', href: '/products/electronics/laptops' },\n      { label: 'ProBook 15' },\n    ]}\n  />\n)",
+        "title": "Long Path"
+      },
+      {
+        "description": "Breadcrumbs using a custom icon as the path separator.",
+        "render": "() => (\n  <Breadcrumbs\n    separator={<Icon name=\"chevron-right\" size={12} />}\n    items={[\n      { label: 'Home', href: '/' },\n      { label: 'Library', href: '/library' },\n      { label: 'Data', href: '/library/data' },\n      { label: 'Current' },\n    ]}\n  />\n)",
+        "title": "Icon Separator"
+      },
+      {
+        "description": "Breadcrumbs rendered without the default home icon.",
+        "render": "() => (\n  <Breadcrumbs\n    homeIcon={null}\n    items={[\n      { label: 'App', href: '/' },\n      { label: 'Settings', href: '/settings' },\n      { label: 'Profile' },\n    ]}\n  />\n)",
+        "title": "Without Home Icon"
+      },
+      {
+        "description": "Breadcrumbs with a custom accessible label for screen readers.",
+        "render": "() => (\n  <Breadcrumbs\n    ariaLabel=\"Project navigation\"\n    items={[\n      { label: 'Projects', href: '/projects' },\n      { label: 'Acme Corp', href: '/projects/acme' },\n      { label: 'Settings' },\n    ]}\n  />\n)",
+        "title": "Accessible Label"
+      },
+      {
+        "description": "Breadcrumbs placed inside a card to mimic a page header.",
+        "render": "() => (\n  <Card style={{ width: '100%', padding: 16 }}>\n    <Breadcrumbs\n      items={[\n        { label: 'Dashboard', href: '/' },\n        { label: 'Reports', href: '/reports' },\n        { label: 'Monthly Sales' },\n      ]}\n    />\n    <h3 style={{ margin: '12px 0 0' }}>Monthly Sales Report</h3>\n  </Card>\n)",
+        "title": "In a Page Header"
+      }
+    ],
+    "Divider": [
+      {
+        "description": "A horizontal divider with a dashed line style.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n    <span>Section A</span>\n    <Divider type=\"dashed\" />\n    <span>Section B</span>\n  </Stack>\n)",
+        "title": "Dashed Divider"
+      },
+      {
+        "description": "Dividers used to separate rows in a vertical list.",
+        "render": "() => (\n  <Stack direction=\"column\" style={{ width: 240 }}>\n    <span style={{ padding: '8px 0' }}>First item</span>\n    <Divider />\n    <span style={{ padding: '8px 0' }}>Second item</span>\n    <Divider />\n    <span style={{ padding: '8px 0' }}>Third item</span>\n  </Stack>\n)",
+        "title": "Divider Between Items"
+      },
+      {
+        "description": "A vertical divider separating inline content with explicit orientation.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={12} align=\"center\">\n    <Button size=\"small\">Edit</Button>\n    <Divider orientation=\"vertical\" />\n    <Button size=\"small\" variant=\"secondary\">Delete</Button>\n  </Stack>\n)",
+        "title": "Vertical Separator"
+      },
+      {
+        "description": "A divider explicitly exposed as a presentation role.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n    <p>Above the line</p>\n    <Divider role=\"presentation\" />\n    <p>Below the line</p>\n  </Stack>\n)",
+        "title": "Divider with Role"
+      },
+      {
+        "description": "A thicker horizontal divider using inline styles for emphasis.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n    <span>Top content</span>\n    <Divider style={{ borderTopWidth: 2 }} />\n    <span>Bottom content</span>\n  </Stack>\n)",
+        "title": "Thick Divider"
+      }
+    ],
+    "Popover": [
+      {
+        "description": "Popovers opened in different positions relative to the trigger.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={16} align=\"center\">\n    <Popover\n      trigger={<Button size=\"small\">Bottom</Button>}\n      placement=\"bottom\"\n      content={<div style={{ padding: 8 }}>Bottom content</div>}\n    />\n    <Popover\n      trigger={<Button size=\"small\">Left</Button>}\n      placement=\"left\"\n      content={<div style={{ padding: 8 }}>Left content</div>}\n    />\n    <Popover\n      trigger={<Button size=\"small\">Right</Button>}\n      placement=\"right\"\n      content={<div style={{ padding: 8 }}>Right content</div>}\n    />\n  </Stack>\n)",
+        "title": "Placements"
+      },
+      {
+        "description": "Popover with the pointer arrow disabled.",
+        "render": "() => (\n  <Popover\n    withArrow={false}\n    trigger={<Button size=\"small\">No arrow</Button>}\n    content={<div style={{ padding: 8 }}>Popover without an arrow.</div>}\n  />\n)",
+        "title": "Without Arrow"
+      },
+      {
+        "description": "Popover that starts in an open state when rendered.",
+        "render": "() => (\n  <Popover\n    defaultOpen={true}\n    trigger={<Button size=\"small\">Trigger</Button>}\n    content={<div style={{ padding: 8 }}>This popover starts open.</div>}\n  />\n)",
+        "title": "Default Open"
+      },
+      {
+        "description": "Popover that opens on hover after a short delay.",
+        "render": "() => (\n  <Popover\n    triggerMode=\"hover\"\n    hoverDelay={300}\n    trigger={<Button size=\"small\">Hover me</Button>}\n    content={<div style={{ padding: 8 }}>Appears after 300ms hover.</div>}\n  />\n)",
+        "title": "Hover with Delay"
+      },
+      {
+        "description": "Popover containing structured content with action buttons.",
+        "render": "() => (\n  <Popover\n    trigger={<Button size=\"small\">User profile</Button>}\n    content={\n      <Stack direction=\"column\" gap={12} style={{ padding: 8, width: 200 }}>\n        <Stack direction=\"row\" gap={12} align=\"center\">\n          <Avatar initials=\"AB\" size=\"small\" />\n          <Stack direction=\"column\" gap={2}>\n            <strong style={{ fontSize: '0.875rem' }}>Alex Brown</strong>\n            <span style={{ fontSize: '0.75rem', color: 'var(--n-color-text-secondary)' }}>Developer</span>\n          </Stack>\n        </Stack>\n        <Button size=\"small\" fullWidth>View profile</Button>\n      </Stack>\n    }\n  />\n)",
+        "title": "Rich Content"
+      }
+    ],
+    "ProgressBar": [
+      {
+        "description": "Progress bars rendered in small, medium, and large sizes.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={16} style={{ width: 300 }}>\n    <ProgressBar value={40} size=\"small\" />\n    <ProgressBar value={60} size=\"medium\" />\n    <ProgressBar value={80} size=\"large\" />\n  </Stack>\n)",
+        "title": "Sizes"
+      },
+      {
+        "description": "Progress bars showing percentage labels next to the bar.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={16} style={{ width: 300 }}>\n    <ProgressBar value={25} showLabel />\n    <ProgressBar value={50} showLabel />\n    <ProgressBar value={75} showLabel />\n  </Stack>\n)",
+        "title": "With Labels"
+      },
+      {
+        "description": "A fully complete progress bar highlighted as successful.",
+        "render": "() => (\n  <Card style={{ width: 320, padding: 16 }}>\n    <p style={{ margin: '0 0 8px' }}>Upload complete</p>\n    <ProgressBar value={100} status=\"success\" showLabel />\n  </Card>\n)",
+        "title": "Completion State"
+      },
+      {
+        "description": "A progress bar colored to indicate a failed or blocked operation.",
+        "render": "() => (\n  <Card style={{ width: 320, padding: 16 }}>\n    <p style={{ margin: '0 0 8px' }}>Upload failed</p>\n    <ProgressBar value={45} status=\"error\" showLabel />\n  </Card>\n)",
+        "title": "Error State"
+      },
+      {
+        "description": "A compact progress bar shown alongside descriptive text.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12} style={{ width: 300 }}>\n    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>\n      <span style={{ fontSize: '0.875rem', width: 80 }}>Processing</span>\n      <ProgressBar value={60} size=\"small\" style={{ flex: 1 }} />\n    </div>\n    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>\n      <span style={{ fontSize: '0.875rem', width: 80 }}>Saving</span>\n      <ProgressBar value={30} size=\"small\" status=\"warning\" style={{ flex: 1 }} />\n    </div>\n  </Stack>\n)",
+        "title": "Inline Progress"
+      }
+    ],
+    "Skeleton": [
+      {
+        "description": "A realistic card placeholder layout with title, body lines, and a media block.",
+        "render": "() => (\n  <Card style={{ width: 260, padding: 16 }}>\n    <Stack direction=\"column\" gap={12}>\n      <Skeleton variant=\"rect\" width=\"100%\" height={120} active={true} />\n      <Skeleton variant=\"text\" width=\"60%\" height={18} active={true} />\n      <Skeleton variant=\"text\" width=\"90%\" height={14} active={true} />\n      <Skeleton variant=\"text\" width=\"70%\" height={14} active={true} />\n    </Stack>\n  </Card>\n)",
+        "title": "Card Skeleton"
+      },
+      {
+        "description": "Skeleton placeholders with the shimmer animation turned off.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={12} style={{ width: 240 }}>\n    <Skeleton variant=\"text\" width=\"100%\" height={16} active={false} />\n    <Skeleton variant=\"text\" width=\"80%\" height={16} active={false} />\n    <Skeleton variant=\"circle\" width={40} height={40} active={false} />\n  </Stack>\n)",
+        "title": "Inactive Placeholder"
+      },
+      {
+        "description": "Rectangular skeleton used as an image or video placeholder.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={16} align=\"center\">\n    <Skeleton variant=\"rect\" width={120} height={80} active={true} />\n    <Skeleton variant=\"rect\" width={160} height={90} active={true} />\n    <Skeleton variant=\"rect\" width={80} height={80} active={true} />\n  </Stack>\n)",
+        "title": "Media Placeholder"
+      },
+      {
+        "description": "Circular skeleton placeholders in different sizes for avatar loading states.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={16} align=\"center\">\n    <Skeleton variant=\"circle\" width={24} height={24} active={true} />\n    <Skeleton variant=\"circle\" width={40} height={40} active={true} />\n    <Skeleton variant=\"circle\" width={64} height={64} active={true} />\n  </Stack>\n)",
+        "title": "Avatar Placeholder"
+      },
+      {
+        "description": "Skeleton wrapper with loading set to false reveals the actual content.",
+        "render": "() => (\n  <Skeleton loading={false}>\n    <Card style={{ width: 220, padding: 16 }}>\n      <strong>Loaded Title</strong>\n      <p style={{ margin: '8px 0 0', color: 'var(--n-color-text-secondary)' }}>\n        This content is shown once data has finished loading.\n      </p>\n    </Card>\n  </Skeleton>\n)",
+        "title": "Loaded Content"
+      }
+    ],
+    "Steps": [
+      {
+        "description": "Step indicators rendered in small, default, and large sizes.",
+        "render": "() => (\n  <Stack direction=\"column\" gap={24}>\n    <Steps\n      size=\"small\"\n      current={1}\n      items={[\n        { title: 'Cart', description: 'Review' },\n        { title: 'Address', description: 'Shipping' },\n        { title: 'Pay', description: 'Payment' },\n      ]}\n    />\n    <Steps\n      size=\"default\"\n      current={1}\n      items={[\n        { title: 'Cart', description: 'Review' },\n        { title: 'Address', description: 'Shipping' },\n        { title: 'Pay', description: 'Payment' },\n      ]}\n    />\n  </Stack>\n)",
+        "title": "Sizes"
+      },
+      {
+        "description": "Steps that can be clicked to navigate between stages.",
+        "render": "() => (\n  <Steps\n    current={1}\n    onChange={(index) => console.log('Moved to step', index)}\n    items={[\n      { title: 'Plan', description: 'Choose plan' },\n      { title: 'Billing', description: 'Add billing' },\n      { title: 'Review', description: 'Confirm' },\n    ]}\n  />\n)",
+        "title": "Clickable Steps"
+      },
+      {
+        "description": "All steps marked as completed in a checkout-style workflow.",
+        "render": "() => (\n  <Card style={{ width: '100%', padding: 16 }}>\n    <Steps\n      current={3}\n      items={[\n        { title: 'Account', description: 'Created' },\n        { title: 'Profile', description: 'Completed' },\n        { title: 'Settings', description: 'Saved' },\n      ]}\n    />\n  </Card>\n)",
+        "title": "Completed Workflow"
+      },
+      {
+        "description": "Steps displayed inside a card for a contained wizard feel.",
+        "render": "() => (\n  <Card style={{ width: '100%', padding: 20 }}>\n    <h4 style={{ margin: '0 0 16px' }}>Setup Progress</h4>\n    <Steps\n      current={2}\n      items={[\n        { title: 'Connect', description: 'Integrate data source' },\n        { title: 'Configure', description: 'Map fields' },\n        { title: 'Sync', description: 'Start syncing' },\n      ]}\n    />\n  </Card>\n)",
+        "title": "In a Card"
+      },
+      {
+        "description": "A compact horizontal step indicator for dense layouts.",
+        "render": "() => (\n  <Steps\n    size=\"small\"\n    direction=\"horizontal\"\n    current={0}\n    items={[\n      { title: 'Draft', description: 'Created' },\n      { title: 'Review', description: 'Pending' },\n      { title: 'Publish', description: 'Pending' },\n    ]}\n  />\n)",
+        "title": "Compact Horizontal"
+      }
+    ],
+    "Tooltip": [
+      {
+        "description": "Tooltip with custom enter and leave hover delays.",
+        "render": "() => (\n  <Tooltip content=\"Appears after 500ms\" mouseEnterDelay={500} mouseLeaveDelay={500}>\n    <Button size=\"small\">Delayed tooltip</Button>\n  </Tooltip>\n)",
+        "title": "Hover Delays"
+      },
+      {
+        "description": "Tooltip controlled to stay open for demonstration.",
+        "render": "() => (\n  <Tooltip content=\"I stay visible\" isOpen={true}>\n    <Button size=\"small\">Pinned tooltip</Button>\n  </Tooltip>\n)",
+        "title": "Always Visible"
+      },
+      {
+        "description": "Tooltip containing formatted content instead of plain text.",
+        "render": "() => (\n  <Tooltip\n    content={\n      <Stack direction=\"column\" gap={4}>\n        <strong>Tip</strong>\n        <span>Use concise labels for clarity.</span>\n      </Stack>\n    }\n  >\n    <Button size=\"small\">Rich tooltip</Button>\n  </Tooltip>\n)",
+        "title": "Rich Content"
+      },
+      {
+        "description": "Tooltip with the pointer arrow hidden.",
+        "render": "() => (\n  <Stack direction=\"row\" gap={24} align=\"center\">\n    <Tooltip content=\"No arrow here\" withArrow={false}>\n      <Button size=\"small\">No arrow</Button>\n    </Tooltip>\n    <Tooltip content=\"Default arrow\" withArrow={true}>\n      <Button size=\"small\">With arrow</Button>\n    </Tooltip>\n  </Stack>\n)",
+        "title": "No Arrow"
+      },
+      {
+        "description": "Tooltip attached to a form input to explain validation rules.",
+        "render": "() => (\n  <Tooltip content=\"Password must be at least 8 characters.\" position=\"right\">\n    <Input placeholder=\"Password\" type=\"password\" style={{ width: 200 }} />\n  </Tooltip>\n)",
+        "title": "With Input"
+      }
+    ],
+    "ComboBox": [
+      {
+        "title": "Multi-select",
+        "description": "Combo box allowing multiple selections with tags.",
+        "render": "() => (<ComboBox mode=\"multiple\" defaultValue={['react']} options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }, { value: 'angular', label: 'Angular' }, { value: 'svelte', label: 'Svelte' }]} placeholder=\"Pick frameworks\" />)"
+      },
+      {
+        "title": "Loading with Clear",
+        "description": "Combo box showing a loading spinner with a clear button.",
+        "render": "() => (<ComboBox loading allowClear options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }]} placeholder=\"Loading options...\" />)"
+      },
+      {
+        "title": "Allow Create",
+        "description": "Combo box that lets users create a new option when no match is found.",
+        "render": "() => (<ComboBox allowCreate options={[{ value: 'new-york', label: 'New York' }, { value: 'los-angeles', label: 'Los Angeles' }]} placeholder=\"Search or create a city\" />)"
+      },
+      {
+        "title": "With Label and Error",
+        "description": "Combo box with an accessible label and an error message.",
+        "render": "() => (<ComboBox label=\"Assignee\" error=\"Please select an assignee\" id=\"assignee-combobox\" options={[{ value: 'alice', label: 'Alice' }, { value: 'bob', label: 'Bob' }]} placeholder=\"Select assignee\" />)"
+      },
+      {
+        "title": "Custom Filter",
+        "description": "Combo box filtering options by value instead of label.",
+        "render": "() => (<ComboBox filterOption={(input, option) => option.value.toLowerCase().includes(input.toLowerCase())} onSearch={() => {}} options={[{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }, { value: 'angular', label: 'Angular' }]} placeholder=\"Filter by value\" />)"
+      }
+    ],
+    "GanttChart": [
+      {
+        "title": "Multiple Tasks",
+        "description": "Project timeline showing several tasks with varying progress.",
+        "render": "() => (<GanttChart tasks={[{ id: '1', name: 'Discovery', start: '2024-01-01', end: '2024-01-10', progress: 100 }, { id: '2', name: 'Design', start: '2024-01-08', end: '2024-01-20', progress: 80 }, { id: '3', name: 'Development', start: '2024-01-18', end: '2024-02-15', progress: 45 }, { id: '4', name: 'QA', start: '2024-02-12', end: '2024-02-28', progress: 10 }]} />)"
+      },
+      {
+        "title": "Compact Timeline",
+        "description": "Gantt chart with smaller row height for dense views.",
+        "render": "() => (<GanttChart rowHeight={32} tasks={[{ id: '1', name: 'Task A', start: '2024-03-01', end: '2024-03-05', progress: 100 }, { id: '2', name: 'Task B', start: '2024-03-04', end: '2024-03-10', progress: 60 }, { id: '3', name: 'Task C', start: '2024-03-09', end: '2024-03-15', progress: 30 }]} />)"
+      },
+      {
+        "title": "Quarterly View",
+        "description": "Gantt chart constrained to a quarterly date window.",
+        "render": "() => (<GanttChart startDate={new Date('2024-04-01')} endDate={new Date('2024-06-30')} tasks={[{ id: '1', name: 'Q2 Planning', start: '2024-04-01', end: '2024-04-15', progress: 100 }, { id: '2', name: 'Feature Work', start: '2024-04-10', end: '2024-05-30', progress: 70 }, { id: '3', name: 'Q2 Review', start: '2024-05-25', end: '2024-06-28', progress: 20 }]} />)"
+      },
+      {
+        "title": "Project Milestones",
+        "description": "Gantt chart highlighting milestone tasks at 0% and 100% progress.",
+        "render": "() => (<GanttChart tasks={[{ id: '1', name: 'Kickoff', start: '2024-01-01', end: '2024-01-02', progress: 100 }, { id: '2', name: 'Alpha Release', start: '2024-02-01', end: '2024-02-02', progress: 0 }, { id: '3', name: 'Beta Release', start: '2024-03-01', end: '2024-03-02', progress: 0 }, { id: '4', name: 'GA Release', start: '2024-04-01', end: '2024-04-02', progress: 0 }]} />)"
+      },
+      {
+        "title": "Styled Container",
+        "description": "Gantt chart wrapped with a custom class name for theming.",
+        "render": "() => (<GanttChart className=\"gantt-demo\" tasks={[{ id: '1', name: 'Design', start: '2024-05-01', end: '2024-05-10', progress: 100 }, { id: '2', name: 'Build', start: '2024-05-11', end: '2024-05-25', progress: 55 }]} />)"
+      }
+    ],
+    "GradientBorder": [
+      {
+        "title": "Card Highlight",
+        "description": "Animated gradient border highlighting a card.",
+        "render": "() => (<GradientBorder animated><Card style={{ padding: 20, width: 220, textAlign: 'center' }}>Premium feature</Card></GradientBorder>)"
+      },
+      {
+        "title": "Button Glow",
+        "description": "Gradient border wrapped around a call-to-action button.",
+        "render": "() => (<GradientBorder animated><Button>Upgrade now</Button></GradientBorder>)"
+      },
+      {
+        "title": "Alert Banner",
+        "description": "Gradient border drawing attention to an important alert.",
+        "render": "() => (<GradientBorder animated><Alert type=\"warning\" message=\"Limited time offer\" showIcon /></GradientBorder>)"
+      },
+      {
+        "title": "Input Field",
+        "description": "Gradient border framing a search input.",
+        "render": "() => (<GradientBorder animated><Input placeholder=\"Search...\" /></GradientBorder>)"
+      },
+      {
+        "title": "Static Border",
+        "description": "Non-animated gradient border for subtle emphasis.",
+        "render": "() => (<GradientBorder className=\"gradient-border-static\"><Card style={{ padding: 20, width: 220, textAlign: 'center' }}>Static highlight</Card></GradientBorder>)"
+      }
+    ],
+    "Icon": [
+      {
+        "title": "Sizes",
+        "description": "Built-in icons rendered at multiple sizes.",
+        "render": "() => (<Stack direction=\"row\" gap={16} align=\"center\"><Icon name=\"home\" size={16} /><Icon name=\"home\" size={24} /><Icon name=\"home\" size={32} /><Icon name=\"home\" size={48} /></Stack>)"
+      },
+      {
+        "title": "Accessible",
+        "description": "Icon with an accessible label for screen readers.",
+        "render": "() => (<Stack direction=\"row\" gap={16} align=\"center\"><Icon name=\"search\" size={24} ariaLabel=\"Search\" /><Icon name=\"bell\" size={24} ariaLabel=\"Notifications\" /><Icon name=\"user\" size={24} ariaLabel=\"Account\" /></Stack>)"
+      },
+      {
+        "title": "Inside Button",
+        "description": "Icon used as a button icon for common actions.",
+        "render": "() => (<Stack direction=\"row\" gap={12} align=\"center\"><Button size=\"small\" leftIcon={<Icon name=\"plus\" size={14} />}>Add</Button><Button size=\"small\" variant=\"secondary\" leftIcon={<Icon name=\"trash\" size={14} />}>Delete</Button></Stack>)"
+      },
+      {
+        "title": "Container Variants",
+        "description": "Icons with different neomorphic container shapes.",
+        "render": "() => (<Stack direction=\"row\" gap={16} align=\"center\"><Icon name=\"star\" size={28} variant=\"default\" /><Icon name=\"star\" size={28} variant=\"circle\" /><Icon name=\"star\" size={28} variant=\"square\" /></Stack>)"
+      },
+      {
+        "title": "Custom Styling",
+        "description": "Icons with a custom className for additional styling hooks.",
+        "render": "() => (<Stack direction=\"row\" gap={16} align=\"center\"><Icon name=\"check\" size={28} color=\"green\" className=\"icon-success\" /><Icon name=\"times\" size={28} color=\"red\" className=\"icon-error\" /></Stack>)"
+      }
+    ],
+    "OrgChart": [
+      {
+        "title": "Deep Hierarchy",
+        "description": "Organization chart showing three levels of reporting.",
+        "render": "() => (<OrgChart root={{ id: '1', label: 'CEO', role: 'Chief Executive', children: [{ id: '2', label: 'VP Engineering', role: 'Engineering', children: [{ id: '5', label: 'Engineering Manager', role: 'Platform', children: [{ id: '8', label: 'Senior Engineer', role: 'Backend' }] }, { id: '6', label: 'Engineering Manager', role: 'Frontend', children: [{ id: '9', label: 'Senior Engineer', role: 'UI' }] }] }, { id: '3', label: 'VP Product', role: 'Product', children: [{ id: '7', label: 'Product Manager', role: 'Growth' }] }, { id: '4', label: 'VP Design', role: 'Design' }] }} />)"
+      },
+      {
+        "title": "Department View",
+        "description": "Organization chart for a single department.",
+        "render": "() => (<OrgChart root={{ id: '1', label: 'Engineering Director', role: 'Engineering', children: [{ id: '2', label: 'Platform Lead', role: 'Infrastructure' }, { id: '3', label: 'Frontend Lead', role: 'Web' }, { id: '4', label: 'Mobile Lead', role: 'Mobile' }, { id: '5', label: 'QA Lead', role: 'Quality' }] }} />)"
+      },
+      {
+        "title": "Flat Team",
+        "description": "Organization chart with many direct reports under one lead.",
+        "render": "() => (<OrgChart root={{ id: '1', label: 'Team Lead', role: 'Squad Lead', children: [{ id: '2', label: 'Alice', role: 'Engineer' }, { id: '3', label: 'Bob', role: 'Engineer' }, { id: '4', label: 'Carol', role: 'Designer' }, { id: '5', label: 'Dave', role: 'Product Manager' }, { id: '6', label: 'Eve', role: 'QA Engineer' }] }} />)"
+      },
+      {
+        "title": "Styled Chart",
+        "description": "Organization chart with a custom class name.",
+        "render": "() => (<OrgChart className=\"org-chart-demo\" root={{ id: '1', label: 'CTO', role: 'Technology', children: [{ id: '2', label: 'Architect', role: 'Systems' }, { id: '3', label: 'DevOps Lead', role: 'Operations' }] }} />)"
+      },
+      {
+        "title": "Cross-functional Team",
+        "description": "Organization chart spanning product, design, and engineering roles.",
+        "render": "() => (<OrgChart root={{ id: '1', label: 'Product Director', role: 'Product', children: [{ id: '2', label: 'Product Manager', role: 'Core', children: [{ id: '5', label: 'Analyst', role: 'Data' }] }, { id: '3', label: 'Design Lead', role: 'Design', children: [{ id: '6', label: 'UX Designer', role: 'Research' }, { id: '7', label: 'Visual Designer', role: 'Brand' }] }, { id: '4', label: 'Tech Lead', role: 'Engineering', children: [{ id: '8', label: 'Full-stack Engineer', role: 'Web' }] }] }} />)"
+      }
+    ],
+    "VirtualList": [
+      {
+        "title": "Tall Items",
+        "description": "Virtual list rendering taller list rows.",
+        "render": "() => (<VirtualList items={Array.from({ length: 500 }, (_, i) => `Item ${i + 1}`)} itemHeight={60} containerHeight={240} renderItem={(item) => <div style={{ padding: '16px 12px' }}>{item}</div>} />)"
+      },
+      {
+        "title": "Sticky Headers",
+        "description": "Virtual list with sticky headers at specific indices.",
+        "render": "() => (<VirtualList items={Array.from({ length: 200 }, (_, i) => `Task ${i + 1}`)} itemHeight={40} containerHeight={200} stickyHeaders={[{ index: 0, height: 40 }, { index: 50, height: 40 }, { index: 100, height: 40 }]} renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>} />)"
+      },
+      {
+        "title": "Scroll Callback",
+        "description": "Virtual list reporting scroll position via a callback.",
+        "render": "() => (<VirtualList items={Array.from({ length: 1000 }, (_, i) => `Row ${i + 1}`)} itemHeight={40} containerHeight={200} onScroll={(scrollTop) => console.log(scrollTop)} renderItem={(item) => <div style={{ padding: '8px 12px' }}>{item}</div>} />)"
+      },
+      {
+        "title": "Compact List",
+        "description": "Virtual list in a short container.",
+        "render": "() => (<VirtualList items={Array.from({ length: 100 }, (_, i) => `Entry ${i + 1}`)} itemHeight={32} containerHeight={150} overscan={2} renderItem={(item) => <div style={{ padding: '6px 12px', fontSize: 14 }}>{item}</div>} />)"
+      },
+      {
+        "title": "Rendered Cards",
+        "description": "Virtual list rendering card components for each item.",
+        "render": "() => (<VirtualList items={Array.from({ length: 300 }, (_, i) => `Card ${i + 1}`)} itemHeight={56} containerHeight={220} renderItem={(item) => <Card style={{ padding: '12px 16px', margin: '0 8px' }}>{item}</Card>} />)"
+      }
+    ],
+    "VisuallyHidden": [
+      {
+        "title": "Form Hint",
+        "description": "Hidden helper text that describes password requirements.",
+        "render": "() => (<><label htmlFor=\"password\" style={{ display: 'block', marginBottom: 8 }}>Password</label><VisuallyHidden>Must be at least 8 characters with a number and symbol.</VisuallyHidden><Input id=\"password\" type=\"password\" placeholder=\"Enter password\" /></>)"
+      },
+      {
+        "title": "Status Update",
+        "description": "Hidden status message for screen-reader users.",
+        "render": "() => (<Card style={{ padding: 16, width: 260 }}><p style={{ margin: 0 }}>Saved</p><VisuallyHidden>Your changes have been saved successfully.</VisuallyHidden></Card>)"
+      },
+      {
+        "title": "Button Context",
+        "description": "Hidden context inside an icon-only button.",
+        "render": "() => (<Button aria-label=\"Close\"><VisuallyHidden>Close notification</VisuallyHidden><Icon name=\"times\" size={16} /></Button>)"
+      },
+      {
+        "title": "Link Description",
+        "description": "Hidden descriptive text for an external link.",
+        "render": "() => (<><a href=\"https://example.com\">Documentation</a><VisuallyHidden>Opens in a new tab</VisuallyHidden></>)"
+      },
+      {
+        "title": "Skip Instructions",
+        "description": "Hidden instructions for keyboard navigation shortcuts.",
+        "render": "() => (<VisuallyHidden>Press Shift plus question mark to open the keyboard shortcuts dialog.</VisuallyHidden>)"
+      }
+    ]
+  }
+}

@@ -104,12 +104,14 @@ describe('Button', () => {
 
     it('memoizes click handler to prevent unnecessary re-renders', () => {
       const handleClick = vi.fn();
-      const { rerender } = renderWithTheme(
-        <Button onClick={handleClick}>Click</Button>
-      );
-      
+      const { rerender } = renderWithTheme(<Button onClick={handleClick}>Click</Button>);
+
       // Re-render with same props should not trigger click handler
-      rerender(<ThemeProvider theme={lightTheme}><Button onClick={handleClick}>Click</Button></ThemeProvider>);
+      rerender(
+        <ThemeProvider theme={lightTheme}>
+          <Button onClick={handleClick}>Click</Button>
+        </ThemeProvider>
+      );
       expect(handleClick).not.toHaveBeenCalled();
     });
 
@@ -145,9 +147,7 @@ describe('Button', () => {
 
     it('renders with responsive size configuration', () => {
       renderWithTheme(
-        <Button size={{ sm: 'small', md: 'medium', lg: 'large' }}>
-          Responsive
-        </Button>
+        <Button size={{ sm: 'small', md: 'medium', lg: 'large' }}>Responsive</Button>
       );
       const button = screen.getByRole('button', { name: /responsive/i });
       expect(button).toBeInTheDocument();
@@ -155,9 +155,7 @@ describe('Button', () => {
 
     it('renders with responsive fullWidth configuration', () => {
       const fullWidthConfig = { sm: true, md: false, lg: true };
-      renderWithTheme(
-        <Button fullWidth={fullWidthConfig}>Responsive Width</Button>
-      );
+      renderWithTheme(<Button fullWidth={fullWidthConfig}>Responsive Width</Button>);
       const button = screen.getByRole('button', { name: /responsive width/i });
       expect(button).toBeInTheDocument();
     });

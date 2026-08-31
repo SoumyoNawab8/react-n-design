@@ -1,8 +1,8 @@
 'use client';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList as List, type ListChildComponentProps } from 'react-window';
-import { FaChevronDown, FaSearch, FaTimes } from '../../icons';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import { FaChevronDown, FaSearch, FaTimes } from '../../icons';
 import type { Responsive } from '../../styles/responsive';
 import { AnimatePresence } from '../../utils/lazyMotion';
 import { Tag } from '../Tag';
@@ -87,7 +87,10 @@ const useClickOutside = (ref: React.RefObject<HTMLElement | null>, handler: () =
 };
 
 // Get the actual size value accounting for responsive breakpoints
-const getResponsiveSize = (size: SelectSize | Responsive<SelectSize>, isMobile: boolean): SelectSize => {
+const getResponsiveSize = (
+  size: SelectSize | Responsive<SelectSize>,
+  isMobile: boolean
+): SelectSize => {
   if (typeof size === 'string') return size;
   if (size.mobile !== undefined && isMobile) return size.mobile;
   if (size.tablet !== undefined) return size.tablet;
@@ -95,7 +98,10 @@ const getResponsiveSize = (size: SelectSize | Responsive<SelectSize>, isMobile: 
 };
 
 // Get the actual fullWidth value accounting for responsive breakpoints
-const getResponsiveFullWidth = (fullWidth: boolean | Responsive<boolean>, isMobile: boolean): boolean => {
+const getResponsiveFullWidth = (
+  fullWidth: boolean | Responsive<boolean>,
+  isMobile: boolean
+): boolean => {
   if (typeof fullWidth === 'boolean') return fullWidth;
   if (fullWidth.mobile !== undefined && isMobile) return fullWidth.mobile;
   if (fullWidth.tablet !== undefined) return fullWidth.tablet;
@@ -103,7 +109,9 @@ const getResponsiveFullWidth = (fullWidth: boolean | Responsive<boolean>, isMobi
 };
 
 // Flatten grouped options or return regular options
-const flattenOptions = (options: SelectOptionProps[] | SelectOptionGroup[]): SelectOptionProps[] => {
+const flattenOptions = (
+  options: SelectOptionProps[] | SelectOptionGroup[]
+): SelectOptionProps[] => {
   const result: SelectOptionProps[] = [];
   for (const option of options) {
     if ('options' in option && Array.isArray(option.options)) {
@@ -141,58 +149,67 @@ interface VirtualItemData {
   enabledIndexOf: (option: SelectOptionProps) => number;
 }
 
-const VirtualOptionItem = memo(({ index, style, data }: ListChildComponentProps<VirtualItemData>) => {
-  const {
-    options,
-    enabledOptions,
-    listboxId,
-    onSelect,
-    onMouseEnter,
-    isSelected,
-    enabledIndexOf,
-    highlightedIndex,
-  } = data;
+const VirtualOptionItem = memo(
+  ({ index, style, data }: ListChildComponentProps<VirtualItemData>) => {
+    const {
+      options,
+      enabledOptions,
+      listboxId,
+      onSelect,
+      onMouseEnter,
+      isSelected,
+      enabledIndexOf,
+      highlightedIndex,
+    } = data;
 
-  const option = options[index];
-  if (!option) return null;
+    const option = options[index];
+    if (!option) return null;
 
-  const optionId = `${listboxId}-option-${option.value}`;
-  const active = isSelected(option);
-  const highlighted = enabledOptions[highlightedIndex]?.value === option.value;
-  const optionEnabledIndex = enabledIndexOf(option);
+    const optionId = `${listboxId}-option-${option.value}`;
+    const active = isSelected(option);
+    const highlighted = enabledOptions[highlightedIndex]?.value === option.value;
+    const optionEnabledIndex = enabledIndexOf(option);
 
-  return (
-    <div style={style}>
-      <SelectOption
-        id={optionId}
-        role="option"
-        aria-selected={active}
-        aria-disabled={option.disabled}
-        isActive={active}
-        disabled={option.disabled}
-        onClick={() => onSelect(option)}
-        onMouseEnter={() => {
-          if (!option.disabled && optionEnabledIndex >= 0) {
-            onMouseEnter(optionEnabledIndex);
+    return (
+      <div style={style}>
+        <SelectOption
+          id={optionId}
+          role="option"
+          aria-selected={active}
+          aria-disabled={option.disabled}
+          isActive={active}
+          disabled={option.disabled}
+          onClick={() => onSelect(option)}
+          onMouseEnter={() => {
+            if (!option.disabled && optionEnabledIndex >= 0) {
+              onMouseEnter(optionEnabledIndex);
+            }
+          }}
+          style={
+            highlighted && !option.disabled
+              ? { outline: '2px solid currentColor', outlineOffset: '-2px' }
+              : undefined
           }
-        }}
-        style={
-          highlighted && !option.disabled
-            ? { outline: '2px solid currentColor', outlineOffset: '-2px' }
-            : undefined
-        }
-      >
-        {option.label}
-      </SelectOption>
-    </div>
-  );
-});
+        >
+          {option.label}
+        </SelectOption>
+      </div>
+    );
+  }
+);
 
 VirtualOptionItem.displayName = 'VirtualOptionItem';
 
 // Group header component
 const GroupHeader = memo(({ label }: { label: React.ReactNode }) => (
-  <div style={{ padding: '8px 12px', fontWeight: 600, color: 'var(--colors-shadowDark)', fontSize: '12px' }}>
+  <div
+    style={{
+      padding: '8px 12px',
+      fontWeight: 600,
+      color: 'var(--colors-shadowDark)',
+      fontSize: '12px',
+    }}
+  >
     {label}
   </div>
 ));
@@ -252,7 +269,10 @@ const SelectBase = ({
     if (variant.tablet !== undefined) return variant.tablet;
     return variant.desktop ?? 'default';
   }, [variant, isMobile]);
-  const resolvedFullWidth = useMemo(() => getResponsiveFullWidth(fullWidth, isMobile), [fullWidth, isMobile]);
+  const resolvedFullWidth = useMemo(
+    () => getResponsiveFullWidth(fullWidth, isMobile),
+    [fullWidth, isMobile]
+  );
 
   const listboxId = `select-listbox-${Math.random().toString(36).substr(2, 9)}`;
   const triggerId = `${listboxId}-trigger`;
@@ -272,7 +292,10 @@ const SelectBase = ({
   }, [allOptions, searchQuery]);
 
   // Get enabled options for keyboard navigation
-  const enabledOptions = useMemo(() => filteredOptions.filter((o) => !o.disabled), [filteredOptions]);
+  const enabledOptions = useMemo(
+    () => filteredOptions.filter((o) => !o.disabled),
+    [filteredOptions]
+  );
 
   const enabledIndexOf = useCallback(
     (option: SelectOptionProps) => enabledOptions.findIndex((o) => o.value === option.value),
@@ -295,7 +318,7 @@ const SelectBase = ({
   // Reset highlighted index when search changes
   useEffect(() => {
     setHighlightedIndex(0);
-  }, [searchQuery]);
+  }, []);
 
   // Focus search input when dropdown opens
   useEffect(() => {
@@ -465,11 +488,7 @@ const SelectBase = ({
           {currentArray.map((v) => {
             const isExiting = exitingChips.has(v);
             return (
-              <ChipItem
-                key={v}
-                isExiting={isExiting}
-                size={resolvedSize}
-              >
+              <ChipItem key={v} isExiting={isExiting} size={resolvedSize}>
                 <Tag
                   size="small"
                   variant="primary"
@@ -594,7 +613,7 @@ const SelectBase = ({
                 const active = isSelected(option);
                 const highlighted = enabledOptions[highlightedIndex]?.value === option.value;
                 const optionEnabledIndex = enabledIndexOf(option);
-                const currentItemIndex = itemIndex++;
+                const _currentItemIndex = itemIndex++;
 
                 return (
                   <SelectOption
@@ -628,7 +647,12 @@ const SelectBase = ({
   };
 
   return (
-    <SelectWrapper ref={wrapperRef} className={className} style={style} fullWidth={resolvedFullWidth}>
+    <SelectWrapper
+      ref={wrapperRef}
+      className={className}
+      style={style}
+      fullWidth={resolvedFullWidth}
+    >
       <SelectTrigger
         ref={triggerRef}
         id={triggerId}
@@ -719,7 +743,7 @@ const SelectBase = ({
                     />
                   </SearchContainer>
                 )}
-                
+
                 {filteredOptions.length === 0 ? (
                   renderEmptyState()
                 ) : useVirtualList && !hasGroups ? (

@@ -1,7 +1,15 @@
 'use client';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { VariableSizeList as List, type ListChildComponentProps } from 'react-window';
-import { FaChevronDown, FaChevronRight, FaFilter, FaSort, FaSortDown, FaSortUp, FaBars } from '../../icons';
+import {
+  FaBars,
+  FaChevronDown,
+  FaChevronRight,
+  FaFilter,
+  FaSort,
+  FaSortDown,
+  FaSortUp,
+} from '../../icons';
 import { Button } from '../Button';
 import {
   CheckboxWrapper,
@@ -104,13 +112,13 @@ const getRowKey = <T,>(
 // Hook to track window width for responsive column visibility
 const useWindowWidth = () => {
   const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
-  
+
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
+
   return width;
 };
 
@@ -201,10 +209,15 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
   const isExpanded = expandedRowKeysSet.has(key);
   const isSelected = selectedRowKeysSet.has(key);
 
-  const renderCell = (col: DataGridColumn<Record<string, unknown>>, colIndex: number, isPinned?: 'left' | 'right') => {
+  const renderCell = (
+    col: DataGridColumn<Record<string, unknown>>,
+    colIndex: number,
+    isPinned?: 'left' | 'right'
+  ) => {
     const isActive = activeCell?.row === index && activeCell?.col === colIndex;
     const cellWidth = columnWidths[col.key] ?? col.width ?? 150;
-    const CellComponent = isPinned === 'left' ? PinnedLeftCell : isPinned === 'right' ? PinnedRightCell : GridCell;
+    const CellComponent =
+      isPinned === 'left' ? PinnedLeftCell : isPinned === 'right' ? PinnedRightCell : GridCell;
 
     if (col.key === '__expand__') {
       const canExpand = !expandable?.rowExpandable || expandable.rowExpandable(record);
@@ -227,7 +240,11 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
               isExpanded={isExpanded}
               aria-label={isExpanded ? 'Collapse row' : 'Expand row'}
             >
-              {isExpanded ? <FaChevronDown size={12} /> : <FaChevronRight size={12} />}
+              {isExpanded ? (
+                <FaChevronDown size={12} aria-hidden="true" />
+              ) : (
+                <FaChevronRight size={12} aria-hidden="true" />
+              )}
             </ExpandIconWrapper>
           )}
         </CellComponent>
@@ -307,12 +324,14 @@ const Row: React.FC<ListChildComponentProps<RowItemData>> = ({ index, style, dat
       <GridCellsRow style={{ width: totalWidth, minWidth: totalWidth, height: rowHeight }}>
         {/* Pinned Left Columns */}
         {pinnedLeftColumns.map((col, i) => renderCell(col, i, 'left'))}
-        
+
         {/* Scrollable Columns */}
         {scrollableColumns.map((col, i) => renderCell(col, i + pinnedLeftColumns.length))}
-        
+
         {/* Pinned Right Columns */}
-        {pinnedRightColumns.map((col, i) => renderCell(col, i + pinnedLeftColumns.length + scrollableColumns.length, 'right'))}
+        {pinnedRightColumns.map((col, i) =>
+          renderCell(col, i + pinnedLeftColumns.length + scrollableColumns.length, 'right')
+        )}
       </GridCellsRow>
       {isExpanded && expandable?.expandedRowRender && (
         <ExpandableContent role="region" aria-label={`Row ${key} details`} isExpanded={isExpanded}>
@@ -367,7 +386,7 @@ const DataGridBase = <T extends object>({
   const [isMobile, setIsMobile] = useState(false);
 
   const windowWidth = useWindowWidth();
-  
+
   useEffect(() => {
     setIsMobile(windowWidth < 768);
   }, [windowWidth]);
@@ -375,7 +394,7 @@ const DataGridBase = <T extends object>({
   // Filter columns based on responsive visibility
   const visibleColumns = useMemo(() => {
     if (!columnVisibility || !isMobile) return columns;
-    
+
     let visibleKeys: string[] = [];
     if (windowWidth < 640 && columnVisibility.sm) {
       visibleKeys = columnVisibility.sm;
@@ -384,9 +403,9 @@ const DataGridBase = <T extends object>({
     } else if (columnVisibility.lg) {
       visibleKeys = columnVisibility.lg;
     }
-    
+
     if (visibleKeys.length === 0) return columns;
-    return columns.filter(col => visibleKeys.includes(col.key));
+    return columns.filter((col) => visibleKeys.includes(col.key));
   }, [columns, columnVisibility, windowWidth, isMobile]);
 
   // Separate pinned columns
@@ -403,7 +422,7 @@ const DataGridBase = <T extends object>({
       cols = [{ key: '__selection__', title: '', width: 48 }, ...cols];
     }
 
-    cols.forEach(col => {
+    cols.forEach((col) => {
       if (col.pinned === 'left') left.push(col);
       else if (col.pinned === 'right') right.push(col);
       else scrollable.push(col);
@@ -580,31 +599,32 @@ const DataGridBase = <T extends object>({
       setResizingCol(colKey);
       const startX = e.clientX;
       const startWidth = columnWidths[colKey] ?? 150;
-      
+
       const onMove = (moveEvent: MouseEvent) => {
         const delta = moveEvent.clientX - startX;
         const newWidth = Math.max(50, startWidth + delta);
-        
+
         // Cancel any pending RAF
         if (resizeRafRef.current) {
           cancelAnimationFrame(resizeRafRef.current);
         }
-        
+
         pendingWidthRef.current = { colKey, width: newWidth };
-        
+
         // Use RAF for smooth updates
         resizeRafRef.current = requestAnimationFrame(() => {
           if (pendingWidthRef.current) {
-            setColumnWidths((prev) => ({ 
-              ...prev, 
-              [pendingWidthRef.current!.colKey]: pendingWidthRef.current!.width 
+            const { colKey, width } = pendingWidthRef.current;
+            setColumnWidths((prev) => ({
+              ...prev,
+              [colKey]: width,
             }));
             pendingWidthRef.current = null;
           }
           resizeRafRef.current = null;
         });
       };
-      
+
       const onUp = () => {
         setResizingCol(null);
         if (resizeRafRef.current) {
@@ -615,7 +635,7 @@ const DataGridBase = <T extends object>({
         window.removeEventListener('mousemove', onMove);
         window.removeEventListener('mouseup', onUp);
       };
-      
+
       window.addEventListener('mousemove', onMove);
       window.addEventListener('mouseup', onUp);
     },
@@ -630,12 +650,15 @@ const DataGridBase = <T extends object>({
     };
   }, []);
 
-  const getAriaSort = useCallback((colKey: string): 'ascending' | 'descending' | 'none' | undefined => {
-    const col = columns.find((c) => c.key === colKey);
-    if (!col?.sortable && !col?.sorter) return undefined;
-    if (sortConfig.key !== colKey) return 'none';
-    return sortConfig.order === 'asc' ? 'ascending' : 'descending';
-  }, [columns, sortConfig]);
+  const getAriaSort = useCallback(
+    (colKey: string): 'ascending' | 'descending' | 'none' | undefined => {
+      const col = columns.find((c) => c.key === colKey);
+      if (!col?.sortable && !col?.sorter) return undefined;
+      if (sortConfig.key !== colKey) return 'none';
+      return sortConfig.order === 'asc' ? 'ascending' : 'descending';
+    },
+    [columns, sortConfig]
+  );
 
   const totalCols = displayColumns.length;
 
@@ -761,11 +784,17 @@ const DataGridBase = <T extends object>({
   ]);
 
   const pinnedLeftWidth = useMemo(() => {
-    return pinnedLeftColumns.reduce((sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150), 0);
+    return pinnedLeftColumns.reduce(
+      (sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150),
+      0
+    );
   }, [pinnedLeftColumns, columnWidths]);
 
   const pinnedRightWidth = useMemo(() => {
-    return pinnedRightColumns.reduce((sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150), 0);
+    return pinnedRightColumns.reduce(
+      (sum, col) => sum + (columnWidths[col.key] ?? col.width ?? 150),
+      0
+    );
   }, [pinnedRightColumns, columnWidths]);
 
   return (
@@ -773,22 +802,22 @@ const DataGridBase = <T extends object>({
       {/* Custom Toolbar */}
       {(toolbar || (isMobile && columnVisibility)) && (
         <ToolbarWrapper>
-          {toolbar && typeof toolbar === 'function' 
-            ? toolbar({ columns: visibleColumns }) 
+          {toolbar && typeof toolbar === 'function'
+            ? toolbar({ columns: visibleColumns })
             : toolbar}
           {isMobile && columnVisibility && (
             <MobileToolbar>
               <MobileColumnMenuButton onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                <FaBars size={16} />
+                <FaBars size={16} aria-hidden="true" />
                 Columns
               </MobileColumnMenuButton>
               {mobileMenuOpen && (
                 <MobileColumnMenu>
-                  {visibleColumns.filter(col => col.key !== '__selection__' && col.key !== '__expand__').map(col => (
-                    <MobileColumnMenuItem key={col.key}>
-                      {col.title}
-                    </MobileColumnMenuItem>
-                  ))}
+                  {visibleColumns
+                    .filter((col) => col.key !== '__selection__' && col.key !== '__expand__')
+                    .map((col) => (
+                      <MobileColumnMenuItem key={col.key}>{col.title}</MobileColumnMenuItem>
+                    ))}
                 </MobileColumnMenu>
               )}
             </MobileToolbar>
@@ -804,11 +833,7 @@ const DataGridBase = <T extends object>({
         onKeyDown={handleGridKeyDown}
         style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}
       >
-        <GridHeaderContainer 
-          ref={headerRef} 
-          onScroll={handleHeaderScroll}
-          variant={variant}
-        >
+        <GridHeaderContainer ref={headerRef} onScroll={handleHeaderScroll} variant={variant}>
           <GridHeaderRow
             role="row"
             aria-rowindex={1}
@@ -817,8 +842,11 @@ const DataGridBase = <T extends object>({
           >
             {displayColumns.map((col, colIndex) => {
               const cellWidth = columnWidths[col.key] ?? col.width ?? 150;
-              const isPinned = pinnedLeftColumns.includes(col) ? 'left' : 
-                              pinnedRightColumns.includes(col) ? 'right' : undefined;
+              const isPinned = pinnedLeftColumns.includes(col)
+                ? 'left'
+                : pinnedRightColumns.includes(col)
+                  ? 'right'
+                  : undefined;
 
               if (col.key === '__selection__') {
                 return (
@@ -841,8 +869,8 @@ const DataGridBase = <T extends object>({
                         onClick={(e) => e.stopPropagation()}
                       />
                     </CheckboxWrapper>
-                    <ResizeHandle 
-                      onMouseDown={(e) => handleResizeStart(col.key, e)} 
+                    <ResizeHandle
+                      onMouseDown={(e) => handleResizeStart(col.key, e)}
                       isResizing={resizingCol === col.key}
                     />
                   </GridHeaderCell>
@@ -861,8 +889,8 @@ const DataGridBase = <T extends object>({
                     pinnedRightWidth={isPinned === 'right' ? pinnedRightWidth : undefined}
                     variant={variant}
                   >
-                    <ResizeHandle 
-                      onMouseDown={(e) => handleResizeStart(col.key, e)} 
+                    <ResizeHandle
+                      onMouseDown={(e) => handleResizeStart(col.key, e)}
                       isResizing={resizingCol === col.key}
                     />
                   </GridHeaderCell>
@@ -890,11 +918,11 @@ const DataGridBase = <T extends object>({
                     {(col.sortable || col.sorter) && (
                       <SortIconWrapper>
                         {sortConfig.key === col.key && sortConfig.order === 'asc' ? (
-                          <FaSortUp size={14} />
+                          <FaSortUp size={14} aria-hidden="true" />
                         ) : sortConfig.key === col.key && sortConfig.order === 'desc' ? (
-                          <FaSortDown size={14} />
+                          <FaSortDown size={14} aria-hidden="true" />
                         ) : (
-                          <FaSort size={14} />
+                          <FaSort size={14} aria-hidden="true" />
                         )}
                       </SortIconWrapper>
                     )}
@@ -907,7 +935,7 @@ const DataGridBase = <T extends object>({
                         aria-label={`Filter ${col.title}`}
                         aria-pressed={activeFilterCol === col.key}
                       >
-                        <FaFilter size={12} />
+                        <FaFilter size={12} aria-hidden="true" />
                       </FilterButton>
                     )}
                   </span>
@@ -925,8 +953,8 @@ const DataGridBase = <T extends object>({
                       />
                     </FilterPopover>
                   )}
-                  <ResizeHandle 
-                    onMouseDown={(e) => handleResizeStart(col.key, e)} 
+                  <ResizeHandle
+                    onMouseDown={(e) => handleResizeStart(col.key, e)}
                     isResizing={resizingCol === col.key}
                   />
                 </GridHeaderCell>
@@ -942,7 +970,11 @@ const DataGridBase = <T extends object>({
               <SkeletonRow key={i} role="row">
                 {displayColumns.map((col, j) => (
                   // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton cells are static placeholders
-                  <SkeletonCell key={j} role="gridcell" style={{ width: columnWidths[col.key] ?? col.width ?? 150 }} />
+                  <SkeletonCell
+                    key={j}
+                    role="gridcell"
+                    style={{ width: columnWidths[col.key] ?? col.width ?? 150 }}
+                  />
                 ))}
               </SkeletonRow>
             ))

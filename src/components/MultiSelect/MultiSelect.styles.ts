@@ -1,7 +1,7 @@
 'use client';
 import styled, { css } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 export const MultiSelectWrapper = styled.div`
   position: relative;

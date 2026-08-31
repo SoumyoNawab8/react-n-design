@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 import { iconColor } from '../../styles/iconColor';
 
 const sizes = {
@@ -28,8 +28,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const FloatingLabel = styled(motion.label).withConfig({
-  shouldForwardProp: (prop) =>
-    !['size', 'isFloating', 'hasValue', 'htmlTag'].includes(prop),
+  shouldForwardProp: (prop) => !['size', 'isFloating', 'hasValue', 'htmlTag'].includes(prop),
 })<{
   size: 'small' | 'medium' | 'large';
   isFloating: boolean;
@@ -168,7 +167,7 @@ export const InputInnerWrapper = styled.div.withConfig({
   padding: ${({ size, hasError, isFocused }) => {
     const basePadding = sizes[size].padding;
     // Add extra top padding for floating label when focused/has error
-    const extraTop = (hasError || isFocused) ? ' 2px' : '';
+    const extraTop = hasError || isFocused ? ' 2px' : '';
     return basePadding.replace(/ 0 /g, ` ${extraTop || '0'} `);
   }};
   gap: 8px;

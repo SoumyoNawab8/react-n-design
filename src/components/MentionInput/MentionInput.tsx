@@ -106,9 +106,7 @@ export const MentionInput = ({
         break;
       case 'ArrowUp':
         e.preventDefault();
-        setHighlightedIndex(
-          (prev) => (prev - 1 + filteredOptions.length) % filteredOptions.length
-        );
+        setHighlightedIndex((prev) => (prev - 1 + filteredOptions.length) % filteredOptions.length);
         break;
       case 'Enter':
       case 'Tab':

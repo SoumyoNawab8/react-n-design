@@ -47,20 +47,10 @@ export const StreamingText = ({
     return () => clearInterval(interval);
   }, [text, speed, onComplete]);
 
-  const content =
-    isComplete && renderMarkdown ? (
-      <Markdown>{text}</Markdown>
-    ) : (
-      <>{displayedText}</>
-    );
+  const content = isComplete && renderMarkdown ? <Markdown>{text}</Markdown> : displayedText;
 
   return (
-    <StreamingTextWrapper
-      className={className}
-      role="status"
-      aria-live="polite"
-      aria-atomic="true"
-    >
+    <StreamingTextWrapper className={className} role="status" aria-live="polite" aria-atomic="true">
       {content}
       {!isComplete && <StreamingTextCursor aria-hidden="true" />}
     </StreamingTextWrapper>

@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import { useTheme } from 'react-n-design';
+import type React from 'react';
+import { useState } from 'react';
 import {
+  Badge,
   Button,
   Card,
-  Modal,
-  Tabs,
-  Table,
   Input,
-  Badge,
+  Modal,
   Stack,
-  Title,
+  Table,
+  Tabs,
   Text,
+  Title,
+  useTheme,
 } from 'react-n-design';
+import { useNavigate } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
 import Hero3D from '../components/Hero3D';
 import { ScrollReveal } from '../components/ScrollReveal';
 
@@ -73,9 +74,7 @@ const HeroTextCard = styled.div`
   padding: 32px 40px;
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ theme }) =>
-    theme.mode === 'dark'
-      ? 'rgba(15, 23, 42, 0.55)'
-      : 'rgba(224, 229, 236, 0.65)'};
+    theme.mode === 'dark' ? 'rgba(15, 23, 42, 0.55)' : 'rgba(224, 229, 236, 0.65)'};
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
   box-shadow: ${({ theme }) => theme.shadows.soft};
@@ -189,12 +188,13 @@ const TechBadge = styled.span`
   color: ${(p) => p.theme.colors.text};
 `;
 
-
 /* ---------- Mini Demos ---------- */
 const ButtonDemo = () => (
   <Stack direction="row" gap={12} align="center" wrap>
     <Button size="small">Primary</Button>
-    <Button size="small" variant="secondary">Secondary</Button>
+    <Button size="small" variant="secondary">
+      Secondary
+    </Button>
   </Stack>
 );
 
@@ -228,8 +228,24 @@ const ModalDemo = () => {
 const TabsDemo = () => (
   <Tabs
     items={[
-      { key: '1', label: 'Design', children: <Text size="small" color="text">Design tab</Text> },
-      { key: '2', label: 'Code', children: <Text size="small" color="text">Code tab</Text> },
+      {
+        key: '1',
+        label: 'Design',
+        children: (
+          <Text size="small" color="text">
+            Design tab
+          </Text>
+        ),
+      },
+      {
+        key: '2',
+        label: 'Code',
+        children: (
+          <Text size="small" color="text">
+            Code tab
+          </Text>
+        ),
+      },
     ]}
     size="small"
     type="card"
@@ -252,7 +268,13 @@ const TableDemo = () => {
   ];
   return (
     <div style={{ width: '100%', overflow: 'auto', fontSize: '0.75rem' }}>
-      <Table<TableRow> columns={columns} dataSource={data} pagination={false} size="small" bordered />
+      <Table<TableRow>
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+        size="small"
+        bordered
+      />
     </div>
   );
 };
@@ -335,105 +357,104 @@ const Home: React.FC = () => {
 
   return (
     <HomePage>
-        {/* Hero */}
-        <HeroSection>
-          <Hero3D />
-          <HeroOverlay>
-            <HeroTextCard>
-              <ScrollReveal direction="up" duration={0.7}>
-                <GradientTitle $isDark={isDark}>react-n-design</GradientTitle>
-              </ScrollReveal>
-              <ScrollReveal direction="up" delay={0.15} duration={0.7}>
-                <Subtitle>
-                  A modern, lightweight, and animated React component library. Built
-                  with neomorphism, motion, and accessibility in mind.
-                </Subtitle>
-              </ScrollReveal>
-              <ScrollReveal direction="up" delay={0.3} duration={0.7}>
-                <CTAGroup direction="row" gap={16}>
-                  <Button size="large" onClick={() => navigate('/get-started')}>
-                    Get Started
-                  </Button>
-                  <Button size="large" variant="secondary" onClick={() => navigate('/components')}>
-                    Browse Components
-                  </Button>
-                </CTAGroup>
-              </ScrollReveal>
-            </HeroTextCard>
-          </HeroOverlay>
-        </HeroSection>
-
-        {/* Features */}
-        <Section>
-          <SectionContent>
-            <ScrollReveal direction="up">
-              <Title level={2} style={{ textAlign: 'center', marginBottom: 48 }}>
-                Why react-n-design?
-              </Title>
+      {/* Hero */}
+      <HeroSection>
+        <Hero3D />
+        <HeroOverlay>
+          <HeroTextCard>
+            <ScrollReveal direction="up" duration={0.7}>
+              <GradientTitle $isDark={isDark}>react-n-design</GradientTitle>
             </ScrollReveal>
-            <FeaturesGrid>
-              {features.map((f, i) => (
-                <ScrollReveal key={f.title} direction="up" delay={i * 0.08}>
-                  <FeatureCard variant="outset" padding="large" hoverable>
-                    <FeatureIcon>{f.icon}</FeatureIcon>
-                    <Title level={4}>{f.title}</Title>
-                    <Text size="small" color="textSecondary">
-                      {f.desc}
-                    </Text>
-                  </FeatureCard>
-                </ScrollReveal>
-              ))}
-            </FeaturesGrid>
-          </SectionContent>
-        </Section>
-
-        {/* Preview Grid */}
-        <Section style={{ background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.03)' }}>
-          <SectionContent>
-            <ScrollReveal direction="up">
-              <Title level={2} style={{ textAlign: 'center', marginBottom: 48 }}>
-                Preview
-              </Title>
+            <ScrollReveal direction="up" delay={0.15} duration={0.7}>
+              <Subtitle>
+                A modern, lightweight, and animated React component library. Built with neomorphism,
+                motion, and accessibility in mind.
+              </Subtitle>
             </ScrollReveal>
-            <PreviewGrid>
-              {previews.map((item, i) => (
-                <ScrollReveal key={item.label} direction="up" delay={i * 0.06}>
-                  <PreviewItem>
-                    <PreviewLabel size="small" weight="medium">
-                      {item.label}
-                    </PreviewLabel>
-                    {item.component}
-                  </PreviewItem>
-                </ScrollReveal>
-              ))}
-            </PreviewGrid>
-            <ScrollReveal direction="up" delay={0.2}>
-              <Stack direction="row" justify="center" style={{ marginTop: 40 }}>
-                <Button size="large" onClick={() => navigate('/components')}>
-                  Explore All Components
+            <ScrollReveal direction="up" delay={0.3} duration={0.7}>
+              <CTAGroup direction="row" gap={16}>
+                <Button size="large" onClick={() => navigate('/get-started')}>
+                  Get Started
                 </Button>
-              </Stack>
+                <Button size="large" variant="secondary" onClick={() => navigate('/components')}>
+                  Browse Components
+                </Button>
+              </CTAGroup>
             </ScrollReveal>
-          </SectionContent>
-        </Section>
+          </HeroTextCard>
+        </HeroOverlay>
+      </HeroSection>
 
-        {/* Built With */}
-        <Section>
-          <SectionContent style={{ textAlign: 'center' }}>
-            <ScrollReveal direction="up">
-              <Title level={3}>Built With</Title>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.1}>
-              <BadgeRow>
-                <TechBadge>React 18</TechBadge>
-                <TechBadge>TypeScript</TechBadge>
-                <TechBadge>styled-components</TechBadge>
-                <TechBadge>framer-motion</TechBadge>
-              </BadgeRow>
-            </ScrollReveal>
-          </SectionContent>
-        </Section>
+      {/* Features */}
+      <Section>
+        <SectionContent>
+          <ScrollReveal direction="up">
+            <Title level={2} style={{ textAlign: 'center', marginBottom: 48 }}>
+              Why react-n-design?
+            </Title>
+          </ScrollReveal>
+          <FeaturesGrid>
+            {features.map((f, i) => (
+              <ScrollReveal key={f.title} direction="up" delay={i * 0.08}>
+                <FeatureCard variant="outset" padding="large" hoverable>
+                  <FeatureIcon>{f.icon}</FeatureIcon>
+                  <Title level={4}>{f.title}</Title>
+                  <Text size="small" color="textSecondary">
+                    {f.desc}
+                  </Text>
+                </FeatureCard>
+              </ScrollReveal>
+            ))}
+          </FeaturesGrid>
+        </SectionContent>
+      </Section>
 
+      {/* Preview Grid */}
+      <Section style={{ background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.03)' }}>
+        <SectionContent>
+          <ScrollReveal direction="up">
+            <Title level={2} style={{ textAlign: 'center', marginBottom: 48 }}>
+              Preview
+            </Title>
+          </ScrollReveal>
+          <PreviewGrid>
+            {previews.map((item, i) => (
+              <ScrollReveal key={item.label} direction="up" delay={i * 0.06}>
+                <PreviewItem>
+                  <PreviewLabel size="small" weight="medium">
+                    {item.label}
+                  </PreviewLabel>
+                  {item.component}
+                </PreviewItem>
+              </ScrollReveal>
+            ))}
+          </PreviewGrid>
+          <ScrollReveal direction="up" delay={0.2}>
+            <Stack direction="row" justify="center" style={{ marginTop: 40 }}>
+              <Button size="large" onClick={() => navigate('/components')}>
+                Explore All Components
+              </Button>
+            </Stack>
+          </ScrollReveal>
+        </SectionContent>
+      </Section>
+
+      {/* Built With */}
+      <Section>
+        <SectionContent style={{ textAlign: 'center' }}>
+          <ScrollReveal direction="up">
+            <Title level={3}>Built With</Title>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.1}>
+            <BadgeRow>
+              <TechBadge>React 18</TechBadge>
+              <TechBadge>TypeScript</TechBadge>
+              <TechBadge>styled-components</TechBadge>
+              <TechBadge>framer-motion</TechBadge>
+            </BadgeRow>
+          </ScrollReveal>
+        </SectionContent>
+      </Section>
     </HomePage>
   );
 };

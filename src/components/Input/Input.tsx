@@ -1,8 +1,18 @@
 'use client';
 import type React from 'react';
-import { forwardRef, memo, useCallback, useEffect, useId, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { FaEye, FaEyeSlash } from '../../icons';
+import {
+  forwardRef,
+  memo,
+  useCallback,
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useReducedMotion } from '../../context/ThemeContext';
+import { FaEye, FaEyeSlash } from '../../icons';
 import { motion } from '../../utils/lazyMotion';
 import {
   CharacterCounter,
@@ -10,6 +20,7 @@ import {
   ErrorText,
   FloatingLabel,
   FooterWrapper,
+  HelperText,
   InputAddon,
   InputContainer,
   InputGroupWrapper,
@@ -19,7 +30,6 @@ import {
   PasswordToggleIcon,
   StyledInput,
   StyledLabel,
-  HelperText,
 } from './Input.styles';
 
 export type InputSize = 'small' | 'medium' | 'large';
@@ -425,11 +435,7 @@ const InputComponent: React.FC<InputProps> = forwardRef<HTMLInputElement, InputP
             animate={{
               y: shouldFloatLabel ? 0 : size === 'small' ? 8 : size === 'large' ? 14 : 11,
               scale: shouldFloatLabel ? 0.85 : 1,
-              color: error
-                ? '#e53e3e'
-                : isFocused
-                ? 'var(--colors-primary)'
-                : 'var(--colors-text)',
+              color: error ? '#e53e3e' : isFocused ? 'var(--colors-primary)' : 'var(--colors-text)',
             }}
           >
             {label}

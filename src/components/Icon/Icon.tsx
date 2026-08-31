@@ -89,7 +89,14 @@ export const Icon = ({
   }
 
   return (
-    <IconContainer variant={variant} size={size} className={className} aria-label={ariaLabel}>
+    <IconContainer
+      variant={variant}
+      size={size}
+      className={className}
+      aria-label={ariaLabel}
+      role="img"
+      data-variant={variant}
+    >
       <StyledIcon size={size} color={color}>
         <IconComponent />
       </StyledIcon>

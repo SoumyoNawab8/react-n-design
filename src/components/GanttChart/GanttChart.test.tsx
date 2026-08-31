@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
+import axe from 'axe-core';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
-import axe from 'axe-core';
 import { lightTheme } from '../../styles/theme';
 import { GanttChart } from './GanttChart';
 
@@ -90,8 +90,20 @@ describe('GanttChart', () => {
 
   it('clamps progress to 0-100', () => {
     const tasks = [
-      { id: '1', name: 'Over', start: new Date('2024-01-01'), end: new Date('2024-01-02'), progress: 150 },
-      { id: '2', name: 'Under', start: new Date('2024-01-01'), end: new Date('2024-01-02'), progress: -10 },
+      {
+        id: '1',
+        name: 'Over',
+        start: new Date('2024-01-01'),
+        end: new Date('2024-01-02'),
+        progress: 150,
+      },
+      {
+        id: '2',
+        name: 'Under',
+        start: new Date('2024-01-01'),
+        end: new Date('2024-01-02'),
+        progress: -10,
+      },
     ];
     renderWithTheme(<GanttChart tasks={tasks} />);
     const bars = screen.getAllByRole('progressbar');

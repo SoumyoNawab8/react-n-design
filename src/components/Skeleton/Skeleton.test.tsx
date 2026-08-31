@@ -81,13 +81,13 @@ describe('Skeleton', () => {
   it('renders with numeric width', () => {
     renderWithTheme(<Skeleton loading width={300} />);
     const skeleton = screen.getByRole('status');
-    expect(skeleton).toHaveStyle({ width: 300 });
+    expect(skeleton).toHaveStyle({ width: '300px' });
   });
 
   it('renders with numeric height', () => {
     renderWithTheme(<Skeleton loading height={50} />);
     const skeleton = screen.getByRole('status');
-    expect(skeleton).toHaveStyle({ height: 50 });
+    expect(skeleton).toHaveStyle({ height: '50px' });
   });
 
   it('renders with complex children structure', () => {
@@ -117,7 +117,7 @@ describe('Skeleton', () => {
     renderWithTheme(<Skeleton loading variant="circle" width={48} height={48} />);
     const skeleton = screen.getByRole('status');
     expect(skeleton).toBeInTheDocument();
-    expect(skeleton).toHaveStyle({ width: 48, height: 48 });
+    expect(skeleton).toHaveStyle({ width: '48px', height: '48px' });
   });
 
   it('renders multiple skeleton placeholders', () => {

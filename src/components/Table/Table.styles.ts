@@ -188,7 +188,8 @@ export const SortIcon = styled.span.withConfig({
 
 // --- Header Cell with responsive hiding ---
 export const TableHeaderCell = styled.th.withConfig({
-  shouldForwardProp: (prop) => !['isSortable', '$hiddenSm', '$hiddenMd', '$hiddenLg'].includes(prop),
+  shouldForwardProp: (prop) =>
+    !['isSortable', '$hiddenSm', '$hiddenMd', '$hiddenLg'].includes(prop),
 })<{
   isSortable: boolean;
   $hiddenSm?: boolean;
@@ -312,7 +313,11 @@ export const SkeletonRow = styled.tr`
   }
 `;
 
-export const SkeletonCell = styled.td<{ $hiddenSm?: boolean; $hiddenMd?: boolean; $hiddenLg?: boolean }>`
+export const SkeletonCell = styled.td<{
+  $hiddenSm?: boolean;
+  $hiddenMd?: boolean;
+  $hiddenLg?: boolean;
+}>`
   padding: 16px;
   
   @media (max-width: 768px) {

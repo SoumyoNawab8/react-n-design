@@ -1,0 +1,192 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link "react-n-design" [ref=e7] [cursor=pointer]:
+        - /url: /react-n-design
+      - navigation "Primary" [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /react-n-design
+        - link "Components" [ref=e10] [cursor=pointer]:
+          - /url: /react-n-design/components
+        - link "Get Started" [ref=e11] [cursor=pointer]:
+          - /url: /react-n-design/get-started
+        - combobox "Theme" [ref=e12] [cursor=pointer]:
+          - option "Light"
+          - option "Dark" [selected]
+          - option "System"
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - complementary [ref=e15]:
+        - generic [ref=e18]:
+          - img [ref=e20]
+          - textbox "Search components..." [ref=e23]
+        - generic [ref=e24]:
+          - button "Layout" [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: Layout
+            - img [ref=e27]
+          - generic [ref=e29]:
+            - button "Accordion" [ref=e30] [cursor=pointer]
+            - button "Card" [ref=e31] [cursor=pointer]
+            - button "Grid" [ref=e32] [cursor=pointer]
+            - button "Stack" [ref=e33] [cursor=pointer]
+            - button "Divider" [ref=e34] [cursor=pointer]
+            - button "ScrollArea" [ref=e35] [cursor=pointer]
+            - button "Resizable" [ref=e36] [cursor=pointer]
+          - separator [ref=e37]
+        - generic [ref=e38]:
+          - button "Data Entry" [ref=e39] [cursor=pointer]:
+            - generic [ref=e40]: Data Entry
+            - img [ref=e41]
+          - generic [ref=e43]:
+            - button "Button" [ref=e44] [cursor=pointer]
+            - button "Input" [ref=e45] [cursor=pointer]
+            - button "Select" [ref=e46] [cursor=pointer]
+            - button "Checkbox" [ref=e47] [cursor=pointer]
+            - button "RadioGroup" [ref=e48] [cursor=pointer]
+            - button "Switch" [ref=e49] [cursor=pointer]
+            - button "Slider" [ref=e50] [cursor=pointer]
+            - button "DatePicker" [ref=e51] [cursor=pointer]
+            - button "TimePicker" [ref=e52] [cursor=pointer]
+            - button "ColorPicker" [ref=e53] [cursor=pointer]
+            - button "PinInput" [ref=e54] [cursor=pointer]
+            - button "OTPInput" [ref=e55] [cursor=pointer]
+            - button "TextArea" [ref=e56] [cursor=pointer]
+            - button "FileUpload" [ref=e57] [cursor=pointer]
+            - button "Rating" [ref=e58] [cursor=pointer]
+            - button "ComboBox" [ref=e59] [cursor=pointer]
+            - button "MultiSelect" [ref=e60] [cursor=pointer]
+            - button "Segmented" [ref=e61] [cursor=pointer]
+            - button "Toggle" [ref=e62] [cursor=pointer]
+            - button "CopyButton" [ref=e63] [cursor=pointer]
+          - separator [ref=e64]
+        - generic [ref=e65]:
+          - button "Display" [ref=e66] [cursor=pointer]:
+            - generic [ref=e67]: Display
+            - img [ref=e68]
+          - generic [ref=e70]:
+            - button "AudioWaveform" [ref=e71] [cursor=pointer]
+            - button "Avatar" [ref=e72] [cursor=pointer]
+            - button "AvatarGroup" [ref=e73] [cursor=pointer]
+            - button "Badge" [ref=e74] [cursor=pointer]
+            - button "Tag" [ref=e75] [cursor=pointer]
+            - button "Statistic" [ref=e76] [cursor=pointer]
+            - button "ProgressBar" [ref=e77] [cursor=pointer]
+            - button "Skeleton" [ref=e78] [cursor=pointer]
+            - button "Empty" [ref=e79] [cursor=pointer]
+            - button "Timeline" [ref=e80] [cursor=pointer]
+            - button "Tree" [ref=e81] [cursor=pointer]
+            - button "OrgChart" [ref=e82] [cursor=pointer]
+            - button "GanttChart" [ref=e83] [cursor=pointer]
+            - button "KanbanBoard" [ref=e84] [cursor=pointer]
+            - button "Table" [ref=e85] [cursor=pointer]
+            - button "DataGrid" [ref=e86] [cursor=pointer]
+            - button "VirtualList" [ref=e87] [cursor=pointer]
+            - button "Charts" [ref=e88] [cursor=pointer]
+            - button "HeatmapCalendar" [ref=e89] [cursor=pointer]
+            - button "ImageGallery" [ref=e90] [cursor=pointer]
+            - button "Carousel" [ref=e91] [cursor=pointer]
+            - button "Calendar" [ref=e92] [cursor=pointer]
+            - button "Terminal" [ref=e93] [cursor=pointer]
+            - button "Markdown" [ref=e94] [cursor=pointer]
+            - button "StreamingText" [ref=e95] [cursor=pointer]
+            - button "Icon" [ref=e96] [cursor=pointer]
+          - separator [ref=e97]
+        - generic [ref=e98]:
+          - button "Feedback" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: Feedback
+            - img [ref=e101]
+          - generic [ref=e103]:
+            - button "Alert" [ref=e104] [cursor=pointer]
+            - button "Toast" [ref=e105] [cursor=pointer]
+            - button "Modal" [ref=e106] [cursor=pointer]
+            - button "Drawer" [ref=e107] [cursor=pointer]
+            - button "Tooltip" [ref=e108] [cursor=pointer]
+            - button "Popover" [ref=e109] [cursor=pointer]
+            - button "Tour" [ref=e110] [cursor=pointer]
+            - button "Result" [ref=e111] [cursor=pointer]
+            - button "AIThinking" [ref=e112] [cursor=pointer]
+            - button "ThinkingBlock" [ref=e113] [cursor=pointer]
+          - separator [ref=e114]
+        - generic [ref=e115]:
+          - button "Navigation" [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]: Navigation
+            - img [ref=e118]
+          - generic [ref=e120]:
+            - button "Breadcrumbs" [ref=e121] [cursor=pointer]
+            - button "Tabs" [ref=e122] [cursor=pointer]
+            - button "Steps" [ref=e123] [cursor=pointer]
+            - button "Stepper" [ref=e124] [cursor=pointer]
+            - button "Pagination" [ref=e125] [cursor=pointer]
+            - button "Menu" [ref=e126] [cursor=pointer]
+            - button "AppBar" [ref=e127] [cursor=pointer]
+            - button "CommandPalette" [ref=e128] [cursor=pointer]
+            - button "FloatButton" [ref=e129] [cursor=pointer]
+            - button "SkipToContent" [ref=e130] [cursor=pointer]
+          - separator [ref=e131]
+        - generic [ref=e132]:
+          - button "AI / Chat" [ref=e133] [cursor=pointer]:
+            - generic [ref=e134]: AI / Chat
+            - img [ref=e135]
+          - generic [ref=e137]:
+            - button "AIChat" [ref=e138] [cursor=pointer]
+            - button "PromptInput" [ref=e139] [cursor=pointer]
+            - button "PromptBuilder" [ref=e140] [cursor=pointer]
+            - button "ModelSelector" [ref=e141] [cursor=pointer]
+            - button "ToolCallCard" [ref=e142] [cursor=pointer]
+            - button "SuggestionChips" [ref=e143] [cursor=pointer]
+            - button "MentionInput" [ref=e144] [cursor=pointer]
+            - button "DiffViewer" [ref=e145] [cursor=pointer]
+          - separator [ref=e146]
+        - generic [ref=e147]:
+          - button "Other" [ref=e148] [cursor=pointer]:
+            - generic [ref=e149]: Other
+            - img [ref=e150]
+          - generic [ref=e152]:
+            - button "Form" [ref=e153] [cursor=pointer]
+            - button "GradientBorder" [ref=e154] [cursor=pointer]
+            - button "Collapsible" [ref=e155] [cursor=pointer]
+            - button "VisuallyHidden" [ref=e156] [cursor=pointer]
+            - button "CodeBlock" [ref=e157] [cursor=pointer]
+            - button "RichTextEditor" [ref=e158] [cursor=pointer]
+            - button "RSC" [ref=e159] [cursor=pointer]
+          - separator [ref=e160]
+      - generic [ref=e161]:
+        - generic [ref=e162]:
+          - heading "Stack" [level=1] [ref=e163]
+          - paragraph [ref=e164]: Vertical and horizontal stacking.
+        - generic [ref=e165]:
+          - heading "Examples" [level=2] [ref=e166]
+          - generic [ref=e170]:
+            - tablist [ref=e173]:
+              - tab "Directions" [selected] [ref=e174] [cursor=pointer]: Directions
+            - tabpanel "Directions" [ref=e176]:
+              - generic [ref=e177]:
+                - generic [ref=e180]:
+                  - generic [ref=e181]: "1"
+                  - generic [ref=e182]: "2"
+                  - generic [ref=e183]: "3"
+                - button "View Code" [ref=e184] [cursor=pointer]
+        - generic [ref=e186]:
+          - heading "API" [level=2] [ref=e187]
+          - paragraph [ref=e188]: Loading props…
+        - generic [ref=e189]:
+          - button "Grid" [ref=e191] [cursor=pointer]:
+            - generic [ref=e192]:
+              - img [ref=e194]
+              - generic [ref=e196]: Grid
+          - button "Divider" [ref=e198] [cursor=pointer]:
+            - generic [ref=e199]:
+              - generic [ref=e200]: Divider
+              - img [ref=e202]
+  - contentinfo [ref=e204]:
+    - generic [ref=e205]:
+      - generic [ref=e206]: react-n-design
+      - generic [ref=e207]:
+        - link "GitHub" [ref=e208] [cursor=pointer]:
+          - /url: https://github.com/SoumyoNawab8/react-n-design
+          - img [ref=e209]
+          - text: GitHub
+        - generic [ref=e211]: v1.2.1
+        - generic [ref=e212]: © 2026 react-n-design

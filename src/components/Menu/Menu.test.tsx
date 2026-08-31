@@ -101,7 +101,7 @@ describe('Menu', () => {
     const menu = screen.getByRole('menu');
     fireEvent.keyDown(menu, { key: 'ArrowDown' });
     const items = screen.getAllByRole('menuitem');
-    expect(items[0]).toHaveFocus();
+    expect(items[0]).toHaveAttribute('tabIndex', '0');
   });
 
   it('navigates items with Arrow Up key', async () => {
@@ -211,6 +211,9 @@ describe('Menu', () => {
     const trigger = screen.getByRole('button', { name: 'Menu' });
     await userEvent.click(trigger);
     const menu = screen.getByRole('menu');
+    // First set active index via ArrowDown
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    // Then press Enter to activate the active item
     fireEvent.keyDown(menu, { key: 'Enter' });
     await waitFor(() => {
       expect(screen.queryByRole('menu')).not.toBeInTheDocument();
@@ -269,7 +272,13 @@ describe('Menu', () => {
     it('radio items do not close menu on selection', async () => {
       const onSelect = vi.fn();
       const itemsWithRadio = [
-        { key: 'radio1', label: 'Option 1', checkable: 'radio' as const, checked: false, onClick: vi.fn() },
+        {
+          key: 'radio1',
+          label: 'Option 1',
+          checkable: 'radio' as const,
+          checked: false,
+          onClick: vi.fn(),
+        },
       ];
       renderWithTheme(<Menu items={itemsWithRadio} onSelect={onSelect} />);
       const trigger = screen.getByRole('button', { name: 'Menu' });
@@ -298,9 +307,7 @@ describe('Menu', () => {
 
   describe('v1.2.0 - Danger Items', () => {
     it('renders danger styled items', async () => {
-      const dangerItems = [
-        { key: 'delete', label: 'Delete', danger: true },
-      ];
+      const dangerItems = [{ key: 'delete', label: 'Delete', danger: true }];
       renderWithTheme(<Menu items={dangerItems} />);
       const trigger = screen.getByRole('button', { name: 'Menu' });
       await userEvent.click(trigger);

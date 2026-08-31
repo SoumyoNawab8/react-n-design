@@ -1,20 +1,15 @@
 'use client';
 import React, {
+  type CSSProperties,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
-  type CSSProperties,
 } from 'react';
+import { FaCheck, FaExclamationTriangle, FaInfoCircle, FaTimes, FaTimesCircle } from '../../icons';
 import {
-  FaCheck,
-  FaExclamationTriangle,
-  FaInfoCircle,
-  FaTimes,
-  FaTimesCircle,
-} from '../../icons';
-import {
+  ToastRichContent as StyledToastRichContent,
   ToastAction,
   ToastAvatar,
   ToastCloseButton,
@@ -23,7 +18,6 @@ import {
   ToastIcon,
   ToastMeta,
   ToastProgress,
-  ToastRichContent as StyledToastRichContent,
   ToastSpinner,
   ToastTitle,
   type ToastVariant,
@@ -92,7 +86,7 @@ export const Toast = React.memo(
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const dismissHandlerRef = useRef(() => onDismiss(id));
-    
+
     // Swipe state
     const [isDragging, setIsDragging] = useState(false);
     const [swipeX, setSwipeX] = useState(0);
@@ -102,9 +96,12 @@ export const Toast = React.memo(
     const rafRef = useRef<number | null>(null);
 
     // Memoized dismiss handler
-    const memoizedDismiss = useMemo(() => () => {
-      dismissHandlerRef.current();
-    }, []);
+    const memoizedDismiss = useMemo(
+      () => () => {
+        dismissHandlerRef.current();
+      },
+      []
+    );
 
     const clearTimer = useCallback(() => {
       if (timerRef.current) {
@@ -130,7 +127,8 @@ export const Toast = React.memo(
 
     // Check if mobile device
     useEffect(() => {
-      isMobile.current = window.matchMedia('(max-width: 640px)').matches || 'ontouchstart' in window;
+      isMobile.current =
+        window.matchMedia('(max-width: 640px)').matches || 'ontouchstart' in window;
     }, []);
 
     // Use requestAnimationFrame for position updates
@@ -144,27 +142,33 @@ export const Toast = React.memo(
     }, []);
 
     // Touch swipe handlers for mobile
-    const handleTouchStart = useCallback((e: React.TouchEvent) => {
-      if (!isMobile.current) return;
-      startXRef.current = e.touches[0].clientX;
-      currentXRef.current = e.touches[0].clientX;
-      setIsDragging(true);
-      clearTimer();
-    }, [clearTimer]);
+    const handleTouchStart = useCallback(
+      (e: React.TouchEvent) => {
+        if (!isMobile.current) return;
+        startXRef.current = e.touches[0].clientX;
+        currentXRef.current = e.touches[0].clientX;
+        setIsDragging(true);
+        clearTimer();
+      },
+      [clearTimer]
+    );
 
-    const handleTouchMove = useCallback((e: React.TouchEvent) => {
-      if (!isDragging || !isMobile.current) return;
-      currentXRef.current = e.touches[0].clientX;
-      const diff = currentXRef.current - startXRef.current;
-      updateSwipePosition(diff);
-    }, [isDragging, updateSwipePosition]);
+    const handleTouchMove = useCallback(
+      (e: React.TouchEvent) => {
+        if (!isDragging || !isMobile.current) return;
+        currentXRef.current = e.touches[0].clientX;
+        const diff = currentXRef.current - startXRef.current;
+        updateSwipePosition(diff);
+      },
+      [isDragging, updateSwipePosition]
+    );
 
     const handleTouchEnd = useCallback(() => {
       if (!isMobile.current) return;
       setIsDragging(false);
       const diff = currentXRef.current - startXRef.current;
       const threshold = 80;
-      
+
       if (Math.abs(diff) > threshold) {
         // Dismiss with swipe animation
         if (wrapperRef.current) {
@@ -200,9 +204,9 @@ export const Toast = React.memo(
 
     // Animation values with spring physics
     const initial = { opacity: 0, x: 120, scale: 0.9 };
-    const animate = { 
-      opacity: 1, 
-      x: swipeX, 
+    const animate = {
+      opacity: 1,
+      x: swipeX,
       scale: 1,
     };
     const exit = { opacity: 0, x: 120, scale: 0.9, transition: { duration: 0.25 } };
@@ -249,7 +253,9 @@ export const Toast = React.memo(
             )}
           </ToastAvatar>
         ) : (
-          <ToastIcon variant={variant} isGlass={isGlass}>{DEFAULT_ICONS[variant]}</ToastIcon>
+          <ToastIcon variant={variant} isGlass={isGlass}>
+            {DEFAULT_ICONS[variant]}
+          </ToastIcon>
         )}
         <ToastContent>
           {title && <ToastTitle>{title}</ToastTitle>}

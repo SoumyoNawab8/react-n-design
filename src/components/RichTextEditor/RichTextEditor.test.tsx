@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axe from 'axe-core';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
-import axe from 'axe-core';
 import { vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
 import { RichTextEditor } from './RichTextEditor';
@@ -12,9 +12,7 @@ const renderWithTheme = (ui: React.ReactElement) =>
 
 describe('RichTextEditor', () => {
   it('renders the editor and toolbar buttons', () => {
-    renderWithTheme(
-      <RichTextEditor value="" onChange={() => {}} />
-    );
+    renderWithTheme(<RichTextEditor value="" onChange={() => {}} />);
     expect(screen.getByRole('textbox')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Bold/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Italic/i })).toBeInTheDocument();
@@ -27,18 +25,14 @@ describe('RichTextEditor', () => {
   });
 
   it('shows placeholder when empty', () => {
-    renderWithTheme(
-      <RichTextEditor value="" onChange={() => {}} placeholder="Type here..." />
-    );
+    renderWithTheme(<RichTextEditor value="" onChange={() => {}} placeholder="Type here..." />);
     const editor = screen.getByRole('textbox');
     expect(editor).toHaveAttribute('data-placeholder', 'Type here...');
   });
 
   it('calls onChange when content changes', async () => {
     const onChange = vi.fn();
-    renderWithTheme(
-      <RichTextEditor value="" onChange={onChange} />
-    );
+    renderWithTheme(<RichTextEditor value="" onChange={onChange} />);
     const editor = screen.getByRole('textbox');
     await userEvent.click(editor);
     await userEvent.type(editor, 'Hello');
@@ -46,9 +40,7 @@ describe('RichTextEditor', () => {
   });
 
   it('disables editor and buttons when disabled is true', () => {
-    renderWithTheme(
-      <RichTextEditor value="" onChange={() => {}} disabled />
-    );
+    renderWithTheme(<RichTextEditor value="" onChange={() => {}} disabled />);
     const editor = screen.getByRole('textbox');
     expect(editor).toHaveAttribute('contenteditable', 'false');
 
@@ -59,9 +51,7 @@ describe('RichTextEditor', () => {
   });
 
   it('forwards className', () => {
-    renderWithTheme(
-      <RichTextEditor value="" onChange={() => {}} className="my-editor" />
-    );
+    renderWithTheme(<RichTextEditor value="" onChange={() => {}} className="my-editor" />);
     const wrapper = document.querySelector('.my-editor');
     expect(wrapper).toBeInTheDocument();
   });
@@ -75,9 +65,7 @@ describe('RichTextEditor', () => {
   });
 
   it('syncs external value prop', () => {
-    const { rerender } = renderWithTheme(
-      <RichTextEditor value="Initial" onChange={() => {}} />
-    );
+    const { rerender } = renderWithTheme(<RichTextEditor value="Initial" onChange={() => {}} />);
     const editor = screen.getByRole('textbox');
     expect(editor).toHaveTextContent('Initial');
 
@@ -90,9 +78,7 @@ describe('RichTextEditor', () => {
   });
 
   it('renders toolbar with correct aria-label', () => {
-    renderWithTheme(
-      <RichTextEditor value="" onChange={() => {}} />
-    );
+    renderWithTheme(<RichTextEditor value="" onChange={() => {}} />);
     const toolbar = screen.getByRole('toolbar');
     expect(toolbar).toHaveAttribute('aria-label', 'Text formatting');
   });

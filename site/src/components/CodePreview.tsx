@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from 'react';
 import Prism from 'prismjs';
+import type React from 'react';
+import { useMemo, useState } from 'react';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-jsx';
@@ -99,9 +100,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({ code, language = 'tsx' }) => 
 
   return (
     <PreviewContainer>
-      <CopyButton onClick={handleCopy}>
-        {copied ? 'Copied!' : 'Copy'}
-      </CopyButton>
+      <CopyButton onClick={handleCopy}>{copied ? 'Copied!' : 'Copy'}</CopyButton>
       <CodeContainer>
         <LineNumbers>
           {lines.map((_, i) => (

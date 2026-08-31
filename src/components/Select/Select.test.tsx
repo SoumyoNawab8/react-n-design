@@ -1,11 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import axe from 'axe-core';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
-import { Select, SelectOptionProps, SelectOptionGroup } from './Select';
+import { Select, type SelectOptionGroup, type SelectOptionProps } from './Select';
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
@@ -87,12 +86,7 @@ describe('Select v1.2.0', () => {
     it('removes chip when clicking close button', async () => {
       const onChange = vi.fn();
       renderWithTheme(
-        <Select
-          options={options}
-          mode="multiple"
-          value={['a', 'b']}
-          onChange={onChange}
-        />
+        <Select options={options} mode="multiple" value={['a', 'b']} onChange={onChange} />
       );
 
       const closeButton = screen.getAllByRole('button', { name: /remove/i })[0];
@@ -105,8 +99,7 @@ describe('Select v1.2.0', () => {
 
     it('toggles selection in multi-select mode', async () => {
       const onChange = vi.fn();
-      renderWithTheme(
-        <Select options={options} mode="multiple" onChange={onChange} />);
+      renderWithTheme(<Select options={options} mode="multiple" onChange={onChange} />);
 
       await userEvent.click(screen.getByRole('combobox'));
       await userEvent.click(screen.getByRole('option', { name: /option a/i }));
@@ -133,8 +126,7 @@ describe('Select v1.2.0', () => {
 
   describe('Search functionality', () => {
     it('filters options when searchable is true', async () => {
-      renderWithTheme(
-        <Select options={options} searchable />);
+      renderWithTheme(<Select options={options} searchable />);
 
       await userEvent.click(screen.getByRole('combobox'));
       const searchInput = screen.getByRole('textbox');
@@ -145,8 +137,7 @@ describe('Select v1.2.0', () => {
     });
 
     it('shows empty state when no results', async () => {
-      renderWithTheme(
-        <Select options={options} searchable />);
+      renderWithTheme(<Select options={options} searchable />);
 
       await userEvent.click(screen.getByRole('combobox'));
       const searchInput = screen.getByRole('textbox');
@@ -196,19 +187,19 @@ describe('Select v1.2.0', () => {
 
   describe('Virtualization', () => {
     it('uses virtual list for large datasets', async () => {
-      const { container } = renderWithTheme(
-        <Select options={manyOptions} virtualThreshold={50} />
-      );
+      const { container } = renderWithTheme(<Select options={manyOptions} virtualThreshold={50} />);
 
       await userEvent.click(screen.getByRole('combobox'));
       // react-window creates elements with position absolute style
-      expect(container.querySelector('[style*="overflow"][style*="auto"], [style*="relative"], div[style*="height"]')).toBeTruthy();
+      expect(
+        container.querySelector(
+          '[style*="overflow"][style*="auto"], [style*="relative"], div[style*="height"]'
+        )
+      ).toBeTruthy();
     });
 
     it('renders all options for small datasets', () => {
-      const { container } = renderWithTheme(
-        <Select options={options} virtualThreshold={50} />
-      );
+      const { container } = renderWithTheme(<Select options={options} virtualThreshold={50} />);
 
       expect(container.querySelector('.ReactVirtualized__List')).not.toBeInTheDocument();
     });
@@ -217,20 +208,14 @@ describe('Select v1.2.0', () => {
   describe('Responsive sizing', () => {
     it('accepts responsive size prop', () => {
       renderWithTheme(
-        <Select
-          options={options}
-          size={{ mobile: 'small', tablet: 'medium', desktop: 'large' }}
-        />
+        <Select options={options} size={{ mobile: 'small', tablet: 'medium', desktop: 'large' }} />
       );
       expect(screen.getByRole('combobox')).toBeInTheDocument();
     });
 
     it('accepts responsive fullWidth prop', () => {
       renderWithTheme(
-        <Select
-          options={options}
-          fullWidth={{ mobile: true, tablet: true, desktop: false }}
-        />
+        <Select options={options} fullWidth={{ mobile: true, tablet: true, desktop: false }} />
       );
       expect(screen.getByRole('combobox')).toBeInTheDocument();
     });
@@ -253,10 +238,7 @@ describe('Select v1.2.0', () => {
 
     it('applies custom dropdown style', async () => {
       const { container } = renderWithTheme(
-        <Select
-          options={options}
-          dropdownStyle={{ maxHeight: '400px' }}
-        />
+        <Select options={options} dropdownStyle={{ maxHeight: '400px' }} />
       );
       await userEvent.click(screen.getByRole('combobox'));
       const dropdown = container.querySelector('[role="listbox"]');
@@ -267,14 +249,7 @@ describe('Select v1.2.0', () => {
   describe('Clear functionality', () => {
     it('clears single selection', async () => {
       const onChange = vi.fn();
-      renderWithTheme(
-        <Select
-          options={options}
-          defaultValue="a"
-          allowClear
-          onChange={onChange}
-        />
-      );
+      renderWithTheme(<Select options={options} defaultValue="a" allowClear onChange={onChange} />);
 
       const clearButton = screen.getByRole('button', { name: /clear/i });
       await userEvent.click(clearButton);

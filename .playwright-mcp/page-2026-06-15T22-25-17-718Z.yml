@@ -1,0 +1,176 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link "react-n-design" [ref=e7] [cursor=pointer]:
+        - /url: /react-n-design
+      - navigation "Primary" [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /react-n-design
+        - link "Components" [ref=e10] [cursor=pointer]:
+          - /url: /react-n-design/components
+        - link "Get Started" [ref=e11] [cursor=pointer]:
+          - /url: /react-n-design/get-started
+        - combobox "Theme" [ref=e12] [cursor=pointer]:
+          - option "Light" [selected]
+          - option "Dark"
+          - option "System"
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - heading "Get Started with react-n-design" [level=1] [ref=e16]
+        - paragraph [ref=e17]: A modern, accessible, and animated React component library built with neomorphism in mind.
+      - generic [ref=e18]:
+        - generic [ref=e20]:
+          - heading "Installation" [level=2] [ref=e21]
+          - separator [ref=e22]
+          - paragraph [ref=e23]: Install the package via npm or your favourite package manager.
+          - generic [ref=e25]:
+            - button "Copy" [ref=e26] [cursor=pointer]
+            - generic [ref=e27]:
+              - generic [ref=e29]: "1"
+              - code [ref=e31]: npm install react-n-design
+        - generic [ref=e33]:
+          - heading "Quick Start" [level=2] [ref=e34]
+          - separator [ref=e35]
+          - paragraph [ref=e36]:
+            - text: Wrap your application with
+            - code [ref=e37]: AppThemeProvider
+            - text: and start dropping in components.
+          - generic [ref=e39]:
+            - button "Copy" [ref=e40] [cursor=pointer]
+            - generic [ref=e41]:
+              - generic [ref=e42]:
+                - generic [ref=e43]: "1"
+                - generic [ref=e44]: "2"
+                - generic [ref=e45]: "3"
+                - generic [ref=e46]: "4"
+                - generic [ref=e47]: "5"
+                - generic [ref=e48]: "6"
+                - generic [ref=e49]: "7"
+                - generic [ref=e50]: "8"
+                - generic [ref=e51]: "9"
+              - code [ref=e53]:
+                - text: "import { AppThemeProvider, Button } from 'react-n-design'; function App() { return ("
+                - generic [ref=e54]:
+                  - generic [ref=e55]: <AppThemeProvider
+                  - text: ">"
+                - generic [ref=e56]:
+                  - generic [ref=e57]: <Button
+                  - text: variant
+                  - generic [ref=e58]: ="primary"
+                  - text: ">"
+                - text: Hello, world!
+                - generic [ref=e59]:
+                  - generic [ref=e60]: </Button
+                  - text: ">"
+                - generic [ref=e61]:
+                  - generic [ref=e62]: </AppThemeProvider
+                  - text: ">"
+                - text: "); }"
+        - generic [ref=e64]:
+          - heading "Theming" [level=2] [ref=e65]
+          - separator [ref=e66]
+          - paragraph [ref=e67]:
+            - text: The library ships with
+            - strong [ref=e68]: light
+            - text: ","
+            - strong [ref=e69]: dark
+            - text: ", and"
+            - strong [ref=e70]: system
+            - text: modes out of the box. Use the
+            - code [ref=e71]: useTheme
+            - text: hook to read or switch the current theme at runtime.
+          - paragraph [ref=e72]: Design tokens are exposed as CSS custom properties, so you can override colours, shadows, and radii in your own stylesheets without touching component internals.
+          - generic [ref=e74]:
+            - button "Copy" [ref=e75] [cursor=pointer]
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - generic [ref=e78]: "1"
+                - generic [ref=e79]: "2"
+                - generic [ref=e80]: "3"
+                - generic [ref=e81]: "4"
+              - code [ref=e83]: "import { useTheme } from 'react-n-design'; const { theme, setTheme } = useTheme(); // setTheme('light' | 'dark' | 'system');"
+        - generic [ref=e85]:
+          - heading "Tree Shaking" [level=2] [ref=e86]
+          - separator [ref=e87]
+          - paragraph [ref=e88]: Prefer direct imports for the smallest possible bundle. The library is fully tree-shakeable.
+          - generic [ref=e90]:
+            - button "Copy" [ref=e91] [cursor=pointer]
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - generic [ref=e94]: "1"
+                - generic [ref=e95]: "2"
+                - generic [ref=e96]: "3"
+                - generic [ref=e97]: "4"
+                - generic [ref=e98]: "5"
+              - code [ref=e100]: "// Recommended direct import import { Button } from 'react-n-design/components/Button'; // Or use the barrel if your bundler handles tree-shaking import { Button } from 'react-n-design';"
+        - generic [ref=e102]:
+          - heading "Adapters" [level=2] [ref=e103]
+          - separator [ref=e104]
+          - paragraph [ref=e105]: An official React Hook Form adapter is available so you can wire complex inputs with minimal boilerplate.
+          - generic [ref=e107]:
+            - button "Copy" [ref=e108] [cursor=pointer]
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]: "1"
+                - generic [ref=e112]: "2"
+              - code [ref=e114]: "import { useForm } from 'react-hook-form'; import { InputAdapter } from 'react-n-design/adapters/react-hook-form';"
+        - generic [ref=e116]:
+          - heading "Accessibility" [level=2] [ref=e117]
+          - separator [ref=e118]
+          - generic [ref=e119]:
+            - paragraph [ref=e120]: All components are engineered for WCAG 2.1 AA compliance, with robust keyboard navigation and focus management.
+            - paragraph [ref=e121]:
+              - text: Drop the
+              - code [ref=e122]: SkipToContent
+              - text: component at the top of your layout to give keyboard and screen-reader users a fast-path to the main content.
+            - paragraph [ref=e123]:
+              - text: Animations automatically respect
+              - code [ref=e124]: prefers-reduced-motion
+              - text: when the user opts for reduced motion at the OS level.
+          - generic [ref=e126]:
+            - button "Copy" [ref=e127] [cursor=pointer]
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - generic [ref=e130]: "1"
+                - generic [ref=e131]: "2"
+                - generic [ref=e132]: "3"
+              - code [ref=e134]:
+                - text: "import { SkipToContent } from 'react-n-design';"
+                - generic [ref=e135]:
+                  - generic [ref=e136]: <SkipToContent
+                  - text: targetId
+                  - generic [ref=e137]: ="main-content"
+                  - text: />
+        - generic [ref=e139]:
+          - heading "Print & Touch" [level=2] [ref=e140]
+          - separator [ref=e141]
+          - paragraph [ref=e142]: Import utility stylesheets to ensure your UI looks great on paper and feels native on touch devices.
+          - generic [ref=e144]:
+            - button "Copy" [ref=e145] [cursor=pointer]
+            - generic [ref=e146]:
+              - generic [ref=e147]:
+                - generic [ref=e148]: "1"
+                - generic [ref=e149]: "2"
+                - generic [ref=e150]: "3"
+              - code [ref=e152]: import 'react-n-design/styles/tokens.css'; import 'react-n-design/styles/print.css'; import 'react-n-design/styles/touch.css';
+        - generic [ref=e154]:
+          - heading "Contributing" [level=2] [ref=e155]
+          - separator [ref=e156]
+          - paragraph [ref=e157]: Found a bug or have an idea for a new component? We welcome contributions! Open an issue or pull request on GitHub.
+          - link "View on GitHub" [ref=e158] [cursor=pointer]:
+            - /url: https://github.com/SoumyoNawab8/react-n-design
+            - img [ref=e159]
+            - text: View on GitHub
+  - contentinfo [ref=e161]:
+    - generic [ref=e162]:
+      - generic [ref=e163]: react-n-design
+      - generic [ref=e164]:
+        - link "GitHub" [ref=e165] [cursor=pointer]:
+          - /url: https://github.com/SoumyoNawab8/react-n-design
+          - img [ref=e166]
+          - text: GitHub
+        - generic [ref=e168]: v1.2.1
+        - generic [ref=e169]: © 2026 react-n-design

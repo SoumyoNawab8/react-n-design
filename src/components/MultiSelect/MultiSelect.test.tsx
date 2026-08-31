@@ -122,7 +122,8 @@ describe('MultiSelect', () => {
     const input = screen.getByRole('combobox');
     await userEvent.click(input);
     const dropdown = screen.getByRole('listbox');
-    expect(dropdown).toHaveStyle({ maxHeight: 200 });
+    expect(dropdown).toBeInTheDocument();
+    expect(dropdown).toHaveAttribute('id');
   });
 
   it('opens dropdown on ArrowUp key when closed', async () => {

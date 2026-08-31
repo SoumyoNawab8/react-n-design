@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Table, Input, Button } from 'react-n-design';
+import type React from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { Button, Input, Table } from 'react-n-design';
 import styled from 'styled-components';
 
 interface PropsTableProps {
@@ -119,7 +120,9 @@ const RequiredBadge = styled.span<{ $required?: boolean }>`
   font-weight: 600;
   line-height: 1.4;
   background: ${({ $required, theme }) =>
-    $required ? (theme.colors.error ? `${theme.colors.error}18` : '#ff4d4f18') : (theme.colors.success ? `${theme.colors.success}18` : '#52c41a18')};
+    $required
+      ? (theme.colors.error ? `${theme.colors.error}18` : '#ff4d4f18')
+      : (theme.colors.success ? `${theme.colors.success}18` : '#52c41a18')};
   color: ${({ $required, theme }) =>
     $required ? (theme.colors.error || '#ff4d4f') : (theme.colors.success || '#52c41a')};
 `;
@@ -204,7 +207,11 @@ const PropsTable: React.FC<PropsTableProps> = ({ componentName }) => {
             Props documentation is not available for <strong>{componentName}</strong>.
           </p>
           <PlaceholderActions>
-            <Button size="small" variant="ghost" onClick={() => window.open(sourceUrl, '_blank', 'noopener,noreferrer')}>
+            <Button
+              size="small"
+              variant="ghost"
+              onClick={() => window.open(sourceUrl, '_blank', 'noopener,noreferrer')}
+            >
               View Source on GitHub
             </Button>
           </PlaceholderActions>
@@ -230,52 +237,54 @@ const PropsTable: React.FC<PropsTableProps> = ({ componentName }) => {
       <TableScrollContainer>
         <Table<PropRow>
           columns={[
-          {
-            key: 'name',
-            title: 'Name',
-            dataIndex: 'name',
-            render: (value) => <code style={{ fontWeight: 600 }}>{value}</code>,
-          },
-          {
-            key: 'type',
-            title: 'Type',
-            dataIndex: 'type',
-            render: (value: string) => <TypeBadge $type={value}>{value}</TypeBadge>,
-          },
-          {
-            key: 'defaultValue',
-            title: 'Default',
-            dataIndex: 'defaultValue',
-            render: (value) =>
-              value != null ? (
-                <code style={{ fontSize: '0.8125rem' }}>{String(value)}</code>
-              ) : (
-                <span style={{ color: 'var(--colors-text-secondary)', fontSize: '0.8125rem' }}>—</span>
+            {
+              key: 'name',
+              title: 'Name',
+              dataIndex: 'name',
+              render: (value) => <code style={{ fontWeight: 600 }}>{value}</code>,
+            },
+            {
+              key: 'type',
+              title: 'Type',
+              dataIndex: 'type',
+              render: (value: string) => <TypeBadge $type={value}>{value}</TypeBadge>,
+            },
+            {
+              key: 'defaultValue',
+              title: 'Default',
+              dataIndex: 'defaultValue',
+              render: (value) =>
+                value != null ? (
+                  <code style={{ fontSize: '0.8125rem' }}>{String(value)}</code>
+                ) : (
+                  <span style={{ color: 'var(--colors-text-secondary)', fontSize: '0.8125rem' }}>
+                    —
+                  </span>
+                ),
+            },
+            {
+              key: 'required',
+              title: 'Required',
+              dataIndex: 'required',
+              render: (value: boolean) => (
+                <RequiredBadge $required={value}>{value ? 'Yes' : 'No'}</RequiredBadge>
               ),
-          },
-          {
-            key: 'required',
-            title: 'Required',
-            dataIndex: 'required',
-            render: (value: boolean) => (
-              <RequiredBadge $required={value}>{value ? 'Yes' : 'No'}</RequiredBadge>
-            ),
-          },
-          {
-            key: 'description',
-            title: 'Description',
-            dataIndex: 'description',
-            render: (value) => (
-              <span style={{ fontSize: '0.875rem', color: 'var(--colors-text-secondary)' }}>
-                {value || '—'}
-              </span>
-            ),
-          },
-        ]}
-        dataSource={filtered}
-        pagination={false}
-        emptyTitle="No matching props"
-        emptyDescription={`No props match '${query}'. Try a different search.`}
+            },
+            {
+              key: 'description',
+              title: 'Description',
+              dataIndex: 'description',
+              render: (value) => (
+                <span style={{ fontSize: '0.875rem', color: 'var(--colors-text-secondary)' }}>
+                  {value || '—'}
+                </span>
+              ),
+            },
+          ]}
+          dataSource={filtered}
+          pagination={false}
+          emptyTitle="No matching props"
+          emptyDescription={`No props match '${query}'. Try a different search.`}
         />
       </TableScrollContainer>
     </TableWrapper>

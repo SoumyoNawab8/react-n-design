@@ -54,16 +54,14 @@ const OrgChartNode: React.FC<{
         {node.avatar ? (
           <NodeAvatar src={node.avatar} alt="" />
         ) : (
-          <NodeAvatarPlaceholder>
-            {node.label.charAt(0).toUpperCase()}
-          </NodeAvatarPlaceholder>
+          <NodeAvatarPlaceholder>{node.label.charAt(0).toUpperCase()}</NodeAvatarPlaceholder>
         )}
         <NodeLabel>{node.label}</NodeLabel>
         {node.role && <NodeRole>{node.role}</NodeRole>}
       </NodeCard>
       {hasChildren && (
         <OrgTree $isRoot={false}>
-          {node.children!.map((child) => (
+          {node.children?.map((child) => (
             <OrgChartNode key={child.id} node={child} onNodeClick={onNodeClick} />
           ))}
         </OrgTree>

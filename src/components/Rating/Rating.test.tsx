@@ -16,7 +16,7 @@ describe('Rating', () => {
 
   it('renders correct number of stars', () => {
     renderWithTheme(<Rating value={3} max={5} />);
-    const rating = screen.getByRole('img');
+    const rating = screen.getByLabelText('Rating: 3 out of 5');
     expect(rating.children).toHaveLength(5);
   });
 
@@ -25,7 +25,8 @@ describe('Rating', () => {
     renderWithTheme(<Rating value={0} onChange={onChange} readOnly={false} />);
 
     // Click on the 3rd star
-    const stars = screen.getByRole('img').children;
+    const rating = screen.getByLabelText('Rating: 0 out of 5');
+    const stars = rating.children;
     fireEvent.click(stars[2]);
     expect(onChange).toHaveBeenCalledWith(3);
   });
@@ -34,7 +35,8 @@ describe('Rating', () => {
     const onChange = vi.fn();
     renderWithTheme(<Rating value={3} onChange={onChange} readOnly={true} />);
 
-    const stars = screen.getByRole('img').children;
+    const rating = screen.getByLabelText('Rating: 3 out of 5');
+    const stars = rating.children;
     fireEvent.click(stars[2]);
     expect(onChange).not.toHaveBeenCalled();
   });
@@ -43,7 +45,8 @@ describe('Rating', () => {
     const onChange = vi.fn();
     renderWithTheme(<Rating value={0} onChange={onChange} readOnly={false} />);
 
-    const stars = screen.getByRole('img').children;
+    const rating = screen.getByLabelText('Rating: 0 out of 5');
+    const stars = rating.children;
     fireEvent.keyDown(stars[1], { key: 'Enter' });
     expect(onChange).toHaveBeenCalled();
   });
@@ -60,7 +63,7 @@ describe('Rating', () => {
 
   it('has proper accessibility - img role', () => {
     renderWithTheme(<Rating value={3} />);
-    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByLabelText('Rating: 3 out of 5')).toBeInTheDocument();
   });
 
   it('provides accessible aria-label for rating description', () => {
@@ -71,7 +74,8 @@ describe('Rating', () => {
   it('each star has accessible aria-label for rating value', () => {
     renderWithTheme(<Rating value={0} />);
 
-    const stars = screen.getByRole('img').children;
+    const rating = screen.getByLabelText('Rating: 0 out of 5');
+    const stars = rating.children;
     expect(stars[0]).toHaveAttribute('aria-label', 'Rate 1 out of 5');
     expect(stars[4]).toHaveAttribute('aria-label', 'Rate 5 out of 5');
   });
@@ -79,21 +83,24 @@ describe('Rating', () => {
   it('stars have button role for interactivity', () => {
     renderWithTheme(<Rating value={0} />);
 
-    const stars = screen.getByRole('img').children;
+    const rating = screen.getByLabelText('Rating: 0 out of 5');
+    const stars = rating.children;
     expect(stars[0]).toHaveAttribute('role', 'button');
   });
 
   it('readOnly stars are not focusable', () => {
     renderWithTheme(<Rating value={3} readOnly />);
 
-    const stars = screen.getByRole('img').children;
+    const rating = screen.getByLabelText('Rating: 3 out of 5');
+    const stars = rating.children;
     expect(stars[0]).toHaveAttribute('tabindex', '-1');
   });
 
   it('interactive stars are focusable', () => {
     renderWithTheme(<Rating value={3} readOnly={false} />);
 
-    const stars = screen.getByRole('img').children;
+    const rating = screen.getByLabelText('Rating: 3 out of 5');
+    const stars = rating.children;
     expect(stars[0]).toHaveAttribute('tabindex', '0');
   });
 });

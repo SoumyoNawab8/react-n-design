@@ -65,10 +65,7 @@ export const OTPInput = ({
     [onChange, onComplete]
   );
 
-  const handleChange = (
-    index: number,
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     if (val === '') return;
 
@@ -86,10 +83,7 @@ export const OTPInput = ({
     }
   };
 
-  const handleKeyDown = (
-    index: number,
-    e: React.KeyboardEvent<HTMLInputElement>
-  ) => {
+  const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace') {
       e.preventDefault();
       if (digits[index] !== '') {
@@ -117,10 +111,7 @@ export const OTPInput = ({
     e.preventDefault();
     hasInteractedRef.current = true;
     const pastedData = e.clipboardData.getData('text');
-    const numericChars = pastedData
-      .replace(/\D/g, '')
-      .split('')
-      .slice(0, length);
+    const numericChars = pastedData.replace(/\D/g, '').split('').slice(0, length);
 
     const newDigits = [...digits];
     numericChars.forEach((char, i) => {
@@ -129,7 +120,7 @@ export const OTPInput = ({
 
     updateDigits(newDigits);
 
-    const nextEmpty = newDigits.findIndex((d) => d === '');
+    const nextEmpty = newDigits.indexOf('');
     if (nextEmpty !== -1) {
       focusInput(nextEmpty);
     } else {
@@ -138,11 +129,7 @@ export const OTPInput = ({
   };
 
   return (
-    <OTPInputContainer
-      className={className}
-      role="group"
-      aria-label="One-time password input"
-    >
+    <OTPInputContainer className={className} role="group" aria-label="One-time password input">
       {digits.map((digit, index) => (
         <OTPDigitInput
           key={index}

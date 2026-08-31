@@ -1,0 +1,68 @@
+[     207ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:14090
+[     247ms] [ERROR] React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. whileTap whiletap @ http://localhost:5175/react-n-design/@vite/client:524
+[     248ms] [ERROR] React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. whileHover whilehover @ http://localhost:5175/react-n-design/@vite/client:524
+[     268ms] [ERROR] React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. layoutId layoutid @ http://localhost:5175/react-n-design/@vite/client:524
+[     269ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[     269ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[     299ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[     299ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[  842024ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[  842024ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[  842030ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[  842030ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[  842036ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at finishRenderingHooks (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:3996:36)
+    at renderWithHooks (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:3977:4)
+    at updateFunctionComponent (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:5322:16)
+    at beginWork (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:5893:20)
+    at runWithFiberInDEV (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:604:66)
+    at performUnitOfWork (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8182:92)
+    at workLoopSync (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8078:37)
+    at renderRootSync (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8062:6)
+    at performWorkOnRoot (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:7747:27)
+    at performSyncWorkOnRoot (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8820:4)
+[  842035ms] [WARNING] %s
+
+%s
+ An error occurred in the <ExampleTabItem> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1019986ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1019986ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1179142ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1179142ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1179144ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1179144ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1179147ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at finishRenderingHooks (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:3996:36)
+    at renderWithHooks (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:3977:4)
+    at updateFunctionComponent (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:5322:16)
+    at beginWork (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:5893:20)
+    at runWithFiberInDEV (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:604:66)
+    at performUnitOfWork (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8182:92)
+    at workLoopSync (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8078:37)
+    at renderRootSync (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8062:6)
+    at performWorkOnRoot (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:7747:27)
+    at performSyncWorkOnRoot (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8820:4)
+[ 1179147ms] [WARNING] %s
+
+%s
+ An error occurred in the <ExampleTabItem> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1337974ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1337974ms] [ERROR] Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks @ http://localhost:5175/react-n-design/@vite/client:524
+[ 1497713ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at finishRenderingHooks (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:3996:36)
+    at renderWithHooks (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:3977:4)
+    at updateFunctionComponent (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:5322:16)
+    at beginWork (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:5893:20)
+    at runWithFiberInDEV (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:604:66)
+    at performUnitOfWork (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8182:92)
+    at workLoopSync (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8078:37)
+    at renderRootSync (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8062:6)
+    at performWorkOnRoot (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:7747:27)
+    at performSyncWorkOnRoot (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8820:4)
+[ 1497713ms] [WARNING] %s
+
+%s
+ An error occurred in the <ExampleTabItem> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://localhost:5175/react-n-design/@vite/client:524

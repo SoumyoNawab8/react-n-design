@@ -119,19 +119,16 @@ const TableComponent = <T extends object>({
   const [currentPage, setCurrentPage] = useState(pagination ? pagination.defaultCurrent || 1 : 1);
 
   // Memoize handleSort function
-  const handleSort = useCallback(
-    (key: string, sorter?: (a: T, b: T) => number) => {
-      if (!sorter) return;
-      setSortConfig((prev) => {
-        const newOrder = prev.key === key && prev.order === 'ascend' ? 'descend' : 'ascend';
-        return { key, order: newOrder };
-      });
-    },
-    []
-  );
+  const handleSort = useCallback((key: string, sorter?: (a: T, b: T) => number) => {
+    if (!sorter) return;
+    setSortConfig((prev) => {
+      const newOrder = prev.key === key && prev.order === 'ascend' ? 'descend' : 'ascend';
+      return { key, order: newOrder };
+    });
+  }, []);
 
   // Create a stable columns key for useMemo comparison
-  const columnsKey = useMemo(
+  const _columnsKey = useMemo(
     () => columns.map((col) => `${col.key}-${!!col.sorter}`).join('|'),
     [columns]
   );
@@ -143,7 +140,7 @@ const TableComponent = <T extends object>({
         // Check for common ID patterns
         const recordObj = record as Record<string, unknown>;
         if (rowKey && rowKey !== 'id' && rowKey in recordObj) {
-          return String((recordObj[rowKey as string] ?? index));
+          return String(recordObj[rowKey as string] ?? index);
         }
         if ('id' in recordObj) {
           return String(recordObj.id ?? index);
@@ -179,7 +176,15 @@ const TableComponent = <T extends object>({
 
     return sortedData;
     // Use columnsKey for stable comparison instead of columns array reference
-  }, [dataSource, sortConfig.key, sortConfig.order, sortConfig, currentPage, pagination, columnsKey]);
+  }, [
+    dataSource,
+    sortConfig.key,
+    sortConfig.order,
+    sortConfig,
+    currentPage,
+    pagination,
+    columns.find,
+  ]);
 
   // Memoize column render functions
   const columnRenderers = useMemo(
@@ -250,7 +255,7 @@ const TableComponent = <T extends object>({
         {(!showEmpty || hasData) && (
           <StyledTable role="table">
             <TableHeader $stickyHeader={stickyHeader}>
-              <tr role="row">
+              <tr>
                 {columns.map((col) => {
                   const isSorted = sortConfig.key === col.key;
                   const ariaSort = col.sorter
@@ -287,7 +292,7 @@ const TableComponent = <T extends object>({
                 })}
               </tr>
             </TableHeader>
-            <tbody role="rowgroup">
+            <tbody>
               {/* Skeleton loading state */}
               {showSkeleton &&
                 Array.from({ length: skeletonRows }).map((_, rowIndex) => (
@@ -299,9 +304,7 @@ const TableComponent = <T extends object>({
                         $hiddenMd={isColumnHidden(col.key, 'md')}
                         $hiddenLg={isColumnHidden(col.key, 'lg')}
                       >
-                        <SkeletonLine
-                          $width={`${60 + ((colIndex + rowIndex * 17) % 40)}%`}
-                        />
+                        <SkeletonLine $width={`${60 + ((colIndex + rowIndex * 17) % 40)}%`} />
                       </SkeletonCell>
                     ))}
                   </SkeletonRow>

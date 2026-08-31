@@ -24,9 +24,7 @@ const options = [
 
 describe('MentionInput', () => {
   it('renders and is accessible', async () => {
-    const { container } = renderWithTheme(
-      <ControlledMentionInput options={options} />
-    );
+    const { container } = renderWithTheme(<ControlledMentionInput options={options} />);
     expect(screen.getByRole('textbox')).toBeInTheDocument();
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
@@ -122,11 +120,7 @@ describe('MentionInput', () => {
 
   it('renders styled mentions in overlay', () => {
     renderWithTheme(
-      <MentionInput
-        value="Hello @Alice and @Bob"
-        onChange={vi.fn()}
-        options={options}
-      />
+      <MentionInput value="Hello @Alice and @Bob" onChange={vi.fn()} options={options} />
     );
     const overlay = screen.getByLabelText('Mention input').previousElementSibling;
     expect(overlay).toBeTruthy();

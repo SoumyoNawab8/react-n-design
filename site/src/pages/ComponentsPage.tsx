@@ -1,25 +1,20 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useMemo, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Button,
-  Drawer,
-  Input,
-  Divider,
-} from 'react-n-design';
-import {
-  FiMenu,
+  FiChevronDown,
   FiChevronLeft,
   FiChevronRight,
-  FiChevronDown,
   FiChevronUp,
+  FiMenu,
   FiSearch,
 } from 'react-icons/fi';
-import { componentCategories, allComponents } from '../data/components';
+import { Button, Divider, Drawer, Input } from 'react-n-design';
+import { useNavigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import ComponentCard from '../components/ComponentCard';
 import ComponentDemo from '../components/ComponentDemo';
 import PropsTable from '../components/PropsTable';
+import { allComponents, componentCategories } from '../data/components';
 
 const PageWrapper = styled.div`
   display: flex;
@@ -176,53 +171,51 @@ interface SidebarContentProps {
   onGoToComponent: (componentName: string) => void;
 }
 
-const SidebarContent = React.memo<SidebarContentProps>(({
-  search,
-  onSearchChange,
-  filteredCategories,
-  expanded,
-  onToggleCategory,
-  activeName,
-  onGoToComponent,
-}) => {
-  return (
-    <>
-      <SearchWrapper>
-        <Input
-          placeholder="Search components..."
-          value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
-          prefix={<FiSearch size={16} />}
-          fullWidth
-        />
-      </SearchWrapper>
-      {filteredCategories.map((cat) => (
-        <div key={cat.name}>
-          <CategoryHeader onClick={() => onToggleCategory(cat.name)}>
-            <span>{cat.name}</span>
-            {expanded.has(cat.name) ? (
-              <FiChevronUp size={16} />
-            ) : (
-              <FiChevronDown size={16} />
-            )}
-          </CategoryHeader>
-          <AccordionBody $expanded={expanded.has(cat.name)}>
-            {cat.components.map((c) => (
-              <ComponentLink
-                key={c.name}
-                $active={activeName === c.name}
-                onClick={() => onGoToComponent(c.name)}
-              >
-                {c.name}
-              </ComponentLink>
-            ))}
-          </AccordionBody>
-          <Divider />
-        </div>
-      ))}
-    </>
-  );
-});
+const SidebarContent = React.memo<SidebarContentProps>(
+  ({
+    search,
+    onSearchChange,
+    filteredCategories,
+    expanded,
+    onToggleCategory,
+    activeName,
+    onGoToComponent,
+  }) => {
+    return (
+      <>
+        <SearchWrapper>
+          <Input
+            placeholder="Search components..."
+            value={search}
+            onChange={(e) => onSearchChange(e.target.value)}
+            prefix={<FiSearch size={16} />}
+            fullWidth
+          />
+        </SearchWrapper>
+        {filteredCategories.map((cat) => (
+          <div key={cat.name}>
+            <CategoryHeader onClick={() => onToggleCategory(cat.name)}>
+              <span>{cat.name}</span>
+              {expanded.has(cat.name) ? <FiChevronUp size={16} /> : <FiChevronDown size={16} />}
+            </CategoryHeader>
+            <AccordionBody $expanded={expanded.has(cat.name)}>
+              {cat.components.map((c) => (
+                <ComponentLink
+                  key={c.name}
+                  $active={activeName === c.name}
+                  onClick={() => onGoToComponent(c.name)}
+                >
+                  {c.name}
+                </ComponentLink>
+              ))}
+            </AccordionBody>
+            <Divider />
+          </div>
+        ))}
+      </>
+    );
+  }
+);
 SidebarContent.displayName = 'SidebarContent';
 
 const ComponentsPage: React.FC = () => {
@@ -244,8 +237,7 @@ const ComponentsPage: React.FC = () => {
     return allComponents.findIndex((c) => c.name === name);
   }, [name]);
 
-  const prevComponent =
-    currentIndex > 0 ? allComponents[currentIndex - 1] : null;
+  const prevComponent = currentIndex > 0 ? allComponents[currentIndex - 1] : null;
   const nextComponent =
     currentIndex >= 0 && currentIndex < allComponents.length - 1
       ? allComponents[currentIndex + 1]
@@ -257,9 +249,7 @@ const ComponentsPage: React.FC = () => {
       .map((cat) => ({
         ...cat,
         components: cat.components.filter(
-          (c) =>
-            c.name.toLowerCase().includes(q) ||
-            c.description.toLowerCase().includes(q)
+          (c) => c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q)
         ),
       }))
       .filter((cat) => cat.components.length > 0);
@@ -302,10 +292,7 @@ const ComponentsPage: React.FC = () => {
           <SidebarContent {...sidebarProps} />
         </SidebarDesktop>
 
-        <MobileMenuButton
-          variant="ghost"
-          onClick={() => setMobileDrawerOpen(true)}
-        >
+        <MobileMenuButton variant="ghost" onClick={() => setMobileDrawerOpen(true)}>
           <FiMenu size={20} />
           Components
         </MobileMenuButton>
@@ -316,7 +303,9 @@ const ComponentsPage: React.FC = () => {
           placement="left"
           title="Components"
         >
-          <DrawerContent><SidebarContent {...sidebarProps} /></DrawerContent>
+          <DrawerContent>
+            <SidebarContent {...sidebarProps} />
+          </DrawerContent>
         </Drawer>
 
         <MainContent>
@@ -338,9 +327,7 @@ const ComponentsPage: React.FC = () => {
             <Button
               variant="ghost"
               disabled={!prevComponent}
-              onClick={() =>
-                prevComponent && goToComponent(prevComponent.name)
-              }
+              onClick={() => prevComponent && goToComponent(prevComponent.name)}
               leftIcon={<FiChevronLeft size={16} />}
             >
               {prevComponent ? prevComponent.name : 'Previous'}
@@ -348,9 +335,7 @@ const ComponentsPage: React.FC = () => {
             <Button
               variant="ghost"
               disabled={!nextComponent}
-              onClick={() =>
-                nextComponent && goToComponent(nextComponent.name)
-              }
+              onClick={() => nextComponent && goToComponent(nextComponent.name)}
               rightIcon={<FiChevronRight size={16} />}
             >
               {nextComponent ? nextComponent.name : 'Next'}
@@ -367,10 +352,7 @@ const ComponentsPage: React.FC = () => {
         <SidebarContent {...sidebarProps} />
       </SidebarDesktop>
 
-      <MobileMenuButton
-        variant="ghost"
-        onClick={() => setMobileDrawerOpen(true)}
-      >
+      <MobileMenuButton variant="ghost" onClick={() => setMobileDrawerOpen(true)}>
         <FiMenu size={20} />
         Components
       </MobileMenuButton>
@@ -381,14 +363,15 @@ const ComponentsPage: React.FC = () => {
         placement="left"
         title="Components"
       >
-        <DrawerContent><SidebarContent {...sidebarProps} /></DrawerContent>
+        <DrawerContent>
+          <SidebarContent {...sidebarProps} />
+        </DrawerContent>
       </Drawer>
 
       <MainContent>
         <DetailTitle>Components</DetailTitle>
         <DetailDesc>
-          {allComponents.length} components across {componentCategories.length}{' '}
-          categories.
+          {allComponents.length} components across {componentCategories.length} categories.
         </DetailDesc>
         {filteredCategories.length === 0 ? (
           <EmptyState>No components match your search.</EmptyState>

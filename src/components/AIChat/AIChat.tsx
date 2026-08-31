@@ -1,6 +1,5 @@
 'use client';
-import React from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FaCheck, FaCopy, FaPaperPlane, FaRobot, FaUser } from '../../icons';
 import { AnimatePresence, motion } from '../../utils/lazyMotion';
 import { Markdown } from '../Markdown';
@@ -160,7 +159,11 @@ export const AIChat = ({
                         aria-label={copiedId === msgId ? 'Copied' : 'Copy message'}
                         title={copiedId === msgId ? 'Copied!' : 'Copy'}
                       >
-                        {copiedId === msgId ? <FaCheck aria-hidden="true" /> : <FaCopy aria-hidden="true" />}
+                        {copiedId === msgId ? (
+                          <FaCheck aria-hidden="true" />
+                        ) : (
+                          <FaCopy aria-hidden="true" />
+                        )}
                         <span>{copiedId === msgId ? 'Copied' : 'Copy'}</span>
                       </AIChatMessageActionButton>
                     </AIChatMessageActions>

@@ -32,8 +32,8 @@ describe('CodeBlock', () => {
 
   it('line numbers render when showLineNumbers={true}', () => {
     const code = 'line one\nline two\nline three';
-    const { container } = renderWithTheme(<CodeBlock code={code} showLineNumbers />);
-    const lineNumbers = container.querySelectorAll('[aria-hidden="true"]');
+    renderWithTheme(<CodeBlock code={code} showLineNumbers />);
+    const lineNumbers = screen.getAllByTestId('line-number');
     expect(lineNumbers.length).toBeGreaterThanOrEqual(3);
     expect(lineNumbers[0]).toHaveTextContent('1');
     expect(lineNumbers[1]).toHaveTextContent('2');

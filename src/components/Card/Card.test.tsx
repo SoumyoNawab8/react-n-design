@@ -43,27 +43,20 @@ describe('Card', () => {
   });
 
   it('renders with glass variant', () => {
-    const { container } = renderWithTheme(
-      <Card variant="glass">Glass card</Card>
-    );
+    const { container } = renderWithTheme(<Card variant="glass">Glass card</Card>);
     expect(screen.getByText(/glass card/i)).toBeInTheDocument();
     const cardElement = container.firstChild as HTMLElement;
     expect(cardElement).toHaveAttribute('class');
   });
 
   it('renders with elevated variant', () => {
-    const { container } = renderWithTheme(
-      <Card variant="elevated">Elevated card</Card>
-    );
+    const { container } = renderWithTheme(<Card variant="elevated">Elevated card</Card>);
     expect(screen.getByText(/elevated card/i)).toBeInTheDocument();
   });
 
   it('renders with cover aspect ratio', () => {
     const { container } = renderWithTheme(
-      <Card
-        cover={<img src="test.jpg" alt="test" />}
-        coverAspectRatio="16/9"
-      >
+      <Card cover={<img src="test.jpg" alt="test" />} coverAspectRatio="16/9">
         Content
       </Card>
     );
@@ -71,37 +64,31 @@ describe('Card', () => {
   });
 
   it('renders with responsive padding object', () => {
-    renderWithTheme(
-      <Card padding={{ xs: 'small', md: 'large' }}>Responsive padding</Card>
-    );
+    renderWithTheme(<Card padding={{ xs: 'small', md: 'large' }}>Responsive padding</Card>);
     expect(screen.getByText(/responsive padding/i)).toBeInTheDocument();
   });
 
   it('renders with entrance animation', () => {
-    const { container } = renderWithTheme(
-      <Card entrance="slide-up">Animated card</Card>
-    );
+    const { container } = renderWithTheme(<Card entrance="slide-up">Animated card</Card>);
     expect(screen.getByText(/animated card/i)).toBeInTheDocument();
   });
 
   it('accepts custom className', () => {
-    const { container } = renderWithTheme(
-      <Card className="custom-card-class">Custom class</Card>
-    );
+    const { container } = renderWithTheme(<Card className="custom-card-class">Custom class</Card>);
     const cardElement = container.firstChild as HTMLElement;
     expect(cardElement).toHaveClass('custom-card-class');
   });
 
   it('accepts custom style prop', () => {
-    const { container } = renderWithTheme(
-      <Card style={{ marginTop: '10px' }}>Styled card</Card>
-    );
+    const { container } = renderWithTheme(<Card style={{ marginTop: '10px' }}>Styled card</Card>);
     expect(screen.getByText(/styled card/i)).toBeInTheDocument();
   });
 
   it('renders hoverable card', () => {
     const { container } = renderWithTheme(
-      <Card hoverable bordered>Hoverable card</Card>
+      <Card hoverable bordered>
+        Hoverable card
+      </Card>
     );
     expect(screen.getByText(/hoverable card/i)).toBeInTheDocument();
   });

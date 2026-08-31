@@ -107,6 +107,7 @@ export const Steps = ({
             tabIndex={isClickable ? 0 : -1}
             aria-current={isActive ? 'step' : undefined}
             aria-disabled={isPending}
+            data-testid="steps-item"
           >
             {/* Step Dot/Icon */}
             <StepsItemIcon
@@ -133,6 +134,7 @@ export const Steps = ({
                 size={size}
                 isCompleted={isCompleted}
                 aria-hidden="true"
+                data-testid="steps-connector"
               />
             )}
 

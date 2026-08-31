@@ -83,7 +83,9 @@ export const ButtonContent = styled.span`
 
 export const StyledButton = styled.button.withConfig({
   shouldForwardProp: (prop) =>
-    !['size', 'variant', 'shape', 'fullWidth', 'hasChildren', 'glassMorphism', 'gradient'].includes(prop),
+    !['size', 'variant', 'shape', 'fullWidth', 'hasChildren', 'glassMorphism', 'gradient'].includes(
+      prop
+    ),
 })<{
   size: 'small' | 'medium' | 'large';
   variant: 'primary' | 'secondary' | 'text' | 'danger' | 'success' | 'ghost';

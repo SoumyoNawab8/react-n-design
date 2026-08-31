@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 export type ModalSize = 'small' | 'medium' | 'large';
 
@@ -72,8 +72,7 @@ export const ModalBody = styled.div`
 `;
 
 export const ModalContent = styled(motion.div).withConfig({
-  shouldForwardProp: (prop) =>
-    !['size', 'fullScreen', 'variant', 'isBottomSheet'].includes(prop),
+  shouldForwardProp: (prop) => !['size', 'fullScreen', 'variant', 'isBottomSheet'].includes(prop),
 })<{
   size: ModalSize;
   fullScreen: boolean;
@@ -98,23 +97,27 @@ export const ModalContent = styled(motion.div).withConfig({
         border-radius: 16px 16px 0 0;
         padding-bottom: env(safe-area-inset-bottom, 20px);
 
-        ${variant === 'glass' &&
-        css`
+        ${
+          variant === 'glass' &&
+          css`
           background: rgba(255, 255, 255, 0.7);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border: 1px solid rgba(255, 255, 255, 0.3);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        `}
+        `
+        }
       }
 
       @media (prefers-color-scheme: dark) {
         & > div {
-          ${variant === 'glass' &&
-          css`
+          ${
+            variant === 'glass' &&
+            css`
             background: rgba(30, 30, 30, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.1);
-          `}
+          `
+          }
         }
       }
     `}

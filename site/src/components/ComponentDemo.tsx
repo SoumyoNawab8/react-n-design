@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
-import styled from 'styled-components';
+import type React from 'react';
+import { useMemo, useState } from 'react';
 import { Tabs } from 'react-n-design';
+import styled from 'styled-components';
+import { componentExamples, type Example, getExamplesFor } from '../data/componentExamples';
 import { CodePreview } from './CodePreview';
-import { getExamplesFor, componentExamples, type Example } from '../data/componentExamples';
 
 const DemoSurface = styled.div`
   padding: 24px;
@@ -52,13 +53,14 @@ const ExampleTabItem: React.FC<{
   return (
     <div>
       <DemoSurface>{rendered}</DemoSurface>
-      <CodeToggle onClick={onToggleCode}>
-        {showCode ? 'Hide Code' : 'View Code'}
-      </CodeToggle>
+      <CodeToggle onClick={onToggleCode}>{showCode ? 'Hide Code' : 'View Code'}</CodeToggle>
       {showCode && (
         <CodeBlockWrapper>
           <CodePreview
-            code={example.code || `// ${example.title}\n// ${example.description}\n\n// No code available`}
+            code={
+              example.code ||
+              `// ${example.title}\n// ${example.description}\n\n// No code available`
+            }
             language="tsx"
           />
         </CodeBlockWrapper>

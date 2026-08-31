@@ -1,0 +1,20 @@
+[     217ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:14090
+[     259ms] [ERROR] React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. whileTap whiletap @ http://localhost:5175/react-n-design/@vite/client:524
+[     259ms] [ERROR] React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. whileHover whilehover @ http://localhost:5175/react-n-design/@vite/client:524
+[     278ms] [ERROR] React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. layoutId layoutid @ http://localhost:5175/react-n-design/@vite/client:524
+[     301ms] TypeError: Failed to construct 'Text': Please use the 'new' operator, this DOM object constructor cannot be called as a function.
+    at Object.react_stack_bottom_frame (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:12621:12)
+    at renderWithHooks (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:3966:19)
+    at updateFunctionComponent (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:5322:16)
+    at beginWork (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:5893:20)
+    at runWithFiberInDEV (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:604:66)
+    at performUnitOfWork (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8182:92)
+    at workLoopSync (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8078:37)
+    at renderRootSync (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8062:6)
+    at performWorkOnRoot (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:7747:27)
+    at performWorkOnRootViaSchedulerTask (http://localhost:5175/react-n-design/@fs/Users/macworld/Desktop/dev/react-n-design/node_modules/.vite/deps/react-dom_client.js?v=bfa5383e:8812:4)
+[     300ms] [WARNING] %s
+
+%s
+ An error occurred in the <Text> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://localhost:5175/react-n-design/@vite/client:524

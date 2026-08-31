@@ -199,12 +199,7 @@ describe('Modal', () => {
         exit: { y: -100, opacity: 0 },
       };
       const { container } = renderWithTheme(
-        <Modal
-          isOpen
-          onClose={onClose}
-          title="Animated Modal"
-          animationConfig={customAnimation}
-        >
+        <Modal isOpen onClose={onClose} title="Animated Modal" animationConfig={customAnimation}>
           Animated content
         </Modal>
       );
@@ -243,12 +238,7 @@ describe('Modal', () => {
     it('accepts custom style prop for modal content', () => {
       const onClose = vi.fn();
       renderWithTheme(
-        <Modal
-          isOpen
-          onClose={onClose}
-          title="Styled Modal"
-          style={{ backgroundColor: 'red' }}
-        >
+        <Modal isOpen onClose={onClose} title="Styled Modal" style={{ backgroundColor: 'red' }}>
           Styled content
         </Modal>
       );

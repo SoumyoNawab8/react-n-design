@@ -1,5 +1,6 @@
 'use client';
-import React, { memo, useMemo, useState } from 'react';
+import type React from 'react';
+import { memo, useMemo, useState } from 'react';
 import {
   FaCheck,
   FaChevronDown,
@@ -129,7 +130,9 @@ const ToolCallCardComponent = ({
                       aria-expanded={argsExpanded}
                       aria-label={argsExpanded ? 'Collapse arguments' : 'Expand arguments'}
                     >
-                      <span aria-hidden="true">{argsExpanded ? <FaChevronUp /> : <FaChevronDown />}</span>
+                      <span aria-hidden="true">
+                        {argsExpanded ? <FaChevronUp /> : <FaChevronDown />}
+                      </span>
                       {argsExpanded ? 'Hide' : 'Show'}
                     </ArgsToggle>
                   </ArgsHeader>

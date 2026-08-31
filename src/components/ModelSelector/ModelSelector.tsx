@@ -1,5 +1,6 @@
 'use client';
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FaChevronDown } from '../../icons';
 import { AnimatePresence } from '../../utils/lazyMotion';
 import {

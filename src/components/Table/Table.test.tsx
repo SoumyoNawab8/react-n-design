@@ -4,12 +4,11 @@ import type React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
-import { Table } from './Table';
 import type { Column, TableProps } from './Table';
+import { Table } from './Table';
 
-const renderWithTheme = <T extends object>(
-  ui: React.ReactElement<TableProps<T>>
-) => render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
+const renderWithTheme = <T extends object>(ui: React.ReactElement<TableProps<T>>) =>
+  render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);
 
 interface UserData {
   id: number;
@@ -23,8 +22,22 @@ interface UserData {
 const dataSource: UserData[] = [
   { id: 1, name: 'Alice Smith', age: 30, email: 'alice@example.com', city: 'NY', status: 'active' },
   { id: 2, name: 'Bob Jones', age: 25, email: 'bob@example.com', city: 'LA', status: 'inactive' },
-  { id: 3, name: 'Carol White', age: 35, email: 'carol@example.com', city: 'SF', status: 'pending' },
-  { id: 4, name: 'David Brown', age: 28, email: 'david@example.com', city: 'CHI', status: 'active' },
+  {
+    id: 3,
+    name: 'Carol White',
+    age: 35,
+    email: 'carol@example.com',
+    city: 'SF',
+    status: 'pending',
+  },
+  {
+    id: 4,
+    name: 'David Brown',
+    age: 28,
+    email: 'david@example.com',
+    city: 'CHI',
+    status: 'active',
+  },
   { id: 5, name: 'Eve Wilson', age: 32, email: 'eve@example.com', city: 'SEA', status: 'active' },
 ];
 
@@ -100,12 +113,7 @@ describe('Table v1.2.0', () => {
   describe('Sticky Header', () => {
     it('applies sticky header styles when enabled', () => {
       renderWithTheme(
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          pagination={false}
-          stickyHeader={true}
-        />
+        <Table columns={columns} dataSource={dataSource} pagination={false} stickyHeader={true} />
       );
       const wrapper = screen.getByRole('table').parentElement;
       expect(wrapper).toHaveStyle({ 'max-height': '400px' });
@@ -113,12 +121,7 @@ describe('Table v1.2.0', () => {
 
     it('does not have sticky styles when disabled', () => {
       renderWithTheme(
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          pagination={false}
-          stickyHeader={false}
-        />
+        <Table columns={columns} dataSource={dataSource} pagination={false} stickyHeader={false} />
       );
       const wrapper = screen.getByRole('table').parentElement;
       expect(wrapper).toHaveStyle({ 'max-height': 'none' });
@@ -143,18 +146,14 @@ describe('Table v1.2.0', () => {
     });
 
     it('shows actual data when not skeleton loading', () => {
-      renderWithTheme(
-        <Table columns={columns} dataSource={dataSource} skeletonLoading={false} />
-      );
+      renderWithTheme(<Table columns={columns} dataSource={dataSource} skeletonLoading={false} />);
       expect(screen.getByText('Alice Smith')).toBeInTheDocument();
     });
   });
 
   describe('Empty State', () => {
     it('shows default empty state', () => {
-      renderWithTheme(
-        <Table columns={columns} dataSource={[]} pagination={false} />
-      );
+      renderWithTheme(<Table columns={columns} dataSource={[]} pagination={false} />);
       expect(screen.getByTestId('empty-state')).toBeInTheDocument();
       expect(screen.getByText('No Data')).toBeInTheDocument();
       expect(screen.getByText('There are no records to display at this time.')).toBeInTheDocument();
@@ -189,9 +188,7 @@ describe('Table v1.2.0', () => {
 
   describe('Loading State', () => {
     it('shows loading overlay', () => {
-      renderWithTheme(
-        <Table columns={columns} dataSource={dataSource} loading={true} />
-      );
+      renderWithTheme(<Table columns={columns} dataSource={dataSource} loading={true} />);
       expect(screen.getByTestId('loading-overlay')).toBeInTheDocument();
     });
   });
@@ -264,13 +261,7 @@ describe('Table v1.2.0', () => {
 
   describe('Unique Row Keys', () => {
     it('renders with unique keys based on id', () => {
-      renderWithTheme(
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          pagination={false}
-        />
-      );
+      renderWithTheme(<Table columns={columns} dataSource={dataSource} pagination={false} />);
       // All rows render without key warnings
       const rows = screen.getAllByRole('row');
       expect(rows.length).toBe(6); // header + 5 data rows
@@ -279,9 +270,7 @@ describe('Table v1.2.0', () => {
 
   describe('Responsive Features', () => {
     it('renders in table container', () => {
-      renderWithTheme(
-        <Table columns={columns} dataSource={dataSource} pagination={false} />
-      );
+      renderWithTheme(<Table columns={columns} dataSource={dataSource} pagination={false} />);
       const container = document.querySelector('.nd-table-container');
       expect(container).toBeInTheDocument();
     });
@@ -303,12 +292,7 @@ describe('Table v1.2.0', () => {
 
     it('accepts id prop', () => {
       renderWithTheme(
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          id="my-table"
-          pagination={false}
-        />
+        <Table columns={columns} dataSource={dataSource} id="my-table" pagination={false} />
       );
       const wrapper = screen.getByRole('table').parentElement;
       expect(wrapper).toHaveAttribute('id', 'my-table');
@@ -316,12 +300,7 @@ describe('Table v1.2.0', () => {
 
     it('sets aria-busy during loading', () => {
       renderWithTheme(
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          loading={true}
-          pagination={false}
-        />
+        <Table columns={columns} dataSource={dataSource} loading={true} pagination={false} />
       );
       const wrapper = screen.getByRole('table').parentElement;
       expect(wrapper).toHaveAttribute('aria-busy', 'true');

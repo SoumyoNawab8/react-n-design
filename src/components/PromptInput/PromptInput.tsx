@@ -294,7 +294,7 @@ export const PromptInput = ({
           disabled={!value.trim() || isLoading || atLimit}
           aria-label="Send prompt"
         >
-          <FaPaperPlane />
+          <FaPaperPlane aria-hidden="true" />
           {isLoading ? 'Sending...' : 'Send'}
         </SendButton>
       </PromptInputFooter>

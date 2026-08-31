@@ -67,8 +67,7 @@ describe('Timeline', () => {
 
   it('renders connector line', () => {
     renderWithTheme(<Timeline items={mockItems} />);
-    const timeline = document.querySelector('[style*="position: absolute"]');
-    expect(timeline).toBeTruthy();
+    expect(screen.getByTestId('timeline-connector')).toBeInTheDocument();
   });
 
   it('renders single item', () => {
@@ -138,7 +137,7 @@ describe('Timeline', () => {
 
   it('renders timeline dots', () => {
     renderWithTheme(<Timeline items={mockItems} />);
-    const dots = document.querySelectorAll('[class*="dot"]');
+    const dots = screen.getAllByTestId('timeline-dot');
     expect(dots.length).toBeGreaterThanOrEqual(3);
   });
 });

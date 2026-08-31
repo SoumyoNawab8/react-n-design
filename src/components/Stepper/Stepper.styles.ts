@@ -44,7 +44,14 @@ export const StepperWrapper = styled(motion.div)<{
 
 export const StepperItem = styled(motion.div).withConfig({
   shouldForwardProp: (prop) =>
-    !['$isActive', '$isCompleted', '$isClickable', '$orientation', '$variant', '$iconOnly'].includes(prop),
+    ![
+      '$isActive',
+      '$isCompleted',
+      '$isClickable',
+      '$orientation',
+      '$variant',
+      '$iconOnly',
+    ].includes(prop),
 })<{
   $isActive?: boolean;
   $isCompleted?: boolean;

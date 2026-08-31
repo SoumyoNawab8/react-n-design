@@ -1,0 +1,116 @@
+{
+  "screenshots": [
+    {
+      "name": "Button",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-button.png"
+    },
+    {
+      "name": "Switch",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-switch.png"
+    },
+    {
+      "name": "Checkbox",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-checkbox.png"
+    },
+    {
+      "name": "Slider",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-slider.png"
+    },
+    {
+      "name": "Select",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-select.png"
+    },
+    {
+      "name": "DatePicker",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-datepicker.png"
+    },
+    {
+      "name": "ColorPicker",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-colorpicker.png"
+    },
+    {
+      "name": "Rating",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-rating.png"
+    },
+    {
+      "name": "Toast",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-toast.png"
+    },
+    {
+      "name": "Menu",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-menu.png"
+    },
+    {
+      "name": "Stack",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-stack.png"
+    },
+    {
+      "name": "Tooltip",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-tooltip.png"
+    },
+    {
+      "name": "AudioWaveform",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-audiowaveform.png"
+    },
+    {
+      "name": "ToolCallCard",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-toolcallcard.png"
+    },
+    {
+      "name": "Collapsible",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-collapsible.png"
+    },
+    {
+      "name": "Stepper",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-stepper.png"
+    },
+    {
+      "name": "Popover",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-popover.png"
+    },
+    {
+      "name": "ProgressBar",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-progressbar.png"
+    },
+    {
+      "name": "AIChat",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-aichat.png"
+    },
+    {
+      "name": "Markdown",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-markdown.png"
+    },
+    {
+      "name": "Form",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-form.png"
+    },
+    {
+      "name": "Grid",
+      "path": "/Users/macworld/Desktop/dev/react-n-design/site-verify-grid.png"
+    }
+  ],
+  "errors": {
+    "Button": [],
+    "Switch": [],
+    "Checkbox": [],
+    "Slider": [],
+    "Select": [],
+    "DatePicker": [],
+    "ColorPicker": [],
+    "Rating": [],
+    "Toast": [],
+    "Menu": [],
+    "Stack": [],
+    "Tooltip": [],
+    "AudioWaveform": [],
+    "ToolCallCard": [],
+    "Collapsible": [],
+    "Stepper": [],
+    "Popover": [],
+    "ProgressBar": [],
+    "AIChat": [],
+    "Markdown": [],
+    "Form": [],
+    "Grid": []
+  }
+}

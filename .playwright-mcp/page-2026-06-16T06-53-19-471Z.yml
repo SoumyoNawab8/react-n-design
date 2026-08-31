@@ -1,0 +1,432 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link "react-n-design" [ref=e7] [cursor=pointer]:
+        - /url: /react-n-design
+      - navigation "Primary" [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /react-n-design
+        - link "Components" [ref=e10] [cursor=pointer]:
+          - /url: /react-n-design/components
+        - link "Get Started" [ref=e11] [cursor=pointer]:
+          - /url: /react-n-design/get-started
+        - combobox "Theme" [ref=e12] [cursor=pointer]:
+          - option "Light" [selected]
+          - option "Dark"
+          - option "System"
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - complementary [ref=e15]:
+        - generic [ref=e18]:
+          - img [ref=e20]
+          - textbox "Search components..." [ref=e23]
+        - generic [ref=e24]:
+          - button "Layout" [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: Layout
+            - img [ref=e27]
+          - generic [ref=e29]:
+            - button "Accordion" [ref=e30] [cursor=pointer]
+            - button "Card" [ref=e31] [cursor=pointer]
+            - button "Grid" [ref=e32] [cursor=pointer]
+            - button "Stack" [ref=e33] [cursor=pointer]
+            - button "Divider" [ref=e34] [cursor=pointer]
+            - button "ScrollArea" [ref=e35] [cursor=pointer]
+            - button "Resizable" [ref=e36] [cursor=pointer]
+          - separator [ref=e37]
+        - generic [ref=e38]:
+          - button "Data Entry" [ref=e39] [cursor=pointer]:
+            - generic [ref=e40]: Data Entry
+            - img [ref=e41]
+          - generic [ref=e43]:
+            - button "Button" [ref=e44] [cursor=pointer]
+            - button "Input" [ref=e45] [cursor=pointer]
+            - button "Select" [ref=e46] [cursor=pointer]
+            - button "Checkbox" [ref=e47] [cursor=pointer]
+            - button "RadioGroup" [ref=e48] [cursor=pointer]
+            - button "Switch" [ref=e49] [cursor=pointer]
+            - button "Slider" [ref=e50] [cursor=pointer]
+            - button "DatePicker" [ref=e51] [cursor=pointer]
+            - button "TimePicker" [ref=e52] [cursor=pointer]
+            - button "ColorPicker" [ref=e53] [cursor=pointer]
+            - button "PinInput" [ref=e54] [cursor=pointer]
+            - button "OTPInput" [ref=e55] [cursor=pointer]
+            - button "TextArea" [ref=e56] [cursor=pointer]
+            - button "FileUpload" [ref=e57] [cursor=pointer]
+            - button "Rating" [ref=e58] [cursor=pointer]
+            - button "ComboBox" [ref=e59] [cursor=pointer]
+            - button "MultiSelect" [ref=e60] [cursor=pointer]
+            - button "Segmented" [ref=e61] [cursor=pointer]
+            - button "Toggle" [ref=e62] [cursor=pointer]
+            - button "CopyButton" [ref=e63] [cursor=pointer]
+          - separator [ref=e64]
+        - generic [ref=e65]:
+          - button "Display" [ref=e66] [cursor=pointer]:
+            - generic [ref=e67]: Display
+            - img [ref=e68]
+          - generic [ref=e70]:
+            - button "AudioWaveform" [ref=e71] [cursor=pointer]
+            - button "Avatar" [ref=e72] [cursor=pointer]
+            - button "AvatarGroup" [ref=e73] [cursor=pointer]
+            - button "Badge" [ref=e74] [cursor=pointer]
+            - button "Tag" [ref=e75] [cursor=pointer]
+            - button "Statistic" [ref=e76] [cursor=pointer]
+            - button "ProgressBar" [ref=e77] [cursor=pointer]
+            - button "Skeleton" [ref=e78] [cursor=pointer]
+            - button "Empty" [ref=e79] [cursor=pointer]
+            - button "Timeline" [ref=e80] [cursor=pointer]
+            - button "Tree" [ref=e81] [cursor=pointer]
+            - button "OrgChart" [ref=e82] [cursor=pointer]
+            - button "GanttChart" [ref=e83] [cursor=pointer]
+            - button "KanbanBoard" [ref=e84] [cursor=pointer]
+            - button "Table" [ref=e85] [cursor=pointer]
+            - button "DataGrid" [ref=e86] [cursor=pointer]
+            - button "VirtualList" [ref=e87] [cursor=pointer]
+            - button "Charts" [ref=e88] [cursor=pointer]
+            - button "HeatmapCalendar" [ref=e89] [cursor=pointer]
+            - button "ImageGallery" [ref=e90] [cursor=pointer]
+            - button "Carousel" [ref=e91] [cursor=pointer]
+            - button "Calendar" [ref=e92] [cursor=pointer]
+            - button "Terminal" [ref=e93] [cursor=pointer]
+            - button "Markdown" [ref=e94] [cursor=pointer]
+            - button "StreamingText" [ref=e95] [cursor=pointer]
+            - button "Icon" [ref=e96] [cursor=pointer]
+          - separator [ref=e97]
+        - generic [ref=e98]:
+          - button "Feedback" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: Feedback
+            - img [ref=e101]
+          - generic [ref=e103]:
+            - button "Alert" [ref=e104] [cursor=pointer]
+            - button "Toast" [ref=e105] [cursor=pointer]
+            - button "Modal" [ref=e106] [cursor=pointer]
+            - button "Drawer" [ref=e107] [cursor=pointer]
+            - button "Tooltip" [ref=e108] [cursor=pointer]
+            - button "Popover" [ref=e109] [cursor=pointer]
+            - button "Tour" [ref=e110] [cursor=pointer]
+            - button "Result" [ref=e111] [cursor=pointer]
+            - button "AIThinking" [ref=e112] [cursor=pointer]
+            - button "ThinkingBlock" [ref=e113] [cursor=pointer]
+          - separator [ref=e114]
+        - generic [ref=e115]:
+          - button "Navigation" [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]: Navigation
+            - img [ref=e118]
+          - generic [ref=e120]:
+            - button "Breadcrumbs" [ref=e121] [cursor=pointer]
+            - button "Tabs" [ref=e122] [cursor=pointer]
+            - button "Steps" [ref=e123] [cursor=pointer]
+            - button "Stepper" [ref=e124] [cursor=pointer]
+            - button "Pagination" [ref=e125] [cursor=pointer]
+            - button "Menu" [ref=e126] [cursor=pointer]
+            - button "AppBar" [ref=e127] [cursor=pointer]
+            - button "CommandPalette" [ref=e128] [cursor=pointer]
+            - button "FloatButton" [ref=e129] [cursor=pointer]
+            - button "SkipToContent" [ref=e130] [cursor=pointer]
+          - separator [ref=e131]
+        - generic [ref=e132]:
+          - button "AI / Chat" [ref=e133] [cursor=pointer]:
+            - generic [ref=e134]: AI / Chat
+            - img [ref=e135]
+          - generic [ref=e137]:
+            - button "AIChat" [ref=e138] [cursor=pointer]
+            - button "PromptInput" [ref=e139] [cursor=pointer]
+            - button "PromptBuilder" [ref=e140] [cursor=pointer]
+            - button "ModelSelector" [ref=e141] [cursor=pointer]
+            - button "ToolCallCard" [ref=e142] [cursor=pointer]
+            - button "SuggestionChips" [ref=e143] [cursor=pointer]
+            - button "MentionInput" [ref=e144] [cursor=pointer]
+            - button "DiffViewer" [ref=e145] [cursor=pointer]
+          - separator [ref=e146]
+        - generic [ref=e147]:
+          - button "Other" [ref=e148] [cursor=pointer]:
+            - generic [ref=e149]: Other
+            - img [ref=e150]
+          - generic [ref=e152]:
+            - button "Form" [ref=e153] [cursor=pointer]
+            - button "GradientBorder" [ref=e154] [cursor=pointer]
+            - button "Collapsible" [ref=e155] [cursor=pointer]
+            - button "VisuallyHidden" [ref=e156] [cursor=pointer]
+            - button "CodeBlock" [ref=e157] [cursor=pointer]
+            - button "RichTextEditor" [ref=e158] [cursor=pointer]
+            - button "RSC" [ref=e159] [cursor=pointer]
+          - separator [ref=e160]
+      - generic [ref=e161]:
+        - heading "Components" [level=1] [ref=e162]
+        - paragraph [ref=e163]: 88 components across 7 categories.
+        - generic [ref=e164]:
+          - generic [ref=e167] [cursor=pointer]:
+            - heading "Accordion" [level=3] [ref=e168]
+            - paragraph [ref=e169]: Collapsible content panels.
+          - generic [ref=e172] [cursor=pointer]:
+            - heading "Card" [level=3] [ref=e173]
+            - paragraph [ref=e174]: Flexible container with neomorphic styling.
+          - generic [ref=e177] [cursor=pointer]:
+            - heading "Grid" [level=3] [ref=e178]
+            - paragraph [ref=e179]: Responsive grid system.
+          - generic [ref=e182] [cursor=pointer]:
+            - heading "Stack" [level=3] [ref=e183]
+            - paragraph [ref=e184]: Vertical and horizontal stacking.
+          - generic [ref=e187] [cursor=pointer]:
+            - heading "Divider" [level=3] [ref=e188]
+            - paragraph [ref=e189]: Visual content separator.
+          - generic [ref=e192] [cursor=pointer]:
+            - heading "ScrollArea" [level=3] [ref=e193]
+            - paragraph [ref=e194]: Custom scrollable container.
+          - generic [ref=e197] [cursor=pointer]:
+            - heading "Resizable" [level=3] [ref=e198]
+            - paragraph [ref=e199]: Drag-to-resize panels.
+          - generic [ref=e202] [cursor=pointer]:
+            - heading "Button" [level=3] [ref=e203]
+            - paragraph [ref=e204]: Primary interaction element.
+          - generic [ref=e207] [cursor=pointer]:
+            - heading "Input" [level=3] [ref=e208]
+            - paragraph [ref=e209]: Text input field.
+          - generic [ref=e212] [cursor=pointer]:
+            - heading "Select" [level=3] [ref=e213]
+            - paragraph [ref=e214]: Dropdown selection.
+          - generic [ref=e217] [cursor=pointer]:
+            - heading "Checkbox" [level=3] [ref=e218]
+            - paragraph [ref=e219]: Binary choice input.
+          - generic [ref=e222] [cursor=pointer]:
+            - heading "RadioGroup" [level=3] [ref=e223]
+            - paragraph [ref=e224]: Single-choice group.
+          - generic [ref=e227] [cursor=pointer]:
+            - heading "Switch" [level=3] [ref=e228]
+            - paragraph [ref=e229]: Toggle switch.
+          - generic [ref=e232] [cursor=pointer]:
+            - heading "Slider" [level=3] [ref=e233]
+            - paragraph [ref=e234]: Range value picker.
+          - generic [ref=e237] [cursor=pointer]:
+            - heading "DatePicker" [level=3] [ref=e238]
+            - paragraph [ref=e239]: Calendar date selection.
+          - generic [ref=e242] [cursor=pointer]:
+            - heading "TimePicker" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Time selection control.
+          - generic [ref=e247] [cursor=pointer]:
+            - heading "ColorPicker" [level=3] [ref=e248]
+            - paragraph [ref=e249]: Color selection.
+          - generic [ref=e252] [cursor=pointer]:
+            - heading "PinInput" [level=3] [ref=e253]
+            - paragraph [ref=e254]: PIN code entry.
+          - generic [ref=e257] [cursor=pointer]:
+            - heading "OTPInput" [level=3] [ref=e258]
+            - paragraph [ref=e259]: One-time password input.
+          - generic [ref=e262] [cursor=pointer]:
+            - heading "TextArea" [level=3] [ref=e263]
+            - paragraph [ref=e264]: Multi-line text input.
+          - generic [ref=e267] [cursor=pointer]:
+            - heading "FileUpload" [level=3] [ref=e268]
+            - paragraph [ref=e269]: File drag-and-drop upload.
+          - generic [ref=e272] [cursor=pointer]:
+            - heading "Rating" [level=3] [ref=e273]
+            - paragraph [ref=e274]: Star rating input.
+          - generic [ref=e277] [cursor=pointer]:
+            - heading "ComboBox" [level=3] [ref=e278]
+            - paragraph [ref=e279]: Autocomplete dropdown.
+          - generic [ref=e282] [cursor=pointer]:
+            - heading "MultiSelect" [level=3] [ref=e283]
+            - paragraph [ref=e284]: Multiple selection dropdown.
+          - generic [ref=e287] [cursor=pointer]:
+            - heading "Segmented" [level=3] [ref=e288]
+            - paragraph [ref=e289]: Segmented control.
+          - generic [ref=e292] [cursor=pointer]:
+            - heading "Toggle" [level=3] [ref=e293]
+            - paragraph [ref=e294]: On/off toggle button.
+          - generic [ref=e297] [cursor=pointer]:
+            - heading "CopyButton" [level=3] [ref=e298]
+            - paragraph [ref=e299]: Click-to-copy button.
+          - generic [ref=e302] [cursor=pointer]:
+            - heading "AudioWaveform" [level=3] [ref=e303]
+            - paragraph [ref=e304]: Audio visualization bars.
+          - generic [ref=e307] [cursor=pointer]:
+            - heading "Avatar" [level=3] [ref=e308]
+            - paragraph [ref=e309]: User profile image or initials.
+          - generic [ref=e312] [cursor=pointer]:
+            - heading "AvatarGroup" [level=3] [ref=e313]
+            - paragraph [ref=e314]: Grouped avatar stack.
+          - generic [ref=e317] [cursor=pointer]:
+            - heading "Badge" [level=3] [ref=e318]
+            - paragraph [ref=e319]: Status indicator or count.
+          - generic [ref=e322] [cursor=pointer]:
+            - heading "Tag" [level=3] [ref=e323]
+            - paragraph [ref=e324]: Label or category tag.
+          - generic [ref=e327] [cursor=pointer]:
+            - heading "Statistic" [level=3] [ref=e328]
+            - paragraph [ref=e329]: Key metric display.
+          - generic [ref=e332] [cursor=pointer]:
+            - heading "ProgressBar" [level=3] [ref=e333]
+            - paragraph [ref=e334]: Progress indicator.
+          - generic [ref=e337] [cursor=pointer]:
+            - heading "Skeleton" [level=3] [ref=e338]
+            - paragraph [ref=e339]: Loading placeholder.
+          - generic [ref=e342] [cursor=pointer]:
+            - heading "Empty" [level=3] [ref=e343]
+            - paragraph [ref=e344]: Empty state illustration.
+          - generic [ref=e347] [cursor=pointer]:
+            - heading "Timeline" [level=3] [ref=e348]
+            - paragraph [ref=e349]: Chronological event list.
+          - generic [ref=e352] [cursor=pointer]:
+            - heading "Tree" [level=3] [ref=e353]
+            - paragraph [ref=e354]: Hierarchical data tree.
+          - generic [ref=e357] [cursor=pointer]:
+            - heading "OrgChart" [level=3] [ref=e358]
+            - paragraph [ref=e359]: Organizational chart.
+          - generic [ref=e362] [cursor=pointer]:
+            - heading "GanttChart" [level=3] [ref=e363]
+            - paragraph [ref=e364]: Project timeline chart.
+          - generic [ref=e367] [cursor=pointer]:
+            - heading "KanbanBoard" [level=3] [ref=e368]
+            - paragraph [ref=e369]: Kanban task board.
+          - generic [ref=e372] [cursor=pointer]:
+            - heading "Table" [level=3] [ref=e373]
+            - paragraph [ref=e374]: Data table with sorting.
+          - generic [ref=e377] [cursor=pointer]:
+            - heading "DataGrid" [level=3] [ref=e378]
+            - paragraph [ref=e379]: Advanced data grid.
+          - generic [ref=e382] [cursor=pointer]:
+            - heading "VirtualList" [level=3] [ref=e383]
+            - paragraph [ref=e384]: Virtualized long lists.
+          - generic [ref=e387] [cursor=pointer]:
+            - heading "Charts" [level=3] [ref=e388]
+            - paragraph [ref=e389]: Line, bar, and area charts.
+          - generic [ref=e392] [cursor=pointer]:
+            - heading "HeatmapCalendar" [level=3] [ref=e393]
+            - paragraph [ref=e394]: Activity heatmap calendar.
+          - generic [ref=e397] [cursor=pointer]:
+            - heading "ImageGallery" [level=3] [ref=e398]
+            - paragraph [ref=e399]: Image carousel gallery.
+          - generic [ref=e402] [cursor=pointer]:
+            - heading "Carousel" [level=3] [ref=e403]
+            - paragraph [ref=e404]: Sliding content carousel.
+          - generic [ref=e407] [cursor=pointer]:
+            - heading "Calendar" [level=3] [ref=e408]
+            - paragraph [ref=e409]: Full calendar view.
+          - generic [ref=e412] [cursor=pointer]:
+            - heading "Terminal" [level=3] [ref=e413]
+            - paragraph [ref=e414]: Terminal/console output.
+          - generic [ref=e417] [cursor=pointer]:
+            - heading "Markdown" [level=3] [ref=e418]
+            - paragraph [ref=e419]: Markdown renderer.
+          - generic [ref=e422] [cursor=pointer]:
+            - heading "StreamingText" [level=3] [ref=e423]
+            - paragraph [ref=e424]: Typewriter text effect.
+          - generic [ref=e427] [cursor=pointer]:
+            - heading "Icon" [level=3] [ref=e428]
+            - paragraph [ref=e429]: Inline SVG icon system.
+          - generic [ref=e432] [cursor=pointer]:
+            - heading "Alert" [level=3] [ref=e433]
+            - paragraph [ref=e434]: Contextual message banner.
+          - generic [ref=e437] [cursor=pointer]:
+            - heading "Toast" [level=3] [ref=e438]
+            - paragraph [ref=e439]: Temporary notification.
+          - generic [ref=e442] [cursor=pointer]:
+            - heading "Modal" [level=3] [ref=e443]
+            - paragraph [ref=e444]: Overlay dialog.
+          - generic [ref=e447] [cursor=pointer]:
+            - heading "Drawer" [level=3] [ref=e448]
+            - paragraph [ref=e449]: Side panel overlay.
+          - generic [ref=e452] [cursor=pointer]:
+            - heading "Tooltip" [level=3] [ref=e453]
+            - paragraph [ref=e454]: Hover information popup.
+          - generic [ref=e457] [cursor=pointer]:
+            - heading "Popover" [level=3] [ref=e458]
+            - paragraph [ref=e459]: Clickable content popup.
+          - generic [ref=e462] [cursor=pointer]:
+            - heading "Tour" [level=3] [ref=e463]
+            - paragraph [ref=e464]: Guided product tour.
+          - generic [ref=e467] [cursor=pointer]:
+            - heading "Result" [level=3] [ref=e468]
+            - paragraph [ref=e469]: Success/error result page.
+          - generic [ref=e472] [cursor=pointer]:
+            - heading "AIThinking" [level=3] [ref=e473]
+            - paragraph [ref=e474]: AI thinking animation.
+          - generic [ref=e477] [cursor=pointer]:
+            - heading "ThinkingBlock" [level=3] [ref=e478]
+            - paragraph [ref=e479]: Collapsible thought process.
+          - generic [ref=e482] [cursor=pointer]:
+            - heading "Breadcrumbs" [level=3] [ref=e483]
+            - paragraph [ref=e484]: Path navigation.
+          - generic [ref=e487] [cursor=pointer]:
+            - heading "Tabs" [level=3] [ref=e488]
+            - paragraph [ref=e489]: Tabbed content switcher.
+          - generic [ref=e492] [cursor=pointer]:
+            - heading "Steps" [level=3] [ref=e493]
+            - paragraph [ref=e494]: Step-by-step wizard.
+          - generic [ref=e497] [cursor=pointer]:
+            - heading "Stepper" [level=3] [ref=e498]
+            - paragraph [ref=e499]: Numbered step indicator.
+          - generic [ref=e502] [cursor=pointer]:
+            - heading "Pagination" [level=3] [ref=e503]
+            - paragraph [ref=e504]: Page navigation.
+          - generic [ref=e507] [cursor=pointer]:
+            - heading "Menu" [level=3] [ref=e508]
+            - paragraph [ref=e509]: Dropdown menu.
+          - generic [ref=e512] [cursor=pointer]:
+            - heading "AppBar" [level=3] [ref=e513]
+            - paragraph [ref=e514]: Top application bar.
+          - generic [ref=e517] [cursor=pointer]:
+            - heading "CommandPalette" [level=3] [ref=e518]
+            - paragraph [ref=e519]: Keyboard-driven command search.
+          - generic [ref=e522] [cursor=pointer]:
+            - heading "FloatButton" [level=3] [ref=e523]
+            - paragraph [ref=e524]: Floating action button.
+          - generic [ref=e527] [cursor=pointer]:
+            - heading "SkipToContent" [level=3] [ref=e528]
+            - paragraph [ref=e529]: Accessibility skip link.
+          - generic [ref=e532] [cursor=pointer]:
+            - heading "AIChat" [level=3] [ref=e533]
+            - paragraph [ref=e534]: Full AI chat interface.
+          - generic [ref=e537] [cursor=pointer]:
+            - heading "PromptInput" [level=3] [ref=e538]
+            - paragraph [ref=e539]: AI prompt text field.
+          - generic [ref=e542] [cursor=pointer]:
+            - heading "PromptBuilder" [level=3] [ref=e543]
+            - paragraph [ref=e544]: Structured prompt composer.
+          - generic [ref=e547] [cursor=pointer]:
+            - heading "ModelSelector" [level=3] [ref=e548]
+            - paragraph [ref=e549]: LLM model picker.
+          - generic [ref=e552] [cursor=pointer]:
+            - heading "ToolCallCard" [level=3] [ref=e553]
+            - paragraph [ref=e554]: Tool execution card.
+          - generic [ref=e557] [cursor=pointer]:
+            - heading "SuggestionChips" [level=3] [ref=e558]
+            - paragraph [ref=e559]: Prompt suggestion chips.
+          - generic [ref=e562] [cursor=pointer]:
+            - heading "MentionInput" [level=3] [ref=e563]
+            - paragraph [ref=e564]: "@mention autocomplete."
+          - generic [ref=e567] [cursor=pointer]:
+            - heading "DiffViewer" [level=3] [ref=e568]
+            - paragraph [ref=e569]: Code diff visualization.
+          - generic [ref=e572] [cursor=pointer]:
+            - heading "Form" [level=3] [ref=e573]
+            - paragraph [ref=e574]: Form layout and validation.
+          - generic [ref=e577] [cursor=pointer]:
+            - heading "GradientBorder" [level=3] [ref=e578]
+            - paragraph [ref=e579]: Gradient border container.
+          - generic [ref=e582] [cursor=pointer]:
+            - heading "Collapsible" [level=3] [ref=e583]
+            - paragraph [ref=e584]: Expand/collapse content.
+          - generic [ref=e587] [cursor=pointer]:
+            - heading "VisuallyHidden" [level=3] [ref=e588]
+            - paragraph [ref=e589]: Screen-reader only content.
+          - generic [ref=e592] [cursor=pointer]:
+            - heading "CodeBlock" [level=3] [ref=e593]
+            - paragraph [ref=e594]: Syntax highlighted code.
+          - generic [ref=e597] [cursor=pointer]:
+            - heading "RichTextEditor" [level=3] [ref=e598]
+            - paragraph [ref=e599]: Rich text WYSIWYG editor.
+          - generic [ref=e602] [cursor=pointer]:
+            - heading "RSC" [level=3] [ref=e603]
+            - paragraph [ref=e604]: React Server Component helpers.
+  - contentinfo [ref=e605]:
+    - generic [ref=e606]:
+      - generic [ref=e607]: react-n-design
+      - generic [ref=e608]:
+        - link "GitHub" [ref=e609] [cursor=pointer]:
+          - /url: https://github.com/SoumyoNawab8/react-n-design
+          - img [ref=e610]
+          - text: GitHub
+        - generic [ref=e612]: v1.2.1
+        - generic [ref=e613]: © 2026 react-n-design

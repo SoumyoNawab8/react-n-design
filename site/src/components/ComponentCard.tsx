@@ -1,5 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import type React from 'react';
 import { Card } from 'react-n-design';
 import styled from 'styled-components';
 

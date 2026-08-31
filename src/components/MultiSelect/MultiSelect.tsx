@@ -225,7 +225,8 @@ export const MultiSelect = ({
                     key={optionId}
                     id={optionId}
                     role="option"
-                    aria-selected={false}
+                    aria-selected={isHighlighted}
+                    tabIndex={isHighlighted ? 0 : -1}
                     isHighlighted={isHighlighted}
                     isSelected={false}
                     onClick={() => handleSelect(option)}

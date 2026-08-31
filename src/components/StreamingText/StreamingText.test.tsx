@@ -10,9 +10,7 @@ const renderWithTheme = (ui: React.ReactElement) =>
 
 describe('StreamingText', () => {
   it('renders and is accessible', async () => {
-    const { container } = renderWithTheme(
-      <StreamingText text="Hello world" speed={1000} />
-    );
+    const { container } = renderWithTheme(<StreamingText text="Hello world" speed={1000} />);
     expect(screen.getByRole('status')).toBeInTheDocument();
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
@@ -64,9 +62,7 @@ describe('StreamingText', () => {
 
   it('resets when text prop changes', () => {
     vi.useFakeTimers();
-    const { rerender, container } = renderWithTheme(
-      <StreamingText text="Hello" speed={30} />
-    );
+    const { rerender, container } = renderWithTheme(<StreamingText text="Hello" speed={30} />);
     act(() => {
       vi.advanceTimersByTime(150);
     });

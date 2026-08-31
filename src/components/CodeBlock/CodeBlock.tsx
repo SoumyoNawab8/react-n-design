@@ -232,7 +232,7 @@ export const CodeBlock = ({
             aria-label={copied ? 'Copied to clipboard' : 'Copy code to clipboard'}
             title={copied ? 'Copied!' : 'Copy'}
           >
-            {copied ? <FaCheck /> : <FaCopy />}
+            {copied ? <FaCheck aria-hidden="true" /> : <FaCopy aria-hidden="true" />}
             <span>{copied ? 'Copied' : 'Copy'}</span>
           </CodeBlockCopyButton>
         )}
@@ -242,7 +242,9 @@ export const CodeBlock = ({
           {lines.map((_, i) => (
             <CodeBlockLine key={i}>
               {showLineNumbers && (
-                <CodeBlockLineNumber aria-hidden="true">{i + 1}</CodeBlockLineNumber>
+                <CodeBlockLineNumber aria-hidden="true" data-testid="line-number">
+                  {i + 1}
+                </CodeBlockLineNumber>
               )}
               <CodeBlockLineContent>{highlighted[i]}</CodeBlockLineContent>
             </CodeBlockLine>

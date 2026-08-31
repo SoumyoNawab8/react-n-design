@@ -1,7 +1,7 @@
 'use client';
 import styled, { css } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 export const MenuWrapper = styled.div`
   position: relative;
@@ -190,8 +190,7 @@ export const MenuItemCheckbox = styled.span<{ $checked?: boolean }>`
   border: 2px solid ${({ theme, $checked }) =>
     $checked ? theme.colors.primary : theme.colors.border};
   border-radius: 4px;
-  background: ${({ theme, $checked }) =>
-    $checked ? theme.colors.primary : 'transparent'};
+  background: ${({ theme, $checked }) => ($checked ? theme.colors.primary : 'transparent')};
   color: ${({ theme }) => theme.colors.white};
   flex-shrink: 0;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);

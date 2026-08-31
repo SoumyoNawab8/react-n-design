@@ -19,7 +19,6 @@ export const TabsWrapper = styled.div.withConfig({
         return 'row';
       case 'bottom':
         return 'column-reverse';
-      case 'top':
       default:
         return 'column';
     }
@@ -92,22 +91,25 @@ export const TabsList = styled.div.withConfig({
   justify-content: ${({ centered }) => (centered ? 'center' : 'flex-start')};
   flex-grow: 1;
   position: relative;
-  overflow-x: ${({ overflow, tabPosition }) => 
-    tabPosition === 'left' || tabPosition === 'right' ? 'hidden' : overflow === 'scroll' ? 'scroll' : overflow === 'wrap' ? 'visible' : 'auto'
-  };
-  overflow-y: ${({ overflow, tabPosition }) => 
-    tabPosition === 'left' || tabPosition === 'right' ? (overflow === 'scroll' ? 'scroll' : overflow === 'wrap' ? 'visible' : 'auto') : 'hidden'
-  };
-  flex-wrap: ${({ overflow }) => overflow === 'wrap' ? 'wrap' : 'nowrap'};
+  overflow-x: ${({ overflow, tabPosition }) =>
+    tabPosition === 'left' || tabPosition === 'right'
+      ? 'hidden'
+      : overflow === 'scroll'
+        ? 'scroll'
+        : overflow === 'wrap'
+          ? 'visible'
+          : 'auto'};
+  overflow-y: ${({ overflow, tabPosition }) =>
+    tabPosition === 'left' || tabPosition === 'right'
+      ? (overflow === 'scroll' ? 'scroll' : overflow === 'wrap' ? 'visible' : 'auto')
+      : 'hidden'};
+  flex-wrap: ${({ overflow }) => (overflow === 'wrap' ? 'wrap' : 'nowrap')};
   scrollbar-width: thin;
   scrollbar-color: ${({ theme }) => `${theme.colors.shadowDark}40 transparent`};
   
   &::-webkit-scrollbar {
-    ${({ tabPosition }) => 
-      tabPosition === 'left' || tabPosition === 'right'
-        ? css`width: 4px;`
-        : css`height: 4px;`
-    }
+    ${({ tabPosition }) =>
+      tabPosition === 'left' || tabPosition === 'right' ? css`width: 4px;` : css`height: 4px;`}
   }
   
   &::-webkit-scrollbar-track {
@@ -129,7 +131,7 @@ export const TabsList = styled.div.withConfig({
   /* Border positioning based on tab position */
   ${({ tabPosition, type, theme }) => {
     if (type !== 'line') return css``;
-    
+
     switch (tabPosition) {
       case 'left':
         return css`
@@ -150,7 +152,6 @@ export const TabsList = styled.div.withConfig({
           border-top: 2px solid ${theme.colors.shadowDark}40;
           margin-top: 16px;
         `;
-      case 'top':
       default:
         return css`
           flex-direction: row;
@@ -202,14 +203,14 @@ export const TabButton = styled.button.withConfig({
             return css`border-radius: 0 8px 8px 0;`;
           case 'bottom':
             return css`border-radius: 0 0 8px 8px;`;
-          case 'top':
           default:
             return css`border-radius: 8px 8px 0 0;`;
         }
       })()}
       
-      ${isActive &&
-      css`
+      ${
+        isActive &&
+        css`
         background: ${theme.colors.background};
         ${(() => {
           switch (tabPosition) {
@@ -219,12 +220,12 @@ export const TabButton = styled.button.withConfig({
               return css`border-left-color: transparent;`;
             case 'bottom':
               return css`border-top-color: transparent;`;
-            case 'top':
             default:
               return css`border-bottom-color: transparent;`;
           }
         })()}
-      `}
+      `
+      }
     `}
 
   /* Active state coloring */

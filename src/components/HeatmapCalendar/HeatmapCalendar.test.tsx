@@ -18,9 +18,7 @@ describe('HeatmapCalendar', () => {
   ];
 
   it('renders the calendar grid and is accessible', async () => {
-    const { container } = renderWithTheme(
-      <HeatmapCalendar data={sampleData} year={2026} />
-    );
+    const { container } = renderWithTheme(<HeatmapCalendar data={sampleData} year={2026} />);
     expect(screen.getByRole('img')).toBeInTheDocument();
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
@@ -45,17 +43,13 @@ describe('HeatmapCalendar', () => {
   });
 
   it('applies custom className', () => {
-    renderWithTheme(
-      <HeatmapCalendar data={sampleData} year={2026} className="my-heatmap" />
-    );
+    renderWithTheme(<HeatmapCalendar data={sampleData} year={2026} className="my-heatmap" />);
     const wrapper = screen.getByRole('img').parentElement?.parentElement;
     expect(wrapper).toHaveClass('my-heatmap');
   });
 
   it('renders with startWeekOnMonday false', () => {
-    renderWithTheme(
-      <HeatmapCalendar data={sampleData} year={2026} startWeekOnMonday={false} />
-    );
+    renderWithTheme(<HeatmapCalendar data={sampleData} year={2026} startWeekOnMonday={false} />);
     expect(screen.getByRole('img')).toBeInTheDocument();
   });
 

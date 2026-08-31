@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 export interface AccordionWrapperProps {
   bordered: boolean;

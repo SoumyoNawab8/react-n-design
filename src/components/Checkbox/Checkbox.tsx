@@ -68,7 +68,11 @@ export const Checkbox = ({
           </CheckIcon>
         )}
       </CheckboxBox>
-      {label && <CheckboxLabel id={labelId} disabled={disabled}>{label}</CheckboxLabel>}
+      {label && (
+        <CheckboxLabel id={labelId} disabled={disabled}>
+          {label}
+        </CheckboxLabel>
+      )}
     </CheckboxContainer>
   );
 };

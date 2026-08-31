@@ -39,31 +39,19 @@ export interface UseToastReturn {
   /**
    * Show a success toast
    */
-  success: (
-    message: React.ReactNode,
-    options?: Omit<ToastOptions, 'title' | 'variant'>
-  ) => string;
+  success: (message: React.ReactNode, options?: Omit<ToastOptions, 'title' | 'variant'>) => string;
   /**
    * Show an error toast
    */
-  error: (
-    message: React.ReactNode,
-    options?: Omit<ToastOptions, 'title' | 'variant'>
-  ) => string;
+  error: (message: React.ReactNode, options?: Omit<ToastOptions, 'title' | 'variant'>) => string;
   /**
    * Show a warning toast
    */
-  warning: (
-    message: React.ReactNode,
-    options?: Omit<ToastOptions, 'title' | 'variant'>
-  ) => string;
+  warning: (message: React.ReactNode, options?: Omit<ToastOptions, 'title' | 'variant'>) => string;
   /**
    * Show an info toast
    */
-  info: (
-    message: React.ReactNode,
-    options?: Omit<ToastOptions, 'title' | 'variant'>
-  ) => string;
+  info: (message: React.ReactNode, options?: Omit<ToastOptions, 'title' | 'variant'>) => string;
   /**
    * Show a glass morphism toast
    */
@@ -168,7 +156,11 @@ export const useToast = (): UseToastReturn => {
 
   // Custom icon toast (shows custom icon instead of variant default)
   const custom = useCallback(
-    (message: React.ReactNode, icon: React.ReactNode, options?: Omit<ToastOptions, 'title' | 'variant'>) => {
+    (
+      message: React.ReactNode,
+      icon: React.ReactNode,
+      options?: Omit<ToastOptions, 'title' | 'variant'>
+    ) => {
       // Store icon in a way we can access it - we'll use richContent for this
       return addToast({
         ...options,
@@ -181,7 +173,7 @@ export const useToast = (): UseToastReturn => {
   );
 
   const promiseFn = useCallback(
-    async <T, >(promise: Promise<T>, messages: PromiseMessages): Promise<T> => {
+    async <T>(promise: Promise<T>, messages: PromiseMessages): Promise<T> => {
       const loadingOpt = normalizeMessage(messages.loading, 'loading', 0);
       const id = addToast(loadingOpt);
 

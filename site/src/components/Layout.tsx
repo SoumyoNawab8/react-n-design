@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import type React from 'react';
+import { useState } from 'react';
+import { FiGithub, FiMenu, FiX } from 'react-icons/fi';
+import { AppThemeProvider, Button, Divider, Drawer, SkipToContent, useTheme } from 'react-n-design';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import {
-  AppThemeProvider,
-  useTheme,
-  SkipToContent,
-  Drawer,
-  Button,
-  Divider,
-} from 'react-n-design';
-import { FiMenu, FiX, FiGithub } from 'react-icons/fi';
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -221,13 +215,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             onClick={() => setDrawerOpen(true)}
             aria-label="Open menu"
           >
-            <motion.div
-              animate={{ rotate: drawerOpen ? 90 : 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <IconWrap>
-                {drawerOpen ? <FiX size={22} /> : <FiMenu size={22} />}
-              </IconWrap>
+            <motion.div animate={{ rotate: drawerOpen ? 90 : 0 }} transition={{ duration: 0.2 }}>
+              <IconWrap>{drawerOpen ? <FiX size={22} /> : <FiMenu size={22} />}</IconWrap>
             </motion.div>
           </HamburgerButton>
         </HeaderInner>

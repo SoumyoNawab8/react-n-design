@@ -90,7 +90,9 @@ const paddings = {
 
 // Responsive padding helper types
 type SpacingKey = 'none' | 'small' | 'medium' | 'large';
-type ResponsiveSpacing = SpacingKey | { xs?: SpacingKey; sm?: SpacingKey; md?: SpacingKey; lg?: SpacingKey; xl?: SpacingKey };
+type ResponsiveSpacing =
+  | SpacingKey
+  | { xs?: SpacingKey; sm?: SpacingKey; md?: SpacingKey; lg?: SpacingKey; xl?: SpacingKey };
 
 // Helper to resolve padding value
 const resolvePadding = (padding: ResponsiveSpacing): string => {

@@ -266,7 +266,7 @@ const ModalComponent = ({
     const positionOffset: number = position === 'top' ? -50 : 0;
     const initialY = defaultDesktopAnimation.initial?.y ?? 0;
     const exitY = defaultDesktopAnimation.exit?.y ?? 0;
-    
+
     return {
       initial: {
         y: positionOffset + (typeof initialY === 'number' ? initialY : 0),
@@ -274,7 +274,10 @@ const ModalComponent = ({
         opacity: defaultDesktopAnimation.initial?.opacity ?? 0,
       },
       animate: {
-        y: typeof defaultDesktopAnimation.animate?.y === 'number' ? defaultDesktopAnimation.animate.y : 0,
+        y:
+          typeof defaultDesktopAnimation.animate?.y === 'number'
+            ? defaultDesktopAnimation.animate.y
+            : 0,
         scale: defaultDesktopAnimation.animate?.scale ?? 1,
         opacity: defaultDesktopAnimation.animate?.opacity ?? 1,
       },
@@ -287,7 +290,8 @@ const ModalComponent = ({
   }, [animationConfig, isBottomSheet, position]);
 
   // Compute effective fullScreen
-  const effectiveFullScreen = fullScreen || (isMobile && isBottomSheet && isMaximized) || isMaximized;
+  const effectiveFullScreen =
+    fullScreen || (isMobile && isBottomSheet && isMaximized) || isMaximized;
 
   return (
     <AnimatePresence>

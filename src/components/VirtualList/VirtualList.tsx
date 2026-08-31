@@ -92,12 +92,13 @@ export const VirtualList = <T,>({
   }, [onScroll]);
 
   // Reset scroll position when items change
+  // biome-ignore lint/correctness/useExhaustiveDependencies: items is intentionally a dependency to reset scroll on data change
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = 0;
     }
     setScrollTop(0);
-  }, []);
+  }, [items]);
 
   return (
     <VirtualListContainer

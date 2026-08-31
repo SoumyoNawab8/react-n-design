@@ -37,8 +37,7 @@ export const SystemPromptTextArea = styled.textarea`
   }
 
   &:focus {
-    box-shadow: ${({ theme }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 `;
 
@@ -75,8 +74,7 @@ export const RoleBadge = styled.div<{ $role: 'user' | 'assistant' }>`
   letter-spacing: 0.5px;
   background: ${({ theme, $role }) =>
     $role === 'user' ? `${theme.colors.primary}15` : `#1abc9c15`};
-  color: ${({ theme, $role }) =>
-    $role === 'user' ? theme.colors.primary : '#1abc9c'};
+  color: ${({ theme, $role }) => ($role === 'user' ? theme.colors.primary : '#1abc9c')};
 `;
 
 export const TextAreaContainer = styled.div`
@@ -140,8 +138,7 @@ export const StyledTextArea = styled.textarea`
   }
 
   &:focus {
-    box-shadow: ${({ theme }) =>
-      `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
+    box-shadow: ${({ theme }) => `${theme.shadows.softInset}, 0 0 0 2px ${theme.colors.primary}40`};
   }
 `;
 

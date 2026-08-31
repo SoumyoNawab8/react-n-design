@@ -413,12 +413,14 @@ function installDependencies(components) {
 function detectProjectType() {
   const cwd = process.cwd();
 
-  const hasNext = fs.existsSync(path.join(cwd, 'next.config.js')) ||
+  const hasNext =
+    fs.existsSync(path.join(cwd, 'next.config.js')) ||
     fs.existsSync(path.join(cwd, 'next.config.ts')) ||
     fs.existsSync(path.join(cwd, 'next.config.mjs'));
   if (hasNext) return 'Next.js';
 
-  const hasVite = fs.existsSync(path.join(cwd, 'vite.config.js')) ||
+  const hasVite =
+    fs.existsSync(path.join(cwd, 'vite.config.js')) ||
     fs.existsSync(path.join(cwd, 'vite.config.ts'));
   if (hasVite) return 'Vite';
 
@@ -576,7 +578,10 @@ html {
 
 // Create ThemeProvider wrapper component
 function createThemeProvider(isTS) {
-  const providerPath = path.join(process.cwd(), `src/components/ThemeProvider.${isTS ? 'tsx' : 'jsx'}`);
+  const providerPath = path.join(
+    process.cwd(),
+    `src/components/ThemeProvider.${isTS ? 'tsx' : 'jsx'}`
+  );
   checkOverwrite(providerPath);
 
   const content = isTS
@@ -639,7 +644,9 @@ async function initProject() {
   log(`     ${colors.cyan}import './styles/react-n-design.css';${colors.reset}`);
   log(`  2. Wrap your app with the ThemeProvider:`);
   if (projectType === 'Next.js') {
-    log(`     Update ${colors.cyan}app/layout.tsx${colors.reset} (or ${colors.cyan}pages/_app.tsx${colors.reset}):`);
+    log(
+      `     Update ${colors.cyan}app/layout.tsx${colors.reset} (or ${colors.cyan}pages/_app.tsx${colors.reset}):`
+    );
     log(`       import { ThemeProvider } from './components/ThemeProvider';`);
     log(`       ...`);
     log(`       <ThemeProvider>{children}</ThemeProvider>`);

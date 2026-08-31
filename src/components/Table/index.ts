@@ -1,6 +1,6 @@
 'use client';
-export * from './Table';
-export { 
-  type Column, 
-  type TableProps 
+export type {
+  Column,
+  TableProps,
 } from './Table';
+export * from './Table';

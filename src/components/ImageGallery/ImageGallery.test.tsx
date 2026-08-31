@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import type React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { vi } from 'vitest';
 import { lightTheme } from '../../styles/theme';
 import { ImageGallery } from './ImageGallery';
 
@@ -74,17 +73,13 @@ describe('ImageGallery', () => {
   });
 
   it('clamps columns to max 4', () => {
-    const { container } = renderWithTheme(
-      <ImageGallery images={defaultImages} columns={6} />
-    );
+    const { container } = renderWithTheme(<ImageGallery images={defaultImages} columns={6} />);
     const grid = container.firstChild as HTMLElement;
     expect(grid).toHaveStyle('grid-template-columns: repeat(4, 1fr)');
   });
 
   it('clamps columns to min 1', () => {
-    const { container } = renderWithTheme(
-      <ImageGallery images={defaultImages} columns={0} />
-    );
+    const { container } = renderWithTheme(<ImageGallery images={defaultImages} columns={0} />);
     const grid = container.firstChild as HTMLElement;
     expect(grid).toHaveStyle('grid-template-columns: repeat(1, 1fr)');
   });
@@ -105,9 +100,7 @@ describe('ImageGallery', () => {
   });
 
   it('is accessible', async () => {
-    const { container } = renderWithTheme(
-      <ImageGallery images={defaultImages} />
-    );
+    const { container } = renderWithTheme(<ImageGallery images={defaultImages} />);
     const results = await axe.run(container);
     expect(results.violations).toHaveLength(0);
   });

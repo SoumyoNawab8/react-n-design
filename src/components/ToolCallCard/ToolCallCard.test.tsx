@@ -16,9 +16,7 @@ describe('ToolCallCard', () => {
   });
 
   it('shows loading spinner when status is loading', () => {
-    const { container } = renderWithTheme(
-      <ToolCallCard toolName="Calculator" status="loading" />
-    );
+    const { container } = renderWithTheme(<ToolCallCard toolName="Calculator" status="loading" />);
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(screen.getByText('Loading')).toBeInTheDocument();
   });
@@ -30,11 +28,7 @@ describe('ToolCallCard', () => {
 
   it('shows error icon and message when status is error', () => {
     renderWithTheme(
-      <ToolCallCard
-        toolName="Database"
-        status="error"
-        errorMessage="Connection timeout"
-      />
+      <ToolCallCard toolName="Database" status="error" errorMessage="Connection timeout" />
     );
     expect(screen.getByRole('alert')).toHaveTextContent('Connection timeout');
     expect(screen.getByText('Connection timeout')).toBeInTheDocument();
@@ -53,39 +47,29 @@ describe('ToolCallCard', () => {
   });
 
   it('renders result in success state', () => {
-    renderWithTheme(
-      <ToolCallCard
-        toolName="Calculator"
-        status="success"
-        result="42"
-      />
-    );
+    renderWithTheme(<ToolCallCard toolName="Calculator" status="success" result="42" />);
     expect(screen.getByText('Result')).toBeInTheDocument();
     expect(screen.getByText('42')).toBeInTheDocument();
   });
 
   it('renders duration when provided', () => {
-    renderWithTheme(
-      <ToolCallCard toolName="API" status="loading" durationMs={1250} />
-    );
+    renderWithTheme(<ToolCallCard toolName="API" status="loading" durationMs={1250} />);
     expect(screen.getByLabelText(/duration: 1\.3s/i)).toBeInTheDocument();
   });
 
   it('renders custom toolIcon when provided', () => {
     renderWithTheme(
-      <ToolCallCard toolName="Custom" status="loading" toolIcon={<span data-testid="custom-icon">🔧</span>} />
+      <ToolCallCard
+        toolName="Custom"
+        status="loading"
+        toolIcon={<span data-testid="custom-icon">🔧</span>}
+      />
     );
     expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
   });
 
   it('toggles args collapse in success state', async () => {
-    renderWithTheme(
-      <ToolCallCard
-        toolName="Search"
-        status="success"
-        args={{ q: 'test' }}
-      />
-    );
+    renderWithTheme(<ToolCallCard toolName="Search" status="success" args={{ q: 'test' }} />);
 
     const toggle = screen.getByRole('button', { name: /expand arguments/i });
     expect(toggle).toBeInTheDocument();

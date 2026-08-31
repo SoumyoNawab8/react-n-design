@@ -160,10 +160,7 @@ export const GanttChart = ({
                       aria-valuenow={Math.round(progress)}
                       aria-label={`${task.name} progress`}
                     >
-                      <GanttBarProgress
-                        style={{ width: `${progress}%` }}
-                        $color={task.color}
-                      />
+                      <GanttBarProgress style={{ width: `${progress}%` }} $color={task.color} />
                     </GanttBar>
                   </GanttTimelineRow>
                 );

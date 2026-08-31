@@ -1,17 +1,16 @@
 'use client';
-import type React from 'react';
 import { useMemo } from 'react';
 import {
   HeatmapCalendarWrapper,
-  HeatmapGrid,
-  HeatmapMonthLabels,
-  HeatmapMonthLabel,
-  HeatmapWeekdayLabels,
-  HeatmapWeekdayLabel,
   HeatmapCell,
-  HeatmapColumn,
   HeatmapCellWrapper,
+  HeatmapColumn,
+  HeatmapGrid,
+  HeatmapMonthLabel,
+  HeatmapMonthLabels,
   HeatmapTooltip,
+  HeatmapWeekdayLabel,
+  HeatmapWeekdayLabels,
 } from './HeatmapCalendar.styles';
 
 export interface HeatmapDay {
@@ -115,14 +114,14 @@ export const HeatmapCalendar = ({
       </HeatmapMonthLabels>
       <div style={{ display: 'flex' }}>
         <HeatmapWeekdayLabels>
-          {WEEKDAY_LABELS.map((label, i) => (
+          {WEEKDAY_LABELS.map((label, _i) => (
             <HeatmapWeekdayLabel key={label}>{label}</HeatmapWeekdayLabel>
           ))}
         </HeatmapWeekdayLabels>
         <HeatmapGrid role="img" aria-label={`Contribution calendar for ${year}`}>
           {columns.map((col, colIndex) => (
             <HeatmapColumn key={colIndex}>
-              {col.map((day, rowIndex) => {
+              {col.map((day, _rowIndex) => {
                 const dateKey = formatDateKey(day);
                 const count = dataMap.get(dateKey) ?? 0;
                 const isInYear = day.getFullYear() === year;
@@ -130,10 +129,7 @@ export const HeatmapCalendar = ({
 
                 return (
                   <HeatmapCellWrapper key={dateKey}>
-                    <HeatmapCell
-                      intensity={intensity}
-                      isInYear={isInYear}
-                    />
+                    <HeatmapCell intensity={intensity} isInYear={isInYear} />
                     {isInYear && (
                       <HeatmapTooltip data-heatmap-tooltip>
                         {dateKey}: {count} contributions

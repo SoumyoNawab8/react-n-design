@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
-import { motion } from '../../utils/lazyMotion';
 import { iconColor } from '../../styles/iconColor';
+import { motion } from '../../utils/lazyMotion';
 
 export type ToastVariant = 'success' | 'error' | 'warning' | 'info' | 'loading';
 export type ToastPosition =
@@ -156,10 +156,9 @@ export const ToastContainer = styled.div.withConfig({
 `;
 
 export const ToastWrapper = styled(motion.div).withConfig({
-  shouldForwardProp: (prop) => ![ 'variant', 'isGlass', 'isStacked', 'index', 'stackCount'].includes(prop),
-})<
-  Required<Pick<ToastStyleProps, 'variant' | 'isGlass' | 'isStacked' | 'index' | 'stackCount'>>
->`
+  shouldForwardProp: (prop) =>
+    !['variant', 'isGlass', 'isStacked', 'index', 'stackCount'].includes(prop),
+})<Required<Pick<ToastStyleProps, 'variant' | 'isGlass' | 'isStacked' | 'index' | 'stackCount'>>>`
   pointer-events: auto;
   display: flex;
   align-items: flex-start;
@@ -192,22 +191,19 @@ export const ToastWrapper = styled(motion.div).withConfig({
     return `7px 7px 14px ${color}25, -7px -7px 14px ${theme.colors.shadowLight}80`;
   }};
   
-  backdrop-filter: ${({ isGlass }) =>
-    isGlass ? 'blur(12px) saturate(180%)' : 'none'};
-  -webkit-backdrop-filter: ${({ isGlass }) =>
-    isGlass ? 'blur(12px) saturate(180%)' : 'none'};
-  border: ${({ isGlass, theme }) =>
-    isGlass ? `1px solid rgba(255, 255, 255, 0.18)` : 'none'};
+  backdrop-filter: ${({ isGlass }) => (isGlass ? 'blur(12px) saturate(180%)' : 'none')};
+  -webkit-backdrop-filter: ${({ isGlass }) => (isGlass ? 'blur(12px) saturate(180%)' : 'none')};
+  border: ${({ isGlass, theme }) => (isGlass ? `1px solid rgba(255, 255, 255, 0.18)` : 'none')};
 
-  ${({ isStacked, index , stackCount }) => {
+  ${({ isStacked, index, stackCount }) => {
     if (!isStacked || index === undefined || stackCount === undefined) return '';
-    
+
     // Stack design - toasts scale and recede into depth
     const offset = index * -20;
     const scale = 1 - index * 0.05;
     const opacity = 1 - index * 0.15;
     const zIndex = stackCount - index;
-    
+
     return css`
       position: absolute;
       top: ${offset}px;

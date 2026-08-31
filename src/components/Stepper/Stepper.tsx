@@ -1,5 +1,5 @@
 'use client';
-import { motion, useSpring, useTransform } from 'framer-motion';
+import { motion, useSpring } from 'framer-motion';
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { FaCheck } from '../../icons';
 import { Button } from '../Button';
@@ -126,7 +126,7 @@ export const Stepper: React.FC<StepperProps> = memo(
     }, [steps, currentStep, allowClickBack]);
 
     // Spring animation for progress
-    const springProgress = useSpring(currentStep, {
+    const _springProgress = useSpring(currentStep, {
       stiffness: springConfig.stiffness ?? 300,
       damping: springConfig.damping ?? 30,
       mass: springConfig.mass ?? 1,
@@ -262,9 +262,7 @@ export const Stepper: React.FC<StepperProps> = memo(
                       {step.title}
                     </StepperTitle>
                     {step.description && (
-                      <StepperDescription $variant={variant}>
-                        {step.description}
-                      </StepperDescription>
+                      <StepperDescription $variant={variant}>{step.description}</StepperDescription>
                     )}
                   </>
                 )}
@@ -276,9 +274,7 @@ export const Stepper: React.FC<StepperProps> = memo(
                     $variant={variant}
                     $connectorStyles={connectorStyles}
                     style={{
-                      ['--progress' as string]: calc.isCompleted
-                        ? '100%'
-                        : `${calc.progress}%`,
+                      ['--progress' as string]: calc.isCompleted ? '100%' : `${calc.progress}%`,
                     }}
                   />
                 )}

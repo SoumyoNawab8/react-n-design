@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -87,9 +87,7 @@ describe('Toast', () => {
   });
 
   it('renders avatar initials when no image provided', () => {
-    renderWithTheme(
-      <Toast {...DEFAULT_PROPS} avatar={{ initials: 'JD' }} title="Notification" />
-    );
+    renderWithTheme(<Toast {...DEFAULT_PROPS} avatar={{ initials: 'JD' }} title="Notification" />);
     expect(screen.getByText('JD')).toBeInTheDocument();
   });
 
@@ -110,9 +108,7 @@ describe('Toast', () => {
   });
 
   it('applies custom className', () => {
-    const { container } = renderWithTheme(
-      <Toast {...DEFAULT_PROPS} className="my-custom-toast" />
-    );
+    const { container } = renderWithTheme(<Toast {...DEFAULT_PROPS} className="my-custom-toast" />);
     const wrapper = container.firstChild as HTMLElement;
     expect(wrapper.classList.contains('my-custom-toast')).toBe(true);
   });
@@ -163,8 +159,8 @@ describe('Toast', () => {
 
     it('enforces maxToasts limit', () => {
       const TestComponent = () => {
-        const [toasts, setToasts] = React.useState<string[]>([]);
-        const maxToasts = 3;
+        const [toasts, _setToasts] = React.useState<string[]>([]);
+        const _maxToasts = 3;
         return (
           <div>
             {toasts.map((id) => (

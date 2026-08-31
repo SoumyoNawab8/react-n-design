@@ -1,3 +1,3 @@
 'use client';
-export type { MentionOption, MentionInputProps } from './MentionInput';
+export type { MentionInputProps, MentionOption } from './MentionInput';
 export { MentionInput } from './MentionInput';

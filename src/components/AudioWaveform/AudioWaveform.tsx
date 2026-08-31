@@ -1,10 +1,6 @@
 'use client';
-import type React from 'react';
 import { useMemo } from 'react';
-import {
-  AudioWaveformWrapper,
-  AudioWaveformBar,
-} from './AudioWaveform.styles';
+import { AudioWaveformBar, AudioWaveformWrapper } from './AudioWaveform.styles';
 
 export interface AudioWaveformProps {
   bars?: number;
