@@ -6,12 +6,14 @@ import { FaCheckCircle } from '../../icons';
 import { lightTheme } from '../../styles/theme';
 import { Stepper } from './Stepper';
 
-// Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+// Mock ResizeObserver. The implementation must be a constructor (function/class)
+// because vitest constructs it via `new ResizeObserver(...)`.
+class ResizeObserverMock {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
+global.ResizeObserver = ResizeObserverMock;
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>);

@@ -48,15 +48,16 @@ const pinnedColumns = [
   { key: 'role', title: 'Role', pinned: 'right' as const },
 ];
 
-// Mock ResizeObserver so bodyHeight stays positive in jsdom
-const mockResizeObserver = vi.fn(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+// Mock ResizeObserver so bodyHeight stays positive in jsdom. The implementation
+// must be a constructor (function/class) because it is instantiated via `new`.
+class ResizeObserverMock {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
 
 beforeAll(() => {
-  global.ResizeObserver = mockResizeObserver;
+  global.ResizeObserver = ResizeObserverMock;
 });
 
 afterAll(() => {
