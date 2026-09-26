@@ -268,7 +268,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <FiGithub size={16} />
               GitHub
             </FooterLink>
-            <FooterMeta>v1.2.1</FooterMeta>
+            <FooterMeta>v1.3.2</FooterMeta>
             <FooterMeta>© 2026 react-n-design</FooterMeta>
           </FooterLinks>
         </FooterInner>

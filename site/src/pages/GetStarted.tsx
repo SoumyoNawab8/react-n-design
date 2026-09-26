@@ -121,10 +121,7 @@ const { theme, setTheme } = useTheme();
             tree-shakeable.
           </Text>
           <CodePreview
-            code={`// Recommended direct import
-import { Button } from 'react-n-design/components/Button';
-
-// Or use the barrel if your bundler handles tree-shaking
+            code={`// Barrel import (fully tree-shakeable)
 import { Button } from 'react-n-design';`}
             language="tsx"
           />
@@ -138,8 +135,24 @@ import { Button } from 'react-n-design';`}
             minimal boilerplate.
           </Text>
           <CodePreview
-            code={`import { useForm } from 'react-hook-form';
-import { InputAdapter } from 'react-n-design/adapters/react-hook-form';`}
+            code={`import { useForm, Controller } from 'react-hook-form';
+import { Input } from 'react-n-design';
+import { withReactHookForm } from 'react-n-design/adapters/react-hook-form';
+
+const RHFInput = withReactHookForm(Input);
+
+function MyForm() {
+  const { control } = useForm();
+  return (
+    <Controller
+      name="username"
+      control={control}
+      render={({ field, fieldState }) => (
+        <RHFInput {...field} fieldState={fieldState} label="Username" />
+      )}
+    />
+  );
+}`}
             language="tsx"
           />
         </Section>

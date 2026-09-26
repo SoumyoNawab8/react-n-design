@@ -3953,11 +3953,11 @@ export default async function ServerPage() {
       render: () => (
         <div style={{ padding: 24, textAlign: 'center' }}>
           <Text size="small" color="textSecondary">
-            Available RSC components: Badge, Divider, Skeleton, Text.
+            Available RSC components: Badge, Divider, Skeleton.
           </Text>
         </div>
       ),
-      code: `import { Badge, Divider, Skeleton, Text } from 'react-n-design/rsc';
+      code: `import { Badge, Divider, Skeleton } from 'react-n-design/rsc';
 
 export default async function ServerPage() {
   return (
@@ -3965,7 +3965,6 @@ export default async function ServerPage() {
       <Skeleton variant="text" width="40%" />
       <Badge count={3} />
       <Divider />
-      <Text>Server-rendered text</Text>
     </>
   );
 }`,
@@ -3982,13 +3981,13 @@ export default async function ServerPage() {
         </div>
       ),
       code: `import { Suspense } from 'react';
-import { Badge, Skeleton, Text } from 'react-n-design/rsc';
+import { Badge, Skeleton } from 'react-n-design/rsc';
 
 async function ServerData() {
   const data = await fetch('/api/stats').then((r) => r.json());
   return (
     <>
-      <Text>Users: {data.users}</Text>
+      <span>Users: {data.users}</span>
       <Badge count={data.notifications} />
     </>
   );
@@ -6172,11 +6171,9 @@ This paragraph uses the default renderer.`}</Markdown>
       description: 'Grid using a custom CSS track sizing string for uneven columns.',
       render: () => (
         <Grid columns="1fr 2fr 1fr" gap={16}>
-          {['Sidebar', 'Main', 'Sidebar'].map((label, i) => (
-            <Card key={i} style={{ padding: 16, textAlign: 'center' }}>
-              {label}
-            </Card>
-          ))}
+          <Card style={{ padding: 16, textAlign: 'center' }}>Sidebar</Card>
+          <Card style={{ padding: 16, textAlign: 'center' }}>Main</Card>
+          <Card style={{ padding: 16, textAlign: 'center' }}>Sidebar</Card>
         </Grid>
       ),
     },
@@ -9670,6 +9667,30 @@ This paragraph uses the default renderer.`}</Markdown>
           ]}
         />
       ),
+    },
+  ],
+
+  Typography: [
+    {
+      title: 'Text',
+      description: 'Text, Title, and Paragraph primitives for consistent typography.',
+      render: () => (
+        <Stack direction="column" gap={16} align="center">
+          <Text size="large" weight="bold">
+            Large bold text
+          </Text>
+          <Text size="medium">Regular body text</Text>
+          <Text size="small" color="textSecondary">
+            Secondary small text
+          </Text>
+        </Stack>
+      ),
+      code: `import { Text, Title } from 'react-n-design';
+
+<Title level={2}>A section heading</Title>
+<Text size="large" weight="bold">Large bold text</Text>
+<Text size="medium">Regular body text</Text>
+<Text size="small" color="textSecondary">Secondary small text</Text>`,
     },
   ],
 };

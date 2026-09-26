@@ -187,7 +187,7 @@ const PropsTable: React.FC<PropsTableProps> = ({ componentName }) => {
     );
   }, [propsData, query]);
 
-  const sourceUrl = `${REPO_URL}/blob/master/src/components/${componentName}/${componentName}.tsx`;
+  const sourceUrl = `${REPO_URL}/tree/master/src/components/${componentName}`;
 
   if (loading) {
     return (

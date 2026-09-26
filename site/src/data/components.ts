@@ -138,6 +138,11 @@ export const componentCategories: ComponentCategory[] = [
       { name: 'VisuallyHidden', description: 'Screen-reader only content.', category: 'Other' },
       { name: 'CodeBlock', description: 'Syntax highlighted code.', category: 'Other' },
       { name: 'RichTextEditor', description: 'Rich text WYSIWYG editor.', category: 'Other' },
+      {
+        name: 'Typography',
+        description: 'Text, Title, and Paragraph primitives.',
+        category: 'Other',
+      },
       { name: 'RSC', description: 'React Server Component helpers.', category: 'Other' },
     ],
   },
