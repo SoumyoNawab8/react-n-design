@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-09-26
+
+### Fixed
+
+- **Security**: Upgraded `dompurify` to `3.4.15`, fixing two XSS advisories in the shipped `Markdown` sanitizer.
+- **Audit**: Resolved all transitive dev-tooling vulnerabilities (axios, postcss, nanoid, js-yaml, fast-uri, ip-address, adm-zip, brace-expansion, fflate, browserslist) via lockfile bumps — full-tree audit now reports 0 vulnerabilities.
+- **Tooling**: Bumped `vitest`/`@vitest/coverage-v8` to 5 and `@vitejs/plugin-react` to 6 for Vite 8 peer compatibility.
+- **Tests**: Replaced arrow-function `ResizeObserver` mocks with class-based mocks in `Stepper` and `DataGrid` for Vitest 5 constructor semantics (full suite 1222/1222 green).
+
 ## [1.3.1] - 2026-08-31
 
 ### Fixed
@@ -80,7 +89,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Production-verified release.
 - First stable major version.
 
-[Unreleased]: https://github.com/SoumyoNawab8/react-n-design/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/SoumyoNawab8/react-n-design/compare/v1.3.2...HEAD
+[1.3.2]: https://github.com/SoumyoNawab8/react-n-design/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/SoumyoNawab8/react-n-design/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/SoumyoNawab8/react-n-design/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/SoumyoNawab8/react-n-design/compare/v1.2.0...v1.2.1
